@@ -5,7 +5,7 @@ import { Search, ListFilter, ListOrdered } from "lucide-react";
 
 export const SearchFilter = () => {
     return (
-        <div className="container mx-auto min-h-[200px] px-6 md:px-0 space-y-4 mt-10">
+        <div className="container mx-auto min-h-[160px] px-6 md:px-0 space-y-4 mt-8">
 
             <h3 className="text-sm font-semibold text-white">Encuentra el aprendizaje que estás buscando</h3>
 
@@ -27,7 +27,7 @@ export const SearchFilter = () => {
                 </Button>
             </div>
 
-            <div className="flex items-center justify-evenly flex-wrap gap-2">
+            <div className="hidden md:flex md:items-center md:justify-evenly md:gap-2">
                 {categories.map((category) => (
                     <Button
                         key={category}

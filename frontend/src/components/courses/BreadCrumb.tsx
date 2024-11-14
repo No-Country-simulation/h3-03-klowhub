@@ -10,7 +10,7 @@ import {
 export const BreadCrumb = () => {
 
     return (
-        <Breadcrumb className="mt-10">
+        <Breadcrumb className="mt-6">
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink className="text-white text-xs tracking-tight leading-5" href="/">Home</BreadcrumbLink>

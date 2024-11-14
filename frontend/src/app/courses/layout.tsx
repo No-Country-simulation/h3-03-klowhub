@@ -1,6 +1,10 @@
+import { Header } from "@/components/shared/Header";
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {
     return (
-        <section>{children}</section>
+        <>
+            <Header/>
+            <section>{children}</section>
+        </>
     );
 }

@@ -2,7 +2,7 @@ const courses = [
   {
     title: "Control de Inventario para retail",
     img: "/temp/imgs/course-image.png",
-    description: "App diseñada para gestionar y monitorear el stock en tiendas físicas",
+    description: "Aprende a crear flujos de trabajo automatizados en AppSheet, optimizando la gestión de tareas y aprobaciones.",
     platform: "AppSheet",
     tags: [ "Logística", "Retail", "Inventarios" ],
     rating: 4.1,
@@ -11,7 +11,7 @@ const courses = [
   },
   {
     title: "Control de Inventario para retail",
-    img: "/temp/imgs/course-image.png",
+    img: "/temp/imgs/course-image2.png",
     description: "App diseñada para gestionar y monitorear el stock en tiendas físicas",
     platform: "AppSheet",
     tags: [ "Logística", "Retail", "Inventarios" ],
