@@ -1,9 +1,13 @@
-import { categories } from "@/mocks/categories.mocks";
+import { FC } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ListFilter, ListOrdered } from "lucide-react";
 
-export const SearchFilter = () => {
+type SearchFilterProps = {
+  categories?: string[]
+}
+
+const SearchFilter:FC<SearchFilterProps> = ({ categories }) => {
     return (
         <div className="container mx-auto min-h-[160px] px-6 md:px-0 space-y-4 mt-8">
 
@@ -28,7 +32,7 @@ export const SearchFilter = () => {
             </div>
 
             <div className="hidden md:flex md:items-center md:justify-evenly md:gap-2">
-                {categories.map((category) => (
+                { categories && categories.map((category) => (
                     <Button
                         key={category}
                         variant="outline"
@@ -42,3 +46,5 @@ export const SearchFilter = () => {
         </div>
     )
 }
+
+export default SearchFilter
