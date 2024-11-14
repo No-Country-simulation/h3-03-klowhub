@@ -1,7 +1,7 @@
 const courses = [
   {
     title: "Control de Inventario para retail",
-    img: "/course-img.png",
+    img: "/temp/imgs/course-image.png",
     description: "App diseñada para gestionar y monitorear el stock en tiendas físicas",
     platform: "AppSheet",
     tags: [ "Logística", "Retail", "Inventarios" ],
@@ -11,7 +11,7 @@ const courses = [
   },
   {
     title: "Control de Inventario para retail",
-    img: "/course-img.png",
+    img: "/temp/imgs/course-image.png",
     description: "App diseñada para gestionar y monitorear el stock en tiendas físicas",
     platform: "AppSheet",
     tags: [ "Logística", "Retail", "Inventarios" ],
@@ -21,7 +21,7 @@ const courses = [
   },
   {
     title: "Control de Inventario para retail",
-    img: "/course-img.png",
+    img: "/temp/imgs/course-image.png",
     description: "App diseñada para gestionar y monitorear el stock en tiendas físicas",
     platform: "AppSheet",
     tags: [ "Logística", "Retail", "Inventarios" ],
@@ -31,7 +31,7 @@ const courses = [
   },
   {
     title: "Control de Inventario para retail",
-    img: "/course-img.png",
+    img: "/temp/imgs/course-image.png",
     description: "App diseñada para gestionar y monitorear el stock en tiendas físicas",
     platform: "AppSheet",
     tags: [ "Logística", "Retail", "Inventarios" ],
