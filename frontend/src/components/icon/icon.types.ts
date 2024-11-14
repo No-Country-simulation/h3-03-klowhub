@@ -3,3 +3,5 @@ export type IconTypes =
   | "star"
   | "rated-star"
   | "shopping-cart"
+  | "power-apps"
+  | "app-sheet"

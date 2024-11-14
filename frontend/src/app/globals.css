@@ -8,10 +8,22 @@ body {
 
 @layer base {
   :root {
+    --primary-50: #BEB4CA;
+    /* --primary-50: #F3E3FB; */
+    --primary-100: #e8c9f1;
+    --primary-200: #d194e2;
+    --primary-300: #b95ed4;
+    --primary-400: #9d32bc;
+    --primary-500: #702486;
+    --primary-600: #5A1D6B;
+    --primary-700: #431650;
+    --primary-800: #2D0E36;
+    --primary-900: #16071B;
+    --gray-100: #353E4B;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card: #1F2937;
+    --card-foreground: #FFF;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 0 0% 9%;
