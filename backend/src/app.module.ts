@@ -5,9 +5,16 @@ import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ApplicationsModule } from './applications/applications.module';
 import { CoursesModule } from './courses/courses.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [UsersModule, CoursesModule, ApplicationsModule, ProjectsModule],
+  imports: [
+    UsersModule,
+    CoursesModule,
+    ApplicationsModule,
+    ProjectsModule,
+    DatabaseModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
