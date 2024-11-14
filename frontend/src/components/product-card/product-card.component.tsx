@@ -8,13 +8,14 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Product } from "./product-card.types";
 import { Button } from "@/components/ui/button"
+import Icon from "../icon/icon.component";
+import Rating from "../rating/rating.component";
 
 import Image from "next/image";
 import Link from "next/link";
 
-import { Product } from "./product-card.types";
-import Icon from "../icon/icon.component";
 import { formatPrice } from "./product-card.utils";
 import { getSlug } from "@/utils/str.utils";
 
@@ -55,18 +56,7 @@ const ProductCard: FC<Product> = ({
               ))
             }
           </div>
-          <div className="flex gap-4">
-            <span>{ rating }</span>
-            <div className="relative">
-              <div className="flex">{ Array(Math.floor(5)).fill(0).map((s, idx) => (
-                <Icon key={`unrated-star-${idx}`} name="star" /> 
-              )) }</div>
-              <div className="flex absolute left-0 top-0">{ Array(Math.floor(rating)).fill(0).map((s, idx) => (
-                <Icon key={`unrated-star-${idx}`} name="rated-star" />
-              )) }</div>
-            </div>
-            <span>({ ratingCount })</span>
-          </div>
+          <Rating rating={rating} ratingCount={ratingCount} />
           <span className="text-xl font-bold">${ formatPrice(price) }</span>
           <div className="w-full flex justify-between items-center">
             <Button>Añadir al carrito</Button>
