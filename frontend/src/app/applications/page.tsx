@@ -8,7 +8,7 @@ import { courses } from "@/mocks/products.mocks";
 const AppliactionsPage = () => {
   return (
     <main className="w-full">
-      <div className="px-6 md:px-5 mx-auto">
+      <div className="container px-6 md:px-0 mx-auto">
         <BreadCrumb />
       </div>
 
@@ -16,10 +16,12 @@ const AppliactionsPage = () => {
 
       <div 
         className="
-        grid grid-cols-4 gap-5
-        2xl:grid-cols-3 2xl:px-5
-        xl:grid-cols-2 
-        sm:grid-cols-1
+        px-5 md:px-0
+        grid grid-cols-1 gap-5
+        md:grid-cols-3
+        lg:grid-cols-4
+        container
+        mx-auto
         "
       >
         {courses.map((course, index) => (

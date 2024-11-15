@@ -6,10 +6,9 @@ import { Search, ListFilter, ListOrdered } from "lucide-react";
 type SearchFilterProps = {
   categories?: string[]
 }
-
-const SearchFilter:FC<SearchFilterProps> = ({ categories }) => {
+ const SearchFilter:FC<SearchFilterProps> = ({ categories }) => {
     return (
-        <div className="mx-auto min-h-[160px] 2xl:px-5 space-y-4 mt-8">
+        <div className="container mx-auto min-h-[160px] px-5 md:px-0 space-y-4 mt-8 mb-8 md:mb-0">
 
             <h3 className="text-sm font-semibold text-white">Encuentra el aprendizaje que estás buscando</h3>
 
@@ -23,15 +22,15 @@ const SearchFilter:FC<SearchFilterProps> = ({ categories }) => {
                 </div>
                 <Button variant="outline" size="sm" className="border-[#D194E2] bg-transparent text-[#D194E2]">
                     <ListFilter/> 
-                    <span className="md:hidden">Filtros</span>
+                    <span className="hidden md:block">Filtros</span>
                 </Button>
                 <Button variant="outline" size="sm" className="border-[#D194E2] bg-transparent text-[#D194E2]">
                     <ListOrdered/>
-                    <span className="md:hidden">Ordenar por</span>         
+                    <span className="hidden md:block">Ordenar por</span>         
                 </Button>
             </div>
 
-            <div className="flex lg:hidden md:items-center md:justify-evenly md:gap-2">
+            <div className="flex flex-wrap gap-2 md:items-center justify-between md:justify-evenly md:gap-2">
                 { categories && categories.map((category) => (
                     <Button
                         key={category}

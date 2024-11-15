@@ -19,7 +19,7 @@ import Link from "next/link";
 import { formatPrice } from "./product-card.utils";
 import { getSlug, truncate } from "@/utils/str.utils";
 
-const ProductCard: FC<Product> = ({ 
+const ProductCard: FC<Product> = ({
   title,
   img,
   description,
@@ -31,33 +31,34 @@ const ProductCard: FC<Product> = ({
   orientation
 }) => {
   return (
-    <Card 
-      className={`overflow-hidden flex ${ orientation === "vertical" ? "flex-col" : "h-80 items-center gap-2" }`}
+    <Card
+      className={`overflow-hidden flex flex-col ${orientation === "vertical" ? "" : "md:flex-row items-center gap-4 mb-6"}`}
     >
-      <div className={orientation === "vertical" ? "h-60" : "w-96 h-full"}>
-        <Image width={334} height={205} alt="some description" src={ img } className="w-full h-full object-cover" />
+      <div className={orientation === "vertical" ? "flex-shrink-0 h-60" : "h-full w-full md:h-auto md:w-auto flex-shrink-0 overflow-hidden"}>
+        <Image width={334} objectFit="cover" height={200} alt="some description" src={img} className="w-full h-full object-cover" />
       </div>
-      <div className="flex flex-col gap-3 p-5 flex-grow">
+      <div className="w-full flex flex-col justify-evenly h-full gap-6 p-4 flex-grow">
         <CardHeader className="flex flex-col">
           <div className="flex justify-between items-center">
-            <CardTitle>{ title }</CardTitle>
+            <CardTitle>{title}</CardTitle>
             <Icon name="more-vertical" />
           </div>
+          <span className={`text-sm tracking-wide leading-6 ${orientation === "vertical" ? "h-[72px]" : ""}`}>
+            {
+              truncate(description, orientation === "horizontal" ? 200 : undefined)
+            }
+          </span>
         </CardHeader>
-        <span className={`text-sm tracking-wide leading-6 ${orientation === "vertical" ? "h-[72px]" : ""}`}>
-          {
-            truncate(description, orientation === "horizontal" ? 200 : undefined) 
-          }
-        </span>
+
+        <div>
+          <Badge
+            icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
+            className="bg-gray-100 text-white"
+          >
+            {platform}
+          </Badge>
+        </div>
         <CardContent className="flex flex-col gap-3">
-          <div>
-            <Badge 
-              icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
-              className="bg-gray-100 text-white"
-            >
-              { platform }
-            </Badge>
-          </div>
           <div className="flex gap-2">
             {
               tags.map((t, idx) => (
@@ -66,8 +67,8 @@ const ProductCard: FC<Product> = ({
             }
           </div>
           <Rating rating={rating} ratingCount={ratingCount} />
-          <span className="text-xl font-bold">${ formatPrice(price) }</span>
-          <div className="w-full flex justify-between items-center">
+          {orientation === "vertical" ? <span className="text-xl font-bold">${formatPrice(price)}</span> : ""}
+          <div className={`w-full flex items-center ${orientation === "vertical" ? "justify-between" : "justify-between md:justify-start gap-10"}`}>
             <Button>Añadir al carrito</Button>
             <Link href="/" className="text-primary-200">Ver detalles</Link>
           </div>

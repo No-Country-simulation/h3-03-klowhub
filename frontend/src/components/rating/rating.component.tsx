@@ -7,8 +7,8 @@ type RatingProps = {
 
 const Rating = ({ rating, ratingCount }: RatingProps) => {
   return (
-    <div className="flex gap-4">
-      <span>{ rating }</span>
+    <div className="flex items-center gap-4">
+      <span className="font-thin text-sm">{ rating }</span>
       <div className="relative">
         <div className="flex">
           {
@@ -25,7 +25,7 @@ const Rating = ({ rating, ratingCount }: RatingProps) => {
           }
         </div>
       </div>
-      <span>({ ratingCount })</span>
+      <span className="font-thin text-sm">({ ratingCount })</span>
     </div>
   )
 };

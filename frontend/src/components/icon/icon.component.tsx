@@ -9,12 +9,12 @@ const Icon = ({ name, style }: IconProps) => {
   switch (name) {
     case "star": {
       return (
-        <svg className={ style } width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#D9D9D9" d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        <svg className={ style } width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#D9D9D9" d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
       );
     }
     case "rated-star": {
       return (
-        <svg className={ style } width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#FBBC05" d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        <svg className={ style } width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#FBBC05" d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
       );
     }
     case "shopping-cart": {
@@ -24,7 +24,7 @@ const Icon = ({ name, style }: IconProps) => {
     }
     case "app-sheet": {
       return (
-        <svg className={ style } width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.6712 0.000854492H16.7136L13.9021 3.98675L12.2295 7.93707L16.7136 8.43531L21.3757 7.95486L24.8278 1.97601C25.326 1.1041 24.6854 0.000854492 23.6712 0.000854492Z" fill="#0060D9"/><path d="M0.182529 1.9938L3.08298 6.95839C3.43887 7.56339 4.07946 7.93707 4.79123 7.93707L12.2292 7.95486L16.7133 0.000854492H1.32136C0.307089 0.000854492 -0.333503 1.12189 0.182529 1.9938Z" fill="#4285F4"/><path d="M13.7058 21.3362C13.2076 22.2081 11.9442 22.2259 11.4282 21.354L8.54551 16.5139C8.18962 15.9089 8.17183 15.1438 8.52771 14.521L12.2467 7.93713L21.3751 7.95492L13.7058 21.3362Z" fill="#4285F4"/></svg>
+        <svg className={ style } width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.6712 0.000854492H16.7136L13.9021 3.98675L12.2295 7.93707L16.7136 8.43531L21.3757 7.95486L24.8278 1.97601C25.326 1.1041 24.6854 0.000854492 23.6712 0.000854492Z" fill="#0060D9"/><path d="M0.182529 1.9938L3.08298 6.95839C3.43887 7.56339 4.07946 7.93707 4.79123 7.93707L12.2292 7.95486L16.7133 0.000854492H1.32136C0.307089 0.000854492 -0.333503 1.12189 0.182529 1.9938Z" fill="#4285F4"/><path d="M13.7058 21.3362C13.2076 22.2081 11.9442 22.2259 11.4282 21.354L8.54551 16.5139C8.18962 15.9089 8.17183 15.1438 8.52771 14.521L12.2467 7.93713L21.3751 7.95492L13.7058 21.3362Z" fill="#4285F4"/></svg>
       );
     }
     case "power-apps": {

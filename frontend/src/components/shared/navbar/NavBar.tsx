@@ -40,7 +40,7 @@ export const NavBar = () => {
                 Plataforma
               </Link>
             </div>
-            <div className="flex xl:hidden space-x-4">
+            <div className="md:flex hidden space-x-4">
               <NavItem href="#">Dashboard</NavItem>
               <NavItem href="/courses">Curso y lecciones</NavItem>
               <NavItem href="/applications">Appstore</NavItem>
@@ -50,7 +50,7 @@ export const NavBar = () => {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <div className='text-white'>
+            <div className='text-white hidden md:block'>
               <Button variant="ghost" size="icon">
                 <ShoppingCart className="h-5 w-5" />
                 <span className="sr-only">Shopping cart</span>

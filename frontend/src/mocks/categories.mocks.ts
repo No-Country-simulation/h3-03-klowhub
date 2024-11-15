@@ -3,8 +3,8 @@ export const categories = [
     "Base de datos",
     "Expresiones y fórmulas",
     "Automatización",
+    "General",
     "Flujo de trabajo",
     "Acciones-Behavior",
     "Seguridad Accesibilidad",
-    "General",
 ];
