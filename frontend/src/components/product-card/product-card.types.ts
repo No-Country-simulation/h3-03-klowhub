@@ -7,4 +7,5 @@ export type Product = {
   rating: number
   ratingCount: number
   price: number
+  orientation: 'vertical' | 'horizontal'
 }

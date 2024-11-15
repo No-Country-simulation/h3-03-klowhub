@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
   	extend: {
+      boxShadow: {
+        hrd: '0px 8px 20px rgba(0, 0, 0, 0.4)'
+      },
   		colors: {
         "primary-50": 'var(--primary-50)',
         "primary-100": 'var(--primary-100)',

@@ -7,7 +7,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-export const BreadCrumb = () => {
+const BreadCrumb = () => {
 
     return (
         <Breadcrumb className="mt-6">
@@ -26,3 +26,5 @@ export const BreadCrumb = () => {
     );
 
 };
+
+export default BreadCrumb

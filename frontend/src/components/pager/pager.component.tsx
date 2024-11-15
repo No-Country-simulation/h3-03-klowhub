@@ -10,7 +10,7 @@ import {
 
 
 
-export const CoursesPagination = () => {
+const Pager = () => {
     return (
         <Pagination className="text-white">
             <PaginationContent className="border rounded-md">
@@ -30,3 +30,5 @@ export const CoursesPagination = () => {
         </Pagination>
     );
 };
+
+export default Pager

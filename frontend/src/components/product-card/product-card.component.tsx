@@ -17,7 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { formatPrice } from "./product-card.utils";
-import { getSlug } from "@/utils/str.utils";
+import { getSlug, truncate } from "@/utils/str.utils";
 
 const ProductCard: FC<Product> = ({ 
   title,
@@ -28,18 +28,27 @@ const ProductCard: FC<Product> = ({
   rating,
   ratingCount,
   price,
+  orientation
 }) => {
   return (
-    <Card className="overflow-hidden">
-      <Image width={334} height={205} objectFit="cover" alt="some description" src={ img } />
-      <div className="flex flex-col gap-3 p-4">
+    <Card 
+      className={`overflow-hidden flex ${ orientation === "vertical" ? "flex-col" : "h-80 items-center gap-2" }`}
+    >
+      <div className={orientation === "vertical" ? "h-60" : "w-96 h-full"}>
+        <Image width={334} height={205} alt="some description" src={ img } className="w-full h-full object-cover" />
+      </div>
+      <div className="flex flex-col gap-3 p-5 flex-grow">
         <CardHeader className="flex flex-col">
           <div className="flex justify-between items-center">
             <CardTitle>{ title }</CardTitle>
             <Icon name="more-vertical" />
           </div>
-          <CardDescription>{ description }</CardDescription>
         </CardHeader>
+        <span className={`text-sm tracking-wide leading-6 ${orientation === "vertical" ? "h-[72px]" : ""}`}>
+          {
+            truncate(description, orientation === "horizontal" ? 200 : undefined) 
+          }
+        </span>
         <CardContent className="flex flex-col gap-3">
           <div>
             <Badge 
