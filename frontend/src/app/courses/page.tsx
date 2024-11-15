@@ -9,13 +9,13 @@ import { categories } from "@/mocks/categories.mocks";
 const Page = () => {
   return (
     <div>
-      <div className="container px-6 md:px-0 mx-auto">
+      <div className="px-6 md:px-5 mx-auto">
         <BreadCrumb />
       </div>
 
       <SearchFilter categories={categories} />
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 2xl:px-5">
         {courses.map((course, index) => (
           <ProductCard
             title={course.title}
@@ -31,10 +31,7 @@ const Page = () => {
           />
         ))}
       </div>
-
-      <div className="container mx-auto flex items-center justify-center mb-8">
-        <Pager/>
-      </div>
+      <Pager/>
     </div>
   );
 
