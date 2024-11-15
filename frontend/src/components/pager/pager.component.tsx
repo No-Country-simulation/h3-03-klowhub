@@ -12,7 +12,7 @@ import {
 
 const Pager = () => {
     return (
-        <Pagination className="text-white">
+        <Pagination className="mx-auto flex items-center justify-center text-white md:px-5">
             <PaginationContent className="border rounded-md">
                 <PaginationItem>
                     <PaginationPrevious href="#" />

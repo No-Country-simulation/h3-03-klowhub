@@ -7,36 +7,39 @@ import { courses } from "@/mocks/products.mocks";
 
 const AppliactionsPage = () => {
   return (
-    <div className="w-full">
-        <div>
-          <div className="container px-6 md:px-0 mx-auto">
-            <BreadCrumb />
-          </div>
+    <main className="w-full">
+      <div className="px-6 md:px-5 mx-auto">
+        <BreadCrumb />
+      </div>
 
-          <SearchFilter />
+      <SearchFilter />
 
-          <div className="grid grid-cols-4 gap-5">
-            {courses.map((course, index) => (
-              <ProductCard
-                title={course.title}
-                img={course.img}
-                description={course.description}
-                platform={course.platform}
-                tags={course.tags}
-                rating={course.rating}
-                ratingCount={course.ratingCount}
-                price={course.price}
-                key={index}
-                orientation="vertical"
-              />
-            ))}
-          </div>
+      <div 
+        className="
+        grid grid-cols-4 gap-5
+        2xl:grid-cols-3 2xl:px-5
+        xl:grid-cols-2 
+        sm:grid-cols-1
+        "
+      >
+        {courses.map((course, index) => (
+          <ProductCard
+            title={course.title}
+            img={course.img}
+            description={course.description}
+            platform={course.platform}
+            tags={course.tags}
+            rating={course.rating}
+            ratingCount={course.ratingCount}
+            price={course.price}
+            key={index}
+            orientation="vertical"
+          />
+        ))}
+      </div>
 
-          <div className="container mx-auto flex items-center justify-center mb-8">
-            <Pager/>
-          </div>
-        </div>
-    </div>
+      <Pager/>
+    </main>
   )
 };
 
