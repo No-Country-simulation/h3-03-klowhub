@@ -4,7 +4,7 @@ import Pager from "@/components/pager/pager.component";
 import SearchFilter from "@/components/search-filter/search-filter.component";
 import { mentors } from "@/mocks/mentors.mocks";
 
-const Page = () => {
+const MentorsPage = () => {
     return (
         <main className="w-full">
             <div className="container px-6 md:px-0 mx-auto">
@@ -43,4 +43,4 @@ const Page = () => {
     );
 };
 
-export default Page;
+export default MentorsPage;
