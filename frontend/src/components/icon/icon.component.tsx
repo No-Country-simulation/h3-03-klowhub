@@ -34,8 +34,18 @@ const Icon = ({ name, style }: IconProps) => {
     }
     case "more-vertical": {
       return (
-        <svg className={style} width="24" stroke="currentColor" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <svg className={ style } width="24" stroke="currentColor" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" strokeLinecap="round" strokeLinejoin="round"/></svg>
       );
+    }
+    case "heart": {
+      return (
+        <svg className={ style } width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5837 15.1667C22.1978 13.585 23.8337 11.6892 23.8337 9.20833C23.8337 7.62809 23.2059 6.11256 22.0885 4.99516C20.9711 3.87775 19.4556 3.25 17.8753 3.25C15.9687 3.25 14.6253 3.79167 13.0003 5.41667C11.3753 3.79167 10.032 3.25 8.12533 3.25C6.54508 3.25 5.02955 3.87775 3.91215 4.99516C2.79474 6.11256 2.16699 7.62809 2.16699 9.20833C2.16699 11.7 3.79199 13.5958 5.41699 15.1667L13.0003 22.75L20.5837 15.1667Z" fill="white" fillOpacity="0.8" stroke="white" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      );
+    }
+    case "proyector": {
+      return (
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.33301 5.83398L12.4997 8.33398L8.33301 10.834V5.83398Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/><path d="M16.667 2.5H3.33366C2.41318 2.5 1.66699 3.24619 1.66699 4.16667V12.5C1.66699 13.4205 2.41318 14.1667 3.33366 14.1667H16.667C17.5875 14.1667 18.3337 13.4205 18.3337 12.5V4.16667C18.3337 3.24619 17.5875 2.5 16.667 2.5Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/><path d="M10 14.166V17.4993" stroke="white" strokeLinecap="round" strokeLinejoin="round"/><path d="M6.66699 17.5H13.3337" stroke="white" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      )
     }
   }
 };

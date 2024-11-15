@@ -5,3 +5,5 @@ export type IconTypes =
   | "shopping-cart"
   | "power-apps"
   | "app-sheet"
+  | "heart"
+  | "proyector"
