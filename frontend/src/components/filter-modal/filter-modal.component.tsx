@@ -28,12 +28,15 @@ const FilterModal = ({ setShowFilters, children }: FilterModalProps) => {
 
   return modalRoot ? ReactDOM.createPortal(
     <>
-      <div className="fixed w-screen h-screen bg-black opacity-70 top-0"></div>
-      <div ref={ref} className={"bg-custom-gradient p-6 top-0 right-0 fixed h-dvh z-[99999] text-white flex flex-col items-end gap-5"}>
-        <button onClick={() => setShowFilters(false)}>
+      <div className="cursor-pointer fixed w-screen h-screen bg-black opacity-70 top-0"></div>
+      <div ref={ref} className={"bg-custom-gradient py-6 px-3 top-0 right-0 fixed h-dvh z-[99999] text-white flex flex-col items-end gap-5"}>
+        <button 
+          className="mr-5"
+          onClick={() => setShowFilters(false)}
+        >
           <X />
         </button>
-        <div className={"grid grid-cols-2 gap-5 h-full overflow-scroll"}>
+        <div className={"grid grid-cols-2 gap-5 px-3 h-full overflow-scroll"}>
           { children }
         </div>
       </div>
