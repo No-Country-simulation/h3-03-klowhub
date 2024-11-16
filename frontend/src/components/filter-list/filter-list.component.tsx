@@ -14,7 +14,7 @@ const FilterList = ({ header, filters, full }: FilterListProps) => {
   const cols = breakFilters(filters);
 
   return (
-    <div className={ `flex flex-col backdrop-blur-md bg-white/10 rounded-lg p-5 ${full ? "col-span-1 md:col-span-2" : ""} items-start gap-5` }>
+    <div className={ `flex flex-col backdrop-blur-md bg-white/10 rounded-lg p-5 ${full ? "col-span-1 sm:col-span-2" : ""} items-start gap-5` }>
       <h2 className="font-bold text-base">{ header }</h2>
       <div className={`w-full flex flex-col md:flex-row gap-5 ${filters.length > 2 ? "" : "flex-col"} justify-between`}>
         { 
