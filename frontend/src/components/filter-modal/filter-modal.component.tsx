@@ -36,7 +36,7 @@ const FilterModal = ({ setShowFilters, children }: FilterModalProps) => {
         >
           <X />
         </button>
-        <div className={"grid grid-cols-2 gap-5 px-3 h-full overflow-scroll"}>
+        <div className={"grid grid-cols-1 md:grid-cols-2 gap-5 px-3 h-full overflow-scroll"}>
           { children }
         </div>
       </div>
