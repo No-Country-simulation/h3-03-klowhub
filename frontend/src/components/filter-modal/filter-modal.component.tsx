@@ -2,10 +2,11 @@
 
 import ReactDOM from "react-dom";
 
-import { Dispatch, SetStateAction, useContext, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useContext, useRef } from "react";
 import { IsClientCtx } from "@/contexts/is-client.context";
 import { X } from "lucide-react";
 import useClickOutside from "@/hooks/use-click-outside.hook";
+import useDisableScrolling from "@/hooks/use-disable-scrolling.hook";
 
 
 type FilterModalProps = {
@@ -18,13 +19,7 @@ const FilterModal = ({ setShowFilters, children }: FilterModalProps) => {
   const modalRoot = isClient ? document.getElementById("modal-root") : null;
   const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, () => setShowFilters(false))
-
-  useEffect(() => {
-    document.body.classList.add("overflow-hidden")
-    return () => {
-      document.body.classList.remove("overflow-hidden")
-    }
-  }, [])
+  useDisableScrolling(document.body)
 
   return modalRoot ? ReactDOM.createPortal(
     <>
