@@ -35,7 +35,12 @@ const ProductCard: FC<Product> = ({
       className={`overflow-hidden flex flex-col ${orientation === "vertical" ? "" : "md:flex-row items-center gap-4 mb-6"}`}
     >
       <div className={orientation === "vertical" ? "flex-shrink-0 h-60" : "h-full w-full md:h-auto md:w-auto flex-shrink-0 overflow-hidden"}>
-        <Image width={334} objectFit="cover" height={200} alt="some description" src={img} className="w-full h-full object-cover" />
+        <Image 
+          className="w-full h-full object-cover"
+          width={img.width} height={img.height} 
+          alt={img.alt}
+          src={img.url} 
+        />
       </div>
       <div className="w-full flex flex-col justify-evenly h-full gap-6 p-4 flex-grow">
         <CardHeader className="flex flex-col">

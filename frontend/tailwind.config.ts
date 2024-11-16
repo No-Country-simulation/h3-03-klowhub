@@ -30,6 +30,7 @@ export default {
         "primary-700": 'var(--primary-700)',
         "primary-800": 'var(--primary-800)',
         "primary-900": 'var(--primary-900)',
+        "kblue": 'var(--kblue)',
         "gray-100": 'var(--gray-100)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

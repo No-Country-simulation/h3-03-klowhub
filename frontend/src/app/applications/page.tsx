@@ -5,6 +5,16 @@ import Pager from "@/components/pager/pager.component";
 
 import { courses } from "@/mocks/products.mocks";
 
+import { sector, plaform, language, functionalities, toolsAndPlatforms } from "@/consts/filters.consts";
+
+const filters = [
+  plaform,
+  language,
+  sector,
+  functionalities,
+  toolsAndPlatforms
+];
+
 const AppliactionsPage = () => {
   return (
     <main className="w-full">
@@ -12,16 +22,14 @@ const AppliactionsPage = () => {
         <BreadCrumb />
       </div>
 
-      <SearchFilter />
+      <SearchFilter filters={filters} />
 
       <div 
         className="
-        px-5 md:px-0
-        grid grid-cols-1 gap-5
-        md:grid-cols-3
-        lg:grid-cols-4
-        container
-        mx-auto
+        container px-5 grid grid-cols-1 gap-5 mx-auto
+        md:grid-cols-2
+        lg:grid-cols-3
+        xl:grid-cols-4
         "
       >
         {courses.map((course, index) => (
