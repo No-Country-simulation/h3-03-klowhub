@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 
-const useDisableScrolling = (elem: HTMLElement) => {
+const useDisableScrolling = (elem: HTMLElement | null, condition: boolean) => {
   useEffect(() => {
-    elem.classList.add("overflow-hidden")
-    return () => {
+    if (!elem) return;
+    if (condition) {
+      elem.classList.add("overflow-hidden")
+    } else {
       elem.classList.remove("overflow-hidden")
-    }
-  }, [elem])
+    };
+  }, [elem, condition])
 };
 
 export default useDisableScrolling

@@ -1,11 +1,12 @@
 "use client"
 
-import { FC, useState } from "react";
+import { FC, useState, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ListOrdered } from "lucide-react";
 import { ListFilter } from "lucide-react";
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientCtx } from "@/contexts/is-client.context";
+
 
 import FilterModal from "../filter-modal/filter-modal.component";
 import FilterList from "../filter-list/filter-list.component";
@@ -18,6 +19,7 @@ type SearchFilterProps = {
 
 const SearchFilter: FC<SearchFilterProps> = ({ categories, filters }) => {
   const [ showFilters, setShowFilters ] = useState(false);
+  const isClient = useContext(IsClientCtx);
 
   return (
     <div className="container mx-auto min-h-[160px] px-5 md:px-0 space-y-4 mt-8 mb-8 md:mb-0">
@@ -38,20 +40,19 @@ const SearchFilter: FC<SearchFilterProps> = ({ categories, filters }) => {
           <ListFilter />
           <span className="hidden md:block">Filtros</span>
         </Button>
-        <IsClientProvider>
-          { showFilters &&
-            <FilterModal setShowFilters={setShowFilters}>
-              {
-                filters.map((f, idx) => {
-                  const full = filters.length % 2 > 0 && idx === 2 ? true : false;
-                  return(
-                    <FilterList key={`filter-${idx}`} header={f.header} filters={f.items} full={full} />
-                  )
-                })
-              }
-            </FilterModal>
-          }
-        </IsClientProvider>
+
+        { isClient ?
+          <FilterModal showFilters={showFilters} setShowFilters={setShowFilters}>
+            {
+              filters.map((f, idx) => {
+                const full = filters.length % 2 > 0 && idx === 2 ? true : false;
+                return(
+                  <FilterList key={`filter-${idx}`} header={f.header} filters={f.items} full={full} />
+                )
+              })
+            }
+          </FilterModal> : ""
+        }
 
         <Button
           variant="outline"

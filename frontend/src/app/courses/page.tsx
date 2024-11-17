@@ -4,6 +4,7 @@ import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import Pager from "@/components/pager/pager.component";
 
 import { courses } from "@/mocks/products.mocks";
+import { IsClientProvider } from "@/contexts/is-client.context";
 import { categories } from "@/mocks/categories.mocks";
 
 import { sector, plaform, language, functionalities, toolsAndPlatforms, contentCore, level, contentType } from "@/consts/filters.consts";
@@ -26,7 +27,9 @@ const Page = () => {
         <BreadCrumb />
       </div>
 
-      <SearchFilter filters={filters} categories={categories} />
+      <IsClientProvider>
+        <SearchFilter filters={filters} categories={categories} />
+      </IsClientProvider>
 
       <div className="container mx-auto px-6 md:px-0">
         {courses.map((course, index) => (

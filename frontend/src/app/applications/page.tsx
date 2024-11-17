@@ -1,11 +1,13 @@
-import ProductCard from "@/components/product-card/product-card.component";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import SearchFilter from "@/components/search-filter/search-filter.component";
 import Pager from "@/components/pager/pager.component";
 
 import { courses } from "@/mocks/products.mocks";
 
+import ProductsContainer from "@/components/products-container/products-container.component";
 import { sector, plaform, language, functionalities, toolsAndPlatforms } from "@/consts/filters.consts";
+import { IsClientProvider } from "@/contexts/is-client.context";
+import ProductCard from "@/components/product-card/product-card.component";
 
 const filters = [
   plaform,
@@ -22,8 +24,9 @@ const AppliactionsPage = () => {
         <BreadCrumb />
       </div>
 
-      <SearchFilter filters={filters} />
-
+      <IsClientProvider>
+        <SearchFilter filters={filters} />
+      </IsClientProvider>
       <div 
         className="
         container px-5 grid grid-cols-1 gap-5 mx-auto
