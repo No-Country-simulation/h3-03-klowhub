@@ -7,7 +7,7 @@ import { mentors } from "@/mocks/mentors.mocks";
 const MentorsPage = () => {
     return (
         <main className="w-full">
-            <div className="container px-6 md:px-0 mx-auto">
+            <div className="px-6 md:px-5 mx-auto">
                 <BreadCrumb />
             </div>
 
