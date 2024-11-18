@@ -18,11 +18,12 @@ const inter = Inter({
 const MentorDetailDesktop = () => {
     return (
         <div className={`${inter.className} grid gap-12`}>
-            <Card className="w-full overflow-hidden flex-col relative p-5 tracking-wide">
+            <Card className="w-full overflow-hidden relative p-5 tracking-wide">
                 <CardContent className="flex gap-5">
                     <div className="w-1/4 flex-shrink-0 p-5 flex flex-col gap-5">
                         <div className="flex flex-col h-[247px] items-center justify-between">
                             <Image
+                                priority
                                 alt="some description"
                                 src={"https://res.cloudinary.com/dpp28f2ek/image/upload/v1731614213/Image_1_yhifgc.png"}
                                 width={175}
