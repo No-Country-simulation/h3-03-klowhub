@@ -1,14 +1,14 @@
-"use client"
-
-import { FC, useState, useContext } from "react";
+import { FC } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ListOrdered } from "lucide-react";
 import { ListFilter } from "lucide-react";
-import { IsClientCtx } from "@/contexts/is-client.context";
+import { buttonVariants } from "@/components/ui/button";
 
+import Link from "next/link";
 
-import FilterModal from "../filter-modal/filter-modal.component";
+import { getQueryParams, getPathname } from "@/utils/route.utils";
+import SideModal from "../side-modal/side-modal.component";
 import FilterList from "../filter-list/filter-list.component";
 import { TFilterList } from "@/types/filters.types";
 
@@ -17,9 +17,9 @@ type SearchFilterProps = {
   filters: TFilterList[]
 };
 
-const SearchFilter: FC<SearchFilterProps> = ({ categories, filters }) => {
-  const [ showFilters, setShowFilters ] = useState(false);
-  const isClient = useContext(IsClientCtx);
+const SearchFilter: FC<SearchFilterProps> = async ({ filters, categories }) => {
+  const queryParams = await getQueryParams();
+  const pathname = await getPathname();
 
   return (
     <div className="container mx-auto min-h-[160px] px-5 md:px-0 space-y-4 mt-8 mb-8 md:mb-0">
@@ -36,22 +36,31 @@ const SearchFilter: FC<SearchFilterProps> = ({ categories, filters }) => {
           />
         </div>
 
-        <Button onClick={() => setShowFilters(true)} variant="outline" size="sm" className="border-[#D194E2] bg-transparent text-[#D194E2]">
+        <Link 
+          href={`${pathname}?showfilters=true`}
+          className={`border-[#D194E2] bg-transparent text-[#D194E2] ${buttonVariants({variant: "outline" })}`}
+        >
           <ListFilter />
           <span className="hidden md:block">Filtros</span>
-        </Button>
+        </Link>
 
-        { isClient ?
-          <FilterModal showFilters={showFilters} setShowFilters={setShowFilters}>
-            {
-              filters.map((f, idx) => {
-                const full = filters.length % 2 > 0 && idx === 2 ? true : false;
-                return(
-                  <FilterList key={`filter-${idx}`} header={f.header} filters={f.items} full={full} />
-                )
-              })
-            }
-          </FilterModal> : ""
+        { queryParams.showfilters && 
+          <SideModal background="bg-custom-gradient">
+            <div className={`
+                grid grid-cols-1 gap-5 px-3 w-full h-full overflow-scroll
+                sm:grid-cols-2
+              `}
+            >
+              {
+                filters.map((f, idx) => {
+                  const full = filters.length % 2 > 0 && idx === 2 ? true : false;
+                  return(
+                    <FilterList key={`filter-${idx}`} header={f.header} filters={f.items} full={full} />
+                  )
+                })
+              }
+            </div>
+          </SideModal>
         }
 
         <Button

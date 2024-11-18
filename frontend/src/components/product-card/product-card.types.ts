@@ -1,18 +1,35 @@
-export type Image = {
+export type TImage = {
   url: string
   width: number
   height: number
   alt: string
 }
 
-export type Product = {
+export type TAppInfo = {
+  id: number
   title: string
-  img: Image
+  img: TImage
   description: string
   platform: string
   tags: string[]
   rating: number
   ratingCount: number
   price: number
-  orientation: 'vertical' | 'horizontal'
+  about: string
+}
+
+export type TAuthorInfo = {
+  name: string
+  about: string
+  img: string
+}
+
+export type TAppCard = {
+  data: TAppInfo
+  openFn: () => void
+}
+
+export type TProduct = {
+  product: TAppInfo
+  author: TAuthorInfo
 }
