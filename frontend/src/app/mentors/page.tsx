@@ -7,20 +7,23 @@ import { mentors } from "@/mocks/mentors.mocks";
 const MentorsPage = () => {
     return (
         <main className="w-full">
-            <div className="px-6 md:px-5 mx-auto">
+            <div className="container px-6 md:px-0 mx-auto">
                 <BreadCrumb />
             </div>
 
-            <SearchFilter />
+            <SearchFilter filters={[]} />
 
-            <h3 className="text-sm py-2 mb-5 font-semibold text-white">Expertos recomendados</h3>
+            <h3 className="container px-6 md:px-0 mx-auto text-sm py-2 mb-5 font-semibold text-white">
+                Expertos recomendados
+            </h3>
 
-            <div className="
-                 grid grid-cols-4 gap-5
-                 2xl:grid-cols-3 2xl:px-5
-                 xl:grid-cols-2 
-                 sm:grid-cols-1
-                 "
+            <div
+                className="
+                           container px-5 grid grid-cols-1 gap-5 mx-auto
+                           md:grid-cols-2 md:px-0
+                           lg:grid-cols-3
+                           xl:grid-cols-4
+                          "
             >
                 {mentors.map((mentor, index) => (
                     <MentorCard
