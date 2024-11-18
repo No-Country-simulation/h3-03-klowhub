@@ -1,4 +1,4 @@
-export type IconTypes = 
+export type IconTypes =
   | "more-vertical"
   | "star"
   | "rated-star"
@@ -7,3 +7,8 @@ export type IconTypes =
   | "app-sheet"
   | "close"
   | "list-filter"
+  | "heart"
+  | "proyector"
+  | "user"
+  | "clock"
+  | "arrow"

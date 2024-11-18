@@ -1,0 +1,3 @@
+type TimePicker = {
+  className?: string;
+};
