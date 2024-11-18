@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 
 const CalendarHeader: FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...props
-}) => <div className="flex justify-between items-center px-2" {...props} />;
+}) => <div className="flex justify-between items-center px-4" {...props} />;
 
 const CalendarGrid: FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...props
