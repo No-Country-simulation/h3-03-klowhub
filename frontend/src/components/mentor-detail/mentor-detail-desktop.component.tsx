@@ -17,7 +17,7 @@ const inter = Inter({
 
 const MentorDetailDesktop = () => {
     return (
-        <div className={`${inter.className} grid gap-12`}>
+        <div className={`${inter.className} grid gap-12 w-full`}>
             <Card className="w-full overflow-hidden relative p-5 tracking-wide">
                 <CardContent className="flex gap-5">
                     <div className="w-1/4 flex-shrink-0 p-5 flex flex-col gap-5">
