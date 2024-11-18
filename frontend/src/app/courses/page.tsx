@@ -47,17 +47,14 @@ const Page = async () => {
 
       <div className="container mx-auto px-6 md:px-0">
         {products.data.map((c, idx) => (
-          <ProductCard
-            data={c.product}
-            key={idx}
-          />
+          <ProductCard data={c.product} key={idx} />
         ))}
       </div>
         { queryParams.modal && 
           <SideModal>
             <div className={`
-                grid grid-cols-1 gap-5 px-3 w-full h-full overflow-scroll
-                sm:grid-cols-2
+                px-8 overflow-scroll w-[500px]
+                2xl:w-[800px]
               `}
             >
               <QuickView products={products.data} />

@@ -31,6 +31,8 @@ export default {
 				"primary-900": 'var(--primary-900)',
         "kblue": 'var(--kblue)',
         "kPurple": 'var(--kPurple)',
+        "kSkyBlue": 'var(--kSkyBlue)',
+
 				"gray-100": 'var(--gray-100)',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',

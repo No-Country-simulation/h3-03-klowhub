@@ -21,7 +21,7 @@ export type TAppInfo = {
 export type TAuthorInfo = {
   name: string
   about: string
-  img: string
+  img: TImage
 }
 
 export type TAppCard = {
