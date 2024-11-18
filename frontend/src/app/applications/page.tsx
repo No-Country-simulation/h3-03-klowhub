@@ -58,13 +58,7 @@ const AppliactionsPage = async () => {
 
         { queryParams.modal && 
           <SideModal>
-            <div className={`
-                px-8 overflow-scroll w-[500px]
-                2xl:w-[800px]
-              `}
-            >
-              <QuickView products={products.data} />
-            </div>
+            <QuickView products={products.data} />
           </SideModal>
         }
 
