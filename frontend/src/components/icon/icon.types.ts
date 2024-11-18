@@ -12,3 +12,7 @@ export type IconTypes =
   | "user"
   | "clock"
   | "arrow"
+  | "mail"
+  | "linkedin"
+  | "whatsapp"
+  | "messenger"
