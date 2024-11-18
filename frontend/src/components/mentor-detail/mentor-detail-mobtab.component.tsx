@@ -24,9 +24,9 @@ const MentorDetailMobileTablet = () => {
   tabViewMap.set("Reseñas", <ReviewsSection />);
 
   return (
-    <div className={`${inter.className} w-full px-12 sm:px-5 450px:px-0`}>
-      <Card className="w-full overflow-hidden flex-col justify-center relative p-5 sm:p-1.5 tracking-wide">
-        <CardContent className="w-full p-5 sm:p-1.5 flex flex-col gap-5">
+    <div className={`${inter.className} w-full px-0 450px:px-5 sm:px-12`}>
+      <Card className="w-full overflow-hidden flex-col justify-center relative p-1.5 sm:p-5 tracking-wide">
+        <CardContent className="w-full p-1.5 sm:p-5 flex flex-col gap-1.5 sm:gap-5">
           <div className="flex flex-col h-[247px] items-center justify-between">
             <Image
               priority
@@ -128,7 +128,7 @@ const ScheduleSection = () => {
             espacio para la sesión.
           </p>
         </div>
-        <div className="flex w-full lg:flex-col lg:items-center justify-center gap-12 lg:gap-8">
+        <div className="flex flex-col w-full items-center justify-center gap-8 lg:flex-row lg:gap-12">
           <DatePicker />
           <div className="flex flex-col gap-6 pr-2">
             <span className="text-sm font-semibold">
@@ -138,7 +138,7 @@ const ScheduleSection = () => {
           </div>
         </div>
       </CardSection>
-      <div className="flex justify-end lg:justify-center gap-4">
+      <div className="flex justify-center lg:justify-end gap-4">
         <Button
           variant="outline"
           className="w-[140px] bg-transparent border border-primary-200 h-[40px] text-primary-200"
@@ -154,7 +154,7 @@ const ScheduleSection = () => {
 const ReviewsSection = () => {
   return (
     <CardContent className="flex flex-col gap-5">
-      <div className="flex justify-between lg:flex-col-reverse">
+      <div className="flex flex-col-reverse lg:flex-row lg:justify-between">
         <div className="w-full flex flex-col gap-3 p-3">
           <div className="flex items-center w-[132px] gap-1.5">
             <span className="text-base font-bold text-primary-100">Perfil</span>
@@ -208,7 +208,7 @@ const ReviewsSection = () => {
           </Badge>
         </div>
       </div>
-      <div className="flex justify-between sm:flex-col gap-12">
+      <div className="flex flex-col gap-12 sm:flex-row sm:justify-between">
         <div className="w-full flex flex-col gap-5">
           <div className="flex flex-col min-h-[104px] gap-5">
             <span className="text-base font-bold p-2.5">Background</span>
@@ -231,7 +231,7 @@ const ReviewsSection = () => {
           </div>
           <div className="flex flex-col min-h-[104px] gap-5">
             <div className="flex justify-between flex-wrap">
-              <span className="text-sm font-semibold h-10 flex items-center">
+              <span className="text-sm font-semibold h-10 flex items-center p-1.5">
                 Disciplinas
               </span>
               <div className="flex gap-4">
@@ -244,7 +244,7 @@ const ReviewsSection = () => {
               </div>
             </div>
             <div className="flex justify-between flex-wrap">
-              <span className="text-sm font-semibold h-10 flex items-center">
+              <span className="text-sm font-semibold h-10 flex items-center p-1.5">
                 Idiomas
               </span>
               <div className="flex gap-4">

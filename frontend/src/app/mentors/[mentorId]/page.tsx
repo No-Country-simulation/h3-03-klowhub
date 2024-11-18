@@ -12,7 +12,7 @@ const MentorDetailPage = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleResize = () => {
-        setIsDesktop(window.innerWidth > 1200);
+        setIsDesktop(window.innerWidth > 1279);
       };
 
       handleResize();
@@ -35,10 +35,12 @@ const MentorDetailPage = () => {
 
   return (
     <main className="w-full">
-      <div className="px-6 md:px-5 mx-auto mb-[48px]">
+      <div className="container px-6 md:px-0 mx-auto mb-[48px]">
         <BreadCrumb />
       </div>
-      {isDesktop ? <MentorDetailDesktop /> : <MentorDetailMobileTablet />}
+      <div className="container mx-auto">
+        {isDesktop ? <MentorDetailDesktop /> : <MentorDetailMobileTablet />}
+      </div>
     </main>
   );
 };
