@@ -3,7 +3,6 @@ import React, { FC, useState } from "react";
 import Icon from "../icon/icon.component";
 import useCalendar from "./date-picker.utils";
 import { CalendarDay } from "./date-picker.types";
-import { Button } from "../ui/button";
 
 const CalendarHeader: FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...props

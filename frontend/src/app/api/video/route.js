@@ -1,7 +1,7 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { streamVideo } from "../../../utils/temp.utils"
 
-export async function GET (req: NextRequest) {
+export async function GET (req) {
   try {
     const { headers, videoStream } = await streamVideo(req);
     const readableStream = new ReadableStream({
@@ -17,6 +17,6 @@ export async function GET (req: NextRequest) {
       headers,
     });
   } catch (err) {
-    return NextResponse.json({ error: (err as Error).message }, { status: 400 });
+    return NextResponse.json({ error: err.message }, { status: 400 });
   }
 }

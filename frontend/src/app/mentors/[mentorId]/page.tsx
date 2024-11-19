@@ -3,7 +3,7 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import MentorDetailDesktop from "@/components/mentor-detail/mentor-detail-desktop.component";
 import MentorDetailMobileTablet from "@/components/mentor-detail/mentor-detail-mobtab.component";
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const MentorDetailPage = () => {
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
