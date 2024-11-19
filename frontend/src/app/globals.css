@@ -7,9 +7,6 @@ body {
 }
 
 @layer base {
-  html {
-    @apply text-green-500;
-  }
   :root {
     --primary-50: #BEB4CA;
     /* --primary-50: #F3E3FB; */
