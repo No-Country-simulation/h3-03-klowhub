@@ -11,7 +11,7 @@ const MentorsPage = () => {
 
             <SearchFilter filters={[]} />
 
-            <h3 className="text-sm py-2 mb-5 font-semibold text-white">
+            <h3 className="text-sm py-2 mb-5 font-semibold">
                 Expertos recomendados
             </h3>
 

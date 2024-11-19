@@ -7,6 +7,9 @@ body {
 }
 
 @layer base {
+  html {
+    @apply text-green-500;
+  }
   :root {
     --primary-50: #BEB4CA;
     /* --primary-50: #F3E3FB; */
@@ -25,7 +28,7 @@ body {
 
     --gray-100: #353E4B;
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 0 0% 100%;
     --card: #1F2937;
     --card-foreground: #FFF;
     --popover: 0 0% 100%;
@@ -51,10 +54,10 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 100%;
+    --card: #1F2937;
+    --card-foreground: 0 0% 100%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
@@ -67,7 +70,7 @@ body {
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
+    --border: 0 0% 89.8%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
     --chart-1: 220 70% 50%;
