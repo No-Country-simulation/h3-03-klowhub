@@ -30,7 +30,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header/>
-        {children}
+        
+        <div className="container px-6 md:px-0 mx-auto">
+          {children}
+        </div>
+
         <div id="modal-root"></div>
         <Footer/>  
       </body>

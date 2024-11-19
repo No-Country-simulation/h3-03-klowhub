@@ -36,7 +36,7 @@ const Page = async () => {
   const queryParams = await getQueryParams();
 
   return (
-    <main className="container px-6 md:px-0 mx-auto">
+    <main>
       <BreadCrumb />
 
       <IsClientProvider>

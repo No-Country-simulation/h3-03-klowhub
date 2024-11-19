@@ -22,7 +22,7 @@ const SearchFilter: FC<SearchFilterProps> = async ({ filters, categories }) => {
   const pathname = await getPathname();
 
   return (
-    <div className="container mx-auto min-h-[160px] space-y-4 mt-8 mb-8 md:mb-0">
+    <div className="min-h-[160px] space-y-4 mt-8 mb-8 md:mb-0">
       <h3 className="text-sm font-semibold text-white">
         Encuentra el aprendizaje que estás buscando
       </h3>
