@@ -32,17 +32,15 @@ const AppliactionsPage = async () => {
   const queryParams = await getQueryParams();
 
   return (
-    <main className="w-full">
-      <div className="container px-6 md:px-0 mx-auto">
-        <BreadCrumb />
-      </div>
+    <main className="container px-6 md:px-0 mx-auto">
+      <BreadCrumb />
 
       <IsClientProvider>
         <SearchFilter filters={filters} />
       </IsClientProvider>
       <div 
         className="
-        container px-5 grid grid-cols-1 gap-5 mx-auto
+        grid grid-cols-1 gap-5
         md:grid-cols-2 md:px-0
         lg:grid-cols-3
         xl:grid-cols-4

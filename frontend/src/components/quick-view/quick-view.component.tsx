@@ -36,10 +36,10 @@ const QuickView = async ({ products }: QuickViewProps) => {
 
   return (
     <div className="
-      flex flex-col gap-5
-                px-5 overflow-scroll w-[600]
-                2xl:w-[800px] 2xl:px-8
-      ">
+      flex flex-col gap-5 px-5 overflow-scroll w-full
+      md:w-[600px]
+      2xl:w-[800px] 2xl:px-8
+    ">
       <h2 className="font-bold">{ title }</h2>
       <p>{ description }</p>
       <div>

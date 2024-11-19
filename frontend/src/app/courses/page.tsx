@@ -36,16 +36,14 @@ const Page = async () => {
   const queryParams = await getQueryParams();
 
   return (
-    <div>
-      <div className="container px-6 md:px-0 mx-auto">
-        <BreadCrumb />
-      </div>
+    <main className="container px-6 md:px-0 mx-auto">
+      <BreadCrumb />
 
       <IsClientProvider>
         <SearchFilter filters={filters} categories={categories} />
       </IsClientProvider>
 
-      <div className="container mx-auto px-6 md:px-0">
+      <div>
         {products.data.map((c, idx) => (
           <ProductCard data={c.product} key={idx} />
         ))}
@@ -56,7 +54,7 @@ const Page = async () => {
           </SideModal>
         }
       <Pager />
-    </div>
+    </main>
   );
 
 };
