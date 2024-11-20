@@ -1,6 +1,7 @@
 import { UseFormRegister, FieldErrors, Control } from "react-hook-form";
 import { CourseInfo } from "@/types/courses.types";
 import { OneOf } from "@/types/utils.types";
+import { OptionsOrGroups, GroupBase } from "react-select";
 
 type FieldType = "text" | "textarea" | "number" | "checkbox" | "date" | "time" | "password";
 type FieldName = keyof (CourseInfo) // this type is not strict but to make it strict we will need refactor too much things and rn it doesn't make sense to do that
@@ -38,7 +39,8 @@ export type SelectOption = {
 
 type SelectInput = {
   type: "select"
-  options: SelectOption[]
+  // options: SelectOption[]
+  options?: OptionsOrGroups<SelectOption, GroupBase<SelectOption>> | undefined
   isMulti?: boolean
 } & ControlledInput
 
