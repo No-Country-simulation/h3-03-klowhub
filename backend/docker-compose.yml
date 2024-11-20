@@ -1,0 +1,54 @@
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - ms-users
+    networks:
+      - klowhub
+
+  ms-users:
+    build:
+      context: ./ms-users
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./ms-users/.env
+    networks:
+      - klowhub
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    container_name: klowhub_db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: klowhub
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - klowhub
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: klowhub_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@klowhub.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - '5050:80'
+    depends_on:
+      - db
+    networks:
+      - klowhub
+
+volumes:
+  db_data:
+networks:
+  klowhub:

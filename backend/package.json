@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api-gateway/dist/main.js",
+    "start:dev": "nest start --watch --prefix api-gateway",
+    "test": "jest --prefix api-gateway",
+    "start:users": "node ms-users/dist/main.js",
+    "start:users:dev": "nest start --watch --prefix ms-users",
+    "test:users": "jest --prefix ms-users"
   },
   "keywords": [],
   "author": "",
