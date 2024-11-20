@@ -11,6 +11,7 @@ type CommonProps = {
   label: string
   register: UseFormRegister<OneOf<[ CourseInfo ]>>
   errors: FormErrors
+  className?: string
 }
 
 type CommonInput = {
@@ -41,4 +42,4 @@ type SelectInput = {
   isMulti?: boolean
 } & ControlledInput
 
-export type InputProps = CommonInput | RadioInput | SelectInput | RichTextInput
+export type InputProps = CommonInput | RadioInput | SelectInput | RichTextInput 

@@ -20,12 +20,12 @@ const GeneralForm = () => {
 
   return (
     <>
-      <form onSubmit={ handleSubmit(data => onSubmit(data)) }>
+      <form onSubmit={ handleSubmit(data => onSubmit(data)) } className="flex flex-col gap-10">
         <Input 
           name="title" type="text"
           label="Título del curso / lección" { ...commonProps } 
         />
-        <div className="flex gap-5">
+        <div className="flex gap-28">
           <Input
             name="freeCourse" options={[ "Gratuito", "Pago" ]} type="radio-group"
             label="¿Qué tipo de contenido estás buscando: gratuito o premium?" { ...commonProps }
@@ -39,7 +39,7 @@ const GeneralForm = () => {
           name="about" type="richtext" 
           label="Contá de qué trata, en no más de 3 líneas." { ...controlledCommonProps } 
         />
-        <div className="flex gap-5">
+        <div className="flex gap-28">
           <Input
             name="level" options={[ "Básico", "Intermedio" ]} type="radio-group"
             label="Nivel de competencia" { ...commonProps }
@@ -50,8 +50,8 @@ const GeneralForm = () => {
           />
         </div>
         <IsClientProvider>
-          <div className="flex gap-5">
-            <div className="flex-1">
+          <div className="flex gap-28">
+            <div className="flex flex-col gap-5 flex-1">
               <Input 
                 name="language" type="select" options={language.items} 
                 label="Elige el idioma del curso" { ...controlledCommonProps } 
@@ -66,7 +66,7 @@ const GeneralForm = () => {
                 isMulti
               />
             </div>
-            <div className="flex-1">
+            <div className="flex flex-col gap-5 flex-1">
               <Input 
                 name="sector" type="select" options={sector.items} 
                 label="Elige el sector al que deseas dirigir tu curso" { ...controlledCommonProps } 
@@ -75,11 +75,11 @@ const GeneralForm = () => {
                 name="tools" type="select" options={toolsAndPlatforms.items} 
                 label="Herramientas y plataformas" { ...controlledCommonProps } 
               />
-              {/* <Input  */}
-              {/*   name="tags" type="select" options={functionalities.items}  */}
-              {/*   label="Funcionalidades" { ...controlledCommonProps }  */}
-              {/*   isMulti */}
-              {/* /> */}
+              <Input 
+                name="tags" type="select" options={functionalities.items} 
+                label="Funcionalidades" { ...controlledCommonProps } 
+                isMulti
+              />
             </div>
           </div>
         </IsClientProvider>

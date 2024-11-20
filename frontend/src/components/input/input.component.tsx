@@ -6,10 +6,11 @@ import dynamic from 'next/dynamic'
 import { useContext } from "react";
 import { IsClientCtx } from "@/contexts/is-client.context";
 import Select from "react-select";
+import { Label } from "../ui/label";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
-const Wrapper = ({ children }: { children: ReactNode }) => <div className="flex flex-col">{ children }</div>
+const Wrapper = ({ children }: { children: ReactNode, className?: string }) => <div className="flex flex-col gap-5 flex-1">{ children }</div>
 
 const Input = (props: InputProps) => {
   const { name, type, label, register, ...otherProps } = props;
@@ -18,8 +19,8 @@ const Input = (props: InputProps) => {
   if (type === "text") {
     return (
       <Wrapper>
-        <label htmlFor={name}>{ label }</label>
-        <input type="text" { ...register(name)} className="text-card" {...otherProps} />
+        <Label htmlFor={name} className="font-bold">{ label }</Label>
+        <input type="text" { ...register(name)} className="px-3 py-5 h-8 text-card rounded-sm" {...otherProps} />
       </Wrapper>
     )
   };
@@ -28,14 +29,14 @@ const Input = (props: InputProps) => {
     const { options } = props;
     return (
       <Wrapper>
-        <label htmlFor={name}>{ label }</label>
-        <div>
-          <div>
-            <label htmlFor={name}>{ options[0] }</label>
+        <Label htmlFor={name} className="font-bold">{ label }</Label>
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-2">
+            <Label htmlFor={name}>{ options[0] }</Label>
             <input type="radio" { ...register(name) } />
           </div>
-          <div>
-            <label htmlFor={name}>{ options[1] }</label>
+          <div className="flex gap-2">
+            <Label htmlFor={name}>{ options[1] }</Label>
             <input type="radio" { ...register(name) } />
           </div>
         </div>
@@ -49,7 +50,7 @@ const Input = (props: InputProps) => {
 
     return (
       <Wrapper>
-        <label htmlFor={name}>{ label }</label>
+        <Label htmlFor={name} className="font-bold">{ label }</Label>
         <Controller 
           name={name}
           control={control}
@@ -75,7 +76,7 @@ const Input = (props: InputProps) => {
     const { control } = props;
     return (
       <Wrapper>
-        <label htmlFor={name}>{ label }</label>
+        <Label htmlFor={name} className="font-bold">{ label }</Label>
         <Controller 
           name={name}
           control={control}
