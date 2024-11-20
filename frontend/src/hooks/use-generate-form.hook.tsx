@@ -11,9 +11,15 @@ function useGenerateForm <F extends FieldValues>(defaultValues: DefaultValues<F>
     errors: form.formState.errors,
   };
 
+  const controlledCommonProps = {
+    ...commonProps,
+    control: form.control
+  };
+
   return {
     ...form,
     commonProps,
+    controlledCommonProps,
   }
 };
 

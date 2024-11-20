@@ -10,16 +10,33 @@ const onSubmit = (data: CourseInfo) => {
 };
 
 const GeneralForm = () => {
-  const { commonProps, handleSubmit } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, COURSE_INFO_INITIAL_STATE);
+  const {
+    commonProps, 
+    controlledCommonProps, 
+    handleSubmit 
+  } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, COURSE_INFO_INITIAL_STATE);
+
   return (
     <>
       <form onSubmit={ handleSubmit(data => onSubmit(data)) }>
-        <Input name="title" type="text" label="Título del curso / lección" { ...commonProps } />
+        <Input 
+          name="title" type="text"
+          label="Título del curso / lección" { ...commonProps } 
+        />
         <div className="flex gap-5">
-          <Input name="freeCourse" options={[ "Gratuito", "Pago" ]} type="radio" label="¿Qué tipo de contenido estás buscando: gratuito o premium?" { ...commonProps } />
-          <Input name="contentType" options={[ "Curso", "Lección" ]} type="radio" label="Seleccioná si vas a crear un curso  o una lección." { ...commonProps } />
+          <Input
+            name="freeCourse" options={[ "Gratuito", "Pago" ]} type="radio-group"
+            label="¿Qué tipo de contenido estás buscando: gratuito o premium?" { ...commonProps }
+          />
+          <Input 
+            name="contentType" options={[ "Curso", "Lección" ]} type="radio-group" 
+            label="Seleccioná si vas a crear un curso  o una lección." { ...commonProps } 
+          />
         </div>
-        <button></button>
+        <Input 
+          name="about" type="richtext" 
+          label="Contá de qué trata, en no más de 3 líneas." { ...controlledCommonProps } 
+        />
       </form>
     </>
   )
