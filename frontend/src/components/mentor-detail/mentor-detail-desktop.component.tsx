@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import { Card, CardContent, CardSection } from "../ui/card";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
@@ -9,15 +8,9 @@ import { Button } from "../ui/button";
 import DatePicker from "../date-picker/date-picker.component";
 import TimePicker from "../time-picker/time-picker.component";
 
-const inter = Inter({
-    subsets: ["latin"],
-    weight: ["100", "200", "400", "600", "700"],
-    display: "swap",
-});
-
 const MentorDetailDesktop = () => {
     return (
-        <div className={`${inter.className} grid gap-12 w-full`}>
+        <div className={`xl:grid gap-12 w-full hidden`}>
             <Card className="w-full overflow-hidden relative p-5 tracking-wide">
                 <CardContent className="flex gap-5">
                     <div className="w-1/4 flex-shrink-0 p-5 flex flex-col gap-5">

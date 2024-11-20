@@ -1,5 +1,3 @@
-"use client";
-import { Inter } from "next/font/google";
 import TabSwitch from "../tab-switch/tab-switch.component";
 import { Card, CardContent, CardSection } from "../ui/card";
 import Image from "next/image";
@@ -11,12 +9,6 @@ import { Badge } from "../ui/badge";
 import { getSlug } from "@/utils/str.utils";
 import Rating from "../rating/rating.component";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["100", "200", "400", "600", "700"],
-  display: "swap",
-});
-
 const MentorDetailMobileTablet = () => {
   const tabViewMap = new Map<string, JSX.Element>();
   tabViewMap.set("Perfil", <ProfileSection />);
@@ -24,7 +16,7 @@ const MentorDetailMobileTablet = () => {
   tabViewMap.set("Reseñas", <ReviewsSection />);
 
   return (
-    <div className={`${inter.className} w-full px-0 450px:px-5 sm:px-12`}>
+    <div className={`w-full px-0 450px:px-5 sm:px-12 xl:hidden`}>
       <Card className="w-full overflow-hidden flex-col justify-center relative p-1.5 sm:p-5 tracking-wide">
         <CardContent className="w-full p-1.5 sm:p-5 flex flex-col gap-1.5 sm:gap-5">
           <div className="flex flex-col h-[247px] items-center justify-between">
