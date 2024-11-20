@@ -10,6 +10,6 @@ export class LoginAuthDto {
 
   @ApiProperty({ example: 'user_password' })
   @IsNotEmpty()
-  @IsPasswordValid()
+  // @IsPasswordValid()
   password: string;
 }
