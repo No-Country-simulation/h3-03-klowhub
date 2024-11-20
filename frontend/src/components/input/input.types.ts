@@ -1,4 +1,4 @@
-import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { UseFormRegister, FieldErrors, Control } from "react-hook-form";
 import { CourseInfo } from "@/types/courses.types";
 import { OneOf } from "@/types/utils.types";
 
@@ -18,8 +18,14 @@ type CommonInput = {
 } & CommonProps
 
 type RadioInput = {
-  type: "radio"
+  type: "radio-group"
   options: [ string, string ] 
 } & CommonProps
 
-export type InputProps = CommonInput | RadioInput
+type ControlledInput = {
+  name: FieldName
+  type: "richtext"
+  control: Control<CourseInfo>
+} & Omit<CommonProps, "name">
+
+export type InputProps = CommonInput | RadioInput | ControlledInput
