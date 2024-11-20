@@ -14,7 +14,7 @@ const Input = (props: InputProps) => {
     return (
       <Wrapper>
         <label htmlFor={name}>{ label }</label>
-        <input type={type} { ...register(name)} className="text-card" {...otherProps} />
+        <input type="text" { ...register(name)} className="text-card" {...otherProps} />
       </Wrapper>
     )
   };
@@ -27,11 +27,11 @@ const Input = (props: InputProps) => {
         <div>
           <div>
             <label htmlFor={name}>{ options[0] }</label>
-            <input type={type} { ...register(name) } />
+            <input type="radio" { ...register(name) } />
           </div>
           <div>
             <label htmlFor={name}>{ options[1] }</label>
-            <input type={type} { ...register(name) } />
+            <input type="radio" { ...register(name) } />
           </div>
         </div>
       </Wrapper>
