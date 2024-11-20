@@ -1,9 +1,10 @@
 import { Controller } from "react-hook-form";
 import { ReactNode } from "react";
 import { InputProps } from "./input.types";
-import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
+import dynamic from 'next/dynamic'
 
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
 const Wrapper = ({ children }: { children: ReactNode }) => <div className="flex flex-col">{ children }</div>
 
