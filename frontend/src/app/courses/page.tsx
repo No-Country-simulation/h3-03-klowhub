@@ -10,14 +10,14 @@ import { TProduct } from "@/components/product-card/product-card.types";
 import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 
-import { sector, plaform, language, functionalities, toolsAndPlatforms, contentCore, level, contentType } from "@/consts/filters.consts";
+import { sector, plaform, language, functionalities, toolsAndPlatforms, coreContent, level, contentType } from "@/consts/filters.consts";
 
 const filters = [
   plaform,
   language,
   contentType,
   level,
-  contentCore,
+  coreContent,
   sector,
   functionalities,
   toolsAndPlatforms

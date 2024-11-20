@@ -1,8 +1,11 @@
 import { Controller } from "react-hook-form";
 import { ReactNode } from "react";
-import { InputProps } from "./input.types";
+import { InputProps, SelectOption } from "./input.types";
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
+import { useContext } from "react";
+import { IsClientCtx } from "@/contexts/is-client.context";
+import Select from "react-select";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -10,6 +13,7 @@ const Wrapper = ({ children }: { children: ReactNode }) => <div className="flex 
 
 const Input = (props: InputProps) => {
   const { name, type, label, register, ...otherProps } = props;
+  const isClient = useContext(IsClientCtx);
 
   if (type === "text") {
     return (
@@ -35,6 +39,34 @@ const Input = (props: InputProps) => {
             <input type="radio" { ...register(name) } />
           </div>
         </div>
+      </Wrapper>
+    )
+  };
+
+  if (type === "select" && isClient) {
+    const { control, options, isMulti, ...otherProps } = props;
+    console.log(isClient)
+
+    return (
+      <Wrapper>
+        <label htmlFor={name}>{ label }</label>
+        <Controller 
+          name={name}
+          control={control}
+          defaultValue=""
+          render={({ field: { onChange } }) => (
+            <Select
+              getOptionLabel={(op: SelectOption) => op.label}
+              getOptionValue={(op: SelectOption) => op.name}
+              onChange={(selected) => {
+                return isMulti ? onChange(selected) : onChange(selected?.name)
+              }}
+              options={options}
+              isMulti={isMulti} // TODO: remove this prop drilling
+              { ...otherProps }
+            />
+          )}
+        />
       </Wrapper>
     )
   };

@@ -108,7 +108,7 @@ export const level = {
   ]
 };
 
-export const contentCore = {
+export const coreContent = {
   header: "Pilar de contenido",
   items: [
     { name: "ux-ui", label: "UX-UI" },
