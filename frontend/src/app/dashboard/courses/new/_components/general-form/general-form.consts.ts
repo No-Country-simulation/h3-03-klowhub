@@ -1,6 +1,6 @@
 import { CourseInfo } from "@/types/courses.types";
 
-export const initialState: CourseInfo = {
+export const COURSE_INFO_INITIAL_STATE: CourseInfo = {
   title: "",
   freeCourse: false,
   contentType: "course",
