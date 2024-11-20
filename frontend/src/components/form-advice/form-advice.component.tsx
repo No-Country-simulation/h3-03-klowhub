@@ -1,15 +1,22 @@
 import Image, { ImageProps } from "next/image";
-import { ReactNode } from "react";
 
 type Props = {
-  children: ReactNode
+  display: boolean
+  header: string
+  text: string
 } & ImageProps
 
-const FormAdvice = ({ children, ...otherProps }: Props) => {
+const FormAdvice = ({ display, header, text, ...otherProps }: Props) => {
   return (
-    <div className="flex flex-col text-center">
-      <Image { ...otherProps } />
-      { children }
+    <div className={`
+      ${display ? "flex" : "hidden"}
+      flex-col text-center gap-5`
+    }>
+      <div className="h-64 overflow-hidden">
+        <Image className="rounded-t-lg" width={1024} height={1024} { ...otherProps } />
+      </div>
+      <h3 className="font-bold">{ header }</h3>
+      <p>{ text }</p>
     </div>
   )
 };

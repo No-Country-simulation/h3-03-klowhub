@@ -6,9 +6,20 @@ type FieldType = "text" | "textarea" | "number" | "checkbox" | "select" | "date"
 type FieldName = keyof (CourseInfo) // this type is not strict but to make it strict we will need refactor too much things and rn it doesn't make sense to do that
 type FormErrors = OneOf<[ FieldErrors<CourseInfo> ]>
 
-export type Props = {
+type CommonProps = {
   name: FieldName
-  type: FieldType
+  label: string
   register: UseFormRegister<OneOf<[ CourseInfo ]>>
   errors: FormErrors
 }
+
+type CommonInput = {
+  type: FieldType
+} & CommonProps
+
+type RadioInput = {
+  type: "radio"
+  options: [ string, string ] 
+} & CommonProps
+
+export type InputProps = CommonInput | RadioInput
