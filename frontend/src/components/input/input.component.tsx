@@ -1,3 +1,5 @@
+"use client"
+
 import { Controller } from "react-hook-form";
 import { InputProps, SelectOption } from "./input.types";
 import 'react-quill-new/dist/quill.snow.css';
@@ -7,13 +9,14 @@ import { IsClientCtx } from "@/contexts/is-client.context";
 import Select from "react-select";
 import { Label } from "../ui/label";
 import { StylesConfig } from "react-select";
+import { FieldValues } from "react-hook-form";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
 const containerStyles = "flex flex-col gap-5";
 const labelStyles = "font-bold leading-6";
 
-const Input = (props: InputProps) => {
+const Input = <T extends FieldValues>(props: InputProps<T>) => {
   const { name, type, label, register, className, ...otherProps } = props;
   const isClient = useContext(IsClientCtx);
 
@@ -69,7 +72,6 @@ const Input = (props: InputProps) => {
         <Controller 
           name={name}
           control={control}
-          defaultValue=""
           render={({ field: { onChange } }) => (
             <Select
               getOptionLabel={(op: SelectOption) => op.label}
@@ -99,7 +101,6 @@ const Input = (props: InputProps) => {
         <Controller 
           name={name}
           control={control}
-          defaultValue=""
           render={({ field: { value, onChange } }) => (
             <ReactQuill 
               theme="snow" value={value as string} onChange={onChange} 

@@ -1,52 +1,43 @@
-import { UseFormRegister, FieldErrors, Control, FieldValues } from "react-hook-form";
-import { CourseInfo, CourseDetails } from "@/types/courses.types";
-import { OneOf } from "@/types/utils.types";
+import { UseFormRegister, FieldErrors, Control, FieldValues, Path } from "react-hook-form";
 import { OptionsOrGroups, GroupBase } from "react-select";
-import { Expand } from "@/types/utils.types";
 
 type FieldType = "text" | "textarea" | "number" | "checkbox" | "date" | "time" | "password";
-type FieldName = Expand<keyof (CourseInfo & CourseDetails)> // this type is not strict but to make it strict we will need refactor too much things and rn it doesn't make sense to do that
 
-// IMPORTANT: every new form should be added in these types
-type FormErrors = OneOf<[ FieldErrors<CourseInfo>, FieldErrors<CourseDetails> ]>
-type FormFields = OneOf<[ UseFormRegister<CourseInfo>, UseFormRegister<CourseDetails> ]>
-type ControlledFields = OneOf<[ Control<CourseInfo>, Control<CourseDetails> ]>
-
-type CommonProps = {
-  name: FieldName
+type CommonProps<T extends FieldValues> = {
+  name: Path<T>
   label: string
-  register: FormFields
-  errors: FormErrors
+  register: UseFormRegister<T>
+  errors: FieldErrors<T>
   placeholder?: string
   className?: string
 }
 
-type CommonInput = {
+type CommonInput<T extends FieldValues> = {
   type: FieldType
-} & CommonProps
+} & CommonProps<T>
 
-type RadioInput = {
+type RadioInput<T extends FieldValues> = {
   type: "radio-group"
   options: [ string, string ] 
-} & Omit<CommonProps, "placeholder">
+} & Omit<CommonProps<T>, "placeholder">
 
-type ControlledInput = {
-  control: ControlledFields
-} & CommonProps
+type ControlledInput<T extends FieldValues> = {
+  control: Control<T>
+} & CommonProps<T>
 
-type RichTextInput = {
+type RichTextInput<T extends FieldValues> = {
   type: "richtext"
-} & ControlledInput
+} & ControlledInput<T>
 
 export type SelectOption = {
   name: string
   label: string
 }
 
-type SelectInput = {
+type SelectInput<T extends FieldValues> = {
   type: "select"
   options?: OptionsOrGroups<SelectOption, GroupBase<SelectOption>> | undefined
   isMulti?: boolean
-} & ControlledInput
+} & ControlledInput<T>
 
-export type InputProps = CommonInput | RadioInput | SelectInput | RichTextInput 
+export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T>
