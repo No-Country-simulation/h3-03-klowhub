@@ -1,26 +1,57 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Course } from './entities/course.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CoursesService {
-  create(createCourseDto: CreateCourseDto) {
-    return 'This action adds a new course';
+  constructor(
+    @InjectRepository(Course)
+    private readonly courseRepository: Repository<Course>,
+  ) {}
+
+  async create(createCourseDto: CreateCourseDto): Promise<Course> {
+    const course = this.courseRepository.create(createCourseDto);
+    return await this.courseRepository.save(course);
   }
 
-  findAll() {
-    return `This action returns all courses`;
+  async findAll(): Promise<Course[]> {
+    const course = await this.courseRepository.find({
+      where: { available: true },
+    });
+    return course;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} course`;
+  async findOne(id: string): Promise<Course | null> {
+    const course = await this.courseRepository.findOne({ where: { id } });
+    console.log('Course found:', course);
+    if (!course) {
+      return null;
+    }
+    return course;
   }
 
-  update(id: number, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+  async update(
+    id: string,
+    updateCourseDto: UpdateCourseDto,
+  ): Promise<Course | null> {
+    const course = await this.findOne(id);
+    if (!course) {
+      return null;
+    }
+    await this.courseRepository.update(id, updateCourseDto);
+    return this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} course`;
+  async remove(id: string): Promise<Course | null> {
+    const course = await this.findOne(id);
+    if (!course) {
+      return null;
+    }
+    course.available = false;
+    await this.courseRepository.save(course);
+    return course;
   }
 }

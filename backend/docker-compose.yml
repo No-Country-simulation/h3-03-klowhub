@@ -13,20 +13,6 @@ services:
       - ms-projects
     networks:
       - klowhub
-
-  ms-courses:
-    build:
-      context: ./ms-courses
-      dockerfile: Dockerfile
-    ports:
-      - "3003:3003"
-    env_file:
-      - ./ms-courses/.env
-    networks:
-      - klowhub
-    depends_on:
-      - db
-
   ms-projects:
     build:
       context: ./ms-projects
@@ -52,7 +38,18 @@ services:
       - klowhub
     depends_on:
       - db
-
+  ms-courses:
+    build:
+      context: ./ms-courses  
+      dockerfile: Dockerfile  
+    ports:
+      - "3003:3003"  
+    env_file:
+      - ./ms-courses/.env 
+    networks:
+      - klowhub
+    depends_on:
+      - db  
   db:
     image: postgres:latest
     container_name: klowhub_db

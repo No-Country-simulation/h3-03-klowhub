@@ -1,4 +1,4 @@
-# ms-users/Dockerfile
+# ms-courses/Dockerfile
 
 # Usa la imagen base de Node.js
 FROM node:18
@@ -19,7 +19,7 @@ COPY . .
 RUN npm run build
 
 # Expone el puerto que usa el microservicio
-EXPOSE 3001
+EXPOSE 3003
 
 # Comando para iniciar la aplicación
 CMD ["node", "dist/main.js"]
