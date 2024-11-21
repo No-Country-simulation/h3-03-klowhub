@@ -79,4 +79,7 @@ export class Course {
 
   @Column({ type: 'int', nullable: true })
   porcentajeDeDescuento: number | null;
+
+  @Column({ type: 'boolean', default: true })
+  available: boolean;
 }

@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  NotFoundException,
+  BadRequestException,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -21,22 +23,44 @@ export class CoursesController {
   }
 
   @Get()
-  findAll() {
-    return this.coursesService.findAll();
+  async findAll() {
+    const allCourses = await this.coursesService.findAll();
+    if (!allCourses) {
+      throw new NotFoundException('There are no course available');
+    }
+    return allCourses;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.coursesService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const uuidRegex =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+    if (!uuidRegex.test(id)) {
+      throw new BadRequestException('There in no course avaiable');
+    }
+    const singleCourse = await this.coursesService.findOne(id);
+    console.log('este es el singleCourse', singleCourse);
+    if (!singleCourse) {
+      throw new NotFoundException('There is no a course available');
+    }
+    return singleCourse;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
-    return this.coursesService.update(+id, updateCourseDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateCourseDto: UpdateCourseDto,
+  ) {
+    const updateCourse = await this.coursesService.update(id, updateCourseDto);
+    if (!updateCourse) {
+      throw new NotFoundException('There is no course to update');
+    }
+    return updateCourse;
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.coursesService.remove(+id);
+    return this.coursesService.remove(id);
   }
 }
