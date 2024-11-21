@@ -9,7 +9,7 @@ export class UsersController {
   @Get(':id')
   async obtenerUsuario(@Param('id') id: string) {
     const response = await firstValueFrom(
-      this.httpService.get(`http://localhost:3001/users/${id}`), // URL del microservicio de usuarios
+      this.httpService.get(`http://ms-users:3001/users/${id}`), // URL del microservicio de usuarios
     );
     return response.data;
   }
@@ -17,7 +17,7 @@ export class UsersController {
   @Get('')
   async obtenerTodosLosUsuarios() {
     const response = await firstValueFrom(
-      this.httpService.get(`http://localhost:3001/users`),
+      this.httpService.get(`http://ms-users:3001/users`),
     );
     return response.data;
   }

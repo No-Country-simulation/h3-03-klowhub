@@ -19,7 +19,7 @@ COPY . .
 RUN npm run build
 
 # Expone el puerto que usa el microservicio
-EXPOSE 3003
+EXPOSE 3001
 
 # Comando para iniciar la aplicación
 CMD ["node", "dist/main.js"]

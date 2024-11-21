@@ -17,7 +17,7 @@ import { Project } from './projects/entities/project.entity/project.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'db',
       port: 5432,
       username: 'root',
       password: 'root',
@@ -25,7 +25,7 @@ import { Project } from './projects/entities/project.entity/project.entity';
       autoLoadEntities: true,
       entities: [Application, Project],
       logging: true,
-      synchronize: true, 
+      synchronize: true,
     }),
     ProjectsModule
   ],
