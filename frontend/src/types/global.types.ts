@@ -5,3 +5,10 @@ export type Video = {
   thumbnail: string
   duration: string
 }
+
+export type TImage = {
+  url: string
+  width: number
+  height: number
+  alt: string
+}

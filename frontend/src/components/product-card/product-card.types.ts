@@ -1,9 +1,4 @@
-export type TImage = {
-  url: string
-  width: number
-  height: number
-  alt: string
-}
+import { TImage } from "@/types/global.types"
 
 export type TAppInfo = {
   id: number

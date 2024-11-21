@@ -1,8 +1,8 @@
 import { getQueryParams } from "@/utils/route.utils";
 import GeneralSection from "./_components/general-form/general-form.component";
-import DetailsSection from "./_components/details.component";
-import ModuleSection from "./_components/modules.component";
-import PromotionsSection from "./_components/promotions.component";
+import DetailsSection from "./_components/details-form/details-form.component";
+import ModuleSection from "./_components/modules-form/modules-form.component";
+import PromotionsSection from "./_components/promotions/promotions.section";
 import Tab from "@/components/tab/tab.component";
 import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";

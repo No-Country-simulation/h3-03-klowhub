@@ -15,8 +15,8 @@ const Tab = async ({ children, section }: Props) => {
     <Link 
       href={`${pathname}?section=${section}`}
       className={`
-        inline-block border-b-2 border-solid px-4 pb-2
-        ${queryParams.section === section ? "border-primary-400" : "border-white"}`
+        inline-block border-b-2 border-solid px-4 pb-2 font-bold text-sm
+        ${queryParams.section === section ? "text-primary-300 border-primary-300" : "border-white"}`
       }
     >
       { children }

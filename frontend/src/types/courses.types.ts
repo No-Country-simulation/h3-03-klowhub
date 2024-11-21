@@ -1,7 +1,7 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
-import { Language, Platform, Video } from "./global.types"
+import { Language, Platform, Video, TImage } from "./global.types"
 
 type ContentType = "course" | "lesson"
 type Level = "basic" | "intermediate"
@@ -29,7 +29,7 @@ export type CourseDetails = {
   learningSubjects: string
   prevRequirements: string
   courseContent: string
-  coverImg: string
+  courseImg: TImage
 }
 
 export type Lesson = {
