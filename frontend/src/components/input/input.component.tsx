@@ -6,76 +6,111 @@ import { useContext } from "react";
 import { IsClientCtx } from "@/contexts/is-client.context";
 import Select from "react-select";
 import { Label } from "../ui/label";
+import { StylesConfig } from "react-select";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
+
+const containerStyles = "flex flex-col gap-5";
+const labelStyles = "font-bold leading-6";
 
 const Input = (props: InputProps) => {
   const { name, type, label, register, className, ...otherProps } = props;
   const isClient = useContext(IsClientCtx);
 
-  return (
-    <div className={`flex flex-col gap-5 ${className || ""}`}>
-      { type === "text" && 
-        <>
-          <Label htmlFor={name} className="font-bold">{ label }</Label>
-          <input type="text" { ...register(name)} className="px-3 py-5 h-8 text-card rounded-sm" {...otherProps} />
-        </>
-      }
 
-      { type === "radio-group" &&
-        <>
-          <Label htmlFor={name} className="font-bold">{ label }</Label>
-          <div className="flex flex-col gap-2">
-            <div className="flex gap-2">
-              <Label htmlFor={name}>{ props.options[0] }</Label>
-              <input type="radio" { ...register(name) } />
-            </div>
-            <div className="flex gap-2">
-              <Label htmlFor={name}>{ props.options[1] }</Label>
-              <input type="radio" { ...register(name) } />
-            </div>
+  if (type === "text") {
+    const { placeholder } = props;
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-md" {...otherProps} />
+      </div>
+    )
+  };
+
+  if (type === "radio-group") {
+    const { options } = props;
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-2">
+            <Label htmlFor={name}>{ options[0] }</Label>
+            <input type="radio" { ...register(name) } />
           </div>
-        </> 
-      }
+          <div className="flex gap-2">
+            <Label htmlFor={name}>{ options[1] }</Label>
+            <input type="radio" { ...register(name) } />
+          </div>
+        </div>
+      </div>
+    )
+  };
 
-      { type === "select" && isClient &&
-        <>
-          <Label htmlFor={name} className="font-bold">{ label }</Label>
-          <Controller 
-            name={name}
-            control={props.control}
-            defaultValue=""
-            render={({ field: { onChange } }) => (
-              <Select
-                getOptionLabel={(op: SelectOption) => op.label}
-                getOptionValue={(op: SelectOption) => op.name}
-                onChange={(selected) => {
-                  return props.isMulti ? onChange(selected) : onChange(selected?.name)
-                }}
-                options={ props.options }
-                isMulti={ props.isMulti } // TODO: remove this prop drilling
-                { ...otherProps }
-              />
-            )}
-          />
-        </> 
-      }
+  if (type === "select" && isClient) {
+    const { control, options, isMulti, placeholder, ...otherProps } = props;
 
-      { type === "richtext" &&
-        <>
-          <Label htmlFor={name} className="font-bold">{ label }</Label>
-          <Controller 
-            name={name}
-            control={props.control}
-            defaultValue=""
-            render={({ field: { value, onChange } }) => (
-              <ReactQuill theme="snow" value={value as string} onChange={onChange} />
-            )}
-          />
-        </> 
-      }
-    </div>
-  )
+    const customStyles: StylesConfig<SelectOption, boolean> = {
+      control: (provided) => ({
+        ...provided,
+        borderRadius: "8px",
+      }),
+      menu: (provided) => ({
+        ...provided,
+        borderRadius: "8px",
+      }),
+    };
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <Controller 
+          name={name}
+          control={control}
+          defaultValue=""
+          render={({ field: { onChange } }) => (
+            <Select
+              getOptionLabel={(op: SelectOption) => op.label}
+              getOptionValue={(op: SelectOption) => op.name}
+              onChange={(selected) => {
+                return isMulti ? onChange(selected) : onChange(selected?.name)
+              }}
+              options={options}
+              isMulti={isMulti} // TODO: remove this prop drilling
+              styles={customStyles}
+              className="text-card"
+              placeholder={placeholder}
+              { ...otherProps }
+            />
+          )}
+        />
+      </div>
+    )
+  };
+
+  if (type === "richtext") {
+    const { control, placeholder } = props;
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <Controller 
+          name={name}
+          control={control}
+          defaultValue=""
+          render={({ field: { value, onChange } }) => (
+            <ReactQuill 
+              theme="snow" value={value as string} onChange={onChange} 
+              className="bg-white text-card rounded-xl border-none min-h-48"
+              placeholder={placeholder}
+            />
+          )}
+        />
+      </div>
+    )
+  };
 };
 
 export default Input

@@ -12,6 +12,7 @@ type CommonProps = {
   label: string
   register: UseFormRegister<OneOf<[ CourseInfo ]>>
   errors: FormErrors
+  placeholder?: string
   className?: string
 }
 
@@ -22,7 +23,7 @@ type CommonInput = {
 type RadioInput = {
   type: "radio-group"
   options: [ string, string ] 
-} & CommonProps
+} & Omit<CommonProps, "placeholder">
 
 type ControlledInput = {
   control: Control<CourseInfo>

@@ -19,7 +19,7 @@ const CreateCoursePage = async () => {
         <Tab section="modules">Módulos y lecciones</Tab>
         <Tab section="promotions">Promociones</Tab>
       </div>
-      <div className="flex gap-28 bg-card rounded-lg p-6">
+      <div className="flex gap-40 bg-card rounded-lg p-6">
         <div className="w-3/4">
           { section === "general" && <GeneralSection /> }
           { section === "details" && <DetailsSection /> }
