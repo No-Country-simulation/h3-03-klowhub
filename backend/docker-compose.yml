@@ -5,10 +5,26 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    env_file:
+      - ./api-gateway/.env
     depends_on:
       - ms-users
+      - ms-courses
+      - ms-projects
     networks:
       - klowhub
+  ms-projects:
+    build:
+      context: ./ms-projects
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    env_file:
+      - ./ms-projects/.env
+    networks:
+      - klowhub
+    depends_on:
+      - db
 
   ms-users:
     build:
