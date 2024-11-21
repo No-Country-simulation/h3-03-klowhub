@@ -1,0 +1,42 @@
+export const soldCoursesData = [
+    {
+        id: 1,
+        customerName: "John Doe",
+        courseName: "Web Development Bootcamp",
+        amount: 650,
+        status: "Pending",
+        avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
+    },
+    {
+        id: 2,
+        customerName: "Jane Smith",
+        courseName: "Advanced React Workshop",
+        amount: 1200,
+        status: "Completed",
+        avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
+    },
+    {
+        id: 3,
+        customerName: "Mark Johnson",
+        courseName: "UI/UX Design Fundamentals",
+        amount: 980,
+        status: "Pending",
+        avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
+    },
+    {
+        id: 4,
+        customerName: "Emily Davis",
+        courseName: "Introduction to Python",
+        amount: 450,
+        status: "Canceled",
+        avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
+    },
+    {
+        id: 5,
+        customerName: "Michael Brown",
+        courseName: "Data Science with R",
+        amount: 750,
+        status: "Pending",
+        avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
+    },
+];
