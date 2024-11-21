@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import { Header } from "@/components/shared/Header";
+import "./../globals.css";
 import { Footer } from "@/components/footer/footer.component";
+import { Toaster } from "sonner";
+import { Header } from "@/components/shared/Header";
 
 const geistSans = localFont({
-  src: "../fonts/GeistVF.woff",
+  src: "../../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 }); const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
+  src: "../../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -29,14 +30,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header/>
-        
+        <Header />
+
         <div className="container px-6 md:px-0 mx-auto">
           {children}
         </div>
 
         <div id="modal-root"></div>
-        <Footer/>  
+        <Footer />
       </body>
     </html>
   );
