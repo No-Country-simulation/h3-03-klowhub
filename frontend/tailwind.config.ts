@@ -65,10 +65,10 @@ export default {
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				border: 'hsl(var(--border))',
-				// input: {
-    //       background: 'hsl(var(--input))',
-    //       foreground: 'var(--card)' 
-    //     },
+				input: {
+          background: 'hsl(var(--input))',
+          foreground: 'var(--card)' 
+        },
 				ring: 'hsl(var(--ring))',
 				chart: {
 					'1': 'hsl(var(--chart-1))',

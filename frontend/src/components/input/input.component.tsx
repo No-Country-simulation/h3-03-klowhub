@@ -1,59 +1,81 @@
 import { Controller } from "react-hook-form";
-import { ReactNode } from "react";
-import { InputProps } from "./input.types";
-import ReactQuill from 'react-quill-new';
+import { InputProps, SelectOption } from "./input.types";
 import 'react-quill-new/dist/quill.snow.css';
+import dynamic from 'next/dynamic'
+import { useContext } from "react";
+import { IsClientCtx } from "@/contexts/is-client.context";
+import Select from "react-select";
+import { Label } from "../ui/label";
 
-
-const Wrapper = ({ children }: { children: ReactNode }) => <div className="flex flex-col">{ children }</div>
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
 const Input = (props: InputProps) => {
-  const { name, type, label, register, ...otherProps } = props;
+  const { name, type, label, register, className, ...otherProps } = props;
+  const isClient = useContext(IsClientCtx);
 
-  if (type === "text") {
-    return (
-      <Wrapper>
-        <label htmlFor={name}>{ label }</label>
-        <input type="text" { ...register(name)} className="text-card" {...otherProps} />
-      </Wrapper>
-    )
-  };
+  return (
+    <div className={`flex flex-col gap-5 ${className || ""}`}>
+      { type === "text" && 
+        <>
+          <Label htmlFor={name} className="font-bold">{ label }</Label>
+          <input type="text" { ...register(name)} className="px-3 py-5 h-8 text-card rounded-sm" {...otherProps} />
+        </>
+      }
 
-  if (type === "radio-group") {
-    const { options } = props;
-    return (
-      <Wrapper>
-        <label htmlFor={name}>{ label }</label>
-        <div>
-          <div>
-            <label htmlFor={name}>{ options[0] }</label>
-            <input type="radio" { ...register(name) } />
+      { type === "radio-group" &&
+        <>
+          <Label htmlFor={name} className="font-bold">{ label }</Label>
+          <div className="flex flex-col gap-2">
+            <div className="flex gap-2">
+              <Label htmlFor={name}>{ props.options[0] }</Label>
+              <input type="radio" { ...register(name) } />
+            </div>
+            <div className="flex gap-2">
+              <Label htmlFor={name}>{ props.options[1] }</Label>
+              <input type="radio" { ...register(name) } />
+            </div>
           </div>
-          <div>
-            <label htmlFor={name}>{ options[1] }</label>
-            <input type="radio" { ...register(name) } />
-          </div>
-        </div>
-      </Wrapper>
-    )
-  };
+        </> 
+      }
 
-  if (type === "richtext") {
-    const { control } = props;
-    return (
-      <Wrapper>
-        <label htmlFor={name}>{ label }</label>
-        <Controller 
-          name={name}
-          control={control}
-          defaultValue=""
-          render={({ field: { value, onChange } }) => (
-            <ReactQuill theme="snow" value={value as string} onChange={onChange} />
-          )}
-        />
-      </Wrapper>
-    )
-  };
+      { type === "select" && isClient &&
+        <>
+          <Label htmlFor={name} className="font-bold">{ label }</Label>
+          <Controller 
+            name={name}
+            control={props.control}
+            defaultValue=""
+            render={({ field: { onChange } }) => (
+              <Select
+                getOptionLabel={(op: SelectOption) => op.label}
+                getOptionValue={(op: SelectOption) => op.name}
+                onChange={(selected) => {
+                  return props.isMulti ? onChange(selected) : onChange(selected?.name)
+                }}
+                options={ props.options }
+                isMulti={ props.isMulti } // TODO: remove this prop drilling
+                { ...otherProps }
+              />
+            )}
+          />
+        </> 
+      }
+
+      { type === "richtext" &&
+        <>
+          <Label htmlFor={name} className="font-bold">{ label }</Label>
+          <Controller 
+            name={name}
+            control={props.control}
+            defaultValue=""
+            render={({ field: { value, onChange } }) => (
+              <ReactQuill theme="snow" value={value as string} onChange={onChange} />
+            )}
+          />
+        </> 
+      }
+    </div>
+  )
 };
 
 export default Input
