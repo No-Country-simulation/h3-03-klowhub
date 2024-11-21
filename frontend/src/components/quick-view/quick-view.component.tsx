@@ -52,12 +52,12 @@ const QuickView = async ({ products }: QuickViewProps) => {
       </div>
       <div className="flex gap-5">
         <Rating rating={rating} ratingCount={ratingCount} />
-        <span className="flex gap-2 items-center text-kSkyBlue">
+        <span className="flex gap-2 items-center text-secondary-200">
           <Video size={24} strokeWidth={1} />
           {/* este texto es temporal */}
           18 videos
         </span>
-        <span className="flex gap-2 items-center text-kSkyBlue">
+        <span className="flex gap-2 items-center text-secondary-200">
           <Clock3 size={20} strokeWidth={1} />
           {/* este texto es temporal */}
           1.6 horas

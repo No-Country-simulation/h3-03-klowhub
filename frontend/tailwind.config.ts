@@ -29,9 +29,10 @@ export default {
 				"primary-700": 'var(--primary-700)',
 				"primary-800": 'var(--primary-800)',
 				"primary-900": 'var(--primary-900)',
-        "kblue": 'var(--kblue)',
+        "secondary-200": 'var(--secondary-200)',
+        "secondary-400": 'var(--secondary-400)',
+        "secondary-800": 'var(--secondary-800)',
         "kPurple": 'var(--kPurple)',
-        "kSkyBlue": 'var(--kSkyBlue)',
 
 				"gray-100": 'var(--gray-100)',
 				background: 'hsl(var(--background))',

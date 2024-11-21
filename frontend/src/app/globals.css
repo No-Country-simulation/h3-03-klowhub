@@ -19,9 +19,12 @@ body {
     --primary-700: #431650;
     --primary-800: #2D0E36;
     --primary-900: #16071B;
-    --kblue: #0039AB;
+
+    --secondary-200: #A1C2FA;
+    --secondary-400: #2563EB;
+    --secondary-800: #0039AB;
+
     --kPurple: #1B1C44;
-    --kSkyBlue: #A1C2FA;
 
     --gray-100: #353E4B;
     --background: 0 0% 100%;

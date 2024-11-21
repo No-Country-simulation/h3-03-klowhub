@@ -1,8 +1,8 @@
 import { getQueryParams } from "@/utils/route.utils";
 import GeneralSection from "./_components/general-form/general-form.component";
-import DetailsSection from "./_components/details.component";
-import ModuleSection from "./_components/modules.component";
-import PromotionsSection from "./_components/promotions.component";
+import DetailsSection from "./_components/details-form/details-form.component";
+import ModuleSection from "./_components/modules-form/modules-form.component";
+import PromotionsSection from "./_components/promotions/promotions.section";
 import Tab from "@/components/tab/tab.component";
 import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";
@@ -19,7 +19,7 @@ const CreateCoursePage = async () => {
         <Tab section="modules">Módulos y lecciones</Tab>
         <Tab section="promotions">Promociones</Tab>
       </div>
-      <div className="flex gap-28 bg-card rounded-lg p-6">
+      <div className="flex gap-40 bg-card rounded-lg p-6">
         <div className="w-3/4">
           { section === "general" && <GeneralSection /> }
           { section === "details" && <DetailsSection /> }

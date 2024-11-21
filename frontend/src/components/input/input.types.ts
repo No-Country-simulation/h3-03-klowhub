@@ -1,47 +1,43 @@
-import { UseFormRegister, FieldErrors, Control } from "react-hook-form";
-import { CourseInfo } from "@/types/courses.types";
-import { OneOf } from "@/types/utils.types";
+import { UseFormRegister, FieldErrors, Control, FieldValues, Path } from "react-hook-form";
 import { OptionsOrGroups, GroupBase } from "react-select";
 
 type FieldType = "text" | "textarea" | "number" | "checkbox" | "date" | "time" | "password";
-type FieldName = keyof (CourseInfo) // this type is not strict but to make it strict we will need refactor too much things and rn it doesn't make sense to do that
-type FormErrors = OneOf<[ FieldErrors<CourseInfo> ]>
 
-type CommonProps = {
-  name: FieldName
+type CommonProps<T extends FieldValues> = {
+  name: Path<T>
   label: string
-  register: UseFormRegister<OneOf<[ CourseInfo ]>>
-  errors: FormErrors
+  register: UseFormRegister<T>
+  errors: FieldErrors<T>
+  placeholder?: string
   className?: string
 }
 
-type CommonInput = {
+type CommonInput<T extends FieldValues> = {
   type: FieldType
-} & CommonProps
+} & CommonProps<T>
 
-type RadioInput = {
+type RadioInput<T extends FieldValues> = {
   type: "radio-group"
   options: [ string, string ] 
-} & CommonProps
+} & Omit<CommonProps<T>, "placeholder">
 
-type ControlledInput = {
-  control: Control<CourseInfo>
-} & CommonProps
+type ControlledInput<T extends FieldValues> = {
+  control: Control<T>
+} & CommonProps<T>
 
-type RichTextInput = {
+type RichTextInput<T extends FieldValues> = {
   type: "richtext"
-} & ControlledInput
+} & ControlledInput<T>
 
 export type SelectOption = {
   name: string
   label: string
 }
 
-type SelectInput = {
+type SelectInput<T extends FieldValues> = {
   type: "select"
-  // options: SelectOption[]
   options?: OptionsOrGroups<SelectOption, GroupBase<SelectOption>> | undefined
   isMulti?: boolean
-} & ControlledInput
+} & ControlledInput<T>
 
-export type InputProps = CommonInput | RadioInput | SelectInput | RichTextInput 
+export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T>
