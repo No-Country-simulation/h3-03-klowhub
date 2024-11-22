@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { Controller } from "react-hook-form";
 import { InputProps, SelectOption } from "./input.types";
-import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import { useContext } from "react";
 import { IsClientCtx } from "@/contexts/is-client.context";
@@ -15,6 +14,9 @@ import { FieldValues } from "react-hook-form";
 import Dropzone from "../dropzone/dropzone.component";
 import { removeImage } from "./input.utils";
 import UploadedImage from "../uploaded-image/uploaded-image.component";
+
+import 'react-quill-new/dist/quill.snow.css';
+import "./input.styles.css"
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -48,28 +50,41 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
   };
 
   if (type === "upload") {
-    const { control, limit = 1 } = props;
+    const { control, isMulti, limit = 1 } = props;
 
     return (
       <Controller 
         name={name}
         control={control}
-        render={({ field: { onChange, value } }) => (
-          <div className={`grid grid-cols-3 gap-5 grid-rows-auto items-start`}>
-            { value.map((v: File, idx: number) => {
-              return (
+        render={({ field: { onChange, value } }) => {
+          console.log('value: ', value);
+          return isMulti ? (
+            <div className={`grid grid-cols-3 gap-5 grid-rows-auto items-start`}>
+              { value.map((v: File, idx: number) => {
+                return (
+                  <UploadedImage 
+                    key={`video-thumbnail-${idx}`}
+                    src={URL.createObjectURL(v)}
+                    deleteCb={() => onChange(removeImage(value, idx))}
+                  />
+                )
+              }) }
+              { value.length < limit ?  
+                <Dropzone onDrop={(files) => onChange([...value, ...files])}>{ label }</Dropzone> : <></>
+              }
+            </div>
+          ) : (
+            <div className="w-64">
+              { value ? 
                 <UploadedImage 
-                  key={`video-thumbnail-${idx}`}
-                  src={URL.createObjectURL(v)}
-                  deleteCb={() => onChange(removeImage(value, idx))}
-                />
-              )
-            }) }
-            { value.length < limit ?  
-              <Dropzone onDrop={(files) => onChange([...value, ...files])}>{ label }</Dropzone> : <></>
-            }
-          </div>
-        )}
+                  src={URL.createObjectURL(value[0])}
+                  deleteCb={() => onChange(null)}
+                /> :
+                <Dropzone onDrop={(files) => onChange(files)}>{ label }</Dropzone>
+              }
+            </div>
+          )
+        }}
       />
     )
   };
@@ -146,7 +161,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           render={({ field: { value, onChange } }) => (
             <ReactQuill 
               theme="snow" value={value as string} onChange={onChange} 
-              className="bg-white text-card rounded-xl border-none min-h-48"
+              className="bg-white text-card rounded-xl min-h-48"
               placeholder={placeholder}
             />
           )}
