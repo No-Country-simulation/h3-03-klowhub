@@ -1,15 +1,40 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, BadRequestException  } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { Project } from './entities/project.entity/project.entity';
-
+import { firstValueFrom } from 'rxjs';
+import { HttpService } from '@nestjs/axios';
+import { CreateProjectDto } from './dto/create-project.dto/create-project.dto';
 
 @Controller('projects')
 export class ProjectsController {
-  constructor(private readonly projectsService: ProjectsService){}
+  constructor(
+    private readonly projectsService: ProjectsService,
+    private readonly httpService: HttpService
+  ){}
 
   @Post()
   create(@Body() data: Partial<Project>) {
     return this.projectsService.createProject(data);
+  }
+
+  @Post()
+  async createProject(@Body() projectData: CreateProjectDto) {
+    const { userId } = projectData;
+
+    // Validar que el userId sea válido
+    try {
+      const userResponse = await firstValueFrom(
+        this.httpService.get(`http://ms-users:3001/users/${userId}`),
+      );
+      if (!userResponse.data) {
+        throw new BadRequestException('Usuario no encontrado');
+      }
+    } catch (error) {
+      throw new BadRequestException('Error al validar el usuario');
+    }
+
+    // Crear el proyecto
+    return this.projectsService.createProject(projectData);
   }
 
   @Delete(':id')
@@ -22,10 +47,22 @@ export class ProjectsController {
     return this.projectsService.updateProject(id, data);
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: number) {
-  //   return this.projectsService.getProjectById(id);
-  // }
+
+  @Get(':userId')
+  async getProjectsByUserId(@Param('userId') userId: string) {
+    if (!userId) {
+      throw new BadRequestException('El userId es requerido');
+    }
+
+    // Llamar al servicio para buscar proyectos por userId
+    const projects = await this.projectsService.getProjectsByUserId(userId);
+
+    if (!projects || projects.length === 0) {
+      throw new BadRequestException(`No se encontraron proyectos para el usuario con ID ${userId}`);
+    }
+
+    return projects;
+  }
 
   @Get()
   findAll() {

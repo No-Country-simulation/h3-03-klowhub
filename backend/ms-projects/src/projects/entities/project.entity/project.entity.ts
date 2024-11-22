@@ -47,6 +47,9 @@ export class Project {
   @Column('int', {default: 0 })
   rating: number;
 
+  @Column()
+  userId: string;
+
   @OneToMany(()=> Application, (application) => application.project)
   applications: Application[];
 
