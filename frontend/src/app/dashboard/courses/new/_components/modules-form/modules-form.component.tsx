@@ -52,8 +52,13 @@ const ModulesForm = () => {
           <Button 
             variant="outline" className="px-14 self-end"
           >
-            Agregar Módulo
+            Guardar Módulo
           </Button>
+          {/* <Button  */}
+          {/*   variant="outline" className="px-14 self-end" */}
+          {/* > */}
+          {/*   Agregar Módulo */}
+          {/* </Button> */}
           <Button 
             variant="outline" className="px-14 self-end"
             onClick={() => setShowLesson(true)}
