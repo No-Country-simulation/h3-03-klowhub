@@ -8,6 +8,7 @@ import { Inter } from 'next/font/google'
 import Link from "next/link";
 import { FC } from "react";
 import { Mentor } from "./mentor-card.types";
+import { IconTypes } from "../icon/icon.types";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -54,7 +55,7 @@ const MentorCard: FC<Mentor> = ({
 
 
                 <Badge
-                    icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
+                    icon={<Icon name={getSlug(platform) as IconTypes} />}
                     className="bg-gray-200 text-white w-[144px]"
                 >
                     {platform}

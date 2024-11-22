@@ -1,12 +1,23 @@
-export const plaform = {
+import { Platform, Language } from "@/types/global.types";
+import { Sectors, Funcionalitites, ToolsAndPlatforms, ContentType, CourseDificulty, CoreContent } from "./filters.types";
+
+type Filter<T> = {
+  header: string
+  items: {
+    name: T
+    label: string
+  }[]
+}
+
+export const plaform: Filter<Platform> = {
   header: "Plataforma",
   items: [
-    { name: "app-sheet", label: "App sheet" },
-    { name: "power-apps", label: "Power apps" }
+    { name: "appsheet", label: "App sheet" },
+    { name: "powerapps", label: "Power apps" }
   ]
 };
 
-export const language = {
+export const language: Filter<Language> = {
   header: "Idiomas",
   items: [
     { name: "español", label: "Español" },
@@ -14,7 +25,7 @@ export const language = {
   ]
 };
 
-export const sector = {
+export const sector: Filter<Sectors> = {
   header: "Sector",
   items: [
     { name: "industria", label: "Industria" },
@@ -31,11 +42,11 @@ export const sector = {
     { name: "seguridad-y-vigilancia", label: "Seguridad y vigilancia" },
     { name: "investigación-y-desarrollo", label: "Investigación y desarrollo" },
     { name: "agricultura-y-medio-ambiente", label: "Agricultura y medio ambiente" },
-    { name: "administración", label: "Administración" }
-  ]
+    { name: "administración", label: "Administración" },
+  ] as const
 };
 
-export const functionalities = {
+export const functionalities: Filter<Funcionalitites> = {
   header: "Funcionalidades",
   items: [
     { name: "calendario", label: "Calendario" },
@@ -67,7 +78,7 @@ export const functionalities = {
   ]
 };
 
-export const toolsAndPlatforms = {
+export const toolsAndPlatforms: Filter<ToolsAndPlatforms> = {
   header: "Herramientas y Plataformas",
   items: [
     { name: "google-sheets", label: "Google sheets" },
@@ -92,7 +103,7 @@ export const toolsAndPlatforms = {
   ]
 };
 
-export const contentType = {
+export const contentType: Filter<ContentType> = {
   header: "Tipo de contenido",
   items: [
     { name: "curso", label: "Curso" },
@@ -100,7 +111,7 @@ export const contentType = {
   ]
 };
 
-export const level = {
+export const level: Filter<CourseDificulty> = {
   header: "Nivel de competencia",
   items: [
     { name: "basic", label: "Básico" },
@@ -108,7 +119,7 @@ export const level = {
   ]
 };
 
-export const coreContent = {
+export const coreContent: Filter<CoreContent> = {
   header: "Pilar de contenido",
   items: [
     { name: "ux-ui", label: "UX-UI" },

@@ -16,6 +16,7 @@ import Link from "next/link";
 import { formatPrice } from "./product-card.utils";
 import { getSlug, truncate } from "@/utils/str.utils";
 import { headers } from "next/headers";
+import { IconTypes } from "../icon/icon.types";
 
 type ProductCardProps = {
   data: TAppInfo
@@ -70,7 +71,7 @@ const ProductCard = async ({ data }: ProductCardProps) => {
 
         <div>
           <Badge
-            icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
+            icon={<Icon name={getSlug(platform) as IconTypes} />}
             className="bg-gray-200 text-white"
           >
             {platform}

@@ -1,4 +1,4 @@
-export type Language = "english" | "spanish"
+export type Language = "inglés" | "español"
 export type Platform = "appsheet" | "powerapps"
 export type Video = {
   videoId: string

@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { getSlug } from "@/utils/str.utils";
 import Rating from "../rating/rating.component";
+import { IconTypes } from "../icon/icon.types";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -194,12 +195,7 @@ const ReviewsSection = () => {
           </CardSection>
           <Badge
             icon={
-              <Icon
-                name={
-                  getSlug("Power Apps") === "appsheet"
-                    ? "app-sheet"
-                    : "power-apps"
-                }
+              <Icon name={getSlug("PowerApps") as IconTypes}
               />
             }
             className="bg-gray-200 text-white w-full flex justify-center"

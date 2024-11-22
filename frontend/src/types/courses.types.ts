@@ -1,10 +1,10 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
-import { Language, Platform, Video, TImage } from "./global.types"
+import { Language, Platform, TImage } from "./global.types"
+import { CourseDificulty, Sectors, Funcionalitites, ToolsAndPlatforms, CoreContent, ContentType } from "@/consts/filters.types";
 
-type ContentType = "course" | "lesson"
-type Level = "basic" | "intermediate"
+
 type Resource = {
   filename: string
   mimetype: string
@@ -19,13 +19,13 @@ export type CourseInfo = {
   freeCourse: boolean
   contentType: ContentType
   about: string
-  level: Level
+  level: CourseDificulty
   platform: Platform
   language: Language
-  sector: string 
-  coreContent: string
-  tools: string[]
-  functionalities: string[]
+  sector: Sectors 
+  coreContent: CoreContent
+  tools: ToolsAndPlatforms[]
+  functionalities: Funcionalitites[]
   tags: string[]
 };
 
@@ -33,7 +33,7 @@ export type CourseDetails = {
   learningSubjects: string
   prevRequirements: string
   courseContent: string
-  courseImg: TImage
+  courseImg: TImage | null
 }
 
 export type Lesson = {
@@ -50,8 +50,15 @@ export type Module = {
   lessons: Lesson[]
 }
 
+export type CoursePromotion = {
+  type: string
+  id: number
+  percentage: number
+}
+
 export type Course = {
   generalInfo: CourseInfo
   details: CourseDetails
   modules: Module[]
+  promotion: CoursePromotion | null
 }

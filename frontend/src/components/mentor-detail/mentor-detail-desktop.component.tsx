@@ -8,6 +8,7 @@ import Rating from "../rating/rating.component";
 import { Button } from "../ui/button";
 import DatePicker from "../date-picker/date-picker.component";
 import TimePicker from "../time-picker/time-picker.component";
+import { IconTypes } from "../icon/icon.types";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -33,7 +34,7 @@ const MentorDetailDesktop = () => {
                             <span className="p-2.5 text-xl font-bold">Martin Fernandez</span>
                         </div>
                         <Badge
-                            icon={<Icon name={getSlug("Power Apps") === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
+                            icon={<Icon name={getSlug("PowerApps") as IconTypes} />}
                             className="bg-gray-200 text-white w-full flex justify-center"
                         >
                             Power Apps
