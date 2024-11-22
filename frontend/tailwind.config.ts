@@ -35,6 +35,7 @@ export default {
         "kPurple": 'var(--kPurple)',
 
 				"gray-100": 'var(--gray-100)',
+				"gray-200": 'var(--gray-200)',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {

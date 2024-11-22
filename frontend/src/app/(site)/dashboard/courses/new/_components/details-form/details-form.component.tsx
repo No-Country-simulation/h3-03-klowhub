@@ -34,7 +34,7 @@ const GeneralForm = () => {
           label="Hacé una descripción detallada del contenido y de los beneficios que ofrece." { ...controlledCommonProps } 
           placeholder="¿Qué necesitan saber o tener tus estudiantes antes de empezar?"
         />
-        <input type="submit" value="SUBMIT" />
+        {/* <input type="submit" value="SUBMIT" /> */}
       </form>
     </>
   )

@@ -9,6 +9,10 @@ type Resource = {
   filename: string
   mimetype: string
 }
+export type Link = {
+  url: string
+  name: string
+}
 
 export type CourseInfo = {
   title: string
@@ -35,8 +39,9 @@ export type CourseDetails = {
 export type Lesson = {
   title: string
   description: string
-  videos: Video[]
+  videos: File[]
   resources: Resource[]
+  link: string
 }
 
 export type Module = {

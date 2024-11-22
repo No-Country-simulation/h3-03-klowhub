@@ -55,7 +55,7 @@ const MentorCard: FC<Mentor> = ({
 
                 <Badge
                     icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
-                    className="bg-gray-100 text-white w-[144px]"
+                    className="bg-gray-200 text-white w-[144px]"
                 >
                     {platform}
                 </Badge>
