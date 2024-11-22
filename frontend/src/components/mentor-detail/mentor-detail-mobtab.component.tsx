@@ -202,7 +202,7 @@ const ReviewsSection = () => {
                 }
               />
             }
-            className="bg-gray-100 text-white w-full flex justify-center"
+            className="bg-gray-200 text-white w-full flex justify-center"
           >
             Power Apps
           </Badge>

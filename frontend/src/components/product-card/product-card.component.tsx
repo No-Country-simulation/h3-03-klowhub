@@ -71,7 +71,7 @@ const ProductCard = async ({ data }: ProductCardProps) => {
         <div>
           <Badge
             icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
-            className="bg-gray-100 text-white"
+            className="bg-gray-200 text-white"
           >
             {platform}
           </Badge>

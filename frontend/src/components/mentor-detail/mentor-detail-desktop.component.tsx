@@ -34,7 +34,7 @@ const MentorDetailDesktop = () => {
                         </div>
                         <Badge
                             icon={<Icon name={getSlug("Power Apps") === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
-                            className="bg-gray-100 text-white w-full flex justify-center"
+                            className="bg-gray-200 text-white w-full flex justify-center"
                         >
                             Power Apps
                         </Badge>
