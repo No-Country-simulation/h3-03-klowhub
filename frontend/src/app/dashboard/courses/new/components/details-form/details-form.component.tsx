@@ -3,20 +3,19 @@
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { CourseDetails } from "@/types/courses.types";
-import { Button } from "@/components/ui/button";
 import Input from "@/components/input/input.component";
 import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
 import RouteBtn from "../route-btn/route-btn.component";
 
 const GeneralForm = () => {
+  const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
+
   const {
     controlledCommonProps, 
     handleSubmit,
-    formState: { isDirty }
-  } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, COURSE_DETAILS_INITIAL_STATE);
-  const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
-  const deps = { handleSubmit, setCourseData, routeChanger, isDirty };
+  } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, courseData.details);
+  const deps = { handleSubmit, setCourseData, routeChanger };
 
   return (
     <>

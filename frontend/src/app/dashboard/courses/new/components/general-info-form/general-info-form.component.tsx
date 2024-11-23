@@ -12,14 +12,14 @@ import { CourseCtx } from "../../context/course-form.context";
 import RouteBtn from "../route-btn/route-btn.component";
 
 const GeneralForm = () => {
+  const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
+
   const {
     commonProps, 
     controlledCommonProps, 
     handleSubmit,
-    formState: { isDirty }
-  } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, COURSE_INFO_INITIAL_STATE);
-  const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
-  const deps = { handleSubmit, setCourseData, routeChanger, isDirty };
+  } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, courseData.generalInfo);
+  const deps = { handleSubmit, setCourseData, routeChanger };
 
   return (
     <>
