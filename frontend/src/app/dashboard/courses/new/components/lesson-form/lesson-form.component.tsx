@@ -10,10 +10,11 @@ import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
 
 type Props = {
-  setLessons: Dispatch<SetStateAction<Lesson[]>>
+  moduleId: number
+  setShowLesson: Dispatch<SetStateAction<boolean>>
 }
 
-const LessonForm = ({ setLessons }: Props) => {
+const LessonForm = ({ moduleId, setShowLesson }: Props) => {
   const {
     commonProps, 
     controlledCommonProps, 
@@ -46,18 +47,22 @@ const LessonForm = ({ setLessons }: Props) => {
           isMulti
           limit={4}
         />
-        {/* <div className="absolute w-full mt-6 -ml-6 flex justify-end pt-5"> */}
-        {/*   <Button  */}
-        {/*     type="button" */}
-        {/*     className="right-0 px-14 self-end"  */}
-        {/*     onClick={setCourseData ? handleSubmit(data => { */}
-        {/*       setCourseData(prev => ({ ...prev, generalInfo: data })) */}
-        {/*       if (routeChanger) { routeChanger("next") } */}
-        {/*     }) : undefined} */}
-        {/*   > */}
-        {/*     Continuar */}
-        {/*   </Button> */}
-        {/* </div> */}
+          <Button 
+            type="button"
+            className="right-0 px-14 self-end" 
+            onClick={setCourseData ? handleSubmit(data => {
+              setCourseData(prev => {
+                const updatedModules = prev.modules.map((m, idx) => {
+                  if (idx !== moduleId) return m;
+                  return { ...m, lessons: [ ...m.lessons, data ] }
+                });
+                return { ...prev, modules: updatedModules }
+              })
+              setShowLesson(false)
+            }) : undefined}
+          >
+            Guardar
+          </Button>
       </div>
     </>
   )
