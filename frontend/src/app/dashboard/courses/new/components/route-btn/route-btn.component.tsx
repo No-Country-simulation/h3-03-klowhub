@@ -2,7 +2,6 @@
 
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form";
 import { Dispatch, SetStateAction } from "react";
-import { Course } from "@/types/courses.types";
 
 type Props<F, T extends FieldValues> = {
   handleSubmit: UseFormHandleSubmit<T, undefined>
@@ -10,7 +9,7 @@ type Props<F, T extends FieldValues> = {
   keyToUpdate: keyof F
   routeChanger: ((direction: "prev" | "next") => void) | undefined
   setCourseData: Dispatch<SetStateAction<F>> | undefined
-  isDirty: boolean
+  isDirty?: boolean
 }
 
 const RouteBtn = <F, T extends FieldValues>({ 
