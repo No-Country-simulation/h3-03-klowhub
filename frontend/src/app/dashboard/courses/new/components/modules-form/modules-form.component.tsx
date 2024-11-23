@@ -18,6 +18,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import parse from "html-react-parser"
+import { Pencil } from "lucide-react";
+import { Plus } from "lucide-react";
 
 type ModuleViewProps = {
   title: string
@@ -38,9 +40,8 @@ const ModulesForm = () => {
   const deps = { handleSubmit, setCourseData, routeChanger, isDirty };
 
   return (
-    <>
-      {
-        showLessonForm && 
+    <div>
+      { showLessonForm && 
           <LessonForm 
             moduleId={currentModule} 
             setShowLessonForm={setShowLessonForm}
@@ -80,11 +81,6 @@ const ModulesForm = () => {
           </div>
         </form>
       }
-      { !showModuleForm &&
-        <Button variant="outline" className="px-14" onClick={() => setShowModuleForm(true)}>
-          Añadir módulo
-        </Button>
-      }
       { (!showModuleForm || !showLessonForm) &&
         <div className="flex flex-col items-end gap-5">
           <div className="w-full bg-gray-200 rounded-lg overflow-hidden">
@@ -92,8 +88,24 @@ const ModulesForm = () => {
               <Accordion key={`module-panel-${idx}`} type="single" collapsible className="px-5">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>{ m.title }</AccordionTrigger>
-                  <AccordionContent>
-                    { parse(m.description) }
+                  <AccordionContent className="flex flex-col gap-5">
+                    <span>{ parse(m.description) }</span>
+                    <div className="flex gap-5 self-end">
+                      <Button variant="outline" className="h-10 py-0 px-5 text-sm" onClick={() => {
+                        setCurrentModule(idx)
+                        setShowLessonForm(true)
+                      }}>
+                        <Pencil />
+                        Editar Módulo
+                      </Button>
+                      <Button variant="outline" className="h-10 py-0 py-0 px-5 text-sm" onClick={() => {
+                        setCurrentModule(idx)
+                        setShowLessonForm(true)
+                      }}>
+                        <Plus />
+                        Añadir lección
+                      </Button>
+                    </div>
                     <div className="bg-gray-100">
                       { courseData.modules[idx].lessons.map((l, idx) => (
                         <div className="flex flex-col gap-1" key={`lesson-${idx}`}>
@@ -101,12 +113,6 @@ const ModulesForm = () => {
                         </div>
                       )) }
                     </div>
-                    <Button variant="outline" className="px-14" onClick={() => {
-                      setCurrentModule(idx)
-                      setShowLessonForm(true)
-                    }}>
-                      Añadir lección
-                    </Button>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -114,11 +120,16 @@ const ModulesForm = () => {
           </div>
         </div>
       }
+      { !showModuleForm &&
+        <Button variant="outline" className="px-14" onClick={() => setShowModuleForm(true)}>
+          Añadir módulo
+        </Button>
+      }
       <div className="absolute w-full mt-6 -ml-6 flex justify-between pt-5">
         <RouteBtn direction="prev" keyToUpdate="details" { ...deps } />
         <RouteBtn direction="next" keyToUpdate="details" { ...deps } />
       </div>
-    </>
+    </div>
   )
 };
 
