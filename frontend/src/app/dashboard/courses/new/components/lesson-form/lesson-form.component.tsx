@@ -11,10 +11,10 @@ import { CourseCtx } from "../../context/course-form.context";
 
 type Props = {
   moduleId: number
-  setShowLesson: Dispatch<SetStateAction<boolean>>
+  setShowLessonForm: Dispatch<SetStateAction<boolean>>
 }
 
-const LessonForm = ({ moduleId, setShowLesson }: Props) => {
+const LessonForm = ({ moduleId, setShowLessonForm }: Props) => {
   const {
     commonProps, 
     controlledCommonProps, 
@@ -25,7 +25,7 @@ const LessonForm = ({ moduleId, setShowLesson }: Props) => {
   return (
     <>
       <div 
-        className="flex flex-col gap-10 p-5 rounded-2xl bg-gray-200"
+        className="flex flex-col gap-10 p-5 rounded-2xl bg-gray-100"
       >
         <Input 
           name="title" type="text" 
@@ -58,7 +58,7 @@ const LessonForm = ({ moduleId, setShowLesson }: Props) => {
                 });
                 return { ...prev, modules: updatedModules }
               })
-              setShowLesson(false)
+              setShowLessonForm(false)
             }) : undefined}
           >
             Guardar

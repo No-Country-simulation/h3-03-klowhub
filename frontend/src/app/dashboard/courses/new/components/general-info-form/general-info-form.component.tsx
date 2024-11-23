@@ -30,7 +30,7 @@ const GeneralForm = () => {
           placeholder="Nombrá tu curso o lección"
           className="col-span-2"
         />
-        <div className="text-sm font-bold flex gap-5 col-span-2 bg-gray-200 rounded-2xl px-5 py-3 w-[650px]">
+        <div className="text-sm font-bold flex gap-5 col-span-2 bg-gray-100 rounded-2xl px-5 py-3 w-[650px]">
           <div><CircleAlert /></div>
           <span>El contenido gratuito ofrece acceso limitado a [características breves del contenido gratuito]. El contenido premium desbloquea [principales beneficios del contenido de pago]. Más información en nuestra <span className="text-secondary-400">[documentación]</span>.</span>
         </div>

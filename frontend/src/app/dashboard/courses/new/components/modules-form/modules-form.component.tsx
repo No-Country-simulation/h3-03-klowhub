@@ -17,6 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import parse from "html-react-parser"
 
 type ModuleViewProps = {
   title: string
@@ -30,10 +31,8 @@ const ModulesForm = () => {
     formState: { isDirty }
   } = useGenerateForm<Module>(MODULE_INITIAL_STATE, MODULE_INITIAL_STATE);
 
-  const [ showLesson, setShowLesson ] = useState(false);
-  // const [ showModuleInfo, setShowModuleInfo ] = useState(false);
+  const [ showLessonForm, setShowLessonForm ] = useState(false);
   const [ showModuleForm, setShowModuleForm ] = useState(true);
-  // const [ lessons, setLessons ] = useState<Lesson[]>([]);
   const [ currentModule, setCurrentModule ] = useState(NaN);
   const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
   const deps = { handleSubmit, setCourseData, routeChanger, isDirty };
@@ -41,10 +40,10 @@ const ModulesForm = () => {
   return (
     <>
       {
-        showLesson && 
+        showLessonForm && 
           <LessonForm 
             moduleId={currentModule} 
-            setShowLesson={setShowLesson}
+            setShowLessonForm={setShowLessonForm}
           /> 
       }
       { showModuleForm &&
@@ -86,16 +85,16 @@ const ModulesForm = () => {
           Añadir módulo
         </Button>
       }
-      { (!showModuleForm || !showLesson) &&
+      { (!showModuleForm || !showLessonForm) &&
         <div className="flex flex-col items-end gap-5">
-          <div className="w-full">
+          <div className="w-full bg-gray-200 rounded-lg overflow-hidden">
             { courseData.modules.map((m, idx) => ( 
-              <Accordion key={`module-panel-${idx}`} type="single" collapsible>
+              <Accordion key={`module-panel-${idx}`} type="single" collapsible className="px-5">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>{ m.title }</AccordionTrigger>
                   <AccordionContent>
-                    { m.description }
-                    <div>
+                    { parse(m.description) }
+                    <div className="bg-gray-100">
                       { courseData.modules[idx].lessons.map((l, idx) => (
                         <div className="flex flex-col gap-1" key={`lesson-${idx}`}>
                           <CourseLesson data={l} />
@@ -104,7 +103,7 @@ const ModulesForm = () => {
                     </div>
                     <Button variant="outline" className="px-14" onClick={() => {
                       setCurrentModule(idx)
-                      setShowLesson(true)
+                      setShowLessonForm(true)
                     }}>
                       Añadir lección
                     </Button>

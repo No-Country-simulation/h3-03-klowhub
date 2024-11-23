@@ -46,7 +46,7 @@ const QuickView = async ({ products }: QuickViewProps) => {
       <div>
         <Badge
           icon={<Icon name={getSlug(platform) as IconTypes} />}
-          className="bg-gray-200 text-white"
+          className="bg-gray-100 text-white"
         >
           {platform}
         </Badge>
