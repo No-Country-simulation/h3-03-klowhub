@@ -88,7 +88,7 @@ const ProductCard = async ({ data }: ProductCardProps) => {
           {orientation === "vertical" ? <span className="text-xl font-bold">${formatPrice(price)}</span> : ""}
           <div className={`w-full flex items-center ${orientation === "vertical" ? "justify-between" : "justify-between md:justify-start gap-10"}`}>
             <Button>Añadir al carrito</Button>
-            <Link href="#" className="text-primary-200">Ver detalles</Link>
+            <Link href={`/courses/${title}`} className="text-primary-200">Ver detalles</Link>
           </div>
         </CardContent>
       </div>

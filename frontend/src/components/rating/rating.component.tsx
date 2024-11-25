@@ -2,7 +2,7 @@ import Icon from "../icon/icon.component";
 
 type RatingProps = {
   rating: number;
-  ratingCount: number;
+  ratingCount?: number;
   showDetails?: boolean;
 };
 
