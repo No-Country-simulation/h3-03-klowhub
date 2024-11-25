@@ -1,48 +1,29 @@
 "use client"
 
-import { useEffect, createContext, ReactNode, useState, Dispatch, SetStateAction } from "react"
-import { Course } from "@/types/courses.types";
-import { COURSE_FORM_INITIAL_STATE } from "./course-form.consts";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-
-type CourseCtxProps = {
-  courseData: Course
-  setCourseData: Dispatch<SetStateAction<Course>> | undefined
-  routeChanger: ((direction: "prev" | "next") => void) | undefined
-}
+import { createContext, ReactNode, Dispatch } from "react"
+import { CourseFormData } from "@/types/courses.types";
+import { useReducer } from "react";
+import courseFormReducer, { COURSE_FORM_INITIAL_STATE } from "./course-form.reducer";
+import { CourseFormActions } from "./course-form.actions";
+import { useEffect } from "react";
 
 type Props = {
   children: ReactNode[]
 }
 
-const routes = [ "general", "details", "modules", "promotions" ];
-
-export const CourseCtx = createContext<CourseCtxProps>({
-  courseData: COURSE_FORM_INITIAL_STATE,
-  setCourseData: undefined,
-  routeChanger: undefined
-});
+type CourseCtxType = {
+  state: CourseFormData,
+  dispatch: Dispatch<CourseFormActions>
+}
+export const CourseCtx = createContext<CourseCtxType | undefined>(undefined)
 
 const CourseCtxProvider = ({ children }: Props) => {
-  const [ courseData, setCourseData ] = useState<Course>(COURSE_FORM_INITIAL_STATE);
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const section = searchParams.get("section");
-  const current = routes.findIndex(r => r === section);
-  const router = useRouter();
+  const [ state, dispatch ] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
 
-  const routeChanger = (direction: "prev" | "next") => {
-    if (direction === "next") router.replace(`${pathname}?section=${routes[current + 1]}`)
-    if (direction === "prev") router.replace(`${pathname}?section=${routes[current - 1]}`)
-  }
-
-  useEffect(() => {
-    console.log('courseData: ', courseData);
-  }, [courseData])
+  useEffect(() => { console.log('state', state) }, [ state ])
 
   return (
-    <CourseCtx.Provider value={{ courseData, setCourseData, routeChanger }}>{ children }</CourseCtx.Provider>
+    <CourseCtx.Provider value={{ state, dispatch }}>{ children }</CourseCtx.Provider>
   )
 };
 

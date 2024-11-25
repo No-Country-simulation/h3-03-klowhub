@@ -1,7 +1,7 @@
 "use client"
 
 import useGenerateForm from "@/hooks/use-generate-form.hook";
-import { MODULE_INITIAL_STATE } from "./modules-form.consts";
+import { MODULE_INITIAL_STATE } from "./modules-section.consts";
 import { useState } from "react";
 import { Module } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
@@ -20,22 +20,26 @@ import {
 import parse from "html-react-parser"
 import { Pencil } from "lucide-react";
 import { Plus } from "lucide-react";
+import { addNewModule, setModulesData } from "../../context/course-form.actions";
 
 const ModulesForm = () => {
-  const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
-  const [ currrentEditingModule, setCurrentEditingModule ] = useState(NaN);
+  const courseCtx = useContext(CourseCtx);
 
+  if (!courseCtx) throw new Error("no context found");
+
+  const { state, dispatch } = courseCtx
+
+  const [ currentEditingModule, setCurrentEditingModule ] = useState(NaN);
 
   const {
     controlledCommonProps, 
     handleSubmit,
     reset
-  } = useGenerateForm<Module>(MODULE_INITIAL_STATE, courseData.modules[currrentEditingModule]);
+  } = useGenerateForm<Module>(MODULE_INITIAL_STATE, state.modules[currentEditingModule]);
 
   const [ showLessonForm, setShowLessonForm ] = useState(false);
-  const [ showModuleForm, setShowModuleForm ] = useState(!Boolean(courseData.modules.length));
+  const [ showModuleForm, setShowModuleForm ] = useState(!Boolean(state.modules.length));
   const [ currentModule, setCurrentModule ] = useState(NaN);
-  const deps = { handleSubmit, setCourseData, routeChanger };
 
   return (
     <div>
@@ -62,18 +66,15 @@ const ModulesForm = () => {
               type="button"
               onClick={ 
                 handleSubmit(data => {
-                  if (currrentEditingModule) {
-                    console.log('AAAAA');
-                    setCourseData!(prev => {
-                      const updatedModules = prev.modules.map((m, idx) => {
-                        if (idx !== currrentEditingModule) return m;
-                        return data
-                      });
-                      return { ...prev, modules: updatedModules }
-                    })
+                  if (isNaN(currentEditingModule)) {
+                    dispatch(addNewModule(data))
                   } else {
-                    setCourseData!(prev => ({ ...prev, modules: [ ...prev.modules, data ]}))
-                  };;
+                    const updatedModules = state.modules.map((m, idx) => {
+                      if (idx !== currentEditingModule) return m;
+                      return data
+                    });
+                    dispatch(setModulesData(updatedModules))
+                  };
                   setShowModuleForm(false)
                   reset()
                   setCurrentEditingModule(NaN)
@@ -99,7 +100,7 @@ const ModulesForm = () => {
         <div className="flex flex-col items-end gap-5">
           <div className="w-full bg-gray-200 rounded-lg overflow-hidden">
               <Accordion type="single" collapsible className="px-5">
-                { courseData.modules.map((m, idx) => ( 
+                { state.modules.map((m, idx) => ( 
                   <AccordionItem key={`module-panel-${idx}`} value={`module-${idx}`}>
                     <AccordionTrigger>{ m.title }</AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-5">
@@ -121,7 +122,7 @@ const ModulesForm = () => {
                         </Button>
                       </div>
                       <div className="bg-gray-100">
-                        { courseData.modules[idx].lessons.map((l, idx) => (
+                        { state.modules[idx].lessons.map((l, idx) => (
                           <div className="flex flex-col gap-1" key={`lesson-${idx}`}>
                             <CourseLesson data={l} />
                           </div>
@@ -140,8 +141,8 @@ const ModulesForm = () => {
         </Button>
       }
       <div className="absolute w-full mt-6 -ml-6 flex justify-between pt-5">
-        <RouteBtn direction="prev" keyToUpdate="details" { ...deps } />
-        <RouteBtn direction="next" keyToUpdate="details" { ...deps } />
+        <RouteBtn route="details">Retroceder</RouteBtn>
+        <RouteBtn route="promotion">Continuar</RouteBtn>
       </div>
     </div>
   )

@@ -27,13 +27,14 @@ export type CourseInfo = {
   tools: ToolsAndPlatforms[]
   functionalities: Funcionalitites[]
   tags: string[]
+  price: number // this is not included in the design but I need to get this info from somewhere
 };
 
 export type CourseDetails = {
   learningSubjects: string
   prevRequirements: string
   courseContent: string
-  courseImg: TImage | null
+  img: TImage | null
 }
 
 export type Lesson = {
@@ -51,14 +52,23 @@ export type Module = {
 }
 
 export type CoursePromotion = {
-  type: string
+  product: "application" | "course" | undefined
   id: number
   percentage: number
 }
 
-export type Course = {
-  generalInfo: CourseInfo
+export type Feedback = {
+  rating: number
+  ratingCount: number
+  reviews: string[]
+}
+
+export type CourseFormData = {
+  id?: number
+  general: CourseInfo
   details: CourseDetails
   modules: Module[]
   promotion: CoursePromotion | null
 }
+
+export type Course = CourseInfo & CourseDetails & CoursePromotion & Feedback & { modules: Module[] }

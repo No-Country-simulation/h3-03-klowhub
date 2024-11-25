@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
 import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
+import { setModulesData } from "../../context/course-form.actions";
 
 type Props = {
   moduleId: number
@@ -15,12 +16,16 @@ type Props = {
 }
 
 const LessonForm = ({ moduleId, setShowLessonForm }: Props) => {
+  const courseCtx = useContext(CourseCtx);
+
+  if (!courseCtx) throw new Error("no context found");
+
+  const { state, dispatch } = courseCtx
+
   const {
-    commonProps, 
     controlledCommonProps, 
     handleSubmit,
   } = useGenerateForm<Lesson>(LESSON_INITIAL_STATE, LESSON_INITIAL_STATE);
-  const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
 
   return (
     <>
@@ -50,16 +55,14 @@ const LessonForm = ({ moduleId, setShowLessonForm }: Props) => {
           <Button 
             type="button"
             className="right-0 px-14 self-end" 
-            onClick={setCourseData ? handleSubmit(data => {
-              setCourseData(prev => {
-                const updatedModules = prev.modules.map((m, idx) => {
-                  if (idx !== moduleId) return m;
-                  return { ...m, lessons: [ ...m.lessons, data ] }
-                });
-                return { ...prev, modules: updatedModules }
-              })
+            onClick={handleSubmit(data => {
+              const updatedModules = state.modules.map((m, idx) => {
+                if (idx !== moduleId) return m;
+                return { ...m, lessons: [ ...m.lessons, data ] }
+              });
+              dispatch(setModulesData(updatedModules))
               setShowLessonForm(false)
-            }) : undefined}
+            })}
           >
             Guardar
           </Button>

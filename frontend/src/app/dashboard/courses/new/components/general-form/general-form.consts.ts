@@ -3,14 +3,14 @@ import { CourseInfo } from "@/types/courses.types";
 export const COURSE_INFO_INITIAL_STATE: CourseInfo = {
   title: "",
   freeCourse: false,
-  contentType: "course",
+  contentType: "curso",
   about: "",
   level: "basic",
   platform: "appsheet",
-  language: "spanish",
+  language: "español",
   sector: "industria",
   coreContent: "databases",
-  tools: [ "machine-learning" ],
+  tools: [ "dropbox" ],
   functionalities: [ "gestión-de-usuarios" ],
   tags: [ "databases", "ai" ],
 };

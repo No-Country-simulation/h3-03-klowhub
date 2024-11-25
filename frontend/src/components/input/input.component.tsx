@@ -57,7 +57,6 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         name={name}
         control={control}
         render={({ field: { onChange, value } }) => {
-          console.log('value: ', value);
           return isMulti ? (
             <div className={`grid grid-cols-3 gap-5 grid-rows-auto items-start`}>
               { value.map((v: File, idx: number) => {
@@ -89,6 +88,19 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
     )
   };
 
+  if (type === "product-selector") {
+    const { children } = props;
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className="flex gap-2">
+          { children }
+          <input type="radio" { ...register(name) } />
+        </Label>
+      </div>
+    )
+  };
+
   if (type === "radio-group") {
     const { options } = props;
 
@@ -96,14 +108,14 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
       <div className={`${containerStyles} ${className || ""}`}>
         <Label htmlFor={name} className={labelStyles}>{ label }</Label>
         <div className="flex flex-col gap-4">
-          <div className="flex gap-2">
-            <Label htmlFor={name}>{ options[0] }</Label>
-            <input type="radio" { ...register(name) } />
-          </div>
-          <div className="flex gap-2">
-            <Label htmlFor={name}>{ options[1] }</Label>
-            <input type="radio" { ...register(name) } />
-          </div>
+          <Label htmlFor={name} className="flex gap-2">
+            { options[0].label }
+            <input type="radio" { ...register(name) } value={options[0].id} />
+          </Label>
+          <Label htmlFor={name} className="flex gap-2">
+            { options[1].label }
+            <input type="radio" { ...register(name) } value={options[1].id} />
+          </Label>
         </div>
       </div>
     )

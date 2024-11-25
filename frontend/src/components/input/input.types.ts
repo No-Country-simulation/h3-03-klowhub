@@ -1,12 +1,17 @@
 import { UseFormRegister, FieldErrors, Control, FieldValues, Path } from "react-hook-form";
 import { OptionsOrGroups, GroupBase } from "react-select";
-import { Lesson, Link } from "@/types/courses.types";
+import { ReactNode } from "react";
 
 type FieldType = "text" | "link" | "textarea" | "number" | "checkbox" | "date" | "time" | "password";
 
+type RadioOption = {
+  id: string,
+  label: string,
+}
+
 type CommonProps<T extends FieldValues> = {
   name: Path<T>
-  label: string
+  label?: string
   register: UseFormRegister<T>
   errors: FieldErrors<T>
   placeholder?: string
@@ -19,11 +24,16 @@ type CommonInput<T extends FieldValues> = {
 
 type RadioInput<T extends FieldValues> = {
   type: "radio-group"
-  options: [ string, string ] 
+  options: [ RadioOption, RadioOption ] 
 } & Omit<CommonProps<T>, "placeholder">
 
 type ControlledInput<T extends FieldValues> = {
   control: Control<T>
+} & CommonProps<T>
+
+type ProductSelector<T extends FieldValues> = {
+  type: "product-selector"
+  children: ReactNode
 } & CommonProps<T>
 
 type RichTextInput<T extends FieldValues> = {
@@ -54,13 +64,4 @@ type SelectInput<T extends FieldValues> = {
   isMulti?: boolean
 } & ControlledInput<T>
 
-export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T>
-
-
-export const LESSON_INITIAL_STATE: Lesson = {
-  title: "",
-  description: "",
-  videos: [],
-  resources: [],
-  link: ""
-};
+export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T> | ProductSelector<T>

@@ -7,15 +7,20 @@ import Input from "@/components/input/input.component";
 import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
 import RouteBtn from "../route-btn/route-btn.component";
+import { setDetailsData } from "../../context/course-form.actions";
 
 const GeneralForm = () => {
-  const { courseData, setCourseData, routeChanger } = useContext(CourseCtx);
+  const courseCtx = useContext(CourseCtx);
+
+  if (!courseCtx) throw new Error("no context found");
+
+  const { state, dispatch } = courseCtx
 
   const {
     controlledCommonProps, 
     handleSubmit,
-  } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, courseData.details);
-  const deps = { handleSubmit, setCourseData, routeChanger };
+    formState: { isDirty }
+  } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, state.details);
 
   return (
     <>
@@ -36,14 +41,25 @@ const GeneralForm = () => {
           placeholder="¿Qué necesitan saber o tener tus estudiantes antes de empezar?"
         />
         <Input 
-          name="courseImg" type="upload"
+          name="img" type="upload"
           label="Sube una foto clara de la parte delantera de tu documento." { ...controlledCommonProps }
           limit={5}
         />
       </form>
       <div className="absolute w-full mt-6 -ml-6 flex justify-between pt-5">
-        <RouteBtn direction="prev" keyToUpdate="details" { ...deps } />
-        <RouteBtn direction="next" keyToUpdate="details" { ...deps } />
+        <RouteBtn 
+          setter={ handleSubmit( data => dispatch(setDetailsData(data)) ) }
+          route="general"
+        >
+          Retroceder
+        </RouteBtn>
+        <RouteBtn 
+          setter={ handleSubmit( data => dispatch(setDetailsData(data)) )}
+          route="modules"
+          isDirty={isDirty}
+        >
+          Continuar
+        </RouteBtn>
       </div>
     </>
   )

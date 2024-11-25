@@ -1,9 +1,37 @@
 "use client"
 
 import { useState } from "react";
+import useUserContent from "./hooks/use-user-content.hook";
+import Tab from "@/components/tab/tab.component";
+import RouteBtn from "../route-btn/route-btn.component";
+import useGenerateForm from "@/hooks/use-generate-form.hook";
+import { PROMOTION_INITIAL_STATE } from "./promotions.consts";
+import { useContext } from "react";
+import { CourseCtx } from "../../context/course-form.context";
+import { CoursePromotion } from "@/types/courses.types";
+import Input from "@/components/input/input.component";
+import ProductCard from "@/components/product-card/product-card.component";
+import { Button } from "@/components/ui/button";
+import { setPromotionData } from "../../context/course-form.actions";
+
+type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
+  const courseCtx = useContext(CourseCtx);
+
+  if (!courseCtx) throw new Error("no context found");
+
+  const { state, dispatch } = courseCtx
+
+  const {
+    commonProps, 
+    controlledCommonProps, 
+    handleSubmit,
+  } = useGenerateForm<CoursePromotion>(PROMOTION_INITIAL_STATE, state.promotion);
+
   const [ showSelector, setShowSelector ] = useState(false);
+  const [ contentType, setContentType] = useState<ContentType>('applications');
+  const { applications, courses } = useUserContent();
 
   return (
     <div className="flex flex-col gap-5">
@@ -24,8 +52,52 @@ const PromotionsSection = () => {
           </div>
         </div>
       </div>
-      <div>
-
+      <div className="bg-gray-200 rounded-lg p-5">
+        <h3>Selecciona la app o curso que deseas incluir</h3>
+        <div>
+          <button onClick={() => setContentType("applications")}>
+            <Tab active={contentType === "applications"}>Aplicaciones</Tab>
+          </button>
+          <button onClick={() => setContentType("courses")}>
+            <Tab active={contentType === "courses"}>Cursos</Tab>
+          </button>
+        </div>
+        <form>
+          <div className="grid grid-cols-3 gap-5">
+            { contentType === "applications"
+              ? applications.map((ct, idx) => (
+                <Input key={`product-option-${idx}`} type="product-selector" name="product" { ...commonProps }>
+                  <ProductCard
+                    key={`product-card-${idx}`}
+                    data={ct}
+                    unlink
+                    onlyInfo
+                  />
+                </Input>
+                ))
+              : courses.map((ct, idx) => (
+                <Input key={`product-option-${idx}`} type="product-selector" name="product" { ...commonProps }>
+                  <ProductCard
+                    key={`product-card-${idx}`}
+                    data={ct}
+                    unlink
+                    onlyInfo
+                  />
+                </Input>
+              ))
+            }
+          </div>
+          <Input type="text" name="percentage" { ...commonProps } />
+        </form>
+        <div className="absolute w-full mt-6 -ml-6 flex justify-between pt-5">
+          <RouteBtn 
+            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
+            route="modules"
+          >
+            Retroceder
+          </RouteBtn>
+          <Button>Crear Curso</Button>
+        </div>
       </div>
     </div>
   )
