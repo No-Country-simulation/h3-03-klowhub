@@ -1,26 +1,24 @@
-import { useState } from "react";
 import { Lesson } from "@/types/courses.types";
 import parse from 'html-react-parser';
-import { ChevronDown } from "lucide-react";
+import { AccordionContent, AccordionTrigger, AccordionItem } from "@radix-ui/react-accordion";
 
 type Props = {
   data: Lesson
+  lessonIdx: number
+  moduleIdx: number
 }
 
-const CourseLesson = ({ data }: Props) => {
-  const [ show, setShow ] = useState(false);
+const CourseLesson = ({ data, lessonIdx, moduleIdx }: Props) => {
+  const { title, description } = data;
 
   return (
-    <div className={`flex flex-col gap-5 p-4 rounded-lg bg-gray-100 ease-in-out duration-500 transition-all overflow-hidden ${show ? "h-auto" : "h-14"}`}>
-      <button className="flex justify-between" onClick={() => setShow(prev => !prev)}>
-        <h3 className="font-bold">{ data.title }</h3>
-        <ChevronDown />
-      </button>
-      <div>
-        <h3 className="font-bold">Descripción</h3>
-        <span>{ parse(data.description) }</span>
-      </div>
-    </div>
+    <AccordionItem value={`module-${moduleIdx}-lesson-${lessonIdx}`}>
+      <AccordionTrigger>{ title }</AccordionTrigger>
+      <AccordionContent className="flex flex-col gap-5">
+        <span>{ parse(description) }</span>
+      </AccordionContent>
+    </AccordionItem>
+
   )
 };
 

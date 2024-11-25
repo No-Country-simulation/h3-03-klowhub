@@ -52,8 +52,8 @@ const PromotionsSection = () => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 rounded-lg p-5">
-        <h3>Selecciona la app o curso que deseas incluir</h3>
+      <div className="bg-gray-200 rounded-lg p-5 flex flex-col gap-5">
+        <h3 className="font-bold">Selecciona la app o curso que deseas incluir</h3>
         <div>
           <button onClick={() => setContentType("applications")}>
             <Tab active={contentType === "applications"}>Aplicaciones</Tab>
@@ -89,14 +89,17 @@ const PromotionsSection = () => {
           </div>
           <Input type="text" name="percentage" { ...commonProps } />
         </form>
-        <div className="absolute w-full mt-6 -ml-6 flex justify-between pt-5">
+        <div className="absolute w-full bottom-0 -mb-16 -ml-11 flex justify-between pt-5">
           <RouteBtn 
             setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
             route="modules"
           >
             Retroceder
           </RouteBtn>
-          <Button>Crear Curso</Button>
+          <div className="flex gap-5">
+            <Button className="px-6 border-primary-200 text-primary-200" variant="outline">Vista previa del curso</Button>
+            <Button className="px-6">Publicar</Button>
+          </div>
         </div>
       </div>
     </div>

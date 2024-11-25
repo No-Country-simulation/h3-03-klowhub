@@ -9,23 +9,23 @@ import { Dispatch, SetStateAction } from "react";
 import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
 import { setModulesData } from "../../context/course-form.actions";
+import { FieldValues, Path, UseFormGetValues, UseFormSetValue } from "react-hook-form";
 
-type Props = {
-  moduleId: number
+type Props<F extends FieldValues> = {
+  lessonIdx: number
   setShowLessonForm: Dispatch<SetStateAction<boolean>>
+  updateModule: UseFormSetValue<F>
+  getValues: UseFormGetValues<F>
+  setCurrentLesson: Dispatch<SetStateAction<number>>
 }
 
-const LessonForm = ({ moduleId, setShowLessonForm }: Props) => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state, dispatch } = courseCtx
-
+const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updateModule, getValues, setCurrentLesson }: Props<F>) => {
   const {
     controlledCommonProps, 
     handleSubmit,
-  } = useGenerateForm<Lesson>(LESSON_INITIAL_STATE, LESSON_INITIAL_STATE);
+    reset,
+  } = useGenerateForm<Lesson>(LESSON_INITIAL_STATE, getValues("lessons")[lessonIdx] || LESSON_INITIAL_STATE);
+  console.log('lessonIdx: ', lessonIdx);
 
   return (
     <>
@@ -52,20 +52,39 @@ const LessonForm = ({ moduleId, setShowLessonForm }: Props) => {
           isMulti
           limit={4}
         />
+        <div className="flex justify-end gap-5">
+          <Button 
+            variant="outline" className="px-14 self-end border-red-500 text-red-500 hover:bg-red-500"
+            onClick={() => { 
+              setCurrentLesson(NaN)
+              setShowLessonForm(false) 
+              reset()
+            }}
+          >
+            Cancelar
+          </Button>
           <Button 
             type="button"
-            className="right-0 px-14 self-end" 
+            className="px-14 self-end" 
             onClick={handleSubmit(data => {
-              const updatedModules = state.modules.map((m, idx) => {
-                if (idx !== moduleId) return m;
-                return { ...m, lessons: [ ...m.lessons, data ] }
-              });
-              dispatch(setModulesData(updatedModules))
+              if (isNaN(lessonIdx)) {
+                const currentLessons = getValues("lessons");
+                updateModule("lessons", [ ...currentLessons, data ])
+              } else {
+                const updatedLessons = (getValues("lessons").map((l, idx) => {
+                  if (idx !== lessonIdx) return l;
+                  return data
+                }));
+                updateModule("lessons", updatedLessons)
+              };
+              reset()
+              setCurrentLesson(NaN)
               setShowLessonForm(false)
             })}
           >
-            Guardar
+            Guardar Lección
           </Button>
+        </div>
       </div>
     </>
   )
