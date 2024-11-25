@@ -6,7 +6,7 @@ import { FileType } from "@/types/global.types";
 type FieldType = "text" | "link" | "textarea" | "number" | "checkbox" | "date" | "time" | "password";
 
 type RadioOption = {
-  id: string,
+  value: string,
   label: string,
 }
 
@@ -35,7 +35,9 @@ type ControlledInput<T extends FieldValues> = {
 type ProductSelector<T extends FieldValues> = {
   type: "product-selector"
   children: ReactNode
-} & CommonProps<T>
+  productId: number
+  productType: "application" | "course"
+} & ControlledInput<T>
 
 type RichTextInput<T extends FieldValues> = {
   type: "richtext"

@@ -1,5 +1,5 @@
 import { Platform, Language } from "@/types/global.types";
-import { Sectors, Funcionalitites, ToolsAndPlatforms, ContentType, CourseDificulty, CoreContent } from "./filters.types";
+import { Sectors, Funcionalitites, ToolsAndPlatforms, ContentType, CourseDificulty, CoreContent, AccessType } from "./filters.types";
 
 type Filter<T> = {
   header: string
@@ -100,6 +100,14 @@ export const toolsAndPlatforms: Filter<ToolsAndPlatforms> = {
     { name: "google-calendar", label: "Google calendar" },
     { name: "google-drive", label: "Google drive" },
     { name: "google-maps", label: "Google maps" }
+  ]
+};
+
+export const accessType: Filter<AccessType> = {
+  header: "Tipo de acceso",
+  items: [
+    { name: "payed", label: "Pago" },
+    { name: "free", label: "Gratuito" },
   ]
 };
 

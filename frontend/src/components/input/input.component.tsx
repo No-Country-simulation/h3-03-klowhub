@@ -12,10 +12,13 @@ import { FieldValues } from "react-hook-form";
 import Dropzone from "../dropzone/dropzone.component";
 import { removeImage } from "./input.utils";
 import UploadedImage from "../uploaded-image/uploaded-image.component";
+import { Files, X } from "lucide-react";
+import FileBadge from "../file-badge/file-badge.component";
 
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
 import { Badge } from "../ui/badge";
+import { humanFileSize } from "@/utils/file.utils";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -33,6 +36,20 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
       <div className={`${containerStyles} ${className || ""}`}>
         <Label htmlFor={name} className={labelStyles}>{ label }</Label>
         <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-md" {...otherProps} />
+      </div>
+    )
+  };
+
+  if (type === "number") {
+    const { placeholder } = props;
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <div className="relative w-full">
+          <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" {...otherProps} />
+          <span className="absolute top-0 right-0 mr-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
+        </div>
       </div>
     )
   };
@@ -57,13 +74,11 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         control={control}
         render={({ field: { onChange, value } }) => {
           return isMulti ? (
-            <div className={filetypes["image/*"] ? `grid grid-cols-3 gap-5 grid-rows-auto items-start` : "flex flex-col gap-5"}>
+            <div className={filetypes["image/*"] ? `grid grid-cols-3 gap-5 grid-rows-auto items-start` : "flex flex-col gap-3 items-start"}>
               { value.map((v: File, idx: number) => {
                 if (v.type === "application/pdf") {
                   return (
-                    <Badge key={`video-thumbnail-${idx}`} className="px-5 py-2">
-                      { v.name }
-                    </Badge>
+                    <FileBadge key={`resource-${idx}`} file={v} removeCb={() => onChange(removeImage(value, idx))} />
                   )
                 };
 
@@ -98,14 +113,20 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
   };
 
   if (type === "product-selector") {
-    const { children } = props;
+    const { children, productId, control, productType } = props;
 
     return (
       <div className={`${containerStyles} ${className || ""}`}>
-        <Label htmlFor={name} className="flex gap-2">
-          { children }
-          <input type="radio" { ...register(name) } />
-        </Label>
+        <Controller 
+          name={name}
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <div onClick={() => onChange({ type: productType, id: productId })} className={"cursor-pointer relative"}>
+              <div className={`${value.id === productId ? "absolute w-full h-full ring-4 ring-inset ring-primary-400 rounded-lg" : ""}`}></div>
+              { children }
+            </div>
+          )}
+        />
       </div>
     )
   };
@@ -119,11 +140,11 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         <div className="flex flex-col gap-4">
           <Label htmlFor={name} className="flex gap-2">
             { options[0].label }
-            <input type="radio" { ...register(name) } value={options[0].id} />
+            <input type="radio" { ...register(name) } value={options[0].value} />
           </Label>
           <Label htmlFor={name} className="flex gap-2">
             { options[1].label }
-            <input type="radio" { ...register(name) } value={options[1].id} />
+            <input type="radio" { ...register(name) } value={options[1].value} />
           </Label>
         </div>
       </div>
@@ -150,13 +171,12 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         <Controller 
           name={name}
           control={control}
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange, value } }) => (
             <Select
               getOptionLabel={(op: SelectOption) => op.label}
               getOptionValue={(op: SelectOption) => op.name}
-              onChange={(selected) => {
-                return isMulti ? onChange(selected) : onChange(selected?.name)
-              }}
+              onChange={(selected) => onChange(selected)}
+              defaultValue={value}
               options={options}
               isMulti={isMulti} // TODO: remove this prop drilling
               styles={customStyles}

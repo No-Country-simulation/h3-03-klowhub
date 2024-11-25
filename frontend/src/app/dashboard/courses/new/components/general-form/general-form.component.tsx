@@ -42,8 +42,8 @@ const GeneralForm = () => {
         <Input
           name="freeCourse"
           options={[ 
-            { id: "free", label: "Gratuito" },
-            { id: "payed", label: "Pago" },
+            { value: "free", label: "Gratuito" },
+            { value: "payed", label: "Pago" },
           ]} 
           type="radio-group"
           label="¿Qué tipo de contenido estás buscando: gratuito o premium?" { ...commonProps }
@@ -51,8 +51,8 @@ const GeneralForm = () => {
         <Input 
           name="contentType" 
           options={[ 
-            { id: "course", label: "Curso" },
-            { id: "lesson", label: "Lección" },
+            { value: "course", label: "Curso" },
+            { value: "lesson", label: "Lección" },
           ]} 
           type="radio-group" 
           label="Seleccioná si vas a crear un curso  o una lección." { ...commonProps } 
@@ -66,8 +66,8 @@ const GeneralForm = () => {
         <Input
           name="level" 
           options={[
-            { id: "basic", label: "Básico" },
-            { id: "intermediate", label: "Intermedio" }
+            { value: "basic", label: "Básico" },
+            { value: "intermediate", label: "Intermedio" }
           ]}
           type="radio-group"
           label="Nivel de competencia" { ...commonProps }
@@ -75,8 +75,8 @@ const GeneralForm = () => {
         <Input 
           name="platform"
           options={[
-            { id: "appsheet", label: "AppSheet" },
-            { id: "powerapps", label: "PowerApps" },
+            { value: "appsheet", label: "AppSheet" },
+            { value: "powerapps", label: "PowerApps" },
           ]}
           type="radio-group" 
           label="Plataforma" { ...commonProps } 
@@ -91,28 +91,31 @@ const GeneralForm = () => {
             name="coreContent" type="select" options={coreContent.items} 
             label="Define el contenido de tu curso" { ...controlledCommonProps } 
             placeholder="Pilar de contenido"
+            isMulti
           />
           <Input 
             name="functionalities" type="select" options={functionalities.items} 
             label="Funcionalidades" { ...controlledCommonProps } 
-            isMulti
             placeholder="Funcionalidades"
+            isMulti
           />
           <Input 
             name="sector" type="select" options={sector.items} 
             label="Elige el sector al que deseas dirigir tu curso" { ...controlledCommonProps } 
             placeholder="Seleccionar sector"
+            isMulti
           />
           <Input 
             name="tools" type="select" options={toolsAndPlatforms.items} 
             label="Herramientas y plataformas" { ...controlledCommonProps } 
             placeholder="Herramientas y plataformas"
+            isMulti
           />
           <Input 
             name="tags" type="select" options={functionalities.items} 
-            label="Funcionalidades" { ...controlledCommonProps } 
-            isMulti
+            label="Agrega etiquetas relacionadas" { ...controlledCommonProps } 
             placeholder="Selecciona las etiquetas"
+            isMulti
           />
         </IsClientProvider>
       </form>

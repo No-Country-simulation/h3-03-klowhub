@@ -8,6 +8,7 @@ import { OneOf } from "@/types/utils.types";
 import { Lesson } from "@/types/courses.types";
 import UploadedImage from "@/components/uploaded-image/uploaded-image.component";
 import { Badge } from "@/components/ui/badge";
+import FileBadge from "@/components/file-badge/file-badge.component";
 
 type ReadOnly = {
   readOnly?: true
@@ -26,7 +27,6 @@ type FullFeatured<F extends FieldValues> = {
 type Props<F extends FieldValues> =  OneOf<[ FullFeatured<F>, ReadOnly ]>
 
 const LessonsSection = <F extends FieldValues>({ watch, readOnly, setCurrentLesson, setShowLessonForm, lessons, moduleIdx }: Props<F>) => {
-  console.log('lessons: ', lessons);
   return (
     <Accordion type="single" collapsible className="px-5 bg-gray-100 rounded-lg">
       { (lessons || watch("lessons")).map((l, lIdx) => ( 
@@ -52,11 +52,9 @@ const LessonsSection = <F extends FieldValues>({ watch, readOnly, setCurrentLess
             </div>
             <div>
               <h3 className="font-bold mb-5">Material adicional</h3>
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col items-start gap-5">
                 { l.resources.map((r, rIdx) => (
-                  <Badge key={`resource-${rIdx}`} className="px-5 py-2">
-                    { r.name }
-                  </Badge>
+                  <FileBadge key={`resource-${rIdx}`} file={r} />
                 )) }
               </div>
             </div>

@@ -64,6 +64,10 @@ export type ToolsAndPlatforms =
   | "google-drive"
   | "google-maps"
 
+export type AccessType =
+  | "payed"
+  | "free"
+
 export type ContentType =
   | "curso"
   | "leccion"

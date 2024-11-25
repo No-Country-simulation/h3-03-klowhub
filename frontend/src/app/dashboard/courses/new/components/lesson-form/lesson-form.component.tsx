@@ -52,7 +52,7 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
           filetypes={{ "image/*": [".png", ".jpg"] }}
           label="Sube los videos que deseas agregar a esta lección" { ...controlledCommonProps }
           isMulti
-          limit={4}
+          limit={1}
         />
         <h3 className="col-span-2 font-bold">Material adicional</h3>
         <Input 

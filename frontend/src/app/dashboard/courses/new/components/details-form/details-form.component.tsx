@@ -42,7 +42,8 @@ const GeneralForm = () => {
         />
         <Input 
           name="img" type="upload"
-          label="Sube una foto clara de la parte delantera de tu documento." { ...controlledCommonProps }
+          filetypes={{ "image/*": [".png", ".jpg"] }}
+          label="Sube una imagen para promocionar tu curso o lección" { ...controlledCommonProps }
           limit={5}
         />
       </form>

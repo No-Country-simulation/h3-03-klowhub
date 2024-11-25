@@ -2,13 +2,15 @@
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
 import { Language, Platform, TImage } from "./global.types"
-import { CourseDificulty, Sectors, Funcionalitites, ToolsAndPlatforms, CoreContent, ContentType } from "@/consts/filters.types";
+import { CourseDificulty, Sectors, Funcionalitites, ToolsAndPlatforms, CoreContent, ContentType, AccessType } from "@/consts/filters.types";
+import { SelectOption } from "@/components/input/input.types";
 
 
 type Resource = {
   filename: string
   mimetype: string
 }
+
 export type Link = {
   url: string
   name: string
@@ -16,16 +18,16 @@ export type Link = {
 
 export type CourseInfo = {
   title: string
-  freeCourse: boolean
-  contentType: ContentType
+  freeCourse: AccessType | null
+  contentType: ContentType | null
   about: string
-  level: CourseDificulty
-  platform: Platform
-  language: Language
-  sector: Sectors 
-  coreContent: CoreContent
-  tools: ToolsAndPlatforms[]
-  functionalities: Funcionalitites[]
+  level: CourseDificulty | null
+  platform: Platform | null
+  language: SelectOption
+  sector: SelectOption[]
+  coreContent: SelectOption[]
+  tools: SelectOption[]
+  functionalities: SelectOption[]
   tags: string[]
   price: number // this is not included in the design but I need to get this info from somewhere
 };
@@ -51,9 +53,13 @@ export type Module = {
   lessons: Lesson[]
 }
 
-export type CoursePromotion = {
-  product: "application" | "course" | undefined
+export type PromotedProduct = {
+  type: "application" | "course" | ""
   id: number
+}
+
+export type CoursePromotion = {
+  product: PromotedProduct
   percentage: number
 }
 
@@ -68,7 +74,7 @@ export type CourseFormData = {
   general: CourseInfo
   details: CourseDetails
   modules: Module[]
-  promotion: CoursePromotion | null
+  promotion: CoursePromotion | undefined
 }
 
 export type Course = CourseInfo & CourseDetails & CoursePromotion & Feedback & { modules: Module[] }

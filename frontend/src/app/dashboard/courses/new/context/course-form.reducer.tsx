@@ -8,7 +8,7 @@ export const COURSE_FORM_INITIAL_STATE: CourseFormData = {
   general: COURSE_INFO_INITIAL_STATE,
   details: COURSE_DETAILS_INITIAL_STATE,
   modules: [],
-  promotion: null
+  promotion: undefined
 };
 
 const courseFormReducer = (state: CourseFormData, action: CourseFormActions): CourseFormData => {

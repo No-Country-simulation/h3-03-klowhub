@@ -13,11 +13,12 @@ type Props = {
 const Dropzone = ({ children, onDrop, filetypes }: Props) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: onDrop,
-    accept: filetypes
+    accept: filetypes,
+    maxFiles: 1
   })
 
   return (
-    <div {...getRootProps()} className='leading-6 max-w-72 border border-dashed border-primary-200 bg-gray-100 rounded-xl p-5 text-center flex flex-col items-center justify-center gap-5'>
+    <div {...getRootProps()} className='leading-6 max-w-72 border border-dashed border-primary-200 bg-gray-50 rounded-xl p-5 text-center flex flex-col items-center justify-center gap-5 cursor-pointer'>
       <input {...getInputProps()} />
       <CloudUpload className='text-primary-300' size={40}/>
       <span className='text-primary-300'>
