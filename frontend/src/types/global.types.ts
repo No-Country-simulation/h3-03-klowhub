@@ -12,3 +12,7 @@ export type TImage = {
   height: number
   alt: string
 }
+
+export type FileType = {
+  [key: string]: string[]
+}

@@ -1,6 +1,7 @@
 import { UseFormRegister, FieldErrors, Control, FieldValues, Path } from "react-hook-form";
 import { OptionsOrGroups, GroupBase } from "react-select";
 import { ReactNode } from "react";
+import { FileType } from "@/types/global.types";
 
 type FieldType = "text" | "link" | "textarea" | "number" | "checkbox" | "date" | "time" | "password";
 
@@ -44,6 +45,7 @@ type UploadInput<T extends FieldValues> = {
   type: "upload"
   isMulti?: boolean
   limit?: number
+  filetypes: FileType
 } & ControlledInput<T>
 
 // type LinkInput<T extends FieldValues> = {

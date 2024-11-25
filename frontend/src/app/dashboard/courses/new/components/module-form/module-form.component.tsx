@@ -35,6 +35,7 @@ const ModuleForm = ({ moduleIdx, setShowModuleForm, setCurrentModule }: Props) =
     setValue,
     getValues
   } = useGenerateForm<Module>(MODULE_INITIAL_STATE, state.modules[moduleIdx] || MODULE_INITIAL_STATE);
+  console.log(watch());
 
   const [ showLessonForm, setShowLessonForm ] = useState(false)
   const [ currentLesson, setCurrentLesson ] = useState(NaN)

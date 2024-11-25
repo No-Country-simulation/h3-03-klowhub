@@ -42,13 +42,23 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
           label="Descripción" { ...controlledCommonProps } 
           placeholder="Escribe una descripción básica del proyecto"
         />
+        <h3 className="col-span-2 font-bold">Contenido de la lección</h3>
         <Input 
           name="link" type="link" 
           label="Enlace" { ...controlledCommonProps } 
         />
         <Input 
           name="videos" type="upload"
-          label="Sube una foto clara de la parte delantera de tu documento." { ...controlledCommonProps }
+          filetypes={{ "image/*": [".png", ".jpg"] }}
+          label="Sube los videos que deseas agregar a esta lección" { ...controlledCommonProps }
+          isMulti
+          limit={4}
+        />
+        <h3 className="col-span-2 font-bold">Material adicional</h3>
+        <Input 
+          filetypes={{ "application/pdf": [".pdf"] }}
+          name="resources" type="upload"
+          label="Sube documentos extra como manuales o guías." { ...controlledCommonProps }
           isMulti
           limit={4}
         />

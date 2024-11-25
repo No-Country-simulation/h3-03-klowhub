@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction } from "react";
 import { OneOf } from "@/types/utils.types";
 import { Lesson } from "@/types/courses.types";
 import UploadedImage from "@/components/uploaded-image/uploaded-image.component";
+import { Badge } from "@/components/ui/badge";
 
 type ReadOnly = {
   readOnly?: true
@@ -33,11 +34,11 @@ const LessonsSection = <F extends FieldValues>({ watch, readOnly, setCurrentLess
           <AccordionTrigger>{ l.title }</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-5">
             <div>
-              <h3 className="font-bold">Descripción</h3>
+              <h3 className="font-bold mb-5">Descripción</h3>
               <span>{ parse(l.description) }</span>
             </div>
             <div>
-              <h3 className="font-bold">Contenido de la lección</h3>
+              <h3 className="font-bold mb-5">Contenido de la lección</h3>
               <div className="grid grid-cols-3 gap-5">
                 { l.videos.map((v, vIdx) => (
                   <UploadedImage 
@@ -46,6 +47,16 @@ const LessonsSection = <F extends FieldValues>({ watch, readOnly, setCurrentLess
                     deleteCb={() => {}}
                     readOnly={readOnly}
                   />
+                )) }
+              </div>
+            </div>
+            <div>
+              <h3 className="font-bold mb-5">Material adicional</h3>
+              <div className="flex flex-col gap-5">
+                { l.resources.map((r, rIdx) => (
+                  <Badge key={`resource-${rIdx}`} className="px-5 py-2">
+                    { r.name }
+                  </Badge>
                 )) }
               </div>
             </div>

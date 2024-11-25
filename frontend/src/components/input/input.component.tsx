@@ -1,7 +1,5 @@
 "use client"
 
-import { Button } from "../ui/button";
-import Image from "next/image";
 import { Controller } from "react-hook-form";
 import { InputProps, SelectOption } from "./input.types";
 import dynamic from 'next/dynamic'
@@ -17,6 +15,7 @@ import UploadedImage from "../uploaded-image/uploaded-image.component";
 
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
+import { Badge } from "../ui/badge";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -50,7 +49,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
   };
 
   if (type === "upload") {
-    const { control, isMulti, limit = 1 } = props;
+    const { control, isMulti, limit = 1, filetypes } = props;
 
     return (
       <Controller 
@@ -58,18 +57,28 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         control={control}
         render={({ field: { onChange, value } }) => {
           return isMulti ? (
-            <div className={`grid grid-cols-3 gap-5 grid-rows-auto items-start`}>
+            <div className={filetypes["image/*"] ? `grid grid-cols-3 gap-5 grid-rows-auto items-start` : "flex flex-col gap-5"}>
               { value.map((v: File, idx: number) => {
-                return (
-                  <UploadedImage 
-                    key={`video-thumbnail-${idx}`}
-                    src={URL.createObjectURL(v)}
-                    deleteCb={() => onChange(removeImage(value, idx))}
-                  />
-                )
+                if (v.type === "application/pdf") {
+                  return (
+                    <Badge key={`video-thumbnail-${idx}`} className="px-5 py-2">
+                      { v.name }
+                    </Badge>
+                  )
+                };
+
+                if (v.type.includes("image")) {
+                  return (
+                    <UploadedImage 
+                      key={`video-thumbnail-${idx}`}
+                      src={URL.createObjectURL(v)}
+                      deleteCb={() => onChange(removeImage(value, idx))}
+                    />
+                  )
+                };
               }) }
               { value.length < limit ?  
-                <Dropzone onDrop={(files) => onChange([...value, ...files])}>{ label }</Dropzone> : <></>
+                <Dropzone filetypes={filetypes} onDrop={(files) => onChange([...value, ...files])}>{ label }</Dropzone> : <></>
               }
             </div>
           ) : (
@@ -79,7 +88,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                   src={URL.createObjectURL(value[0])}
                   deleteCb={() => onChange(null)}
                 /> :
-                <Dropzone onDrop={(files) => onChange(files)}>{ label }</Dropzone>
+                <Dropzone filetypes={filetypes} onDrop={(files) => onChange(files)}>{ label }</Dropzone>
               }
             </div>
           )
