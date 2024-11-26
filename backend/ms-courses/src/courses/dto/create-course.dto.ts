@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsBoolean,
   IsEnum,
@@ -5,7 +6,21 @@ import {
   IsOptional,
   IsString,
   IsNumber,
+  IsObject,
+  IsArray,
+  ValidateNested,
 } from 'class-validator';
+
+class MaterialAdicionalDto {
+  @IsString()
+  url: string;
+
+  @IsNumber()
+  size: number;
+
+  @IsString()
+  created_at: string;
+}
 
 export class CreateCourseDto {
   @IsNotEmpty()
@@ -58,7 +73,7 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   @IsString()
-  enseñanzas: string;
+  aprendizaje: string;
 
   @IsNotEmpty()
   @IsString()
@@ -69,8 +84,28 @@ export class CreateCourseDto {
   descripcionDetallada: string;
 
   @IsNotEmpty()
-  @IsString()
-  imagenDePortada: string;
+  @IsObject()
+  imagenDePortada: {
+    url: string;
+    size: number;
+    width: number;
+    height: number;
+    format: string;
+    created_at: string;
+  };
+
+  @IsOptional()
+  @IsObject()
+  video: {
+    url: string;
+    duration: number;
+    size: number;
+    resolution: string;
+    format: string;
+    width: string;
+    height: string;
+    created_at: string;
+  };
 
   @IsNotEmpty()
   @IsString()
@@ -92,9 +127,11 @@ export class CreateCourseDto {
   @IsString()
   contenidoDeLaLeccion: string;
 
-  @IsNotEmpty()
-  @IsString()
-  materialAdicional: string;
+  @IsArray()
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => MaterialAdicionalDto)
+  materialAdicional: MaterialAdicionalDto[];
 
   @IsNotEmpty()
   @IsBoolean()
