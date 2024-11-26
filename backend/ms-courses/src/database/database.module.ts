@@ -15,6 +15,9 @@ import { Course } from 'src/courses/entities/course.entity';
       entities: [Course],
       synchronize: true,
       // logging: true,
+      ssl: {
+        rejectUnauthorized: false,
+      },
     }),
   ],
 })

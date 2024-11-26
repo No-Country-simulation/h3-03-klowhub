@@ -17,6 +17,9 @@ import { Seller } from 'src/users/entities/seller.entity';
       entities: [User, Seller], // Lista de entidades que usarás
       synchronize: true, // No usar en producción
       logging: true,
+      ssl: {
+        rejectUnauthorized: false,
+      },
     }),
   ],
 })
