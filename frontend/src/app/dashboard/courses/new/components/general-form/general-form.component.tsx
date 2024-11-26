@@ -119,7 +119,7 @@ const GeneralForm = () => {
           />
         </IsClientProvider>
       </form>
-      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5">
+      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
         <RouteBtn 
           setter={handleSubmit( data => dispatch(setGeneralData(data)) )}
           route="details"
