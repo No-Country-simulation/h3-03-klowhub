@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Project } from './entities/project.entity/project.entity';
-
+import { CreateProjectDto } from './dto/create-project.dto/create-project.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -11,9 +11,15 @@ export class ProjectsService {
     private projectRepository: Repository<Project>,
   ){}
 
-  async createProject(data: Partial<Project>): Promise<Project>{
-    const project = this.projectRepository.create(data);
-    return this.projectRepository.save(project);
+  async createProject(projectData: CreateProjectDto, userId: string): Promise<Project> {
+    // Combinar el userId con los datos del proyecto
+    const newProject = this.projectRepository.create({
+      ...projectData,
+      userId, // Asignar el ID del usuario al proyecto
+    });
+
+    // Guardar el proyecto en la base de datos
+    return await this.projectRepository.save(newProject);
   }
 
   async deleteProject(id: number): Promise<void> {

@@ -13,30 +13,29 @@ export class ProjectsController {
   ){}
 
   @Post()
-  create(@Body() data: Partial<Project>) {
-    return this.projectsService.createProject(data);
-  }
-
-  @Post()
   async createProject(@Body() projectData: CreateProjectDto) {
-    const { userId } = projectData;
+    const { userId } = projectData; // Extraer userId del cuerpo de la solicitud
 
-    // Validar que el userId sea válido
+    if (!userId) {
+      throw new BadRequestException('El userId es requerido para crear un proyecto');
+    }
+
+    // Validar que el usuario existe en el microservicio de usuarios
     try {
       const userResponse = await firstValueFrom(
         this.httpService.get(`http://ms-users:3001/users/${userId}`),
       );
+
       if (!userResponse.data) {
         throw new BadRequestException('Usuario no encontrado');
       }
+
+      // Crear el proyecto con el userId
+      return this.projectsService.createProject(projectData, userId);
     } catch (error) {
       throw new BadRequestException('Error al validar el usuario');
     }
-
-    // Crear el proyecto
-    return this.projectsService.createProject(projectData);
   }
-
   @Delete(':id')
   delete(@Param('id') id: number) {
     return this.projectsService.deleteProject(id);
