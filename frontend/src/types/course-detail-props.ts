@@ -51,4 +51,5 @@ export interface CourseProps {
         rating: number;
         comment: string;
     }[];
+    isExpanded?: boolean;
 }

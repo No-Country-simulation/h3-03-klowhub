@@ -1,9 +1,5 @@
+import { FC } from "react";
 import { CourseDetail } from "./course-detail.component";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import Image from "next/image";
-import { Star, User, BookOpen, Plus, Minus } from "lucide-react";
-import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/icon/icon.component";
 import { Button } from "@/components/ui/button";
@@ -19,11 +15,11 @@ const transformedProgram = courseData.modules.map((module) => ({
 }));
 
 
-export const ParentComponent = () => {
+export const ParentComponent: FC<{ isExpanded: boolean }> = ({ isExpanded }) => {
     return (
         <div className="min-h-screen space-y-10">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                <CourseDetail {...courseData} />
+                <CourseDetail {...courseData} isExpanded={isExpanded} />
                 <div className="space-y-6">
                     <InstructorDetail
                         name={courseData.instructor.name}

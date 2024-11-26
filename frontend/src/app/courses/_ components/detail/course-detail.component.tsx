@@ -1,8 +1,9 @@
-'use client';
+//'use client';
 
-import { useState } from 'react';
+//import { useState } from 'react';
 import { FC } from 'react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 import { CourseHeader } from './detail-header.section';
 import { CourseProps } from '@/types/course-detail-props';
@@ -17,27 +18,28 @@ import { CourseInfoSection } from './info.section';
 import { reviews } from '@/mocks/reviews.mocks';
 import { ReviewsSection } from './reviews.section';
 
-export const CourseDetail: FC<CourseProps> = ({ 
-    details, 
-    lessons, 
-    instructor, 
-    objectives, 
-    about, 
-    additionalDetails, 
+export const CourseDetail: FC<CourseProps> = ({
+    details,
+    lessons,
+    instructor,
+    objectives,
+    about,
+    additionalDetails,
     requirements,
-    appInfoSections
+    appInfoSections,
+    isExpanded
 }) => {
 
-    const [isExpanded, setIsExpanded] = useState(false);
+    //const [isExpanded, setIsExpanded] = useState(false);
 
     return (
         <div className="md:col-span-2 space-y-4">
-            <CourseHeader details={details}/> 
-            <LessonList lessons={lessons}/>
+            <CourseHeader details={details} />
+            <LessonList lessons={lessons} />
             <div className="space-y-4">
-                <InstructorInfo instructor={instructor}/>
+                <InstructorInfo instructor={instructor} />
                 <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>
-                <ObjectivesList objectives={objectives}/>
+                <ObjectivesList objectives={objectives} />
                 <h3 className="text-sm font-semibold">Acerca de este curso</h3>
                 <div>
                     <p className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
@@ -45,31 +47,41 @@ export const CourseDetail: FC<CourseProps> = ({
                     </p>
                 </div>
 
-                <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
+                <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`} id='detail-container'>
 
                     <Button className="mt-3 px-20">Añadir al Carrito</Button>
 
-                    <ShareSection/>
-                    
-                    <AdditionalDetails details={additionalDetails}/>
+                    <ShareSection />
 
-                    <RequirementsSection requirements={requirements}/>
+                    <AdditionalDetails details={additionalDetails} />
 
-                    <IncludeSection/>
-                    
+                    <RequirementsSection requirements={requirements} />
+
+                    <IncludeSection />
+
                     <CourseInfoSection sections={appInfoSections.sections} />
 
-                    <ReviewsSection reviews={reviews}/>
-                    
+                    <ReviewsSection reviews={reviews} />
+
                 </div>
             </div>
-            <Button
+            {/* <Button
                 variant="link"
                 className="text-purple-400 flex items-center w-full"
                 onClick={() => setIsExpanded(!isExpanded)}
             >
                 {isExpanded ? 'Ver menos' : 'Ver más'}
-            </Button>
+            </Button> */}
+            <div className='w-full text-center'>
+                <Link
+                    // href={{ query: { isExpanded: !isExpanded }}}
+                    href={`#detail-container?isExpanded=${isExpanded}`}
+                    scroll={false}
+                    className="text-purple-400"
+                >
+                    {isExpanded ? "Ver menos" : "Ver más"}
+                </Link>
+            </div>
         </div>
     );
 
