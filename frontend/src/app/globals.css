@@ -103,3 +103,14 @@ body {
 }
 
 
+.text-gradient-mask {
+  -webkit-mask-image: linear-gradient(black, transparent);
+  mask-image: linear-gradient(black, transparent);
+  -webkit-mask-clip: text;
+  mask-clip: text;
+  overflow: hidden;
+  display: block;
+}
+
+
+
