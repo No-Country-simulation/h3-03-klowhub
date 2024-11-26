@@ -1,22 +1,22 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
-import { ParentComponent } from "../_ components/detail/parent-course-detail.component";
+import { CourseDetail } from '../_ components/detail/parent-course-detail.component';
 import { FC } from "react";
+import { getPathname } from "@/utils/route.utils";
 
 interface PageProps {
     searchParams: { isExpanded?: string };
+    params: { id: string }
 }
 
-const page: FC<PageProps> = ({ searchParams }) => {
+const page: FC<PageProps> = ({ searchParams, params }) => {
 
     const isExpanded = searchParams.isExpanded === "true";
-
-    console.log(isExpanded);
 
     return (
         <main>
             <BreadCrumb />
 
-            <ParentComponent isExpanded={isExpanded} />
+            <CourseDetail isExpanded={isExpanded} pathname={`/courses/${params.id}`}/>
         </main>
     );
 

@@ -18,7 +18,7 @@ import { CourseInfoSection } from './info.section';
 import { reviews } from '@/mocks/reviews.mocks';
 import { ReviewsSection } from './reviews.section';
 
-export const CourseDetail: FC<CourseProps> = ({
+export const CourseInfo: FC<CourseProps> = ({
     details,
     lessons,
     instructor,
@@ -27,7 +27,8 @@ export const CourseDetail: FC<CourseProps> = ({
     additionalDetails,
     requirements,
     appInfoSections,
-    isExpanded
+    isExpanded,
+    pathname
 }) => {
 
     //const [isExpanded, setIsExpanded] = useState(false);
@@ -36,7 +37,7 @@ export const CourseDetail: FC<CourseProps> = ({
         <div className="md:col-span-2 space-y-4">
             <CourseHeader details={details} />
             <LessonList lessons={lessons} />
-            <div className="space-y-4">
+            <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor} />
                 <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>
                 <ObjectivesList objectives={objectives} />
@@ -47,7 +48,7 @@ export const CourseDetail: FC<CourseProps> = ({
                     </p>
                 </div>
 
-                <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`} id='detail-container'>
+                <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
 
                     <Button className="mt-3 px-20">Añadir al Carrito</Button>
 
@@ -74,10 +75,9 @@ export const CourseDetail: FC<CourseProps> = ({
             </Button> */}
             <div className='w-full text-center'>
                 <Link
-                    // href={{ query: { isExpanded: !isExpanded }}}
-                    href={`#detail-container?isExpanded=${isExpanded}`}
-                    scroll={false}
+                    href={`${pathname}?isExpanded=${!isExpanded}#detail-container`}
                     className="text-purple-400"
+                    scroll={!isExpanded ? false : true}
                 >
                     {isExpanded ? "Ver menos" : "Ver más"}
                 </Link>

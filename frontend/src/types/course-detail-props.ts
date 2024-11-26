@@ -52,4 +52,5 @@ export interface CourseProps {
         comment: string;
     }[];
     isExpanded?: boolean;
+    pathname: string
 }
