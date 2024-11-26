@@ -1,4 +1,4 @@
-export const reviews= [
+export const reviews = [
     {
         author: "Mariana López",
         rating: 5,

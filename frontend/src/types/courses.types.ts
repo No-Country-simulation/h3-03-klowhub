@@ -18,7 +18,7 @@ export type CourseInfo = {
   level: Level
   platform: Platform
   language: Language
-  sector: string 
+  sector: string
   coreContent: string
   tools: string[]
   functionalities: string[]
