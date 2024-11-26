@@ -21,7 +21,6 @@ const envsSchema = joi
     DB_USERNAME: joi.string().required(),
     DB_PASSWORD: joi.string().required(),
     DB_DATABASE_NAME: joi.string().required(),
-    JWT_SECRET: joi.string().required(),
   })
   .unknown(true);
 
@@ -41,5 +40,4 @@ export const envs = {
   dbUsername: envVars.DB_USERNAME,
   dbPassword: envVars.DB_PASSWORD,
   dbDatabaseName: envVars.DB_DATABASE_NAME,
-  jwtSecret: envVars.JWT_SECRET,
 };
