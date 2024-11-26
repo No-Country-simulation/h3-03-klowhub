@@ -50,13 +50,23 @@ function useCalendar() {
         });
     };
 
-    const compareDates = (date1: CalendarDay | null, date2: CalendarDay | null) => {
-        if (date1 === null || date2 === null) return null;
-        return date1?.dayDate.toDateString() === date2.dayDate.toDateString();
+    const compareDates = (date1: Date, date2: Date): boolean => {
+        return date1.toDateString() === date2.toDateString();
     };
 
     const isPastDay = (day: CalendarDay) => {
         return day.dayDate < today
+    };
+
+    const stringToDate = (dateString: string): Date => {
+        const [year, month, day] = dateString.split('-').map(Number);
+        return new Date(year, month - 1, day);
+    };
+
+    const dateToString = (date: Date): string => {
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     };
 
     return {
@@ -68,7 +78,9 @@ function useCalendar() {
         goToNextMonth,
         getFirstDayIndex,
         compareDates,
-        isPastDay
+        isPastDay,
+        stringToDate,
+        dateToString
     };
 }
 

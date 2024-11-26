@@ -3,37 +3,7 @@ import React, { FC, useState } from "react";
 import Icon from "../icon/icon.component";
 import useCalendar from "./date-picker.utils";
 import { CalendarDay } from "./date-picker.types";
-
-const CalendarHeader: FC<React.HTMLAttributes<HTMLDivElement>> = ({
-  ...props
-}) => <div className="flex justify-between items-center px-4" {...props} />;
-
-const CalendarGrid: FC<React.HTMLAttributes<HTMLDivElement>> = ({
-  ...props
-}) => {
-  return (
-    <div className="px-2">
-      <div
-        className="w-[341px] bg-white/5 border-1 border-[#E7E7E7] rounded-lg px-3 py-5 flex flex-col gap-3"
-        {...props}
-      />
-    </div>
-  );
-};
-
-const CalendarWeekDaysHeader: FC = () => {
-  return (
-    <ul className="flex gap-3 text-sm font-semibold">
-      <li className="w-[35px]">Dom</li>
-      <li className="w-[35px]">Lun</li>
-      <li className="w-[35px]">Mar</li>
-      <li className="w-[35px]">Mie</li>
-      <li className="w-[35px]">Jue</li>
-      <li className="w-[35px]">Vie</li>
-      <li className="w-[35px]">Sab</li>
-    </ul>
-  );
-};
+import { CalendarGrid, CalendarHeader, CalendarWeekDaysHeader } from "./calendar.component";
 
 const DatePicker: FC = () => {
   const {
@@ -96,7 +66,10 @@ const DatePicker: FC = () => {
             ))}
           {calendarData.map((day, index) => {
             const isNotAvailableDay = isPastDay(day);
-            const isDaySelected = compareDates(selectedDay, day);
+            let isDaySelected = false
+            if (selectedDay) {
+              isDaySelected = compareDates(selectedDay.dayDate, day.dayDate);
+            }
 
             return (
               <li key={index}>
@@ -106,13 +79,11 @@ const DatePicker: FC = () => {
                   </div>
                 ) : (
                   <button
-                    className={`w-[35px] h-[35px] text-sm font-semibold flex justify-center items-center rounded-full hover:bg-primary/90 ${
-                      enableTransitionColors ? "transition-colors" : ""
-                    } ${
-                      isDaySelected
+                    className={`w-[35px] h-[35px] text-sm font-semibold flex justify-center items-center rounded-full hover:bg-primary/90 ${enableTransitionColors ? "transition-colors" : ""
+                      } ${isDaySelected
                         ? "bg-primary/90 text-primary-foreground"
                         : `bg-transparent text-primary-100`
-                    }`}
+                      }`}
                     onClick={() => setSelectedDay(day)}
                   >
                     {day.dayOfMonth}
