@@ -1,4 +1,4 @@
-//'use client';
+'use client';
 
 //import { useState } from 'react';
 import { FC } from 'react';
@@ -17,6 +17,7 @@ import { IncludeSection } from './include-section';
 import { CourseInfoSection } from './info.section';
 import { reviews } from '@/mocks/reviews.mocks';
 import { ReviewsSection } from './reviews.section';
+import { useSearchParams, usePathname } from 'next/navigation';
 
 export const CourseInfo: FC<CourseProps> = ({
     details,
@@ -27,11 +28,12 @@ export const CourseInfo: FC<CourseProps> = ({
     additionalDetails,
     requirements,
     appInfoSections,
-    isExpanded,
-    pathname
 }) => {
 
-    //const [isExpanded, setIsExpanded] = useState(false);
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+
+    const isExpanded = searchParams.get('isExpanded') === 'true';
 
     return (
         <div className="md:col-span-2 space-y-4">
@@ -66,13 +68,6 @@ export const CourseInfo: FC<CourseProps> = ({
 
                 </div>
             </div>
-            {/* <Button
-                variant="link"
-                className="text-purple-400 flex items-center w-full"
-                onClick={() => setIsExpanded(!isExpanded)}
-            >
-                {isExpanded ? 'Ver menos' : 'Ver más'}
-            </Button> */}
             <div className='w-full text-center'>
                 <Link
                     href={`${pathname}?isExpanded=${!isExpanded}#detail-container`}

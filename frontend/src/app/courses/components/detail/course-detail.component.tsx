@@ -15,11 +15,11 @@ const transformedProgram = courseData.modules.map((module) => ({
 }));
 
 
-export const CourseDetail: FC<{ isExpanded: boolean, pathname: string }> = ({ isExpanded, pathname }) => {
+export const CourseDetail: FC = () => {
     return (
         <div className="min-h-screen space-y-10">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                <CourseInfo {...courseData} isExpanded={isExpanded} pathname={pathname}/>
+                <CourseInfo {...courseData}/>
                 <div className="space-y-6">
                     <InstructorDetail
                         name={courseData.instructor.name}
