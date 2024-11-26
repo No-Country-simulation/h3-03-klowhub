@@ -1,88 +1,50 @@
-//'use client';
+import { FC } from "react";
+import { CourseInfo } from "./course-info.section";
+import { Badge } from "@/components/ui/badge";
+import Icon from "@/components/icon/icon.component";
+import { Button } from "@/components/ui/button";
+import { SimilarCourses } from "./similar-courses.section";
 
-//import { useState } from 'react';
-import { FC } from 'react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { courseData } from "@/mocks/course-detail";
+import { InstructorDetail } from "./instructor-detail.section";
+import { CourseProgramSection } from "./course-program.section";
 
-import { CourseHeader } from './detail-header.section';
-import { CourseProps } from '@/types/course-detail-props';
-import { LessonList } from './lesson-list-section';
-import { InstructorInfo } from './instructor-section';
-import { ObjectivesList } from './objectives.section';
-import { ShareSection } from './share-section';
-import { AdditionalDetails } from './additional-details.section';
-import { RequirementsSection } from './requirements-section';
-import { IncludeSection } from './include-section';
-import { CourseInfoSection } from './info.section';
-import { reviews } from '@/mocks/reviews.mocks';
-import { ReviewsSection } from './reviews.section';
+const transformedProgram = courseData.modules.map((module) => ({
+    moduleTitle: module.title,
+    lessons: module.lessons.map((lesson) => lesson.title),
+}));
 
-export const CourseInfo: FC<CourseProps> = ({
-    details,
-    lessons,
-    instructor,
-    objectives,
-    about,
-    additionalDetails,
-    requirements,
-    appInfoSections,
-    isExpanded,
-    pathname
-}) => {
 
-    //const [isExpanded, setIsExpanded] = useState(false);
-
+export const CourseDetail: FC<{ isExpanded: boolean, pathname: string }> = ({ isExpanded, pathname }) => {
     return (
-        <div className="md:col-span-2 space-y-4">
-            <CourseHeader details={details} />
-            <LessonList lessons={lessons} />
-            <div className="space-y-4" id='detail-container'>
-                <InstructorInfo instructor={instructor} />
-                <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>
-                <ObjectivesList objectives={objectives} />
-                <h3 className="text-sm font-semibold">Acerca de este curso</h3>
-                <div>
-                    <p className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
-                        {about}
-                    </p>
-                </div>
+        <div className="min-h-screen space-y-10">
+            <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
+                <CourseInfo {...courseData} isExpanded={isExpanded} pathname={pathname}/>
+                <div className="space-y-6">
+                    <InstructorDetail
+                        name={courseData.instructor.name}
+                        description="Instructor y desarrollador"
+                        image={courseData.instructor.image}
+                        rating={4.3}
+                        students={43830}
+                        courses={77}
+                        profileLink={courseData.instructor.profileLink}
+                    />
 
-                <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
+                    <Badge
+                        className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
+                        icon={<Icon name="power-apps" style="w-8 h-8" />}
+                    >
+                        AppSheet
+                    </Badge>
 
-                    <Button className="mt-3 px-20">Añadir al Carrito</Button>
+                    <CourseProgramSection program={transformedProgram} />
 
-                    <ShareSection />
-
-                    <AdditionalDetails details={additionalDetails} />
-
-                    <RequirementsSection requirements={requirements} />
-
-                    <IncludeSection />
-
-                    <CourseInfoSection sections={appInfoSections.sections} />
-
-                    <ReviewsSection reviews={reviews} />
-
+                    <Button className="w-full">Comprar curso</Button>
+                    <Button variant="outline" className="w-full">Añadir al carrito</Button>
                 </div>
             </div>
-            {/* <Button
-                variant="link"
-                className="text-purple-400 flex items-center w-full"
-                onClick={() => setIsExpanded(!isExpanded)}
-            >
-                {isExpanded ? 'Ver menos' : 'Ver más'}
-            </Button> */}
-            <div className='w-full text-center'>
-                <Link
-                    href={`${pathname}?isExpanded=${!isExpanded}#detail-container`}
-                    className="text-purple-400"
-                    scroll={!isExpanded ? false : true}
-                >
-                    {isExpanded ? "Ver menos" : "Ver más"}
-                </Link>
-            </div>
+            <SimilarCourses />
         </div>
     );
-
-};
+}
