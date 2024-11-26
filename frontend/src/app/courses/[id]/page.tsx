@@ -1,6 +1,7 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import { CourseDetail } from '../components/detail/course-detail.component';
 import { FC } from "react";
+import { SimilarCourses } from "../components/detail/similar-courses.section";
 
 const page: FC= () => {
 
@@ -8,7 +9,9 @@ const page: FC= () => {
         <main>
             <BreadCrumb />
 
-            <CourseDetail/>
+            <CourseDetail>
+              <SimilarCourses />
+            </CourseDetail>
         </main>
     );
 
