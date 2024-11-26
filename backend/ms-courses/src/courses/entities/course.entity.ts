@@ -42,7 +42,7 @@ export class Course {
   etiquetas: string;
 
   @Column({ type: 'text' })
-  enseñanzas: string;
+  aprendizaje: string;
 
   @Column({ type: 'text' })
   requisitosPrevios: string;
@@ -50,8 +50,15 @@ export class Course {
   @Column({ type: 'text' })
   descripcionDetallada: string;
 
-  @Column()
-  imagenDePortada: string;
+  @Column('json')
+  imagenDePortada: {
+    url: string;
+    size: number;
+    width: number;
+    height: number;
+    format: string;
+    created_at: string;
+  };
 
   @Column()
   tituloDelModulo: string;
@@ -68,8 +75,12 @@ export class Course {
   @Column({ type: 'text' })
   contenidoDeLaLeccion: string;
 
-  @Column({ type: 'text' })
-  materialAdicional: string;
+  @Column({ type: 'jsonb', nullable: true })
+  materialAdicional: {
+    url: string;
+    size: number;
+    created_at: string;
+  }[];
 
   @Column({ type: 'boolean' })
   descuento: boolean;
@@ -79,6 +90,18 @@ export class Course {
 
   @Column({ type: 'int', nullable: true })
   porcentajeDeDescuento: number | null;
+
+  @Column('json')
+  video: {
+    url: string;
+    duration: number;
+    size: number;
+    resolution: string;
+    format: string;
+    width: string;
+    height: string;
+    created_at: string;
+  };
 
   @Column({ type: 'boolean', default: true })
   available: boolean;
