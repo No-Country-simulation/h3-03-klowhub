@@ -1,7 +1,6 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
-import { CourseDetail } from '../components/detail/parent-course-detail.component';
+import { CourseDetail } from '../components/detail/course-detail.component';
 import { FC } from "react";
-import { getPathname } from "@/utils/route.utils";
 
 interface PageProps {
     searchParams: { isExpanded?: string };
