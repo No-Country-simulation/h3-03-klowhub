@@ -23,7 +23,12 @@ import { humanFileSize } from "@/utils/file.utils";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
-const containerStyles = "flex flex-col gap-5";
+const containerStyles = `
+flex flex-col 
+gap-2
+sm:gap-3
+md:gap-5
+`;
 const labelStyles = "font-bold leading-6";
 
 const Input = <T extends FieldValues>(props: InputProps<T>) => {
@@ -36,7 +41,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
     return (
       <div className={`${containerStyles} ${className || ""}`}>
         <Label htmlFor={name} className={labelStyles}>{ label }</Label>
-        <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-md" {...otherProps} />
+        <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-md w-full" {...otherProps} />
       </div>
     )
   };
@@ -133,8 +138,8 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
 
     return (
       <div className={`flex ${className || ""}`}>
-        <Label htmlFor={name} className={`border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 ${labelStyles}`}>{ label }</Label>
-        <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-r-lg" {...otherProps} />
+        <Label htmlFor={name} className={`border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 grow-0 ${labelStyles}`}>{ label }</Label>
+        <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-r-lg flex-1 w-full sm:w-auto sm:grow-0" {...otherProps} />
       </div>
     )
   };
@@ -148,7 +153,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         control={control}
         render={({ field: { onChange, value } }) => {
           return isMulti ? (
-            <div className={filetypes["image/*"] ? `grid grid-cols-3 gap-5 grid-rows-auto items-start` : "flex flex-col gap-3 items-start"}>
+            <div className={`${filetypes["image/*"] ? "grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start" : "flex flex-col gap-3 items-start"} ${className}`}>
               { value.map((v: File, idx: number) => {
                 if (v.type === "application/pdf") {
                   return (
@@ -159,7 +164,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                 if (v.type.includes("image")) {
                   return (
                     <UploadedImage 
-                      key={`video-thumbnail-${idx}`}
+                      key={`${name}-thumbnail-${idx}`}
                       src={URL.createObjectURL(v)}
                       deleteCb={() => onChange(removeImage(value, idx))}
                     />
@@ -171,7 +176,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
               }
             </div>
           ) : (
-            <div className="w-64">
+            <div className={className}>
               { value ? 
                 <UploadedImage 
                   src={URL.createObjectURL(value[0])}

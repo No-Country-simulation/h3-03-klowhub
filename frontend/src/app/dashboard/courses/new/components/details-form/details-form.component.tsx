@@ -46,19 +46,25 @@ const GeneralForm = () => {
           name="coverImg" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
           label="Sube una imagen para promocionar tu curso o lección" { ...controlledCommonProps }
+          className="w-full md:w-64"
           limit={1}
         />
       </form>
-      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5">
+      <div className="
+        absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5 gap-5
+      ">
         <RouteBtn 
           setter={ handleSubmit( data => dispatch(setDetailsData(data)) ) }
           route="general"
+          className="flex-1 md:grow-0"
+          isDirty={isDirty}
         >
           Retroceder
         </RouteBtn>
         <RouteBtn 
           setter={ handleSubmit( data => dispatch(setDetailsData(data)) )}
           route="modules"
+          className="flex-1 md:grow-0"
           isDirty={isDirty}
         >
           Continuar

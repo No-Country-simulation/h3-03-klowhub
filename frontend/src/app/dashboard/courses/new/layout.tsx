@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode
 }
 
-const CreateCourseLayout = async ({ children }: Props) => {
+const CreateCourseLayout = ({ children }: Props) => {
   return (
     <main>
       <BreadCrumb />

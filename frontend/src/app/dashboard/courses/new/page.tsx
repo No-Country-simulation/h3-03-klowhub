@@ -13,18 +13,23 @@ const CreateCoursePage = async () => {
 
   return (
     <>
-      <main className="flex flex-col gap-5 relative mb-28">
+      <main className={`flex flex-col gap-5 relative ${section === "promotion" ? "mb-32" : "mb-28"}`}>
         <div>
-          <Tab active={section === "general"}>Información general</Tab>
-          <Tab active={section === "details"}>Detalles del curso</Tab>
-          <Tab active={section === "modules"}>Módulos y lecciones</Tab>
-          <Tab active={section === "promotion"}>Promociones</Tab>
+          <Tab active={section === "general"} className={section !== "general" ? "hidden md:inline-block" : ""}>Información general</Tab>
+          <Tab active={section === "details"} className={section !== "details" ? "hidden md:inline-block" : ""}>Detalles del curso</Tab>
+          <Tab active={section === "modules"} className={section !== "modules" ? "hidden md:inline-block" : ""}>Módulos y lecciones</Tab>
+          <Tab active={section === "promotion"} className={section !== "promotion" ? "hidden md:inline-block" : ""}>Promociones</Tab>
         </div>
         <div className="
-          flex gap-40 bg-card rounded-lg p-6
-          xl:gap-0
+          flex bg-card rounded-lg p-6
+          lg:gap-10
+          xl:gap-20
+          2xl:gap-40
           ">
-          <div className="w-3/4">
+          <div className="
+            w-full
+            lg:w-3/4
+            ">
             <CourseCtxProvider>
               { section === "general" && <GeneralForm /> }
               { section === "details" && <DetailsForm /> }
@@ -32,7 +37,10 @@ const CreateCoursePage = async () => {
               { section === "promotion" && <PromotionsSection /> }
             </CourseCtxProvider>
           </div>
-          <div className="w-1/4">
+          <div className="
+            hidden
+            lg:block lg:w-1/4
+            ">
             { 
               advices.map((adv, idx) => (
                 <FormAdvice 

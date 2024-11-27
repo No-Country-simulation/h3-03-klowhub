@@ -10,9 +10,11 @@ type Props = {
   isDirty?: boolean
   children: ReactNode
   setter?: (e?: React.BaseSyntheticEvent) => Promise<void>, 
+  className?: string
+  variant?: "outline"
 }
 
-const RouteBtn = ({ route, setter, children, isDirty }: Props) => {
+const RouteBtn = ({ route, setter, children, isDirty, className, variant }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -26,7 +28,13 @@ const RouteBtn = ({ route, setter, children, isDirty }: Props) => {
   return (
     <button 
       type="button"
-      className="right-0 px-14 self-end bg-primary-500 py-2 rounded-md" 
+      className={`
+        right-0 px-2 self-end py-2 text-primary-100 md:px-14 rounded-md ease-in duration-100 ${className}
+         
+        ${variant === "outline" 
+          ? "bg-none bg-transparent outline outline-[1px] outline-primary-200 hover:bg-primary-600"
+          : "bg-primary-500 hover:bg-secondary-400"}
+      `} 
       onClick={clickHandler}
     >
       { children }

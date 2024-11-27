@@ -57,15 +57,14 @@ const ModulesForm = () => {
           </div>
         </div>
       }
-      { (!showModuleForm) &&
+      { !showModuleForm &&
         <Button variant="outline" className="px-14" onClick={() => setShowModuleForm(true)}>
           Añadir módulo
         </Button>
       }
-      {/* <div className="absolute w-full mt-6 -ml-6 flex justify-between pt-5"> */}
-      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5">
-        <RouteBtn route="details">Retroceder</RouteBtn>
-        <RouteBtn route="promotion">Continuar</RouteBtn>
+      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5 gap-5">
+        <RouteBtn route="details" className="flex-1 md:grow-0">Retroceder</RouteBtn>
+        <RouteBtn route="promotion" className="flex-1 md:grow-0">Continuar</RouteBtn>
       </div>
     </div>
   )

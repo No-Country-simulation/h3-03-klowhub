@@ -9,7 +9,7 @@ import { addNewModule } from "../../context/course-form.actions";
 import { setModulesData } from "../../context/course-form.actions";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import parse from "html-react-parser"
-import { Pencil, Plus } from "lucide-react";
+import { Pencil, Plus, X } from "lucide-react";
 import { useState } from "react";
 import LessonForm from "../lesson-form/lesson-form.component";
 import LessonsSection from "../lessons-section/lessons-section.component";
@@ -40,12 +40,25 @@ const ModuleForm = ({ moduleIdx, setShowModuleForm, setCurrentModule }: Props) =
   const [ currentLesson, setCurrentLesson ] = useState(NaN)
 
   return (
-    <form className="flex flex-col gap-10">
-      <Input 
-        name="title" type="text" 
-        label="Título del módulo" { ...controlledCommonProps } 
-        placeholder="Nombrá tu módulo"
-      />
+    <form className="flex flex-col gap-10 justify-between">
+      <div className="relative">
+        <Input 
+          name="title" type="text" 
+          label="Título del módulo" { ...controlledCommonProps } 
+          placeholder="Nombrá tu módulo"
+        />
+        { !showLessonForm &&
+          <X 
+            className="absolute top-0 right-0 cursor-pointer text-primary-300"
+            onClick={() => { 
+              console.log('cancelling...');
+              setShowModuleForm(false) 
+              reset()
+              setCurrentModule(NaN)
+            }}
+          />
+        }
+      </div>
       <Input 
         name="description" type="textarea" 
         label="Descripción" { ...controlledCommonProps } 
@@ -65,8 +78,7 @@ const ModuleForm = ({ moduleIdx, setShowModuleForm, setCurrentModule }: Props) =
       }
 
 
-      <div className="flex justify-between">
-        <div className="flex gap-5">
+      <div className="flex sm:flex-row flex-col justify-between gap-3">
           <Button 
             type="button"
             onClick={ 
@@ -85,35 +97,29 @@ const ModuleForm = ({ moduleIdx, setShowModuleForm, setCurrentModule }: Props) =
                 setCurrentModule(NaN)
               })
             }
-            className="px-14 self-end border-primary-200"
+            className="
+              px-3 self-end border-primary-200 w-full 
+              sm:w-auto sm:px-14
+            "
           >
             Guardar Módulo
           </Button>
           { !showLessonForm &&
             <Button 
               type="button"
-              variant="outline" className="px-14 self-end border-primary-200 text-primary-200 hover:primary-200 justify-self-end"
+              variant="outline" 
+              className="
+                px-3 self-end border-primary-200 text-primary-200 hover:primary-200 justify-self-end w-full
+                sm:w-auto sm:px-14 
+              "
               onClick={() => { 
                 setShowLessonForm(true) 
               }}
             >
-              Añadir Lección
+              <span>Añadir Lección</span>
+              <Plus />
             </Button>
           }
-        </div>
-        { !showLessonForm &&
-          <Button 
-            variant="outline" className="px-14 self-end border-red-500 text-red-500 hover:bg-red-500 justify-self-end"
-            onClick={() => { 
-              console.log('cancelling...');
-              setShowModuleForm(false) 
-              reset()
-              setCurrentModule(NaN)
-            }}
-          >
-            Cancelar
-          </Button>
-        }
       </div>
     </form>
 

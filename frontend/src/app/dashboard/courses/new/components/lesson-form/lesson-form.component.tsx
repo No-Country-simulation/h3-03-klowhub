@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
 import { setModulesData } from "../../context/course-form.actions";
 import { FieldValues, Path, UseFormGetValues, UseFormSetValue } from "react-hook-form";
+import { X } from "lucide-react";
 
 type Props<F extends FieldValues> = {
   lessonIdx: number
@@ -32,11 +33,21 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
       <div 
         className="flex flex-col gap-10 p-5 rounded-2xl bg-gray-100"
       >
-        <Input 
-          name="title" type="text" 
-          label="Título de la lección" { ...controlledCommonProps } 
-          placeholder="Nombrá tu lección"
-        />
+        <div className="relative">
+          <Input 
+            name="title" type="text" 
+            label="Título de la lección" { ...controlledCommonProps } 
+            placeholder="Nombrá tu lección"
+          />
+          <X 
+            className="absolute top-0 right-0 cursor-pointer text-primary-300"
+            onClick={() => { 
+              setCurrentLesson(NaN)
+              setShowLessonForm(false) 
+              reset()
+            }}
+          />
+        </div>
         <Input 
           name="description" type="textarea" 
           label="Descripción" { ...controlledCommonProps } 
@@ -46,12 +57,14 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
         <Input 
           name="link" type="link" 
           label="Enlace" { ...controlledCommonProps } 
+          className="w-full"
         />
         <Input 
           name="videos" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
           label="Sube los videos que deseas agregar a esta lección" { ...controlledCommonProps }
           isMulti
+          className="w-full"
           limit={1}
         />
         <h3 className="col-span-2 font-bold">Material adicional</h3>
@@ -60,19 +73,20 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
           name="resources" type="upload"
           label="Sube documentos extra como manuales o guías." { ...controlledCommonProps }
           isMulti
+          className="w-full md:w-64"
           limit={4}
         />
         <div className="flex justify-end gap-5">
-          <Button 
-            variant="outline" className="px-14 self-end border-red-500 text-red-500 hover:bg-red-500"
-            onClick={() => { 
-              setCurrentLesson(NaN)
-              setShowLessonForm(false) 
-              reset()
-            }}
-          >
-            Cancelar
-          </Button>
+          {/* <Button  */}
+          {/*   variant="outline" className="px-14 self-end border-red-500 text-red-500 hover:bg-red-500" */}
+          {/*   onClick={() => {  */}
+          {/*     setCurrentLesson(NaN) */}
+          {/*     setShowLessonForm(false)  */}
+          {/*     reset() */}
+          {/*   }} */}
+          {/* > */}
+          {/*   Cancelar */}
+          {/* </Button> */}
           <Button 
             type="button"
             className="px-14 self-end" 

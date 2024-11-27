@@ -28,14 +28,23 @@ const GeneralForm = () => {
 
   return (
     <>
-      <form className="grid grid-cols-2 gap-y-10 gap-x-48 grid-rows-auto items-start">
+      <form className="
+        flex flex-col gap-y-8 gap-x-10 md:grid-rows-auto md:items-start
+        md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-10 md:grid-cols-2
+        lg:gap-x-48
+        ">
         <Input 
           name="title" type="text"
           label="Título del curso / lección" { ...commonProps } 
           placeholder="Nombrá tu curso o lección"
-          className="col-span-2"
+          className="w-full"
         />
-        <div className="text-sm font-bold flex gap-5 col-span-2 bg-gray-100 rounded-2xl px-5 py-3 w-[650px]">
+        <div className="
+          text-sm font-bold flex gap-3 col-span-2 bg-gray-100 rounded-2xl px-4 py-2 w-full
+          sm:px-5 sm:py-3
+          sm:gap-5
+          lg:w-[650px]
+          ">
           <div><CircleAlert /></div>
           <span>El contenido gratuito ofrece acceso limitado a [características breves del contenido gratuito]. El contenido premium desbloquea [principales beneficios del contenido de pago]. Más información en nuestra <span className="text-secondary-400">[documentación]</span>.</span>
         </div>
@@ -47,6 +56,7 @@ const GeneralForm = () => {
           ]} 
           type="radio-group"
           label="¿Qué tipo de contenido estás buscando: gratuito o premium?" { ...commonProps }
+          className="w-full"
         />
         <Input 
           name="contentType" 
@@ -115,6 +125,7 @@ const GeneralForm = () => {
             name="tools" type="select" options={toolsAndPlatforms.items} 
             label="Herramientas y plataformas" { ...controlledCommonProps } 
             placeholder="Herramientas y plataformas"
+            className="truncate"
             isMulti
           />
           <Input 
