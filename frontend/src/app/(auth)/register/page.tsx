@@ -1,125 +1,56 @@
-"use client";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { ServiceTypes } from "@/types/service-types";
-import useFetchData from "@/hooks/use-fetch-data.hook";
+import Icon from "@/components/icon/icon.component"
+import Link from "next/link"
+import RegisterForm from "./sections/register-form.section"
 
 const RegisterPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ServiceTypes["register"]>({ mode: "onTouched" });
-  const [loading, setLoading] = useState(false);
-  const { fetchData } = useFetchData();
-  const router = useRouter();
-
-  const customSubmit: SubmitHandler<ServiceTypes["register"]> = async (
-    data: ServiceTypes["register"]
-  ) => {
-    setLoading(true);
-
-    const { status, response } = await fetchData("register", data);
-
-    if (status) {
-      router.push("login");
-      toast.success("Su usuario ha sido creado con éxito. Por favor, inicie sesión.")
-    } else {
-      setLoading(false)
-      toast.error("Ha habido un error, vuelva a intentarlo.");
-    }
-
-  };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <form onSubmit={handleSubmit(customSubmit)} className="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg space-y-8">
-
-        <h2 className="text-3xl font-semibold text-center text-black mb-6">Registro de Usuario</h2>
-
-        <div className="relative">
-          <input
-            className={`border-2 ${!errors.fullname ? 'border-black' : 'border-[#FF0000]'} 
-                rounded-lg h-12 px-4 w-full placeholder:italic placeholder:text-grey bg-white 
-                focus:outline-none text-lg text-black transition-all duration-300 ease-in-out`}
-            type="text"
-            placeholder="Nombre completo"
-            autoComplete="off"
-            {...register('fullname', { required: true })}
-          />
-          {errors.fullname?.type === 'required' && (
-            <p className="absolute w-full text-[#FF0000] text-sm font-sans mt-1">
-              Complete este campo
-            </p>
-          )}
+    return (
+        <div className="pb-[100px] mt-14 lg:mt-[100px] flex flex-col gap-14 w-full md:w-[500px] lg:w-[400px] px-5 md:px-0">
+            <h3 className="font-bold text-3xl mx-auto flex lg:hidden">KlowHub</h3>
+            <div className="flex flex-col gap-6 text-sm">
+                <p className="text-xs lg:text-base lg:font-bold leading-5">Explora, aprende, enseña y conecta. <br />Crea tu cuenta en KlowHub y accede a un mundo de posibilidades.</p>
+                <RegisterForm />
+                <div className="w-full flex flex-col gap-4">
+                    <span className="font-bold text-center">O continuar con</span>
+                    <div className="flex gap-5 mx-auto">
+                        <Link
+                            href={"https://github.com/"}
+                            className="hover:scale-110 transition-transform duration-300"
+                        >
+                            <Icon name="github" />
+                        </Link>
+                        <Link
+                            href={"https://facebook.com/"}
+                            className="hover:scale-110 transition-transform duration-300"
+                        >
+                            <Icon name="facebook" />
+                        </Link>
+                        <Link
+                            href={"https://google.com/"}
+                            className="hover:scale-110 transition-transform duration-300"
+                        >
+                            <Icon name="google" />
+                        </Link>
+                    </div>
+                </div>
+                <div className="flex items-center gap-3">
+                    <input
+                        type="checkbox"
+                        id="subscribe"
+                        className="w-4 h-4 text-purple-600 border-gray-300 rounded-lg focus:ring-purple-500"
+                    />
+                    <label
+                        htmlFor="subscribe font-bold"
+                    >
+                        Quiero recibir novedades y consejos de la plataforma
+                    </label>
+                </div>
+                <div className="flex gap-5 justify-center">
+                    <span>¿Ya tienes cuenta?</span>
+                    <Link href={"login"} className="text-[#7CB4FF] hover:text-primary-100 transition-colors">Iniciar Sesión</Link>
+                </div>
+            </div >
         </div>
-
-        <div className="relative">
-          <input
-            className={`border-2 ${!errors.email ? 'border-black' : 'border-[#FF0000]'} 
-                rounded-lg h-12 px-4 w-full placeholder:italic placeholder:text-grey bg-white 
-                focus:outline-none text-lg text-black transition-all duration-300 ease-in-out`}
-            type="email"
-            placeholder="Correo Electrónico"
-            autoComplete="off"
-            {...register("email", {
-              required: true,
-              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
-            })}
-          />
-          {errors.email?.type === 'pattern' && (
-            <p className="absolute w-full text-[#FF0000] text-sm font-sans mt-1">
-              No es un email válido
-            </p>
-          )}
-          {errors.email?.type === 'required' && (
-            <p className="absolute w-full text-[#FF0000] text-sm font-sans mt-1">
-              Complete este campo
-            </p>
-          )}
-        </div>
-
-        <div className="relative">
-          <input
-            className={`border-2 ${!errors.password ? 'border-black' : 'border-[#FF0000]'} 
-                rounded-lg h-12 px-4 w-full placeholder:italic placeholder:text-grey bg-white 
-                focus:outline-none text-lg text-black transition-all duration-300 ease-in-out`}
-            type="password"
-            placeholder="Contraseña"
-            {...register('password', {
-              required: true,
-              pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            })}
-          />
-          {errors.password?.type === 'pattern' && (
-            <p className="absolute w-full text-[#FF0000] text-sm font-sans mt-1">
-              Formato de Contraseña incorrecto
-            </p>
-          )}
-          {errors.password?.type === 'required' && (
-            <p className="absolute w-full text-[#FF0000] text-sm font-sans mt-1">
-              Complete este campo
-            </p>
-          )}
-        </div>
-
-        <button
-          type="submit"
-          className="bg-[#003366] text-white text-xl w-60 h-12 rounded-2xl block ml-auto mb-4 transition-all duration-300 ease-in-out 
-             hover:bg-[#002244] disabled:opacity-60 disabled:cursor-not-allowed"
-             disabled={loading}
-        >
-          {loading ? "Cargando..." : 'Registrarme'}
-        </button>
-      </form>
-    </div>
-  );
-};
-
-export default RegisterPage;
-function fetchData(arg0: string, data: { email: string; password: string; }): { status: any; response: any; } | PromiseLike<{ status: any; response: any; }> {
-  throw new Error("Function not implemented.");
+    )
 }
 
+export default RegisterPage

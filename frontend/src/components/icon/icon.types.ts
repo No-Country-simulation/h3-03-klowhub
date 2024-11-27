@@ -16,3 +16,6 @@ export type IconTypes =
   | "linkedin"
   | "whatsapp"
   | "messenger"
+  | "github"
+  | "facebook"
+  | "google"

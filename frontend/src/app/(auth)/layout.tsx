@@ -2,16 +2,12 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./../globals.css";
 import { Footer } from "@/components/footer/footer.component";
-import { Toaster } from "sonner";
 
-const geistSans = localFont({
-  src: "../../fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-}); const geistMono = localFont({
-  src: "../../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+import { Toaster } from "sonner"; import { Inter } from "next/font/google";
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["100", "200", "400", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,16 +23,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className} antialiased`}
       >
         <Toaster richColors />
 
-        <div className="container px-6 md:px-0 mx-auto">
+        <div className="w-full h-full">
           {children}
         </div>
-
-        <div id="modal-root"></div>
-        <Footer />
+        <div className="h-full w-full bg-[#201d42] -mt-8">
+          <div className="relative z-10">
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
