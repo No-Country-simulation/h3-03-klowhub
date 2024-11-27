@@ -31,23 +31,23 @@ export class CoursesController {
   @Post()
   @UseInterceptors(
     FileFieldsInterceptor([
-      { name: 'imagenDePortada', maxCount: 1 },
+      { name: 'coverImg', maxCount: 1 },
       { name: 'video', maxCount: 1 },
-      { name: 'materialAdicional', maxCount: 3 },
+      { name: 'resource', maxCount: 3 },
     ]),
   )
   async create(
     @Body() createCourseDto: CreateCourseDto,
     @UploadedFiles()
     files: {
-      imagenDePortada?: Express.Multer.File[];
+      coverImg?: Express.Multer.File[];
       video?: Express.Multer.File[];
-      materialAdicional?: Express.Multer.File[];
+      resource?: Express.Multer.File[];
     },
   ) {
-    const imagenFile = files.imagenDePortada?.[0];
+    const imagenFile = files.coverImg?.[0];
     const videoFile = files.video?.[0];
-    const documentFile = files.materialAdicional?.[0];
+    const documentFile = files.resource?.[0];
     try {
       return await this.coursesService.create(
         createCourseDto,
