@@ -28,6 +28,7 @@ const DatePickerWithRange = ({ from, to, pathname }: Props) => {
         compareDates,
         stringToDate,
         dateToString,
+        formatToShortDate
     } = useCalendar();
 
     const [isShow, setIsSHow] = useState(false);
@@ -45,16 +46,17 @@ const DatePickerWithRange = ({ from, to, pathname }: Props) => {
             </Button>
             {isShow && (
                 <div className="shadow-md bg-slate-900 rounded-lg flex flex-col gap-5 p-5 absolute right-0 top-2 w-fit">
-                    <div className="text-end">
+                    <div className="flex justify-between">
+                        <div className="flex gap-4">
+                            <span className="pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(from)}</span>
+                            <span className="pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(to)}</span>
+                        </div>
                         <button onClick={() => setIsSHow(!isShow)}>
                             <X />
                         </button>
                     </div>
                     <CalendarHeader>
-                        <span className="text-sm font-semibold">
-                            {monthName} {year}
-                        </span>
-                        <div className="flex gap-3">
+                        <div className="w-full flex justify-between">
                             <button
                                 className="w-6 h-6 rounded hover:bg-white hover:bg-opacity-5"
                                 onClick={() => goToPreviousMonth()}
@@ -63,6 +65,9 @@ const DatePickerWithRange = ({ from, to, pathname }: Props) => {
                                     <Icon name="arrow" />
                                 </div>
                             </button>
+                            <span className="text-sm font-semibold">
+                                {monthName} {year}
+                            </span>
                             <button
                                 className="w-6 h-6 rounded hover:bg-white hover:bg-opacity-5"
                                 onClick={() => goToNextMonth()}
@@ -117,7 +122,9 @@ const DatePickerWithRange = ({ from, to, pathname }: Props) => {
                                             : !fromDate || currentDate < fromDate
                                                 ? `${pathname}?section=transactions&filterBy=date&from=${dateToString(
                                                     currentDate
-                                                )}&to=${to}`
+                                                )}&to=${dateToString(
+                                                    currentDate
+                                                )}`
                                                 : `${pathname}?section=transactions&filterBy=date&from=${from}&to=${dateToString(
                                                     currentDate
                                                 )}`;

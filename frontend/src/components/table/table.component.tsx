@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import React from "react"
 
 const Table = ({
     className,
@@ -7,7 +6,7 @@ const Table = ({
 }: React.HTMLAttributes<HTMLTableElement>) => (
     <table
         className={cn(
-            "xl:w-3/4 w-full",
+            "xl:w-3/4 w-full h-fit",
             className
         )}
         {...props}

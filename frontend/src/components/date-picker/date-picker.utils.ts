@@ -8,6 +8,10 @@ function useCalendar() {
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
+    const shortMonthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
     const monthName = monthNames[currentDate.getMonth()];
     const year = currentDate.getFullYear();
 
@@ -69,6 +73,24 @@ function useCalendar() {
         return `${year}-${month}-${day}`;
     };
 
+    const formatToShortDate = (dateString: string): string => {
+        if (!dateString) return "--.--";
+    
+        const [year, month, day] = dateString.split("-").map(Number);
+    
+        const date = new Date(year, month - 1, day); 
+    
+        if (isNaN(date.getTime())) return "--.--";
+    
+        const options: Intl.DateTimeFormatOptions = {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+        };
+    
+        return date.toLocaleDateString("en-US", options);
+    };
+
     return {
         monthName,
         year,
@@ -80,7 +102,8 @@ function useCalendar() {
         compareDates,
         isPastDay,
         stringToDate,
-        dateToString
+        dateToString,
+        formatToShortDate
     };
 }
 

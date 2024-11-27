@@ -51,7 +51,7 @@ const MyCoursesDesktopView = async ({ transactionsData, soldCoursesData }: Props
                             <Th className="py-4 px-3 w-[134px] text-center">Estado</Th>
                         </TableHead>
                         <TableBody>
-                            {transactionsData.length === 0 && <TRow className="absolute">No hay datos que mostrar.</TRow>}
+                            {transactionsData.length === 0 && <TRow className="absolute"><td>No hay datos que mostrar.</td></TRow>}
                             {
                                 transactionsData.map(({ id, customerName, amount, status, avatarUrl }) =>
                                     <TransactionRow key={id} customerName={customerName} amount={amount} status={status} avatarUrl={avatarUrl} />
