@@ -11,6 +11,7 @@ services:
       - ms-users
       - ms-courses
       - ms-projects
+      - ms-chat
     networks:
       - klowhub
   ms-projects:
@@ -25,6 +26,7 @@ services:
       - klowhub
     depends_on:
       - db
+
 
   ms-users:
     build:
@@ -50,6 +52,20 @@ services:
       - klowhub
     depends_on:
       - db  
+
+  ms-chat:
+    build:
+      context: ./ms-chat
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004" # Puerto expuesto del microservicio de chat
+    env_file:
+      - ./ms-chat/.env
+    networks:
+      - klowhub
+    depends_on:
+      - db # Depende de la base de datos PostgreSQL
+
   db:
     image: postgres:latest
     container_name: klowhub_db
