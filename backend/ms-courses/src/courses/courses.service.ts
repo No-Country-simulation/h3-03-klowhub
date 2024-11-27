@@ -58,7 +58,7 @@ export class CoursesService {
     if (!uploadImage || !uploadImage.secure_url) {
       throw new CloudinaryUploadFailedException();
     }
-    createCourseDto.imagenDePortada = {
+    createCourseDto.coverImg = {
       url: uploadImage.secure_url,
       size: uploadImage.bytes,
       width: uploadImage.width,
@@ -75,16 +75,35 @@ export class CoursesService {
       throw new CloudinaryUploadFailedException();
     }
 
-    createCourseDto.video = {
-      url: uploadVideo.secure_url,
-      duration: uploadVideo.duration,
-      size: uploadVideo.bytes,
-      resolution: uploadVideo.resolution,
-      format: uploadVideo.format,
-      width: uploadVideo.width,
-      height: uploadVideo.height,
-      created_at: uploadImage.created_at,
-    };
+    createCourseDto.modules.forEach((module) => {
+      if (Array.isArray(module.lessons)) {
+        // Verifica que lessons sea un array
+        module.lessons.forEach((lesson) => {
+          lesson.video = {
+            url: uploadVideo.secure_url,
+            duration: uploadVideo.duration,
+            size: uploadVideo.bytes,
+            resolution: uploadVideo.resolution,
+            format: uploadVideo.format,
+            width: uploadVideo.width,
+            height: uploadVideo.height,
+            created_at: uploadVideo.created_at,
+          };
+        });
+      } else {
+        console.error('Lessons is not an array in module:', module);
+      }
+    });
+    // createCourseDto.modules.lessons. = {
+    //   url: uploadVideo.secure_url,
+    //   duration: uploadVideo.duration,
+    //   size: uploadVideo.bytes,
+    //   resolution: uploadVideo.resolution,
+    //   format: uploadVideo.format,
+    //   width: uploadVideo.width,
+    //   height: uploadVideo.height,
+    //   created_at: uploadImage.created_at,
+    // };
 
     if (documentFiles) {
       this.validateFile(documentFiles, this.MAX_PDF_SIZE, 'pdf');
@@ -97,16 +116,15 @@ export class CoursesService {
       const pdfData = {
         url: uploadDocument.secure_url,
         size: uploadDocument.bytes,
+        mimeType: documentFiles.mimetype,
         created_at: uploadDocument.created_at,
       };
       console.log('Esto es el resultado de pdfData', pdfData);
-      createCourseDto.materialAdicional =
-        createCourseDto.materialAdicional || [];
-
-      createCourseDto.materialAdicional.push(pdfData);
+      createCourseDto.resource = createCourseDto.resource || [];
+      createCourseDto.resource.push(pdfData);
     }
-    createCourseDto.materialAdicional = createCourseDto.materialAdicional || [];
-    const course = this.courseRepository.create(createCourseDto);
+
+    const course = this.courseRepository.create({ ...createCourseDto });
     const savedCourse = await this.courseRepository.save(course);
     if (!savedCourse) {
       throw new CourseCreationFailedException();
