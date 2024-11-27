@@ -3,7 +3,7 @@ import { OptionsOrGroups, GroupBase } from "react-select";
 import { ReactNode } from "react";
 import { FileType } from "@/types/global.types";
 
-type FieldType = "text" | "link" | "textarea" | "number" | "checkbox" | "date" | "time" | "password";
+type FieldType = "text" | "link" | "textarea" | "number" | "checkbox" | "date" | "time" | "password" | "textarea";
 
 type RadioOption = {
   value: string,
@@ -43,6 +43,11 @@ type RichTextInput<T extends FieldValues> = {
   type: "richtext"
 } & ControlledInput<T>
 
+type MultitextInput<T extends FieldValues> = {
+  type: "multitext"
+  addButtonLabel: string
+} & ControlledInput<T>
+
 type UploadInput<T extends FieldValues> = {
   type: "upload"
   isMulti?: boolean
@@ -68,4 +73,4 @@ type SelectInput<T extends FieldValues> = {
   isMulti?: boolean
 } & ControlledInput<T>
 
-export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T> | ProductSelector<T>
+export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T> | ProductSelector<T> | MultitextInput<T>

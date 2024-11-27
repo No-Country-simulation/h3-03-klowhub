@@ -13,6 +13,7 @@ export const COURSE_INFO_INITIAL_STATE: CourseInfo = {
   tools: [],
   functionalities: [],
   tags: [],
-  price: 0
+  price: 0,
+  targetAudience: ""
 };
 

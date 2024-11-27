@@ -23,7 +23,7 @@ import { CourseInfoSection } from "./info.section";
 import { useSearchParams } from "next/navigation";
 
 import { CourseProps } from "@/types/course-detail-props";
-import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
+// import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
 
 const transformedProgram = courseData.modules.map((module) => ({
     moduleTitle: module.title,
@@ -37,7 +37,7 @@ type Props = {
 
 export const CourseDetail: FC<Props> = ({ children, previewData }) => {
   const searchParams = useSearchParams();
-  const { state, dispatch } = useContext(CourseCtx);
+  // const { state, dispatch } = useContext(CourseCtx);
 
     return (
         <div className="min-h-screen space-y-10">
@@ -64,7 +64,7 @@ export const CourseDetail: FC<Props> = ({ children, previewData }) => {
 
                     <Badge
                         className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
-                        icon={<Icon name="power-apps" style="w-8 h-8" />}
+                        icon={<Icon name="powerapps" style="w-8 h-8" />}
                     >
                         AppSheet
                     </Badge>

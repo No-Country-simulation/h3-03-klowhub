@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Lesson {
     id: number;
     image: string;
@@ -40,15 +42,16 @@ export interface CourseProps {
     instructor: Instructor;
     objectives: string[];
     about: string;
-    additionalDetails: {
-        title: string;
-        content: string;
-    }[];
-    requirements: string[];
-    appInfoSections: AppInfoProps;
-    reviews: {
-        author: string;
-        rating: number;
-        comment: string;
-    }[];
+    // additionalDetails: {
+    //     title: string;
+    //     content: string;
+    // }[];
+    // requirements: string[];
+    // appInfoSections: AppInfoProps;
+    // reviews: {
+    //     author: string;
+    //     rating: number;
+    //     comment: string;
+    // }[];
+  children?: ReactNode[]
 }

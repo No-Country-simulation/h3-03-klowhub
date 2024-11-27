@@ -18,6 +18,7 @@ export const CourseInfo: FC<CourseProps> = ({
     instructor,
     objectives,
     about,
+  children
 }) => {
 
     const searchParams = useSearchParams();
@@ -43,6 +44,8 @@ export const CourseInfo: FC<CourseProps> = ({
                 <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
 
                     <Button className="mt-3 px-20">Añadir al Carrito</Button>
+          
+          { children }
 
                 </div>
             </div>

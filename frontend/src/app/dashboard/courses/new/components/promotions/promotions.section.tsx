@@ -128,8 +128,20 @@ const PromotionsSection = () => {
         >
           Retroceder
         </RouteBtn>
-        <div className="flex gap-5">
-          <Button className="px-6 border-primary-200 text-primary-200" variant="outline">Vista previa del curso</Button>
+        <div className="px-6 border-primary-200 text-primary-200">
+          <RouteBtn 
+            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
+            route="preview"
+            isDirty={isDirty}
+          >
+            Vista previa del curso
+          </RouteBtn>
+          {/* <Button  */}
+          {/*   className="px-6 border-primary-200 text-primary-200"  */}
+          {/*   variant="outline" */}
+          {/* > */}
+          {/*   Vista previa del curso */}
+          {/* </Button> */}
           <Button className="px-6">Publicar</Button>
         </div>
       </div>

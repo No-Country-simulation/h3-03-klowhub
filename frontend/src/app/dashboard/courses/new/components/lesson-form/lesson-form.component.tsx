@@ -35,12 +35,12 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
         <Input 
           name="title" type="text" 
           label="Título de la lección" { ...controlledCommonProps } 
-          placeholder="Nombrá tu curso o lección"
+          placeholder="Nombrá tu lección"
         />
         <Input 
-          name="description" type="richtext" 
+          name="description" type="textarea" 
           label="Descripción" { ...controlledCommonProps } 
-          placeholder="Escribe una descripción básica del proyecto"
+          placeholder="Detallá el contenido de la lección"
         />
         <h3 className="col-span-2 font-bold">Contenido de la lección</h3>
         <Input 

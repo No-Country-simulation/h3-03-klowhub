@@ -12,8 +12,9 @@ import { FieldValues } from "react-hook-form";
 import Dropzone from "../dropzone/dropzone.component";
 import { removeImage } from "./input.utils";
 import UploadedImage from "../uploaded-image/uploaded-image.component";
-import { Files, X } from "lucide-react";
+import { Files, X, Plus, Minus } from "lucide-react";
 import FileBadge from "../file-badge/file-badge.component";
+import { Button } from "../ui/button";
 
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
@@ -36,6 +37,79 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
       <div className={`${containerStyles} ${className || ""}`}>
         <Label htmlFor={name} className={labelStyles}>{ label }</Label>
         <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-md" {...otherProps} />
+      </div>
+    )
+  };
+
+  if (type === "textarea") {
+    const { placeholder } = props;
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <textarea placeholder={placeholder} { ...register(name)} rows={4} className="px-3 py-3 text-card rounded-md" {...otherProps} />
+      </div>
+    )
+  };
+
+  if (type === "multitext") {
+    const { control, placeholder, addButtonLabel } = props;
+
+    const update = (currentNew: string, oldVal: string[], currentId: number) => {
+      return oldVal.map((old, idx) => {
+        if (idx !== currentId) return old;
+        return currentNew
+      });
+    };
+
+    const remove = (currentVal: string[], currentId: number) => {
+      return currentVal.filter((_, idx) => idx !== currentId);
+    };
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <div className="flex flex-col gap-3">
+          <Controller 
+            name={name}
+            control={control}
+            render={({ field: { onChange, value}}) => (
+              <>
+                {
+                  value.map((b: string, idx: number) => (
+                    <div key={`${name}-${idx}`} className="flex gap-3">
+                      <input 
+                        type="text"
+                        placeholder={placeholder} 
+                        className="px-3 py-5 h-8 text-card rounded-md w-full" 
+                        value={b}
+                        onChange={e => onChange(update(e.target.value, value, idx))}
+                      />
+                      { value.length > 1 &&
+                        <Button 
+                          type="button" 
+                          variant="outline"
+                          className="border-red-500 text-red-500 hover:bg-red-600/50"
+                          onClick={() => onChange(remove(value, idx))}
+                        >
+                          <X />
+                        </Button>
+                      }
+                    </div>
+                  ))
+                }
+                <Button 
+                  className="self-end px-5"
+                  type="button" 
+                  onClick={() => onChange([...value, ""])}
+                >
+                  <span>{ addButtonLabel }</span>
+                  <Plus />
+                </Button>
+              </>
+            )}
+          />
+        </div>
       </div>
     )
   };

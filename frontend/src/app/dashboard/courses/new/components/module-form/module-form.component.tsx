@@ -44,12 +44,12 @@ const ModuleForm = ({ moduleIdx, setShowModuleForm, setCurrentModule }: Props) =
       <Input 
         name="title" type="text" 
         label="Título del módulo" { ...controlledCommonProps } 
-        placeholder="Nombrá tu curso o lección"
+        placeholder="Nombrá tu módulo"
       />
       <Input 
-        name="description" type="richtext" 
+        name="description" type="textarea" 
         label="Descripción" { ...controlledCommonProps } 
-        placeholder="Escribe una descripción básica del proyecto"
+        placeholder="Detallá los contenidos del módulo"
       />
       { showLessonForm && 
         <LessonForm

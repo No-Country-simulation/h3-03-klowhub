@@ -20,7 +20,10 @@ const CreateCoursePage = async () => {
           <Tab active={section === "modules"}>Módulos y lecciones</Tab>
           <Tab active={section === "promotion"}>Promociones</Tab>
         </div>
-        <div className="flex gap-40 bg-card rounded-lg p-6">
+        <div className="
+          flex gap-40 bg-card rounded-lg p-6
+          xl:gap-0
+          ">
           <div className="w-3/4">
             <CourseCtxProvider>
               { section === "general" && <GeneralForm /> }

@@ -30,21 +30,24 @@ export type CourseInfo = {
   functionalities: SelectOption[]
   tags: string[]
   price: number // this is not included in the design but I need to get this info from somewhere
+  targetAudience: string
 };
 
 export type CourseDetails = {
-  learningSubjects: string
-  prevRequirements: string
+  learningSubjects: string[]
+  prevRequirements: string[]
   courseContent: string
-  img: TImage | null
+  coverImg: TImage | null
 }
 
 export type Lesson = {
+  id?: string
   title: string
   description: string
   videos: File[]
   resources: Resource[]
   link: string
+  free: boolean
 }
 
 export type Module = {

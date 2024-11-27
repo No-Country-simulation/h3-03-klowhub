@@ -58,9 +58,15 @@ const GeneralForm = () => {
           label="Seleccioná si vas a crear un curso  o una lección." { ...commonProps } 
         />
         <Input 
-          name="about" type="richtext" 
+          name="about" type="textarea" 
           label="Contá de qué trata, en no más de 3 líneas." { ...controlledCommonProps } 
           placeholder="Escribí una descripción básica del proyecto"
+          className="col-span-2"
+        />
+        <Input 
+          name="targetAudience" type="textarea" 
+          label="¿Para quién es este curso?" { ...controlledCommonProps } 
+          placeholder="Detallá el perfil de tu público objetivo"
           className="col-span-2"
         />
         <Input
