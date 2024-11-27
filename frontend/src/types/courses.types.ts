@@ -4,6 +4,7 @@
 import { Language, Platform, TImage } from "./global.types"
 import { CourseDificulty, Sectors, Funcionalitites, ToolsAndPlatforms, CoreContent, ContentType, AccessType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
+import { Promotion } from "./global.types";
 
 
 type Resource = {
@@ -61,11 +62,6 @@ export type PromotedProduct = {
   id: number
 }
 
-export type CoursePromotion = {
-  product: PromotedProduct
-  percentage: number
-}
-
 export type Feedback = {
   rating: number
   ratingCount: number
@@ -77,7 +73,7 @@ export type CourseFormData = {
   general: CourseInfo
   details: CourseDetails
   modules: Module[]
-  promotion: CoursePromotion | undefined
+  promotion: Promotion | null
 }
 
-export type Course = CourseInfo & CourseDetails & CoursePromotion & Feedback & { modules: Module[] }
+export type Course = CourseInfo & CourseDetails & Promotion & Feedback & { modules: Module[] }

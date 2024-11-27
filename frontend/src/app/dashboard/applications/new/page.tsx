@@ -6,7 +6,7 @@ import PromotionsSection from "./components/promotions/promotions.section";
 import Tab from "@/components/tab/tab.component";
 import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";
-import CourseCtxProvider from "./context/course-form.context";
+// import CourseCtxProvider from "./context/course-form.context";
 import { CourseDetail } from "@/app/courses/components/detail/course-detail.component";
 
 const CreateCoursePage = async () => {
@@ -31,13 +31,13 @@ const CreateCoursePage = async () => {
             w-full
             lg:w-3/4
             ">
-            <CourseCtxProvider>
-              { section === "general" && <GeneralForm /> }
-              { section === "details" && <DetailsForm /> }
-              { section === "modules" && <ModuleSection /> }
-              { section === "promotion" && <PromotionsSection /> }
-              { section === "preview" && <CourseDetail /> }
-            </CourseCtxProvider>
+            {/* <CourseCtxProvider> */}
+            {/*   { section === "general" && <GeneralForm /> } */}
+              {/* { section === "details" && <DetailsForm /> } */}
+              {/* { section === "modules" && <ModuleSection /> } */}
+              {/* { section === "promotion" && <PromotionsSection /> } */}
+              {/* { section === "preview" && <CourseDetail /> } */}
+            {/* </CourseCtxProvider> */}
           </div>
           <div className="
             hidden

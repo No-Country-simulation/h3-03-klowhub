@@ -23,26 +23,42 @@ import { CourseInfoSection } from "./info.section";
 import { useSearchParams } from "next/navigation";
 
 import { CourseProps } from "@/types/course-detail-props";
-// import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
+import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
+import { transformCourse } from "@/utils/client.utils";
 
-const transformedProgram = courseData.modules.map((module) => ({
+
+type Props = {
+  children?: ReactNode
+}
+
+export const CourseDetail: FC<Props> = ({ children }) => {
+  // const searchParams = useSearchParams();
+    const { state, dispatch } = useContext(CourseCtx);
+
+    const source = state ? transformCourse(state) : courseData;
+  // const source = courseData;
+
+const transformedProgram = source.modules.map((module) => ({
     moduleTitle: module.title,
     lessons: module.lessons.map((lesson) => lesson.title),
 }));
 
-type Props = {
-  previewData?: typeof courseData
-  children?: ReactNode
-}
-
-export const CourseDetail: FC<Props> = ({ children, previewData }) => {
-  const searchParams = useSearchParams();
-  // const { state, dispatch } = useContext(CourseCtx);
-
     return (
         <div className="min-h-screen space-y-10">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                <CourseInfo {...(previewData || courseData)}>
+                <CourseInfo
+          details={{
+            title: source.details.title,
+            description: source.details.description,
+            rating: 0,
+            ratingCount: 0,
+            image: source.details.image,
+          }}
+          lessons={source.lessons}
+          instructor={source.instructor}
+          objectives={source.objectives}
+          about={source.about}
+        >
                   <ShareSection />
                   <AdditionalDetails details={courseData.additionalDetails} />
                   <RequirementsSection requirements={courseData.requirements} />

@@ -26,6 +26,7 @@ const GeneralForm = () => {
     formState: { isDirty }
   } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, state.general);
 
+  console.log('toolsAndPlatforms: ', toolsAndPlatforms);
   return (
     <>
       <form className="
@@ -125,7 +126,6 @@ const GeneralForm = () => {
             name="tools" type="select" options={toolsAndPlatforms.items} 
             label="Herramientas y plataformas" { ...controlledCommonProps } 
             placeholder="Herramientas y plataformas"
-            className="truncate"
             isMulti
           />
           <Input 

@@ -13,6 +13,20 @@ export type TImage = {
   alt: string
 }
 
+export type TVideo = {
+  thumbnail: TImage
+} & TImage
+
 export type FileType = {
   [key: string]: string[]
+}
+
+export type PromotedProduct = {
+  type: "application" | "course" 
+  id: number
+}
+
+export type Promotion = {
+  product: PromotedProduct
+  percentage: number
 }
