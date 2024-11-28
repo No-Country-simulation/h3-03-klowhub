@@ -138,55 +138,56 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
 
     return (
       <div className={`flex ${className || ""}`}>
-        <Label htmlFor={name} className={`border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 grow-0 ${labelStyles}`}>{ label }</Label>
+        <Label htmlFor={name} className={`border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 grow-0 ${labelStyles}`}>{label || "Enlace"}</Label>
         <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-r-lg flex-1 w-full sm:w-auto sm:grow-0" {...otherProps} />
       </div>
     )
   };
 
   if (type === "upload") {
-    const { control, isMulti, limit = 1, filetypes } = props;
+    const { control, isMulti, limit = 1, filetypes, dropzoneLabel } = props;
 
     return (
       <Controller 
         name={name}
         control={control}
-        render={({ field: { onChange, value } }) => {
-          return isMulti ? (
-            <div className={`${filetypes["image/*"] ? "grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start" : "flex flex-col gap-3 items-start"} ${className}`}>
-              { value.map((v: File, idx: number) => {
-                if (v.type === "application/pdf") {
-                  return (
-                    <FileBadge key={`resource-${idx}`} file={v} removeCb={() => onChange(removeImage(value, idx))} />
-                  )
-                };
+        render={({ field: { onChange, value } }) => (
+          <div className={`flex flex-col gap-5 col-span-2 ${className}`}>
+            { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
+            { isMulti ? 
+              <div className={`${filetypes["image/*"] ? "grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start" : "flex flex-col gap-3 items-start"}`}>
+                { value.map((v: File, idx: number) => {
+                  if (v.type === "application/pdf") {
+                    return (
+                      <FileBadge key={`resource-${idx}`} file={v} removeCb={() => onChange(removeImage(value, idx))} />
+                    )
+                  };
 
-                if (v.type.includes("image")) {
-                  return (
-                    <UploadedImage 
-                      key={`${name}-thumbnail-${idx}`}
-                      src={URL.createObjectURL(v)}
-                      deleteCb={() => onChange(removeImage(value, idx))}
-                    />
-                  )
-                };
-              }) }
-              { value.length < limit ?  
-                <Dropzone filetypes={filetypes} onDrop={(files) => onChange([...value, ...files])}>{ label }</Dropzone> : <></>
-              }
-            </div>
-          ) : (
-            <div className={className}>
-              { value ? 
+                  if (v.type.includes("image")) {
+                    return (
+                      <UploadedImage 
+                        key={`${name}-thumbnail-${idx}`}
+                        src={URL.createObjectURL(v)}
+                        deleteCb={() => onChange(removeImage(value, idx))}
+                      />
+                    )
+                  };
+                }) }
+                { value.length < limit ?  
+                  <Dropzone filetypes={filetypes} onDrop={(files) => onChange([...value, ...files])}>{ dropzoneLabel }</Dropzone> : <></>
+                }
+              </div>
+              :  value ? 
                 <UploadedImage 
                   src={URL.createObjectURL(value[0])}
                   deleteCb={() => onChange(null)}
                 /> :
-                <Dropzone filetypes={filetypes} onDrop={(files) => onChange(files)}>{ label }</Dropzone>
-              }
-            </div>
-          )
-        }}
+                <Dropzone filetypes={filetypes} onDrop={(files) => onChange(files)}>{ dropzoneLabel }</Dropzone>
+
+            }
+
+          </div>
+        )}
       />
     )
   };

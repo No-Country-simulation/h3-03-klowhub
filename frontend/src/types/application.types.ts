@@ -1,14 +1,14 @@
 import { PromotedProduct, Promotion, TVideo } from "./global.types";
-import { Language, Platform, TImage } from "./global.types"
+import { Platform, TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
 
 export type ApplicationInfo = {
   name: string
   summarizedDescription: string
   platform: Platform | null
-  language: Language
+  language: SelectOption
   sector: SelectOption[]
-  funcionalitites: SelectOption[]
+  functionalities: SelectOption[]
   toolsAndPlatforms: SelectOption[]
   target: string
   advantages: string

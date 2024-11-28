@@ -9,7 +9,7 @@ import { IsClientProvider } from "@/contexts/is-client.context";
 import { CircleAlert } from "lucide-react";
 import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
-import RouteBtn from "../route-btn/route-btn.component";
+import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/course-form.actions";
 
 const GeneralForm = () => {

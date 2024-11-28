@@ -22,7 +22,7 @@ export type FileType = {
 }
 
 export type PromotedProduct = {
-  type: "application" | "course" 
+  type: "application" | "course" | null
   id: number
 }
 

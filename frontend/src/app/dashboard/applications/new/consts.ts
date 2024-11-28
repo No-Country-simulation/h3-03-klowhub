@@ -11,22 +11,11 @@ export const advices = [
     }
   },
   { 
-    section: "details",
+    section: "media",
     header: "Optimizá tu perfil 2",
     text: "Optimizá tu perfil y llevá tus apps al siguiente nivel. Accedé a recursos exclusivos que te ayudarán a mejorar tus habilidades y maximizar el potencial de tus proyectos.",
     img: {
       url: "/imgs/generic-02.webp",
-      width: 1024,
-      height: 1024,
-      alt: ""
-    }
-  },
-  { 
-    section: "modules",
-    header: "Optimizá tu perfil 3",
-    text: "Optimizá tu perfil y llevá tus apps al siguiente nivel. Accedé a recursos exclusivos que te ayudarán a mejorar tus habilidades y maximizar el potencial de tus proyectos.",
-    img: {
-      url: "/imgs/generic-03.webp",
       width: 1024,
       height: 1024,
       alt: ""

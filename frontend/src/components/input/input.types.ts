@@ -53,6 +53,7 @@ type UploadInput<T extends FieldValues> = {
   isMulti?: boolean
   limit?: number
   filetypes: FileType
+  dropzoneLabel?: string
 } & ControlledInput<T>
 
 // type LinkInput<T extends FieldValues> = {

@@ -1,27 +1,23 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import useUserContent from "./hooks/use-user-content.hook";
 import Tab from "@/components/tab/tab.component";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { useWatch } from "react-hook-form";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
-import { PROMOTION_INITIAL_STATE } from "./promotions.consts";
-import { useContext } from "react";
-import { CourseCtx } from "../../context/course-form.context";
+import { PROMOTION_INITIAL_STATE } from "./promotions-section.consts";
 import { Promotion } from "@/types/global.types";
 import Input from "@/components/input/input.component";
 import ProductCard from "@/components/product-card/product-card.component";
-import { setPromotionData } from "../../context/course-form.actions";
+import { setPromotionData } from "../../context/application-form.actions";
+
+import useApplicationContext from "../../hooks/use-application-context.hook";
+import useUserContent from "@/hooks/use-user-content.hook";
 
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state, dispatch } = courseCtx
+  const [ state, dispatch ] = useApplicationContext();
 
   const {
     commonProps, 
@@ -56,8 +52,8 @@ const PromotionsSection = () => {
     <>
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-5">
-          <h3 className="font-bold">Fusiona tus cursos y apps, expande tus posibilidades</h3>
-          <p>En AppSheetHub, te damos la libertad de combinar tus aplicaciones y cursos para crear soluciones únicas y personalizadas. No te limites a una sola herramienta: potencia tu creatividad uniendo conocimientos y funcionalidades para lograr un impacto mayor. Diseña, comparte y aprende como nunca antes. ¡El límite lo pones vos!</p>
+          <h3 className="font-bold">Ofrecé tu app en combinación con otros producto</h3>
+          <p>En esta pestaña, los creadores pueden armar combos con otros productos para ofrecer descuentos.</p>
         </div>
         <Input 
           name="selection"
@@ -154,7 +150,7 @@ const PromotionsSection = () => {
         <div className="flex justify-between w-full gap-5">
           <RouteBtn 
             setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
-            route="modules"
+            route="media"
             isDirty={isDirty}
             className="mr-auto flex-1 md:grow-0"
           >

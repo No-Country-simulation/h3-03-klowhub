@@ -69,7 +69,7 @@ export type Feedback = {
 }
 
 export type CourseFormData = {
-  id?: number
+  id: number | null
   general: CourseInfo
   details: CourseDetails
   modules: Module[]

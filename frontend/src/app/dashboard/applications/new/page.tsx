@@ -1,24 +1,23 @@
 import { getQueryParams } from "@/utils/route.utils";
-import GeneralForm from "./components/general-form/general-form.component";
-import DetailsForm from "./components/details-form/details-form.component";
-import ModuleSection from "./components/modules-section/modules-section.component";
-import PromotionsSection from "./components/promotions/promotions.section";
 import Tab from "@/components/tab/tab.component";
 import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";
-// import CourseCtxProvider from "./context/course-form.context";
-import { CourseDetail } from "@/app/courses/components/detail/course-detail.component";
+import ApplicationCtxProvider from "./context/application-form.context";
+
+import GeneralForm from "./components/general-form/general-form.component";
+import PromotionsSection from "./components/promotions-section/promotions-section.component";
+import MediaForm from "./components/media-form/media-form.component";
 
 const CreateCoursePage = async () => {
   const { section } = await getQueryParams();
+  console.log('section: ', section);
 
   return (
     <>
       <main className={`flex flex-col gap-5 relative ${section === "promotion" ? "mb-32" : "mb-28"}`}>
         <div>
           <Tab active={section === "general"} className={section !== "general" ? "hidden md:inline-block" : ""}>Información general</Tab>
-          <Tab active={section === "details"} className={section !== "details" ? "hidden md:inline-block" : ""}>Detalles del curso</Tab>
-          <Tab active={section === "modules"} className={section !== "modules" ? "hidden md:inline-block" : ""}>Módulos y lecciones</Tab>
+          <Tab active={section === "media"} className={section !== "media" ? "hidden md:inline-block" : ""}>Multimedia y recursos</Tab>
           <Tab active={section === "promotion"} className={section !== "promotion" ? "hidden md:inline-block" : ""}>Promociones</Tab>
         </div>
         <div className="
@@ -31,13 +30,11 @@ const CreateCoursePage = async () => {
             w-full
             lg:w-3/4
             ">
-            {/* <CourseCtxProvider> */}
-            {/*   { section === "general" && <GeneralForm /> } */}
-              {/* { section === "details" && <DetailsForm /> } */}
-              {/* { section === "modules" && <ModuleSection /> } */}
-              {/* { section === "promotion" && <PromotionsSection /> } */}
-              {/* { section === "preview" && <CourseDetail /> } */}
-            {/* </CourseCtxProvider> */}
+            <ApplicationCtxProvider>
+              { section === "general" && <GeneralForm /> }
+              { section === "media" && <MediaForm /> }
+              { section === "promotion" && <PromotionsSection /> }
+            </ApplicationCtxProvider>
           </div>
           <div className="
             hidden

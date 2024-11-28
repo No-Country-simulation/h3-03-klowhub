@@ -62,7 +62,7 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
         <Input 
           name="videos" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
-          label="Sube los videos que deseas agregar a esta lección" { ...controlledCommonProps }
+          dropzoneLabel="Sube los videos que deseas agregar a esta lección" { ...controlledCommonProps }
           isMulti
           className="w-full"
           limit={1}
@@ -71,7 +71,7 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
         <Input 
           filetypes={{ "application/pdf": [".pdf"] }}
           name="resources" type="upload"
-          label="Sube documentos extra como manuales o guías." { ...controlledCommonProps }
+          dropzoneLabel="Sube documentos extra como manuales o guías." { ...controlledCommonProps }
           isMulti
           className="w-full md:w-64"
           limit={4}

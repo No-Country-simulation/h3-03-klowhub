@@ -6,7 +6,7 @@ import { CourseDetails } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
 import { useContext } from "react";
 import { CourseCtx } from "../../context/course-form.context";
-import RouteBtn from "../route-btn/route-btn.component";
+import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
 
 const GeneralForm = () => {
@@ -45,9 +45,8 @@ const GeneralForm = () => {
         <Input 
           name="coverImg" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
-          label="Sube una imagen para promocionar tu curso o lección" { ...controlledCommonProps }
+          dropzoneLabel="Sube una imagen para promocionar tu curso o lección" { ...controlledCommonProps }
           className="w-full md:w-64"
-          limit={1}
         />
       </form>
       <div className="

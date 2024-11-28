@@ -2,7 +2,7 @@ import { getQueryParams } from "@/utils/route.utils";
 import GeneralForm from "./components/general-form/general-form.component";
 import DetailsForm from "./components/details-form/details-form.component";
 import ModuleSection from "./components/modules-section/modules-section.component";
-import PromotionsSection from "./components/promotions/promotions.section";
+import PromotionsSection from "./components/promotions-section/promotions-section.component";
 import Tab from "@/components/tab/tab.component";
 import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";

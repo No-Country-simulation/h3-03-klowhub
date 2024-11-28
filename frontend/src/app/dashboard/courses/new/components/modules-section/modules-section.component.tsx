@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
 import CourseLesson from "../course-lesson/course-lesson.component";
-import RouteBtn from "../route-btn/route-btn.component";
+import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { CourseCtx } from "../../context/course-form.context";
 import {
   Accordion,
