@@ -90,8 +90,6 @@ export class CoursesService {
             created_at: uploadVideo.created_at,
           };
         });
-      } else {
-        console.error('Lessons is not an array in module:', module);
       }
     });
     // createCourseDto.modules.lessons. = {
