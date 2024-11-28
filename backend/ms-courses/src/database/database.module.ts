@@ -14,6 +14,7 @@ import { Course } from 'src/courses/entities/course.entity';
       database: envs.dbDatabaseName,
       entities: [Course],
       synchronize: true,
+      ssl: false,
       // logging: true,
     }),
   ],

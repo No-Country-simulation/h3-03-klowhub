@@ -6,80 +6,195 @@ export class Course {
   id: string;
 
   @Column()
-  tituloDelCurso: string;
+  title: string;
 
-  @Column({ type: 'enum', enum: ['Gratuito', 'Pago'] })
-  tipoDeCurso: string;
+  // @Column({ type: 'enum', enum: ['Gratuito', 'Pago'] })
+  // tipoDeCurso: string;
+  @Column()
+  freeContent: boolean;
 
   @Column({ type: 'enum', enum: ['Lección', 'Curso'] })
-  tipoDeContenido: string;
+  contentType: string;
 
   @Column({ type: 'text' })
-  descripcionDelCurso: string;
+  summarizeDescription: string;
 
   @Column({ type: 'enum', enum: ['Basico', 'Intermedio'] })
-  nivelDeCompetencia: string;
+  courseDifficulty: string;
 
-  @Column({ type: 'enum', enum: ['Apps sheets', 'Power Apps'] })
-  plataforma: string;
+  @Column({ type: 'enum', enum: ['Appsheet', 'PowerApps'] })
+  platform: string;
 
-  @Column()
-  idioma: string;
+  @Column({ type: 'enum', enum: ['Inglés', 'Español'] })
+  language: string;
 
-  @Column({ type: 'text' })
-  contenido: string;
+  @Column({
+    type: 'enum',
+    enum: [
+      'UX-UI',
+      'Base de datos',
+      'Expresiones y fórmulas',
+      'Automatización',
+      'Flujos de trabajo',
+      'Seguridad-Accesibilidad',
+      'General',
+      'Acciones-Behaviour',
+    ],
+  })
+  coreContent: string;
 
-  @Column({ type: 'text' })
-  funcionalidades: string;
+  // @Column({ type: 'text' })
+  // content: string;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: [
+      'Calendario',
+      'Generación de PDF',
+      'Reportes automáticos',
+      'Chatbot(BOT)',
+      'Emails',
+      'SMS',
+      'Notificaciones Push',
+      'Generación y Escaneo QR',
+      'Geolocalización',
+      'OCR',
+      'Machine Learning',
+      'Estadísticas de uso',
+      'Dashboard - Repostes y analisis',
+    ],
+  })
+  functionalities: string;
+
+  @Column({
+    type: 'enum',
+    enum: [
+      'Industria',
+      'Gestión del tiempo',
+      'Gestión de proyectos',
+      'Gestión de inventarios',
+      'Ventas y CRM',
+      'Obras y contrucción',
+      'Logistica y transporte',
+      'Servicios profesionales',
+      'Marketing digital',
+      'E-Commerce',
+      'Entretenimiento y medios',
+      'Seguridad y vigilancia',
+      'Investigación y desarrollo',
+      'Agricultura y medio ambiente',
+      'Administración',
+    ],
+  })
   sector: string;
 
-  @Column({ type: 'text' })
-  herramientasYPlataformas: string;
+  @Column({
+    type: 'enum',
+    enum: [
+      'Google Sheets',
+      'Looker Studio',
+      'MySQL',
+      'PostgreSQL',
+      'Salesforce',
+      'Airtable',
+      'Dropbox',
+      'Box',
+      'Google Analitics',
+      'Zapier',
+      'Wordpress',
+      'Shopify',
+      'WhasApp API',
+      'Powe BI',
+      'Twilo',
+      'Trello',
+      'Google Calendar',
+      'Google Drive',
+      'Google Maps',
+      'Gestión de Usuarios',
+      'Reporting avanzado',
+      'Integración de datos',
+      'Gestión de permisos',
+      'Analisis de datos',
+      'Optimización Performance',
+      'Despliegue Deploy',
+      'Importación - exportación de datos',
+      'Firmas digitales',
+      'Escaneo de documentos',
+      'Monitor de automatizaciones',
+      'Historial de auditoria',
+      'API - Integraciones',
+    ],
+  })
+  toolsAndPlatform: string;
 
   @Column({ type: 'text' })
-  etiquetas: string;
+  tags: string;
+  //learningSubjects cambiarlo a array de strings
+  @Column({ type: 'text', array: true })
+  learningSubjects: string[];
 
   @Column({ type: 'text' })
-  enseñanzas: string;
+  prevRequirements: string;
 
   @Column({ type: 'text' })
-  requisitosPrevios: string;
+  detailedDescription: string;
 
-  @Column({ type: 'text' })
-  descripcionDetallada: string;
+  //nuevo atributo
+  @Column('json')
+  modules: {
+    title: string;
+    description: string;
+    lessons: {
+      free: boolean;
+      title: string;
+      description: string;
+      video: {
+        url: string;
+        duration: number;
+        size: number;
+        resolution: string;
+        format: string;
+        width: string;
+        height: string;
+        created_at: string;
+      };
+    }[];
+  }[];
 
   @Column()
-  imagenDePortada: string;
+  link: string;
 
-  @Column()
-  tituloDelModulo: string;
-
-  @Column({ type: 'text' })
-  descripcionDelModulo: string;
-
-  @Column()
-  tituloDeLaLeccion: string;
-
-  @Column({ type: 'text' })
-  descripcionDeLaLeccion: string;
-
-  @Column({ type: 'text' })
-  contenidoDeLaLeccion: string;
-
-  @Column({ type: 'text' })
-  materialAdicional: string;
-
-  @Column({ type: 'boolean' })
-  descuento: boolean;
-
-  @Column({ type: 'boolean' })
-  promociones: boolean;
-
-  @Column({ type: 'int', nullable: true })
-  porcentajeDeDescuento: number | null;
+  @Column({ type: 'jsonb', nullable: true })
+  //aqui se envia el pdf
+  resource: {
+    url: string;
+    size: number;
+    mimeType: string;
+    created_at: string;
+  }[];
+  // Imagen del curso
+  @Column('json')
+  coverImg: {
+    url: string;
+    size: number;
+    width: number;
+    height: number;
+    format: string;
+    created_at: string;
+  };
+  //promotion puede ser null hacerlo en el DTO
+  @Column('json', { nullable: true })
+  promotion: {
+    product: {
+      id: string;
+      type: string;
+    };
+    percentage: number;
+  };
 
   @Column({ type: 'boolean', default: true })
   available: boolean;
+
+  @Column({ type: 'int' })
+  price: number;
 }

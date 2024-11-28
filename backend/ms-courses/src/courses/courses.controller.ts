@@ -8,18 +8,85 @@ import {
   Delete,
   NotFoundException,
   BadRequestException,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import {
+  CloudinaryUploadFailedException,
+  CourseCreationFailedException,
+  CourseImageSizeFailed,
+  CourseVideoSizeFailed,
+  ImageFileMissingException,
+  PDF_FileSize,
+  VideoFileMissingException,
+} from 'src/custom-exceptions/custom-exceptions';
 
 @Controller('courses')
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
-
   @Post()
-  create(@Body() createCourseDto: CreateCourseDto) {
-    return this.coursesService.create(createCourseDto);
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'coverImg', maxCount: 1 },
+      { name: 'video', maxCount: 1 },
+      { name: 'resource', maxCount: 3 },
+    ]),
+  )
+  async create(
+    @Body() createCourseDto: CreateCourseDto,
+    @UploadedFiles()
+    files: {
+      coverImg?: Express.Multer.File[];
+      video?: Express.Multer.File[];
+      resource?: Express.Multer.File[];
+    },
+  ) {
+    const imagenFile = files.coverImg?.[0];
+    const videoFile = files.video?.[0];
+    const documentFile = files.resource?.[0];
+    try {
+      return await this.coursesService.create(
+        createCourseDto,
+        imagenFile,
+        videoFile,
+        documentFile,
+      );
+    } catch (error) {
+      if (error instanceof ImageFileMissingException) {
+        throw new BadRequestException('La imagen del curso es requerida');
+      }
+      if (error instanceof CloudinaryUploadFailedException) {
+        throw new BadRequestException(
+          'Error de cloudinary al cargar la imagen',
+        );
+      }
+      if (error instanceof CourseCreationFailedException) {
+        throw new BadRequestException('Error al crear el curso');
+      }
+      if (error instanceof CourseImageSizeFailed) {
+        throw new BadRequestException(
+          'La imagen del curso excede el tamaño máximo permitido de 100 KB',
+        );
+      }
+      if (error instanceof CourseVideoSizeFailed) {
+        throw new BadRequestException(
+          'El archivo del video excede el máximo permitido de 100 MB',
+        );
+      }
+      if (error instanceof VideoFileMissingException) {
+        throw new BadRequestException('El video del curso es requerido');
+      }
+      if (error instanceof PDF_FileSize) {
+        throw new BadRequestException('El pdf no debe ser mayor de 3 MB');
+      }
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
+    }
   }
 
   @Get()
