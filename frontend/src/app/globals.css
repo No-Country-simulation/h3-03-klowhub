@@ -26,7 +26,10 @@ body {
 
     --kPurple: #1B1C44;
 
+    --gray-50: #49515D;
     --gray-100: #353E4B;
+    --gray-200: #2A3441;
+
     --background: 0 0% 100%;
     --foreground: 0 0% 100%;
     --card: #1F2937;

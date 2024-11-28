@@ -6,9 +6,9 @@ import Pager from "@/components/pager/pager.component";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import { categories } from "@/mocks/categories.mocks";
 import { getQueryParams } from "@/utils/route.utils";
-import { TProduct } from "@/components/product-card/product-card.types";
 import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
+import { QuickView as TQuickVIew } from "@/components/product-card/product-card.types";
 
 import { sector, plaform, language, functionalities, toolsAndPlatforms, coreContent, level, contentType } from "@/consts/filters.consts";
 
@@ -23,11 +23,11 @@ const filters = [
   toolsAndPlatforms
 ];
 
-const endpoint = "http://localhost:3000/api/products";
+const endpoint = "http://localhost:3000/api/courses?withAuthor=true";
 
 const getProducts = async (endpoint: string) => {
   const res = await fetch(endpoint, { cache: "force-cache" });
-  const items: { data: TProduct[] } = await res.json();
+  const items: { data: TQuickVIew[] } = await res.json();
   return items
 };
 

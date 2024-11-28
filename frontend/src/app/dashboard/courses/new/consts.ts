@@ -33,7 +33,7 @@ export const advices = [
     }
   },
   { 
-    section: "promotions",
+    section: "promotion",
     header: "Optimizá tu perfil 4",
     text: "Optimizá tu perfil y llevá tus apps al siguiente nivel. Accedé a recursos exclusivos que te ayudarán a mejorar tus habilidades y maximizar el potencial de tus proyectos.",
     img: {

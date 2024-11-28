@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { getPathname } from "@/utils/route.utils";
+import Overlay from "../overlay/overlay.component";
 
 type FilterModalProps = {
   children: ReactNode | ReactNode[]
@@ -14,7 +15,7 @@ const SideModal = async ({ children, background }: FilterModalProps) => {
   return (
     <>
       <Link href={`${pathname}`} scroll={false}>
-        <div className={`opacity-70 cursor-pointer fixed w-screen h-screen bg-black top-0 left-0 z-[9999]`} />
+        <Overlay />
       </Link>
 
       <div className={`
