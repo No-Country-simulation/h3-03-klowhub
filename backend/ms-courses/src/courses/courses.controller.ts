@@ -32,7 +32,7 @@ export class CoursesController {
   @UseInterceptors(
     FileFieldsInterceptor([
       { name: 'coverImg', maxCount: 1 },
-      { name: 'video', maxCount: 1 },
+      { name: 'modules[0][lessons][0][videos]', maxCount: 1 },
       { name: 'resource', maxCount: 3 },
     ]),
   )
@@ -41,14 +41,58 @@ export class CoursesController {
     @UploadedFiles()
     files: {
       coverImg?: Express.Multer.File[];
-      video?: Express.Multer.File[];
+      modules?: { lessons?: { videos?: Express.Multer.File[] }[] }[];
       resource?: Express.Multer.File[];
     },
   ) {
+    console.log('Body recibido:', createCourseDto); // Log del cuerpo recibido
+    console.log('Archivos recibidos:', files); // Log de los archivos recibidos
+    //const { modules } = createCourseDto;
+    // Verifica si coverImg está presente en los archivos
+    if (!files.coverImg || files.coverImg.length === 0) {
+      console.log('coverImg no encontrado:', files.coverImg); // Si falta la imagen
+      throw new BadRequestException('La imagen del curso es requerida');
+    }
     const imagenFile = files.coverImg?.[0];
-    const videoFile = files.video?.[0];
+    const videoFile = files['modules[0][lessons][0][videos]']?.[0];
     const documentFile = files.resource?.[0];
+
+    if (!videoFile) {
+      console.log(
+        'Video no encontrado:',
+        files['modules[0][lessons][0][videos]'],
+      ); // Si falta el video
+
+      throw new BadRequestException('El video del curso es requerido');
+    }
+
+    // Iterar sobre los módulos y lecciones para validar y asignar videos
+    // modules.forEach((module, moduleIndex) => {
+    //   if (module.lessons) {
+    //     module.lessons.forEach((lesson, lessonIndex) => {
+    //       const videoFileKey = `modules[${moduleIndex}][lessons][${lessonIndex}][videos]`;
+    //       const lessonVideoFile = files[videoFileKey]?.[0];
+
+    //       // Asignar el archivo de video a la lección correspondiente
+    //       if (lessonVideoFile) {
+    //         lesson.video = lessonVideoFile;
+    //       } else {
+    //         // Si falta el video en la lección, lanzar un error
+    //         throw new BadRequestException(
+    //           `El video para la lección "${lesson.title}" es requerido`,
+    //         );
+    //       }
+    //     });
+    //   }
+    // });
+
     try {
+      console.log('Datos enviados al servicio:', {
+        createCourseDto,
+        imagenFile,
+        videoFile,
+        documentFile,
+      }); // Log de los datos antes de enviar al servicio
       return await this.coursesService.create(
         createCourseDto,
         imagenFile,
@@ -56,6 +100,7 @@ export class CoursesController {
         documentFile,
       );
     } catch (error) {
+      console.error('Error capturado en catch:', error); // Log del error capturado
       if (error instanceof ImageFileMissingException) {
         throw new BadRequestException('La imagen del curso es requerida');
       }
