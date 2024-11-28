@@ -57,12 +57,10 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
           className="w-full"
         />
         <Input 
-          name="videos" type="upload"
-          filetypes={{ "image/*": [".png", ".jpg"] }}
-          dropzoneLabel="Sube los videos que deseas agregar a esta lección" { ...controlledCommonProps }
-          isMulti
+          name="video" type="upload"
+          filetypes={{ "video/mp4": [".mp4"] }}
+          dropzoneLabel="Sube el video de esta lección" { ...controlledCommonProps }
           className="w-full"
-          limit={1}
         />
         <h3 className="col-span-2 font-bold">Material adicional</h3>
         <Input 

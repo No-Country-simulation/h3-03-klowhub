@@ -1,5 +1,4 @@
-import React, {ReactNode, useCallback} from 'react'
-import { DropzoneState } from 'react-dropzone'
+import React, {ReactNode} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { CloudUpload } from 'lucide-react'
 import { FileType } from '@/types/global.types'
@@ -8,13 +7,15 @@ type Props = {
   children: ReactNode
   onDrop: (files: File[]) => void
   filetypes: FileType
+  isMulti?: boolean
+  limit?: number
 }
 
-const Dropzone = ({ children, onDrop, filetypes }: Props) => {
+const Dropzone = ({ children, onDrop, filetypes, isMulti }: Props) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: onDrop,
     accept: filetypes,
-    maxFiles: 1
+    multiple: isMulti,
   })
 
   return (

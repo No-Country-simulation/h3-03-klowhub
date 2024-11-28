@@ -20,12 +20,14 @@ type CourseCtxType = {
 const submit = async (data: CourseFormData) => {
   const { general, details, modules, promotion, id } = data;
 
-  const destructured = { ...general, ...details, modules, promotion, id };
-  destructured.coverImg = destructured.coverImg[0]
+  const formattedData = { ...general, ...details, modules, promotion, id };
+  console.log("creating course: ", formattedData);
+
+  // console.log('destructured: ', destructured);
 
   const formData = new FormData();
-  for (const key in destructured) {
-    formData.append(key, destructured[key])
+  for (const key in formattedData) {
+    formData.append(key, formattedData[key])
   }
   const res = await fetch('http://localhost:3003/courses', { 
     method: 'post',

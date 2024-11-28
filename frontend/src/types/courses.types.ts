@@ -45,7 +45,7 @@ export type Lesson = {
   id?: string
   title: string
   description: string
-  videos: File[]
+  video: File
   resources: Resource[]
   link: string
   free: boolean

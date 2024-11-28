@@ -12,14 +12,12 @@ import { FieldValues } from "react-hook-form";
 import Dropzone from "../dropzone/dropzone.component";
 import { removeImage } from "./input.utils";
 import UploadedImage from "../uploaded-image/uploaded-image.component";
-import { Files, X, Plus, Minus } from "lucide-react";
+import { X, Plus } from "lucide-react";
 import FileBadge from "../file-badge/file-badge.component";
 import { Button } from "../ui/button";
 
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
-import { Badge } from "../ui/badge";
-import { humanFileSize } from "@/utils/file.utils";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -146,6 +144,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
 
   if (type === "upload") {
     const { control, isMulti, limit = 1, filetypes, dropzoneLabel } = props;
+    console.log('limit in input: ', limit);
 
     return (
       <Controller 
@@ -174,15 +173,22 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                   };
                 }) }
                 { value.length < limit ?  
-                  <Dropzone filetypes={filetypes} onDrop={(files) => onChange([...value, ...files])}>{ dropzoneLabel }</Dropzone> : <></>
+                  <Dropzone 
+                    isMulti 
+                    limit={limit} 
+                    filetypes={filetypes} 
+                    onDrop={(files) => value.length + files.length <= limit && onChange([...value, ...files])}
+                  >
+                    { dropzoneLabel }
+                  </Dropzone> : <></>
                 }
               </div>
               :  value ? 
                 <UploadedImage 
-                  src={URL.createObjectURL(value[0])}
+                  src={URL.createObjectURL(value)}
                   deleteCb={() => onChange(null)}
                 /> :
-                <Dropzone filetypes={filetypes} onDrop={(files) => onChange(files)}>{ dropzoneLabel }</Dropzone>
+                <Dropzone isMulti filetypes={filetypes} onDrop={(files) => onChange(files[0])}>{ dropzoneLabel }</Dropzone>
 
             }
 
