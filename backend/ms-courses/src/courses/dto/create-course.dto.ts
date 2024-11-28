@@ -195,6 +195,7 @@ export class CreateCourseDto {
   funcionalidades: string;
 
   @IsNotEmpty()
+  @IsArray()
   @IsEnum([
     'Industria',
     'Gestión del tiempo',
@@ -212,7 +213,7 @@ export class CreateCourseDto {
     'Agricultura y medio ambiente',
     'Administración',
   ])
-  sector: string;
+  sector: string[];
 
   @IsNotEmpty()
   @IsEnum([

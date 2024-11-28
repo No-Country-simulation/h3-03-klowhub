@@ -33,7 +33,9 @@ export default {
     			'secondary-400': 'var(--secondary-400)',
     			'secondary-800': 'var(--secondary-800)',
     			'kPurple': 'var(--kPurple)',
+    			'gray-50': 'var(--gray-50)',
     			'gray-100': 'var(--gray-100)',
+    			'gray-200': 'var(--gray-200)',
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			card: {

@@ -17,7 +17,7 @@ export class Course {
   contentType: string;
 
   @Column({ type: 'text' })
-  summarizeDescription: string;
+  shortDescription: string;
 
   @Column({ type: 'enum', enum: ['Basico', 'Intermedio'] })
   courseDifficulty: string;
@@ -67,6 +67,7 @@ export class Course {
   functionalities: string;
 
   @Column({
+    array: true,
     type: 'enum',
     enum: [
       'Industria',
@@ -86,7 +87,10 @@ export class Course {
       'Administración',
     ],
   })
-  sector: string;
+  sector: string[];
+
+  // @Column({ type: 'text', array: true })
+  // learningSubjects: string[];
 
   @Column({
     type: 'enum',
@@ -137,7 +141,7 @@ export class Course {
   prevRequirements: string;
 
   @Column({ type: 'text' })
-  detailedDescription: string;
+  fullDescription: string;
 
   //nuevo atributo
   @Column('json')

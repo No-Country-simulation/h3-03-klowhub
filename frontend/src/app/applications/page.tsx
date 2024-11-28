@@ -8,7 +8,7 @@ import ProductCard from "@/components/product-card/product-card.component";
 import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 import { getQueryParams } from "@/utils/route.utils";
-import { TProduct } from "@/components/product-card/product-card.types";
+import { QuickView as TQuickView } from "@/components/product-card/product-card.types";
 
 const filters = [
   plaform,
@@ -18,11 +18,11 @@ const filters = [
   toolsAndPlatforms
 ];
 
-const endpoint = "http://localhost:3000/api/products";
+const endpoint = "http://localhost:3000/api/applications?withAuthor=true";
 
 const getProducts = async (endpoint: string) => {
   const res = await fetch(endpoint, { cache: "force-cache" });
-  const items: { data: TProduct[] } = await res.json();
+  const items: { data: TQuickView[] } = await res.json();
   return items
 };
 

@@ -9,6 +9,7 @@ function useGenerateForm <F extends FieldValues>(defaultValues: DefaultValues<F>
   const commonProps = {
     register: form.register,
     errors: form.formState.errors,
+    // isDirty: form.formState.isDirty
   };
 
   const controlledCommonProps = {

@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Video, Clock3 } from "lucide-react";
+import { IconTypes } from "../icon/icon.types";
 
 type QuickViewProps = {
   products: TProduct[]
@@ -44,7 +45,7 @@ const QuickView = async ({ products }: QuickViewProps) => {
       <p>{ description }</p>
       <div>
         <Badge
-          icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
+          icon={<Icon name={getSlug(platform) as IconTypes} />}
           className="bg-gray-100 text-white"
         >
           {platform}
