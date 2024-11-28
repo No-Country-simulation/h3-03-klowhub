@@ -1,7 +1,7 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component"
 import MyCoursesDesktopView from "@/app/(site)/dashboard/courses/_views/desktop.view";
 import MyCoursesMobileView from "@/app/(site)/dashboard/courses/_views/mobile.view";
-import { filterData } from "@/app/(site)/dashboard/courses/_utils/my-courses.utils";
+import { filterData, sortData } from "@/app/(site)/dashboard/courses/_utils/my-courses.utils";
 import { Button } from "@/components/ui/button";
 import { soldCoursesData } from "@/mocks/sold-courses.mocks";
 import { transactionsData } from "@/mocks/transactions.mocks";
@@ -16,8 +16,9 @@ const inter = Inter({
 
 const MyCoursesPage = async () => {
 
-    const { filterBy, from, to, items } = await getQueryParams();
+    const { sortBy, order, filterBy, from, to, items } = await getQueryParams();
     const filteredData = filterData(filterBy, { from: from, to: to, items: items }, transactionsData)
+    const sortedData = sortData(sortBy, order, filteredData)
 
     return (
         <main className={`${inter.className} w-full tracking-wide pb-28`}>
@@ -29,8 +30,8 @@ const MyCoursesPage = async () => {
                     <h3 className="text-base font-bold">Mis cursos</h3>
                     <Button className="sm:w-[250px] w-full">Crear curso</Button>
                 </div>
-                <MyCoursesDesktopView transactionsData={filteredData} soldCoursesData={soldCoursesData} />
-                <MyCoursesMobileView transactionsData={filteredData} soldCoursesData={soldCoursesData} />
+                <MyCoursesDesktopView transactionsData={sortedData} soldCoursesData={soldCoursesData} />
+                <MyCoursesMobileView transactionsData={sortedData} soldCoursesData={soldCoursesData} />
             </div>
         </main>
     )

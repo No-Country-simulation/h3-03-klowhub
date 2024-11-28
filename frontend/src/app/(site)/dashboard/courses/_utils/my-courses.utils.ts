@@ -1,6 +1,6 @@
 const formatDate = (date: Date) => {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Mes comienza desde 0
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
   
     return `${year}-${month}-${day}`;
@@ -47,5 +47,70 @@ const formatDate = (date: Date) => {
     return filteredData;
 };
 
-  export {today, startOfMonth, threeMonthsAgo, startOfYear, filterData}
+const sortByCustomerName = (order: string, data: Transaction[]) => {
+    console.log("entro")
+    return data.sort((a, b) => {
+        const nameA = a.customerName.trim().toLowerCase();
+        const nameB = b.customerName.trim().toLowerCase();
+
+        console.log(nameA, nameB)
+        
+        const comparison = nameA.localeCompare(nameB);
+        return order === "asc" ? comparison : -comparison;
+    });
+};
+
+const sortByAmount = (order: string, data: Transaction[]) => {
+    return data.sort((a, b) => {
+        return order === "asc" ?  b.amount - a.amount : a.amount - b.amount;
+    });
+};
+
+const sortByState = (order: string, data: Transaction[]) => {
+    return data.sort((a, b) => {
+        const comparison = a.status.localeCompare(b.status);
+        return order === "asc" ? comparison : -comparison;
+    });
+};
+
+const sortByDate = (order: string, data: Transaction[]) => {
+    return data.sort((a, b) => {
+        const dateA = new Date(a.date).getTime();
+        const dateB = new Date(b.date).getTime();
+        return order === "asc" ? dateA - dateB : dateB - dateA;
+    });
+};
+
+const sortData = (
+    sortBy: string,
+    order : string ,
+    data: Transaction[]
+): Transaction[] => {
+    let sortedData = [...data];
+
+    switch (sortBy) {
+        case "customerName":
+            sortedData = sortByCustomerName(order, data);
+            break;
+
+        case "amount":
+            sortedData = sortByAmount(order, data);
+            break;
+
+        case "state":
+            sortedData = sortByState(order, data);
+            break;
+
+        case "date":
+            sortedData = sortByDate(order, data);
+            break;
+
+        default:
+            break;
+    }
+
+    return sortedData;
+};
+
+  export {today, startOfMonth, threeMonthsAgo, startOfYear, filterData, sortData}
 

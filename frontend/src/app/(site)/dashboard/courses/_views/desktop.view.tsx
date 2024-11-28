@@ -9,6 +9,7 @@ import { Table, TableBody, TableHead, Td, Th, TRow } from "../../../../../compon
 import DatePickerWithRange from "../../../../../components/date-picker/date-range-picker";
 import { getPathname, getQueryParams } from "@/utils/route.utils";
 import TransactionRow from "../_components/transaction-row/transaction-row.component";
+import SortingLinks from "../_components/sorting-modal/sorting-links.component";
 
 type Props = {
     soldCoursesData: SoldCourse[]
@@ -18,28 +19,21 @@ type Props = {
 const MyCoursesDesktopView = async ({ transactionsData, soldCoursesData }: Props) => {
 
     const pathname = await getPathname();
-    const { from, to } = await getQueryParams();
+    const { filterBy, sortBy, from, to, order } = await getQueryParams();
 
     return (
         <Card className="hidden md:flex py-5 mx-auto">
             <CardContent className="flex flex-col gap-14">
                 <div className="flex justify-between xl:w-2/3 w-full">
                     <div>
-                        <CustomTab section="section=transactions&filterBy=limit&items=5">Últimos movimientos</CustomTab>
-                        <CustomTab section={`section=transactions&filterBy=date&from=${startOfMonth}&to=${today}`}>Este mes</CustomTab>
-                        <CustomTab section={`section=transactions&filterBy=date&from=${threeMonthsAgo}&to=${today}`}>3 Meses</CustomTab>
-                        <CustomTab section={`section=transactions&filterBy=date&from=${startOfYear}&to=${today}`}>Este año</CustomTab>
+                        <CustomTab section={`section=transactions&filterBy=limit&items=5&sortBy=${sortBy}&order=${order}`}>Últimos movimientos</CustomTab>
+                        <CustomTab section={`section=transactions&filterBy=date&from=${startOfMonth}&to=${today}&sortBy=${sortBy}&order=${order}`}>Este mes</CustomTab>
+                        <CustomTab section={`section=transactions&filterBy=date&from=${threeMonthsAgo}&to=${today}&sortBy=${sortBy}&order=${order}`}>3 Meses</CustomTab>
+                        <CustomTab section={`section=transactions&filterBy=date&from=${startOfYear}&to=${today}&sortBy=${sortBy}&order=${order}`}>Este año</CustomTab>
                     </div>
                     <div className="flex gap-4">
-                        <DatePickerWithRange from={from} to={to} pathname={pathname} />
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="border-[#D194E2] bg-transparent text-[#D194E2]"
-                        >
-                            <ListOrdered />
-                            <span className="hidden md:block">Ordenar por</span>
-                        </Button>
+                        <DatePickerWithRange from={from} to={to} pathname={pathname} sortBy={sortBy} order={order} />
+                        <SortingLinks pathname={pathname} filterBy={filterBy} from={from} to={to} sortBy={sortBy} order={order} />
                     </div>
                 </div>
                 <div className="px-5 flex gap-5 xl:flex-row flex-col">
