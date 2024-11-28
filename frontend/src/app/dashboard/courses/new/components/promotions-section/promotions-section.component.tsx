@@ -12,6 +12,7 @@ import { Promotion } from "@/types/global.types";
 import Input from "@/components/input/input.component";
 import ProductCard from "@/components/product-card/product-card.component";
 import { setPromotionData } from "../../context/course-form.actions";
+import { Button } from "@/components/ui/button";
 
 type ContentType = "applications" | "courses"
 
@@ -164,6 +165,16 @@ const PromotionsSection = () => {
           >
             Vista previa del curso
           </RouteBtn>
+          <Button 
+            type="button"
+            onClick={ handleSubmit( data => {
+              dispatch(setPromotionData(data)) 
+              console.log('state: ', state);
+            } ) }
+            className="mr-auto flex-1 md:grow-0"
+          >
+            Probar
+          </Button>
           <RouteBtn 
             setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
             route="temporary-route"
