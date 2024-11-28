@@ -4,17 +4,12 @@ import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { CourseDetails } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
-import { useContext } from "react";
-import { CourseCtx } from "../../context/course-form.context";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
+import useCourseContext from "../../hooks/use-course-context.hook";
 
 const GeneralForm = () => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state, dispatch } = courseCtx
+  const { state, dispatch } = useCourseContext();
 
   const {
     controlledCommonProps, 

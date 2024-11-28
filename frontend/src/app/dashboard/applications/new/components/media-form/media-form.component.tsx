@@ -14,7 +14,7 @@ import { ApplicationMedia } from "@/types/application.types";
 import { Badge } from "@/components/ui/badge";
 
 const MediaForm = () => {
-  const [ state, dispatch ] = useApplicationContext();
+  const { state, dispatch } = useApplicationContext();
 
   const {
     commonProps, 
@@ -24,14 +24,11 @@ const MediaForm = () => {
     formState: { isDirty }
   } = useGenerateForm<ApplicationMedia>(APPLICATION_MEDIA_INITIAL_STATE, state.media || APPLICATION_MEDIA_INITIAL_STATE);
 
-  const { watch, commonProps: radioCommonProps } = useGenerateForm<{ selection: boolean }>({ selection: false }, { selection: false });
-
-  const [ showSelector, setShowSelector ] = useState(true);
   const [ contentType, setContentType] = useState<ContentType>('applications');
 
   useEffect(() => {
     reset()
-  }, [contentType, reset, showSelector])
+  }, [contentType, reset])
 
   return (
     <>

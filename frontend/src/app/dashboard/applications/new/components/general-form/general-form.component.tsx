@@ -11,7 +11,7 @@ import { setGeneralData } from "../../context/application-form.actions";
 import { APPLICATION_INFO_INITIAL_STATE } from "./general-form.consts";
 
 const GeneralForm = () => {
-  const [ state, dispatch ] = useApplicationContext();
+  const { state, dispatch } = useApplicationContext();
 
   const {
     commonProps, 

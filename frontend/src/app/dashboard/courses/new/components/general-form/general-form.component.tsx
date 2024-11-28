@@ -7,17 +7,12 @@ import Input from "@/components/input/input.component";
 import { language, coreContent, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import { CircleAlert } from "lucide-react";
-import { useContext } from "react";
-import { CourseCtx } from "../../context/course-form.context";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/course-form.actions";
+import useCourseContext from "../../hooks/use-course-context.hook";
 
 const GeneralForm = () => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state, dispatch } = courseCtx
+  const { state, dispatch } = useCourseContext();
 
   const {
     commonProps, 

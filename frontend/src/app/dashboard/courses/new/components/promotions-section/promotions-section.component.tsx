@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
-  const [ state, dispatch ] = useCourseContext();
+  const { state, dispatch, submit } = useCourseContext();
 
   const {
     commonProps, 
@@ -167,15 +167,7 @@ const PromotionsSection = () => {
           </RouteBtn>
           <Button 
             type="button"
-            onClick={ handleSubmit( async (data) => {
-              dispatch(setPromotionData(data)) 
-              const res = await fetch("http://localhost:3003/courses", {
-                method: "post",
-                body: JSON.stringify(data)
-              })
-              const createdCourse = await res.json();
-              console.log('createdCourse: ', createdCourse);
-            } ) }
+            onClick={ handleSubmit(data => submit({ ...state, promotion: data })) }
             className="mr-auto flex-1 md:grow-0"
           >
             Probar

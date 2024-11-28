@@ -3,12 +3,18 @@ import { CourseCtx } from "../context/course-form.context";
 import { CourseFormData } from "@/types/courses.types";
 import { CourseFormActions } from "../context/course-form.actions";
 
-const useCourseContext = (): [ CourseFormData, Dispatch<CourseFormActions> ] => {
+type Return = {
+  state: CourseFormData
+  dispatch: Dispatch<CourseFormActions>
+  submit: (data: CourseFormData) => void
+}
+
+const useCourseContext = (): Return => {
   const courseContext = useContext(CourseCtx);
   if (!courseContext) throw new Error("no context found");
-  const { state, dispatch } = courseContext
+  const { state, dispatch, submit } = courseContext
 
-  return [ state, dispatch ]
+  return { state, dispatch, submit }
 };
 
 export default useCourseContext

@@ -6,10 +6,7 @@ import { Lesson } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
-import { useContext } from "react";
-import { CourseCtx } from "../../context/course-form.context";
-import { setModulesData } from "../../context/course-form.actions";
-import { FieldValues, Path, UseFormGetValues, UseFormSetValue } from "react-hook-form";
+import { FieldValues, UseFormGetValues, UseFormSetValue } from "react-hook-form";
 import { X } from "lucide-react";
 
 type Props<F extends FieldValues> = {

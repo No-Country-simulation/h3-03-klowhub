@@ -12,9 +12,30 @@ type Props = {
 }
 
 type CourseCtxType = {
-  state: CourseFormData,
+  state: CourseFormData
   dispatch: Dispatch<CourseFormActions>
+  submit: (data: CourseFormData) => void
 }
+
+const submit = async (data: CourseFormData) => {
+  const { general, details, modules, promotion, id } = data;
+
+  const destructured = { ...general, ...details, modules, promotion, id };
+  destructured.coverImg = destructured.coverImg[0]
+
+  const formData = new FormData();
+  for (const key in destructured) {
+    formData.append(key, destructured[key])
+  }
+  const res = await fetch('http://localhost:3003/courses', { 
+    method: 'post',
+    body: formData,
+  });   
+
+  const createdCourse = await res.json();
+  console.log('createdCourse: ', createdCourse);
+};
+
 export const CourseCtx = createContext<CourseCtxType | undefined>(undefined)
 
 const CourseCtxProvider = ({ children }: Props) => {
@@ -23,7 +44,7 @@ const CourseCtxProvider = ({ children }: Props) => {
   useEffect(() => { console.log('state', state) }, [ state ])
 
   return (
-    <CourseCtx.Provider value={{ state, dispatch }}>{ children }</CourseCtx.Provider>
+    <CourseCtx.Provider value={{ state, dispatch, submit }}>{ children }</CourseCtx.Provider>
   )
 };
 
