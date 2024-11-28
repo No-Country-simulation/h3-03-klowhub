@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import useCalendar from "./date-picker.utils";
 import Icon from "../icon/icon.component";
 import Link from "next/link";
@@ -10,14 +10,17 @@ import {
 } from "./calendar.component";
 import { CalendarSearch, X } from "lucide-react";
 import { Button } from "../ui/button";
+import useClickOutside from "@/hooks/use-click-outside.hook";
 
 type Props = {
     from: string;
     to: string;
     pathname: string;
+    sortBy: string;
+    order: string;
 };
 
-const DatePickerWithRange = ({ from, to, pathname }: Props) => {
+const DatePickerWithRange = ({ from, to, pathname, sortBy, order }: Props) => {
     const {
         monthName,
         year,
@@ -30,30 +33,27 @@ const DatePickerWithRange = ({ from, to, pathname }: Props) => {
         dateToString,
         formatToShortDate
     } = useCalendar();
+    const dateRef = useRef<HTMLDivElement>(null);
+    const [isShow, setIsShow] = useState(false);
 
-    const [isShow, setIsSHow] = useState(false);
+    useClickOutside(dateRef, () => setIsShow(false));
 
     return (
-        <div className="relative">
+        <div className="relative" ref={dateRef}>
             <Button
                 variant="outline"
                 size="sm"
                 className="border-[#D194E2] bg-transparent text-[#D194E2]"
-                onClick={() => setIsSHow(!isShow)}
+                onClick={() => setIsShow(!isShow)}
             >
                 <CalendarSearch />
                 <span className="hidden md:block">Filtrar por fecha</span>
             </Button>
             {isShow && (
-                <div className="shadow-md bg-slate-900 rounded-lg flex flex-col gap-5 p-5 absolute right-0 top-2 w-fit">
-                    <div className="flex justify-between">
-                        <div className="flex gap-4">
-                            <span className="pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(from)}</span>
-                            <span className="pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(to)}</span>
-                        </div>
-                        <button onClick={() => setIsSHow(!isShow)}>
-                            <X />
-                        </button>
+                <div className="shadow-md bg-slate-900 rounded-lg flex flex-col gap-5 p-5 absolute right-0 top-2">
+                    <div className="flex gap-4">
+                        <span className="w-full pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(from)}</span>
+                        <span className="w-full pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(to)}</span>
                     </div>
                     <CalendarHeader>
                         <div className="w-full flex justify-between">
@@ -107,27 +107,27 @@ const DatePickerWithRange = ({ from, to, pathname }: Props) => {
                                 }
 
                                 const href = isFrom
-                                    ? `${pathname}?section=transactions&filterBy=date&from=${from}&to=${from}`
+                                    ? `${pathname}?section=transactions&filterBy=date&from=${from}&to=${from}&orderBy=${sortBy}&order=${order}`
                                     : isTo
-                                        ? `${pathname}?section=transactions&filterBy=date&from=${to}&to=${to}`
+                                        ? `${pathname}?section=transactions&filterBy=date&from=${to}&to=${to}&orderBy=${sortBy}&order=${order}`
                                         : isInRange
                                             ? Math.abs(currentDate.getTime() - fromDate!.getTime()) <
                                                 Math.abs(toDate!.getTime() - currentDate.getTime())
                                                 ? `${pathname}?section=transactions&filterBy=date&from=${dateToString(
                                                     currentDate
-                                                )}&to=${to}`
+                                                )}&to=${to}&orderBy=${sortBy}&order=${order}`
                                                 : `${pathname}?section=transactions&filterBy=date&from=${from}&to=${dateToString(
                                                     currentDate
-                                                )}`
+                                                )}&orderBy=${sortBy}&order=${order}`
                                             : !fromDate || currentDate < fromDate
                                                 ? `${pathname}?section=transactions&filterBy=date&from=${dateToString(
                                                     currentDate
                                                 )}&to=${dateToString(
                                                     currentDate
-                                                )}`
+                                                )}&orderBy=${sortBy}&order=${order}`
                                                 : `${pathname}?section=transactions&filterBy=date&from=${from}&to=${dateToString(
                                                     currentDate
-                                                )}`;
+                                                )}&orderBy=${sortBy}&order=${order}`;
 
                                 return (
                                     <li key={index}>
