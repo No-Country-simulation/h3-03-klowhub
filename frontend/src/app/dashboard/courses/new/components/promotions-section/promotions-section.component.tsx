@@ -167,9 +167,14 @@ const PromotionsSection = () => {
           </RouteBtn>
           <Button 
             type="button"
-            onClick={ handleSubmit( data => {
+            onClick={ handleSubmit( async (data) => {
               dispatch(setPromotionData(data)) 
-              console.log('state: ', state);
+              const res = await fetch("http://localhost:3003/courses", {
+                method: "post",
+                body: JSON.stringify(data)
+              })
+              const createdCourse = await res.json();
+              console.log('createdCourse: ', createdCourse);
             } ) }
             className="mr-auto flex-1 md:grow-0"
           >
