@@ -1,5 +1,8 @@
+import { ReactNode } from "react";
+import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
+
 export interface Lesson {
-    id: number;
+    id: string;
     image: string;
     title: string;
 }
@@ -16,16 +19,38 @@ export interface Instructor {
 
 export type CourseDetailHeader = {
     title: string;
-    description: string;
+    summarizeDescription: string;
     rating: number;
     ratingCount: number;
-    image: string;
+    coverImg: {
+        url: string
+        size: number
+        width: number
+        height: number
+        format: string
+        created_at: string
+    };
 }
 
 export interface AppInfoProps {
-    sections: {
-        title: string;
-        badges: string[];
+    sector: {
+        label: string;
+        name: string;
+    }[];
+
+    coreContent: {
+        label: string;
+        name: string;
+    }[];
+
+    toolsAndPlatforms: {
+        label: string;
+        name: string;
+    }[];
+
+    functionalities: {
+        label: string;
+        name: string;
     }[];
 }
 
@@ -35,20 +60,26 @@ export interface ProgramModule {
 }
 
 export interface CourseProps {
-    details: CourseDetailHeader;
-    lessons: Lesson[];
+    title: string;
+    summarizeDescription: string
+    rating: number
+    ratingCount: number
+    coverImg: {
+        url: string
+        size: number
+        width: number
+        height: number
+        format: string
+        created_at: string
+    }
+    learningSubjects: string[];
+    detailedDescription: string;
+    freelessons: Lesson[];
     instructor: Instructor;
-    objectives: string[];
-    about: string;
     additionalDetails: {
         title: string;
         content: string;
     }[];
-    requirements: string[];
-    appInfoSections: AppInfoProps;
-    reviews: {
-        author: string;
-        rating: number;
-        comment: string;
-    }[];
+    prevRequirements: string[];
+    children: ReactNode[];
 }

@@ -13,11 +13,16 @@ import { ObjectivesList } from './objectives.section';
 import { useSearchParams, usePathname } from 'next/navigation';
 
 export const CourseInfo: FC<CourseProps> = ({
-    details,
-    lessons,
+    title,
+    summarizeDescription,
+    rating,
+    ratingCount,
+    coverImg,
+    freelessons,
     instructor,
-    objectives,
-    about,
+    learningSubjects,
+    detailedDescription,
+    children
 }) => {
 
     const searchParams = useSearchParams();
@@ -27,22 +32,30 @@ export const CourseInfo: FC<CourseProps> = ({
 
     return (
         <div className="md:col-span-2 space-y-4">
-            <CourseHeader details={details} />
-            <LessonList lessons={lessons} />
+            <CourseHeader
+                title={title} 
+                summarizeDescription={summarizeDescription}
+                rating={rating}
+                ratingCount={ratingCount}
+                coverImg={coverImg}
+            />
+            <LessonList lessons={freelessons} />
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor} />
                 <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>
-                <ObjectivesList objectives={objectives} />
+                <ObjectivesList objectives={learningSubjects} />
                 <h3 className="text-sm font-semibold">Acerca de este curso</h3>
                 <div>
                     <p className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
-                        {about}
+                        {detailedDescription}
                     </p>
                 </div>
 
                 <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
 
                     <Button className="mt-3 px-20">Añadir al Carrito</Button>
+
+                    {children}
 
                 </div>
             </div>
