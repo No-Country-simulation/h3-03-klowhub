@@ -1,5 +1,3 @@
-import { coreContent, toolsAndPlatforms } from "@/consts/filters.consts";
-import { Label } from "@radix-ui/react-label";
 
 export const courseData = {
     title: 'Gestión de inventarios con Power Apps',
@@ -93,15 +91,12 @@ export const courseDataNew = {
         format: "jpg",
         created_at: "2024-01-01",
     },
-    instructor: {
-        name: "Juan Pérez",
-        description: "Instructor con experiencia en desarrollo web.",
-        image: "/temp/imgs/avatar.png",
-        rating: 4.7,
-        students: 2000,
-        courses: 5,
-        profileLink: "/profile/juan-perez",
-    },
+
+    availabre: true,
+    price: 39,
+
+    plaform: "Power Apps",
+
     learningSubjects: [
         "Entender los fundamentos de HTML, CSS y JavaScript.",
         "Construir aplicaciones interactivas con React.",
@@ -130,7 +125,6 @@ export const courseDataNew = {
         }
     ],
 
-
     toolsAndPlatform: [
         {
             label: "Power BI",
@@ -152,7 +146,7 @@ export const courseDataNew = {
             name: "generacion-de-pdf"
         }
     ],
-    
+
     prevRequirements: ["Conocimientos básicos de programación", "Ganas de aprender"],
     detailedDescription: "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de Power Apps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
 
@@ -181,6 +175,24 @@ export const courseDataNew = {
         },
     ],
 
+    promotion: {
+        product: {
+            id: "promo123",
+            type: "Descuento"
+        },
+        percentage: 20
+    },
+
+    resource: [
+        {
+            url: "https://example.com/resource1.pdf",
+            size: 2000,
+            mimeType: "application/pdf",
+            created_at: "2024-01-03T12:00:00Z"
+        }
+    ],
+
+    // where is this data?
     additionalDetails: [
         { title: "¿Por que estudiar con Sebastian?", content: "Sebastián Ríos es un apasionado del desarrollo no-code, con más de 5 años de experiencia en AppSheet y un enfoque práctico y accesible para la enseñanza. Ha ayudado a cientos de profesionales y emprendedores a transformar sus ideas en aplicaciones exitosas, simplificando procesos y mejorando la productividad. Su metodología se centra en ejemplos reales y soluciones prácticas, lo que te permitirá aplicar lo aprendido de inmediato en tus propios proyectos. Aprender con Sebastián significa adquirir habilidades valiosas de la mano de un experto comprometido con tu éxito." },
         { title: "¿Para quién es este curso?", content: "Este curso está dirigido a emprendedores, profesionales y cualquier persona interesada en crear aplicaciones personalizadas sin necesidad de programar. Si buscas optimizar procesos, mejorar la eficiencia en tu trabajo o simplemente explorar nuevas herramientas tecnológicas, este curso es ideal para ti. No se requiere experiencia previa en desarrollo, ya que te guiaré desde lo más básico hasta técnicas avanzadas, asegurando que puedas aplicar lo aprendido en proyectos reales, independientemente de tu nivel de conocimientos." },

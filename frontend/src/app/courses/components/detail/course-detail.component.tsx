@@ -27,6 +27,8 @@ import { useSearchParams } from "next/navigation";
 import { CourseProps } from "@/types/course-detail-props";
 import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
 
+import { instructor } from "@/mocks/instructor.mock";
+
 const transformedProgram = courseDataNew.modules.map((module) => ({
     moduleTitle: module.title,
     lessons: module.lessons.map((lesson) => lesson.title),
@@ -66,20 +68,20 @@ export const CourseDetail: FC<Props> = ({ children }) => {
 
                 <div className="space-y-6">
                     <InstructorDetail
-                        name={courseData.instructor.name}
-                        description="Instructor y desarrollador"
-                        image={courseData.instructor.image}
-                        rating={4.3}
-                        students={43830}
-                        courses={77}
-                        profileLink={courseData.instructor.profileLink}
+                        name={instructor.name}
+                        description={instructor.description}
+                        image={instructor.image}
+                        rating={instructor.rating}
+                        students={instructor.students}
+                        courses={instructor.courses}
+                        profileLink={instructor.profileLink}
                     />
 
                     <Badge
                         className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
                         icon={<Icon name="powerapps" style="w-8 h-8" />}
                     >
-                        AppSheet
+                        {courseDataNew.plaform}
                     </Badge>
 
                     <CourseProgramSection program={transformedProgram} />

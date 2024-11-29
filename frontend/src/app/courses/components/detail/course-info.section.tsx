@@ -12,6 +12,8 @@ import { InstructorInfo } from './instructor-section';
 import { ObjectivesList } from './objectives.section';
 import { useSearchParams, usePathname } from 'next/navigation';
 
+import { instructor } from '@/mocks/instructor.mock';
+
 export const CourseInfo: FC<CourseProps> = ({
     title,
     summarizeDescription,
@@ -19,7 +21,6 @@ export const CourseInfo: FC<CourseProps> = ({
     ratingCount,
     coverImg,
     freelessons,
-    instructor,
     learningSubjects,
     detailedDescription,
     children

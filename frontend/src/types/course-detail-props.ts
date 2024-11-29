@@ -75,7 +75,6 @@ export interface CourseProps {
     learningSubjects: string[];
     detailedDescription: string;
     freelessons: Lesson[];
-    instructor: Instructor;
     additionalDetails: {
         title: string;
         content: string;
