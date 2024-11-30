@@ -154,6 +154,8 @@ export class CoursesService {
       width: uploadVideo.width,
       height: uploadVideo.height,
       thumbnail_url: uploadVideo.thumbnailUrl,
+      thumbnail_width: uploadVideo.thumbnailUrl_width,
+      thumbnail_height: uploadVideo.thumbnailUrl_height,
       created_at: new Date(uploadVideo.created_at),
     };
 
@@ -176,7 +178,7 @@ export class CoursesService {
   async findOneVideo(id: string) {
     const video = await this.videoRepository.findOne({
       where: { id },
-      relations: ['thumbnail_url'],
+      // relations: ['thumbnail_url'],
     });
     if (!video) {
       return null;
