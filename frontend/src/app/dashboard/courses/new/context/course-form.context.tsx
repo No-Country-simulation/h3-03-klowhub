@@ -6,6 +6,7 @@ import { useReducer } from "react";
 import courseFormReducer, { COURSE_FORM_INITIAL_STATE } from "./course-form.reducer";
 import { CourseFormActions } from "./course-form.actions";
 import { useEffect } from "react";
+import { cleanSelectedOptions } from "./course-form.utils";
 
 type Props = {
   children: ReactNode[]
@@ -18,17 +19,13 @@ type CourseCtxType = {
 }
 
 const submit = async (data: CourseFormData) => {
-  const { general, details, modules, promotion, id } = data;
+  const dataForBackend = cleanSelectedOptions(data);
+  const { general, details, modules, promotion, id } = dataForBackend;
 
   const formattedData = { ...general, ...details, modules, promotion, id };
   console.log("creating course: ", formattedData);
 
-  // console.log('destructured: ', destructured);
-
   const formData = new FormData();
-  for (const key in formattedData) {
-    formData.append(key, formattedData[key])
-  }
   const res = await fetch('http://localhost:3003/courses', { 
     method: 'post',
     body: formData,
