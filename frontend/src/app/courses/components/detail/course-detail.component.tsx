@@ -33,7 +33,7 @@ type Props = {
 
 export const CourseDetail: FC<Props> = ({ children }) => {
   // const searchParams = useSearchParams();
-    const { state, dispatch } = useContext(CourseCtx);
+  const { state } = useCourseContext();
 
     const source = state ? transformCourse(state) : courseData;
   // const source = courseData;

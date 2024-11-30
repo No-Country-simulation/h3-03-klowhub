@@ -7,7 +7,6 @@ import { Dispatch, SetStateAction } from "react";
 import { OneOf } from "@/types/utils.types";
 import { Lesson } from "@/types/courses.types";
 import UploadedImage from "@/components/uploaded-image/uploaded-image.component";
-import { Badge } from "@/components/ui/badge";
 import FileBadge from "@/components/file-badge/file-badge.component";
 
 type ReadOnly = {

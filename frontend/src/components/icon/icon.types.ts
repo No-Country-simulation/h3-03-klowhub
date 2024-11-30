@@ -16,3 +16,4 @@ export type IconTypes =
   | "linkedin"
   | "whatsapp"
   | "messenger"
+  | "greeter-check"

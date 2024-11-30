@@ -7,6 +7,7 @@ import Input from "@/components/input/input.component";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
+import formMock from "./course-detail-form.mock.json"
 
 const GeneralForm = () => {
   const { state, dispatch } = useCourseContext();

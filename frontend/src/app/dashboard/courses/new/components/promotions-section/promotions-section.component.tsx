@@ -13,11 +13,18 @@ import Input from "@/components/input/input.component";
 import ProductCard from "@/components/product-card/product-card.component";
 import { setPromotionData } from "../../context/course-form.actions";
 import { Button } from "@/components/ui/button";
+import Greeter from "@/components/greeter/greeter.component";
+import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
   const { state, dispatch, submit } = useCourseContext();
+  const pathname = usePathname()
+  const searchParams = useSearchParams();
+  const created = searchParams.get("created");
 
   const {
     commonProps, 
@@ -50,6 +57,25 @@ const PromotionsSection = () => {
 
   return (
     <>
+      { created &&
+        <Greeter
+          header="¡Felicitaciones! Tu curso/Leccion se publicó con exito"
+          message="Ya está disponible para que estudiantes de todo el mundo lo descubran y aprovechen."
+        >
+          <Link 
+            href={`${pathname}?section=promotion?created=true`}
+            className={`${buttonVariants({ variant: "outline" })} px-10 bg-primary-500 border-none hover:bg-secondary-400`}
+          >
+            Ver curso publicado
+          </Link>
+          <Link
+            href="/dashboard/courses"
+            className={`${buttonVariants({ variant: "outline" })} px-10 border-primary-200 text-primary-200`}
+          >
+            Volver al dashboard
+          </Link>
+        </Greeter>
+      }
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-5">
           <h3 className="font-bold">Fusiona tus cursos y apps, expande tus posibilidades</h3>

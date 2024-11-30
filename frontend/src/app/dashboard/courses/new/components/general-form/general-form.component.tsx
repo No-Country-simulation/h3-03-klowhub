@@ -21,7 +21,6 @@ const GeneralForm = () => {
     formState: { isDirty }
   } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, state.general);
 
-  console.log('toolsAndPlatforms: ', toolsAndPlatforms);
   return (
     <>
       <form className="

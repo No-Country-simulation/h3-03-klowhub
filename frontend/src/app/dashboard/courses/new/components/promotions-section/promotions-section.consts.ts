@@ -7,3 +7,4 @@ export const PROMOTION_INITIAL_STATE: Promotion = {
   },
   percentage: NaN,
 };
+

@@ -1,7 +1,6 @@
 import { CourseFormData } from "@/types/courses.types";
 import courseMock from '../mocks/course-detail-2.mock.json'
 
-
 export const transformCourse = (course: CourseFormData) => {
 
   const freeLessons = course.modules.map(m => {
@@ -15,9 +14,9 @@ export const transformCourse = (course: CourseFormData) => {
   }).flat();
 
   const detail2 = courseMock
-  console.log('detail2: ', detail2);
+  // console.log('detail2: ', detail2);
 
-  const detail = {
+  const detail: typeof courseMock = {
     details: {
         title: course.general.title,
         description: course.general.about,
@@ -72,6 +71,6 @@ export const transformCourse = (course: CourseFormData) => {
     }))
   };
 
-  return detail2
+  return detail
 }
 

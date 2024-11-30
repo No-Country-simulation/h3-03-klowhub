@@ -19,20 +19,17 @@ type CourseCtxType = {
 }
 
 const submit = async (data: CourseFormData) => {
-  const dataForBackend = cleanSelectedOptions(data);
-  const { general, details, modules, promotion, id } = dataForBackend;
+  const formattedData = cleanSelectedOptions(data);
+  console.log('creating course...', formattedData);
 
-  const formattedData = { ...general, ...details, modules, promotion, id };
-  console.log("creating course: ", formattedData);
-
-  const formData = new FormData();
   const res = await fetch('http://localhost:3003/courses', { 
     method: 'post',
-    body: formData,
+    body: JSON.stringify(formattedData),
   });   
 
   const createdCourse = await res.json();
   console.log('createdCourse: ', createdCourse);
+
 };
 
 export const CourseCtx = createContext<CourseCtxType | undefined>(undefined)
