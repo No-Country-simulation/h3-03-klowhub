@@ -12,8 +12,10 @@ services:
       - ms-courses
       - ms-projects
       - ms-chat
+      - ms-apps
     networks:
       - klowhub
+
   ms-projects:
     build:
       context: ./ms-projects
@@ -27,7 +29,6 @@ services:
     depends_on:
       - db
 
-
   ms-users:
     build:
       context: ./ms-users
@@ -40,18 +41,19 @@ services:
       - klowhub
     depends_on:
       - db
+
   ms-courses:
     build:
-      context: ./ms-courses  
-      dockerfile: Dockerfile  
+      context: ./ms-courses
+      dockerfile: Dockerfile
     ports:
-      - "3003:3003"  
+      - "3003:3003"
     env_file:
-      - ./ms-courses/.env 
+      - ./ms-courses/.env
     networks:
       - klowhub
     depends_on:
-      - db  
+      - db
 
   ms-chat:
     build:
@@ -61,6 +63,19 @@ services:
       - "3004:3004" # Puerto expuesto del microservicio de chat
     env_file:
       - ./ms-chat/.env
+    networks:
+      - klowhub
+    depends_on:
+      - db # Depende de la base de datos PostgreSQL
+
+  ms-apps:
+    build:
+      context: ./ms-apps
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005" # Puerto expuesto del microservicio de apps
+    env_file:
+      - ./ms-apps/.env
     networks:
       - klowhub
     depends_on:
