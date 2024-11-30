@@ -13,6 +13,7 @@ import {
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
+import { VideoDto } from './dto/video-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import {
@@ -133,7 +134,43 @@ export class CoursesController {
       );
     }
   }
+  //enviar el video unicamente
+  @Post('video')
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'video', maxCount: 1 }]))
+  async createVideo(
+    //no se esta usando el body por eso el dto queda como opcional
+    @Body() VideoDto: VideoDto,
+    @UploadedFiles() files: { video?: Express.Multer.File[] },
+  ) {
+    const videoFile = files.video?.[0];
 
+    console.log('Received video file:', videoFile);
+
+    if (!videoFile) {
+      throw new Error('No video file uploaded.');
+    }
+    console.log('ERROR', videoFile);
+    try {
+      return await this.coursesService.createVideo(VideoDto, videoFile);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  ///
+  @Get('video/:id')
+  async findOneVideo(@Param('id') id: string) {
+    try {
+      const getAsingleVideo = await this.coursesService.findOneVideo(id);
+      if (!getAsingleVideo) {
+        throw new NotFoundException('There is no video available');
+      }
+      return getAsingleVideo;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  /////////////
   @Get()
   async findAll() {
     const allCourses = await this.coursesService.findAll();
