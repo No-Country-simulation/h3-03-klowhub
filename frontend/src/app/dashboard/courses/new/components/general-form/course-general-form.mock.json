@@ -1,0 +1,87 @@
+{
+  "id": null
+  "general": {
+    "title": "Automatización de Procesos Empresariales con PowerApps",
+    "freeCourse": false,
+    "contentType": "course",
+    "shortDescription": "Aprende a crear aplicaciones empresariales con PowerApps sin escribir una sola línea de código. Ideal para optimizar procesos y mejorar la productividad",
+    "level": {
+      "name": "basic",
+      "label": "Básico" 
+    },
+    "platform": {
+      "name": "powerapps",
+      "label": "Power apps" 
+    },
+    "language": {
+      "name": "español",
+      "label": "Español"
+    },
+    "sector": [
+      {
+        "name": "gestión-de-proyectos", 
+        "label": "Gestión de proyectos" 
+      },
+      { 
+        "name": "ventas-y-crm", 
+        "label": "Ventas y crm" 
+      },
+      {
+        "name": "logística-y-transporte",
+        "label": "Logística y transporte" 
+      }
+    ],
+    "coreContent": [
+      { 
+        "name": "automation", 
+        "label": "Automatización" 
+      },
+      { 
+        "name": "automation", 
+        "label": "Automatización" 
+      },
+      { 
+        "name": "automation", 
+        "label": "Automatización" 
+      }
+    ],
+    "tools": [
+      {
+        "name": "power-bi", 
+        "label": "Power bi"
+      },
+      {
+        "name": "zapier", 
+        "label": "Zapier"
+      },
+      {
+        "name": "google-sheets", 
+        "label": "Google sheets"
+      },
+      {
+        "name": "google-drive", 
+        "label": "Google drive"
+      }
+    ],
+    "price": 99.99,
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores.",
+  },
+  "details": {
+    "learningSubjects": [
+      "Crear aplicaciones personalizadas con PowerApps.",
+      "Diseñar flujos de trabajo automatizados y seguros.",
+      "Integrar aplicaciones con herramientas populares como Power BI y Google Sheets.",
+      "Configurar reportes dinámicos y notificaciones automatizadas.",
+      "Gestionar permisos y accesibilidad en tus aplicaciones."
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos en el uso de hojas de cálculo como Google Sheets o Excel.",
+      "Cuenta activa en Microsoft Power Platform.",
+      "Familiaridad básica con procesos empresariales."
+    ],
+    "benefits": "Al completar este curso, tendrás las habilidades para diseñar aplicaciones empresariales que ahorren tiempo y reduzcan errores manuales. Incrementarás la productividad en tu entorno laboral mediante la automatización de procesos, mejorando la toma de decisiones con reportes en tiempo real. Además, obtendrás la capacidad de integrar tus aplicaciones con diversas herramientas, llevando la digitalización de tu negocio a otro nivel."
+  }
+  modules: Module[]
+  promotion: Promotion | null
+
+}

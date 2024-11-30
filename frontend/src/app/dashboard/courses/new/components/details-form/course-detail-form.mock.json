@@ -1,0 +1,15 @@
+{
+  "learningSubjects": [
+    "Crear aplicaciones personalizadas con PowerApps.",
+    "Diseñar flujos de trabajo automatizados y seguros.",
+    "Integrar aplicaciones con herramientas populares como Power BI y Google Sheets.",
+    "Configurar reportes dinámicos y notificaciones automatizadas.",
+    "Gestionar permisos y accesibilidad en tus aplicaciones."
+  ],
+  "prevRequirements": [
+    "Conocimientos básicos en el uso de hojas de cálculo como Google Sheets o Excel.",
+    "Cuenta activa en Microsoft Power Platform.",
+    "Familiaridad básica con procesos empresariales."
+  ],
+  "fullDescription": "En este curso aprenderás a usar PowerApps para diseñar, construir e implementar aplicaciones personalizadas que optimicen procesos empresariales sin necesidad de conocimientos de programación. Desde la creación de interfaces intuitivas hasta la integración con herramientas como Power BI y Google Sheets, este curso está diseñado para transformar la forma en que gestionas proyectos y datos. Además, explorarás cómo configurar flujos de trabajo automatizados y reportes dinámicos, mejorando la eficiencia en tiempo real."
+}
