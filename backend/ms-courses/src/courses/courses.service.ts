@@ -15,6 +15,10 @@ import {
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
 
+import { Video } from './entities/video.entity';
+import { VideoDto } from './dto/video-course.dto';
+import { Imagen } from './entities/thumbnail_url.entity';
+
 @Injectable()
 export class CoursesService {
   private readonly MAX_IMAGE_SIZE = 500 * 1024; // 500 KB
@@ -25,6 +29,11 @@ export class CoursesService {
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
     private readonly cloudinaryService: CloudinaryService,
+    @InjectRepository(Video)
+    private readonly videoRepository: Repository<Video>,
+
+    @InjectRepository(Imagen)
+    private readonly imagenRepository: Repository<Imagen>,
   ) {}
 
   private validateFile(
@@ -130,6 +139,51 @@ export class CoursesService {
     return savedCourse;
   }
 
+  //entidad de Video
+  async createVideo(
+    VideoDto: VideoDto,
+    videoFile: Express.Multer.File,
+  ): Promise<Video> {
+    const uploadVideo = await this.cloudinaryService.uploadFile(videoFile);
+    console.log('UPLOAD VIDEO', uploadVideo);
+    const videoData = {
+      url: uploadVideo.secure_url,
+      duration: uploadVideo.duration,
+      size: uploadVideo.bytes,
+      format: uploadVideo.format,
+      width: uploadVideo.width,
+      height: uploadVideo.height,
+      thumbnail_url: uploadVideo.thumbnailUrl,
+      created_at: new Date(uploadVideo.created_at),
+    };
+
+    const video = this.videoRepository.create(videoData);
+    const savedVideo = await this.videoRepository.save(video);
+    console.log('video creado', video);
+    console.log('Video guardado:', savedVideo);
+
+    const imagenData = {
+      thumbnail_url: uploadVideo.thumbnailUrl,
+      video: savedVideo,
+    };
+    const imagen = this.imagenRepository.create(imagenData);
+    const savedImagen = this.imagenRepository.save(imagen);
+    console.log('imagen guardada:', savedImagen);
+
+    return savedVideo;
+    // return this.videoRepository.save(video);
+  }
+  async findOneVideo(id: string) {
+    const video = await this.videoRepository.findOne({
+      where: { id },
+      relations: ['thumbnail_url'],
+    });
+    if (!video) {
+      return null;
+    }
+    return video;
+  }
+
   async findAll(): Promise<Course[]> {
     const course = await this.courseRepository.find({
       where: { available: true },
@@ -138,7 +192,9 @@ export class CoursesService {
   }
 
   async findOne(id: string): Promise<Course | null> {
-    const course = await this.courseRepository.findOne({ where: { id } });
+    const course = await this.courseRepository.findOne({
+      where: { id },
+    });
     console.log('Course found:', course);
     if (!course) {
       return null;
