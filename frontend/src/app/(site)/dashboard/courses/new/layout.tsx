@@ -5,11 +5,11 @@ type Props = {
   children: ReactNode
 }
 
-const CreateCourseLayout = async ({ children }: Props) => {
+const CreateCourseLayout = ({ children }: Props) => {
   return (
     <main>
       <BreadCrumb />
-      <h1 className="font-bold mt-5 mb-12">Lanza tu curso: Comparte tu conocimiento</h1>
+      <h1 className="font-bold mt-5 mb-12">Presenta tu App: Conéctala con el mundo</h1>
       { children }
     </main>
   )

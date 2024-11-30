@@ -1,12 +1,12 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component"
-import MyCoursesDesktopView from "@/app/(site)/dashboard/courses/_views/desktop.view";
-import MyCoursesMobileView from "@/app/(site)/dashboard/courses/_views/mobile.view";
-import { filterData, sortData } from "@/app/(site)/dashboard/courses/_utils/my-courses.utils";
 import { Button } from "@/components/ui/button";
 import { soldCoursesData } from "@/mocks/sold-courses.mocks";
 import { transactionsData } from "@/mocks/transactions.mocks";
 import { getQueryParams } from "@/utils/route.utils";
 import { Inter } from "next/font/google";
+import { filterData, sortData } from "./utils/my-courses.utils";
+import MyCoursesDesktopView from "./views/desktop.view";
+import MyCoursesMobileView from "./views/mobile.view";
 
 const inter = Inter({
     subsets: ["latin"],

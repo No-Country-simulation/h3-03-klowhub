@@ -1,4 +1,4 @@
-const courses = [
+const products = [
   {
     product: {
         id: 0,
@@ -176,5 +176,5 @@ const courses = [
 ];
 
 export {
-  courses
+  products
 }

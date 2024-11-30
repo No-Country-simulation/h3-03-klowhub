@@ -8,6 +8,7 @@ import { Inter } from 'next/font/google'
 import Link from "next/link";
 import { FC } from "react";
 import { Mentor } from "./mentor-card.types";
+import { IconTypes } from "../icon/icon.types";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -29,7 +30,7 @@ const MentorCard: FC<Mentor> = ({
 ) => {
     return (
         <Card className={`${inter.className} overflow-hidden flex-col relative`}>
-            <div className="h-60 w-full bg-gray-200 flex items-center justify-center overflow-hidden relative">
+            <div className="h-60 w-full bg-gray-100 flex items-center justify-center overflow-hidden relative">
                 <Image
                     width={334}
                     height={205}
@@ -54,8 +55,8 @@ const MentorCard: FC<Mentor> = ({
 
 
                 <Badge
-                    icon={<Icon name={getSlug(platform) === 'appsheet' ? 'app-sheet' : 'power-apps'} />}
-                    className="bg-gray-200 text-white w-[144px]"
+                    icon={<Icon name={getSlug(platform) as IconTypes} />}
+                    className="bg-gray-100 text-white w-[144px]"
                 >
                     {platform}
                 </Badge>

@@ -1,6 +1,6 @@
 import { TImage } from "@/types/global.types"
 
-export type TAppInfo = {
+export type ProductCard = {
   id: number
   title: string
   img: TImage
@@ -13,18 +13,13 @@ export type TAppInfo = {
   about: string
 }
 
-export type TAuthorInfo = {
+export type AuthorInfo = {
   name: string
   about: string
   img: TImage
 }
 
-export type TAppCard = {
-  data: TAppInfo
-  openFn: () => void
-}
-
-export type TProduct = {
-  product: TAppInfo
-  author: TAuthorInfo
+export type QuickView = {
+  product: ProductCard
+  author: AuthorInfo
 }

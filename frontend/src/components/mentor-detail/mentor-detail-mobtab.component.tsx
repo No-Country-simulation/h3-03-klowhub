@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { getSlug } from "@/utils/str.utils";
 import Rating from "../rating/rating.component";
+import { IconTypes } from "../icon/icon.types";
 
 const MentorDetailMobileTablet = () => {
   const tabViewMap = new Map<string, JSX.Element>();
@@ -186,15 +187,10 @@ const ReviewsSection = () => {
           </CardSection>
           <Badge
             icon={
-              <Icon
-                name={
-                  getSlug("Power Apps") === "appsheet"
-                    ? "app-sheet"
-                    : "power-apps"
-                }
+              <Icon name={getSlug("PowerApps") as IconTypes}
               />
             }
-            className="bg-gray-200 text-white w-full flex justify-center"
+            className="bg-gray-100 text-white w-full flex justify-center"
           >
             Power Apps
           </Badge>

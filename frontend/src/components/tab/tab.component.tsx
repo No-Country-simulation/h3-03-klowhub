@@ -1,26 +1,23 @@
-import Link from "next/link";
-import { getPathname, getQueryParams } from "@/utils/route.utils";
 import { ReactNode } from "react";
 
 type Props = {
-  section: string
+  active: boolean
   children: ReactNode
+  className?: string
 }
 
-const Tab = async ({ children, section }: Props) => {
-  const pathname = await getPathname();
-  const queryParams = await getQueryParams();
-
+const Tab = ({ children, active, className }: Props) => {
   return (
-    <Link 
-      href={`${pathname}?section=${section}`}
+    <span 
       className={`
         inline-block border-b-2 border-solid px-4 pb-2 font-bold text-sm
-        ${queryParams.section === section ? "text-primary-300 border-primary-300" : "border-white"}`
+        ${active ? "text-primary-300 border-primary-300" : "border-white"}
+        ${className}
+      `
       }
     >
       { children }
-    </Link>
+    </span>
   )
 };
 
