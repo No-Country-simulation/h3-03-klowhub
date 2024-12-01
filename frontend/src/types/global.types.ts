@@ -6,6 +6,12 @@ export type Video = {
   duration: string
 }
 
+export type Resource = {
+  filename: string
+  mimetype: string
+  // size: number 
+}
+
 export type TImage = {
   url: string
   width: number

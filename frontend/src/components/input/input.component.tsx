@@ -18,6 +18,7 @@ import { Button } from "../ui/button";
 
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
+import { postVideo } from "./input.api";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -188,7 +189,16 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                   src={URL.createObjectURL(value)}
                   deleteCb={() => onChange(null)}
                 /> :
-                <Dropzone isMulti filetypes={filetypes} onDrop={(files) => onChange(files[0])}>{ dropzoneLabel }</Dropzone>
+                <Dropzone
+                  isMulti 
+                  filetypes={filetypes} 
+                  onDrop={async (files) => {
+                    await postVideo(files[0])
+                    onChange(files[0])
+                  }}
+                >
+                  { dropzoneLabel }
+                </Dropzone>
 
             }
 

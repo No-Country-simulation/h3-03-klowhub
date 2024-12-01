@@ -9,10 +9,10 @@ import { IsClientProvider } from "@/contexts/is-client.context";
 import { CircleAlert } from "lucide-react";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/course-form.actions";
-import useCourseContext from "../../hooks/use-course-context.hook";
+import useProjectContext from "@/app/dashboard/projects/new/hooks/use-project-context.hook";
 
 const GeneralForm = () => {
-  const { state, dispatch } = useCourseContext();
+  const { state, dispatch } = useProjectContext();
 
   const {
     commonProps, 
