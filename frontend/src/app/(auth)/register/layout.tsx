@@ -9,7 +9,7 @@ export default function RegisterLayout({
             className="relative w-full h-[817px] bg-no-repeat bg-cover flex pl-14"
             style={{
                 backgroundImage:
-                    "url('https://res.cloudinary.com/dpp28f2ek/image/upload/v1732695380/IsoApsheet_fdo_2_5_qlalp2.png')",
+                    "url('/imgs/register_background.webp')",
             }}
         >
             <h1 className="text-[54px] font-semibold w-fit mt-[100px] lg:flex hidden">KlowHub</h1>

@@ -9,7 +9,7 @@ export default function LoginLayout({
             className="relative w-full h-[817px] bg-no-repeat bg-cover flex pl-14"
             style={{
                 backgroundImage:
-                    "url('https://res.cloudinary.com/dpp28f2ek/image/upload/v1732657116/IsoApsheet_fdo_2_2_szskqr.png')",
+                    "url('/imgs/login_background.webp')",
             }}
         >
             <h1 className="text-[54px] font-semibold w-fit mt-[100px] lg:flex hidden">KlowHub</h1>
