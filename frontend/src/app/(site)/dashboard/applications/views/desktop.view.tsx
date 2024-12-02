@@ -1,6 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Shovel } from "lucide-react";
-import Image from "next/image";
 import CustomTab from "../../../../../components/custom-tab/custom-tab.component";
 import { Table, TableBody, TableHead, Td, Th, TRow } from "../../../../../components/table/table.component";
 import DatePickerWithRange from "../../../../../components/date-picker/date-range-picker";
@@ -11,6 +9,8 @@ import { QuickView as TQuickView } from "@/components/product-card/product-card.
 import TransactionRow from "../components/transaction-row/transaction-row.component";
 import { Transaction } from "@/types/transaction.types";
 import SortingModal from "../components/sorting-moda/sorting-modal.component";
+import DonutChart from "@/components/donut-chart/donut-chart.component";
+import { calculateTotalCommissions, calculateTotalRevenue } from "@/utils/transactions.utils";
 
 type Props = {
     transactionsData: Transaction[]
@@ -21,6 +21,9 @@ const MyAppsDesktopView = async ({ transactionsData, products }: Props) => {
 
     const pathname = await getPathname();
     const { filterBy, sortBy, from, to, order } = await getQueryParams();
+
+    const totalRevenue = calculateTotalRevenue(transactionsData);
+    const totalCommissions = calculateTotalCommissions(transactionsData);
 
     return (
         <div className="hidden md:flex flex-col gap-14">
@@ -57,21 +60,13 @@ const MyAppsDesktopView = async ({ transactionsData, products }: Props) => {
                             {transactionsData.length === 0 && <span className="text-center p-5">No hay datos que mostrar.</span>}
                         </div>
                         <div className="xl:w-1/4 w-full p-5 flex bg-white/10 justify-center items-center relative">
-                            <Image
-                                alt="some description"
-                                width={200}
-                                height={200}
-                                src={
-                                    "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732045469/chart_nfplid.png"
-                                }
+                            <DonutChart
+                                totalRevenue={totalRevenue}
+                                totalCommissions={totalCommissions}
+                                revenueColor="#9333ea"
+                                commissionColor="#e6d5ff"
+                                title="Balance de cursos"
                             />
-
-                            <div className="absolute inset-0 bg-black/70 flex flex-col justify-center items-center gap-2">
-                                <Shovel className="text-white w-8 h-8" />
-                                <span className="text-white text-lg font-bold">
-                                    En construcción
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </CardContent>

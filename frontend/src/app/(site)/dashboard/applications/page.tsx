@@ -22,10 +22,6 @@ const MyAppsPage = async () => {
     const filteredData = filterData(filterBy, { from: from, to: to, items: items }, transactionsData)
     const sortedData = sortData(sortBy, order, filteredData)
 
-    const totalRevenue = calculateTotalRevenue(transactionsData);
-    const totalCommissions = calculateTotalCommissions(transactionsData);
-
-
     return (
         <main className={`${inter.className} w-full tracking-wide pb-28`}>
             <div className="px-6 md:px-0 mx-auto">
@@ -39,13 +35,6 @@ const MyAppsPage = async () => {
                 <MyAppsDesktopView transactionsData={sortedData} products={products} />
                 <MyAppsMobileView transactionsData={sortedData} products={products} />
             </div>
-            <DonutChart
-                totalRevenue={totalRevenue}
-                totalCommissions={totalCommissions}
-                revenueColor="#9333ea"
-                commissionColor="#e6d5ff"
-                title="Balance de aplicaciones"
-            />
         </main>
     )
 }
