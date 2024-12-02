@@ -47,24 +47,24 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
       className={`overflow-hidden flex flex-col ${orientation === "vertical" ? "" : "md:flex-row items-center gap-4 mb-6"}`}
     >
       <div className={orientation === "vertical" ? "flex-shrink-0 h-60" : "h-full w-full md:h-auto md:w-auto flex-shrink-0 overflow-hidden"}>
-        <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
-          <Image 
+        <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={unlink ? "pointer-events-none" : ""}>
+          <Image
             className="w-full h-full object-cover"
-            width={img.width} height={img.height} 
+            width={img.width} height={img.height}
             alt={img.alt}
-            src={img.url} 
+            src={img.url}
           />
         </Link>
       </div>
       <div className="w-full flex flex-col justify-evenly h-full gap-6 p-4 flex-grow">
         <CardHeader className="flex flex-col">
           <div className="flex justify-between items-center">
-            <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
+            <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={unlink ? "pointer-events-none" : ""}>
               <CardTitle>{title}</CardTitle>
             </Link>
             <Icon name="more-vertical" />
           </div>
-          <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
+          <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={unlink ? "pointer-events-none" : ""}>
             <span className={`text-sm tracking-wide leading-6 ${orientation === "vertical" ? "h-[72px]" : ""}`}>
               {
                 truncate(description, orientation === "horizontal" ? 200 : undefined)
@@ -89,12 +89,12 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
               ))
             }
           </div>
-          { !onlyInfo && <Rating rating={rating} ratingCount={ratingCount} />}
-          { !onlyInfo && orientation === "vertical" ? <span className="text-xl font-bold">${formatPrice(price)}</span> : "" }
-          { !onlyInfo &&
+          {!onlyInfo && <Rating rating={rating} ratingCount={ratingCount} />}
+          {!onlyInfo && orientation === "vertical" ? <span className="text-xl font-bold">${formatPrice(price)}</span> : ""}
+          {!onlyInfo &&
             <div className={`w-full flex items-center ${orientation === "vertical" ? "justify-between" : "justify-between md:justify-start gap-10"}`}>
               <Button>Añadir al carrito</Button>
-              <Link href="#" className={`text-primary-200 ${ unlink ? "pointer-events-none" : "" }`} >Ver detalles</Link>
+              <Link href="#" className={`text-primary-200 ${unlink ? "pointer-events-none" : ""}`} >Ver detalles</Link>
             </div>
           }
         </CardContent>

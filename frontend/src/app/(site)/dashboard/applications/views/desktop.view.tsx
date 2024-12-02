@@ -5,27 +5,22 @@ import CustomTab from "../../../../../components/custom-tab/custom-tab.component
 import { Table, TableBody, TableHead, Td, Th, TRow } from "../../../../../components/table/table.component";
 import DatePickerWithRange from "../../../../../components/date-picker/date-range-picker";
 import { getPathname, getQueryParams } from "@/utils/route.utils";
-import TransactionRow from "../components/transaction-row/transaction-row.component";
 import { startOfMonth, startOfYear, threeMonthsAgo, today } from "@/utils/date.utils";
 import ProductCard from "@/components/product-card/product-card.component";
 import { QuickView as TQuickView } from "@/components/product-card/product-card.types";
+import TransactionRow from "../components/transaction-row/transaction-row.component";
 import { Transaction } from "@/types/transaction.types";
-import SortingModal from "../components/sorting-modal/sorting-modal.component";
-import DonutChart from "@/components/donut-chart/donut-chart.component";
-import { calculateTotalCommissions, calculateTotalRevenue } from "@/utils/transactions.utils";
+import SortingModal from "../components/sorting-moda/sorting-modal.component";
 
 type Props = {
     transactionsData: Transaction[]
     products: TQuickView[]
 }
 
-const MyCoursesDesktopView = async ({ transactionsData, products }: Props) => {
+const MyAppsDesktopView = async ({ transactionsData, products }: Props) => {
 
     const pathname = await getPathname();
     const { filterBy, sortBy, from, to, order } = await getQueryParams();
-
-    const totalRevenue = calculateTotalRevenue(transactionsData);
-    const totalCommissions = calculateTotalCommissions(transactionsData);
 
     return (
         <div className="hidden md:flex flex-col gap-14">
@@ -49,12 +44,12 @@ const MyCoursesDesktopView = async ({ transactionsData, products }: Props) => {
                                 <TableHead>
                                     <Th className="w-[199px] text-left">Nombre del cliente</Th>
                                     <Th className="w-[124px] text-center">Monto</Th>
-                                    <Th className="py-4 px-3 w-[134px] text-center">Estado</Th>
+                                    <Th className="py-4 px-3 w-[134px] text-center">Plataforma</Th>
                                 </TableHead>
                                 <TableBody>
                                     {
-                                        transactionsData.map(({ id, customerName, amount, status, avatarUrl }) =>
-                                            <TransactionRow key={id} customerName={customerName} amount={amount} status={status} avatarUrl={avatarUrl} />
+                                        transactionsData.map(({ id, customerName, amount, platform, avatarUrl }) =>
+                                            <TransactionRow key={id} customerName={customerName} amount={amount} platform={platform} avatarUrl={avatarUrl} />
                                         )
                                     }
                                 </TableBody>
@@ -62,19 +57,27 @@ const MyCoursesDesktopView = async ({ transactionsData, products }: Props) => {
                             {transactionsData.length === 0 && <span className="text-center p-5">No hay datos que mostrar.</span>}
                         </div>
                         <div className="xl:w-1/4 w-full p-5 flex bg-white/10 justify-center items-center relative">
-                            <DonutChart
-                                totalRevenue={totalRevenue}
-                                totalCommissions={totalCommissions}
-                                revenueColor="#9333ea"
-                                commissionColor="#e6d5ff"
-                                title="Balance de cursos"
+                            <Image
+                                alt="some description"
+                                width={200}
+                                height={200}
+                                src={
+                                    "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732045469/chart_nfplid.png"
+                                }
                             />
+
+                            <div className="absolute inset-0 bg-black/70 flex flex-col justify-center items-center gap-2">
+                                <Shovel className="text-white w-8 h-8" />
+                                <span className="text-white text-lg font-bold">
+                                    En construcción
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </CardContent>
             </Card>
             <div className="px-5 flex flex-col gap-5">
-                <span className="text-base font-bold">Cursos creados</span>
+                <span className="text-base font-bold">Aplicaciones publicadas</span>
                 <div
                     className="grid grid-cols-1 gap-5
                                             md:grid-cols-2 md:px-0
@@ -94,4 +97,4 @@ const MyCoursesDesktopView = async ({ transactionsData, products }: Props) => {
     );
 };
 
-export default MyCoursesDesktopView;
+export default MyAppsDesktopView;

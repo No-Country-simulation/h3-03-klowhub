@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardSection } from "../../../../../../components/ui/card";
-import { Badge } from "../../../../../../components/ui/badge";
-import Icon from "../../../../../../components/icon/icon.component";
 import { getSlug } from "@/utils/str.utils";
+import { Card, CardContent, CardSection } from "../ui/card";
+import { Badge } from "../ui/badge";
+import Icon from "../icon/icon.component";
+import { IconTypes } from "../icon/icon.types";
 
 type Props = {
     courseName: string;
@@ -71,22 +72,13 @@ const TransactionCard = ({ courseName, date, platform, customerName, amount, sta
                             <span className="w-[100px] text-sm font-semibold">
                                 Plataforma
                             </span>
-                            <span className="w-[191px] text-xs text-center">
-                                <Badge
-                                    icon={
-                                        <Icon
-                                            name={
-                                                getSlug(platform) === "appsheet"
-                                                    ? "app-sheet"
-                                                    : "power-apps"
-                                            }
-                                        />
-                                    }
-                                    className="bg-transparent text-white w-[144px] py-0"
-                                >
-                                    {platform}
-                                </Badge>
-                            </span>
+
+                            <Badge
+                                icon={<Icon name={getSlug(platform) as IconTypes} />}
+                                className="bg-gray-100 text-white"
+                            >
+                                {platform}
+                            </Badge>
                         </CardSection>
                     </li>
                     <li>

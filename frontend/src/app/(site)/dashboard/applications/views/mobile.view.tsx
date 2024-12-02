@@ -5,20 +5,19 @@ import ProductCard from "@/components/product-card/product-card.component";
 import TransactionCard from "@/components/transaction-card/transaction-card.component";
 import { Transaction } from "@/types/transaction.types";
 import FilterModal from "@/components/filter-modal/filter-modal.component";
-import SortingModal from "../components/sorting-modal/sorting-modal.component";
+import SortingModal from "../components/sorting-moda/sorting-modal.component";
+import { calculateTotalCommissions, calculateTotalRevenue } from "@/utils/transactions.utils";
 import DonutChart from "@/components/donut-chart/donut-chart.component";
-import { calculateTotalRevenue, calculateTotalCommissions } from "@/utils/transactions.utils";
 
 type Props = {
     transactionsData: Transaction[]
     products: TQuickView[]
 };
 
-const MyCoursesMobileView = async ({
+const MyAppsMobileView = async ({
     transactionsData,
     products
 }: Props) => {
-
     const pathname = await getPathname();
     const { section, filterBy, sortBy, from, to, order } = await getQueryParams();
 
@@ -31,7 +30,7 @@ const MyCoursesMobileView = async ({
                 <CustomTab section={`section=transactions&filterBy=limit&items=5&sortBy=${sortBy}&order=${order}`}>
                     Últimos movimientos
                 </CustomTab>
-                <CustomTab section="section=courses">Mis cursos</CustomTab>
+                <CustomTab section="section=courses">Mis aplicaciones</CustomTab>
             </div>
             {(section === "transactions" || !section) && (
                 <div className="flex flex-col gap-5">
@@ -97,4 +96,4 @@ const MyCoursesMobileView = async ({
     );
 };
 
-export default MyCoursesMobileView;
+export default MyAppsMobileView;

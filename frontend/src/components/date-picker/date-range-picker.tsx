@@ -39,7 +39,7 @@ const DatePickerWithRange = ({ from, to, pathname, sortBy, order }: Props) => {
     useClickOutside(dateRef, () => setIsShow(false));
 
     return (
-        <div className="relative" ref={dateRef}>
+        <div className="relative z-[11]" ref={dateRef}>
             <Button
                 variant="outline"
                 size="sm"
@@ -50,7 +50,7 @@ const DatePickerWithRange = ({ from, to, pathname, sortBy, order }: Props) => {
                 <span className="hidden md:block">Filtrar por fecha</span>
             </Button>
             {isShow && (
-                <div className="shadow-md bg-slate-900 rounded-lg flex flex-col gap-5 p-5 absolute right-0 top-2">
+                <div className="shadow-md bg-slate-900 rounded-lg flex flex-col gap-5 p-5 absolute lg:right-0 top-2">
                     <div className="flex gap-4">
                         <span className="w-full pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(from)}</span>
                         <span className="w-full pl-2 pr-7 py-2 bg-white bg-opacity-5 rounded-lg text-primary-100">{formatToShortDate(to)}</span>

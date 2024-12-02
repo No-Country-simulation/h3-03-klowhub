@@ -6,7 +6,7 @@ const Table = ({
 }: React.HTMLAttributes<HTMLTableElement>) => (
     <table
         className={cn(
-            "xl:w-3/4 w-full h-fit",
+            "h-fit",
             className
         )}
         {...props}

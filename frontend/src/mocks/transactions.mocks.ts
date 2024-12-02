@@ -1,13 +1,16 @@
+import { Transaction } from "@/types/transaction.types";
+
 export const transactionsData: Transaction[] = [
     {
         id: 1,
         customerName: "John Doe",
         courseName: "Building Apps with AppSheet",
         amount: 650,
-        status: "Pending",
+        status: "Completed",
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-11-01",
         platform: "AppSheet",
+        commissionRate: 0.7,
     },
     {
         id: 2,
@@ -18,6 +21,7 @@ export const transactionsData: Transaction[] = [
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-10-25",
         platform: "PowerApps",
+        commissionRate: 0.7,
     },
     {
         id: 3,
@@ -28,6 +32,7 @@ export const transactionsData: Transaction[] = [
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-10-29",
         platform: "AppSheet",
+        commissionRate: 0.7,
     },
     {
         id: 4,
@@ -38,6 +43,7 @@ export const transactionsData: Transaction[] = [
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-11-02",
         platform: "PowerApps",
+        commissionRate: 0.7,
     },
     {
         id: 5,
@@ -48,6 +54,7 @@ export const transactionsData: Transaction[] = [
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-11-05",
         platform: "AppSheet",
+        commissionRate: 0.7,
     },
     {
         id: 6,
@@ -58,6 +65,7 @@ export const transactionsData: Transaction[] = [
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2023-11-10",
         platform: "PowerApps",
+        commissionRate: 0.7,
     },
     {
         id: 7,
@@ -68,6 +76,7 @@ export const transactionsData: Transaction[] = [
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-09-18",
         platform: "AppSheet",
+        commissionRate: 0.7,
     },
     {
         id: 8,
@@ -78,25 +87,28 @@ export const transactionsData: Transaction[] = [
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2023-12-03",
         platform: "AppSheet",
+        commissionRate: 0.7,
     },
     {
         id: 9,
         customerName: "Christopher Lee",
         courseName: "PowerApps for Beginners",
         amount: 680,
-        status: "Pending",
+        status: "Completed",
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-10-10",
         platform: "PowerApps",
+        commissionRate: 0.7,
     },
     {
         id: 10,
         customerName: "Olivia Martinez",
         courseName: "Building Efficient Workflows with PowerApps",
         amount: 1140,
-        status: "Canceled",
+        status: "Completed",
         avatarUrl: "https://res.cloudinary.com/dpp28f2ek/image/upload/v1732005458/avatar14_y8di7c.png",
         date: "2024-02-01",
         platform: "PowerApps",
+        commissionRate: 0.7,
     },
 ];

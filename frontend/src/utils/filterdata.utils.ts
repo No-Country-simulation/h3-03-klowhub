@@ -1,17 +1,6 @@
-const formatDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-  
-    return `${year}-${month}-${day}`;
-  };
+import { Transaction } from "@/types/transaction.types";
 
-  const today = formatDate(new Date());
-  const startOfMonth = formatDate(new Date(new Date().getFullYear(), new Date().getMonth(), 1));
-  const threeMonthsAgo = formatDate(new Date(new Date().setMonth(new Date().getMonth() - 3)));
-  const startOfYear = formatDate(new Date(new Date().getFullYear(), 0, 1));
-
-  const filterData = (
+const filterData = (
     filterBy: string,
     value: { from?: string; to?: string; items?: string },
     data: Transaction[]
@@ -73,11 +62,18 @@ const sortByState = (order: string, data: Transaction[]) => {
     });
 };
 
+const sortByPlatform = (order: string, data: Transaction[]) => {
+    return data.sort((a, b) => {
+        const comparison = a.platform.localeCompare(b.platform);
+        return order === "asc" ? comparison : -comparison;
+    });
+};
+
 const sortByDate = (order: string, data: Transaction[]) => {
     return data.sort((a, b) => {
         const dateA = new Date(a.date).getTime();
         const dateB = new Date(b.date).getTime();
-        return order === "asc" ? dateA - dateB : dateB - dateA;
+        return order === "asc" ?  dateB - dateA : dateA - dateB;
     });
 };
 
@@ -101,6 +97,10 @@ const sortData = (
             sortedData = sortByState(order, data);
             break;
 
+        case "platform":
+            sortedData = sortByPlatform(order, data);
+            break;
+
         case "date":
             sortedData = sortByDate(order, data);
             break;
@@ -112,5 +112,5 @@ const sortData = (
     return sortedData;
 };
 
-  export {today, startOfMonth, threeMonthsAgo, startOfYear, filterData, sortData}
+  export {filterData, sortData}
 
