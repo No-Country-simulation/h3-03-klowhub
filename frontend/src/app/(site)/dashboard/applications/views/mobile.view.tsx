@@ -71,7 +71,7 @@ const MyAppsMobileView = async ({
                             totalCommissions={totalCommissions}
                             revenueColor="#9333ea"
                             commissionColor="#e6d5ff"
-                            title="Balance de cursos"
+                            title="Balance de aplicaciones"
                         />
                     </div>
                 </div>
