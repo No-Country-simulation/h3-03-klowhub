@@ -6,7 +6,7 @@ import { useReducer } from "react";
 import courseFormReducer, { COURSE_FORM_INITIAL_STATE } from "./course-form.reducer";
 import { CourseFormActions } from "./course-form.actions";
 import { useEffect } from "react";
-import { prepareCourseSubmit } from "./course-form.utils";
+import { prepareCourseData } from "./course-form.utils";
 
 type Props = {
   children: ReactNode[]
@@ -19,7 +19,7 @@ type CourseCtxType = {
 }
 
 const submit = async (data: CourseFormData) => {
-  const formattedData = prepareCourseSubmit(data);
+  const formattedData = prepareCourseData(data);
   console.log('creating course...', formattedData);
 
   const res = await fetch('http://localhost:3003/courses', { 
