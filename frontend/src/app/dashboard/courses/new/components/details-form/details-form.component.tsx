@@ -8,7 +8,7 @@ import Input from "@/components/input/input.component";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
-import formMock from "./course-detail-form.mock.json"
+import detailsMock from "./course-detail-form.mock.json"
 
 const DetailsForm = () => {
   const { state, dispatch } = useCourseContext();
@@ -21,8 +21,9 @@ const DetailsForm = () => {
 
   useEffect(() => {
     console.log("inserting mocked data...");
+    console.log('detailsMock: ', detailsMock);
 
-    dispatch(setDetailsData(formMock))
+    dispatch(setDetailsData(detailsMock))
   }, [dispatch])
 
   return (

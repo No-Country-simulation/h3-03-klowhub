@@ -42,7 +42,7 @@ export type UploadedFile = {
 
 export type PromotedProduct = {
   type: "application" | "course" | null
-  id: number
+  id: string | null
 }
 
 export type Promotion = {

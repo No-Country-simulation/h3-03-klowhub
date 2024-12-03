@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction } from "react";
 import { OneOf } from "@/types/utils.types";
 import { Lesson, Module } from "@/types/courses.types";
 import FileBadge from "@/components/file-badge/file-badge.component";
+import styles from "@/styles/accordion.styles.module.css"
 
 type ReadOnly = {
   readOnly?: true
@@ -25,7 +26,7 @@ type Props =  OneOf<[ FullFeatured, ReadOnly ]>
 
 const LessonsSection = ({ watch, readOnly, setCurrentLesson, setShowLessonForm, lessons }: Props) => {
   return (
-    <Accordion type="single" collapsible className="px-5 bg-gray-100 rounded-lg">
+    <Accordion type="single" collapsible className={`${styles['accordion-root']} px-5 bg-gray-100 rounded-lg`}>
       { (lessons || watch("lessons")).map((l, lIdx) => ( 
         <AccordionItem key={`module-panel-${lIdx}`} value={`module-${lIdx}`}>
           <AccordionTrigger>{ l.title }</AccordionTrigger>

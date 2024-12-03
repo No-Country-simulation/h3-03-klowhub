@@ -1,0 +1,57 @@
+{
+  "coverImg": {
+    "url": "https://i.imgur.com/Ckqd6oQ.png",
+    "size": 500,
+    "width": 1920,
+    "height": 1080,
+    "format": "jpg",
+    "created_at": "2024-01-04T12:00:00Z"
+  },
+  "desktopScreenshot": {
+    "url": "https://i.imgur.com/Ckqd6oQ.png",
+    "size": 500,
+    "width": 1920,
+    "height": 1080,
+    "format": "jpg",
+    "created_at": "2024-01-04T12:00:00Z"
+  },
+  "mobileScreenshoot": {
+    "url": "https://i.imgur.com/Ckqd6oQ.png",
+    "size": 500,
+    "width": 1920,
+    "height": 1080,
+    "format": "jpg",
+    "created_at": "2024-01-04T12:00:00Z"
+  },
+  "desktopLink": "https://google.com",
+  "mobileLink": "https://google.com",
+  "assets": [
+    {
+      "url": "https://i.imgur.com/Ckqd6oQ.png",
+      "size": 500,
+      "width": 1920,
+      "height": 1080,
+      "format": "jpg",
+      "created_at": "2024-01-04T12:00:00Z",
+      "mimetype": "image/jpg"
+    },
+    {
+      "url": "https://i.imgur.com/Ckqd6oQ.png",
+      "size": 500,
+      "width": 1920,
+      "height": 1080,
+      "format": "jpg",
+      "created_at": "2024-01-04T12:00:00Z",
+      "mimetype": "image/jpg"
+    },
+    {
+      "url": "https://i.imgur.com/Ckqd6oQ.png",
+      "size": 500,
+      "width": 1920,
+      "height": 1080,
+      "format": "jpg",
+      "created_at": "2024-01-04T12:00:00Z",
+      "mimetype": "image/jpg"
+    }
+  ]
+}

@@ -13,11 +13,13 @@ import { setPromotionData } from "../../context/application-form.actions";
 
 import useApplicationContext from "../../hooks/use-application-context.hook";
 import useUserContent from "@/hooks/use-user-content.hook";
+import promotionMock from "./promotions.mock.json"
+import { Button } from "@/components/ui/button";
 
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
-  const [ state, dispatch ] = useApplicationContext();
+  const { state, dispatch, submit } = useApplicationContext();
 
   const {
     commonProps, 
@@ -47,6 +49,11 @@ const PromotionsSection = () => {
     if (selection === "yes") setShowSelector(true);
     if (selection === "no") setShowSelector(false);
   }, [selection])
+
+  useEffect(() => {
+    console.log("inserting promotionMock: ", promotionMock);
+    dispatch(setPromotionData(promotionMock))
+  }, [dispatch])
 
   return (
     <>
@@ -165,6 +172,13 @@ const PromotionsSection = () => {
           >
             Vista previa del curso
           </RouteBtn>
+          <Button 
+            type="button"
+            onClick={ handleSubmit(data => submit({ ...state, promotion: data })) }
+            className="mr-auto flex-1 md:grow-0"
+          >
+            Probar
+          </Button>
           <RouteBtn 
             setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
             route="temporary-route"

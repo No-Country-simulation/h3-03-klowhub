@@ -25,6 +25,7 @@ const GeneralForm = () => {
 
   useEffect(() => {
     console.log('inserting mocked data...');
+    console.log('formMock: ', formMock);
     dispatch(setGeneralData(formMock))
   }, [dispatch])
   return (

@@ -4,7 +4,7 @@ export const COURSE_INFO_INITIAL_STATE: CourseInfo = {
   title: "",
   freeCourse: null,
   contentType: null,
-  about: "",
+  shortDescription: "",
   level: null,
   platform: null,
   language: { name: "español", label: "Español"},

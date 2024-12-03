@@ -12,6 +12,7 @@ import useApplicationContext from "../../hooks/use-application-context.hook";
 
 import { ApplicationMedia } from "@/types/application.types";
 import { Badge } from "@/components/ui/badge";
+import mediaMock from "./media-form.mock.json"
 
 const MediaForm = () => {
   const { state, dispatch } = useApplicationContext();
@@ -24,11 +25,16 @@ const MediaForm = () => {
     formState: { isDirty }
   } = useGenerateForm<ApplicationMedia>(APPLICATION_MEDIA_INITIAL_STATE, state.media || APPLICATION_MEDIA_INITIAL_STATE);
 
-  const [ contentType, setContentType] = useState<ContentType>('applications');
+  // const [ contentType, setContentType] = useState<ContentType>('applications');
+  //
+  // useEffect(() => {
+  //   reset()
+  // }, [contentType, reset])
 
   useEffect(() => {
-    reset()
-  }, [contentType, reset])
+    console.log("inserting mediaMock: ", mediaMock);
+    dispatch(setMediaData(mediaMock))
+  }, [dispatch])
 
   return (
     <>

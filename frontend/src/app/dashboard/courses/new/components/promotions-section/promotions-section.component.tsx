@@ -17,6 +17,7 @@ import Greeter from "@/components/greeter/greeter.component";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import promotionMock from "./promotions.mock.json"
 
 type ContentType = "applications" | "courses"
 
@@ -54,6 +55,11 @@ const PromotionsSection = () => {
     if (selection === "yes") setShowSelector(true);
     if (selection === "no") setShowSelector(false);
   }, [selection])
+
+  useEffect(() => {
+    console.log('promotionMock: ', promotionMock);
+    dispatch(setPromotionData(promotionMock))
+  }, [dispatch])
 
   return (
     <>
