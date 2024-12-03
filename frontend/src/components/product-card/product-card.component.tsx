@@ -94,7 +94,7 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
           { !onlyInfo &&
             <div className={`w-full flex items-center ${orientation === "vertical" ? "justify-between" : "justify-between md:justify-start gap-10"}`}>
               <Button>Añadir al carrito</Button>
-              <Link href="#" className={`text-primary-200 ${ unlink ? "pointer-events-none" : "" }`} >Ver detalles</Link>
+              <Link href={`/courses/${title}`} className={`text-primary-200 ${ unlink ? "pointer-events-none" : "" }`} >Ver detalles</Link>
             </div>
           }
         </CardContent>

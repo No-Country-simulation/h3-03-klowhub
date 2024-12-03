@@ -1,7 +1,11 @@
 import { ReactNode } from "react";
+<<<<<<< HEAD
+=======
+import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
+>>>>>>> development-benja
 
 export interface Lesson {
-    id: number;
+    id: string;
     image: string;
     title: string;
 }
@@ -18,17 +22,27 @@ export interface Instructor {
 
 export type CourseDetailHeader = {
     title: string;
-    description: string;
+    summarizeDescription: string;
     rating: number;
     ratingCount: number;
-    image: string;
+    coverImg: {
+        url: string
+        size: number
+        width: number
+        height: number
+        format: string
+        created_at: string
+    };
 }
 
 export interface AppInfoProps {
-    sections: {
-        title: string;
-        badges: string[];
-    }[];
+    sector: string[];
+
+    coreContent: string[];
+
+    toolsAndPlatforms: string[];
+
+    functionalities: string[];
 }
 
 export interface ProgramModule {
@@ -37,21 +51,25 @@ export interface ProgramModule {
 }
 
 export interface CourseProps {
-    details: CourseDetailHeader;
-    lessons: Lesson[];
-    instructor: Instructor;
-    objectives: string[];
-    about: string;
-    // additionalDetails: {
-    //     title: string;
-    //     content: string;
-    // }[];
-    // requirements: string[];
-    // appInfoSections: AppInfoProps;
-    // reviews: {
-    //     author: string;
-    //     rating: number;
-    //     comment: string;
-    // }[];
-  children?: ReactNode[]
+    title: string;
+    shortDescription: string
+    rating: number
+    ratingCount: number
+    coverImg: {
+        url: string
+        size: number
+        width: number
+        height: number
+        format: string
+        created_at: string
+    }
+    learningSubjects: string[];
+    fullDescription: string;
+    freelessons: Lesson[];
+    additionalDetails: {
+        title: string;
+        content: string;
+    }[];
+    prevRequirements: string[];
+    children: ReactNode[];
 }

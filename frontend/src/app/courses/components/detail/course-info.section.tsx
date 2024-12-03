@@ -12,13 +12,18 @@ import { InstructorInfo } from './instructor-section';
 import { ObjectivesList } from './objectives.section';
 import { useSearchParams, usePathname } from 'next/navigation';
 
+import { instructor } from '@/mocks/instructor.mock';
+
 export const CourseInfo: FC<CourseProps> = ({
-    details,
-    lessons,
-    instructor,
-    objectives,
-    about,
-  children
+    title,
+    shortDescription,
+    rating,
+    ratingCount,
+    coverImg,
+    freelessons,
+    learningSubjects,
+    fullDescription,
+    children
 }) => {
 
     const searchParams = useSearchParams();
@@ -28,16 +33,22 @@ export const CourseInfo: FC<CourseProps> = ({
 
     return (
         <div className="md:col-span-2 space-y-4">
-            <CourseHeader details={details} />
-            <LessonList lessons={lessons} />
+            <CourseHeader
+                title={title} 
+                summarizeDescription={shortDescription}
+                rating={rating}
+                ratingCount={ratingCount}
+                coverImg={coverImg}
+            />
+            <LessonList lessons={freelessons} />
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor} />
                 <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>
-                <ObjectivesList objectives={objectives} />
+                <ObjectivesList objectives={learningSubjects} />
                 <h3 className="text-sm font-semibold">Acerca de este curso</h3>
                 <div>
                     <p className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
-                        {about}
+                        {fullDescription}
                     </p>
                 </div>
 
@@ -46,6 +57,8 @@ export const CourseInfo: FC<CourseProps> = ({
                     <Button className="mt-3 px-20">Añadir al Carrito</Button>
           
           { children }
+
+                    {children}
 
                 </div>
             </div>
