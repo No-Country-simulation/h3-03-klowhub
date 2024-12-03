@@ -33,25 +33,13 @@ export type CourseDetailHeader = {
 }
 
 export interface AppInfoProps {
-    sector: {
-        label: string;
-        name: string;
-    }[];
+    sector: string[];
 
-    coreContent: {
-        label: string;
-        name: string;
-    }[];
+    coreContent: string[];
 
-    toolsAndPlatforms: {
-        label: string;
-        name: string;
-    }[];
+    toolsAndPlatforms: string[];
 
-    functionalities: {
-        label: string;
-        name: string;
-    }[];
+    functionalities: string[];
 }
 
 export interface ProgramModule {
@@ -61,7 +49,7 @@ export interface ProgramModule {
 
 export interface CourseProps {
     title: string;
-    summarizeDescription: string
+    shortDescription: string
     rating: number
     ratingCount: number
     coverImg: {
@@ -73,7 +61,7 @@ export interface CourseProps {
         created_at: string
     }
     learningSubjects: string[];
-    detailedDescription: string;
+    fullDescription: string;
     freelessons: Lesson[];
     additionalDetails: {
         title: string;

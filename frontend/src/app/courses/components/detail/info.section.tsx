@@ -15,7 +15,7 @@ export const CourseInfoSection: FC<AppInfoProps> = ({ sector, coreContent, tools
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Funcionalidades</h3>
           <div className="flex flex-col items-center justify-center gap-2">
             {functionalities.map((functionality, index) => (
-              <Badge key={index}>{functionality.label}</Badge>
+              <Badge key={index}>{functionality}</Badge>
             ))}
           </div>
         </div>
@@ -24,7 +24,7 @@ export const CourseInfoSection: FC<AppInfoProps> = ({ sector, coreContent, tools
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Herramientas y Plataformas</h3>
           <div className="flex flex-col items-center justify-center gap-2">
             {toolsAndPlatforms.map((toolsAndPlatform, index) => (
-              <Badge key={index}>{toolsAndPlatform.label}</Badge>
+              <Badge key={index}>{toolsAndPlatform}</Badge>
             ))}
           </div>
         </div>
@@ -33,7 +33,7 @@ export const CourseInfoSection: FC<AppInfoProps> = ({ sector, coreContent, tools
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Sector</h3>
           <div className="flex flex-col items-center justify-center gap-2">
             {sector.map((sector, index) => (
-              <Badge key={index}>{sector.label}</Badge>
+              <Badge key={index}>{sector}</Badge>
             ))}
           </div>
         </div>
@@ -42,7 +42,7 @@ export const CourseInfoSection: FC<AppInfoProps> = ({ sector, coreContent, tools
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Pilar de Contenido</h3>
           <div className="flex flex-col items-center justify-center gap-2">
             {coreContent.map((coreContent, index) => (
-              <Badge key={index}>{coreContent.label}</Badge>
+              <Badge key={index}>{coreContent}</Badge>
             ))}
           </div>
         </div>

@@ -80,7 +80,7 @@ export const courseData = {
 
 export const courseDataNew = {
     title: "Curso de Desarrollo Web",
-    summarizeDescription: "Aprende a desarrollar aplicaciones web modernas.",
+    shortDescription: "Aprende a desarrollar aplicaciones web modernas.",
     rating: 4.5,
     ratingCount: 123,
     coverImg: {
@@ -103,52 +103,16 @@ export const courseDataNew = {
         "Diseñar APIs robustas con Node.js.",
     ],
 
-    sector: [
-        {
-            label: "Gestión de Usuarios",
-            name: "gestion-de-usuarios"
-        },
-        {
-            label: "Marketing digital",
-            name: "marketing-digital"
-        }
-    ],
+    sector: [ "Gestión de Usuarios", "Marketing digital" ],
 
-    coreContent: [
-        {
-            label: "Expresiones y fórmulas",
-            name: "expresiones-y-formulas"
-        },
-        {
-            label: "Automatización",
-            name: "automatizacion"
-        }
-    ],
+    coreContent: [ "Expresiones y fórmulas", "Automatización" ],
 
-    toolsAndPlatform: [
-        {
-            label: "Power BI",
-            name: "power-bi"
-        },
-        {
-            label: "Google Sheets",
-            name: "google-sheets"
-        }
-    ],
+    toolsAndPlatform: [ "Power BI", "Google Sheets" ],
 
-    functionalities: [
-        {
-            label: "Reportes automáticos",
-            name: "reportes-automaticos"
-        },
-        {
-            label: "Generación de PDF",
-            name: "generacion-de-pdf"
-        }
-    ],
+    functionalities: [ "Reportes automáticos", "Generación de PDF" ],
 
     prevRequirements: ["Conocimientos básicos de programación", "Ganas de aprender"],
-    detailedDescription: "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de Power Apps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
+    fullDescription: "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de Power Apps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
 
     modules: [
         {
