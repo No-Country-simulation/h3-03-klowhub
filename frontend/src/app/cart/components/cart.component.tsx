@@ -90,68 +90,74 @@ export const CartComponent = () => {
                         ))
                     )}
                 </div>
-                <Card className="text-white">
-                    <CardContent className="p-4">
-                        <h2 className="mb-4 text-lg font-semibold">Resumen</h2>
-                        <div className="space-y-3">
-                            <div className="flex justify-between">
-                                <span className="text-zinc-400">Subtotal</span>
-                                <span>$5,071</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-zinc-400">Cargo de servicio</span>
-                                <span>$130</span>
-                            </div>
-                            <div className="space-y-2">
-                                <span className="text-sm text-zinc-400">
-                                    Cupón de descuento
-                                </span>
-                                <div className="flex gap-2">
-                                    <Input
-                                        placeholder="Ingrese cupón"
-                                        className="text-white bg-transparent"
+                <div>
+                    <Card className="text-white">
+                        <CardContent className="p-4">
+                            <h2 className="mb-4 text-base font-semibold">Resumen</h2>
+                            <div className="space-y-3">
+                                <div className="flex justify-between">
+                                    <span className="text-xs">Subtotal</span>
+                                    <span className="text-sm">$5,071</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-xs">Cargo de servicio</span>
+                                    <span className="text-sm">$130</span>
+                                </div>
+                                <div className="space-y-2">
+                                    <span className="text-xs">
+                                        Cupón de descuento
+                                    </span>
+                                    <div className="flex gap-2">
+                                        <Input
+                                            placeholder="Ingrese cupón"
+                                            className="text-white bg-transparent"
+                                        />
+                                        <Button variant="outline">Ingresar</Button>
+                                    </div>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-xs">Cupón HotSale</span>
+                                    <span className="text-sm">25%</span>
+                                </div>
+                                <Separator className="bg-zinc-800" />
+                                <div className="flex justify-between font-semibold">
+                                    <span className="text-sm">Total</span>
+                                    <span>$5,201</span>
+                                </div>
+                                <div className="mt-10">
+                                    <span className="text-xs font-thin">Selecciona un método de pago</span>
+                                </div>
+                                <div className="flex justify-between gap-2 h-14">
+                                    <Image
+                                        src="/temp/imgs/stripe.svg"
+                                        alt="Stripe"
+                                        width={70}
+                                        height={30}
+                                        className="rounded-md bg-white p-2"
                                     />
-                                    <Button variant="outline">Ingresar</Button>
+                                    <Image
+                                        src="/temp/imgs/mercado-pago.svg"
+                                        alt="PayPal"
+                                        width={70}
+                                        height={30}
+                                        className="rounded-md bg-white p-2"
+                                    />
+                                    <Image
+                                        src="/temp/imgs/eth.svg"
+                                        alt="Crypto"
+                                        width={80}
+                                        height={30}
+                                        className="rounded-md bg-white p-2"
+                                    />
                                 </div>
                             </div>
-                            <div className="flex justify-between">
-                                <span className="text-zinc-400">Cupón HotSale</span>
-                                <span>25%</span>
-                            </div>
-                            <Separator className="bg-zinc-800" />
-                            <div className="flex justify-between font-semibold">
-                                <span>Total</span>
-                                <span>$5,201</span>
-                            </div>
-                            <div className="mt-10">
-                                <span className="text-xs font-thin">Selecciona un método de pago</span>
-                            </div>
-                            <div className="flex justify-between gap-2 h-14">
-                                <Image
-                                    src="/temp/imgs/stripe.svg"
-                                    alt="Stripe"
-                                    width={70}
-                                    height={30}
-                                    className="rounded-md bg-white p-2"
-                                />
-                                <Image
-                                    src="/temp/imgs/mercado-pago.svg"
-                                    alt="PayPal"
-                                    width={70}
-                                    height={30}
-                                    className="rounded-md bg-white p-2"
-                                />
-                                <Image
-                                    src="/temp/imgs/eth.svg"
-                                    alt="Crypto"
-                                    width={80}
-                                    height={30}
-                                    className="rounded-md bg-white p-2"
-                                />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
+                        </CardContent>
+                    </Card>
+                    <div className="mt-4 space-y-4">
+                        <Button className="w-full">Realizar Compra</Button>
+                        <Button variant="outline" className="w-full">Explorar Más</Button>
+                    </div>
+                </div>
             </div>
         </div>
     )
