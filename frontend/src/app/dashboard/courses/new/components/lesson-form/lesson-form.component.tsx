@@ -6,18 +6,22 @@ import { Lesson } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
-import { FieldValues, UseFormGetValues, UseFormSetValue } from "react-hook-form";
+import { UseFormGetValues, UseFormSetValue } from "react-hook-form";
 import { X } from "lucide-react";
+import useCourseContext from "../../hooks/use-course-context.hook";
+import { Module } from "@/types/courses.types";
 
-type Props<F extends FieldValues> = {
+type Props = {
   lessonIdx: number
   setShowLessonForm: Dispatch<SetStateAction<boolean>>
-  updateModule: UseFormSetValue<F>
-  getValues: UseFormGetValues<F>
+  updateModule: UseFormSetValue<Module>
+  getValues: UseFormGetValues<Module>
   setCurrentLesson: Dispatch<SetStateAction<number>>
 }
 
-const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updateModule, getValues, setCurrentLesson }: Props<F>) => {
+const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, setCurrentLesson }: Props) => {
+  const { state } = useCourseContext();
+
   const {
     controlledCommonProps, 
     handleSubmit,
@@ -50,26 +54,29 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
           label="Descripción" { ...controlledCommonProps } 
           placeholder="Detallá el contenido de la lección"
         />
-        <h3 className="col-span-2 font-bold">Contenido de la lección</h3>
-        <Input 
-          name="link" type="link" 
-          label="Enlace" { ...controlledCommonProps } 
-          className="w-full"
-        />
-        <Input 
-          name="video" type="upload"
-          filetypes={{ "video/mp4": [".mp4"] }}
-          dropzoneLabel="Sube el video de esta lección" { ...controlledCommonProps }
-          className="w-full"
-        />
-        <h3 className="col-span-2 font-bold">Material adicional</h3>
+        { state.general.freeCourse === "free" ?
+          <Input 
+            name="link" type="link" 
+            label="Contenido de la lección" 
+            className="w-full col-span-2"
+            { ...controlledCommonProps } 
+          /> : 
+          <Input 
+            name="video" type="upload"
+            filetypes={{ "video/mp4": [".mp4"] }}
+            label="Contenido de la lección" 
+            dropzoneLabel="Sube el video de esta lección" { ...controlledCommonProps }
+            className="w-full"
+          />
+        }
         <Input 
           filetypes={{ "application/pdf": [".pdf"] }}
-          name="resources" type="upload"
+          name="documents" type="upload"
           dropzoneLabel="Sube documentos extra como manuales o guías." { ...controlledCommonProps }
           isMulti
-          className="w-full md:w-64"
+          className="w-full"
           limit={4}
+          label="Material adicional"
         />
         <div className="flex justify-end gap-5">
           {/* <Button  */}

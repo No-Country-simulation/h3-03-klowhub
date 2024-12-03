@@ -1,31 +1,29 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { FieldValues, UseFormWatch } from "react-hook-form";
+import { UseFormWatch } from "react-hook-form";
 import parse from "html-react-parser"
 import { Pencil } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { OneOf } from "@/types/utils.types";
-import { Lesson } from "@/types/courses.types";
-import UploadedImage from "@/components/uploaded-image/uploaded-image.component";
+import { Lesson, Module } from "@/types/courses.types";
 import FileBadge from "@/components/file-badge/file-badge.component";
 
 type ReadOnly = {
   readOnly?: true
   lessons: Lesson[]
-  moduleIdx: number
 }
 
-type FullFeatured<F extends FieldValues> = {
+type FullFeatured = {
   moduleIdx: number
-  watch: UseFormWatch<F>
+  watch: UseFormWatch<Module>
   readOnly?: false
   setCurrentLesson?: Dispatch<SetStateAction<number>>
   setShowLessonForm?: Dispatch<SetStateAction<boolean>>
 }
 
-type Props<F extends FieldValues> =  OneOf<[ FullFeatured<F>, ReadOnly ]>
+type Props =  OneOf<[ FullFeatured, ReadOnly ]>
 
-const LessonsSection = <F extends FieldValues>({ watch, readOnly, setCurrentLesson, setShowLessonForm, lessons, moduleIdx }: Props<F>) => {
+const LessonsSection = ({ watch, readOnly, setCurrentLesson, setShowLessonForm, lessons }: Props) => {
   return (
     <Accordion type="single" collapsible className="px-5 bg-gray-100 rounded-lg">
       { (lessons || watch("lessons")).map((l, lIdx) => ( 
@@ -39,21 +37,18 @@ const LessonsSection = <F extends FieldValues>({ watch, readOnly, setCurrentLess
             <div>
               <h3 className="font-bold mb-5">Contenido de la lección</h3>
               <div className="grid grid-cols-3 gap-5">
-                { l.videos.map((v, vIdx) => (
-                  <UploadedImage 
-                    key={`module-${moduleIdx}-lesson-${vIdx}`}
-                    src={URL.createObjectURL(v)}
-                    deleteCb={() => {}}
-                    readOnly={readOnly}
-                  />
-                )) }
+                { l.video &&
+                  <video width={l.video.width} height={l.video.height} controls>
+                    <source src={l.video.url} type="video/mp4"></source>
+                  </video>
+                }
               </div>
             </div>
             <div>
               <h3 className="font-bold mb-5">Material adicional</h3>
               <div className="flex flex-col items-start gap-5">
-                { l.resources.map((r, rIdx) => (
-                  <FileBadge key={`resource-${rIdx}`} file={r} />
+                { l.documents.map((d, dIdx) => (
+                  <FileBadge key={`resource-${dIdx}`} data={d} />
                 )) }
               </div>
             </div>

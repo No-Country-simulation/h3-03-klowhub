@@ -56,6 +56,10 @@ type UploadInput<T extends FieldValues> = {
   dropzoneLabel?: string
 } & ControlledInput<T>
 
+type RangeInput<T extends FieldValues> = {
+  type: "range"
+} & ControlledInput<T>
+
 // type LinkInput<T extends FieldValues> = {
 //   type: "link"
 //   isMulti?: boolean
@@ -74,4 +78,4 @@ type SelectInput<T extends FieldValues> = {
   isMulti?: boolean
 } & ControlledInput<T>
 
-export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T> | ProductSelector<T> | MultitextInput<T>
+export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T> | ProductSelector<T> | MultitextInput<T> | RangeInput<T>

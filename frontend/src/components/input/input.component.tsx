@@ -124,10 +124,46 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
     return (
       <div className={`${containerStyles} ${className || ""}`}>
         <Label htmlFor={name} className={labelStyles}>{ label }</Label>
-        <div className="relative w-full">
-          <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" {...otherProps} />
-          <span className="absolute top-0 right-0 mr-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
-        </div>
+        <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" {...otherProps} />
+      </div>
+    )
+  };
+
+  if (type === "range") {
+    const { control } = props;
+
+    return (
+      <div className={`${containerStyles} ${className || ""}`}>
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <Controller 
+          name={name}
+          control={control}
+          render={({ field: { onChange, value } }) => {
+            console.log('value: ', value);
+            return (
+            <div className="w-full flex gap-5 items-center">
+              <input
+                type="number" 
+                placeholder="min" 
+                value={value[0]} 
+                { ...register(name)} 
+                onChange={(e) => onChange([Number(e.target.value), value[1]])}
+                className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
+                {...otherProps} 
+              />
+              <span className="font-bold">-</span>
+              <input
+                type="number" 
+                placeholder="max" 
+                value={value[1]}
+                { ...register(name)} 
+                onChange={(e) => onChange([value[0], Number(e.target.value)])} 
+                className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
+                {...otherProps}
+              />
+            </div>
+          )}}
+        />
       </div>
     )
   };
@@ -136,16 +172,26 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
     const { placeholder } = props;
 
     return (
-      <div className={`flex ${className || ""}`}>
-        <Label htmlFor={name} className={`border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 grow-0 ${labelStyles}`}>{label || "Enlace"}</Label>
-        <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-r-lg flex-1 w-full sm:w-auto sm:grow-0" {...otherProps} />
+      <div className={`flex ${containerStyles} ${className || ""}`}>
+        { label && <Label htmlFor={name} className={`${labelStyles}`}>{label}</Label> }
+        <div className="flex">
+          <span className={"border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 grow-0"}>
+            Enlace
+          </span>
+          <input
+            type="text" 
+            placeholder={placeholder} 
+            className="px-3 py-5 h-8 text-card rounded-r-lg flex-1 w-full sm:w-auto sm:grow-0" 
+            {...otherProps} 
+            { ...register(name)} 
+          />
+        </div>
       </div>
     )
   };
 
   if (type === "upload") {
     const { control, isMulti, limit = 1, filetypes, dropzoneLabel } = props;
-    console.log('limit in input: ', limit);
 
     return (
       <Controller 
@@ -155,55 +201,59 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           <div className={`flex flex-col gap-5 col-span-2 ${className}`}>
             { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
             { isMulti ? 
-              <div className={`${filetypes["image/*"] ? "grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start" : "flex flex-col gap-3 items-start"}`}>
+              <div className={"grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start"}>
                 { value.map((v: File, idx: number) => {
-                  if (v.type === "application/pdf") {
-                    return (
-                      <FileBadge key={`resource-${idx}`} file={v} removeCb={() => onChange(removeImage(value, idx))} />
-                    )
+                  if (v.type.includes("pdf")) {
+                    return <FileBadge key={`resource-${idx}`} file={v} removeCb={() => onChange(removeImage(value, idx))} />
                   };
 
                   if (v.type.includes("image")) {
-                    return (
-                      <UploadedImage 
-                        key={`${name}-thumbnail-${idx}`}
-                        src={URL.createObjectURL(v)}
-                        deleteCb={() => onChange(removeImage(value, idx))}
-                      />
-                    )
+                    return <UploadedImage 
+                      key={`${name}-thumbnail-${idx}`}
+                      src={URL.createObjectURL(v)}
+                      deleteCb={() => onChange(removeImage(value, idx))}
+                    />      
                   };
-                }) }
-                { value.length < limit ?  
+
+                  if (v.type.includes("video")) {
+                    return <UploadedImage 
+                      key={`${name}-thumbnail-${idx}`}
+                      src={URL.createObjectURL(v)}
+                      deleteCb={() => onChange(removeImage(value, idx))}
+                    />      
+                  };
+                })}
+                { value.length < limit &&
                   <Dropzone 
-                    isMulti 
-                    limit={limit} 
-                    filetypes={filetypes} 
+                    { ...{isMulti, limit, filetypes} }
                     onDrop={(files) => value.length + files.length <= limit && onChange([...value, ...files])}
                   >
                     { dropzoneLabel }
-                  </Dropzone> : <></>
+                  </Dropzone> 
                 }
               </div>
-              :  value ? 
-                <UploadedImage 
-                  src={URL.createObjectURL(value)}
-                  deleteCb={() => onChange(null)}
-                /> :
-                <Dropzone
-                  isMulti 
-                  filetypes={filetypes} 
-                  onDrop={async (files) => {
-                    await postVideo(files[0])
-                    onChange(files[0])
-                  }}
-                >
-                  { dropzoneLabel }
-                </Dropzone>
+              : <div className="grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start">
+                  { value ? 
+                    <UploadedImage 
+                      src={value.thumbnail_url}
+                      deleteCb={() => onChange(null)}
+                    /> :
+                    <Dropzone
+                      { ...{isMulti, filetypes} }
+                      onDrop={async (files) => {
+                        const video = await postVideo(files[0])
+                        onChange(video)
+                      }}
+                    >
+                      { dropzoneLabel }
+                    </Dropzone>
+                  }
+                </div>
 
             }
 
           </div>
-        )}
+          )}
       />
     )
   };

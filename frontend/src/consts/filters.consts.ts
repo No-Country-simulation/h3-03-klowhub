@@ -1,5 +1,5 @@
 import { Platform, Language } from "@/types/global.types";
-import { Sectors, Funcionalitites, ToolsAndPlatforms, ContentType, CourseDificulty, CoreContent, AccessType } from "./filters.types";
+import { Sectors, Funcionalitites, ToolsAndPlatforms, WorkMethodology, ContentType, CourseDificulty, CoreContent, AccessType, ExperienceLevel } from "./filters.types";
 
 type Filter<T> = {
   header: string
@@ -140,3 +140,24 @@ export const coreContent: Filter<CoreContent> = {
     { name: "general", label: "General" },
   ]
 };
+
+export const workMethodology: Filter<WorkMethodology> = {
+  header: "Sector",
+  items: [
+    { name: "por-hora", label: "Por hora" },
+    { name: "por-proyecto", label: "Por proyecto" },
+    { name: "contrato-abierto", label: "Contrato abierto" },
+    { name: "contrato-temporal", label: "Contrato temporal" },
+  ] as const
+};
+
+export const experienceLevel: Filter<ExperienceLevel> = {
+  header: "Sector",
+  items: [
+    { name: "sin-experiencia-previa", label: "Sin experiencia previa" },
+    { name: "junior", label: "Junior" },
+    { name: "semi-senior", label: "Semi senior" },
+    { name: "senior", label: "Senior" },
+  ] as const
+};
+

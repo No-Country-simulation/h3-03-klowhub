@@ -9,7 +9,7 @@ import { setDetailsData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
 import formMock from "./course-detail-form.mock.json"
 
-const GeneralForm = () => {
+const DetailsForm = () => {
   const { state, dispatch } = useCourseContext();
 
   const {
@@ -42,7 +42,6 @@ const GeneralForm = () => {
           name="coverImg" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
           dropzoneLabel="Sube una imagen para promocionar tu curso o lección" { ...controlledCommonProps }
-          className="w-full md:w-64"
         />
       </form>
       <div className="
@@ -69,4 +68,4 @@ const GeneralForm = () => {
   )
 };
 
-export default GeneralForm
+export default DetailsForm

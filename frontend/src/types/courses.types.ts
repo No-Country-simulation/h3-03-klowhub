@@ -1,7 +1,7 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
-import { Language, Platform, TImage, Resource } from "./global.types"
+import { Language, Platform, TImage, Resource, TVideo, TDocument } from "./global.types"
 import { CourseDificulty, Sectors, Funcionalitites, ToolsAndPlatforms, CoreContent, ContentType, AccessType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
 import { Promotion } from "./global.types";
@@ -40,8 +40,8 @@ export type Lesson = {
   id?: string
   title: string
   description: string
-  video: File
-  resources: Resource[]
+  video: TVideo | null
+  documents: TDocument[]
   link: string
   free: boolean
 }

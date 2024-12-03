@@ -4,7 +4,7 @@ import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { PROJECT_INFO_INITIAL_STATE } from "./general-form.consts";
 import { ProjectInfo } from "@/types/project.types";
 import Input from "@/components/input/input.component";
-import { language, coreContent, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
+import { language, coreContent, functionalities, sector, experienceLevel, toolsAndPlatforms, workMethodology } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/project-form.actions";
@@ -43,10 +43,56 @@ const GeneralForm = () => {
             { value: "appsheet", label: "AppSheet" },
             { value: "powerapps", label: "PowerApps" },
           ]}
+          { ...commonProps }
+        />
+        <Input 
+          name="description"
+          type="textarea"
+          label="Antes de comenzar, asegúrate de tener una idea clara de lo que necesitas. Esto incluye el tipo de trabajo, los resultados esperados y cualquier requisito específico."
+          placeholder="Escribe una descripción básica del proyecto"
           className="col-span-2"
           { ...commonProps }
         />
+        <IsClientProvider>
+          {/* <Input  */}
+          {/*   name="language" type="select" options={language.items}  */}
+          {/*   label="Elige el idioma del curso" { ...controlledCommonProps }  */}
+          {/*   placeholder="Seleccionar idioma" */}
+          {/* /> */}
+          <Input 
+            name="sector" 
+            type="select"
+            options={sector.items} 
+            label="Sector del proyecto" 
+            placeholder="Selecciona el sector"
+            isMulti
+            { ...controlledCommonProps } 
+          />
+          <Input 
+            name="methodology" type="select"
+            options={workMethodology.items} 
+            label="Metodología de trabajo"  
+            placeholder="Ingresa la metodología de trabajo"
+            { ...controlledCommonProps }
+          />
+          <Input 
+            name="experienceLevel" type="select"
+            options={experienceLevel.items} 
+            label="Metodología de trabajo"  
+            placeholder="Ingresa la metodología de trabajo"
+            { ...controlledCommonProps }
+          />
+        </IsClientProvider>
       </form>
+      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
+        <RouteBtn 
+          setter={handleSubmit( data => dispatch(setGeneralData(data)) )}
+          route="details"
+          isDirty={isDirty}
+        >
+          Continuar
+        </RouteBtn>
+      </div>
     </>
   )
 }

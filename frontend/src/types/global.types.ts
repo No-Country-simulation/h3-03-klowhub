@@ -1,15 +1,18 @@
 export type Language = "inglés" | "español"
 export type Platform = "appsheet" | "powerapps"
-export type Video = {
-  videoId: string
-  thumbnail: string
-  duration: string
-}
+// export type Video = {
+//   videoId: string
+//   thumbnail: string
+//   duration: string
+// }
 
-export type Resource = {
+export type TDocument = {
+  id: string
   filename: string
-  mimetype: string
-  // size: number 
+  url: string
+  size: string
+  mimeType: string
+  created_at: Date
 }
 
 export type TImage = {
@@ -20,7 +23,17 @@ export type TImage = {
 }
 
 export type TVideo = {
-  thumbnail: TImage
+  id: string
+  url: string
+  duration: number
+  size: number
+  format: string
+  width: number
+  height: number
+  thumbnail_url: string
+  thumbnail_width: number
+  thumbnail_height: number
+  created_at: Date;
 } & TImage
 
 export type FileType = {

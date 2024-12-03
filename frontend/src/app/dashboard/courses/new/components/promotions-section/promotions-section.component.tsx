@@ -147,12 +147,15 @@ const PromotionsSection = () => {
                   ))
                 }
               </div>
-              <Input 
-                type="number" 
-                name="percentage" 
-                label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete." 
-                { ...commonProps }
-              />
+              <div className="relative w-full">
+                <Input 
+                  type="number" 
+                  name="percentage" 
+                  label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete." 
+                  { ...commonProps }
+                />
+                <span className="absolute top-0 right-0 mr-5 mt-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
+              </div>
             </form>
           </div>
         }

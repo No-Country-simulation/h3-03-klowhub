@@ -86,3 +86,14 @@ export type CoreContent =
   | "security-accesibility"
   | "general"
 
+export type WorkMethodology = 
+  | "por-hora"
+  | "por-proyecto"
+  | "contrato-abierto"
+  | "contrato-temporal"
+
+export type ExperienceLevel = 
+  | "sin-experiencia-previa"
+  | "junior"
+  | "semi-senior"
+  | "senior"

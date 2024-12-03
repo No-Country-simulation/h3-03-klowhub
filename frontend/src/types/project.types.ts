@@ -1,11 +1,11 @@
-import { TVideo, Resource, Language, Platform } from "./global.types";
+import { TVideo, TDocument, Platform } from "./global.types";
 import { TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
 
 export type ProjectInfo = {
   title: string
-  shortDescription: string
-  language: Language | null
+  description: string
+  // language: SelectOption | null
   platform: Platform | null
   methodology: SelectOption | null
   experienceLevel: SelectOption | null
@@ -14,13 +14,16 @@ export type ProjectInfo = {
 
 export type ProjectDetails = {
   days: number
-  budget: number
+  budget: [ number, number ]
+  technicalRequirement: string[]
   requiredKnowledge: SelectOption[]
-  assets: (TImage | TVideo | Resource)[]
+  requiredSkills: string[]
+  assets: (TImage | TVideo | TDocument)[]
 }
 
 export type ProjectFormData = {
   id?: string | null
+  userId: string
   general: ProjectInfo
   details: ProjectDetails
 }
