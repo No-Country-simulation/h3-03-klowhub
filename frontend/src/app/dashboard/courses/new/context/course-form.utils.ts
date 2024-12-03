@@ -1,6 +1,6 @@
 import { CourseFormData } from "@/types/courses.types";
 
-export const prepareForSubmit = (data: CourseFormData) => {
+export const prepareCourseSubmit = (data: CourseFormData) => {
   const { general: { sector, coreContent, tools, functionalities, language } } = data;
 
   const general = {
