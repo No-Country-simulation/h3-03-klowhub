@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Video } from './video.entity';
 
 @Entity()
-export class Imagen {
+export class Thumbnail {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
