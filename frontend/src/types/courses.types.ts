@@ -16,7 +16,7 @@ export type CourseInfo = {
   title: string
   freeCourse: AccessType | null
   contentType: ContentType | null
-  about: string
+  shortDescription: string
   level: CourseDificulty | null
   platform: Platform | null
   language: SelectOption
@@ -32,7 +32,7 @@ export type CourseInfo = {
 export type CourseDetails = {
   learningSubjects: string[]
   prevRequirements: string[]
-  courseContent: string
+  fullDescription: string
   coverImg: TImage | null
 }
 

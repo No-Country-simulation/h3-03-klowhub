@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_INFO_INITIAL_STATE } from "./general-form.consts";
 import { CourseInfo } from "@/types/courses.types";
@@ -10,6 +11,7 @@ import { CircleAlert } from "lucide-react";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
+import formMock from "./course-general-form.mock.json"
 
 const GeneralForm = () => {
   const { state, dispatch } = useCourseContext();
@@ -21,6 +23,10 @@ const GeneralForm = () => {
     formState: { isDirty }
   } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, state.general);
 
+  useEffect(() => {
+    console.log('inserting mocked data...');
+    dispatch(setGeneralData(formMock))
+  }, [dispatch])
   return (
     <>
       <form className="
@@ -63,7 +69,7 @@ const GeneralForm = () => {
           label="Seleccioná si vas a crear un curso  o una lección." { ...commonProps } 
         />
         <Input 
-          name="about" type="textarea" 
+          name="shortDescription" type="textarea" 
           label="Contá de qué trata, en no más de 3 líneas." { ...controlledCommonProps } 
           placeholder="Escribí una descripción básica del proyecto"
           className="col-span-2"

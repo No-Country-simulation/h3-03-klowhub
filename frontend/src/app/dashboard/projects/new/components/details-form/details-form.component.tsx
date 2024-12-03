@@ -20,7 +20,8 @@ const DetailsForm = () => {
     watch
   } = useGenerateForm<ProjectDetails>(PROJECT_DETAILS_INITIAL_STATE, state.details);
 
-  // console.log(watch("budget"));
+  console.log("minBudget: ", watch("minBudget"));
+  console.log("maxBudget: ", watch("maxBudget"));
 
   return (
     <>
@@ -36,12 +37,22 @@ const DetailsForm = () => {
           placeholder="Ingresa la cantidad de días" 
           { ...commonProps } 
         />
-        <Input
-          name="budget"
-          type="range"
-          label="Ingresa presupuesto estimado para tu proyecto"
-          { ...controlledCommonProps }
-        />
+        <div className="w-full flex flex-col gap-5">
+          <label>Ingresa presupuesto estimado para tu proyecto</label>
+          <div className="w-full flex gap-5 items-center">
+            <Input
+              name="minBudget"
+              type="number"
+              { ...controlledCommonProps }
+            />
+            <span className="font-bold">-</span>
+            <Input
+              name="maxBudget"
+              type="number"
+              { ...controlledCommonProps }
+            />
+          </div>
+        </div>
         <IsClientProvider>
           <Input 
             name="requiredKnowledge"

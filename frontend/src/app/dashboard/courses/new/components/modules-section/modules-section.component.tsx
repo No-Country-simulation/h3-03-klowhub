@@ -1,11 +1,9 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { useContext } from "react";
 import CourseLesson from "../course-lesson/course-lesson.component";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
-import { CourseCtx } from "../../context/course-form.context";
 import {
   Accordion,
   AccordionContent,
@@ -16,15 +14,20 @@ import parse from "html-react-parser"
 import { Pencil } from "lucide-react";
 import ModuleForm from "../module-form/module-form.component";
 import LessonsSection from "../lessons-section/lessons-section.component";
+import useCourseContext from "../../hooks/use-course-context.hook";
+import modulesMock from "./modules.mock.json"
+import { setModulesData } from "../../context/course-form.actions";
 
 const ModulesForm = () => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state } = courseCtx
+  const { state, dispatch } = useCourseContext();
   const [ currentModule, setCurrentModule ] = useState(NaN);
-  const [ showModuleForm, setShowModuleForm ] = useState(!Boolean(state.modules.length));
+  const [ showModuleForm, setShowModuleForm ] = useState(state.modules.length === 0);
+
+  useEffect(() => {
+    console.log("inserting modules mock...");
+
+    dispatch(setModulesData(modulesMock.modules))
+  }, [dispatch])
 
   return (
     <div>

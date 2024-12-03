@@ -19,6 +19,8 @@ import { Button } from "../ui/button";
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
 import { postVideo } from "./input.api";
+import { TDocument, TImage, TVideo } from "@/types/global.types";
+import { isDocument, isImage } from "@/utils/type.utils";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -123,50 +125,50 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
 
     return (
       <div className={`${containerStyles} ${className || ""}`}>
-        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
-        <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" {...otherProps} />
+        { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
+        <input type="number" placeholder={placeholder} { ...register(name, { valueAsNumber: true })} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" {...otherProps} />
       </div>
     )
   };
 
-  if (type === "range") {
-    const { control } = props;
-
-    return (
-      <div className={`${containerStyles} ${className || ""}`}>
-        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
-        <Controller 
-          name={name}
-          control={control}
-          render={({ field: { onChange, value } }) => {
-            console.log('value: ', value);
-            return (
-            <div className="w-full flex gap-5 items-center">
-              <input
-                type="number" 
-                placeholder="min" 
-                value={value[0]} 
-                { ...register(name)} 
-                onChange={(e) => onChange([Number(e.target.value), value[1]])}
-                className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
-                {...otherProps} 
-              />
-              <span className="font-bold">-</span>
-              <input
-                type="number" 
-                placeholder="max" 
-                value={value[1]}
-                { ...register(name)} 
-                onChange={(e) => onChange([value[0], Number(e.target.value)])} 
-                className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
-                {...otherProps}
-              />
-            </div>
-          )}}
-        />
-      </div>
-    )
-  };
+  // if (type === "range") {
+  //   const { control } = props;
+  //
+  //   return (
+  //     <div className={`${containerStyles} ${className || ""}`}>
+  //       <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+  //       <Controller 
+  //         name={name}
+  //         control={control}
+  //         render={({ field: { onChange, value } }) => {
+  //
+  //           return (
+  //           <div className="w-full flex gap-5 items-center">
+  //             <input
+  //               type="number" 
+  //               placeholder="min" 
+  //               value={value.min} 
+  //               { ...register(name)} 
+  //               onChange={(e) => onChange({ ...value, min: Number(e.target.value) })}
+  //               className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
+  //               {...otherProps} 
+  //             />
+  //             <span className="font-bold">-</span>
+  //             <input
+  //               type="number" 
+  //               placeholder="max" 
+  //               value={value.max}
+  //               { ...register(name)} 
+  //               onChange={(e) => onChange({ ...value, max: Number(e.target.value) })}
+  //               className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
+  //               {...otherProps}
+  //             />
+  //           </div>
+  //         )}}
+  //       />
+  //     </div>
+  //   )
+  // };
 
   if (type === "link") {
     const { placeholder } = props;
@@ -202,23 +204,30 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
             { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
             { isMulti ? 
               <div className={"grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start"}>
-                { value.map((v: File, idx: number) => {
-                  if (v.type.includes("pdf")) {
-                    return <FileBadge key={`resource-${idx}`} file={v} removeCb={() => onChange(removeImage(value, idx))} />
+                { value.map((v: TImage | TVideo | TDocument, idx: number) => {
+                  console.log(v.url);
+                  if (v.mimetype.includes("pdf")) {
+                    if (!isDocument(v)) return;
+                    return <FileBadge 
+                      key={`resource-${idx}`} 
+                      data={v}
+                      removeCb={() => onChange(removeImage(value, idx))}
+                    />
                   };
 
-                  if (v.type.includes("image")) {
+                  if (v.mimetype.includes("image")) {
+                    console.log(v.url);
                     return <UploadedImage 
                       key={`${name}-thumbnail-${idx}`}
-                      src={URL.createObjectURL(v)}
+                      src={v.url}
                       deleteCb={() => onChange(removeImage(value, idx))}
                     />      
                   };
 
-                  if (v.type.includes("video")) {
+                  if (v.mimetype.includes("video")) {
                     return <UploadedImage 
                       key={`${name}-thumbnail-${idx}`}
-                      src={URL.createObjectURL(v)}
+                      src={v.url}
                       deleteCb={() => onChange(removeImage(value, idx))}
                     />      
                   };
@@ -226,7 +235,21 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                 { value.length < limit &&
                   <Dropzone 
                     { ...{isMulti, limit, filetypes} }
-                    onDrop={(files) => value.length + files.length <= limit && onChange([...value, ...files])}
+                    onDrop={(files) => {
+                      if (value.length + files.length <= limit) {
+                        let uploadedFile = []
+                        if (files[0].type.includes("image")) {
+                          // post to image endpoint
+                        };
+                        if (files[0].type.includes("video")) {
+                          // post to video endpoint
+                        };
+                        if (files[0].type.includes("pdf")) {
+                          // post to document endpoint
+                        };
+                        onChange([...value, ...uploadedFile])
+                      };
+                    }}
                   >
                     { dropzoneLabel }
                   </Dropzone> 
@@ -235,7 +258,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
               : <div className="grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start">
                   { value ? 
                     <UploadedImage 
-                      src={value.thumbnail_url}
+                      src={value.thumbnail_url || value.url}
                       deleteCb={() => onChange(null)}
                     /> :
                     <Dropzone

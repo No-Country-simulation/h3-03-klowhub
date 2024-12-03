@@ -1,0 +1,109 @@
+{
+  "modules": [
+    {
+      "title": "Introducción a PowerApps y su Impacto en la Automatización Empresarial",
+      "description": "Explora los fundamentos de PowerApps, su interfaz intuitiva y cómo esta herramienta de Microsoft potencia la automatización sin necesidad de programar. Conoce casos de éxito y las posibilidades que ofrece para optimizar procesos empresariales.",
+      "lessons": [
+        {
+          "title": "¿Qué es PowerApps?",
+          "description": "Conoce el propósito y las capacidades principales de PowerApps dentro del ecosistema de Microsoft.",
+          "documents": []
+        },
+        {
+          "title": "Beneficios de la Automatización Empresarial",
+          "description": "Descubre cómo PowerApps puede simplificar y optimizar procesos empresariales comunes.",
+          "documents": []
+        },
+        {
+          "title": "Casos de Uso y Ejemplos Reales",
+          "description": "Analiza ejemplos concretos de aplicaciones creadas con PowerApps y sus impactos en empresas.",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "title": "Creación de Aplicaciones desde Cero",
+      "description": "Aprende a construir tu primera aplicación en PowerApps utilizando plantillas prediseñadas o partiendo desde cero. Configura pantallas, integra controles básicos y experimenta con opciones de personalización.",
+      "lessons": [
+        {
+          "title": "Explorando la Interfaz de PowerApps",
+          "description": "Familiarízate con el entorno de desarrollo y sus herramientas principales.",
+          "documents": []
+        },
+        {
+          "title": "Creando tu Primera Aplicación",
+          "description": "Paso a paso, desarrolla una aplicación básica utilizando plantillas o un diseño en blanco.",
+          "documents": []
+        },
+        {
+          "title": "Personalización y Diseño",
+          "description": "Aprende a ajustar colores, fuentes y distribuciones para crear una interfaz profesional.",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "title": "Conexión y Gestión de Datos",
+      "description": "Descubre cómo integrar PowerApps con diversas fuentes de datos, como SharePoint, Excel, SQL Server o servicios en la nube. Aprende a diseñar formularios dinámicos que capturen información clave de manera eficiente.",
+      "lessons": [
+        {
+          "title": "Introducción a las Fuentes de Datos",
+          "description": "Explora las opciones disponibles para conectar datos a tus aplicaciones.",
+          "documents": []
+        },
+        {
+          "title": "Configuración de Conexiones",
+          "description": "Aprende a enlazar PowerApps con servicios externos, desde Excel hasta bases de datos SQL.",
+          "documents": []
+        },
+        {
+          "title": "Diseño de Formularios Dinámicos",
+          "description": "Crea formularios que respondan automáticamente a las entradas de los usuarios.",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "title": "Automatización Inteligente con Power Automate",
+      "description": "Conecta PowerApps con Power Automate para crear flujos de trabajo automatizados. Desde aprobaciones hasta notificaciones automáticas, descubre cómo optimizar tareas recurrentes y ahorrar tiempo en tu organización.",
+      "lessons": [
+        {
+          "title": "Introducción a Power Automate",
+          "description": "Descubre cómo Power Automate complementa a PowerApps con flujos automatizados.",
+          "documents": []
+        },
+        {
+          "title": "Creación de un Flujo de Trabajo",
+          "description": "Aprende a configurar un flujo básico que conecte aplicaciones y datos.",
+          "documents": []
+        },
+        {
+          "title": "Integración Avanzada con PowerApps",
+          "description": "Explora cómo utilizar triggers y condiciones para automatizar procesos empresariales complejos.",
+          "documents": []
+        }
+      ]
+    },
+    {
+      "title": "Publicación, Seguridad y Mejores Prácticas",
+      "description": "Aprende a publicar y compartir tus aplicaciones de manera segura dentro de tu empresa. Descubre cómo gestionar permisos, garantizar la calidad y aplicar prácticas recomendadas para el mantenimiento continuo de tus soluciones.",
+      "lessons": [
+        {
+          "title": "Publicación de Aplicaciones",
+          "description": "Paso a paso, publica tu aplicación y compártela con tu equipo de trabajo.",
+          "documents": []
+        },
+        {
+          "title": "Gestión de Permisos y Seguridad",
+          "description": "Asegura que tus datos y aplicaciones estén protegidos con configuraciones de acceso adecuadas.",
+          "documents": []
+        },
+        {
+          "title": "Mantenimiento y Actualizaciones",
+          "description": "Descubre cómo mantener tus aplicaciones actualizadas y funcionales a largo plazo.",
+          "documents": []
+        }
+      ]
+    }
+  ]
+}

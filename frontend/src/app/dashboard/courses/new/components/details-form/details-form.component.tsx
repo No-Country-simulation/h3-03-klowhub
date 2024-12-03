@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { CourseDetails } from "@/types/courses.types";
@@ -18,6 +19,12 @@ const DetailsForm = () => {
     formState: { isDirty }
   } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, state.details);
 
+  useEffect(() => {
+    console.log("inserting mocked data...");
+
+    dispatch(setDetailsData(formMock))
+  }, [dispatch])
+
   return (
     <>
       <form className="flex flex-col gap-10">
@@ -34,7 +41,7 @@ const DetailsForm = () => {
           placeholder="¿Qué necesitan saber?"
         />
         <Input 
-          name="courseContent" type="textarea" 
+          name="fullDescription" type="textarea" 
           label="Hacé una descripción detallada del contenido y de los beneficios que ofrece." { ...controlledCommonProps } 
           placeholder="Hacé una descripción detallada del contenido y de los beneficios que ofrece."
         />

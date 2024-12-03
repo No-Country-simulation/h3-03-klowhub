@@ -14,7 +14,8 @@ export type ProjectInfo = {
 
 export type ProjectDetails = {
   days: number
-  budget: [ number, number ]
+  minBudget: number
+  maxBudget: number
   technicalRequirement: string[]
   requiredKnowledge: SelectOption[]
   requiredSkills: string[]

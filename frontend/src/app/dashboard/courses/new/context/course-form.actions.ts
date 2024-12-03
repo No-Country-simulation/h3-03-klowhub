@@ -35,3 +35,18 @@ export const addNewModule = (module: Module): AddNewModule => {
 export const setPromotionData = (promotionData: Promotion): SetPromotionData => {
   return { type: courseFormTypes.SET_PROMOTION_DATA, payload: promotionData }   
 };
+
+// mock actions
+
+// export const setGeneralDataMock = (generalData: CourseInfo): SetGeneralData => {
+//   return { type: courseFormTypes.SET_GENERAL_DATA, payload: generalData }   
+// };
+// export const setDetailsDataMock = (detailsData: CourseDetails): SetDetailsData => {
+//   return { type: courseFormTypes.SET_DETAILS_DATA, payload: detailsData }   
+// };
+// export const setModulesDataMock = (modulesData: Module[]): SetModulesData => {
+//   return { type: courseFormTypes.SET_MODULES_DATA, payload: modulesData }   
+// };
+// export const setPromotionDataMock = (promotionData: Promotion): SetPromotionData => {
+//   return { type: courseFormTypes.SET_PROMOTION_DATA, payload: promotionData }   
+// };
