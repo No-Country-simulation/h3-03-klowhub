@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Multimedia } from './multimedia.entity';
 
 @Entity()
 export class Course {
@@ -207,4 +208,9 @@ export class Course {
 
   @Column({ type: 'int' })
   price: number;
+
+  @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
+    cascade: true,
+  })
+  multimedia: Multimedia[];
 }
