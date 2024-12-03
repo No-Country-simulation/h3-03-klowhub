@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCourseDto } from './dto/create-course.dto';
+// import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Course } from './entities/course.entity';
@@ -17,7 +17,10 @@ import {
 
 import { Video } from './entities/video.entity';
 import { VideoDto } from './dto/video-course.dto';
-import { Imagen } from './entities/thumbnail_url.entity';
+import { Image } from './entities/image.entity';
+import { Thumbnail } from './entities/thumbnail_url.entity';
+import { Multimedia } from './entities/multimedia.entity';
+import { MultimediaDto } from './dto/multimedia.dto';
 
 @Injectable()
 export class CoursesService {
@@ -32,8 +35,14 @@ export class CoursesService {
     @InjectRepository(Video)
     private readonly videoRepository: Repository<Video>,
 
-    @InjectRepository(Imagen)
-    private readonly imagenRepository: Repository<Imagen>,
+    @InjectRepository(Thumbnail)
+    private readonly thumbnailRepository: Repository<Thumbnail>,
+
+    @InjectRepository(Image)
+    private readonly imageRepository: Repository<Image>,
+
+    @InjectRepository(Multimedia)
+    private readonly multimediaRepository: Repository<Multimedia>,
   ) {}
 
   private validateFile(
@@ -56,23 +65,25 @@ export class CoursesService {
   }
 
   async create(
-    createCourseDto: CreateCourseDto,
+    multimediaDto: MultimediaDto,
     imagenFile: Express.Multer.File,
     videoFile: Express.Multer.File,
     documentFiles: Express.Multer.File,
-  ): Promise<Course> {
+  ): Promise<Multimedia> {
     this.validateFile(imagenFile, this.MAX_IMAGE_SIZE, 'image');
     const uploadImage = await this.cloudinaryService.uploadFile(imagenFile);
     console.log('Resultado de carga de imagen:', uploadImage);
     if (!uploadImage || !uploadImage.secure_url) {
       throw new CloudinaryUploadFailedException();
     }
-    createCourseDto.coverImg = {
+
+    multimediaDto.coverImg = {
       url: uploadImage.secure_url,
       size: uploadImage.bytes,
       width: uploadImage.width,
       height: uploadImage.height,
       format: uploadImage.format,
+      mimeType: imagenFile.mimetype,
       created_at: uploadImage.created_at,
     };
 
@@ -83,34 +94,20 @@ export class CoursesService {
     if (!uploadVideo || !uploadVideo.secure_url) {
       throw new CloudinaryUploadFailedException();
     }
-
-    createCourseDto.modules.forEach((module) => {
-      if (Array.isArray(module.lessons)) {
-        // Verifica que lessons sea un array
-        module.lessons.forEach((lesson) => {
-          lesson.video = {
-            url: uploadVideo.secure_url,
-            duration: uploadVideo.duration,
-            size: uploadVideo.bytes,
-            resolution: uploadVideo.resolution,
-            format: uploadVideo.format,
-            width: uploadVideo.width,
-            height: uploadVideo.height,
-            created_at: uploadVideo.created_at,
-          };
-        });
-      }
-    });
-    // createCourseDto.modules.lessons. = {
-    //   url: uploadVideo.secure_url,
-    //   duration: uploadVideo.duration,
-    //   size: uploadVideo.bytes,
-    //   resolution: uploadVideo.resolution,
-    //   format: uploadVideo.format,
-    //   width: uploadVideo.width,
-    //   height: uploadVideo.height,
-    //   created_at: uploadImage.created_at,
-    // };
+    multimediaDto.video = {
+      url: uploadVideo.secure_url,
+      duration: uploadVideo.duration,
+      size: uploadVideo.bytes,
+      resolution: uploadVideo.resolution,
+      format: uploadVideo.format,
+      width: uploadVideo.width,
+      height: uploadVideo.height,
+      mimeType: videoFile.mimetype,
+      thumbnail_url: uploadVideo.thumbnailUrl,
+      thumbnail_width: uploadVideo.thumbnailUrl_width,
+      thumbnail_height: uploadVideo.thumbnailUrl_height,
+      created_at: uploadImage.created_at,
+    };
 
     if (documentFiles) {
       this.validateFile(documentFiles, this.MAX_PDF_SIZE, 'pdf');
@@ -127,18 +124,45 @@ export class CoursesService {
         created_at: uploadDocument.created_at,
       };
       console.log('Esto es el resultado de pdfData', pdfData);
-      createCourseDto.resource = createCourseDto.resource || [];
-      createCourseDto.resource.push(pdfData);
+      multimediaDto.documents = multimediaDto.documents || [];
+      multimediaDto.documents.push(pdfData);
+      // createCourseDto.resource = createCourseDto.resource || [];
+      // createCourseDto.resource.push(pdfData);
     }
 
-    const course = this.courseRepository.create({ ...createCourseDto });
-    const savedCourse = await this.courseRepository.save(course);
-    if (!savedCourse) {
+    const multimedia = this.multimediaRepository.create(multimediaDto);
+    const savedMultimedia = await this.multimediaRepository.save(multimedia);
+
+    if (!savedMultimedia) {
       throw new CourseCreationFailedException();
     }
-    return savedCourse;
+    return savedMultimedia;
+    // const course = this.courseRepository.create({
+    //   multimedia: [savedMultimedia],
+    // });
+    // const savedCourse = await this.courseRepository.save(course);
+    // if (!savedCourse) {
+    //   throw new CourseCreationFailedException();
+    // }
+    // return savedCourse;
   }
 
+  //entidad de imagen
+  async createImage(imageFile: Express.Multer.File): Promise<Image> {
+    const uploadImage = await this.cloudinaryService.uploadFile(imageFile);
+    const imageData = {
+      url: uploadImage.secure_url,
+      size: uploadImage.bytes,
+      width: uploadImage.width,
+      height: uploadImage.height,
+      format: uploadImage.format,
+      created_at: uploadImage.created_at,
+    };
+    const imagen = await this.imageRepository.save(imageData);
+    console.log('video creado', imagen);
+
+    return imagen;
+  }
   //entidad de Video
   async createVideo(
     VideoDto: VideoDto,
@@ -168,8 +192,8 @@ export class CoursesService {
       thumbnail_url: uploadVideo.thumbnailUrl,
       video: savedVideo,
     };
-    const imagen = this.imagenRepository.create(imagenData);
-    const savedImagen = this.imagenRepository.save(imagen);
+    const imagen = this.thumbnailRepository.create(imagenData);
+    const savedImagen = this.thumbnailRepository.save(imagen);
     console.log('imagen guardada:', savedImagen);
 
     return savedVideo;
