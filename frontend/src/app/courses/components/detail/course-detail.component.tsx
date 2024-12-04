@@ -37,9 +37,9 @@ const transformedProgram = courseDataNew.modules.map((module) => ({
     lessons: module.lessons.map((lesson) => lesson.title),
 }));
 
-const freeLessons = courseDataNew.modules.flatMap((module) =>
-    module.lessons.filter((lesson) => lesson.free === true)
-);
+const freeLessons = courseDataNew.modules.flatMap((module) => 
+    module.lessons.filter((lesson) => lesson.free === true
+));
 
 console.log(freeLessons);
 

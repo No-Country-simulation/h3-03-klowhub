@@ -141,7 +141,7 @@ export const courseDataNew: TCourseDetail = {
                     description: "",
                     video: null,
                     documents: [],
-                    link: "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+                    link: "https://www.youtube.com/watch?v=Kl35H8jpPOI"
                 },
                 {
                     id: "lesson-3", 
@@ -175,7 +175,7 @@ export const courseDataNew: TCourseDetail = {
                 description: "",
                 video: null,
                 documents: [],
-                link: "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+                link: "https://www.youtube.com/watch?v=bihOpGpdJMs"
             }],
         },
     ],

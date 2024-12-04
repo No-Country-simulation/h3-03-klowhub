@@ -1,32 +1,14 @@
-import { FC } from "react";
+"use client"
+
+import { FC, useState } from "react";
 import Rating from "@/components/rating/rating.component";
 import Image from "next/image";
 import { CourseDetailHeader } from "@/types/course-detail-props";
 
-import YouTube, { YouTubeProps } from 'react-youtube';
+import YouTube from 'react-youtube';
+import { getYoutubeProps } from "@/utils/youtube.utils";
 import { getYoutubeId } from "@/utils/str.utils";
 
-
-// interface CourseHeaderProps {
-//     details: CourseDetailHeader;
-//     title: string
-//     summarizeDescription: string
-// }
-
-const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-    console.log('AAA');
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-}
-
-const opts: YouTubeProps['opts'] = {
-    height: '390',
-    width: '640',
-    playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: 0,
-    },
-};
 
 export const CourseHeader: FC<CourseDetailHeader> = ({
     title,
@@ -37,6 +19,15 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
     lessons
 }) => {
 
+    const [currentVideo, setCurrentVideo] = useState<{ 
+        type: "video" | "youtube"; 
+        link: string | null; 
+    }>({
+        type: "video",
+        link: promotionalVideo.url,
+
+    });
+
     return (
         <>
             <h3 className="font-semibold text-sm">{title}</h3>
@@ -45,19 +36,36 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                 rating={rating}
                 ratingCount={ratingCount}
             />
-            <video controls className="rounded-xl">
-                <source
-                    src={promotionalVideo.url}
-                    type={`video/${promotionalVideo.format}`}
-                >
-                </source>
-            </video>
 
-            {/* <YouTube videoId={getYoutubeId(l.link!!)} opts={opts} onReady={onPlayerReady} /> */}
+            {currentVideo.type === "video" ? (
+                <video controls className="rounded-xl">
+                    <source
+                        src={currentVideo.link!!}
+                        type={`video/${promotionalVideo.format}`}
+                    />
+                </video>
+            ) : (
+                <div className="rounded-xl overflow-hidden">
+                    <YouTube className="h-full" {...getYoutubeProps(currentVideo.link!!)} />
+                </div>
+            )}
 
             <div className="bg-[#FFFFFF0D] p-3 rounded-lg">
                 <h2 className="text-sm font-semibold mb-2">Contenido gratuito</h2>
                 <div className="flex space-x-4 overflow-x-auto">
+                    <div className="flex-shrink-0 w-60">
+                        <Image
+                            src={promotionalVideo.thumbnailUrl}
+                            alt=""
+                            width={1920}
+                            height={1080}
+                            className="rounded-lg w-full h-28 cursor-pointer object-cover"
+                            onClick={() =>
+                                setCurrentVideo({ type: "video", link: promotionalVideo.url })
+                            }
+                        />
+                        <p className="text-left text-sm mt-2">Introducción</p>
+                    </div>
                     {lessons.map((lesson) => (
                         <div key={lesson.id} className="flex-shrink-0 w-60">
                             <Image
@@ -65,14 +73,16 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                                 alt={lesson.title}
                                 width={1920}
                                 height={1080}
-                                className="rounded-lg w-full h-28"
+                                className="rounded-lg w-full h-28 cursor-pointer object-cover"
+                                onClick={() =>
+                                    setCurrentVideo({ type: "youtube", link: lesson.link })
+                                }
                             />
                             <p className="text-left text-sm mt-2">{lesson.title}</p>
                         </div>
                     ))}
                 </div>
             </div>
-
         </>
     );
 
