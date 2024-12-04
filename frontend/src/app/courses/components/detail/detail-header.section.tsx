@@ -3,11 +3,30 @@ import Rating from "@/components/rating/rating.component";
 import Image from "next/image";
 import { CourseDetailHeader } from "@/types/course-detail-props";
 
+import YouTube, { YouTubeProps } from 'react-youtube';
+import { getYoutubeId } from "@/utils/str.utils";
+
+
 // interface CourseHeaderProps {
 //     details: CourseDetailHeader;
 //     title: string
 //     summarizeDescription: string
 // }
+
+const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    console.log('AAA');
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+}
+
+const opts: YouTubeProps['opts'] = {
+    height: '390',
+    width: '640',
+    playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 0,
+    },
+};
 
 export const CourseHeader: FC<CourseDetailHeader> = ({
     title,
@@ -16,8 +35,6 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
     ratingCount,
     promotionalVideo
 }) => {
-
-    console.log(promotionalVideo.url)
 
     return (
         <>
@@ -34,13 +51,9 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                 >
                 </source>
             </video>
-            {/* <Image
-                src={coverImg.url}
-                alt="Course Image"
-                width={600}
-                height={300}
-                className="rounded-lg"
-            /> */}
+            
+            <YouTube videoId={getYoutubeId(l.link!!)} opts={opts} onReady={onPlayerReady} />
+            
         </>
     );
 

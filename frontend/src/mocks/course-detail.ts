@@ -133,7 +133,7 @@ export const courseDataNew: TCourseDetail = {
                     description: "",
                     video: null,
                     documents: [],
-                    link: null
+                    link: "https://www.youtube.com/watch?v=aFKyfi3qAeM"
                 },
                 {
                     id: "lesson-2", title: "Configuración de la cuenta y entorno de trabajo", 
@@ -141,7 +141,7 @@ export const courseDataNew: TCourseDetail = {
                     description: "",
                     video: null,
                     documents: [],
-                    link: null
+                    link: "https://www.youtube.com/watch?v=aFKyfi3qAeM"
                 },
                 {
                     id: "lesson-3", 
@@ -150,7 +150,7 @@ export const courseDataNew: TCourseDetail = {
                     description: "",
                     video: null,
                     documents: [],
-                    link: null
+                    link: "https://www.youtube.com/watch?v=aFKyfi3qAeM"
                 },
             ],
         },
@@ -163,7 +163,7 @@ export const courseDataNew: TCourseDetail = {
                 description: "",
                 video: null,
                 documents: [],
-                link: null
+                link: "https://www.youtube.com/watch?v=aFKyfi3qAeM"
             }],
         },
         {
@@ -175,7 +175,7 @@ export const courseDataNew: TCourseDetail = {
                 description: "",
                 video: null,
                 documents: [],
-                link: null
+                link: "https://www.youtube.com/watch?v=aFKyfi3qAeM"
             }],
         },
     ],

@@ -19,7 +19,7 @@ export const CourseInfo: FC<CourseProps> = ({
     shortDescription,
     rating,
     ratingCount,
-    // freelessons, luego descomentar
+    freelessons, // comentar en caso de error
     learningSubjects,
     fullDescription,
     children,
@@ -42,7 +42,7 @@ export const CourseInfo: FC<CourseProps> = ({
                     promotionalVideo={promotionalVideo}
                 />
             )}
-            {/* <LessonList lessons={freelessons} /> */}
+            <LessonList lessons={freelessons} />
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor} />
                 <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>
