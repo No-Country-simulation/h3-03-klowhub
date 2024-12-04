@@ -1,5 +1,5 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import YouTube, { YouTubeProps } from 'react-youtube';
+import YouTube from 'react-youtube';
 import { Button } from "@/components/ui/button";
 import { UseFormWatch } from "react-hook-form";
 import parse from "html-react-parser"
@@ -10,7 +10,7 @@ import { Lesson, Module } from "@/types/courses.types";
 import FileBadge from "@/components/file-badge/file-badge.component";
 import styles from "@/styles/accordion.styles.module.css"
 import UploadedVideo from "@/components/uploaded-video/uploaded-video.component";
-import { getYoutubeId } from "@/utils/str.utils";
+import { getYoutubeProps } from "@/utils/youtube.utils";
 
 type ReadOnly = {
   readOnly?: true
@@ -27,21 +27,6 @@ type FullFeatured = {
 
 type Props =  OneOf<[ FullFeatured, ReadOnly ]>
 
-const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-  console.log('AAA');
-  // access to player in all event handlers via event.target
-  event.target.pauseVideo();
-}
-
-const opts: YouTubeProps['opts'] = {
-  height: '390',
-  width: '640',
-  playerVars: {
-    // https://developers.google.com/youtube/player_parameters
-    autoplay: 0,
-  },
-};
-
 const LessonsSection = ({ watch, readOnly, setCurrentLesson, setShowLessonForm, lessons }: Props) => {
   return (
     <Accordion type="single" collapsible className={`${styles['accordion-root']} px-5 bg-gray-100 rounded-lg`}>
@@ -55,11 +40,10 @@ const LessonsSection = ({ watch, readOnly, setCurrentLesson, setShowLessonForm, 
             </div>
             <div>
               <h3 className="font-bold mb-5">Contenido de la lección</h3>
-              <div className="grid grid-cols-3 gap-5">
+              <div className="aspect-video">
                 { l.video
                   ? <UploadedVideo video={l.video}/>
-                  : <YouTube videoId={getYoutubeId(l.link!!)} opts={opts} onReady={onPlayerReady} />
-                  
+                  : <div className="asset-container"><YouTube {...getYoutubeProps(l.link as string)} /></div>
                 }
               </div>
             </div>

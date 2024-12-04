@@ -116,5 +116,15 @@ body {
   @apply cursor-pointer border border-solid border-primary-300 relative rounded-xl overflow-hidden w-full h-full;
 }
 
+.publish-btn {
+  background: rgb(38,171,63);
+  background: linear-gradient(45deg, rgba(38,171,63,1) 0%, rgba(150,231,92,1) 100%);
+  @apply text-black
+}
+
+.publish-btn:hover {
+  box-shadow: 0px 0px 10px rgba(38,171,63,1);
+}
+
 
 

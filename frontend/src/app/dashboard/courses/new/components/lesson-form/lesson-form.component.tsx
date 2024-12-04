@@ -65,7 +65,7 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           }}
           { ...controlledCommonProps }
         />
-        { state.general.freeCourse || free ?
+        { free || state.general.freeCourse ?
           <Input 
             name="link" type="link" 
             label="Contenido de la lección" 

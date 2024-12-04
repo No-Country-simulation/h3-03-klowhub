@@ -29,11 +29,13 @@ const RouteBtn = ({ route, setter, children, isDirty, className, variant }: Prop
     <button 
       type="button"
       className={`
-        right-0 px-2 self-end py-2 text-primary-100 md:px-14 rounded-md ease-in duration-100 ${className}
+        right-0 px-2 self-end py-2 text-primary-100 md:px-8 rounded-md ease-in duration-100 
          
         ${variant === "outline" 
           ? "bg-none bg-transparent outline outline-[1px] outline-primary-200 hover:bg-primary-600"
           : "bg-primary-500 hover:bg-secondary-400"}
+
+        ${className}
       `} 
       onClick={clickHandler}
     >

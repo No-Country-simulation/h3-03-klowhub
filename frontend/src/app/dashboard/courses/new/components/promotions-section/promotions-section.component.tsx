@@ -191,6 +191,13 @@ const PromotionsSection = () => {
           >
             Retroceder
           </RouteBtn>
+          {/* <Button  */}
+          {/*   type="button" */}
+          {/*   onClick={ handleSubmit(data => submit({ ...state, promotion: data })) } */}
+          {/*   className="mr-auto flex-1 md:grow-0" */}
+          {/* > */}
+          {/*   Probar */}
+          {/* </Button> */}
           <RouteBtn 
             setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
             route="preview"
@@ -200,18 +207,11 @@ const PromotionsSection = () => {
           >
             Vista previa del curso
           </RouteBtn>
-          <Button 
-            type="button"
-            onClick={ handleSubmit(data => submit({ ...state, promotion: data })) }
-            className="mr-auto flex-1 md:grow-0"
-          >
-            Probar
-          </Button>
           <RouteBtn 
             setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
             route="temporary-route"
             isDirty={isDirty}
-            className="mr-auto flex-1 md:grow-0"
+            className="flex-1 md:grow-0"
           >
             Publicar
           </RouteBtn>
