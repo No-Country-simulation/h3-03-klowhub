@@ -21,5 +21,19 @@
     "mimeType": "image/webp",
     "created_at": "2024-12-04T05:47:09Z",
     "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9"
+  },
+  "promotionalVideo": {
+    "duration": 9.08,
+    "size": 5596,
+    "format": "mp4",
+    "thumbnail_url": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+    "thumbnail_width": 1920,
+    "thumbnail_height": 1080,
+    "width": 400,
+    "height": 300,
+    "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+    "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+    "mimeType": "video/mp4",
+    "created_at": "2024-12-04T03:05:07Z"
   }
 }
