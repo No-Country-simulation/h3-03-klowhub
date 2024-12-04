@@ -25,9 +25,11 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
   const {
     controlledCommonProps, 
     handleSubmit,
-    reset,
+    watch,
+    setValue
   } = useGenerateForm<Lesson>(LESSON_INITIAL_STATE, getValues("lessons")[lessonIdx] || LESSON_INITIAL_STATE);
-  console.log('lessonIdx: ', lessonIdx);
+
+  const free = watch("free");
 
   return (
     <>
@@ -45,7 +47,6 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
             onClick={() => { 
               setCurrentLesson(NaN)
               setShowLessonForm(false) 
-              reset()
             }}
           />
         </div>
@@ -54,7 +55,17 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           label="Descripción" { ...controlledCommonProps } 
           placeholder="Detallá el contenido de la lección"
         />
-        { state.general.freeCourse === "free" ?
+        <Input
+          name="free" type="boolean"
+          options={[ "Sí", "No" ]}
+          label="¿Es una lección gratuita?" 
+          reactFn={() => {
+            setValue("video", null)
+            setValue("link", null)
+          }}
+          { ...controlledCommonProps }
+        />
+        { state.general.freeCourse || free ?
           <Input 
             name="link" type="link" 
             label="Contenido de la lección" 
@@ -79,16 +90,6 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           label="Material adicional"
         />
         <div className="flex justify-end gap-5">
-          {/* <Button  */}
-          {/*   variant="outline" className="px-14 self-end border-red-500 text-red-500 hover:bg-red-500" */}
-          {/*   onClick={() => {  */}
-          {/*     setCurrentLesson(NaN) */}
-          {/*     setShowLessonForm(false)  */}
-          {/*     reset() */}
-          {/*   }} */}
-          {/* > */}
-          {/*   Cancelar */}
-          {/* </Button> */}
           <Button 
             type="button"
             className="px-14 self-end" 
@@ -103,7 +104,6 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
                 }));
                 updateModule("lessons", updatedLessons)
               };
-              reset()
               setCurrentLesson(NaN)
               setShowLessonForm(false)
             })}

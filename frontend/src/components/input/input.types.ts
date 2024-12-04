@@ -23,6 +23,12 @@ type CommonInput<T extends FieldValues> = {
   type: FieldType
 } & CommonProps<T>
 
+type BooleanInput<T extends FieldValues> = {
+  type: "boolean"
+  options: [ string, string ] 
+  reactFn?: () => void
+} & Omit<ControlledInput<T>, "placeholder">
+
 type RadioInput<T extends FieldValues> = {
   type: "radio-group"
   options: [ RadioOption, RadioOption ] 
@@ -78,4 +84,13 @@ type SelectInput<T extends FieldValues> = {
   isMulti?: boolean
 } & ControlledInput<T>
 
-export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T> | ProductSelector<T> | MultitextInput<T> | RangeInput<T>
+export type InputProps<T extends FieldValues> =
+  | CommonInput<T>
+  | RadioInput<T>
+  | BooleanInput<T>
+  | SelectInput<T>
+  | RichTextInput<T>
+  | UploadInput<T>
+  | ProductSelector<T>
+  | MultitextInput<T>
+  | RangeInput<T> 

@@ -40,8 +40,8 @@ export class CloudinaryService {
               crop: 'fit',
             });
             result.thumbnailUrl = videoThumbnail;
-            result.thumbnailUrl_width = 400;
-            result.thumbnailUrl_height = 300;
+            result.thumbnailWidth = 400;
+            result.thumbnailHeight = 300;
           }
 
           resolve(result);

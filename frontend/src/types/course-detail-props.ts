@@ -2,9 +2,10 @@ import { ReactNode } from "react";
 import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
 import { TVideo } from "./global.types";
 
+
 export interface Lesson {
     id: string;
-    image: string;
+    link: string; // this should be a TImage
     title: string;
 }
 
@@ -52,12 +53,12 @@ export interface ProgramModule {
 export interface CourseProps {
     title: string;
     shortDescription: string
-    rating: number
-    ratingCount: number
+    rating?: number
+    ratingCount?: number
     promotionalVideo: TVideo;
     learningSubjects: string[];
     fullDescription: string;
-    freelessons: Lesson[];
+    // freelessons: Lesson[];
     additionalDetails: {
         title: string;
         content: string;

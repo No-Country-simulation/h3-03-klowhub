@@ -10,12 +10,17 @@ import {
   BadRequestException,
   UseInterceptors,
   UploadedFiles,
+  UploadedFile,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
-import { CreateCourseDto } from './dto/create-course.dto';
+//import { CreateCourseDto } from './dto/create-course.dto';
+import { MultimediaDto } from './dto/multimedia.dto';
 import { VideoDto } from './dto/video-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import {
+  FileFieldsInterceptor,
+  FileInterceptor,
+} from '@nestjs/platform-express';
 import {
   CloudinaryUploadFailedException,
   CourseCreationFailedException,
@@ -29,77 +34,33 @@ import {
 @Controller('courses')
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
-  @Post()
-  @UseInterceptors(
-    FileFieldsInterceptor([
-      { name: 'coverImg', maxCount: 1 },
-      { name: 'modules[0][lessons][0][videos]', maxCount: 1 },
-      { name: 'resource', maxCount: 3 },
-    ]),
-  )
+  @Post('multimedia')
+  @UseInterceptors(FileInterceptor('file'))
   async create(
-    @Body() createCourseDto: CreateCourseDto,
-    @UploadedFiles()
-    files: {
-      coverImg?: Express.Multer.File[];
-      modules?: { lessons?: { videos?: Express.Multer.File[] }[] }[];
-      resource?: Express.Multer.File[];
-    },
+    @Body() multimediaDto: MultimediaDto,
+    @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log('Body recibido:', createCourseDto); // Log del cuerpo recibido
-    console.log('Archivos recibidos:', files); // Log de los archivos recibidos
-    //const { modules } = createCourseDto;
-    // Verifica si coverImg está presente en los archivos
-    if (!files.coverImg || files.coverImg.length === 0) {
-      console.log('coverImg no encontrado:', files.coverImg); // Si falta la imagen
-      throw new BadRequestException('La imagen del curso es requerida');
+    if (!file) {
+      throw new BadRequestException('El archivo es requerido');
     }
-    const imagenFile = files.coverImg?.[0];
-    const videoFile = files['modules[0][lessons][0][videos]']?.[0];
-    const documentFile = files.resource?.[0];
-
-    if (!videoFile) {
-      console.log(
-        'Video no encontrado:',
-        files['modules[0][lessons][0][videos]'],
-      ); // Si falta el video
-
-      throw new BadRequestException('El video del curso es requerido');
+    let fileType: string;
+    if (file.mimetype.startsWith('image/')) {
+      fileType = 'image';
+    } else if (file.mimetype.startsWith('video/')) {
+      fileType = 'video';
+    } else if (file.mimetype.startsWith('application/pdf')) {
+      fileType = 'document';
+    } else {
+      throw new BadRequestException('Tipo de archivo no soportado');
     }
-
-    // Iterar sobre los módulos y lecciones para validar y asignar videos
-    // modules.forEach((module, moduleIndex) => {
-    //   if (module.lessons) {
-    //     module.lessons.forEach((lesson, lessonIndex) => {
-    //       const videoFileKey = `modules[${moduleIndex}][lessons][${lessonIndex}][videos]`;
-    //       const lessonVideoFile = files[videoFileKey]?.[0];
-
-    //       // Asignar el archivo de video a la lección correspondiente
-    //       if (lessonVideoFile) {
-    //         lesson.video = lessonVideoFile;
-    //       } else {
-    //         // Si falta el video en la lección, lanzar un error
-    //         throw new BadRequestException(
-    //           `El video para la lección "${lesson.title}" es requerido`,
-    //         );
-    //       }
-    //     });
-    //   }
-    // });
 
     try {
       console.log('Datos enviados al servicio:', {
-        createCourseDto,
-        imagenFile,
-        videoFile,
-        documentFile,
+        multimediaDto,
+        file,
+        fileType,
       }); // Log de los datos antes de enviar al servicio
-      return await this.coursesService.create(
-        createCourseDto,
-        imagenFile,
-        videoFile,
-        documentFile,
-      );
+      return await this.coursesService.create(multimediaDto, file, fileType);
     } catch (error) {
       console.error('Error capturado en catch:', error); // Log del error capturado
       if (error instanceof ImageFileMissingException) {
@@ -134,6 +95,19 @@ export class CoursesController {
       );
     }
   }
+  //Post de la imagen
+  @Post('image')
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))
+  async createImage(@UploadedFiles() files: { image?: Express.Multer.File[] }) {
+    console.log('Files received:', files);
+    const imageFile = files.image?.[0];
+    try {
+      return await this.coursesService.createImage(imageFile);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   //enviar el video unicamente
   @Post('video')
   @UseInterceptors(FileFieldsInterceptor([{ name: 'video', maxCount: 1 }]))
@@ -143,7 +117,6 @@ export class CoursesController {
     @UploadedFiles() files: { video?: Express.Multer.File[] },
   ) {
     const videoFile = files.video?.[0];
-
     console.log('Received video file:', videoFile);
 
     if (!videoFile) {

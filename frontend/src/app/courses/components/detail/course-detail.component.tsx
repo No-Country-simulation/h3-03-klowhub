@@ -16,19 +16,21 @@ import { IncludeSection } from "./include-section";
 import { RequirementsSection } from "./requirements-section";
 import { AdditionalDetails } from "./additional-details.section";
 import { ShareSection } from "./share-section";
-import { courseData } from "@/mocks/course-detail";
+// import { courseData } from "@/mocks/course-detail";
 import { courseDataNew } from "@/mocks/course-detail";
 
 import { InstructorDetail } from "./instructor-detail.section";
 import { CourseProgramSection } from "./course-program.section";
 import { CourseInfoSection } from "./info.section";
 import { useSearchParams } from "next/navigation";
+import useCourseContext from "@/app/dashboard/courses/new/hooks/use-course-context.hook";
 
 import { CourseProps } from "@/types/course-detail-props";
 import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
 import { transformCourse } from "@/utils/client.utils";
 
 import { instructor } from "@/mocks/instructor.mock";
+import { prepareCoursePreview } from "@/app/dashboard/courses/new/context/course-form.utils";
 
 const transformedProgram = courseDataNew.modules.map((module) => ({
     moduleTitle: module.title,
@@ -41,19 +43,21 @@ const freeLessons = courseDataNew.modules.flatMap((module) =>
 
 
 type Props = {
-    previewData?: typeof courseData
     children?: ReactNode
 }
 
 export const CourseDetail: FC<Props> = ({ children }) => {
+  const { state: previewData } = useCourseContext();
 
     const searchParams = useSearchParams();
     //   const { state, dispatch } = useContext(CourseCtx);
 
+  const courseData = prepareCoursePreview(previewData) || courseDataNew;
+
     return (
         <div className="min-h-screen space-y-10">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                <CourseInfo {...courseDataNew} freelessons={freeLessons}>
+                <CourseInfo {...courseData} freelessons={freeLessons}>
                     <ShareSection />
                     <AdditionalDetails details={courseDataNew.additionalDetails} />
                     <RequirementsSection requirements={courseDataNew.prevRequirements} />
@@ -82,7 +86,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
                         className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
                         icon={<Icon name="powerapps" style="w-8 h-8" />}
                     >
-                        {courseDataNew.plaform}
+                        {courseDataNew.platform}
                     </Badge>
 
                     <CourseProgramSection program={transformedProgram} />

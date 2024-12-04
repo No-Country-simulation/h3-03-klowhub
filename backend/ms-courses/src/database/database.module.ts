@@ -6,7 +6,9 @@ import { courseModules } from 'src/courses/entities/module.entity';
 import { Lesson } from 'src/courses/entities/lesson.entity';
 import { Documents } from 'src/courses/entities/document.entity';
 import { Module } from '@nestjs/common';
-import { Imagen } from 'src/courses/entities/thumbnail_url.entity';
+import { Thumbnail } from 'src/courses/entities/thumbnail_url.entity';
+import { Image } from 'src/courses/entities/image.entity';
+import { Multimedia } from 'src/courses/entities/multimedia.entity';
 
 @Module({
   imports: [
@@ -17,7 +19,16 @@ import { Imagen } from 'src/courses/entities/thumbnail_url.entity';
       username: envs.dbUsername,
       password: envs.dbPassword,
       database: envs.dbDatabaseName,
-      entities: [Course, Video, courseModules, Lesson, Documents, Imagen],
+      entities: [
+        Course,
+        Video,
+        Image,
+        courseModules,
+        Lesson,
+        Documents,
+        Thumbnail,
+        Multimedia,
+      ],
       synchronize: true,
       // ssl: false,
       // logging: true,

@@ -9,7 +9,7 @@ type Filter<T> = {
   }[]
 }
 
-export const plaform: Filter<Platform> = {
+export const platform: Filter<Platform> = {
   header: "Plataforma",
   items: [
     { name: "appsheet", label: "App sheet" },

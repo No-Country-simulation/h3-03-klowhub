@@ -1,3 +1,4 @@
+import { TCourseDetail } from "@/app/courses/components/detail/detail.types";
 
 export const courseData = {
     title: 'Gestión de inventarios con Power Apps',
@@ -78,7 +79,7 @@ export const courseData = {
     ],
 };
 
-export const courseDataNew = {
+export const courseDataNew: TCourseDetail = {
     title: "Curso de Desarrollo Web",
     shortDescription: "Aprende a desarrollar aplicaciones web modernas.",
     rating: 4.5,
@@ -101,7 +102,7 @@ export const courseDataNew = {
         created_at: "2024-12-04T03:05:07Z"
     },
 
-    plaform: "Power Apps",
+    platform: "Power Apps",
 
     learningSubjects: [
         "Entender los fundamentos de HTML, CSS y JavaScript.",

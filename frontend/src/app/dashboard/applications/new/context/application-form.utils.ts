@@ -1,6 +1,6 @@
 import { ApplicationFormData } from "@/types/application.types";
 
-export const prepareForSubmit = (data: ApplicationFormData) => {
+export const prepareApplicationData = (data: ApplicationFormData) => {
 
   const generalWithoutLabels = {
     ...data.general,

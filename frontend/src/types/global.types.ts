@@ -28,16 +28,22 @@ export type TVideo = {
   duration: number
   size: number
   format: string
-  thumbnail_url: string
-  thumbnail_width: number
-  thumbnail_height: number
+  thumbnailHeight: number
+  thumbnailWidth: number
+  thumbnailUrl: string
 } & UploadedFile & Dimensions
 
 export type UploadedFile = {
   id: string
   url: string
-  mimetype: string
+  mimeType: string
   created_at: Date
+}
+
+export type FilePayload = {
+  id: string
+  fileType: string
+  fileMetadata: Omit<TImage, "id"> | Omit<TVideo, "id"> | Omit<TDocument, "id">
 }
 
 export type PromotedProduct = {

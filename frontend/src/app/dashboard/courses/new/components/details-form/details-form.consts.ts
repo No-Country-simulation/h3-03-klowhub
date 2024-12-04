@@ -4,6 +4,7 @@ export const COURSE_DETAILS_INITIAL_STATE: CourseDetails = {
   learningSubjects: [""],
   prevRequirements: [""],
   fullDescription: "",
-  coverImg: null
+  coverImg: null,
+  promotionalVideo: null
 };
 

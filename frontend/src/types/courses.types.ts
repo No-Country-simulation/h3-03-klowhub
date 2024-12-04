@@ -14,7 +14,7 @@ export type Link = {
 
 export type CourseInfo = {
   title: string
-  freeCourse: AccessType | null
+  freeCourse: boolean
   contentType: ContentType | null
   shortDescription: string
   level: CourseDificulty | null
@@ -34,6 +34,7 @@ export type CourseDetails = {
   prevRequirements: string[]
   fullDescription: string
   coverImg: TImage | null
+  promotionalVideo: TVideo | null
 }
 
 export type Lesson = {
@@ -42,7 +43,7 @@ export type Lesson = {
   description: string
   video: TVideo | null
   documents: TDocument[]
-  link: string
+  link: string | null
   free: boolean
 }
 

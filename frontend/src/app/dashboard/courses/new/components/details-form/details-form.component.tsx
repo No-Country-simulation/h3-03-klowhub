@@ -49,7 +49,16 @@ const DetailsForm = () => {
         <Input 
           name="coverImg" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
-          dropzoneLabel="Sube una imagen para promocionar tu curso o lección" { ...controlledCommonProps }
+          label="Subí una imagen que represente tu curso de manera atractiva para utilizarla de portada" 
+          dropzoneLabel="Subí una imagen para promocionar tu curso o lección" 
+          { ...controlledCommonProps }
+        />
+        <Input 
+          name="promotionalVideo" type="upload"
+          filetypes={{ "video/mp4": [".mp4"] }}
+          label="Subí un video que sirva de introducción general a tu curso o lección" 
+          dropzoneLabel="Subí un video para introducir tu curso o lección" 
+          { ...controlledCommonProps }
         />
       </form>
       <div className="

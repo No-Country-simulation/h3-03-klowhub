@@ -12,15 +12,15 @@ import { FieldValues } from "react-hook-form";
 import Dropzone from "../dropzone/dropzone.component";
 import { removeImage } from "./input.utils";
 import UploadedImage from "../uploaded-image/uploaded-image.component";
+import UploadedVideo from "../uploaded-video/uploaded-video.component";
 import { X, Plus } from "lucide-react";
 import FileBadge from "../file-badge/file-badge.component";
 import { Button } from "../ui/button";
 
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
-import { postVideo } from "./input.api";
+import { uploadAsset } from "./input.api";
 import { TDocument, TImage, TVideo } from "@/types/global.types";
-import { isDocument, isImage } from "@/utils/type.utils";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -200,82 +200,71 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         name={name}
         control={control}
         render={({ field: { onChange, value } }) => (
-          <div className={`flex flex-col gap-5 col-span-2 ${className}`}>
-            { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
-            { isMulti ? 
-              <div className={"grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start"}>
-                { value.map((v: TImage | TVideo | TDocument, idx: number) => {
-                  console.log(v.url);
-                  if (v.mimetype.includes("pdf")) {
-                    if (!isDocument(v)) return;
-                    return <FileBadge 
-                      key={`resource-${idx}`} 
-                      data={v}
-                      removeCb={() => onChange(removeImage(value, idx))}
-                    />
-                  };
+            <div className={`flex flex-col gap-5 col-span-2 ${className}`}>
+              { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
+              { isMulti ? 
+                <div className={"grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start"}>
+                  { value.map((v: TImage | TVideo | TDocument, idx: number) => {
+                    if (v.mimeType.includes("pdf")) {
+                      return <FileBadge 
+                        key={`resource-${idx}`} 
+                        data={v as TDocument}
+                        removeCb={() => onChange(removeImage(value, idx))}
+                      />
+                    };
 
-                  if (v.mimetype.includes("image")) {
-                    console.log(v.url);
-                    return <UploadedImage 
-                      key={`${name}-thumbnail-${idx}`}
-                      src={v.url}
-                      deleteCb={() => onChange(removeImage(value, idx))}
-                    />      
-                  };
+                    if (v.mimeType.includes("image")) {
+                      console.log(v.url);
+                      return <UploadedImage 
+                        key={`${name}-thumbnail-${idx}`}
+                        src={v.url}
+                        deleteCb={() => onChange(removeImage(value, idx))}
+                      />      
+                    };
 
-                  if (v.mimetype.includes("video")) {
-                    return <UploadedImage 
-                      key={`${name}-thumbnail-${idx}`}
-                      src={v.url}
-                      deleteCb={() => onChange(removeImage(value, idx))}
-                    />      
-                  };
-                })}
-                { value.length < limit &&
-                  <Dropzone 
-                    { ...{isMulti, limit, filetypes} }
-                    onDrop={(files) => {
-                      if (value.length + files.length <= limit) {
-                        let uploadedFile = []
-                        if (files[0].type.includes("image")) {
-                          // post to image endpoint
-                        };
-                        if (files[0].type.includes("video")) {
-                          // post to video endpoint
-                        };
-                        if (files[0].type.includes("pdf")) {
-                          // post to document endpoint
-                        };
-                        onChange([...value, ...uploadedFile])
-                      };
-                    }}
-                  >
-                    { dropzoneLabel }
-                  </Dropzone> 
-                }
-              </div>
-              : <div className="grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start">
-                  { value ? 
-                    <UploadedImage 
-                      src={value.thumbnail_url || value.url}
-                      deleteCb={() => onChange(null)}
-                    /> :
-                    <Dropzone
-                      { ...{isMulti, filetypes} }
+                    if (v.mimeType.includes("video")) {
+                      return <UploadedVideo 
+                        key={`${name}-thumbnail-${idx}`}
+                        video={v as TVideo}
+                        deleteCb={() => onChange(removeImage(value, idx))}
+                      />      
+                    };
+                  })}
+                  { value.length < limit &&
+                    <Dropzone 
+                      { ...{isMulti, limit, filetypes} }
                       onDrop={async (files) => {
-                        const video = await postVideo(files[0])
-                        onChange(video)
+                        const uploadedFile = await uploadAsset(files[0]);
+                        onChange([ ...value, uploadedFile ]) 
                       }}
                     >
                       { dropzoneLabel }
-                    </Dropzone>
+                    </Dropzone> 
                   }
                 </div>
+                : <div className="grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start">
+                  { 
+                    value ?
+                      (
+                        value.mimeType.includes("video") ?
+                          <UploadedVideo video={value as unknown as TVideo} deleteCb={() => onChange(null)} />
 
-            }
+                          : value.mimeType.includes("image") ?
+                            <UploadedImage src={value.url} deleteCb={() => onChange(null) } /> 
 
-          </div>
+                            : <FileBadge data={value as unknown as TDocument} removeCb={() => onChange(null) } /> 
+                      ) :
+                      <Dropzone
+                        { ...{isMulti, filetypes} }
+                        onDrop={async (files) => onChange(await uploadAsset(files[0]))}
+                      >
+                        { dropzoneLabel }
+                      </Dropzone>
+                  }
+                </div>
+              }
+
+            </div>
           )}
       />
     )
@@ -297,6 +286,38 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           )}
         />
       </div>
+    )
+  };
+
+  if (type === "boolean") {
+    const { options, control, reactFn } = props;
+
+    return (
+      <Controller 
+        name={name}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <div className={`${containerStyles} ${className || ""}`}>
+            <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+            <div className="flex flex-col gap-4">
+              <Label htmlFor={name} className="flex gap-2">
+                { options[0] }
+                <input type="radio" checked={value === true} onChange={() => {
+                  onChange(true)
+                  if (reactFn) reactFn();
+                }} />
+              </Label>
+              <Label htmlFor={name} className="flex gap-2">
+                { options[1] }
+                <input type="radio" checked={value === false} onChange={() => {
+                  onChange(false)
+                  if (reactFn) reactFn();
+                }} />
+              </Label>
+            </div>
+          </div>
+        )}
+      />
     )
   };
 

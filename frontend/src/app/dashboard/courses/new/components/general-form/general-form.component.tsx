@@ -51,14 +51,11 @@ const GeneralForm = () => {
           <span>El contenido gratuito ofrece acceso limitado a [características breves del contenido gratuito]. El contenido premium desbloquea [principales beneficios del contenido de pago]. Más información en nuestra <span className="text-secondary-400">[documentación]</span>.</span>
         </div>
         <Input
-          name="freeCourse"
-          options={[ 
-            { value: "free", label: "Gratuito" },
-            { value: "payed", label: "Pago" },
-          ]} 
-          type="radio-group"
-          label="¿Qué tipo de contenido estás buscando: gratuito o premium?" { ...commonProps }
+          name="freeCourse" type="boolean"
+          options={[ "Gratuito", "Pago" ]} 
+          label="¿Qué tipo de contenido estás buscando: gratuito o premium?" 
           className="w-full"
+          { ...controlledCommonProps }
         />
         <Input 
           name="contentType" 

@@ -1,12 +1,17 @@
-export const postVideo = async (file: File) => {
+import { FilePayload } from "@/types/global.types";
+
+export const uploadAsset = async (file: File) => {
   const formData = new FormData();
-  formData.append('video', file)
-  const res = await fetch('http://localhost:3003/courses/video', {
+  formData.append('file', file)
+  const res = await fetch('http://localhost:3003/courses/multimedia', {
     method: 'post',
     body: formData
   });
 
-  const videoObj = await res.json();
+  const payload: FilePayload = await res.json();
 
-  return videoObj
+  return {
+    ...payload.fileMetadata,
+    id: payload.id
+  }
 };
