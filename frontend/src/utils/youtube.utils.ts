@@ -9,6 +9,8 @@ export const getYoutubeProps = (url: string): YouTubeProps => {
   const youtubeProps = {
     iframeClassName: "aspect-video",
     opts: {
+      width: "100%",
+      height: "100%",
       playerVars: {
         autoplay: 0,
       },
