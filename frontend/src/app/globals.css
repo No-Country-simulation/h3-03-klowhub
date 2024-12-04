@@ -112,5 +112,9 @@ body {
   display: block;
 }
 
+.asset-container {
+  @apply cursor-pointer border border-solid border-primary-300 relative rounded-xl overflow-hidden w-full h-full;
+}
+
 
 
