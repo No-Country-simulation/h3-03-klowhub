@@ -1,6 +1,21 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Course } from './course.entity';
 
+// interface File {
+//   url: string;
+//   duration: number;
+//   size: number;
+//   resolution?: string;
+//   format: string;
+//   width: number;
+//   height: number;
+//   mimeType: string;
+//   thumbnail_url: string;
+//   thumbnail_width: number;
+//   thumbnail_height: number;
+//   created_at: string;
+// }
+
 interface Video {
   url: string;
   duration: number;
@@ -15,8 +30,8 @@ interface Video {
   thumbnail_height: number;
   created_at: string;
 }
-
-interface CoverImg {
+//cambiar a Image
+interface Image {
   url: string;
   size: number;
   width: number;
@@ -38,14 +53,18 @@ export class Multimedia {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('jsonb')
-  video: Video;
+  // @Column('jsonb')
+  // file: File;
 
-  @Column('jsonb')
-  coverImg: CoverImg;
+  @Column('jsonb', { nullable: false })
+  fileMetadata: Video | Image | Document; // JSON que contiene la metadata específica
 
-  @Column('jsonb')
-  documents: Document[];
+  @Column({
+    type: 'enum',
+    enum: ['video', 'image', 'document'],
+    nullable: false,
+  })
+  fileType: 'video' | 'image' | 'document'; // Indica el tipo de archivo
 
   @ManyToOne(() => Course, (course) => course.multimedia, {
     onDelete: 'CASCADE',
