@@ -83,17 +83,23 @@ export const courseDataNew = {
     shortDescription: "Aprende a desarrollar aplicaciones web modernas.",
     rating: 4.5,
     ratingCount: 123,
-    coverImg: {
-        url: "/temp/imgs/course-image.png",
-        size: 2048,
-        width: 1200,
-        height: 800,
-        format: "jpg",
-        created_at: "2024-01-01",
-    },
-
     availabre: true,
     price: 39,
+
+    promotionalVideo: {
+        duration: 9.08,
+        size: 5596,
+        format: "mp4",
+        thumbnail_url: "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+        thumbnail_width: 1920,
+        thumbnail_height: 1080,
+        width: 400,
+        height: 300,
+        id: "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+        url: "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+        mimetype: "video/mp4",
+        created_at: "2024-12-04T03:05:07Z"
+    },
 
     plaform: "Power Apps",
 
@@ -103,13 +109,13 @@ export const courseDataNew = {
         "Diseñar APIs robustas con Node.js.",
     ],
 
-    sector: [ "Gestión de Usuarios", "Marketing digital" ],
+    sector: ["Gestión de Usuarios", "Marketing digital"],
 
-    coreContent: [ "Expresiones y fórmulas", "Automatización" ],
+    coreContent: ["Expresiones y fórmulas", "Automatización"],
 
-    toolsAndPlatform: [ "Power BI", "Google Sheets" ],
+    toolsAndPlatform: ["Power BI", "Google Sheets"],
 
-    functionalities: [ "Reportes automáticos", "Generación de PDF" ],
+    functionalities: ["Reportes automáticos", "Generación de PDF"],
 
     prevRequirements: ["Conocimientos básicos de programación", "Ganas de aprender"],
     fullDescription: "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de Power Apps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
@@ -120,7 +126,11 @@ export const courseDataNew = {
             title: "Módulo App",
             description: "Aprende los fundamentos básicos de Appsheet.",
             lessons: [
-                { id: "lesson-1", title: "¿Qué es Power Apps?", free: true, image: '/temp/imgs/course-image.png' },
+                { 
+                    id: "lesson-1", title: "¿Qué es Power Apps?", 
+                    free: true, 
+                    image: '/temp/imgs/course-image.png' 
+                },
                 { id: "lesson-2", title: "Configuración de la cuenta y entorno de trabajo", free: true, image: '/temp/imgs/course-image.png' },
                 { id: "lesson-3", title: "Navegación por la interfaz de Power Apps", free: false, image: '/temp/imgs/course-image.png' },
             ],

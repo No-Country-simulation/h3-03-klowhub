@@ -9,13 +9,15 @@ import { CourseDetailHeader } from "@/types/course-detail-props";
 //     summarizeDescription: string
 // }
 
-export const CourseHeader: FC<CourseDetailHeader> = ({ 
-    title, 
-    summarizeDescription, 
-    rating, 
-    ratingCount, 
-    coverImg
+export const CourseHeader: FC<CourseDetailHeader> = ({
+    title,
+    summarizeDescription,
+    rating,
+    ratingCount,
+    promotionalVideo
 }) => {
+
+    console.log(promotionalVideo.url)
 
     return (
         <>
@@ -25,13 +27,20 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                 rating={rating}
                 ratingCount={ratingCount}
             />
-            <Image
+            <video controls className="rounded-xl">
+                <source 
+                    src={promotionalVideo.url} 
+                    type={`video/${promotionalVideo.format}`}
+                >
+                </source>
+            </video>
+            {/* <Image
                 src={coverImg.url}
                 alt="Course Image"
                 width={600}
                 height={300}
-                className="rounded-lg w-full h-96"
-            />
+                className="rounded-lg"
+            /> */}
         </>
     );
 

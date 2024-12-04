@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
-<<<<<<< HEAD
-=======
 import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
->>>>>>> development-benja
+import { TVideo } from "./global.types";
 
 export interface Lesson {
     id: string;
@@ -25,14 +23,15 @@ export type CourseDetailHeader = {
     summarizeDescription: string;
     rating: number;
     ratingCount: number;
-    coverImg: {
-        url: string
-        size: number
-        width: number
-        height: number
-        format: string
-        created_at: string
-    };
+    promotionalVideo: TVideo;
+    // coverImg: {
+    //     url: string
+    //     size: number
+    //     width: number
+    //     height: number
+    //     format: string
+    //     created_at: string
+    // };
 }
 
 export interface AppInfoProps {
@@ -55,14 +54,7 @@ export interface CourseProps {
     shortDescription: string
     rating: number
     ratingCount: number
-    coverImg: {
-        url: string
-        size: number
-        width: number
-        height: number
-        format: string
-        created_at: string
-    }
+    promotionalVideo: TVideo;
     learningSubjects: string[];
     fullDescription: string;
     freelessons: Lesson[];

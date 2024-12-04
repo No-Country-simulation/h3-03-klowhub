@@ -19,11 +19,11 @@ export const CourseInfo: FC<CourseProps> = ({
     shortDescription,
     rating,
     ratingCount,
-    coverImg,
     freelessons,
     learningSubjects,
     fullDescription,
-    children
+    children,
+    promotionalVideo
 }) => {
 
     const searchParams = useSearchParams();
@@ -38,7 +38,7 @@ export const CourseInfo: FC<CourseProps> = ({
                 summarizeDescription={shortDescription}
                 rating={rating}
                 ratingCount={ratingCount}
-                coverImg={coverImg}
+                promotionalVideo={promotionalVideo}
             />
             <LessonList lessons={freelessons} />
             <div className="space-y-4" id='detail-container'>
