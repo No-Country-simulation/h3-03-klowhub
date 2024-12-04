@@ -1,12 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Star } from "lucide-react"
 import Image from "next/image"
+import Greeter from "@/components/greeter/greeter.component"
+import Link from "next/link"
 
 interface CartItem {
     id: number
@@ -22,6 +24,7 @@ interface CartItem {
 export const CartComponent = () => {
 
     const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [showGreeter, setShowGreeter] = useState(false);
 
     const fetchCartItems = async () => {
         return new Promise<CartItem[]>((resolve) => {
@@ -45,6 +48,10 @@ export const CartComponent = () => {
     useEffect(() => {
         fetchCartItems().then((data) => setCartItems(data))
     }, [])
+
+    const handlePurchase = () => {
+        setShowGreeter(true)
+    }
 
     return (
         <div className="mx-auto mt-8 min-h-screen">
@@ -154,11 +161,31 @@ export const CartComponent = () => {
                         </CardContent>
                     </Card>
                     <div className="mt-4 space-y-4">
-                        <Button className="w-full">Realizar Compra</Button>
+                        <Button className="w-full" onClick={handlePurchase}>Realizar Compra</Button>
                         <Button variant="outline" className="w-full">Explorar Más</Button>
                     </div>
                 </div>
             </div>
+            {showGreeter && (
+                <Greeter 
+                    header="¡Felicidades! Estás listo para aprender" 
+                    message="Tu compra del curso fue exitosa. Accede ahora y comienza a mejorar tus habilidades. ¡Te espera una experiencia de aprendizaje increíble!."
+                >
+                    <Link
+                        href="/courses/123"
+                        className={`${buttonVariants({ variant: "default" })} px-24 border-primary-200 text-primary-200`}
+                    >
+                        Acceder al curso
+                    </Link>
+                    <Link
+                        onClick={() => setShowGreeter(false)}
+                        href="/courses"
+                        className={`${buttonVariants({ variant: "outline" })} px-24 border-primary-200 text-primary-200`}
+                    >
+                        Ver más cursos
+                    </Link>
+                </Greeter>
+            )}
         </div>
     )
 }

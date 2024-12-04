@@ -47,17 +47,18 @@ type Props = {
 }
 
 export const CourseDetail: FC<Props> = ({ children }) => {
-  const { state: previewData } = useCourseContext();
+
+
+    const courseContext = useContext(CourseCtx);
 
     const searchParams = useSearchParams();
-    //   const { state, dispatch } = useContext(CourseCtx);
 
-  const courseData = prepareCoursePreview(previewData) || courseDataNew;
+    const courseData = courseContext ? prepareCoursePreview(courseContext.state) : courseDataNew;
 
     return (
         <div className="min-h-screen space-y-10">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                <CourseInfo {...courseData} freelessons={freeLessons}>
+                <CourseInfo {...courseData}>
                     <ShareSection />
                     <AdditionalDetails details={courseDataNew.additionalDetails} />
                     <RequirementsSection requirements={courseDataNew.prevRequirements} />

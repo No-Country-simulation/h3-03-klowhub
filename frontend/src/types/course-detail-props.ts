@@ -1,9 +1,11 @@
 import { ReactNode } from "react";
 import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
+import { TVideo } from "./global.types";
+
 
 export interface Lesson {
     id: string;
-    image: string; // this should be a TImage
+    link: string; // this should be a TImage
     title: string;
 }
 
@@ -20,16 +22,17 @@ export interface Instructor {
 export type CourseDetailHeader = {
     title: string;
     summarizeDescription: string;
-    rating?: number;
-    ratingCount?: number;
-    coverImg: {
-        url: string
-        size: number
-        width: number
-        height: number
-        format: string
-        created_at: string
-    };
+    rating: number;
+    ratingCount: number;
+    promotionalVideo: TVideo;
+    // coverImg: {
+    //     url: string
+    //     size: number
+    //     width: number
+    //     height: number
+    //     format: string
+    //     created_at: string
+    // };
 }
 
 export interface AppInfoProps {
@@ -52,17 +55,10 @@ export interface CourseProps {
     shortDescription: string
     rating?: number
     ratingCount?: number
-    coverImg: {
-        url: string
-        size: number
-        width: number
-        height: number
-        format: string
-        created_at: string
-    }
+    promotionalVideo: TVideo;
     learningSubjects: string[];
     fullDescription: string;
-    freelessons: Lesson[];
+    // freelessons: Lesson[];
     additionalDetails: {
         title: string;
         content: string;
