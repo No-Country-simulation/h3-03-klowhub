@@ -10,9 +10,15 @@ import { CourseProps } from '@/types/course-detail-props';
 import { LessonList } from './lesson-list-section';
 import { InstructorInfo } from './instructor-section';
 import { ObjectivesList } from './objectives.section';
-import { useSearchParams, usePathname } from 'next/navigation';
+import { useSearchParams, usePathname, ReadonlyURLSearchParams } from 'next/navigation';
 
 import { instructor } from '@/mocks/instructor.mock';
+
+  const setParam = (key: string, value: string, searchParams: ReadonlyURLSearchParams) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(key, value)
+    return params.toString()
+  };
 
 export const CourseInfo: FC<CourseProps> = ({
     title,
@@ -31,9 +37,9 @@ export const CourseInfo: FC<CourseProps> = ({
 
     const isExpanded = searchParams.get('isExpanded') === 'true';
 
+
     return (
         <div className="md:col-span-2 space-y-4">
-            {rating && ratingCount && (
                 <CourseHeader
                     title={title}
                     summarizeDescription={shortDescription}
@@ -42,7 +48,6 @@ export const CourseInfo: FC<CourseProps> = ({
                     promotionalVideo={promotionalVideo}
                     lessons={freelessons}
                 />
-            )}
             {/* <LessonList lessons={freelessons} /> */}
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor} />
@@ -61,13 +66,12 @@ export const CourseInfo: FC<CourseProps> = ({
 
                     {children}
 
-                    {children}
 
                 </div>
             </div>
             <div className='w-full text-center'>
                 <Link
-                    href={`${pathname}?isExpanded=${!isExpanded}#detail-container`}
+                    href={`${pathname}?${setParam("isExpanded", String(!isExpanded), searchParams)}#detail-container`}
                     className="text-purple-400"
                     scroll={!isExpanded ? false : true}
                 >

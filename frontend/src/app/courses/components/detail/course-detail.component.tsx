@@ -5,7 +5,6 @@ import { CourseInfo } from "./course-info.section";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/icon/icon.component";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import { SimilarCourses } from "./similar-courses.section";
 //import useCourseContext from "@/app/dashboard/courses/new/hooks/use-course-context.hook";
 import Link from "next/link";
@@ -23,8 +22,6 @@ import { InstructorDetail } from "./instructor-detail.section";
 import { CourseProgramSection } from "./course-program.section";
 import { CourseInfoSection } from "./info.section";
 import { useSearchParams } from "next/navigation";
-import useCourseContext from "@/app/dashboard/courses/new/hooks/use-course-context.hook";
-
 import { CourseProps } from "@/types/course-detail-props";
 import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
 import { transformCourse } from "@/utils/client.utils";
@@ -48,12 +45,10 @@ type Props = {
 }
 
 export const CourseDetail: FC<Props> = ({ children }) => {
-
+  const searchParams = useSearchParams();
+  const section = searchParams.get("section");
 
     const courseContext = useContext(CourseCtx);
-
-    const searchParams = useSearchParams();
-
     const courseData = courseContext ? prepareCoursePreview(courseContext.state) : courseDataNew;
 
     return (
@@ -70,7 +65,9 @@ export const CourseDetail: FC<Props> = ({ children }) => {
                         toolsAndPlatforms={courseDataNew.toolsAndPlatform}
                         functionalities={courseDataNew.functionalities}
                     />
-                    <ReviewsSection reviews={reviews} />
+          { section !== "preview" &&
+            <ReviewsSection reviews={reviews} />
+          }
                 </CourseInfo>
 
                 <div className="space-y-6">

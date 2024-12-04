@@ -18,6 +18,7 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
     promotionalVideo,
     lessons
 }) => {
+  console.log('promotionalVideo: ', promotionalVideo);
 
     const [currentVideo, setCurrentVideo] = useState<{ 
         type: "video" | "youtube"; 
@@ -32,10 +33,12 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
         <>
             <h3 className="font-semibold text-sm">{title}</h3>
             <p className="text-sm text-gray-300">{summarizeDescription}</p>
-            <Rating
-                rating={rating}
-                ratingCount={ratingCount}
-            />
+      { rating && ratingCount &&
+        <Rating
+          rating={rating}
+          ratingCount={ratingCount}
+        />
+      }
 
             {currentVideo.type === "video" ? (
                 <video controls className="rounded-xl">

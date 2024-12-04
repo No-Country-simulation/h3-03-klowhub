@@ -214,7 +214,6 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                     };
 
                     if (v.mimeType.includes("image")) {
-                      console.log(v.url);
                       return <UploadedImage 
                         key={`${name}-thumbnail-${idx}`}
                         src={v.url}

@@ -22,8 +22,8 @@ export interface Instructor {
 export type CourseDetailHeader = {
     title: string;
     summarizeDescription: string;
-    rating: number;
-    ratingCount: number;
+    rating?: number;
+    ratingCount?: number;
     promotionalVideo: TVideo;
     lessons: Lesson[];
     // coverImg: {

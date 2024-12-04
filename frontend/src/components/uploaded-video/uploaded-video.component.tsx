@@ -7,7 +7,6 @@ type Props = {
 }
 
 const UploadedVideo = ({ video, deleteCb }: Props) => {
-  console.log('video: ', video);
   const { width, height, url } = video;
   return (
     <div className="asset-container" onClick={deleteCb}>
