@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { LESSON_INITIAL_STATE } from "./lesson-form.consts";
 import { Lesson } from "@/types/courses.types";
@@ -10,6 +11,8 @@ import { UseFormGetValues, UseFormSetValue } from "react-hook-form";
 import { X } from "lucide-react";
 import useCourseContext from "../../hooks/use-course-context.hook";
 import { Module } from "@/types/courses.types";
+import usePrevious from "@/hooks/use-previous.hook";
+import FileUploader from "@/components/file-uploader/file-uploader.component";
 
 type Props = {
   lessonIdx: number
@@ -20,14 +23,18 @@ type Props = {
 }
 
 const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, setCurrentLesson }: Props) => {
+  // const [ prevFree, setPrevFree ] = useState(false);
   const { state } = useCourseContext();
 
   const {
     controlledCommonProps, 
     handleSubmit,
-    reset,
+    watch,
+    setValue
   } = useGenerateForm<Lesson>(LESSON_INITIAL_STATE, getValues("lessons")[lessonIdx] || LESSON_INITIAL_STATE);
-  console.log('lessonIdx: ', lessonIdx);
+
+  const free = watch("free");
+  console.log('free: ', free);
 
   return (
     <>
@@ -45,7 +52,6 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
             onClick={() => { 
               setCurrentLesson(NaN)
               setShowLessonForm(false) 
-              reset()
             }}
           />
         </div>
@@ -54,7 +60,17 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           label="Descripción" { ...controlledCommonProps } 
           placeholder="Detallá el contenido de la lección"
         />
-        { state.general.freeCourse === "free" ?
+        <Input
+          name="free" type="boolean"
+          options={[ "Sí", "No" ]}
+          label="¿Es una lección gratuita?" 
+          reactFn={() => {
+            setValue("video", null)
+            setValue("link", null)
+          }}
+          { ...controlledCommonProps }
+        />
+        { state.general.freeCourse || free ?
           <Input 
             name="link" type="link" 
             label="Contenido de la lección" 
@@ -63,7 +79,7 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           /> : 
           <Input 
             name="video" type="upload"
-            filetypes={{ "video/mp4": [".mp4"] }}
+            // filetypes={{ "video/mp4": [".mp4"] }}
             label="Contenido de la lección" 
             dropzoneLabel="Sube el video de esta lección" { ...controlledCommonProps }
             className="w-full"
@@ -79,16 +95,6 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           label="Material adicional"
         />
         <div className="flex justify-end gap-5">
-          {/* <Button  */}
-          {/*   variant="outline" className="px-14 self-end border-red-500 text-red-500 hover:bg-red-500" */}
-          {/*   onClick={() => {  */}
-          {/*     setCurrentLesson(NaN) */}
-          {/*     setShowLessonForm(false)  */}
-          {/*     reset() */}
-          {/*   }} */}
-          {/* > */}
-          {/*   Cancelar */}
-          {/* </Button> */}
           <Button 
             type="button"
             className="px-14 self-end" 
@@ -103,7 +109,6 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
                 }));
                 updateModule("lessons", updatedLessons)
               };
-              reset()
               setCurrentLesson(NaN)
               setShowLessonForm(false)
             })}

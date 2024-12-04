@@ -2,7 +2,7 @@ import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import SearchFilter from "@/components/search-filter/search-filter.component";
 import Pager from "@/components/pager/pager.component";
 
-import { sector, plaform, language, functionalities, toolsAndPlatforms } from "@/consts/filters.consts";
+import { sector, platform, language, functionalities, toolsAndPlatforms } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import ProductCard from "@/components/product-card/product-card.component";
 import SideModal from "@/components/side-modal/side-modal.component";
@@ -11,7 +11,7 @@ import { getQueryParams } from "@/utils/route.utils";
 import { QuickView as TQuickView } from "@/components/product-card/product-card.types";
 
 const filters = [
-  plaform,
+  platform,
   language,
   sector,
   functionalities,

@@ -1,3 +1,4 @@
+import { TCourseDetail } from "@/app/courses/components/detail/detail.types";
 
 export const courseData = {
     title: 'Gestión de inventarios con Power Apps',
@@ -78,24 +79,26 @@ export const courseData = {
     ],
 };
 
-export const courseDataNew = {
+export const courseDataNew: TCourseDetail = {
     title: "Curso de Desarrollo Web",
     shortDescription: "Aprende a desarrollar aplicaciones web modernas.",
     rating: 4.5,
     ratingCount: 123,
     coverImg: {
+      id: "da23-shjdf-48274-jmsdfhks",
         url: "/temp/imgs/course-image.png",
-        size: 2048,
+        // size: 2048,
         width: 1200,
         height: 800,
-        format: "jpg",
+        mimetype: "jpg",
+    alt: "Imagen del curso",
         created_at: "2024-01-01",
     },
 
     availabre: true,
     price: 39,
 
-    plaform: "Power Apps",
+    platform: "Power Apps",
 
     learningSubjects: [
         "Entender los fundamentos de HTML, CSS y JavaScript.",

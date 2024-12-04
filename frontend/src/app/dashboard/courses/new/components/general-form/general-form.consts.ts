@@ -2,7 +2,7 @@ import { CourseInfo } from "@/types/courses.types";
 
 export const COURSE_INFO_INITIAL_STATE: CourseInfo = {
   title: "",
-  freeCourse: null,
+  freeCourse: false,
   contentType: null,
   shortDescription: "",
   level: null,

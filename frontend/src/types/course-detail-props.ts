@@ -1,12 +1,9 @@
 import { ReactNode } from "react";
-<<<<<<< HEAD
-=======
 import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
->>>>>>> development-benja
 
 export interface Lesson {
     id: string;
-    image: string;
+    image: string; // this should be a TImage
     title: string;
 }
 
@@ -23,8 +20,8 @@ export interface Instructor {
 export type CourseDetailHeader = {
     title: string;
     summarizeDescription: string;
-    rating: number;
-    ratingCount: number;
+    rating?: number;
+    ratingCount?: number;
     coverImg: {
         url: string
         size: number
@@ -53,8 +50,8 @@ export interface ProgramModule {
 export interface CourseProps {
     title: string;
     shortDescription: string
-    rating: number
-    ratingCount: number
+    rating?: number
+    ratingCount?: number
     coverImg: {
         url: string
         size: number

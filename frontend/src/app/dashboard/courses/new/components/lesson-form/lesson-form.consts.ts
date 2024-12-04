@@ -5,7 +5,7 @@ export const LESSON_INITIAL_STATE: Lesson = {
   description: "",
   video: null,
   documents: [],
-  link: "",
+  link: null,
   free: false
 };
 
