@@ -19,7 +19,7 @@ export const CourseInfo: FC<CourseProps> = ({
     shortDescription,
     rating,
     ratingCount,
-    // freelessons, luego descomentar
+    freelessons, // comentar en caso de error
     learningSubjects,
     fullDescription,
     children,
@@ -40,6 +40,7 @@ export const CourseInfo: FC<CourseProps> = ({
                     rating={rating}
                     ratingCount={ratingCount}
                     promotionalVideo={promotionalVideo}
+                    lessons={freelessons}
                 />
             )}
             {/* <LessonList lessons={freelessons} /> */}

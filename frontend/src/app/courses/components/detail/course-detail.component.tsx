@@ -37,10 +37,11 @@ const transformedProgram = courseDataNew.modules.map((module) => ({
     lessons: module.lessons.map((lesson) => lesson.title),
 }));
 
-const freeLessons = courseDataNew.modules.flatMap((module) =>
-    module.lessons.filter((lesson) => lesson.free === true)
-);
+const freeLessons = courseDataNew.modules.flatMap((module) => 
+    module.lessons.filter((lesson) => lesson.free === true
+));
 
+console.log(freeLessons);
 
 type Props = {
     children?: ReactNode
@@ -58,7 +59,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
     return (
         <div className="min-h-screen space-y-10">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                <CourseInfo {...courseData}>
+                <CourseInfo {...courseData} freelessons={freeLessons}>
                     <ShareSection />
                     <AdditionalDetails details={courseDataNew.additionalDetails} />
                     <RequirementsSection requirements={courseDataNew.prevRequirements} />
