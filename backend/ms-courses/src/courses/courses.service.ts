@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 // import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import {
   CloudinaryUploadFailedException,
-  CourseCreationFailedException,
+  // CourseCreationFailedException,
   CourseImageSizeFailed,
   CourseVideoSizeFailed,
   ImageFileMissingException,
@@ -66,77 +66,72 @@ export class CoursesService {
 
   async create(
     multimediaDto: MultimediaDto,
-    imagenFile: Express.Multer.File,
-    videoFile: Express.Multer.File,
-    documentFiles: Express.Multer.File,
+    file: Express.Multer.File,
+    fileType: string,
   ): Promise<Multimedia> {
-    this.validateFile(imagenFile, this.MAX_IMAGE_SIZE, 'image');
-    const uploadImage = await this.cloudinaryService.uploadFile(imagenFile);
-    console.log('Resultado de carga de imagen:', uploadImage);
-    if (!uploadImage || !uploadImage.secure_url) {
+    const isImage = file.mimetype.startsWith('image/');
+    const isVideo = file.mimetype.startsWith('video/');
+    const isPdf = file.mimetype.startsWith('application/pdf');
+
+    if (isImage) {
+      this.validateFile(file, this.MAX_IMAGE_SIZE, 'image');
+    } else if (isVideo) {
+      this.validateFile(file, this.MAX_VIDEO_SIZE, 'video');
+    } else if (isPdf) {
+      this.validateFile(file, this.MAX_PDF_SIZE, 'pdf');
+    } else {
+      throw new BadRequestException('Tipo de archivo no soportado');
+    }
+    // Subir el archivo a Cloudinary con las opciones adecuadas
+    const uploadResult = await this.cloudinaryService.uploadFile(file);
+
+    if (!uploadResult || !uploadResult.secure_url) {
       throw new CloudinaryUploadFailedException();
     }
-
-    multimediaDto.coverImg = {
-      url: uploadImage.secure_url,
-      size: uploadImage.bytes,
-      width: uploadImage.width,
-      height: uploadImage.height,
-      format: uploadImage.format,
-      mimeType: imagenFile.mimetype,
-      created_at: uploadImage.created_at,
-    };
-
-    this.validateFile(videoFile, this.MAX_VIDEO_SIZE, 'video');
-
-    const uploadVideo = await this.cloudinaryService.uploadFile(videoFile);
-    console.log('Resultado de carga de video:', uploadVideo);
-    if (!uploadVideo || !uploadVideo.secure_url) {
-      throw new CloudinaryUploadFailedException();
-    }
-    multimediaDto.video = {
-      url: uploadVideo.secure_url,
-      duration: uploadVideo.duration,
-      size: uploadVideo.bytes,
-      resolution: uploadVideo.resolution,
-      format: uploadVideo.format,
-      width: uploadVideo.width,
-      height: uploadVideo.height,
-      mimeType: videoFile.mimetype,
-      thumbnail_url: uploadVideo.thumbnailUrl,
-      thumbnail_width: uploadVideo.thumbnailUrl_width,
-      thumbnail_height: uploadVideo.thumbnailUrl_height,
-      created_at: uploadImage.created_at,
-    };
-
-    if (documentFiles) {
-      this.validateFile(documentFiles, this.MAX_PDF_SIZE, 'pdf');
-      const uploadDocument =
-        await this.cloudinaryService.uploadFile(documentFiles);
-      if (!uploadDocument || !uploadDocument.secure_url) {
-        throw new CloudinaryUploadFailedException();
-      }
-
-      const pdfData = {
-        url: uploadDocument.secure_url,
-        size: uploadDocument.bytes,
-        mimeType: documentFiles.mimetype,
-        created_at: uploadDocument.created_at,
+    if (fileType === 'image') {
+      multimediaDto.fileMetadata = {
+        url: uploadResult.secure_url,
+        size: uploadResult.bytes,
+        width: uploadResult.width,
+        height: uploadResult.height,
+        format: uploadResult.format,
+        mimeType: file.mimetype,
+        created_at: uploadResult.created_at,
       };
-      console.log('Esto es el resultado de pdfData', pdfData);
-      multimediaDto.documents = multimediaDto.documents || [];
-      multimediaDto.documents.push(pdfData);
-      // createCourseDto.resource = createCourseDto.resource || [];
-      // createCourseDto.resource.push(pdfData);
+      multimediaDto.fileType = 'image';
+    } else if (fileType === 'video') {
+      multimediaDto.fileMetadata = {
+        url: uploadResult.secure_url,
+        duration: uploadResult.duration,
+        size: uploadResult.bytes,
+        resolution: uploadResult.resolution,
+        format: uploadResult.format,
+        width: uploadResult.width,
+        height: uploadResult.height,
+        mimeType: file.mimetype,
+        thumbnailUrl: uploadResult.thumbnailUrl,
+        thumbnailWidth: uploadResult.thumbnailWidth,
+        thumbnailHeight: uploadResult.thumbnailHeight,
+        created_at: uploadResult.created_at,
+      };
+      multimediaDto.fileType = 'video';
+    } else if (fileType === 'document') {
+      // multimediaDto.fileMetadata = multimediaDto.fileMetadata || [];
+      multimediaDto.fileMetadata = {
+        url: uploadResult.secure_url,
+        size: uploadResult.bytes,
+        mimeType: file.mimetype,
+        created_at: uploadResult.created_at,
+      };
+      multimediaDto.fileType = 'document';
+    } else {
+      throw new BadRequestException('Tipo de archivo no soportado');
     }
 
+    // Guarda los datos en la base de datos
     const multimedia = this.multimediaRepository.create(multimediaDto);
-    const savedMultimedia = await this.multimediaRepository.save(multimedia);
-
-    if (!savedMultimedia) {
-      throw new CourseCreationFailedException();
-    }
-    return savedMultimedia;
+    console.log('fileType antes de la inserción:', multimediaDto.fileType);
+    return await this.multimediaRepository.save(multimedia);
     // const course = this.courseRepository.create({
     //   multimedia: [savedMultimedia],
     // });
