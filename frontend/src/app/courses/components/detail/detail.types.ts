@@ -1,12 +1,13 @@
 import { Module } from "@/types/courses.types"
-import { Promotion, TDocument, TImage } from "@/types/global.types"
+import { Promotion, TDocument, TImage, TVideo } from "@/types/global.types"
 
 export type TCourseDetail = {
     title: string
     shortDescription: string
     rating?: number
     ratingCount?: number
-    coverImg: Omit<TImage, "created_at"> & { created_at: string }
+    
+    promotionalVideo: TVideo
 
     available: boolean
     price: number

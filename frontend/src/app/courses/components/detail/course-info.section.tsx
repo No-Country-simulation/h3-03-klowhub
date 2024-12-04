@@ -19,7 +19,7 @@ export const CourseInfo: FC<CourseProps> = ({
     shortDescription,
     rating,
     ratingCount,
-    freelessons,
+    // freelessons, luego descomentar
     learningSubjects,
     fullDescription,
     children,
@@ -33,14 +33,16 @@ export const CourseInfo: FC<CourseProps> = ({
 
     return (
         <div className="md:col-span-2 space-y-4">
-            <CourseHeader
-                title={title} 
-                summarizeDescription={shortDescription}
-                rating={rating}
-                ratingCount={ratingCount}
-                promotionalVideo={promotionalVideo}
-            />
-            <LessonList lessons={freelessons} />
+            {rating && ratingCount && (
+                <CourseHeader
+                    title={title}
+                    summarizeDescription={shortDescription}
+                    rating={rating}
+                    ratingCount={ratingCount}
+                    promotionalVideo={promotionalVideo}
+                />
+            )}
+            {/* <LessonList lessons={freelessons} /> */}
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor} />
                 <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>
@@ -55,8 +57,8 @@ export const CourseInfo: FC<CourseProps> = ({
                 <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
 
                     <Button className="mt-3 px-20">Añadir al Carrito</Button>
-          
-          { children }
+
+                    {children}
 
                     {children}
 

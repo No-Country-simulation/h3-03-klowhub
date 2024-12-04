@@ -28,8 +28,8 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                 ratingCount={ratingCount}
             />
             <video controls className="rounded-xl">
-                <source 
-                    src={promotionalVideo.url} 
+                <source
+                    src={promotionalVideo.url}
                     type={`video/${promotionalVideo.format}`}
                 >
                 </source>

@@ -84,22 +84,22 @@ export const courseDataNew: TCourseDetail = {
     shortDescription: "Aprende a desarrollar aplicaciones web modernas.",
     rating: 4.5,
     ratingCount: 123,
-    availabre: true,
+    available: true,
     price: 39,
 
     promotionalVideo: {
         duration: 9.08,
         size: 5596,
         format: "mp4",
-        thumbnail_url: "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
-        thumbnail_width: 1920,
-        thumbnail_height: 1080,
+        thumbnailUrl: "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+        thumbnailWidth: 1920,
+        thumbnailHeight: 1080,
         width: 400,
         height: 300,
         id: "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
         url: "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
-        mimetype: "video/mp4",
-        created_at: "2024-12-04T03:05:07Z"
+        mimeType: "video/mp4",
+        created_at: new Date()
     },
 
     platform: "Power Apps",
@@ -123,47 +123,79 @@ export const courseDataNew: TCourseDetail = {
 
     modules: [
         {
-            id: "module-1",
             title: "Módulo App",
             description: "Aprende los fundamentos básicos de Appsheet.",
             lessons: [
-                { 
-                    id: "lesson-1", title: "¿Qué es Power Apps?", 
-                    free: true, 
-                    image: '/temp/imgs/course-image.png' 
+                {
+                    id: "lesson-1", 
+                    title: "¿Qué es Power Apps?",
+                    free: true,
+                    description: "",
+                    video: null,
+                    documents: [],
+                    link: null
                 },
-                { id: "lesson-2", title: "Configuración de la cuenta y entorno de trabajo", free: true, image: '/temp/imgs/course-image.png' },
-                { id: "lesson-3", title: "Navegación por la interfaz de Power Apps", free: false, image: '/temp/imgs/course-image.png' },
+                {
+                    id: "lesson-2", title: "Configuración de la cuenta y entorno de trabajo", 
+                    free: true,
+                    description: "",
+                    video: null,
+                    documents: [],
+                    link: null
+                },
+                {
+                    id: "lesson-3", 
+                    title: "Navegación por la interfaz de Power Apps", 
+                    free: false,
+                    description: "",
+                    video: null,
+                    documents: [],
+                    link: null
+                },
             ],
         },
         {
-            id: "module-2",
             title: "Módulo 2",
             description: "Aprende los fundamentos básicos de Appsheet.",
-            lessons: [{ id: "lesson-4", title: "Contenido del Módulo 2", free: false, image: '/temp/imgs/course-image.png' }],
+            lessons: [{
+                id: "lesson-4", title: "Contenido del Módulo 2", 
+                free: false,
+                description: "",
+                video: null,
+                documents: [],
+                link: null
+            }],
         },
         {
-            id: "module-3",
             title: "Módulo 3",
             description: "Aprende los fundamentos básicos de Appsheet.",
-            lessons: [{ id: "lesson-5", title: "Contenido del Módulo 3", free: true, image: '/temp/imgs/course-image.png' }],
+            lessons: [{
+                id: "lesson-5", title: "Contenido del Módulo 3", 
+                free: true,
+                description: "",
+                video: null,
+                documents: [],
+                link: null
+            }],
         },
     ],
 
     promotion: {
         product: {
             id: "promo123",
-            type: "Descuento"
+            type: "course"
         },
         percentage: 20
     },
 
     resource: [
         {
+            id: '132qw3',
             url: "https://example.com/resource1.pdf",
-            size: 2000,
+            size: "2000",
             mimeType: "application/pdf",
-            created_at: "2024-01-03T12:00:00Z"
+            created_at: new Date(),
+            filename: "example.pdf"
         }
     ],
 
