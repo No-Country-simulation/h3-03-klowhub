@@ -40,9 +40,10 @@ export const CourseInfo: FC<CourseProps> = ({
                     rating={rating}
                     ratingCount={ratingCount}
                     promotionalVideo={promotionalVideo}
+                    lessons={freelessons}
                 />
             )}
-            <LessonList lessons={freelessons} />
+            {/* <LessonList lessons={freelessons} /> */}
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor} />
                 <h3 className="text-sm font-semibold">Después de completar este curso, serás capaz de</h3>

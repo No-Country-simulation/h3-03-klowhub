@@ -25,6 +25,7 @@ export type CourseDetailHeader = {
     rating: number;
     ratingCount: number;
     promotionalVideo: TVideo;
+    lessons: Lesson[];
     // coverImg: {
     //     url: string
     //     size: number
