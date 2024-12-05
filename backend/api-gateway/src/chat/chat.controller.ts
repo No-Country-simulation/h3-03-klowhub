@@ -5,13 +5,18 @@ import { ChatService } from './chat.service';
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
-  @Post('send')
-  async sendMessage(@Body() messageData: any) {
-    return this.chatService.sendMessage(messageData);
+  @Post('chat/private')
+  async createPrivateChat(@Body('userIds') userIds: number[]) {
+    return this.chatService.createPrivateChat(userIds);
   }
 
-  @Get(':userId')
-  async getMessages(@Param('userId') userId: string) {
-    return this.chatService.getMessagesByUser(userId);
+  @Post('chat/group')
+  async createGroupChat(@Body('courseId') courseId: number) {
+    return this.chatService.createGroupChat(courseId);
+  }
+
+  @Get('chat/:chatId/messages')
+  async getChatMessages(@Param('chatId') chatId: number) {
+    return this.chatService.getChatMessages(chatId);
   }
 }
