@@ -15,19 +15,28 @@ export type Link = {
 export type CourseInfo = {
   title: string
   freeCourse: boolean
-  contentType: ContentType | null
-  shortDescription: string
-  level: CourseDificulty | null
-  platform: Platform | null
   language: SelectOption
+  shortDescription: string
+  contentType: ContentType | null
+  courseDifficulty: CourseDificulty | null
+  platform: Platform | null
   sector: SelectOption[]
   coreContent: SelectOption[]
-  tools: SelectOption[]
+  toolsAndPlatforms: SelectOption[]
   functionalities: SelectOption[]
-  tags: string[]
+  tags: SelectOption[]
   price: number // this is not included in the design but I need to get this info from somewhere
   targetAudience: string
 };
+
+export type Course = Omit<CourseInfo, "sector" | "coreContent" | "toolsAndPlatforms" | "functionalities"> & {
+  id: string,
+  sector: string[]
+  coreContent: string[]
+  toolsAndPlatforms: string[]
+  functionalities: string[]
+  tags: string[]
+} & CourseDetails & Promotion & Feedback & { modules: Module[] }
 
 export type CourseDetails = {
   learningSubjects: string[]
@@ -72,4 +81,11 @@ export type CourseFormData = {
   promotion: Promotion | null
 }
 
-export type Course = CourseInfo & CourseDetails & Promotion & Feedback & { modules: Module[] }
+export type CoursePayload = {
+  id: number | null
+  modules: CourseFormData["modules"]
+  promotion: CourseFormData["promotion"]
+
+} & CourseFormData["general"] & CourseFormData["details"]
+
+// export type Course = CourseInfo & CourseDetails & Promotion & Feedback & { modules: Module[] }

@@ -1,44 +1,28 @@
 "use client"
 
-import { FC, ReactNode, useContext } from "react";
+import { FC, ReactNode } from "react";
 import { CourseInfo } from "./course-info.section";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/icon/icon.component";
 import { Button } from "@/components/ui/button";
-import { SimilarCourses } from "./similar-courses.section";
-//import useCourseContext from "@/app/dashboard/courses/new/hooks/use-course-context.hook";
 import Link from "next/link";
 
 import { reviews } from "@/mocks/reviews.mocks";
 import { ReviewsSection } from "./reviews.section";
 import { IncludeSection } from "./include-section";
 import { RequirementsSection } from "./requirements-section";
-import { AdditionalDetails } from "./additional-details.section";
+import { GenericSection } from "./generic-section.section";
 import { ShareSection } from "./share-section";
-// import { courseData } from "@/mocks/course-detail";
-import { courseDataNew } from "@/mocks/course-detail";
 
 import { InstructorDetail } from "./instructor-detail.section";
 import { CourseProgramSection } from "./course-program.section";
 import { CourseInfoSection } from "./info.section";
 import { useSearchParams } from "next/navigation";
-import { CourseProps } from "@/types/course-detail-props";
-import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
-import { transformCourse } from "@/utils/client.utils";
+import { instructorPitch } from "@/mocks/course-detail";
+
 
 import { instructor } from "@/mocks/instructor.mock";
-import { prepareCoursePreview } from "@/app/dashboard/courses/new/context/course-form.utils";
-
-const transformedProgram = courseDataNew.modules.map((module) => ({
-    moduleTitle: module.title,
-    lessons: module.lessons.map((lesson) => lesson.title),
-}));
-
-const freeLessons = courseDataNew.modules.flatMap((module) => 
-    module.lessons.filter((lesson) => lesson.free === true
-));
-
-console.log(freeLessons);
+import { useCourseData } from "./hooks/use-course-data.hook";
 
 type Props = {
     children?: ReactNode
@@ -48,22 +32,22 @@ export const CourseDetail: FC<Props> = ({ children }) => {
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
 
-    const courseContext = useContext(CourseCtx);
-    const courseData = courseContext ? prepareCoursePreview(courseContext.state) : courseDataNew;
+  const { pageData, submitCourse } = useCourseData();
 
-    return (
+    return pageData && (
         <div className="min-h-screen space-y-10">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                <CourseInfo {...courseData} freelessons={freeLessons}>
+                <CourseInfo {...pageData.courseData} freelessons={pageData.freeLessons} submitCourse={submitCourse}>
                     <ShareSection />
-                    <AdditionalDetails details={courseDataNew.additionalDetails} />
-                    <RequirementsSection requirements={courseDataNew.prevRequirements} />
+                    <GenericSection header={instructorPitch.title} text={instructorPitch.content} />
+                    <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
+                    <RequirementsSection requirements={pageData.courseData.prevRequirements} />
                     <IncludeSection />
                     <CourseInfoSection
-                        coreContent={courseDataNew.coreContent}
-                        sector={courseDataNew.sector}
-                        toolsAndPlatforms={courseDataNew.toolsAndPlatform}
-                        functionalities={courseDataNew.functionalities}
+                        coreContent={pageData.courseData.coreContent}
+                        sector={pageData.courseData.sector}
+                        toolsAndPlatforms={pageData.courseData.toolsAndPlatforms}
+                        functionalities={pageData.courseData.functionalities}
                     />
           { section !== "preview" &&
             <ReviewsSection reviews={reviews} />
@@ -85,17 +69,26 @@ export const CourseDetail: FC<Props> = ({ children }) => {
                         className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
                         icon={<Icon name="powerapps" style="w-8 h-8" />}
                     >
-                        {courseDataNew.platform}
+                        {pageData.courseData.platform}
                     </Badge>
 
-                    <CourseProgramSection program={transformedProgram} />
+                    <CourseProgramSection program={pageData.transformedProgram} />
 
-                    <Button className="w-full">Comprar curso</Button>
-                    <Button variant="outline" className="w-full">
-                        <Link href="/cart">
-                            Añadir al carrito
-                        </Link>
-                    </Button>
+          <Button 
+            className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}
+            disabled={section === "preview"}
+          >
+            Comprar curso
+          </Button>
+          <Button 
+            variant="outline" 
+            className="w-full"
+            disabled={section === "preview"}
+          >
+            <Link href="/cart">
+                Añadir al carrito
+            </Link>
+          </Button>
                 </div>
             </div>
             {children}

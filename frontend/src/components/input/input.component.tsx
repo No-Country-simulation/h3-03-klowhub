@@ -321,7 +321,30 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
   };
 
   if (type === "radio-group") {
-    const { options } = props;
+    const { options, control } = props;
+
+    return (
+      <Controller 
+        name={name}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <div className={`${containerStyles} ${className || ""}`}>
+            <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+            <div className="flex flex-col gap-4">
+              <Label htmlFor={name} className="flex gap-2">
+                <span>{ options[0].label }</span>
+                <input type="radio" checked={value === options[0].label} onChange={() => onChange(options[0].label)} />
+              </Label>
+              <Label htmlFor={name} className="flex gap-2">
+                <span>{ options[1].label }</span>
+                <input type="radio" checked={value === options[1].label} onChange={() => onChange(options[1].label)} />
+              </Label>
+            </div>
+          </div>
+        )}
+      />
+
+    )
 
     return (
       <div className={`${containerStyles} ${className || ""}`}>

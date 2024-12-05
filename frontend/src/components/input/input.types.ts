@@ -32,7 +32,7 @@ type BooleanInput<T extends FieldValues> = {
 type RadioInput<T extends FieldValues> = {
   type: "radio-group"
   options: [ RadioOption, RadioOption ] 
-} & Omit<CommonProps<T>, "placeholder">
+} & Omit<ControlledInput<T>, "placeholder">
 
 type ControlledInput<T extends FieldValues> = {
   control: Control<T>

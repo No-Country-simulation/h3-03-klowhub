@@ -60,10 +60,7 @@ export interface CourseProps {
     learningSubjects: string[];
     fullDescription: string;
     freelessons: Lesson[];
-    additionalDetails: {
-        title: string;
-        content: string;
-    }[];
     prevRequirements: string[];
     children: ReactNode[];
+  submitCourse?: () => Promise<string>
 }

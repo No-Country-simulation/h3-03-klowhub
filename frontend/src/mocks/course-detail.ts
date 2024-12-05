@@ -1,4 +1,4 @@
-import { TCourseDetail } from "@/app/courses/components/detail/detail.types";
+import { GenericSection, TCourseDetail } from "@/app/courses/components/detail/detail.types";
 
 export const courseData = {
     title: 'Gestión de inventarios con Power Apps',
@@ -80,6 +80,7 @@ export const courseData = {
 };
 
 export const courseDataNew: TCourseDetail = {
+  id: "123-asdas-d234234-asd-f3-4",
     title: "Curso de Desarrollo Web",
     shortDescription: "Aprende a desarrollar aplicaciones web modernas.",
     rating: 4.5,
@@ -114,7 +115,7 @@ export const courseDataNew: TCourseDetail = {
 
     coreContent: ["Expresiones y fórmulas", "Automatización"],
 
-    toolsAndPlatform: ["Power BI", "Google Sheets"],
+    toolsAndPlatforms: ["Power BI", "Google Sheets"],
 
     functionalities: ["Reportes automáticos", "Generación de PDF"],
 
@@ -198,10 +199,16 @@ export const courseDataNew: TCourseDetail = {
             filename: "example.pdf"
         }
     ],
+  targetAudience: "Este curso está diseñado para principiantes que desean aprender a crear aplicaciones sin necesidad de programar, utilizando AppSheet. Es ideal para emprendedores, dueños de negocios pequeños, profesionales de cualquier área o estudiantes que buscan automatizar procesos, gestionar datos de manera eficiente y mejorar su productividad. Si tienes ideas que quieres transformar en soluciones prácticas con herramientas no-code, este curso te proporcionará los conocimientos básicos para comenzar a crear tus propias aplicaciones."
 
     // where is this data?
-    additionalDetails: [
-        { title: "¿Por que estudiar con Sebastian?", content: "Sebastián Ríos es un apasionado del desarrollo no-code, con más de 5 años de experiencia en AppSheet y un enfoque práctico y accesible para la enseñanza. Ha ayudado a cientos de profesionales y emprendedores a transformar sus ideas en aplicaciones exitosas, simplificando procesos y mejorando la productividad. Su metodología se centra en ejemplos reales y soluciones prácticas, lo que te permitirá aplicar lo aprendido de inmediato en tus propios proyectos. Aprender con Sebastián significa adquirir habilidades valiosas de la mano de un experto comprometido con tu éxito." },
-        { title: "¿Para quién es este curso?", content: "Este curso está dirigido a emprendedores, profesionales y cualquier persona interesada en crear aplicaciones personalizadas sin necesidad de programar. Si buscas optimizar procesos, mejorar la eficiencia en tu trabajo o simplemente explorar nuevas herramientas tecnológicas, este curso es ideal para ti. No se requiere experiencia previa en desarrollo, ya que te guiaré desde lo más básico hasta técnicas avanzadas, asegurando que puedas aplicar lo aprendido en proyectos reales, independientemente de tu nivel de conocimientos." },
-    ],
+    // additionalDetails: [
+    //     { title: "¿Por que estudiar con Sebastian?", content: "Sebastián Ríos es un apasionado del desarrollo no-code, con más de 5 años de experiencia en AppSheet y un enfoque práctico y accesible para la enseñanza. Ha ayudado a cientos de profesionales y emprendedores a transformar sus ideas en aplicaciones exitosas, simplificando procesos y mejorando la productividad. Su metodología se centra en ejemplos reales y soluciones prácticas, lo que te permitirá aplicar lo aprendido de inmediato en tus propios proyectos. Aprender con Sebastián significa adquirir habilidades valiosas de la mano de un experto comprometido con tu éxito." },
+    //     { title: "¿Para quién es este curso?", content: "Este curso está dirigido a emprendedores, profesionales y cualquier persona interesada en crear aplicaciones personalizadas sin necesidad de programar. Si buscas optimizar procesos, mejorar la eficiencia en tu trabajo o simplemente explorar nuevas herramientas tecnológicas, este curso es ideal para ti. No se requiere experiencia previa en desarrollo, ya que te guiaré desde lo más básico hasta técnicas avanzadas, asegurando que puedas aplicar lo aprendido en proyectos reales, independientemente de tu nivel de conocimientos." },
+    // ],
 };
+
+export const instructorPitch: GenericSection = {
+  title: "¿Por que estudiar con Sebastian?",
+  content: "Sebastián Ríos es un apasionado del desarrollo no-code, con más de 5 años de experiencia en AppSheet y un enfoque práctico y accesible para la enseñanza. Ha ayudado a cientos de profesionales y emprendedores a transformar sus ideas en aplicaciones exitosas, simplificando procesos y mejorando la productividad. Su metodología se centra en ejemplos reales y soluciones prácticas, lo que te permitirá aplicar lo aprendido de inmediato en tus propios proyectos. Aprender con Sebastián significa adquirir habilidades valiosas de la mano de un experto comprometido con tu éxito."
+}

@@ -64,7 +64,8 @@ const GeneralForm = () => {
             { value: "lesson", label: "Lección" },
           ]} 
           type="radio-group" 
-          label="Seleccioná si vas a crear un curso  o una lección." { ...commonProps } 
+          label="Seleccioná si vas a crear un curso  o una lección." 
+          { ...controlledCommonProps } 
         />
         <Input 
           name="shortDescription" type="textarea" 
@@ -79,13 +80,14 @@ const GeneralForm = () => {
           className="col-span-2"
         />
         <Input
-          name="level" 
+          name="courseDifficulty" 
           options={[
             { value: "basic", label: "Básico" },
             { value: "intermediate", label: "Intermedio" }
           ]}
           type="radio-group"
-          label="Nivel de competencia" { ...commonProps }
+          label="Nivel de competencia" 
+          { ...controlledCommonProps }
         />
         <Input 
           name="platform"
@@ -94,7 +96,8 @@ const GeneralForm = () => {
             { value: "powerapps", label: "PowerApps" },
           ]}
           type="radio-group" 
-          label="Plataforma" { ...commonProps } 
+          label="Plataforma" 
+          { ...controlledCommonProps } 
         />
         <IsClientProvider>
           <Input 
@@ -121,7 +124,7 @@ const GeneralForm = () => {
             isMulti
           />
           <Input 
-            name="tools" type="select" options={toolsAndPlatforms.items} 
+            name="toolsAndPlatforms" type="select" options={toolsAndPlatforms.items} 
             label="Herramientas y plataformas" { ...controlledCommonProps } 
             placeholder="Herramientas y plataformas"
             isMulti

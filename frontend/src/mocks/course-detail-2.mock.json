@@ -10,7 +10,7 @@
   "coreContent": "General",
   "functionalities": "Generación de PDF",
   "sector": "Administración",
-  "toolsAndPlatform": "Google Sheets",
+  "toolsAndPlatforms": "Google Sheets",
   "tags": "appsheets, productividad, automatización",
   "learningSubjects": ["Introducción", "Creación de Apps", "Optimización"],
   "prevRequirements": "Conocimientos básicos de hojas de cálculo.",

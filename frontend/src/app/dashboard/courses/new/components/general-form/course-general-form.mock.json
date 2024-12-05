@@ -1,16 +1,10 @@
 {
   "title": "Automatización de Procesos Empresariales con PowerApps",
   "freeCourse": true,
-  "contentType": "course",
+  "contentType": "Curso",
   "shortDescription": "Aprende a crear aplicaciones empresariales con PowerApps sin escribir una sola línea de código. Ideal para optimizar procesos y mejorar la productividad",
-  "level": {
-    "name": "basic",
-    "label": "Básico" 
-  },
-  "platform": {
-    "name": "powerapps",
-    "label": "Power apps" 
-  },
+  "courseDifficulty": "Básico",
+  "platform": "PowerApps",
   "language": {
     "name": "español",
     "label": "Español"
@@ -35,7 +29,7 @@
       "label": "Automatización" 
     }
   ],
-  "tools": [
+  "toolsAndPlatforms": [
     {
       "name": "power-bi", 
       "label": "Power bi"

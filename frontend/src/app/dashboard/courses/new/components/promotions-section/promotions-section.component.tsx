@@ -22,10 +22,8 @@ import promotionMock from "./promotions.mock.json"
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
-  const { state, dispatch, submit } = useCourseContext();
+  const { state, dispatch, submitCourse } = useCourseContext();
   const pathname = usePathname()
-  const searchParams = useSearchParams();
-  const created = searchParams.get("created");
 
   const {
     commonProps, 
@@ -46,6 +44,7 @@ const PromotionsSection = () => {
   const [ showSelector, setShowSelector ] = useState(true);
   const [ contentType, setContentType] = useState<ContentType>('applications');
   const { applications, courses } = useUserContent();
+  const [ newCourseId, setNewCourseId ] = useState<string>();
 
   useEffect(() => {
     reset()
@@ -63,19 +62,19 @@ const PromotionsSection = () => {
 
   return (
     <>
-      { created &&
+      { newCourseId &&
         <Greeter
           header="¡Felicitaciones! Tu curso/Leccion se publicó con exito"
           message="Ya está disponible para que estudiantes de todo el mundo lo descubran y aprovechen."
         >
           <Link 
-            href={`${pathname}?section=promotion?created=true`}
+            href={`/courses/${newCourseId}`}
             className={`${buttonVariants({ variant: "outline" })} px-10 bg-primary-500 border-none hover:bg-secondary-400`}
           >
             Ver curso publicado
           </Link>
           <Link
-            href="/dashboard/courses"
+            href={`/dashboard/courses`}
             className={`${buttonVariants({ variant: "outline" })} px-10 border-primary-200 text-primary-200`}
           >
             Volver al dashboard
@@ -207,14 +206,16 @@ const PromotionsSection = () => {
           >
             Vista previa del curso
           </RouteBtn>
-          <RouteBtn 
-            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
-            route="temporary-route"
-            isDirty={isDirty}
+          <Button 
+            type="button"
             className="flex-1 md:grow-0"
+            onClick={handleSubmit(async (promotion) => {
+              const courseId = await submitCourse({ promotion }) 
+              setNewCourseId(courseId)
+            })}
           >
             Publicar
-          </RouteBtn>
+          </Button>
         </div>
       </div>
     </>

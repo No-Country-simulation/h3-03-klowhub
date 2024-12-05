@@ -69,8 +69,8 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                         />
                         <p className="text-left text-sm mt-2">Introducción</p>
                     </div>
-                    {lessons.map((lesson) => (
-                        <div key={lesson.id} className="flex-shrink-0 w-60">
+                    {lessons.map((lesson, idx) => (
+                        <div key={`lesson-${idx}`} className="flex-shrink-0 w-60">
                             <Image
                                 src={`https://img.youtube.com/vi/${getYoutubeId(lesson.link!!)}/0.jpg`}
                                 alt={lesson.title}
