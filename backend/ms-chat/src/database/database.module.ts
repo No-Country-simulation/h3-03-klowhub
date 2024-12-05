@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { envs } from "src/config";
-import { Message } from "src/chat/message.entity";
+import { Message } from "src/chat/entities/message.entity";
 
 
 @Module({
