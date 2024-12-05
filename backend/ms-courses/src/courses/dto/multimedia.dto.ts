@@ -7,6 +7,7 @@ import {
   ValidateNested,
   IsOptional,
   IsEnum,
+  IsUUID,
 } from 'class-validator';
 
 // DTO para Video
@@ -75,6 +76,9 @@ export class ImageDto {
 // DTO para Document
 export class DocumentDto {
   @IsString()
+  filename: string;
+
+  @IsString()
   url: string;
 
   @IsNumber()
@@ -105,8 +109,8 @@ export class DocumentDto {
 // DTO para Multimedia
 export class MultimediaDto {
   @IsOptional()
-  @IsString()
-  id?: string;
+  @IsUUID()
+  courseId?: string;
 
   @IsEnum(['video', 'image', 'document'])
   fileType: 'video' | 'image' | 'document';

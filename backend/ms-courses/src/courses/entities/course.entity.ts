@@ -1,5 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Multimedia } from './multimedia.entity';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  // JoinColumn,
+  // ManyToOne,
+  // OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Video, Document, Image, Multimedia } from './multimedia.entity';
 
 @Entity()
 export class Course {
@@ -159,22 +167,8 @@ export class Course {
       free: boolean;
       title: string;
       description: string;
-      documents: {
-        url: string;
-        size: number;
-        mimeType: string;
-        created_at: string;
-      }[];
-      video: {
-        url: string;
-        duration: number;
-        size: number;
-        resolution: string;
-        format: string;
-        width: string;
-        height: string;
-        created_at: string;
-      };
+      documents: Document;
+      video: Video;
     }[];
   }[];
 
@@ -185,14 +179,7 @@ export class Course {
 
   // Imagen del curso
   @Column('json')
-  coverImg: {
-    url: string;
-    size: number;
-    width: number;
-    height: number;
-    format: string;
-    created_at: string;
-  };
+  coverImg: Image;
   //promotion puede ser null hacerlo en el DTO
   @Column('json', { nullable: true })
   promotion: {
@@ -209,8 +196,20 @@ export class Course {
   @Column({ type: 'int' })
   price: number;
 
+  // Relación OneToMany con Multimedia
   @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
-    cascade: true,
+    cascade: true, // Esto permite guardar los multimedia relacionados cuando se guarda el curso
   })
   multimedia: Multimedia[];
+  // @Column(() => Multimedia)
+  // promotionalVideo: Multimedia;
+
+  // @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
+  //   cascade: true,
+  // })
+  // multimedia: Multimedia[];
+
+  // @ManyToOne(() => Multimedia, { nullable: true, lazy: true })
+  // @JoinColumn({ name: 'promotional_video_id' }) // Nombre claro en la base de datos
+  // promotionalVideo: Multimedia;
 }

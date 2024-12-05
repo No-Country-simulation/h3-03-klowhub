@@ -9,32 +9,34 @@ import {
   IsArray,
   ValidateNested,
 } from 'class-validator';
+import { VideoDto, DocumentDto, ImageDto } from './multimedia.dto';
+import { Multimedia } from '../entities/multimedia.entity';
 
-class VideoDto {
-  @IsString()
-  url: string;
+// class VideoDto {
+//   @IsString()
+//   url: string;
 
-  @IsNumber()
-  duration: number;
+//   @IsNumber()
+//   duration: number;
 
-  @IsNumber()
-  size: number;
+//   @IsNumber()
+//   size: number;
 
-  @IsString()
-  resolution: string;
+//   @IsString()
+//   resolution: string;
 
-  @IsString()
-  format: string;
+//   @IsString()
+//   format: string;
 
-  @IsString()
-  width: string;
+//   @IsString()
+//   width: string;
 
-  @IsString()
-  height: string;
+//   @IsString()
+//   height: string;
 
-  @IsString()
-  created_at: string;
-}
+//   @IsString()
+//   created_at: string;
+// }
 
 class LessonDto {
   @IsNotEmpty()
@@ -52,6 +54,10 @@ class LessonDto {
   @ValidateNested()
   @Type(() => VideoDto)
   video: VideoDto;
+
+  @ValidateNested()
+  @Type(() => DocumentDto)
+  document: DocumentDto[];
 }
 
 class ModuleDto {
@@ -90,51 +96,36 @@ class PromotionDto {
   percentage: number;
 }
 
-class CoverImgDto {
-  @IsNotEmpty()
-  @IsString()
-  url: string;
+// class CoverImgDto {
+//   @IsNotEmpty()
+//   @IsString()
+//   url: string;
 
-  @IsNotEmpty()
-  @IsNumber()
-  size: number;
+//   @IsNotEmpty()
+//   @IsNumber()
+//   size: number;
 
-  @IsNotEmpty()
-  @IsNumber()
-  width: number;
+//   @IsNotEmpty()
+//   @IsNumber()
+//   width: number;
 
-  @IsNotEmpty()
-  @IsNumber()
-  height: number;
+//   @IsNotEmpty()
+//   @IsNumber()
+//   height: number;
 
-  @IsNotEmpty()
-  @IsString()
-  format: string;
+//   @IsNotEmpty()
+//   @IsString()
+//   format: string;
 
-  @IsNotEmpty()
-  @IsString()
-  created_at: string;
-}
-
-class ResourceDto {
-  @IsNotEmpty()
-  @IsString()
-  url: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  size: number;
-
-  @IsNotEmpty()
-  @IsString()
-  mimeType: string;
-
-  @IsNotEmpty()
-  @IsString()
-  created_at: string;
-}
+//   @IsNotEmpty()
+//   @IsString()
+//   created_at: string;
+// }
 
 export class CreateCourseDto {
+  @IsString()
+  id?: string;
+
   @IsNotEmpty()
   @IsString()
   title: string;
@@ -149,7 +140,7 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   @IsString()
-  summarizeDescription: string;
+  shortDescription: string;
 
   @IsNotEmpty()
   @IsEnum(['Basico', 'Intermedio'])
@@ -192,7 +183,7 @@ export class CreateCourseDto {
     'Estadísticas de uso',
     'Dashboard - Repostes y analisis',
   ])
-  funcionalidades: string;
+  functionalities: string;
 
   @IsNotEmpty()
   @IsArray()
@@ -267,22 +258,21 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   @IsString()
-  detailedDescription: string;
+  fullDescription: string;
 
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ModuleDto)
   modules: ModuleDto[];
+  ////////////////////////////////////
+
+  @IsNotEmpty()
+  @IsString()
+  link: string;
 
   @ValidateNested()
-  @Type(() => CoverImgDto)
-  coverImg: CoverImgDto;
-
-  @IsOptional()
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => ResourceDto)
-  resource?: ResourceDto[];
+  @Type(() => ImageDto)
+  coverImg: ImageDto;
 
   @IsOptional()
   @ValidateNested()
@@ -296,4 +286,12 @@ export class CreateCourseDto {
   @IsNotEmpty()
   @IsNumber()
   price: number;
+
+  @IsArray()
+  @IsOptional()
+  multimedia: Multimedia[];
+
+  @IsArray()
+  @IsOptional()
+  files: any[];
 }
