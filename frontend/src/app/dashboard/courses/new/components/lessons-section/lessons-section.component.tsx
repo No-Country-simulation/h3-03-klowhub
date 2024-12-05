@@ -43,7 +43,7 @@ const LessonsSection = ({ watch, readOnly, setCurrentLesson, setShowLessonForm, 
               <div className="aspect-video">
                 { l.video
                   ? <UploadedVideo video={l.video}/>
-                  : <div className="asset-container"><YouTube {...getYoutubeProps(l.link as string)} /></div>
+                  : <div className="asset-container"><YouTube {...getYoutubeProps(l.link as string)} /></div> // todo handle the case in which the link is invalid
                 }
               </div>
             </div>

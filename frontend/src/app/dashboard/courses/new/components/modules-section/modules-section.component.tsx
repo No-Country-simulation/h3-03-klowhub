@@ -20,14 +20,14 @@ import { setModulesData } from "../../context/course-form.actions";
 import { Plus } from "lucide-react";
 import styles from "@/styles/accordion.styles.module.css"
 
-const ModulesForm = () => {
+const ModulesSection = () => {
   const { state, dispatch } = useCourseContext();
   const [ currentModule, setCurrentModule ] = useState(NaN);
   const [ showModuleForm, setShowModuleForm ] = useState(state.modules.length === 0);
 
   useEffect(() => {
-    console.log("inserting modules mock...");
-    console.log('modulesMock.modules: ', modulesMock.modules);
+    // console.log("inserting modules mock...");
+    // console.log('modulesMock.modules: ', modulesMock.modules);
 
     dispatch(setModulesData(modulesMock.modules))
   }, [dispatch])
@@ -87,4 +87,4 @@ const ModulesForm = () => {
   )
 };
 
-export default ModulesForm
+export default ModulesSection
