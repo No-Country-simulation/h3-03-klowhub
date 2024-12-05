@@ -30,6 +30,20 @@ export class CloudinaryService {
         options,
         (error, result) => {
           if (error) return reject(error);
+
+          if (isVideo) {
+            const videoThumbnail = cloudinary.url(result.public_id, {
+              resource_type: 'video',
+              format: 'jpg',
+              width: 400,
+              height: 300,
+              crop: 'fit',
+            });
+            result.thumbnailUrl = videoThumbnail;
+            result.thumbnailWidth = 400;
+            result.thumbnailHeight = 300;
+          }
+
           resolve(result);
         },
       );

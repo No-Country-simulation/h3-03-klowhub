@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Multimedia } from './multimedia.entity';
 
 @Entity()
 export class Course {
@@ -144,6 +145,12 @@ export class Course {
   fullDescription: string;
 
   //nuevo atributo
+  //tabla de modulo
+  //tabla de images
+  //tabla de videos
+  //tabla de documents
+  //tabla de lesssons
+
   @Column('json')
   modules: {
     title: string;
@@ -152,6 +159,12 @@ export class Course {
       free: boolean;
       title: string;
       description: string;
+      documents: {
+        url: string;
+        size: number;
+        mimeType: string;
+        created_at: string;
+      }[];
       video: {
         url: string;
         duration: number;
@@ -168,14 +181,8 @@ export class Course {
   @Column()
   link: string;
 
-  @Column({ type: 'jsonb', nullable: true })
-  //aqui se envia el pdf
-  resource: {
-    url: string;
-    size: number;
-    mimeType: string;
-    created_at: string;
-  }[];
+  // @Column({ type: 'jsonb', nullable: true })
+
   // Imagen del curso
   @Column('json')
   coverImg: {
@@ -201,4 +208,9 @@ export class Course {
 
   @Column({ type: 'int' })
   price: number;
+
+  @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
+    cascade: true,
+  })
+  multimedia: Multimedia[];
 }
