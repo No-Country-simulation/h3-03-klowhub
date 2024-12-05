@@ -13,7 +13,7 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
-//import { CreateCourseDto } from './dto/create-course.dto';
+import { CreateCourseDto } from './dto/create-course.dto';
 import { MultimediaDto } from './dto/multimedia.dto';
 import { VideoDto } from './dto/video-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
@@ -26,6 +26,7 @@ import {
   CourseCreationFailedException,
   CourseImageSizeFailed,
   CourseVideoSizeFailed,
+  createCourseFailed,
   ImageFileMissingException,
   PDF_FileSize,
   VideoFileMissingException,
@@ -95,6 +96,29 @@ export class CoursesController {
       );
     }
   }
+
+  //Hacer el post de cursos
+  @Post('createCourse')
+  async createCourse(@Body() createCourseDto: CreateCourseDto) {
+    const normalizedTitle = createCourseDto.title.trim().toLowerCase();
+    // const { title } = createCourseDto;
+    try {
+      const foundCourse = await this.coursesService.findCourse(normalizedTitle);
+      if (foundCourse) {
+        throw new BadRequestException('The course already exist');
+      }
+      return await this.coursesService.createCourse({
+        ...createCourseDto,
+        title: normalizedTitle,
+      });
+    } catch (error) {
+      if (error instanceof createCourseFailed) {
+        throw new BadRequestException('Failed to create the course');
+      }
+      throw error;
+    }
+  }
+
   //Post de la imagen
   @Post('image')
   @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))

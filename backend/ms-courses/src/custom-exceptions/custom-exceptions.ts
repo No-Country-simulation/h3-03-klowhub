@@ -43,3 +43,9 @@ export class PDF_FileSize extends Error {
     super('PDF File exceed max size');
   }
 }
+
+export class createCourseFailed extends Error {
+  constructor() {
+    super('The course can not be created');
+  }
+}

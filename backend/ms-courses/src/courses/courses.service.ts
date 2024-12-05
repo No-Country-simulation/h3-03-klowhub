@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-// import { CreateCourseDto } from './dto/create-course.dto';
+import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Course } from './entities/course.entity';
@@ -10,6 +10,7 @@ import {
   // CourseCreationFailedException,
   CourseImageSizeFailed,
   CourseVideoSizeFailed,
+  createCourseFailed,
   ImageFileMissingException,
   PDF_FileSize,
   VideoFileMissingException,
@@ -121,6 +122,7 @@ export class CoursesService {
         url: uploadResult.secure_url,
         size: uploadResult.bytes,
         mimeType: file.mimetype,
+        filename: uploadResult.filename,
         created_at: uploadResult.created_at,
       };
       multimediaDto.fileType = 'document';
@@ -140,6 +142,23 @@ export class CoursesService {
     //   throw new CourseCreationFailedException();
     // }
     // return savedCourse;
+  }
+
+  async createCourse(createCourseDto: CreateCourseDto) {
+    console.log('Creando curso:', createCourseDto);
+    const createCourse = this.courseRepository.create(createCourseDto);
+    if (!createCourse) {
+      throw new createCourseFailed();
+    }
+    console.log('Curso creado:', createCourse);
+    return await this.courseRepository.save(createCourse);
+  }
+
+  async findCourse(title: string) {
+    // const normalizedTitle = title.trim().toLowerCase(); // Normalizar el título
+    return await this.courseRepository.findOne({
+      where: { title },
+    });
   }
 
   //entidad de imagen

@@ -1,22 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  // JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Course } from './course.entity';
 
-// interface File {
-//   url: string;
-//   duration: number;
-//   size: number;
-//   resolution?: string;
-//   format: string;
-//   width: number;
-//   height: number;
-//   mimeType: string;
-//   thumbnail_url: string;
-//   thumbnail_width: number;
-//   thumbnail_height: number;
-//   created_at: string;
-// }
-
-interface Video {
+export interface Video {
   url: string;
   duration: number;
   size: number;
@@ -25,27 +16,28 @@ interface Video {
   width: number;
   height: number;
   mimeType: string;
-  thumbnail_url: string;
-  thumbnail_width: number;
-  thumbnail_height: number;
-  created_at: string;
+  thumbnailUrl: string;
+  thumbnailWidth: number;
+  thumbnailHeight: number;
+  createdAt: string;
 }
 //cambiar a Image
-interface Image {
+export interface Image {
   url: string;
   size: number;
   width: number;
   height: number;
   format: string;
   mimeType: string;
-  created_at: string;
+  createdAt: string;
 }
 
-interface Document {
+export interface Document {
+  filename: string;
   url: string;
   size: number;
   mimeType: string;
-  created_at: string;
+  createdAt: string;
 }
 
 @Entity()
@@ -66,8 +58,9 @@ export class Multimedia {
   })
   fileType: 'video' | 'image' | 'document'; // Indica el tipo de archivo
 
-  @ManyToOne(() => Course, (course) => course.multimedia, {
-    onDelete: 'CASCADE',
-  })
+  // @ManyToOne(() => Course, (course) => course.multimedia)
+  // @JoinColumn({ name: 'course_id' }) // Especifica el nombre de la columna
+  // course: Promise<Course>;
+  @ManyToOne(() => Course, (course) => course.multimedia)
   course: Course;
 }
