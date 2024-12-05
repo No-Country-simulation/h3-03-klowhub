@@ -27,25 +27,31 @@ export class Project {
   experienceLevel: string;
 
   @Column()
-  technicalRequirements: string;
+  requiredKnowledge: string[];
+
+  @Column()
+  technicalRequirements: string[];
 
   @Column()
   days: number;
 
   @Column('decimal')
-  budget: number;
+  budget: [number, number];
 
   @Column()
-  requiredSkills: string;
+  requiredSkills: string[];
 
   @Column()
-  requiredFiles: string;
+  assets: object[];
 
-  @Column('text', {array: true})
-  reviews: string[];
+  @Column()
+  status: string;
 
-  @Column('int', {default: 0 })
-  rating: number;
+  // @Column('text', {array: true})
+  // reviews: string[];
+
+  // @Column('int', {default: 0 })
+  // rating: number;
 
   @Column()
   userId: string;
