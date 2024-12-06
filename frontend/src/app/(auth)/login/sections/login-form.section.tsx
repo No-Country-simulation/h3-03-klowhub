@@ -49,14 +49,16 @@ const LoginForm = () => {
                     })}
                     className="w-full h-[45px] p-3 rounded-lg" />
                 {errors.email?.type === 'pattern' && (
-                    <p className="w-full text-[#cd5c5c] font-semibold text-sm">
-                        No es un email válido
-                    </p>
+                    <div className="z-10 lg:right-6 right-4 top-12 absolute w-full text-[#ffffff] font-semibold text-sm bg-card p-3.5 rounded-md flex gap-5">
+                        <div className="absolute -top-2 left-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-card"></div>
+                        <p>No es un email válido</p>
+                    </div>
                 )}
                 {errors.email?.type === 'required' && (
-                    <p className="w-full text-[#cd5c5c] font-semibold text-sm">
-                        Complete este campo
-                    </p>
+                    <div className="z-10 lg:right-6 right-4 top-12 absolute w-full text-[#ffffff] font-semibold text-sm bg-card p-3.5 rounded-md flex gap-5">
+                        <div className="absolute -top-2 left-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-card"></div>
+                        <p>Complete este campo</p>
+                    </div>
                 )}
                 <input type="password"
                     placeholder="Contraseña"
@@ -66,14 +68,16 @@ const LoginForm = () => {
                     })}
                     className="w-full h-[45px] p-3 rounded-lg" />
                 {errors.password?.type === 'pattern' && (
-                    <p className="w-full text-[#cd5c5c] font-semibold text-sm">
-                        La contraseña debe tener más de 8 caracteres, incluir una mayúscula, un número y un carácter especial.
-                    </p>
+                    <div className="z-10 lg:right-6 right-4 top-12 absolute w-full text-[#ffffff] font-semibold text-sm bg-card p-3.5 rounded-md flex gap-5">
+                        <div className="absolute -top-2 left-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-card"></div>
+                        <p>La contraseña debe tener más de 8 caracteres, incluir una mayúscula, un número y un carácter especial.</p>
+                    </div>
                 )}
                 {errors.password?.type === 'required' && (
-                    <p className="w-full text-[#cd5c5c] font-semibold text-sm">
-                        Complete este campo
-                    </p>
+                    <div className="z-10 lg:right-6 right-4 top-12 absolute w-full text-[#ffffff] font-semibold text-sm bg-card p-3.5 rounded-md flex gap-5">
+                        <div className="absolute -top-2 left-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-card"></div>
+                        <p>Complete este campo</p>
+                    </div>
                 )}
 
             </div>
