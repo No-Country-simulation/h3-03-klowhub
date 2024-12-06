@@ -15,7 +15,7 @@ const UploadedVideo = ({ video, deleteCb }: Props) => {
           <Trash2 size={20}/>
         </div>
       }
-      <video width={width} height={height} controls>
+      <video width={width} height={height} controls className="w-full">
         <source src={url} type="video/mp4"></source>
       </video>
     </div>

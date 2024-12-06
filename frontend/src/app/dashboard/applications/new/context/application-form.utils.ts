@@ -1,22 +1,25 @@
 import { ApplicationFormData } from "@/types/application.types";
 
-export const prepareApplicationData = (data: ApplicationFormData) => {
+export const breakApplication = (data: ApplicationFormData) => {
+  const { general: { tags, sector, toolsAndPlatforms, functionalities, language } } = data;
 
-  const generalWithoutLabels = {
+  const general = {
     ...data.general,
-    sector: data.general.sector.map(s => s.name),
-    functionalities: data.general.functionalities.map(f => f.name),
-    toolsAndPlatforms: data.general.toolsAndPlatforms.map(t => t.name),
-    language: data.general.language.name
+    sector: sector.map(s => s.name),
+    functionalities: functionalities.map(f => f.name),
+    toolsAndPlatforms: toolsAndPlatforms.map(t => t.name),
+    tags: tags.map(t => t.name),
+    language: language.name
   };
 
+  const promotion = data.promotion ? {
+    ...data.promotion.product,
+    percentage: data.promotion.percentage / 100
+  } : null;
+
   return {
-    ...data,
-    ...generalWithoutLabels,
+    ...general,
     ...data.media,
-    promotion: data.promotion ? {
-      ...data.promotion,
-      percentage: data.promotion?.percentage / 100
-    } : null
+    promotion
   }
 };

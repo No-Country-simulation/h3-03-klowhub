@@ -1,4 +1,7 @@
-import { GenericSection, TCourseDetail } from "@/app/courses/components/detail/detail.types";
+// CANDIDATE FOR DELETION
+
+import { GenericSection } from "@/app/courses/components/detail/detail.types";
+import { Course, Feedback } from "@/types/courses.types";
 
 export const courseData = {
     title: 'Gestión de inventarios con Power Apps',
@@ -79,15 +82,19 @@ export const courseData = {
     ],
 };
 
-export const courseDataNew: TCourseDetail = {
+export const courseDataNew: Course & Feedback = {
   id: "123-asdas-d234234-asd-f3-4",
     title: "Curso de Desarrollo Web",
     shortDescription: "Aprende a desarrollar aplicaciones web modernas.",
     rating: 4.5,
     ratingCount: 123,
-    available: true,
+    // available: true,
     price: 39,
 
+  freeCourse: false,
+  language: "spanish",
+  contentType: "course",
+  courseDifficulty: "basic",
     promotionalVideo: {
     id: "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
     fileType: "video",
@@ -106,7 +113,7 @@ export const courseDataNew: TCourseDetail = {
     }
     },
 
-    platform: "Power Apps",
+    platform: "powerapps",
 
     learningSubjects: [
         "Entender los fundamentos de HTML, CSS y JavaScript.",
@@ -188,20 +195,21 @@ export const courseDataNew: TCourseDetail = {
         },
         percentage: 20
     },
+    tags: [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
 
-    resource: [
-        {
-      id: '132qw3',
-      fileType: "document",
-      fileMetadata: {
-            url: "https://example.com/resource1.pdf",
-            size: "2000",
-            mimeType: "application/pdf",
-            created_at: new Date(),
-            filename: "example.pdf"
-      }
-        }
-    ],
+    // resource: [
+    //     {
+    //   id: '132qw3',
+    //   fileType: "document",
+    //   fileMetadata: {
+    //         url: "https://example.com/resource1.pdf",
+    //         size: "2000",
+    //         mimeType: "application/pdf",
+    //         created_at: new Date(),
+    //         filename: "example.pdf"
+    //   }
+    //     }
+    // ],
   targetAudience: "Este curso está diseñado para principiantes que desean aprender a crear aplicaciones sin necesidad de programar, utilizando AppSheet. Es ideal para emprendedores, dueños de negocios pequeños, profesionales de cualquier área o estudiantes que buscan automatizar procesos, gestionar datos de manera eficiente y mejorar su productividad. Si tienes ideas que quieres transformar en soluciones prácticas con herramientas no-code, este curso te proporcionará los conocimientos básicos para comenzar a crear tus propias aplicaciones."
 
     // where is this data?

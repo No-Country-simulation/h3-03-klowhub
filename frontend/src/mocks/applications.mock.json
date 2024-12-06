@@ -1,0 +1,698 @@
+[
+  {
+    "id": "8f0fae34-1195-46fc-bc17-da5b2784f6a6",
+    "title": "Aplicación para seguimiento de proyectos",
+    "shortDescription": "Aplicación de gestión de proyectos te permite organizar tareas, asignar responsabilidades y monitorear el progreso de tu equipo.",
+    "fullDescription": "Aplicación de gestión de proyectos te permite organizar tareas, asignar responsabilidades y monitorear el progreso de tu equipo. en tiempo real. Desde la planificación hasta la ejecución, cada paso de tu proyecto estará al alcance de tu mano, optimizando la colaboración y mejorando la productividad.",
+    "rating": 3,
+    "ratingCount": 80,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.",
+      "Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.",
+      "Establece prioridades claras y ajusta los plazos según las necesidades del proyecto."
+    ],
+    "sector": [
+      "ventas-y-crm",
+      "marketing-digital"
+    ],
+    "coreContent": [
+      "expressions-and-formulas",
+      "automation"
+    ],
+    "toolsAndPlatform": [
+      "power-bi",
+      "google-sheets"
+    ],
+    "functionalities": [
+      "Reportes automáticos",
+      "Generación de PDF"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "appsheet",
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "Una aplicación que te ayudará a gestionar mejor tus proyectos",
+    "pitchDescription": "¿Quieres optimizar tus procesos y mejorar la productividad de tu pequeña empresa sin invertir una fortuna en desarrollo de software?  Esta aplicación te permitirá  gestionar tus proyectos, clientes, inventario y mucho más. Imagina tener una herramienta a medida que se adapte a las necesidades únicas de tu negocio, sin necesidad de escribir una sola línea de código.Gracias a esta aplicación podrás: automatizar tareas repetitivas, mejorar la colaboración entre equipos, acceder a tus datos en tiempo real y tomar decisiones más informadas. ",
+    "tags": [
+      "plataforma-de-cursos",
+      "tecnologia-para-empresas",
+      "automatizacion-de-tareas"
+    ],
+    "price": 99
+  },
+  {
+    "id": "f49eb08a-a26b-4da9-ae34-027c5eb46891",
+    "title": "Control de inventarios simplificado",
+    "shortDescription": "Gestión avanzada para el control de inventarios en tiempo real.",
+    "fullDescription": "Esta aplicación permite registrar, monitorear y controlar los inventarios en tiempo real. Con opciones para análisis detallado y automatización de reportes, optimiza la gestión de stock para cualquier negocio.",
+    "rating": 4,
+    "ratingCount": 112,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Monitorea tu inventario en tiempo real desde cualquier dispositivo.",
+      "Automatiza reportes semanales de entradas y salidas.",
+      "Recibe alertas cuando los niveles de stock estén bajos."
+    ],
+    "sector": [
+      "gestion-de-inventarios",
+      "ventas-y-crm",
+      "logistica-y-transporte"
+    ],
+    "coreContent": [
+      "databases",
+      "automation",
+      "workflows"
+    ],
+    "toolsAndPlatform": [
+      "google-sheets",
+      "airtable",
+      "trello"
+    ],
+    "functionalities": [
+      "reporting-avanzado",
+      "notificaciones-push",
+      "integracion-de-datos"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Desktop de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "PowerApps",
+    "tags": [
+      "automatizacion-de-tareas",
+      "herramientas-nocode",
+      "apps-de-productividad"
+    ],
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "Optimiza la gestión de tus inventarios",
+    "pitchDescription": "Descubre una solución poderosa para gestionar tus inventarios sin complicaciones. Ideal para negocios pequeños y medianos, esta app te ayudará a mantener el control total y en tiempo real de tus productos.",
+    "price": 99
+  },
+  {
+    "id": "0b3732cd-061b-47d1-902a-8a731e481eb2",
+    "title": "Gestión de tareas automatizada",
+    "shortDescription": "Automatiza tus flujos de trabajo y organiza tus tareas como nunca antes.",
+    "fullDescription": "Esta aplicación de gestión de tareas permite configurar flujos de trabajo personalizados, recibir recordatorios automáticos y optimizar la colaboración en equipo. Perfecta para empresas que buscan eficiencia en la asignación y seguimiento de tareas.",
+    "rating": 5,
+    "ratingCount": 154,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Personaliza tus flujos de trabajo con facilidad.",
+      "Recibe notificaciones automáticas para mantenerte al día.",
+      "Aumenta la productividad de tu equipo con mejor organización."
+    ],
+    "sector": [
+      "gestion-del-tiempo",
+      "gestion-de-proyectos",
+      "servicios-profesionales"
+    ],
+    "coreContent": [
+      "workflows",
+      "actions-behavior",
+      "security-accesibility"
+    ],
+    "toolsAndPlatform": [
+      "zapier",
+      "google-calendar",
+      "airtable"
+    ],
+    "functionalities": [
+      "notificaciones-push",
+      "gestion-de-usuarios",
+      "dashboard-reportes-y-analisis"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Desktop de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "AppSheet",
+    "tags": [
+      "plataforma-de-cursos",
+      "tecnologia-para-empresas",
+      "automatizacion-de-tareas"
+    ],
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "La mejor manera de organizar tus tareas",
+    "pitchDescription": "Imagina una solución que no solo organiza tus tareas, sino que también automatiza tus flujos de trabajo. Con esta aplicación, alcanzarás una eficiencia inigualable en tu día a día.",
+    "price": 99
+  },
+  {
+    "id": "ff81bc30-fcce-4235-927a-803aa52564c6",
+    "title": "Aplicación para análisis de datos empresariales",
+    "shortDescription": "Analiza tus datos y toma decisiones estratégicas basadas en insights confiables.",
+    "fullDescription": "Con esta aplicación podrás visualizar datos en tiempo real, generar reportes avanzados y optimizar estrategias empresariales. Diseñada para empresas que buscan mantenerse competitivas en un mercado dinámico.",
+    "rating": 4,
+    "ratingCount": 210,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Visualiza datos en tiempo real con dashboards intuitivos.",
+      "Identifica tendencias clave para una mejor toma de decisiones.",
+      "Automatiza la generación de reportes personalizados."
+    ],
+    "sector": [
+      "marketing-digital",
+      "e-commerce",
+      "investigacion-y-desarrollo"
+    ],
+    "coreContent": [
+      "databases",
+      "automation",
+      "general"
+    ],
+    "toolsAndPlatform": [
+      "power-bi",
+      "google-analytics",
+      "mysql"
+    ],
+    "functionalities": [
+      "dashboard-reportes-y-analisis",
+      "analisis-de-datos",
+      "estadisticas-de-uso"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Desktop de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "PowerApps",
+    "tags": [
+      "apps-de-productividad",
+      "creacion-de-aplicaciones",
+      "automatizacion-de-tareas"
+    ],
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "Transforma tus datos en conocimiento",
+    "pitchDescription": "Toma decisiones empresariales más inteligentes con nuestra app de análisis de datos. Diseñada para empresas dinámicas que buscan sacar el máximo provecho de su información.",
+    "price": 99
+  },
+  {
+    "id": "cbaba7be-99c8-467c-a0fa-884cbebe2c87",
+    "title": "Monitoreo de transporte en tiempo real",
+    "shortDescription": "Optimiza tus operaciones de logística con seguimiento y análisis.",
+    "fullDescription": "Esta aplicación está diseñada para empresas de transporte y logística que buscan eficiencia en sus operaciones. Ofrece rastreo en tiempo real, análisis de rutas y optimización de entregas.",
+    "rating": 4,
+    "ratingCount": 78,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Seguimiento de vehículos y entregas en tiempo real.",
+      "Planificación inteligente de rutas.",
+      "Mejora la eficiencia operativa con análisis detallados."
+    ],
+    "sector": [
+      "logistica-y-transporte",
+      "servicios-profesionales",
+      "administracion"
+    ],
+    "coreContent": [
+      "automation",
+      "databases",
+      "security-accesibility"
+    ],
+    "toolsAndPlatform": [
+      "google-maps",
+      "postgresql",
+      "twilio"
+    ],
+    "functionalities": [
+      "geolocalizacion",
+      "estadisticas-de-uso",
+      "notificaciones-push"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Desktop de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "PowerApps",
+    "tags": [
+      "automatizacion-de-tareas",
+      "powerapps-para-empresas",
+      "tecnologia-para-empresas"
+    ],
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "Eficiencia en logística al alcance de tu mano",
+    "pitchDescription": "Mantén el control total de tus operaciones logísticas con una solución que combina tecnología de rastreo y análisis avanzado.",
+    "price": 99
+  },
+  {
+    "id": "24a0f553-470f-4a3d-8fbb-424157675196",
+    "title": "CRM inteligente para ventas",
+    "shortDescription": "Gestiona clientes, ventas y oportunidades desde una única plataforma.",
+    "fullDescription": "Un CRM que te permitirá gestionar tu ciclo de ventas de manera eficiente. Automatiza el seguimiento de clientes, realiza análisis de ventas y organiza campañas de marketing personalizadas.",
+    "rating": 5,
+    "ratingCount": 180,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Centraliza la gestión de clientes y contactos.",
+      "Automatiza campañas de seguimiento para maximizar resultados.",
+      "Accede a reportes de ventas detallados."
+    ],
+    "sector": [
+      "ventas-y-crm",
+      "marketing-digital",
+      "e-commerce"
+    ],
+    "coreContent": [
+      "workflows",
+      "databases",
+      "ux-ui"
+    ],
+    "toolsAndPlatform": [
+      "salesforce",
+      "google-sheets",
+      "google-analytics"
+    ],
+    "functionalities": [
+      "emails",
+      "reportes-automaticos",
+      "gestion-de-usuarios"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Desktop de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "AppSheet",
+    "tags": [
+      "herramientas-nocode",
+      "creacion-de-aplicaciones",
+      "automatizacion-de-tareas"
+    ],
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "El CRM que transforma tus ventas",
+    "pitchDescription": "Descubre una herramienta que hace más fácil gestionar relaciones con clientes, optimizar campañas y mejorar tus ventas.",
+    "price": 99
+  },
+  {
+    "id": "9037c023-94ae-4f78-8dbd-41df3e71610e",
+    "title": "Aplicación para seguimiento de proyectos",
+    "shortDescription": "Aplicación de gestión de proyectos te permite organizar tareas, asignar responsabilidades y monitorear el progreso de tu equipo.",
+    "fullDescription": "Aplicación de gestión de proyectos te permite organizar tareas, asignar responsabilidades y monitorear el progreso de tu equipo. en tiempo real. Desde la planificación hasta la ejecución, cada paso de tu proyecto estará al alcance de tu mano, optimizando la colaboración y mejorando la productividad.",
+    "rating": 3,
+    "ratingCount": 80,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.",
+      "Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.",
+      "Establece prioridades claras y ajusta los plazos según las necesidades del proyecto."
+    ],
+    "sector": [
+      "ventas-y-crm",
+      "marketing-digital"
+    ],
+    "coreContent": [
+      "expressions-and-formulas",
+      "automation"
+    ],
+    "toolsAndPlatform": [
+      "power-bi",
+      "google-sheets"
+    ],
+    "functionalities": [
+      "Reportes automáticos",
+      "Generación de PDF"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "appsheet",
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "Una aplicación que te ayudará a gestionar mejor tus proyectos",
+    "pitchDescription": "¿Quieres optimizar tus procesos y mejorar la productividad de tu pequeña empresa sin invertir una fortuna en desarrollo de software?  Esta aplicación te permitirá  gestionar tus proyectos, clientes, inventario y mucho más. Imagina tener una herramienta a medida que se adapte a las necesidades únicas de tu negocio, sin necesidad de escribir una sola línea de código.Gracias a esta aplicación podrás: automatizar tareas repetitivas, mejorar la colaboración entre equipos, acceder a tus datos en tiempo real y tomar decisiones más informadas. ",
+    "tags": [
+      "plataforma-de-cursos",
+      "tecnologia-para-empresas",
+      "automatizacion-de-tareas"
+    ],
+    "price": 99
+  },
+  {
+    "id": "7da0f9af-0b40-4f1d-ba95-eefb991649f7",
+    "title": "Gestión de tareas automatizada",
+    "shortDescription": "Automatiza tus flujos de trabajo y organiza tus tareas como nunca antes.",
+    "fullDescription": "Esta aplicación de gestión de tareas permite configurar flujos de trabajo personalizados, recibir recordatorios automáticos y optimizar la colaboración en equipo. Perfecta para empresas que buscan eficiencia en la asignación y seguimiento de tareas.",
+    "rating": 5,
+    "ratingCount": 154,
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "advantages": [
+      "Personaliza tus flujos de trabajo con facilidad.",
+      "Recibe notificaciones automáticas para mantenerte al día.",
+      "Aumenta la productividad de tu equipo con mejor organización."
+    ],
+    "sector": [
+      "gestion-del-tiempo",
+      "gestion-de-proyectos",
+      "servicios-profesionales"
+    ],
+    "coreContent": [
+      "workflows",
+      "actions-behavior",
+      "security-accesibility"
+    ],
+    "toolsAndPlatform": [
+      "zapier",
+      "google-calendar",
+      "airtable"
+    ],
+    "functionalities": [
+      "notificaciones-push",
+      "gestion-de-usuarios",
+      "dashboard-reportes-y-analisis"
+    ],
+    "mobileScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "size": 0,
+        "width": 334,
+        "height": 200,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "desktopScreenshoot": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Desktop de la Aplicación",
+        "size": 0,
+        "width": 800,
+        "height": 500,
+        "format": "jpg",
+        "mimeType": "image/jpg",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "platform": "AppSheet",
+    "tags": [
+      "plataforma-de-cursos",
+      "tecnologia-para-empresas",
+      "automatizacion-de-tareas"
+    ],
+    "appIncludes": [
+      "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+      "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+      "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "pitchTitle": "La mejor manera de organizar tus tareas",
+    "pitchDescription": "Imagina una solución que no solo organiza tus tareas, sino que también automatiza tus flujos de trabajo. Con esta aplicación, alcanzarás una eficiencia inigualable en tu día a día.",
+    "price": 99
+  }
+]

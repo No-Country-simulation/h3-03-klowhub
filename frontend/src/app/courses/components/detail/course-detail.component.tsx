@@ -7,7 +7,7 @@ import Icon from "@/components/icon/icon.component";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import { reviews } from "@/mocks/reviews.mocks";
+// import { reviews } from "@/mocks/reviews.mocks";
 import { ReviewsSection } from "./reviews.section";
 import { IncludeSection } from "./include-section";
 import { RequirementsSection } from "./requirements-section";
@@ -50,8 +50,8 @@ export const CourseDetail: FC<Props> = ({ children }) => {
                         toolsAndPlatforms={pageData.courseData.toolsAndPlatforms}
                         functionalities={pageData.courseData.functionalities}
                     />
-          { section !== "preview" &&
-            <ReviewsSection reviews={reviews} />
+          { pageData.courseData.reviews &&
+            <ReviewsSection reviews={pageData.courseData.reviews} />
           }
                 </CourseInfo>
 

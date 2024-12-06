@@ -1,7 +1,9 @@
 // here goes temporary utils to test things or implement temporary server side logic
 import { NextRequest } from "next/server";
+import { Course } from "@/types/courses.types";
 import { promises as fs, createReadStream } from 'fs';
 import path from "path";
+import authorsMock from "@/mocks/authors.mock.json"
 
 export async function streamVideo (req: NextRequest) {
   try {
@@ -28,4 +30,8 @@ export async function streamVideo (req: NextRequest) {
   } catch (err) {
     throw err;
   }
+};
+
+export const attachAuthors = (courses: Course[]) => {
+  return courses.map((c, idx) => ({ ...c, author: authorsMock[idx] }))
 };

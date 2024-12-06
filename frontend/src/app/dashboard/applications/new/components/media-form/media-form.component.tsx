@@ -49,7 +49,7 @@ const MediaForm = () => {
             filetypes={{ "image/*": [".png", ".jpg"] }}
             label="Subí una imagen para tu aplicación"
             dropzoneLabel="Sube una imagen representativa de la app"
-            className="w-full md:w-72 col-span-2"
+            className="w-full md:w-76 col-span-2"
             { ...controlledCommonProps }
           />
           <Badge className="px-3 py-2 bg-gray-100 text-primary-300 shrink-0">Esta será la imágen que se visualizará</Badge>

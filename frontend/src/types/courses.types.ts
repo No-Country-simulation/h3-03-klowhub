@@ -1,10 +1,11 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
-import { Language, Platform, TImage, Resource, TVideo, TDocument } from "./global.types"
-import { CourseDificulty, Sectors, Funcionalitites, ToolsAndPlatforms, CoreContent, ContentType, AccessType } from "@/consts/filters.types";
+import { Platform, TImage, TVideo, TDocument, PersonalReview, AuthorInfo } from "./global.types"
+import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
 import { Promotion } from "./global.types";
+import { TReview } from "@/components/shared/reviews/review.types";
 
 
 export type Link = {
@@ -29,14 +30,6 @@ export type CourseInfo = {
   targetAudience: string
 };
 
-export type Course = Omit<CourseInfo, "sector" | "coreContent" | "toolsAndPlatforms" | "functionalities"> & {
-  id: string,
-  sector: string[]
-  coreContent: string[]
-  toolsAndPlatforms: string[]
-  functionalities: string[]
-  tags: string[]
-} & CourseDetails & Promotion & Feedback & { modules: Module[] }
 
 export type CourseDetails = {
   learningSubjects: string[]
@@ -88,5 +81,24 @@ export type CoursePayload = {
   promotion: CourseFormData["promotion"]
 
 } & CourseFormData["general"] & CourseFormData["details"]
+
+export type Course =
+  & Omit<CourseInfo, "sector" | "coreContent" | "toolsAndPlatforms" | "functionalities" | "tags" | "language"> 
+  & Omit<CourseDetails, "promotionalVideo">
+  & Feedback
+  & {
+  id: string,
+  sector: string[]
+  coreContent: string[]
+  toolsAndPlatforms: string[]
+  functionalities: string[]
+  tags: string[]
+  language: string
+  promotion: Promotion
+  modules: Module[]
+  reviews?: TReview[]
+  author?: AuthorInfo
+  promotionalVideo: TVideo
+} 
 
 // export type Course = CourseInfo & CourseDetails & Promotion & Feedback & { modules: Module[] }

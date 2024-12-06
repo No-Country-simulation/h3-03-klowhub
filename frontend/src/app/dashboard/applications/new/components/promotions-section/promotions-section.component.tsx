@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
-  const { state, dispatch, submit } = useApplicationContext();
+  const { state, dispatch, submitApplication } = useApplicationContext();
 
   const {
     commonProps, 
@@ -174,7 +174,7 @@ const PromotionsSection = () => {
           </RouteBtn>
           <Button 
             type="button"
-            onClick={ handleSubmit(data => submit({ ...state, promotion: data })) }
+            onClick={ handleSubmit(data => submitApplication({ ...state, promotion: data })) }
             className="mr-auto flex-1 md:grow-0"
           >
             Probar

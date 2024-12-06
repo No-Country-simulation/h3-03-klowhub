@@ -6,7 +6,7 @@ import { useReducer } from "react";
 import courseFormReducer, { COURSE_FORM_INITIAL_STATE } from "./course-form.reducer";
 import { CourseFormActions } from "./course-form.actions";
 import { useEffect } from "react";
-import { FDAdapter } from "./course-form.utils";
+import { breakCourse } from "./course-form.acl";
 
 type Props = {
   children: ReactNode[]
@@ -24,26 +24,26 @@ const CourseCtxProvider = ({ children }: Props) => {
   const [ state, dispatch ] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
 
   const submitCourse = useCallback(async (additionalData = {}) => {
-    const formattedData = FDAdapter({...state, ...additionalData});
+    const { id, ...formattedData } = breakCourse({...state, ...additionalData});
     console.log('creating course...', formattedData);
 
-    const res = await fetch('http://localhost:3003/courses/createCourse', { 
-      method: 'post',
-      body: JSON.stringify(formattedData),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });   
+    // const res = await fetch('http://localhost:3003/courses/createCourse', { 
+    //   method: 'post',
+    //   body: JSON.stringify(formattedData),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   }
+    // });   
+    //
+    // const createdCourse: Course = await res.json();
+    // console.log('createdCourse: ', createdCourse);
+    //
+    // return createdCourse.id
 
-    const createdCourse: Course = await res.json();
-    console.log('createdCourse: ', createdCourse);
-
-    return createdCourse.id
-
-    // const temporaryId = "test-19u3-124-asdad";
-    // window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
-    // console.log(window.sessionStorage.getItem("courseForm"));
-    // return temporaryId
+    const temporaryId = "course-19u3-124-asdad";
+    window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
+    console.log(window.sessionStorage.getItem("courseForm"));
+    return temporaryId
 
   }, [state]);
 

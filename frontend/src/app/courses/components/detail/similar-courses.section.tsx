@@ -1,5 +1,5 @@
 import ProductCard from "@/components/product-card/product-card.component";
-import { ProductCard as TProductCard } from "@/components/product-card/product-card.types";
+import { TProductCard } from "@/components/product-card/product-card.types";
 
 const endpoint = "http://localhost:3000/api/courses";
 
@@ -12,6 +12,7 @@ const getProducts = async (endpoint: string) => {
 export const SimilarCourses = async () => {
 
 	const courses = await getProducts(endpoint);
+  console.log('courses: ', courses);
 
 	return (
 		<div className="">

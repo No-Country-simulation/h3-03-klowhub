@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "next/navigation";
 import { CourseCtx } from "@/app/dashboard/courses/new/context/course-form.context";
 
-import { FDAdapter } from "@/app/dashboard/courses/new/context/course-form.utils";
+import { breakCourse } from "@/app/dashboard/courses/new/context/course-form.acl";
 import { modulesAdapter, lessonsAdapter, TEMPMockedResponse } from "@/app/api/courses/[id]/route";
 
 export const useCourseData = () => {
@@ -17,7 +17,7 @@ export const useCourseData = () => {
       if (courseContext) {
         // preview case
         console.log('getting data from course context...');
-        const previewData = FDAdapter(courseContext.state)
+        const previewData = breakCourse(courseContext.state)
         const transformedProgram = modulesAdapter(previewData);
         const freeLessons = lessonsAdapter(previewData);
         setPageData({ courseData: previewData, transformedProgram, freeLessons })
@@ -33,7 +33,7 @@ export const useCourseData = () => {
       } else {
         // TEMPORARY mock case
         console.log('getting data from internal api...');
-        const res = await fetch(`/api/courses/${params.id}`);
+        const res = await fetch(`/api/courses/${params.id}?withAuthor=true&withReviews=true`);
         const data: TEMPMockedResponse = await res.json();
         setPageData(data)
       };

@@ -1,5 +1,7 @@
-import { CourseFormData } from "@/types/courses.types";
-import courseMock from '../mocks/course-detail-2.mock.json'
+// CANDIDATE FOR DELETION
+import { Course, CourseFormData } from "@/types/courses.types";
+import coursesMock from "@/mocks/courses.mock.json";
+// import courseMock from '../mocks/course-detail-2.mock.json'
 
 export const transformCourse = (course: CourseFormData) => {
 
@@ -7,16 +9,16 @@ export const transformCourse = (course: CourseFormData) => {
     const lessons = m.lessons.filter(l => l.free);
     const formattedLesson = lessons.map((l, idx) => ({
       id: idx,
-      image: URL.createObjectURL(l.videos[0]),
+      image: URL.createObjectURL(l.video),
       title: l.title
     }));
     return formattedLesson
   }).flat();
 
-  const detail2 = courseMock
+  const detail2 = coursesMock[0]
   // console.log('detail2: ', detail2);
 
-  const detail: typeof courseMock = {
+  const detail: Course = {
     details: {
         title: course.general.title,
         description: course.general.about,

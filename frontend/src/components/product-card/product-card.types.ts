@@ -1,4 +1,5 @@
 import { TImage } from "@/types/global.types"
+import { AuthorInfo } from "@/types/global.types"
 
 export type TProductCard = {
   id: string
@@ -11,12 +12,6 @@ export type TProductCard = {
   ratingCount: number
   price: number
   fullDescription: string
-}
-
-export type AuthorInfo = {
-  name: string
-  about: string
-  img: TImage
 }
 
 export type TQuickView = TProductCard & {

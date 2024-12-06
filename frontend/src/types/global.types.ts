@@ -1,6 +1,12 @@
 export type Language = "english" | "spanish"
 export type Platform = "appsheet" | "powerapps"
 
+export type AuthorInfo = {
+  name: string
+  about: string
+  img: TImage
+}
+
 export type FileType = {
   [key: string]: string[]
 }

@@ -12,6 +12,7 @@ export type ApplicationInfo = {
   toolsAndPlatforms: SelectOption[]
   target: string
   advantages: string
+  tags: SelectOption[]
 };
 
 export type ApplicationMedia = {

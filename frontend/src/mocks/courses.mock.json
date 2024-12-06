@@ -8,18 +8,21 @@
     "available": true,
     "price": 39,
     "promotionalVideo": {
-      "duration": 9.08,
-      "size": 5596,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 9.08,
+        "size": 5596,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "powerapps",
     "learningSubjects": [
@@ -159,18 +162,21 @@
     "available": true,
     "price": 49,
     "promotionalVideo": {
-      "duration": 12.5,
-      "size": 7200,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/workflow_automation.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "qwertasdf-zxcvbnm-1234567-890",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/workflow_automation.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 12.5,
+        "size": 7200,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/workflow_automation.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/workflow_automation.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "appsheet",
     "learningSubjects": [
@@ -311,18 +317,21 @@
     "available": true,
     "price": 75,
     "promotionalVideo": {
-      "duration": 18.1,
-      "size": 9800,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/inventory_management.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "poiuytrewq-asdfghjkl-13579135",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/inventory_management.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 18.1,
+        "size": 9800,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/inventory_management.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/inventory_management.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "powerapps",
     "learningSubjects": [
@@ -462,18 +471,21 @@
     "available": true,
     "price": 59,
     "promotionalVideo": {
-      "duration": 15.8,
-      "size": 8900,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/form_creation.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "lkjhgfdsa-poiuytrew-q1w2e3r4",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/form_creation.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 15.8,
+        "size": 8900,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/form_creation.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/form_creation.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "powerapps",
     "learningSubjects": [
@@ -613,18 +625,21 @@
     "available": true,
     "price": 99,
     "promotionalVideo": {
-      "duration": 25.3,
-      "size": 13500,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/automation_workflow.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "zxcvbnm-asdfghjk-qwertyui",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/automation_workflow.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 25.3,
+        "size": 13500,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/automation_workflow.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/automation_workflow.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "appsheet",
     "learningSubjects": [
@@ -739,18 +754,21 @@
     "available": true,
     "price": 85,
     "promotionalVideo": {
-      "duration": 21.8,
-      "size": 11300,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/data_analysis.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "qwertyuio-asdfghjk-zxcvbn",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/data_analysis.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 21.8,
+        "size": 11300,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/data_analysis.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/data_analysis.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "powerapps",
     "learningSubjects": [
@@ -865,18 +883,21 @@
     "available": true,
     "price": 79,
     "promotionalVideo": {
-      "duration": 18.9,
-      "size": 10000,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/mobile_app_inventory.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "asdfghjk-poiuytrew-qwert",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/mobile_app_inventory.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 18.9,
+        "size": 10000,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/mobile_app_inventory.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/mobile_app_inventory.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "powerapps",
     "learningSubjects": [
@@ -992,18 +1013,21 @@
     "available": true,
     "price": 119,
     "promotionalVideo": {
-      "duration": 30.5,
-      "size": 16000,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/dynamic_reports.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "poiuytre-asdfghjk-zxcvbn",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/dynamic_reports.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 30.5,
+        "size": 16000,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/dynamic_reports.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/dynamic_reports.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "powerapps",
     "learningSubjects": [
@@ -1134,18 +1158,21 @@
     "available": true,
     "price": 99,
     "promotionalVideo": {
-      "duration": 27.2,
-      "size": 14500,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/project_management.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "asdfghjk-qwertyui-zxcvbn",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/project_management.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 27.2,
+        "size": 14500,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/project_management.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/project_management.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "appsheet",
     "learningSubjects": [
@@ -1276,18 +1303,21 @@
     "available": true,
     "price": 109,
     "promotionalVideo": {
-      "duration": 28.7,
-      "size": 15200,
-      "format": "mp4",
-      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sales_automation.jpg",
-      "thumbnailWidth": 1920,
-      "thumbnailHeight": 1080,
-      "width": 400,
-      "height": 300,
       "id": "zxcvbnm-poiuytre-asdfgh",
-      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sales_automation.mp4",
-      "mimeType": "video/mp4",
-      "created_at": "new Date()"
+      "fileType": "video",
+      "fileMetadata": {
+        "duration": 28.7,
+        "size": 15200,
+        "format": "mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sales_automation.jpg",
+        "thumbnailWidth": 1920,
+        "thumbnailHeight": 1080,
+        "width": 400,
+        "height": 300,
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sales_automation.mp4",
+        "mimeType": "video/mp4",
+        "created_at": "new Date()"
+      }
     },
     "platform": "appsheet",
     "learningSubjects": [
