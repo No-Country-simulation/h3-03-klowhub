@@ -25,7 +25,7 @@ import { MultimediaDto } from './dto/multimedia.dto';
 
 @Injectable()
 export class CoursesService {
-  private readonly MAX_IMAGE_SIZE = 500 * 1024; // 500 KB
+  private readonly MAX_IMAGE_SIZE = 10000 * 1024; // 10 MB
   private readonly MAX_VIDEO_SIZE = 500 * 1024 * 1024; // 500 MB
   private readonly MAX_PDF_SIZE = 3 * 1024 * 1024; // 3 MB
 
