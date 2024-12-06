@@ -61,6 +61,6 @@ export class Multimedia {
   // @ManyToOne(() => Course, (course) => course.multimedia)
   // @JoinColumn({ name: 'course_id' }) // Especifica el nombre de la columna
   // course: Promise<Course>;
-  @ManyToOne(() => Course, (course) => course.multimedia)
-  course: Course;
+  @ManyToOne(() => Course, (course) => course.promotionalVideo)
+  course: Course[];
 }

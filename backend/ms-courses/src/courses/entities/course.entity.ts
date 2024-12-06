@@ -1,13 +1,17 @@
 import {
   Column,
   Entity,
-  OneToMany,
   // JoinColumn,
+  OneToMany,
+  OneToOne,
+  JoinColumn,
   // ManyToOne,
   // OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Video, Document, Image, Multimedia } from './multimedia.entity';
+import { Image, Multimedia } from './multimedia.entity';
+import { CourseModule } from './course-module.entity';
+import { PromotionProduct } from './promotion.entity';
 
 @Entity()
 export class Course {
@@ -20,34 +24,34 @@ export class Course {
   // @Column({ type: 'enum', enum: ['Gratuito', 'Pago'] })
   // tipoDeCurso: string;
   @Column()
-  freeContent: boolean;
+  freeCourse: boolean;
 
-  @Column({ type: 'enum', enum: ['Lección', 'Curso'] })
+  @Column({ type: 'enum', enum: ['lesson', 'curse'] })
   contentType: string;
 
   @Column({ type: 'text' })
   shortDescription: string;
 
-  @Column({ type: 'enum', enum: ['Basico', 'Intermedio'] })
+  @Column({ type: 'enum', enum: ['basic', 'intermediate'] })
   courseDifficulty: string;
 
-  @Column({ type: 'enum', enum: ['Appsheet', 'PowerApps'] })
+  @Column({ type: 'enum', enum: ['appsheet', 'powerapps'] })
   platform: string;
 
-  @Column({ type: 'enum', enum: ['Inglés', 'Español'] })
+  @Column({ type: 'enum', enum: ['english', 'spanish'] })
   language: string;
 
   @Column({
     type: 'enum',
     enum: [
-      'UX-UI',
-      'Base de datos',
-      'Expresiones y fórmulas',
-      'Automatización',
-      'Flujos de trabajo',
-      'Seguridad-Accesibilidad',
-      'General',
-      'Acciones-Behaviour',
+      'ux-ui',
+      'databases',
+      'expressions-and-formulas',
+      'automation',
+      'workflows',
+      'actions-behavior',
+      'security-accesibility',
+      'general',
     ],
   })
   coreContent: string;
@@ -58,19 +62,32 @@ export class Course {
   @Column({
     type: 'enum',
     enum: [
-      'Calendario',
-      'Generación de PDF',
-      'Reportes automáticos',
-      'Chatbot(BOT)',
-      'Emails',
-      'SMS',
-      'Notificaciones Push',
-      'Generación y Escaneo QR',
-      'Geolocalización',
-      'OCR',
-      'Machine Learning',
-      'Estadísticas de uso',
-      'Dashboard - Repostes y analisis',
+      'calendario',
+      'generacion-de-pdf',
+      'reportes-automaticos',
+      'chatbot-bot',
+      'emails',
+      'sms',
+      'notificaciones-push',
+      'generacion-y-escaneo-qr',
+      'geolocalizacion',
+      'ocr',
+      'machine-learning',
+      'estadisticas-de-uso',
+      'dashboard-reportes-y-analisis',
+      'gestion-de-usuarios',
+      'reporting-avanzado',
+      'integracion-de-datos',
+      'gestion-de-permisos',
+      'analisis-de-datos',
+      'optimizacion-performance',
+      'despliegue-deploy',
+      'importacion-exportacion-de-datos',
+      'firmas-digitales',
+      'escaneo-de-documentos',
+      'monitor-de-automatizaciones',
+      'historial-de-auditoria',
+      'api-integraciones',
     ],
   })
   functionalities: string;
@@ -79,69 +96,68 @@ export class Course {
     array: true,
     type: 'enum',
     enum: [
-      'Industria',
-      'Gestión del tiempo',
-      'Gestión de proyectos',
-      'Gestión de inventarios',
-      'Ventas y CRM',
-      'Obras y contrucción',
-      'Logistica y transporte',
-      'Servicios profesionales',
-      'Marketing digital',
-      'E-Commerce',
-      'Entretenimiento y medios',
-      'Seguridad y vigilancia',
-      'Investigación y desarrollo',
-      'Agricultura y medio ambiente',
-      'Administración',
+      'industria',
+      'gestion-del-tiempo',
+      'gestion-de-proyectos',
+      'gestion-de-inventarios',
+      'ventas-y-crm',
+      'obras-y-construccion',
+      'logistica-y-transporte',
+      'servicios-profesionales',
+      'marketing-digital',
+      'e-commerce',
+      'entretenimiento-y-medios',
+      'seguridad-y-vigilancia',
+      'investigacion-y-desarrollo',
+      'agricultura-y-medio-ambiente',
+      'administracion',
     ],
   })
   sector: string[];
 
-  // @Column({ type: 'text', array: true })
-  // learningSubjects: string[];
-
   @Column({
     type: 'enum',
     enum: [
-      'Google Sheets',
-      'Looker Studio',
-      'MySQL',
-      'PostgreSQL',
-      'Salesforce',
-      'Airtable',
-      'Dropbox',
-      'Box',
-      'Google Analitics',
-      'Zapier',
-      'Wordpress',
-      'Shopify',
-      'WhasApp API',
-      'Powe BI',
-      'Twilo',
-      'Trello',
-      'Google Calendar',
-      'Google Drive',
-      'Google Maps',
-      'Gestión de Usuarios',
-      'Reporting avanzado',
-      'Integración de datos',
-      'Gestión de permisos',
-      'Analisis de datos',
-      'Optimización Performance',
-      'Despliegue Deploy',
-      'Importación - exportación de datos',
-      'Firmas digitales',
-      'Escaneo de documentos',
-      'Monitor de automatizaciones',
-      'Historial de auditoria',
-      'API - Integraciones',
+      'google-sheets',
+      'looker-studio',
+      'mysql',
+      'postgresql',
+      'salesforce',
+      'airtable',
+      'dropbox',
+      'box',
+      'google-analytics',
+      'zapier',
+      'wordpress',
+      'shopify',
+      'whatsapp-api',
+      'power-bi',
+      'twilio',
+      'trello',
+      'google-calendar',
+      'google-drive',
+      'google-maps',
     ],
   })
   toolsAndPlatform: string;
 
-  @Column({ type: 'text' })
+  @Column({
+    type: 'enum',
+    enum: [
+      'plataforma-de-cursos',
+      'aplicaciones-sin-codigo',
+      'desarrolladores-nocode',
+      'powerapps-para-empresas',
+      'appsheet-para-negocios',
+      'automatizacion-de-tareas',
+      'apps-de-productividad',
+      'tecnologia-para-empresas',
+      'herramientas-nocode',
+      'creacion-de-aplicaciones',
+    ],
+  })
   tags: string;
+
   //learningSubjects cambiarlo a array de strings
   @Column({ type: 'text', array: true })
   learningSubjects: string[];
@@ -152,26 +168,6 @@ export class Course {
   @Column({ type: 'text' })
   fullDescription: string;
 
-  //nuevo atributo
-  //tabla de modulo
-  //tabla de images
-  //tabla de videos
-  //tabla de documents
-  //tabla de lesssons
-
-  @Column('json')
-  modules: {
-    title: string;
-    description: string;
-    lessons: {
-      free: boolean;
-      title: string;
-      description: string;
-      documents: Document;
-      video: Video;
-    }[];
-  }[];
-
   @Column()
   link: string;
 
@@ -180,27 +176,40 @@ export class Course {
   // Imagen del curso
   @Column('json')
   coverImg: Image;
+
   //promotion puede ser null hacerlo en el DTO
-  @Column('json', { nullable: true })
-  promotion: {
-    product: {
-      id: string;
-      type: string;
-    };
-    percentage: number;
-  };
+  // @Column('json', { nullable: true })
+  // promotion: {
+  //   product: {
+  //     id: string;
+  //     type: string;
+  //   };
+  //   percentage: number;
+  // };
+
+  @OneToOne(() => PromotionProduct)
+  @JoinColumn()
+  promotion: PromotionProduct;
 
   @Column({ type: 'boolean', default: true })
   available: boolean;
 
+  @Column()
+  targetAudience: string;
+
   @Column({ type: 'int' })
   price: number;
+
+  @OneToMany(() => CourseModule, (module) => module.id)
+  modules: CourseModule[];
 
   // Relación OneToMany con Multimedia
   @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
     cascade: true, // Esto permite guardar los multimedia relacionados cuando se guarda el curso
   })
-  multimedia: Multimedia[];
+  promotionalVideo: Multimedia;
+  //promotionalVideo tiene que ser de tipo video
+
   // @Column(() => Multimedia)
   // promotionalVideo: Multimedia;
 
@@ -213,3 +222,5 @@ export class Course {
   // @JoinColumn({ name: 'promotional_video_id' }) // Nombre claro en la base de datos
   // promotionalVideo: Multimedia;
 }
+
+// FALTA LA PROPIEDAD DOCUMENTS
