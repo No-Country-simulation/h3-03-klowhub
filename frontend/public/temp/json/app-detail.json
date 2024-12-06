@@ -1,0 +1,56 @@
+{
+    "title": "Aplicación para seguimiento de proyectos",
+    "shortDescription": "Aplicación de gestión de proyectos te permite organizar tareas, asignar responsabilidades y monitorear el progreso de tu equipo.",
+    "fullDescription": "Aplicación de gestión de proyectos te permite organizar tareas, asignar responsabilidades y monitorear el progreso de tu equipo. en tiempo real. Desde la planificación hasta la ejecución, cada paso de tu proyecto estará al alcance de tu mano, optimizando la colaboración y mejorando la productividad.",
+    "rating": 3,
+    "ratingCount": 80,
+    "coverImg": {
+        "url": "/temp/imgs/course-image.png",
+        "size": 500,
+        "width": 1920,
+        "height": 1080,
+        "format": "jpg",
+        "created_at": "2024-01-04T12:00:00Z"
+    },
+    "advantages": [
+        "Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.",
+        "Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.",
+        "Establece prioridades claras y ajusta los plazos según las necesidades del proyecto."
+    ],
+    "sector": [
+        "Gestión de Usuarios",
+        "Marketing digital"
+    ],
+    "coreContent": [
+        "Expresiones y fórmulas",
+        "Automatización"
+    ],
+    "toolsAndPlatform": [
+        "Power BI",
+        "Google Sheets"
+    ],
+    "functionalities": [
+        "Reportes automáticos",
+        "Generación de PDF"
+    ],
+    "mobileScreenshoot": {
+        "url": "/temp/imgs/appMobileView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "width": 334,
+        "height": 200
+    },
+    "desktopScreenshot": {
+        "url": "/temp/imgs/appDesktopView.png",
+        "alt": "Vista Mobile de la Aplicación",
+        "width": 800,
+        "height": 500
+    },
+    "platform": "App Sheets",
+    "appIncludes": [
+        "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+        "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+        "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+    ],
+    "peechTitle": "Una aplicación que te ayudará a gestionar mejor tus proyectos",
+    "peechDescription": "¿Quieres optimizar tus procesos y mejorar la productividad de tu pequeña empresa sin invertir una fortuna en desarrollo de software?  Esta aplicación te permitirá  gestionar tus proyectos, clientes, inventario y mucho más. Imagina tener una herramienta a medida que se adapte a las necesidades únicas de tu negocio, sin necesidad de escribir una sola línea de código.Gracias a esta aplicación podrás: automatizar tareas repetitivas, mejorar la colaboración entre equipos, acceder a tus datos en tiempo real y tomar decisiones más informadas. "
+}
