@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/icon/icon.component";
 import { Badge } from "@/components/ui/badge";
 import { AppInclude } from './app-include.section';
-import Greeter from "@/components/greeter/greeter.component";
+import { Popover } from "@/components/popover/popover.component";
 import { AppPeechSection } from "./app-peech.section";
 
 type Props = {
@@ -45,6 +45,10 @@ export const AppDetail: FC<Props> = () => {
 
     const handleShowDesktopView = () => {
         setShowGreeter(true)
+    }
+
+    const handleCloseDesktopView = () => {
+        setShowGreeter(false);
     }
 
     return (
@@ -113,8 +117,8 @@ export const AppDetail: FC<Props> = () => {
 
                 </div>
             </div>
-            {/* {data && showGreeter && (
-                <Greeter>
+            {data && showGreeter && (
+                <Popover onClose={handleCloseDesktopView}>
                     <Image
                         className="w-ful h-full rounded-lg"
                         src={data?.desktopScreenshot.url!!}
@@ -122,8 +126,8 @@ export const AppDetail: FC<Props> = () => {
                         height={data?.desktopScreenshot.height!!}
                         width={data?.desktopScreenshot.width!!}
                     />
-                </Greeter>
-            )} */}
+                </Popover>
+            )}
         </div>
     );
 
