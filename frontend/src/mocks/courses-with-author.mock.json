@@ -1,0 +1,1534 @@
+[
+  {
+    "id": "123-asdas-d234234-asd-f3-4",
+    "title": "Curso de Desarrollo Web",
+    "shortDescription": "Aprende a desarrollar aplicaciones web modernas.",
+    "rating": 4.5,
+    "ratingCount": 123,
+    "available": true,
+    "price": 39,
+    "promotionalVideo": {
+      "duration": 9.08,
+      "size": 5596,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Entender los fundamentos de HTML, CSS y JavaScript.",
+      "Construir aplicaciones interactivas con React.",
+      "Diseñar APIs robustas con Node.js."
+    ],
+    "sector": [
+      "Gestión de Usuarios",
+      "Marketing digital"
+    ],
+    "coreContent": [
+      "Expresiones y fórmulas",
+      "Automatización"
+    ],
+    "toolsAndPlatforms": [
+      "Power BI",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Reportes automáticos",
+      "Generación de PDF"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de programación",
+      "Ganas de aprender"
+    ],
+    "fullDescription": "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de Power Apps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
+    "modules": [
+      {
+        "title": "Módulo App",
+        "description": "Aprende los fundamentos básicos de Appsheet.",
+        "lessons": [
+          {
+            "id": "lesson-1",
+            "title": "¿Qué es Power Apps?",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-2",
+            "title": "Configuración de la cuenta y entorno de trabajo",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          },
+          {
+            "id": "lesson-3",
+            "title": "Navegación por la interfaz de Power Apps",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          }
+        ]
+      },
+      {
+        "title": "Módulo 2",
+        "description": "Aprende los fundamentos básicos de Appsheet.",
+        "lessons": [
+          {
+            "id": "lesson-4",
+            "title": "Contenido del Módulo 2",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          }
+        ]
+      },
+      {
+        "title": "Módulo 3",
+        "description": "Aprende los fundamentos básicos de Appsheet.",
+        "lessons": [
+          {
+            "id": "lesson-5",
+            "title": "Contenido del Módulo 3",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo123",
+        "type": "course"
+      },
+      "percentage": 20
+    },
+    "resource": [
+      {
+        "id": "132qw3",
+        "url": "https://example.com/resource1.pdf",
+        "size": "2000",
+        "mimeType": "application/pdf",
+        "created_at": "new Date()",
+        "filename": "example.pdf"
+      }
+    ],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "456-zxcv-7890123-bnm-g4-5",
+    "title": "Automatización de Flujos de Trabajo con Power Apps y Google Sheets",
+    "shortDescription": "Automatiza tareas repetitivas integrando Power Apps con Google Sheets.",
+    "rating": 4.2,
+    "ratingCount": 87,
+    "available": true,
+    "price": 49,
+    "promotionalVideo": {
+      "duration": 12.5,
+      "size": 7200,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/workflow_automation.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "qwertasdf-zxcvbnm-1234567-890",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/workflow_automation.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Conexión de Power Apps con Google Sheets.",
+      "Creación de flujos de trabajo automatizados.",
+      "Manejo de datos en Google Sheets."
+    ],
+    "sector": [
+      "Automatización",
+      "Gestión de datos"
+    ],
+    "coreContent": [
+      "Integraciones",
+      "Automatización"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets",
+      "Microsoft Flow (Power Automate)"
+    ],
+    "functionalities": [
+      "Automatización de correos electrónicos",
+      "Actualización automática de datos"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Power Apps",
+      "Familiaridad con Google Sheets"
+    ],
+    "fullDescription": "Aprende a integrar Power Apps con Google Sheets para automatizar flujos de trabajo y mejorar tu productividad.  Este curso te enseñará a conectar ambas plataformas y a crear aplicaciones que automatizan tareas repetitivas.",
+    "modules": [
+      {
+        "title": "Introducción a la Integración",
+        "description": "Conexión entre Power Apps y Google Sheets.",
+        "lessons": [
+          {
+            "id": "lesson1",
+            "title": "Conectando Power Apps a Google Sheets",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson2",
+            "title": "Autenticación y permisos",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Creación de Flujos de Trabajo",
+        "description": "Diseño y desarrollo de flujos automatizados.",
+        "lessons": [
+          {
+            "id": "lesson3",
+            "title": "Automatizando tareas con Power Automate",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson4",
+            "title": "Manejo de errores y excepciones",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      },
+      {
+        "title": "Ejemplos Prácticos",
+        "description": "Casos de uso reales de la integración.",
+        "lessons": [
+          {
+            "id": "lesson5",
+            "title": "Automatización de reportes",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          },
+          {
+            "id": "lesson6",
+            "title": "Integración con otros servicios",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo456",
+        "type": "course"
+      },
+      "percentage": 15
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "789-asdf-0123456-ghjk-i5-6",
+    "title": "Creación de Apps de Gestión de Inventario con Power Apps y Google Sheets",
+    "shortDescription": "Desarrolla aplicaciones para gestionar el inventario de tu negocio.",
+    "rating": 4.8,
+    "ratingCount": 215,
+    "available": true,
+    "price": 75,
+    "promotionalVideo": {
+      "duration": 18.1,
+      "size": 9800,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/inventory_management.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "poiuytrewq-asdfghjkl-13579135",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/inventory_management.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Diseño de interfaces de usuario para gestión de inventario.",
+      "Integración con Google Sheets para seguimiento de stock.",
+      "Implementación de alertas de bajo stock."
+    ],
+    "sector": [
+      "Gestión de Inventario",
+      "Logística"
+    ],
+    "coreContent": [
+      "Gestión de Inventario",
+      "Reportes"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Seguimiento de stock",
+      "Generación de reportes"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Power Apps",
+      "Conocimientos básicos de Google Sheets"
+    ],
+    "fullDescription": "Aprende a crear aplicaciones de gestión de inventario que te ayuden a controlar el stock de tus productos. Integra Power Apps con Google Sheets para un seguimiento preciso y eficiente.",
+    "modules": [
+      {
+        "title": "Introducción a la Gestión de Inventario",
+        "description": "Conceptos básicos y herramientas",
+        "lessons": [
+          {
+            "id": "lesson7",
+            "title": "¿Qué es la gestión de inventario?",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson8",
+            "title": "Importancia de un buen sistema de inventario",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Diseño de la Aplicación",
+        "description": "Creación de la interfaz de usuario en Power Apps",
+        "lessons": [
+          {
+            "id": "lesson9",
+            "title": "Creando la interfaz de usuario",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson10",
+            "title": "Personalizando la aplicación",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      },
+      {
+        "title": "Integración con Google Sheets",
+        "description": "Conectando Power Apps con Google Sheets para el manejo de datos",
+        "lessons": [
+          {
+            "id": "lesson11",
+            "title": "Conectando a Google Sheets",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          },
+          {
+            "id": "lesson12",
+            "title": "Importando y exportando datos",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo789",
+        "type": "course"
+      },
+      "percentage": 25
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "101-yuio-3456789-hjkl-k6-7",
+    "title": "Creación de Formularios con Power Apps y Google Sheets",
+    "shortDescription": "Crea formularios digitales para recopilar datos de manera eficiente.",
+    "rating": 4.6,
+    "ratingCount": 158,
+    "available": true,
+    "price": 59,
+    "promotionalVideo": {
+      "duration": 15.8,
+      "size": 8900,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/form_creation.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "lkjhgfdsa-poiuytrew-q1w2e3r4",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/form_creation.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Diseño de formularios digitales.",
+      "Integración con Google Sheets para almacenamiento de datos.",
+      "Validación de datos en formularios."
+    ],
+    "sector": [
+      "Recopilación de Datos",
+      "Gestión de Formularios"
+    ],
+    "coreContent": [
+      "Diseño de Formularios",
+      "Gestión de Datos"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Recopilación de información",
+      "Almacenamiento de datos"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Power Apps",
+      "Conocimiento básico de Google Sheets"
+    ],
+    "fullDescription": "Aprende a crear formularios digitales con Power Apps y a integrar Google Sheets para almacenar la información recopilada.  Este curso te enseñará a diseñar formularios eficientes y a gestionar los datos de forma organizada.",
+    "modules": [
+      {
+        "title": "Introducción a la creación de formularios",
+        "description": "Conceptos básicos y herramientas",
+        "lessons": [
+          {
+            "id": "lesson13",
+            "title": "Tipos de formularios",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson14",
+            "title": "Diseño de formularios responsivos",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Integración con Google Sheets",
+        "description": "Conectando Power Apps con Google Sheets para el almacenamiento de datos",
+        "lessons": [
+          {
+            "id": "lesson15",
+            "title": "Conectando a Google Sheets",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson16",
+            "title": "Almacenando datos en Google Sheets",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      },
+      {
+        "title": "Validación de datos",
+        "description": "Asegurando la calidad de los datos recolectados",
+        "lessons": [
+          {
+            "id": "lesson17",
+            "title": "Validación de campos",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          },
+          {
+            "id": "lesson18",
+            "title": "Manejo de errores",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo101",
+        "type": "course"
+      },
+      "percentage": 10
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "876-lkjhgf-5432109-poiuyt-r4-5",
+    "title": "Automatización de Flujos de Trabajo con Power Automate y Google Sheets",
+    "shortDescription": "Automatiza tareas repetitivas integrando Power Automate y Google Sheets.",
+    "rating": 4.9,
+    "ratingCount": 250,
+    "available": true,
+    "price": 99,
+    "promotionalVideo": {
+      "duration": 25.3,
+      "size": 13500,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/automation_workflow.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "zxcvbnm-asdfghjk-qwertyui",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/automation_workflow.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Automate",
+    "learningSubjects": [
+      "Conceptos básicos de Power Automate.",
+      "Conexión con Google Sheets.",
+      "Creación de flujos de trabajo automatizados."
+    ],
+    "sector": [
+      "Automatización",
+      "Productividad"
+    ],
+    "coreContent": [
+      "Automatización de Procesos",
+      "Integraciones"
+    ],
+    "toolsAndPlatforms": [
+      "Power Automate",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Automatización de emails",
+      "Actualización automática de datos"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de informática"
+    ],
+    "fullDescription": "Aprende a automatizar tus flujos de trabajo con Power Automate y Google Sheets.  Este curso te enseñará a conectar ambas plataformas para automatizar tareas repetitivas y ahorrar tiempo.",
+    "modules": [
+      {
+        "title": "Introducción a Power Automate",
+        "description": "Aprende los conceptos básicos de Power Automate.",
+        "lessons": [
+          {
+            "id": "lesson-1",
+            "title": "Qué es Power Automate",
+            "free": true,
+            "description": "Introducción a Power Automate y sus capacidades.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson-2",
+            "title": "Creación de tu primera automatización",
+            "free": false,
+            "description": "Crea un flujo de trabajo simple.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Integración con Google Sheets",
+        "description": "Aprende a conectar Power Automate con Google Sheets.",
+        "lessons": [
+          {
+            "id": "lesson-3",
+            "title": "Conexión a Google Sheets",
+            "free": false,
+            "description": "Configura la conexión entre Power Automate y Google Sheets.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-4",
+            "title": "Automatización de datos",
+            "free": true,
+            "description": "Automatiza la entrada y salida de datos entre Power Automate y Google Sheets.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo876",
+        "type": "course"
+      },
+      "percentage": 10
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "987-poiuyt-6543210-asdfgh-j5-6",
+    "title": "Análisis de Datos con Power BI y Google Sheets",
+    "shortDescription": "Analiza tus datos de Google Sheets con Power BI.",
+    "rating": 4.7,
+    "ratingCount": 195,
+    "available": true,
+    "price": 85,
+    "promotionalVideo": {
+      "duration": 21.8,
+      "size": 11300,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/data_analysis.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "qwertyuio-asdfghjk-zxcvbn",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/data_analysis.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power BI",
+    "learningSubjects": [
+      "Importación de datos desde Google Sheets.",
+      "Creación de visualizaciones de datos.",
+      "Análisis de tendencias."
+    ],
+    "sector": [
+      "Análisis de Datos",
+      "Business Intelligence"
+    ],
+    "coreContent": [
+      "Visualización de Datos",
+      "Análisis de Tendencias"
+    ],
+    "toolsAndPlatforms": [
+      "Power BI",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Creación de gráficos",
+      "Generación de informes"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Excel"
+    ],
+    "fullDescription": "Aprende a analizar tus datos de Google Sheets con Power BI. Este curso te enseñará a importar datos, crear visualizaciones y analizar tendencias.",
+    "modules": [
+      {
+        "title": "Conexión con Google Sheets",
+        "description": "Aprende a conectar Power BI con Google Sheets.",
+        "lessons": [
+          {
+            "id": "lesson-5",
+            "title": "Importando datos",
+            "free": true,
+            "description": "Importa tus datos de Google Sheets a Power BI.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson-6",
+            "title": "Limpieza de datos",
+            "free": false,
+            "description": "Aprende a limpiar y preparar tus datos para el análisis.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Creación de Visualizaciones",
+        "description": "Aprende a crear visualizaciones de datos en Power BI.",
+        "lessons": [
+          {
+            "id": "lesson-7",
+            "title": "Creando gráficos",
+            "free": false,
+            "description": "Crea diferentes tipos de gráficos para visualizar tus datos.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-8",
+            "title": "Creando informes",
+            "free": true,
+            "description": "Crea informes interactivos para presentar tus hallazgos.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo987",
+        "type": "course"
+      },
+      "percentage": 15
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "098-tyuio-7654321-ghjkl-k6-7",
+    "title": "Desarrollo de Apps Móviles con Power Apps y Google Sheets para la Gestión de Inventario",
+    "shortDescription": "Crea una app móvil para gestionar tu inventario.",
+    "rating": 4.6,
+    "ratingCount": 178,
+    "available": true,
+    "price": 79,
+    "promotionalVideo": {
+      "duration": 18.9,
+      "size": 10000,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/mobile_app_inventory.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "asdfghjk-poiuytrew-qwert",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/mobile_app_inventory.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Diseño de interfaces de usuario para móviles.",
+      "Integración con Google Sheets para el almacenamiento de datos.",
+      "Desarrollo de funcionalidades de gestión de inventario."
+    ],
+    "sector": [
+      "Gestión de Inventario",
+      "Desarrollo Móvil"
+    ],
+    "coreContent": [
+      "Diseño de Apps",
+      "Gestión de Inventario"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Agregar nuevos productos",
+      "Gestionar stock",
+      "Generar reportes"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Power Apps"
+    ],
+    "fullDescription": "Crea una aplicación móvil para gestionar tu inventario utilizando Power Apps y Google Sheets.  Este curso te enseñará a diseñar una interfaz intuitiva y a integrar la gestión de datos.",
+    "modules": [
+      {
+        "title": "Diseño de la Interfaz de Usuario",
+        "description": "Aprende a diseñar una interfaz de usuario intuitiva para tu aplicación móvil.",
+        "lessons": [
+          {
+            "id": "lesson-9",
+            "title": "Principios de UX/UI",
+            "free": true,
+            "description": "Aprende los principios básicos de diseño de UX/UI para aplicaciones móviles.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson-10",
+            "title": "Diseño de la pantalla principal",
+            "free": false,
+            "description": "Diseña la pantalla principal de tu aplicación.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Integración con Google Sheets",
+        "description": "Aprende a integrar tu aplicación con Google Sheets para almacenar y gestionar los datos de inventario.",
+        "lessons": [
+          {
+            "id": "lesson-11",
+            "title": "Conexión a Google Sheets",
+            "free": false,
+            "description": "Conecta tu aplicación Power Apps con tu hoja de cálculo de Google Sheets.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-12",
+            "title": "Implementación de la funcionalidad de inventario",
+            "free": true,
+            "description": "Implementa las funcionalidades para agregar, modificar y eliminar productos del inventario.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo098",
+        "type": "course"
+      },
+      "percentage": 20
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "112-zxcvbn-3456789-asdfgh-l7-8",
+    "title": "Creación de Reportes Dinámicos con Power BI, Google Sheets y Power Apps",
+    "shortDescription": "Crea reportes interactivos que se actualizan en tiempo real.",
+    "rating": 4.8,
+    "ratingCount": 220,
+    "available": true,
+    "price": 119,
+    "promotionalVideo": {
+      "duration": 30.5,
+      "size": 16000,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/dynamic_reports.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "poiuytre-asdfghjk-zxcvbn",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/dynamic_reports.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power BI",
+    "learningSubjects": [
+      "Conexión de Power BI con Google Sheets.",
+      "Creación de dashboards interactivos.",
+      "Integración con Power Apps para la actualización de datos."
+    ],
+    "sector": [
+      "Business Intelligence",
+      "Análisis de Datos"
+    ],
+    "coreContent": [
+      "Reportes Dinámicos",
+      "Visualización de Datos"
+    ],
+    "toolsAndPlatforms": [
+      "Power BI",
+      "Google Sheets",
+      "Power Apps"
+    ],
+    "functionalities": [
+      "Filtros interactivos",
+      "Actualización automática de datos"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Power BI"
+    ],
+    "fullDescription": "Aprende a crear reportes dinámicos que se actualizan en tiempo real utilizando Power BI, Google Sheets y Power Apps.  Este curso te enseñará a conectar estas plataformas para crear dashboards interactivos.",
+    "modules": [
+      {
+        "title": "Conexión de Datos",
+        "description": "Conecta Power BI con Google Sheets.",
+        "lessons": [
+          {
+            "id": "lesson-13",
+            "title": "Importando datos de Google Sheets",
+            "free": true,
+            "description": "Importa tus datos de Google Sheets a Power BI.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson-14",
+            "title": "Transformación de Datos",
+            "free": false,
+            "description": "Limpia y transforma tus datos para un mejor análisis.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Creación de Dashboards Interactivos",
+        "description": "Crea dashboards interactivos en Power BI.",
+        "lessons": [
+          {
+            "id": "lesson-15",
+            "title": "Creando Visualizaciones",
+            "free": false,
+            "description": "Crea diferentes visualizaciones para representar tus datos.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-16",
+            "title": "Implementando Interactividad",
+            "free": true,
+            "description": "Agrega interactividad a tus dashboards con filtros y otras funcionalidades.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      },
+      {
+        "title": "Integración con Power Apps",
+        "description": "Integra Power Apps para actualizar datos en tiempo real.",
+        "lessons": [
+          {
+            "id": "lesson-17",
+            "title": "Conectando Power Apps y Power BI",
+            "free": false,
+            "description": "Establece la conexión entre Power Apps y Power BI.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo112",
+        "type": "course"
+      },
+      "percentage": 10
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "224-qwerty-5678901-zxcvbn-m8-9",
+    "title": "Gestión de Proyectos con Power Apps y Google Sheets: Una Solución Integrada",
+    "shortDescription": "Gestiona tus proyectos de forma eficiente con una app personalizada.",
+    "rating": 4.5,
+    "ratingCount": 185,
+    "available": true,
+    "price": 99,
+    "promotionalVideo": {
+      "duration": 27.2,
+      "size": 14500,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/project_management.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "asdfghjk-qwertyui-zxcvbn",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/project_management.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Diseño de una aplicación de gestión de proyectos.",
+      "Integración con Google Sheets para el seguimiento del progreso.",
+      "Automatización de tareas."
+    ],
+    "sector": [
+      "Gestión de Proyectos",
+      "Productividad"
+    ],
+    "coreContent": [
+      "Gestión de Tareas",
+      "Seguimiento de Progreso"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Asignación de tareas",
+      "Seguimiento del tiempo",
+      "Generación de reportes"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Power Apps"
+    ],
+    "fullDescription": "Aprende a gestionar tus proyectos de forma eficiente utilizando Power Apps y Google Sheets.  Este curso te enseñará a crear una aplicación personalizada para el seguimiento del progreso y la automatización de tareas.",
+    "modules": [
+      {
+        "title": "Diseño de la Aplicación",
+        "description": "Diseña la estructura y la interfaz de usuario de tu aplicación.",
+        "lessons": [
+          {
+            "id": "lesson-18",
+            "title": "Planificación de la Aplicación",
+            "free": true,
+            "description": "Planifica la estructura y las funcionalidades de tu aplicación.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson-19",
+            "title": "Diseño de la Interfaz",
+            "free": false,
+            "description": "Diseña la interfaz de usuario de tu aplicación.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Integración con Google Sheets",
+        "description": "Integra Google Sheets para almacenar y gestionar los datos del proyecto.",
+        "lessons": [
+          {
+            "id": "lesson-20",
+            "title": "Conectando con Google Sheets",
+            "free": false,
+            "description": "Conecta tu aplicación Power Apps con Google Sheets.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-21",
+            "title": "Gestión de Datos",
+            "free": true,
+            "description": "Gestiona los datos del proyecto en Google Sheets.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      },
+      {
+        "title": "Automatización de Tareas",
+        "description": "Automatiza tareas dentro de tu aplicación.",
+        "lessons": [
+          {
+            "id": "lesson-22",
+            "title": "Automatizando Flujos de Trabajo",
+            "free": false,
+            "description": "Automatiza tareas repetitivas dentro de tu aplicación.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo224",
+        "type": "course"
+      },
+      "percentage": 15
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  },
+  {
+    "id": "336-asdfgh-7890123-qwerty-n9-0",
+    "title": "Automatización de Procesos de Ventas con Power Automate, Google Sheets y Power Apps",
+    "shortDescription": "Automatiza tus procesos de ventas para mejorar la eficiencia.",
+    "rating": 4.7,
+    "ratingCount": 200,
+    "available": true,
+    "price": 109,
+    "promotionalVideo": {
+      "duration": 28.7,
+      "size": 15200,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sales_automation.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "zxcvbnm-poiuytre-asdfgh",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sales_automation.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Automate",
+    "learningSubjects": [
+      "Automatización de tareas de ventas.",
+      "Integración con Google Sheets para el seguimiento de clientes.",
+      "Creación de una interfaz de usuario con Power Apps."
+    ],
+    "sector": [
+      "Ventas",
+      "Automatización"
+    ],
+    "coreContent": [
+      "Automatización de Ventas",
+      "Gestión de Clientes"
+    ],
+    "toolsAndPlatforms": [
+      "Power Automate",
+      "Google Sheets",
+      "Power Apps"
+    ],
+    "functionalities": [
+      "Notificaciones automáticas",
+      "Seguimiento de clientes",
+      "Generación de reportes de ventas"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Power Automate"
+    ],
+    "fullDescription": "Aprende a automatizar tus procesos de ventas utilizando Power Automate, Google Sheets y Power Apps.  Este curso te enseñará a crear una solución integrada para mejorar la eficiencia y el seguimiento de clientes.",
+    "modules": [
+      {
+        "title": "Automatización de Tareas",
+        "description": "Automatiza tareas repetitivas en tu proceso de ventas.",
+        "lessons": [
+          {
+            "id": "lesson-23",
+            "title": "Automatizando Emails",
+            "free": true,
+            "description": "Automatiza el envío de emails a tus clientes.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          },
+          {
+            "id": "lesson-24",
+            "title": "Automatizando Seguimiento",
+            "free": false,
+            "description": "Automatiza el seguimiento de tus clientes.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      },
+      {
+        "title": "Integración con Google Sheets",
+        "description": "Integra Google Sheets para almacenar y gestionar los datos de tus clientes.",
+        "lessons": [
+          {
+            "id": "lesson-25",
+            "title": "Conectando con Google Sheets",
+            "free": false,
+            "description": "Conecta Power Automate con Google Sheets.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-26",
+            "title": "Gestión de Datos de Clientes",
+            "free": true,
+            "description": "Gestiona los datos de tus clientes en Google Sheets.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      },
+      {
+        "title": "Creación de la Interfaz de Usuario",
+        "description": "Crea una interfaz de usuario con Power Apps para interactuar con tus datos.",
+        "lessons": [
+          {
+            "id": "lesson-27",
+            "title": "Diseño de la Interfaz",
+            "free": false,
+            "description": "Diseña la interfaz de usuario de tu aplicación.",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo336",
+        "type": "course"
+      },
+      "percentage": 20
+    },
+    "resource": [],
+    "author": {
+      "name": "Sebastián Ríos",
+      "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+      "img": {
+        "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+        "fileType": "image",
+        "fileMetadata": {
+          "size": 0,
+          "url": "/temp/imgs/profile-mini.png",
+          "width": 60,
+          "height": 60,
+          "format": "webp",
+          "mimeType": "image/webp",
+          "created_at": "2024-12-04T05:47:09Z"
+        }
+      }
+    },
+    "coverImg": {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+        "size": 55508,
+        "width": 800,
+        "height": 800,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "automatizacion-de-tareas" ]
+  }
+]
+

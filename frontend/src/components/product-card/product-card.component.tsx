@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ProductCard as TProductCard } from "./product-card.types";
+import { TProductCard } from "./product-card.types";
 import { Button } from "@/components/ui/button"
 import Icon from "../icon/icon.component";
 import Rating from "../rating/rating.component";
@@ -30,8 +30,8 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
   const {
     id,
     title,
-    img,
-    description,
+    coverImg: { fileMetadata: { width, height, url } },
+    shortDescription,
     platform,
     tags,
     rating,
@@ -44,19 +44,26 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
 
   return (
     <Card
-      className={`overflow-hidden flex flex-col ${orientation === "vertical" ? "" : "md:flex-row items-center gap-4 mb-6"}`}
+      className={`overflow-hidden flex flex-col ${orientation === "vertical" ? "" : "md:flex-row items-center gap-4 mb-6 h-full"}`}
     >
-      <div className={orientation === "vertical" ? "flex-shrink-0 h-60" : "h-full w-full md:h-auto md:w-auto flex-shrink-0 overflow-hidden"}>
-        <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
+      <div className={orientation === "vertical" ? "flex-shrink-0 h-60" : "flex-grow h-full w-full md:h-80 md:w-1/4 flex-shrink-0 overflow-hidden"}>
+        <Link 
+          href={{ pathname, query: `modal=true&product=${id}` }}
+          scroll={false} 
+          className={`
+            ${unlink ? "pointer-events-none" : ""}
+          `}
+        >
           <Image 
-            className="w-full h-full object-cover"
-            width={img.width} height={img.height} 
-            alt={img.alt}
-            src={img.url} 
+            width={width} height={height} 
+            alt=""
+            src={url} 
+            objectFit="cover"
+            className="h-full object-cover"
           />
         </Link>
       </div>
-      <div className="w-full flex flex-col justify-evenly h-full gap-6 p-4 flex-grow">
+      <div className="w-full md:w-3/4 flex flex-col justify-between h-full gap-6 p-4 ">
         <CardHeader className="flex flex-col">
           <div className="flex justify-between items-center">
             <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
@@ -67,7 +74,7 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
           <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
             <span className={`text-sm tracking-wide leading-6 ${orientation === "vertical" ? "h-[72px]" : ""}`}>
               {
-                truncate(description, orientation === "horizontal" ? 200 : undefined)
+                truncate(shortDescription, orientation === "horizontal" ? 200 : undefined)
               }
             </span>
           </Link>

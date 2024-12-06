@@ -89,6 +89,9 @@ export const courseDataNew: TCourseDetail = {
     price: 39,
 
     promotionalVideo: {
+    id: "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+    fileType: "video",
+    fileMetadata: {
         duration: 9.08,
         size: 5596,
         format: "mp4",
@@ -97,10 +100,10 @@ export const courseDataNew: TCourseDetail = {
         thumbnailHeight: 1080,
         width: 400,
         height: 300,
-        id: "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
         url: "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
         mimeType: "video/mp4",
         created_at: new Date()
+    }
     },
 
     platform: "Power Apps",
@@ -112,11 +115,8 @@ export const courseDataNew: TCourseDetail = {
     ],
 
     sector: ["Gestión de Usuarios", "Marketing digital"],
-
     coreContent: ["Expresiones y fórmulas", "Automatización"],
-
     toolsAndPlatforms: ["Power BI", "Google Sheets"],
-
     functionalities: ["Reportes automáticos", "Generación de PDF"],
 
     prevRequirements: ["Conocimientos básicos de programación", "Ganas de aprender"],
@@ -191,12 +191,15 @@ export const courseDataNew: TCourseDetail = {
 
     resource: [
         {
-            id: '132qw3',
+      id: '132qw3',
+      fileType: "document",
+      fileMetadata: {
             url: "https://example.com/resource1.pdf",
             size: "2000",
             mimeType: "application/pdf",
             created_at: new Date(),
             filename: "example.pdf"
+      }
         }
     ],
   targetAudience: "Este curso está diseñado para principiantes que desean aprender a crear aplicaciones sin necesidad de programar, utilizando AppSheet. Es ideal para emprendedores, dueños de negocios pequeños, profesionales de cualquier área o estudiantes que buscan automatizar procesos, gestionar datos de manera eficiente y mejorar su productividad. Si tienes ideas que quieres transformar en soluciones prácticas con herramientas no-code, este curso te proporcionará los conocimientos básicos para comenzar a crear tus propias aplicaciones."

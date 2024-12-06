@@ -8,10 +8,7 @@ export const uploadAsset = async (file: File) => {
     body: formData
   });
 
-  const payload: FilePayload = await res.json();
+  const uploadedAsset: FilePayload = await res.json();
 
-  return {
-    ...payload.fileMetadata,
-    id: payload.id
-  }
+  return uploadedAsset
 };

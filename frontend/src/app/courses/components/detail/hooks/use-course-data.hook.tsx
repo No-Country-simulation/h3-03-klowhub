@@ -16,6 +16,7 @@ export const useCourseData = () => {
 
       if (courseContext) {
         // preview case
+        console.log('getting data from course context...');
         const previewData = FDAdapter(courseContext.state)
         const transformedProgram = modulesAdapter(previewData);
         const freeLessons = lessonsAdapter(previewData);
@@ -23,15 +24,15 @@ export const useCourseData = () => {
 
       } else if (mockedData) {
         // backend sends data case
+        console.log('getting data from sessionStorage...');
         const parsedMockedData = JSON.parse(mockedData);
-        console.log('parsedMockedData: ', parsedMockedData);
-        // const formattedData = prepareCoursePreview(parsedMockedData)
         const transformedProgram = modulesAdapter(parsedMockedData);
         const freeLessons = lessonsAdapter(parsedMockedData);
         setPageData({ courseData: parsedMockedData, transformedProgram, freeLessons })
 
       } else {
         // TEMPORARY mock case
+        console.log('getting data from internal api...');
         const res = await fetch(`/api/courses/${params.id}`);
         const data: TEMPMockedResponse = await res.json();
         setPageData(data)

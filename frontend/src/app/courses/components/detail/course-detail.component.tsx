@@ -33,6 +33,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
   const section = searchParams.get("section");
 
   const { pageData, submitCourse } = useCourseData();
+  console.log('pageData: ', pageData);
 
     return pageData && (
         <div className="min-h-screen space-y-10">

@@ -25,7 +25,7 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
         link: string | null; 
     }>({
         type: "video",
-        link: promotionalVideo.url,
+        link: promotionalVideo.fileMetadata.url,
 
     });
 
@@ -43,8 +43,8 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
             {currentVideo.type === "video" ? (
                 <video controls className="rounded-xl">
                     <source
-                        src={currentVideo.link!!}
-                        type={`video/${promotionalVideo.format}`}
+                        src={currentVideo.link}
+                        type={`video/${promotionalVideo.fileMetadata.format}`}
                     />
                 </video>
             ) : (
@@ -58,13 +58,13 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                 <div className="flex space-x-4 overflow-x-auto">
                     <div className="flex-shrink-0 w-60">
                         <Image
-                            src={promotionalVideo.thumbnailUrl}
+                            src={promotionalVideo.fileMetadata.thumbnailUrl}
                             alt=""
                             width={1920}
                             height={1080}
                             className="rounded-lg w-full h-28 cursor-pointer object-cover"
                             onClick={() =>
-                                setCurrentVideo({ type: "video", link: promotionalVideo.url })
+                                setCurrentVideo({ type: "video", link: promotionalVideo.fileMetadata.url })
                             }
                         />
                         <p className="text-left text-sm mt-2">Introducción</p>
@@ -78,7 +78,7 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                                 height={1080}
                                 className="rounded-lg w-full h-28 cursor-pointer object-cover"
                                 onClick={() =>
-                                    setCurrentVideo({ type: "youtube", link: lesson.link })
+                                    setCurrentVideo({ type: "youtube", link: lesson.link!! })
                                 }
                             />
                             <p className="text-left text-sm mt-2">{lesson.title}</p>

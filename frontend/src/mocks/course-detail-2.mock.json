@@ -69,12 +69,17 @@
     }
   ],
   "coverImg": {
-    "url": "https://example.com/cover.jpg",
-    "size": 500,
-    "width": 1920,
-    "height": 1080,
-    "format": "jpg",
-    "created_at": "2024-01-04T12:00:00Z"
+    "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    "fileType": "image",
+    "fileMetadata": {
+      "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+      "size": 55508,
+      "width": 800,
+      "height": 800,
+      "format": "webp",
+      "mimeType": "image/webp",
+      "created_at": "2024-12-04T05:47:09Z"
+    }
   },
   "promotion": {
     "product": {

@@ -1,47 +1,47 @@
 export type Sectors = 
   | "industria"
-  | "gestión-del-tiempo"
-  | "gestión-de-proyectos"
-  | "gestión-de-inventarios"
+  | "gestion-del-tiempo"
+  | "gestion-de-proyectos"
+  | "gestion-de-inventarios"
   | "ventas-y-crm"
-  | "obras-y-construcción"
-  | "logística-y-transporte"
+  | "obras-y-construccion"
+  | "logistica-y-transporte"
   | "servicios-profesionales"
   | "marketing-digital"
-  | "e_commerce"
+  | "e-commerce"
   | "entretenimiento-y-medios"
   | "seguridad-y-vigilancia"
-  | "investigación-y-desarrollo"
+  | "investigacion-y-desarrollo"
   | "agricultura-y-medio-ambiente"
-  | "administración"
+  | "administracion"
 
 export type Funcionalitites =
   | "calendario"
-  | "generación-de-pdf"
-  | "reportes-automáticos"
-  | "chatbot-(bot)"
+  | "generacion-de-pdf"
+  | "reportes-automaticos"
+  | "chatbot-bot"
   | "emails"
   | "sms"
   | "notificaciones-push"
-  | "generación-y-escaneo-qr"
-  | "geolocalización"
+  | "generacion-y-escaneo-qr"
+  | "geolocalizacion"
   | "ocr"
   | "machine-learning"
-  | "estadísticas-de-uso"
-  | "dashboard_reportes-y-análisis"
-  | "gestión-de-usuarios"
+  | "estadisticas-de-uso"
+  | "dashboard-reportes-y-analisis"
+  | "gestion-de-usuarios"
   | "reporting-avanzado"
-  | "integración-de-datos"
-  | "gestión-de-permisos"
-  | "análisis-de-datos"
-  | "optimización_performance"
-  | "despliegue_deploy"
-  | "importación_exportación-de-datos"
+  | "integracion-de-datos"
+  | "gestion-de-permisos"
+  | "analisis-de-datos"
+  | "optimizacion-performance"
+  | "despliegue-deploy"
+  | "importacion-exportacion-de-datos"
   | "firmas-digitales"
   | "escaneo-de-documentos"
   | "monitor-de-automatizaciones"
-  | "historial-de-auditoría"
-  | "api_integraciones"
+  | "historial-de-auditoria"
+  | "api-integraciones"
 
 export type ToolsAndPlatforms =
   | "google-sheets"
@@ -69,8 +69,8 @@ export type AccessType =
   | "free"
 
 export type ContentType =
-  | "curso"
-  | "leccion"
+  | "course"
+  | "lesson"
 
 export type CourseDificulty = 
   | "basic"
@@ -97,3 +97,15 @@ export type ExperienceLevel =
   | "junior"
   | "semi-senior"
   | "senior"
+
+export type Tag = 
+  | 'plataforma-de-cursos'
+  | 'aplicaciones-sin-codigo'
+  | 'desarrolladores-nocode'
+  | 'powerapps-para-empresas'
+  | 'appsheet-para-negocios'
+  | 'automatizacion-de-tareas'
+  | 'apps-de-productividad'
+  | 'tecnologia-para-empresas'
+  | 'herramientas-nocode'
+  | 'creacion-de-aplicaciones'

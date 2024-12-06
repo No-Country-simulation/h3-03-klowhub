@@ -1,26 +1,26 @@
 {
   "title": "Automatización de Procesos Empresariales con PowerApps",
   "freeCourse": false,
-  "contentType": "Curso",
+  "contentType": "course",
   "shortDescription": "Aprende a crear aplicaciones empresariales con PowerApps sin escribir una sola línea de código. Ideal para optimizar procesos y mejorar la productividad",
-  "courseDifficulty": "Básico",
-  "platform": "PowerApps",
+  "courseDifficulty": "basic",
+  "platform": "powerapps",
   "language": {
-    "name": "español",
+    "name": "spanish",
     "label": "Español"
   },
   "sector": [
     {
-      "name": "gestión-de-proyectos", 
-      "label": "Gestión de proyectos" 
+      "name": "gestion-de-proyectos", 
+      "label": "Gestion de proyectos" 
     },
     { 
       "name": "ventas-y-crm", 
       "label": "Ventas y crm" 
     },
     {
-      "name": "logística-y-transporte",
-      "label": "Logística y transporte" 
+      "name": "logistica-y-transporte",
+      "label": "Logistica y transporte" 
     }
   ],
   "coreContent": [
@@ -48,23 +48,14 @@
     }
   ],
   "tags": [
-    {
-      "name": "tag1", 
-      "label": "Tag 1"
-    },
-    {
-      "name": "tag2", 
-      "label": "Tag 2"
-    },
-    {
-      "name": "tag3", 
-      "label": "Tag 3"
-    }
+    { "name": "plataforma-de-cursos", "label": "Plataforma de cursos" },
+    { "name": "aplicaciones-sin-codigo", "label": "Aplicaciones sin código" },
+    { "name": "desarrolladores-nocode", "label": "Desarrolladores no-code" }
   ],
   "functionalities": [
     { "name": "notificaciones-push", "label": "Notificaciones push" },
-    { "name": "generación-y-escaneo-qr", "label": "Generación y \n Escaneo QR" },
-    { "name": "geolocalización", "label": "Geolocalización" },
+    { "name": "generacion-y-escaneo-qr", "label": "Generación y \n Escaneo QR" },
+    { "name": "geolocalizacion", "label": "Geolocalización" },
     { "name": "ocr", "label": "Ocr" }
   ],
   "price": 99.99,

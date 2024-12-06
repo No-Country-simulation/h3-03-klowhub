@@ -3,7 +3,7 @@ import { OptionsOrGroups, GroupBase } from "react-select";
 import { ReactNode } from "react";
 import { FileType } from "@/types/global.types";
 
-type FieldType = "text" | "link" | "textarea" | "number" | "checkbox" | "date" | "time" | "password" | "textarea";
+type FieldType = "text" | "link" | "textarea" | "checkbox" | "date" | "time" | "password" | "textarea";
 
 type RadioOption = {
   value: string,
@@ -21,6 +21,11 @@ type CommonProps<T extends FieldValues> = {
 
 type CommonInput<T extends FieldValues> = {
   type: FieldType
+} & CommonProps<T>
+
+type NumberInput<T extends FieldValues> = {
+  type: "number"
+  isPercentage?: boolean
 } & CommonProps<T>
 
 type BooleanInput<T extends FieldValues> = {
@@ -94,3 +99,4 @@ export type InputProps<T extends FieldValues> =
   | ProductSelector<T>
   | MultitextInput<T>
   | RangeInput<T> 
+  | NumberInput<T> 

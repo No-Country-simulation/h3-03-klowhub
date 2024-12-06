@@ -57,6 +57,7 @@ export type Lesson = {
 }
 
 export type Module = {
+  id?: string
   title: string
   description: string
   lessons: Lesson[]

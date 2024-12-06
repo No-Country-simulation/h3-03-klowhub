@@ -121,12 +121,17 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
   };
 
   if (type === "number") {
-    const { placeholder } = props;
+    const { placeholder, isPercentage } = props;
 
     return (
       <div className={`${containerStyles} ${className || ""}`}>
-        { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
-        <input type="number" placeholder={placeholder} { ...register(name, { valueAsNumber: true })} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" {...otherProps} />
+        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+        <div className="relative w-full">
+          <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" />
+          { isPercentage &&
+            <span className="absolute top-0 right-0 mr-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
+          }
+        </div>
       </div>
     )
   };
@@ -204,27 +209,27 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
               { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
               { isMulti ? 
                 <div className={"grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start"}>
-                  { value.map((v: TImage | TVideo | TDocument, idx: number) => {
-                    if (v.mimeType.includes("pdf")) {
+                  { value.map((asset: TImage | TVideo | TDocument, idx: number) => {
+                    if (asset.fileMetadata.mimeType.includes("pdf")) {
                       return <FileBadge 
                         key={`resource-${idx}`} 
-                        data={v as TDocument}
+                        data={asset as TDocument}
                         removeCb={() => onChange(removeImage(value, idx))}
                       />
                     };
 
-                    if (v.mimeType.includes("image")) {
+                    if (asset.fileMetadata.mimeType.includes("image")) {
                       return <UploadedImage 
                         key={`${name}-thumbnail-${idx}`}
-                        src={v.url}
+                        src={asset.fileMetadata.url}
                         deleteCb={() => onChange(removeImage(value, idx))}
                       />      
                     };
 
-                    if (v.mimeType.includes("video")) {
+                    if (asset.fileMetadata.mimeType.includes("video")) {
                       return <UploadedVideo 
                         key={`${name}-thumbnail-${idx}`}
-                        video={v as TVideo}
+                        video={asset as TVideo}
                         deleteCb={() => onChange(removeImage(value, idx))}
                       />      
                     };
@@ -245,13 +250,13 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                   { 
                     value ?
                       (
-                        value.mimeType.includes("video") ?
-                          <UploadedVideo video={value as unknown as TVideo} deleteCb={() => onChange(null)} />
+                        value.fileMetadata.mimeType.includes("video") ?
+                          <UploadedVideo video={value} deleteCb={() => onChange(null)} />
 
-                          : value.mimeType.includes("image") ?
-                            <UploadedImage src={value.url} deleteCb={() => onChange(null) } /> 
+                          : value.fileMetadata.mimeType.includes("image") ?
+                            <UploadedImage src={value.fileMetadata.url} deleteCb={() => onChange(null) } /> 
 
-                            : <FileBadge data={value as unknown as TDocument} removeCb={() => onChange(null) } /> 
+                            : <FileBadge data={value} removeCb={() => onChange(null) } /> 
                       ) :
                       <Dropzone
                         { ...{isMulti, filetypes} }
@@ -333,33 +338,16 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
             <div className="flex flex-col gap-4">
               <Label htmlFor={name} className="flex gap-2">
                 <span>{ options[0].label }</span>
-                <input type="radio" checked={value === options[0].label} onChange={() => onChange(options[0].label)} />
+                <input type="radio" checked={value === options[0].value} onChange={() => onChange(options[0].value)} />
               </Label>
               <Label htmlFor={name} className="flex gap-2">
                 <span>{ options[1].label }</span>
-                <input type="radio" checked={value === options[1].label} onChange={() => onChange(options[1].label)} />
+                <input type="radio" checked={value === options[1].value} onChange={() => onChange(options[1].value)} />
               </Label>
             </div>
           </div>
         )}
       />
-
-    )
-
-    return (
-      <div className={`${containerStyles} ${className || ""}`}>
-        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
-        <div className="flex flex-col gap-4">
-          <Label htmlFor={name} className="flex gap-2">
-            { options[0].label }
-            <input type="radio" { ...register(name) } value={options[0].value} />
-          </Label>
-          <Label htmlFor={name} className="flex gap-2">
-            { options[1].label }
-            <input type="radio" { ...register(name) } value={options[1].value} />
-          </Label>
-        </div>
-      </div>
     )
   };
 

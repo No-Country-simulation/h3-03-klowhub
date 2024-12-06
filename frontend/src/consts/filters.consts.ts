@@ -1,5 +1,16 @@
 import { Platform, Language } from "@/types/global.types";
-import { Sectors, Funcionalitites, ToolsAndPlatforms, WorkMethodology, ContentType, CourseDificulty, CoreContent, AccessType, ExperienceLevel } from "./filters.types";
+import { 
+  Sectors,
+  Funcionalitites, 
+  ToolsAndPlatforms, 
+  WorkMethodology, 
+  ContentType, 
+  CourseDificulty, 
+  CoreContent, 
+  AccessType, 
+  ExperienceLevel,
+  Tag
+} from "./filters.types";
 
 type Filter<T> = {
   header: string
@@ -20,8 +31,8 @@ export const platform: Filter<Platform> = {
 export const language: Filter<Language> = {
   header: "Idiomas",
   items: [
-    { name: "español", label: "Español" },
-    { name: "inglés", label: "Inglés" }
+    { name: "spanish", label: "Español" },
+    { name: "english", label: "Inglés" }
   ]
 };
 
@@ -29,20 +40,20 @@ export const sector: Filter<Sectors> = {
   header: "Sector",
   items: [
     { name: "industria", label: "Industria" },
-    { name: "gestión-del-tiempo", label: "Gestión del tiempo" },
-    { name: "gestión-de-proyectos", label: "Gestión de proyectos" },
-    { name: "gestión-de-inventarios", label: "Gestión de inventarios" },
+    { name: "gestion-del-tiempo", label: "Gestión del tiempo" },
+    { name: "gestion-de-proyectos", label: "Gestión de proyectos" },
+    { name: "gestion-de-inventarios", label: "Gestión de inventarios" },
     { name: "ventas-y-crm", label: "Ventas y crm" },
-    { name: "obras-y-construcción", label: "Obras y construcción" },
-    { name: "logística-y-transporte", label: "Logística y transporte" },
+    { name: "obras-y-construccion", label: "Obras y construcción" },
+    { name: "logistica-y-transporte", label: "Logística y transporte" },
     { name: "servicios-profesionales", label: "Servicios profesionales" },
     { name: "marketing-digital", label: "Marketing digital" },
-    { name: "e_commerce", label: "E commerce" },
+    { name: "e-commerce", label: "E commerce" },
     { name: "entretenimiento-y-medios", label: "Entretenimiento y medios" },
     { name: "seguridad-y-vigilancia", label: "Seguridad y vigilancia" },
-    { name: "investigación-y-desarrollo", label: "Investigación y desarrollo" },
+    { name: "investigacion-y-desarrollo", label: "Investigación y desarrollo" },
     { name: "agricultura-y-medio-ambiente", label: "Agricultura y medio ambiente" },
-    { name: "administración", label: "Administración" },
+    { name: "administracion", label: "Administración" },
   ] as const
 };
 
@@ -52,29 +63,29 @@ export const functionalities: Filter<Funcionalitites> = {
     { name: "calendario", label: "Calendario" },
     { name: "generación-de-pdf", label: "Generación de pdf" },
     { name: "reportes-automáticos", label: "Reportes automáticos" },
-    { name: "chatbot-(bot)", label: "Chatbot (bot)" },
+    { name: "chatbot-bot", label: "Chatbot (bot)" },
     { name: "emails", label: "Emails" },
     { name: "sms", label: "Sms" },
     { name: "notificaciones-push", label: "Notificaciones push" },
-    { name: "generación-y-escaneo-qr", label: "Generación y \n Escaneo QR" },
-    { name: "geolocalización", label: "Geolocalización" },
+    { name: "generacion-y-escaneo-qr", label: "Generación y \n Escaneo QR" },
+    { name: "geolocalizacion", label: "Geolocalización" },
     { name: "ocr", label: "Ocr" },
     { name: "machine-learning", label: "Machine learning" },
-    { name: "estadísticas-de-uso", label: "Estadísticas de uso" },
-    { name: "dashboard_reportes-y-análisis", label: "Dashboard - \n Reportes y análisis" },
-    { name: "gestión-de-usuarios", label: "Gestión de usuarios" },
+    { name: "estadisticas-de-uso", label: "Estadísticas de uso" },
+    { name: "dashboard-reportes-y-analisis", label: "Dashboard - \n Reportes y análisis" },
+    { name: "gestion-de-usuarios", label: "Gestión de usuarios" },
     { name: "reporting-avanzado", label: "Reporting avanzado" },
-    { name: "integración-de-datos", label: "Integración de datos" },
-    { name: "gestión-de-permisos", label: "Gestión de permisos" },
-    { name: "análisis-de-datos", label: "Análisis de datos" },
-    { name: "optimización_performance", label: "Optimización -\n Performance" },
-    { name: "despliegue_deploy", label: "Despliegue-Deploy" },
-    { name: "importación_exportación-de-datos", label: "Importación - Exportación \n de datos" },
+    { name: "integracion-de-datos", label: "Integración de datos" },
+    { name: "gestion-de-permisos", label: "Gestión de permisos" },
+    { name: "analisis-de-datos", label: "Análisis de datos" },
+    { name: "optimizacion-performance", label: "Optimización -\n Performance" },
+    { name: "despliegue-deploy", label: "Despliegue-Deploy" },
+    { name: "importacion-exportacion-de-datos", label: "Importación - Exportación \n de datos" },
     { name: "firmas-digitales", label: "Firmas digitales" },
     { name: "escaneo-de-documentos", label: "Escaneo de \n documentos" },
     { name: "monitor-de-automatizaciones", label: "Monitor de \n automatizaciones" },
-    { name: "historial-de-auditoría", label: "Historial de auditoría" },
-    { name: "api_integraciones", label: "Api integraciones" }
+    { name: "historial-de-auditoria", label: "Historial de auditoría" },
+    { name: "api-integraciones", label: "Api integraciones" }
   ]
 };
 
@@ -114,12 +125,12 @@ export const accessType: Filter<AccessType> = {
 export const contentType: Filter<ContentType> = {
   header: "Tipo de contenido",
   items: [
-    { name: "curso", label: "Curso" },
-    { name: "leccion", label: "Lección" },
+    { name: "course", label: "Curso" },
+    { name: "lesson", label: "Lección" },
   ]
 };
 
-export const level: Filter<CourseDificulty> = {
+export const courseDifficulty: Filter<CourseDificulty> = {
   header: "Nivel de competencia",
   items: [
     { name: "basic", label: "Básico" },
@@ -160,4 +171,20 @@ export const experienceLevel: Filter<ExperienceLevel> = {
     { name: "senior", label: "Senior" },
   ] as const
 };
+
+export const tags: Filter<Tag> = {
+  header: "Tags",
+  items: [
+    { name: "plataforma-de-cursos", label: "Plataforma de cursos" },
+    { name: "aplicaciones-sin-codigo", label: "Aplicaciones sin código" },
+    { name: "desarrolladores-nocode", label: "Desarrolladores no-code" },
+    { name: "powerapps-para-empresas", label: "PowerApps para empresas" },
+    { name: "appsheet-para-negocios", label: "AppSheet para negocios" },
+    { name: "automatizacion-de-tareas", label: "Automatización de tareas" },
+    { name: "apps-de-productividad", label: "Apps de productividad" },
+    { name: "tecnologia-para-empresas", label: "Tecnología para empresas" },
+    { name: "herramientas-nocode", label: "Herramientas no-code" },
+    { name: "creacion-de-aplicaciones", label: "Creación de aplicaciones" },
+  ]
+}
 

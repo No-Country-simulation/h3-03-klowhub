@@ -9,15 +9,15 @@ type Props = {
   removeCb?: () => void
 }
 
-const FileBadge = ({ data, removeCb }: Props) => {
+const FileBadge = ({ data: { fileMetadata: { filename, size } }, removeCb }: Props) => {
   return (
     <Badge 
       className={`flex gap-3 items-center px-3 py-1 bg-gray-50 text-white grow-0 ${removeCb ? "cursor-pointer" : ""}`}
       onClick={removeCb}
     >
       <Files color="#b95ed4" />
-      <span>{ data.filename }</span>
-      <span>{ humanFileSize(Number(data.size)) }</span>
+      <span>{ filename }</span>
+      <span>{ humanFileSize(Number(size)) }</span>
       { removeCb &&
         <X />
       }

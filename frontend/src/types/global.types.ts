@@ -1,10 +1,5 @@
-export type Language = "inglés" | "español"
+export type Language = "english" | "spanish"
 export type Platform = "appsheet" | "powerapps"
-// export type Video = {
-//   videoId: string
-//   thumbnail: string
-//   duration: string
-// }
 
 export type FileType = {
   [key: string]: string[]
@@ -15,29 +10,38 @@ export type Dimensions = {
   height: number
 }
 
-export type TDocument = {
+export type TDocumentProps = {
   filename: string
   size: string
-} & UploadedFile
+}
 
-export type TImage = {
+export type TImageProps = {
   alt: string
-} & UploadedFile & Dimensions
+} & Dimensions
 
-export type TVideo = {
+export type TVideoProps = {
   duration: number
   size: number
   format: string
   thumbnailHeight: number
   thumbnailWidth: number
   thumbnailUrl: string
-} & UploadedFile & Dimensions
+} & Dimensions
 
-export type UploadedFile = {
-  id: string
+export type TImage = UploadedFile<TImageProps>
+export type TVideo = UploadedFile<TVideoProps>
+export type TDocument = UploadedFile<TDocumentProps>
+
+export type UploadedFileCommon = {
   url: string
   mimeType: string
   created_at: Date
+}
+
+export type UploadedFile<T> = {
+  id: string
+  fileType: string
+  fileMetadata: T & UploadedFileCommon
 }
 
 export type FilePayload = {

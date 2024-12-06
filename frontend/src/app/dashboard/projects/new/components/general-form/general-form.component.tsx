@@ -43,7 +43,7 @@ const GeneralForm = () => {
             { value: "appsheet", label: "AppSheet" },
             { value: "powerapps", label: "PowerApps" },
           ]}
-          { ...commonProps }
+          { ...controlledCommonProps }
         />
         <Input 
           name="description"

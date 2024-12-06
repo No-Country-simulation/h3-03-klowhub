@@ -1,5 +1,5 @@
 import { TCourseDetail } from "@/app/courses/components/detail/detail.types";
-import { CourseFormData, CoursePayload } from "@/types/courses.types";
+import { CourseFormData } from "@/types/courses.types";
 
 // export const prepareCourseData = (data: CourseFormData): CoursePayload => {
 //   const { general: { tags, sector, coreContent, toolsAndPlatforms, functionalities, language } } = data;
@@ -39,11 +39,11 @@ export const FDAdapter = (data: CourseFormData): TCourseDetail => {
     id: null,
     ...data.general,
     language: language.name,
-    sector: sector.map(s => s.label),
-    coreContent: coreContent.map(c => c.label),
-    toolsAndPlatforms: toolsAndPlatforms.map(t => t.label),
-    functionalities: functionalities.map(f => f.label),
-    tags: tags.map(t => t.label),
+    sector: sector.map(s => s.name),
+    coreContent: coreContent.map(c => c.name),
+    toolsAndPlatforms: toolsAndPlatforms.map(t => t.name),
+    functionalities: functionalities.map(f => f.name),
+    tags: tags.map(t => t.name),
   };
 
   const formattedData = {

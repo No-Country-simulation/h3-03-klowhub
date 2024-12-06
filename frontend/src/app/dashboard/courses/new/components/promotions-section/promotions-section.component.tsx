@@ -152,15 +152,13 @@ const PromotionsSection = () => {
                   ))
                 }
               </div>
-              <div className="relative w-full">
-                <Input 
-                  type="number" 
-                  name="percentage" 
-                  label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete." 
-                  { ...commonProps }
-                />
-                <span className="absolute top-0 right-0 mr-5 mt-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
-              </div>
+              <Input 
+                type="number" 
+                name="percentage" 
+                label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete." 
+                { ...commonProps }
+                isPercentage
+              />
             </form>
           </div>
         }
@@ -190,13 +188,6 @@ const PromotionsSection = () => {
           >
             Retroceder
           </RouteBtn>
-          {/* <Button  */}
-          {/*   type="button" */}
-          {/*   onClick={ handleSubmit(data => submit({ ...state, promotion: data })) } */}
-          {/*   className="mr-auto flex-1 md:grow-0" */}
-          {/* > */}
-          {/*   Probar */}
-          {/* </Button> */}
           <RouteBtn 
             setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
             route="preview"
@@ -211,7 +202,7 @@ const PromotionsSection = () => {
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
               const courseId = await submitCourse({ promotion }) 
-              setNewCourseId(courseId)
+              // setNewCourseId(courseId)
             })}
           >
             Publicar

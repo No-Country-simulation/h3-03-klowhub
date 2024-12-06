@@ -15,25 +15,8 @@ type Props = {
 type CourseCtxType = {
   state: CourseFormData
   dispatch: Dispatch<CourseFormActions>
-  submitCourse: (additionalData: object) => Promise<string>
+  submitCourse: (additionalData?: object) => Promise<string>
 }
-
-// const submit = async (data: CourseFormData) => {
-//   const formattedData = prepareCourseData(data);
-//   console.log('creating course...', formattedData);
-//
-//   const res = await fetch('http://localhost:3003/courses', { 
-//     method: 'post',
-//     body: JSON.stringify(formattedData),
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   });   
-//
-//   const createdCourse = await res.json();
-//   console.log('createdCourse: ', createdCourse);
-//
-// };
 
 export const CourseCtx = createContext<CourseCtxType | undefined>(undefined)
 
@@ -44,7 +27,7 @@ const CourseCtxProvider = ({ children }: Props) => {
     const formattedData = FDAdapter({...state, ...additionalData});
     console.log('creating course...', formattedData);
 
-    // const res = await fetch('http://localhost:3003/courses', { 
+    // const res = await fetch('http://localhost:3003/courses/createCourse', { 
     //   method: 'post',
     //   body: JSON.stringify(formattedData),
     //   headers: {
@@ -54,6 +37,8 @@ const CourseCtxProvider = ({ children }: Props) => {
     //
     // const createdCourse = await res.json();
     // console.log('createdCourse: ', createdCourse);
+    //
+    // return 'asdada'
 
     const temporaryId = "test-19u3-124-asdad";
     window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
