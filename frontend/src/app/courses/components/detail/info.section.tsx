@@ -41,7 +41,7 @@ export const CourseInfoSection: FC<AppInfoProps> = ({ sector, coreContent, tools
         <div className="flex flex-col gap-2 items-center">
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Pilar de Contenido</h3>
           <div className="flex flex-col items-center justify-center gap-2">
-            {coreContent.map((coreContent, index) => (
+            {coreContent?.map((coreContent, index) => (
               <Badge key={index}>{coreContent}</Badge>
             ))}
           </div>
