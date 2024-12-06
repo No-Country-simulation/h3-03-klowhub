@@ -143,7 +143,7 @@ export class CreateCourseDto {
   freeCourse: boolean;
 
   @IsNotEmpty()
-  @IsEnum(['lesson', 'curse'])
+  @IsEnum(['lesson', 'course'])
   contentType: string;
 
   @IsNotEmpty()
