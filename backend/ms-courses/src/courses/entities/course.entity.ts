@@ -54,7 +54,7 @@ export class Course {
       'general',
     ],
   })
-  coreContent: string;
+  coreContent: string[];
 
   // @Column({ type: 'text' })
   // content: string;
@@ -90,7 +90,7 @@ export class Course {
       'api-integraciones',
     ],
   })
-  functionalities: string;
+  functionalities: string[];
 
   @Column({
     array: true,
@@ -139,7 +139,7 @@ export class Course {
       'google-maps',
     ],
   })
-  toolsAndPlatform: string;
+  toolsAndPlatform: string[];
 
   @Column({
     type: 'enum',
@@ -156,7 +156,7 @@ export class Course {
       'creacion-de-aplicaciones',
     ],
   })
-  tags: string;
+  tags: string[];
 
   //learningSubjects cambiarlo a array de strings
   @Column({ type: 'text', array: true })
