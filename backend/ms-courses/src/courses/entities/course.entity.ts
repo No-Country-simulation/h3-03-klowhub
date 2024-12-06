@@ -26,7 +26,7 @@ export class Course {
   @Column()
   freeCourse: boolean;
 
-  @Column({ type: 'enum', enum: ['lesson', 'curse'] })
+  @Column({ type: 'enum', enum: ['lesson', 'course'] })
   contentType: string;
 
   @Column({ type: 'text' })
