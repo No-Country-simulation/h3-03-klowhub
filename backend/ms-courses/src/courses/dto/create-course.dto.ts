@@ -11,6 +11,13 @@ import {
 } from 'class-validator';
 import { VideoDto, DocumentDto, ImageDto } from './multimedia.dto';
 import { Multimedia } from '../entities/multimedia.entity';
+import {
+  CoreContent,
+  Functionalities,
+  Sector,
+  Tags,
+  ToolsAndPlatform,
+} from '../enums/global-enum';
 
 // class VideoDto {
 //   @IsString()
@@ -163,108 +170,25 @@ export class CreateCourseDto {
   language: string;
 
   @IsNotEmpty()
-  @IsEnum([
-    'ux-ui',
-    'databases',
-    'expressions-and-formulas',
-    'automation',
-    'workflows',
-    'actions-behavior',
-    'security-accesibility',
-    'general',
-  ])
-  coreContent: string[];
+  @IsEnum(CoreContent)
+  coreContent: CoreContent;
 
   @IsNotEmpty()
-  @IsEnum([
-    'calendario',
-    'generacion-de-pdf',
-    'reportes-automaticos',
-    'chatbot-bot',
-    'emails',
-    'sms',
-    'notificaciones-push',
-    'generacion-y-escaneo-qr',
-    'geolocalizacion',
-    'ocr',
-    'machine-learning',
-    'estadisticas-de-uso',
-    'dashboard-reportes-y-analisis',
-    'gestion-de-usuarios',
-    'reporting-avanzado',
-    'integracion-de-datos',
-    'gestion-de-permisos',
-    'analisis-de-datos',
-    'optimizacion-performance',
-    'despliegue-deploy',
-    'importacion-exportacion-de-datos',
-    'firmas-digitales',
-    'escaneo-de-documentos',
-    'monitor-de-automatizaciones',
-    'historial-de-auditoria',
-    'api-integraciones',
-  ])
-  functionalities: string[];
+  @IsEnum(Functionalities)
+  functionalities: Functionalities;
 
   @IsNotEmpty()
   @IsArray()
-  @IsEnum([
-    'industria',
-    'gestion-del-tiempo',
-    'gestion-de-proyectos',
-    'gestion-de-inventarios',
-    'ventas-y-crm',
-    'obras-y-construccion',
-    'logistica-y-transporte',
-    'servicios-profesionales',
-    'marketing-digital',
-    'e-commerce',
-    'entretenimiento-y-medios',
-    'seguridad-y-vigilancia',
-    'investigacion-y-desarrollo',
-    'agricultura-y-medio-ambiente',
-    'administracion',
-  ])
-  sector: string[];
+  @IsEnum(Sector)
+  sector: Sector;
 
   @IsNotEmpty()
-  @IsEnum([
-    'google-sheets',
-    'looker-studio',
-    'mysql',
-    'postgresql',
-    'salesforce',
-    'airtable',
-    'dropbox',
-    'box',
-    'google-analytics',
-    'zapier',
-    'wordpress',
-    'shopify',
-    'whatsapp-api',
-    'power-bi',
-    'twilio',
-    'trello',
-    'google-calendar',
-    'google-drive',
-    'google-maps',
-  ])
-  toolsAndPlatform: string[];
+  @IsEnum(ToolsAndPlatform)
+  toolsAndPlatform: ToolsAndPlatform;
 
   @IsNotEmpty()
-  @IsEnum([
-    'plataforma-de-cursos',
-    'aplicaciones-sin-codigo',
-    'desarrolladores-nocode',
-    'powerapps-para-empresas',
-    'appsheet-para-negocios',
-    'automatizacion-de-tareas',
-    'apps-de-productividad',
-    'tecnologia-para-empresas',
-    'herramientas-nocode',
-    'creacion-de-aplicaciones',
-  ])
-  tags: string[];
+  @IsEnum(Tags)
+  tags: Tags;
 
   @IsNotEmpty()
   @IsArray()

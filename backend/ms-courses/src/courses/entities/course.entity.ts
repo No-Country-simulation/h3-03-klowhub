@@ -12,6 +12,13 @@ import {
 import { Image, Multimedia } from './multimedia.entity';
 import { CourseModule } from './course-module.entity';
 import { PromotionProduct } from './promotion.entity';
+import {
+  CoreContent,
+  Functionalities,
+  Sector,
+  Tags,
+  ToolsAndPlatform,
+} from '../enums/global-enum';
 
 @Entity()
 export class Course {
@@ -43,120 +50,35 @@ export class Course {
 
   @Column({
     type: 'enum',
-    enum: [
-      'ux-ui',
-      'databases',
-      'expressions-and-formulas',
-      'automation',
-      'workflows',
-      'actions-behavior',
-      'security-accesibility',
-      'general',
-    ],
+    enum: CoreContent,
   })
-  coreContent: string[];
+  coreContent: CoreContent;
 
   // @Column({ type: 'text' })
   // content: string;
+  @Column({
+    type: 'enum',
+    enum: Functionalities,
+  })
+  functionalities: Functionalities;
 
   @Column({
     type: 'enum',
-    enum: [
-      'calendario',
-      'generacion-de-pdf',
-      'reportes-automaticos',
-      'chatbot-bot',
-      'emails',
-      'sms',
-      'notificaciones-push',
-      'generacion-y-escaneo-qr',
-      'geolocalizacion',
-      'ocr',
-      'machine-learning',
-      'estadisticas-de-uso',
-      'dashboard-reportes-y-analisis',
-      'gestion-de-usuarios',
-      'reporting-avanzado',
-      'integracion-de-datos',
-      'gestion-de-permisos',
-      'analisis-de-datos',
-      'optimizacion-performance',
-      'despliegue-deploy',
-      'importacion-exportacion-de-datos',
-      'firmas-digitales',
-      'escaneo-de-documentos',
-      'monitor-de-automatizaciones',
-      'historial-de-auditoria',
-      'api-integraciones',
-    ],
+    enum: Sector,
   })
-  functionalities: string[];
-
-  @Column({
-    array: true,
-    type: 'enum',
-    enum: [
-      'industria',
-      'gestion-del-tiempo',
-      'gestion-de-proyectos',
-      'gestion-de-inventarios',
-      'ventas-y-crm',
-      'obras-y-construccion',
-      'logistica-y-transporte',
-      'servicios-profesionales',
-      'marketing-digital',
-      'e-commerce',
-      'entretenimiento-y-medios',
-      'seguridad-y-vigilancia',
-      'investigacion-y-desarrollo',
-      'agricultura-y-medio-ambiente',
-      'administracion',
-    ],
-  })
-  sector: string[];
+  sector: Sector;
 
   @Column({
     type: 'enum',
-    enum: [
-      'google-sheets',
-      'looker-studio',
-      'mysql',
-      'postgresql',
-      'salesforce',
-      'airtable',
-      'dropbox',
-      'box',
-      'google-analytics',
-      'zapier',
-      'wordpress',
-      'shopify',
-      'whatsapp-api',
-      'power-bi',
-      'twilio',
-      'trello',
-      'google-calendar',
-      'google-drive',
-      'google-maps',
-    ],
+    enum: ToolsAndPlatform,
   })
-  toolsAndPlatform: string[];
+  toolsAndPlatform: ToolsAndPlatform;
 
   @Column({
     type: 'enum',
-    enum: [
-      'plataforma-de-cursos',
-      'aplicaciones-sin-codigo',
-      'desarrolladores-nocode',
-      'powerapps-para-empresas',
-      'appsheet-para-negocios',
-      'automatizacion-de-tareas',
-      'apps-de-productividad',
-      'tecnologia-para-empresas',
-      'herramientas-nocode',
-      'creacion-de-aplicaciones',
-    ],
+    enum: Tags,
   })
-  tags: string[];
+  tags: Tags;
 
   //learningSubjects cambiarlo a array de strings
   @Column({ type: 'text', array: true })
@@ -222,5 +144,3 @@ export class Course {
   // @JoinColumn({ name: 'promotional_video_id' }) // Nombre claro en la base de datos
   // promotionalVideo: Multimedia;
 }
-
-// FALTA LA PROPIEDAD DOCUMENTS
