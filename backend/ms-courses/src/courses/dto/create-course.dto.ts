@@ -11,13 +11,6 @@ import {
 } from 'class-validator';
 import { VideoDto, DocumentDto, ImageDto } from './multimedia.dto';
 import { Multimedia } from '../entities/multimedia.entity';
-import {
-  CoreContent,
-  Functionalities,
-  Sector,
-  Tags,
-  ToolsAndPlatform,
-} from '../enums/global-enum';
 
 // class VideoDto {
 //   @IsString()
@@ -139,7 +132,8 @@ class ModuleDto {
 
 export class CreateCourseDto {
   @IsString()
-  id?: string;
+  @IsOptional()
+  id: string;
 
   @IsNotEmpty()
   @IsString()
@@ -169,26 +163,41 @@ export class CreateCourseDto {
   @IsEnum(['english', 'spanish'])
   language: string;
 
-  @IsNotEmpty()
-  @IsEnum(CoreContent)
-  coreContent: CoreContent;
-
-  @IsNotEmpty()
-  @IsEnum(Functionalities)
-  functionalities: Functionalities;
-
-  @IsNotEmpty()
+  // @IsNotEmpty()
+  // @IsEnum(CoreContent)
+  // coreContent: CoreContent;
   @IsArray()
-  @IsEnum(Sector)
-  sector: Sector;
+  @IsString({ each: true })
+  coreContent: string[];
 
-  @IsNotEmpty()
-  @IsEnum(ToolsAndPlatform)
-  toolsAndPlatform: ToolsAndPlatform;
+  // @IsNotEmpty()
+  // @IsEnum(Functionalities)
+  // functionalities: Functionalities;
+  @IsArray()
+  @IsString({ each: true })
+  functionalities: string[];
 
-  @IsNotEmpty()
-  @IsEnum(Tags)
-  tags: Tags;
+  // @IsNotEmpty()
+  // @IsArray()
+  // @IsEnum(Sector)
+  // sector: Sector;
+  @IsArray()
+  @IsString({ each: true })
+  sector: string[];
+
+  // @IsNotEmpty()
+  // @IsEnum(ToolsAndPlatform)
+  // toolsAndPlatform: ToolsAndPlatform;
+  @IsArray()
+  @IsString({ each: true })
+  toolsAndPlatform: string[];
+
+  // @IsNotEmpty()
+  // @IsEnum(Tags)
+  // tags: Tags;
+  @IsArray()
+  @IsString({ each: true })
+  tags: string[];
 
   @IsNotEmpty()
   @IsArray()
@@ -209,7 +218,6 @@ export class CreateCourseDto {
   modules: ModuleDto[];
   ////////////////////////////////////
 
-  @IsNotEmpty()
   @IsString()
   link: string;
 

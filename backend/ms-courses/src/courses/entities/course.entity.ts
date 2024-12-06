@@ -12,13 +12,6 @@ import {
 import { Image, Multimedia } from './multimedia.entity';
 import { CourseModule } from './course-module.entity';
 import { PromotionProduct } from './promotion.entity';
-import {
-  CoreContent,
-  Functionalities,
-  Sector,
-  Tags,
-  ToolsAndPlatform,
-} from '../enums/global-enum';
 
 @Entity()
 export class Course {
@@ -48,37 +41,49 @@ export class Course {
   @Column({ type: 'enum', enum: ['english', 'spanish'] })
   language: string;
 
-  @Column({
-    type: 'enum',
-    enum: CoreContent,
-  })
-  coreContent: CoreContent;
+  // @Column({
+  //   type: 'enum',
+  //   enum: CoreContent,
+  // })
+  // coreContent: CoreContent;
 
-  // @Column({ type: 'text' })
-  // content: string;
-  @Column({
-    type: 'enum',
-    enum: Functionalities,
-  })
-  functionalities: Functionalities;
+  @Column('json', { nullable: true })
+  coreContent: string[];
 
-  @Column({
-    type: 'enum',
-    enum: Sector,
-  })
-  sector: Sector;
+  // @Column({
+  //   type: 'enum',
+  //   enum: Functionalities,
+  // })
+  // functionalities: Functionalities;
 
-  @Column({
-    type: 'enum',
-    enum: ToolsAndPlatform,
-  })
-  toolsAndPlatform: ToolsAndPlatform;
+  @Column('json', { nullable: true })
+  functionalities: string[];
 
-  @Column({
-    type: 'enum',
-    enum: Tags,
-  })
-  tags: Tags;
+  // @Column({
+  //   type: 'enum',
+  //   enum: Sector,
+  // })
+  // sector: Sector;
+
+  @Column('json', { nullable: true })
+  sector: string[];
+
+  // @Column({
+  //   type: 'enum',
+  //   enum: ToolsAndPlatform,
+  // })
+  // toolsAndPlatform: ToolsAndPlatform;
+
+  @Column('json', { nullable: true })
+  toolsAndPlatform: string[];
+
+  // @Column({
+  //   type: 'enum',
+  //   enum: Tags,
+  // })
+  // tags: Tags;
+  @Column('json', { nullable: true })
+  tags: string[];
 
   //learningSubjects cambiarlo a array de strings
   @Column({ type: 'text', array: true })
@@ -90,7 +95,7 @@ export class Course {
   @Column({ type: 'text' })
   fullDescription: string;
 
-  @Column()
+  @Column({ nullable: true })
   link: string;
 
   // @Column({ type: 'jsonb', nullable: true })
@@ -119,7 +124,7 @@ export class Course {
   @Column()
   targetAudience: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'decimal' })
   price: number;
 
   @OneToMany(() => CourseModule, (module) => module.id)
