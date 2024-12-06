@@ -173,7 +173,7 @@ export class CreateCourseDto {
     'security-accesibility',
     'general',
   ])
-  coreContent: string;
+  coreContent: string[];
 
   @IsNotEmpty()
   @IsEnum([
@@ -204,7 +204,7 @@ export class CreateCourseDto {
     'historial-de-auditoria',
     'api-integraciones',
   ])
-  functionalities: string;
+  functionalities: string[];
 
   @IsNotEmpty()
   @IsArray()
@@ -249,7 +249,7 @@ export class CreateCourseDto {
     'google-drive',
     'google-maps',
   ])
-  toolsAndPlatform: string;
+  toolsAndPlatform: string[];
 
   @IsNotEmpty()
   @IsEnum([
@@ -264,7 +264,7 @@ export class CreateCourseDto {
     'herramientas-nocode',
     'creacion-de-aplicaciones',
   ])
-  tags: string;
+  tags: string[];
 
   @IsNotEmpty()
   @IsArray()
