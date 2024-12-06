@@ -21,7 +21,7 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Apps",
+    "platform": "powerapps",
     "learningSubjects": [
       "Entender los fundamentos de HTML, CSS y JavaScript.",
       "Construir aplicaciones interactivas con React.",
@@ -37,7 +37,7 @@
     ],
     "toolsAndPlatforms": [
       "Power BI",
-      "Google Sheets"
+      "App Sheet"
     ],
     "functionalities": [
       "Reportes automáticos",
@@ -47,7 +47,7 @@
       "Conocimientos básicos de programación",
       "Ganas de aprender"
     ],
-    "fullDescription": "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de Power Apps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
+    "fullDescription": "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de powerapps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
     "modules": [
       {
         "title": "Módulo App",
@@ -55,7 +55,7 @@
         "lessons": [
           {
             "id": "lesson-1",
-            "title": "¿Qué es Power Apps?",
+            "title": "¿Qué es powerapps?",
             "free": true,
             "description": "",
             "video": null,
@@ -73,7 +73,7 @@
           },
           {
             "id": "lesson-3",
-            "title": "Navegación por la interfaz de Power Apps",
+            "title": "Navegación por la interfaz de powerapps",
             "free": false,
             "description": "",
             "video": null,
@@ -131,23 +131,29 @@
       }
     ],
     "coverImg": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
       "fileMetadata": {
-        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
-        "size": 55508,
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733457208/giyzoepo1ccessbi7abv.webp",
+        "size": 42860,
         "width": 800,
         "height": 800,
         "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
+        "mimeType": "image/jpeg",
+        "created_at": "2024-12-06T03:53:28Z"
+      },
+      "fileType": "image",
+      "id": "a0e19c8b-526f-451b-a3e7-26b01bb31f79"
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "456-zxcv-7890123-bnm-g4-5",
-    "title": "Automatización de Flujos de Trabajo con Power Apps y Google Sheets",
-    "shortDescription": "Automatiza tareas repetitivas integrando Power Apps con Google Sheets.",
+    "title": "Automatización de Flujos de Trabajo con powerapps y App Sheet",
+    "shortDescription": "Automatiza tareas repetitivas integrando powerapps con App Sheet.",
     "rating": 4.2,
     "ratingCount": 87,
     "available": true,
@@ -166,11 +172,11 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Apps",
+    "platform": "appsheet",
     "learningSubjects": [
-      "Conexión de Power Apps con Google Sheets.",
+      "Conexión de powerapps con App Sheet.",
       "Creación de flujos de trabajo automatizados.",
-      "Manejo de datos en Google Sheets."
+      "Manejo de datos en App Sheet."
     ],
     "sector": [
       "Automatización",
@@ -181,8 +187,8 @@
       "Automatización"
     ],
     "toolsAndPlatforms": [
-      "Power Apps",
-      "Google Sheets",
+      "powerapps",
+      "App Sheet",
       "Microsoft Flow (Power Automate)"
     ],
     "functionalities": [
@@ -190,18 +196,18 @@
       "Actualización automática de datos"
     ],
     "prevRequirements": [
-      "Conocimientos básicos de Power Apps",
-      "Familiaridad con Google Sheets"
+      "Conocimientos básicos de powerapps",
+      "Familiaridad con App Sheet"
     ],
-    "fullDescription": "Aprende a integrar Power Apps con Google Sheets para automatizar flujos de trabajo y mejorar tu productividad.  Este curso te enseñará a conectar ambas plataformas y a crear aplicaciones que automatizan tareas repetitivas.",
+    "fullDescription": "Aprende a integrar powerapps con App Sheet para automatizar flujos de trabajo y mejorar tu productividad.  Este curso te enseñará a conectar ambas plataformas y a crear aplicaciones que automatizan tareas repetitivas.",
     "modules": [
       {
         "title": "Introducción a la Integración",
-        "description": "Conexión entre Power Apps y Google Sheets.",
+        "description": "Conexión entre powerapps y App Sheet.",
         "lessons": [
           {
             "id": "lesson1",
-            "title": "Conectando Power Apps a Google Sheets",
+            "title": "Conectando powerapps a App Sheet",
             "free": true,
             "description": "",
             "video": null,
@@ -277,22 +283,28 @@
     },
     "resource": [],
     "coverImg": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
       "fileMetadata": {
-        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
-        "size": 55508,
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733457075/esyax3jhjsk6pctrae2t.webp",
+        "size": 47338,
         "width": 800,
         "height": 800,
         "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
+        "mimeType": "image/jpeg",
+        "created_at": "2024-12-06T03:51:15Z"
+      },
+      "fileType": "image",
+      "id": "8dd41fcb-718b-4635-8cdd-38944047b713"
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "789-asdf-0123456-ghjk-i5-6",
-    "title": "Creación de Apps de Gestión de Inventario con Power Apps y Google Sheets",
+    "title": "Creación de Apps de Gestión de Inventario con powerapps y App Sheet",
     "shortDescription": "Desarrolla aplicaciones para gestionar el inventario de tu negocio.",
     "rating": 4.8,
     "ratingCount": 215,
@@ -312,10 +324,10 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Apps",
+    "platform": "powerapps",
     "learningSubjects": [
       "Diseño de interfaces de usuario para gestión de inventario.",
-      "Integración con Google Sheets para seguimiento de stock.",
+      "Integración con App Sheet para seguimiento de stock.",
       "Implementación de alertas de bajo stock."
     ],
     "sector": [
@@ -327,18 +339,18 @@
       "Reportes"
     ],
     "toolsAndPlatforms": [
-      "Power Apps",
-      "Google Sheets"
+      "powerapps",
+      "App Sheet"
     ],
     "functionalities": [
       "Seguimiento de stock",
       "Generación de reportes"
     ],
     "prevRequirements": [
-      "Conocimientos básicos de Power Apps",
-      "Conocimientos básicos de Google Sheets"
+      "Conocimientos básicos de powerapps",
+      "Conocimientos básicos de App Sheet"
     ],
-    "fullDescription": "Aprende a crear aplicaciones de gestión de inventario que te ayuden a controlar el stock de tus productos. Integra Power Apps con Google Sheets para un seguimiento preciso y eficiente.",
+    "fullDescription": "Aprende a crear aplicaciones de gestión de inventario que te ayuden a controlar el stock de tus productos. Integra powerapps con App Sheet para un seguimiento preciso y eficiente.",
     "modules": [
       {
         "title": "Introducción a la Gestión de Inventario",
@@ -366,7 +378,7 @@
       },
       {
         "title": "Diseño de la Aplicación",
-        "description": "Creación de la interfaz de usuario en Power Apps",
+        "description": "Creación de la interfaz de usuario en powerapps",
         "lessons": [
           {
             "id": "lesson9",
@@ -389,12 +401,12 @@
         ]
       },
       {
-        "title": "Integración con Google Sheets",
-        "description": "Conectando Power Apps con Google Sheets para el manejo de datos",
+        "title": "Integración con App Sheet",
+        "description": "Conectando powerapps con App Sheet para el manejo de datos",
         "lessons": [
           {
             "id": "lesson11",
-            "title": "Conectando a Google Sheets",
+            "title": "Conectando a App Sheet",
             "free": true,
             "description": "",
             "video": null,
@@ -433,11 +445,17 @@
         "mimeType": "image/webp",
         "created_at": "2024-12-04T05:47:09Z"
       }
-    }
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "101-yuio-3456789-hjkl-k6-7",
-    "title": "Creación de Formularios con Power Apps y Google Sheets",
+    "title": "Creación de Formularios con powerapps y App Sheet",
     "shortDescription": "Crea formularios digitales para recopilar datos de manera eficiente.",
     "rating": 4.6,
     "ratingCount": 158,
@@ -457,10 +475,10 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Apps",
+    "platform": "powerapps",
     "learningSubjects": [
       "Diseño de formularios digitales.",
-      "Integración con Google Sheets para almacenamiento de datos.",
+      "Integración con App Sheet para almacenamiento de datos.",
       "Validación de datos en formularios."
     ],
     "sector": [
@@ -472,18 +490,18 @@
       "Gestión de Datos"
     ],
     "toolsAndPlatforms": [
-      "Power Apps",
-      "Google Sheets"
+      "powerapps",
+      "App Sheet"
     ],
     "functionalities": [
       "Recopilación de información",
       "Almacenamiento de datos"
     ],
     "prevRequirements": [
-      "Conocimientos básicos de Power Apps",
-      "Conocimiento básico de Google Sheets"
+      "Conocimientos básicos de powerapps",
+      "Conocimiento básico de App Sheet"
     ],
-    "fullDescription": "Aprende a crear formularios digitales con Power Apps y a integrar Google Sheets para almacenar la información recopilada.  Este curso te enseñará a diseñar formularios eficientes y a gestionar los datos de forma organizada.",
+    "fullDescription": "Aprende a crear formularios digitales con powerapps y a integrar App Sheet para almacenar la información recopilada.  Este curso te enseñará a diseñar formularios eficientes y a gestionar los datos de forma organizada.",
     "modules": [
       {
         "title": "Introducción a la creación de formularios",
@@ -510,12 +528,12 @@
         ]
       },
       {
-        "title": "Integración con Google Sheets",
-        "description": "Conectando Power Apps con Google Sheets para el almacenamiento de datos",
+        "titlg": "Integración con App Sheet",
+        "description": "Conectando powerapps con App Sheet para el almacenamiento de datos",
         "lessons": [
           {
             "id": "lesson15",
-            "title": "Conectando a Google Sheets",
+            "title": "Conectando a App Sheet",
             "free": true,
             "description": "",
             "video": null,
@@ -524,7 +542,7 @@
           },
           {
             "id": "lesson16",
-            "title": "Almacenando datos en Google Sheets",
+            "title": "Almacenando datos en App Sheet",
             "free": false,
             "description": "",
             "video": null,
@@ -567,23 +585,29 @@
     },
     "resource": [],
     "coverImg": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
       "fileMetadata": {
-        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
-        "size": 55508,
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733473565/lovgzwfdli5md3udsav8.webp",
+        "size": 16856,
         "width": 800,
         "height": 800,
         "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
+        "mimeType": "image/png",
+        "created_at": "2024-12-06T08:26:05Z"
+      },
+      "fileType": "image",
+      "id": "2405f35f-7b8a-4157-a4e5-86abc2c74073"
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "876-lkjhgf-5432109-poiuyt-r4-5",
-    "title": "Automatización de Flujos de Trabajo con Power Automate y Google Sheets",
-    "shortDescription": "Automatiza tareas repetitivas integrando Power Automate y Google Sheets.",
+    "title": "Automatización de Flujos de Trabajo con Power Automate y App Sheet",
+    "shortDescription": "Automatiza tareas repetitivas integrando Power Automate y App Sheet.",
     "rating": 4.9,
     "ratingCount": 250,
     "available": true,
@@ -602,10 +626,10 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Automate",
+    "platform": "appsheet",
     "learningSubjects": [
       "Conceptos básicos de Power Automate.",
-      "Conexión con Google Sheets.",
+      "Conexión con App Sheet.",
       "Creación de flujos de trabajo automatizados."
     ],
     "sector": [
@@ -618,7 +642,7 @@
     ],
     "toolsAndPlatforms": [
       "Power Automate",
-      "Google Sheets"
+      "App Sheet"
     ],
     "functionalities": [
       "Automatización de emails",
@@ -627,7 +651,7 @@
     "prevRequirements": [
       "Conocimientos básicos de informática"
     ],
-    "fullDescription": "Aprende a automatizar tus flujos de trabajo con Power Automate y Google Sheets.  Este curso te enseñará a conectar ambas plataformas para automatizar tareas repetitivas y ahorrar tiempo.",
+    "fullDescription": "Aprende a automatizar tus flujos de trabajo con Power Automate y App Sheet.  Este curso te enseñará a conectar ambas plataformas para automatizar tareas repetitivas y ahorrar tiempo.",
     "modules": [
       {
         "title": "Introducción a Power Automate",
@@ -654,14 +678,14 @@
         ]
       },
       {
-        "title": "Integración con Google Sheets",
-        "description": "Aprende a conectar Power Automate con Google Sheets.",
+        "title": "Integración con App Sheet",
+        "description": "Aprende a conectar Power Automate con App Sheet.",
         "lessons": [
           {
             "id": "lesson-3",
-            "title": "Conexión a Google Sheets",
+            "title": "Conexión a App Sheet",
             "free": false,
-            "description": "Configura la conexión entre Power Automate y Google Sheets.",
+            "description": "Configura la conexión entre Power Automate y App Sheet.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
@@ -670,7 +694,7 @@
             "id": "lesson-4",
             "title": "Automatización de datos",
             "free": true,
-            "description": "Automatiza la entrada y salida de datos entre Power Automate y Google Sheets.",
+            "description": "Automatiza la entrada y salida de datos entre Power Automate y App Sheet.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
@@ -687,23 +711,29 @@
     },
     "resource": [],
     "coverImg": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
       "fileMetadata": {
-        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
-        "size": 55508,
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733473039/yn7lyhuj2kywzphuwdxk.webp",
+        "size": 52254,
         "width": 800,
         "height": 800,
         "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
+        "mimeType": "image/png",
+        "created_at": "2024-12-06T08:17:19Z"
+      },
+      "fileType": "image",
+      "id": "12f7675a-3671-46de-ae2e-3d82c73b87de"
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "987-poiuyt-6543210-asdfgh-j5-6",
-    "title": "Análisis de Datos con Power BI y Google Sheets",
-    "shortDescription": "Analiza tus datos de Google Sheets con Power BI.",
+    "title": "Análisis de Datos con Power BI y App Sheet",
+    "shortDescription": "Analiza tus datos de App Sheet con Power BI.",
     "rating": 4.7,
     "ratingCount": 195,
     "available": true,
@@ -722,9 +752,9 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power BI",
+    "platform": "powerapps",
     "learningSubjects": [
-      "Importación de datos desde Google Sheets.",
+      "Importación de datos desde App Sheet.",
       "Creación de visualizaciones de datos.",
       "Análisis de tendencias."
     ],
@@ -738,7 +768,7 @@
     ],
     "toolsAndPlatforms": [
       "Power BI",
-      "Google Sheets"
+      "App Sheet"
     ],
     "functionalities": [
       "Creación de gráficos",
@@ -747,17 +777,17 @@
     "prevRequirements": [
       "Conocimientos básicos de Excel"
     ],
-    "fullDescription": "Aprende a analizar tus datos de Google Sheets con Power BI. Este curso te enseñará a importar datos, crear visualizaciones y analizar tendencias.",
+    "fullDescription": "Aprende a analizar tus datos de App Sheet con Power BI. Este curso te enseñará a importar datos, crear visualizaciones y analizar tendencias.",
     "modules": [
       {
-        "title": "Conexión con Google Sheets",
-        "description": "Aprende a conectar Power BI con Google Sheets.",
+        "title": "Conexión con App Sheet",
+        "description": "Aprende a conectar Power BI con App Sheet.",
         "lessons": [
           {
             "id": "lesson-5",
             "title": "Importando datos",
             "free": true,
-            "description": "Importa tus datos de Google Sheets a Power BI.",
+            "description": "Importa tus datos de App Sheet a Power BI.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
@@ -818,11 +848,17 @@
         "mimeType": "image/webp",
         "created_at": "2024-12-04T05:47:09Z"
       }
-    }
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "098-tyuio-7654321-ghjkl-k6-7",
-    "title": "Desarrollo de Apps Móviles con Power Apps y Google Sheets para la Gestión de Inventario",
+    "title": "Desarrollo de Apps Móviles con powerapps y App Sheet para la Gestión de Inventario",
     "shortDescription": "Crea una app móvil para gestionar tu inventario.",
     "rating": 4.6,
     "ratingCount": 178,
@@ -842,10 +878,10 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Apps",
+    "platform": "powerapps",
     "learningSubjects": [
       "Diseño de interfaces de usuario para móviles.",
-      "Integración con Google Sheets para el almacenamiento de datos.",
+      "Integración con App Sheet para el almacenamiento de datos.",
       "Desarrollo de funcionalidades de gestión de inventario."
     ],
     "sector": [
@@ -857,8 +893,8 @@
       "Gestión de Inventario"
     ],
     "toolsAndPlatforms": [
-      "Power Apps",
-      "Google Sheets"
+      "powerapps",
+      "App Sheet"
     ],
     "functionalities": [
       "Agregar nuevos productos",
@@ -866,9 +902,9 @@
       "Generar reportes"
     ],
     "prevRequirements": [
-      "Conocimientos básicos de Power Apps"
+      "Conocimientos básicos de powerapps"
     ],
-    "fullDescription": "Crea una aplicación móvil para gestionar tu inventario utilizando Power Apps y Google Sheets.  Este curso te enseñará a diseñar una interfaz intuitiva y a integrar la gestión de datos.",
+    "fullDescription": "Crea una aplicación móvil para gestionar tu inventario utilizando powerapps y App Sheet.  Este curso te enseñará a diseñar una interfaz intuitiva y a integrar la gestión de datos.",
     "modules": [
       {
         "title": "Diseño de la Interfaz de Usuario",
@@ -895,14 +931,14 @@
         ]
       },
       {
-        "title": "Integración con Google Sheets",
-        "description": "Aprende a integrar tu aplicación con Google Sheets para almacenar y gestionar los datos de inventario.",
+        "title": "Integración con App Sheet",
+        "description": "Aprende a integrar tu aplicación con App Sheet para almacenar y gestionar los datos de inventario.",
         "lessons": [
           {
             "id": "lesson-11",
-            "title": "Conexión a Google Sheets",
+            "title": "Conexión a App Sheet",
             "free": false,
-            "description": "Conecta tu aplicación Power Apps con tu hoja de cálculo de Google Sheets.",
+            "description": "Conecta tu aplicación powerapps con tu hoja de cálculo de App Sheet.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
@@ -928,22 +964,28 @@
     },
     "resource": [],
     "coverImg": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
       "fileMetadata": {
-        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
-        "size": 55508,
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733473877/haukzsu4764dlrmhdres.webp",
+        "size": 27514,
         "width": 800,
         "height": 800,
         "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
+        "mimeType": "image/jpeg",
+        "created_at": "2024-12-06T08:31:17Z"
+      },
+      "fileType": "image",
+      "id": "b01e92a4-c23c-4fa0-bfb7-d564e104391b"
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "112-zxcvbn-3456789-asdfgh-l7-8",
-    "title": "Creación de Reportes Dinámicos con Power BI, Google Sheets y Power Apps",
+    "title": "Creación de Reportes Dinámicos con Power BI, App Sheet y powerapps",
     "shortDescription": "Crea reportes interactivos que se actualizan en tiempo real.",
     "rating": 4.8,
     "ratingCount": 220,
@@ -963,11 +1005,11 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power BI",
+    "platform": "powerapps",
     "learningSubjects": [
-      "Conexión de Power BI con Google Sheets.",
+      "Conexión de Power BI con App Sheet.",
       "Creación de dashboards interactivos.",
-      "Integración con Power Apps para la actualización de datos."
+      "Integración con powerapps para la actualización de datos."
     ],
     "sector": [
       "Business Intelligence",
@@ -979,8 +1021,8 @@
     ],
     "toolsAndPlatforms": [
       "Power BI",
-      "Google Sheets",
-      "Power Apps"
+      "App Sheet",
+      "powerapps"
     ],
     "functionalities": [
       "Filtros interactivos",
@@ -989,17 +1031,17 @@
     "prevRequirements": [
       "Conocimientos básicos de Power BI"
     ],
-    "fullDescription": "Aprende a crear reportes dinámicos que se actualizan en tiempo real utilizando Power BI, Google Sheets y Power Apps.  Este curso te enseñará a conectar estas plataformas para crear dashboards interactivos.",
+    "fullDescription": "Aprende a crear reportes dinámicos que se actualizan en tiempo real utilizando Power BI, App Sheet y powerapps.  Este curso te enseñará a conectar estas plataformas para crear dashboards interactivos.",
     "modules": [
       {
         "title": "Conexión de Datos",
-        "description": "Conecta Power BI con Google Sheets.",
+        "description": "Conecta Power BI con App Sheet.",
         "lessons": [
           {
             "id": "lesson-13",
-            "title": "Importando datos de Google Sheets",
+            "title": "Importando datos de App Sheet",
             "free": true,
-            "description": "Importa tus datos de Google Sheets a Power BI.",
+            "description": "Importa tus datos de App Sheet a Power BI.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
@@ -1040,14 +1082,14 @@
         ]
       },
       {
-        "title": "Integración con Power Apps",
-        "description": "Integra Power Apps para actualizar datos en tiempo real.",
+        "title": "Integración con powerapps",
+        "description": "Integra powerapps para actualizar datos en tiempo real.",
         "lessons": [
           {
             "id": "lesson-17",
-            "title": "Conectando Power Apps y Power BI",
+            "title": "Conectando powerapps y Power BI",
             "free": false,
-            "description": "Establece la conexión entre Power Apps y Power BI.",
+            "description": "Establece la conexión entre powerapps y Power BI.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
@@ -1064,22 +1106,28 @@
     },
     "resource": [],
     "coverImg": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
       "fileMetadata": {
-        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
-        "size": 55508,
+        "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733474059/csaegjidlkl4asx2w5ao.webp",
+        "size": 22426,
         "width": 800,
         "height": 800,
         "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
+        "mimeType": "image/jpeg",
+        "created_at": "2024-12-06T08:34:19Z"
+      },
+      "fileType": "image",
+      "id": "46d76986-0a19-48c3-8b02-28d412bb1cf7"
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "224-qwerty-5678901-zxcvbn-m8-9",
-    "title": "Gestión de Proyectos con Power Apps y Google Sheets: Una Solución Integrada",
+    "title": "Gestión de Proyectos con powerapps y App Sheet: Una Solución Integrada",
     "shortDescription": "Gestiona tus proyectos de forma eficiente con una app personalizada.",
     "rating": 4.5,
     "ratingCount": 185,
@@ -1099,10 +1147,10 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Apps",
+    "platform": "appsheet",
     "learningSubjects": [
       "Diseño de una aplicación de gestión de proyectos.",
-      "Integración con Google Sheets para el seguimiento del progreso.",
+      "Integración con App Sheet para el seguimiento del progreso.",
       "Automatización de tareas."
     ],
     "sector": [
@@ -1114,8 +1162,8 @@
       "Seguimiento de Progreso"
     ],
     "toolsAndPlatforms": [
-      "Power Apps",
-      "Google Sheets"
+      "powerapps",
+      "App Sheet"
     ],
     "functionalities": [
       "Asignación de tareas",
@@ -1123,9 +1171,9 @@
       "Generación de reportes"
     ],
     "prevRequirements": [
-      "Conocimientos básicos de Power Apps"
+      "Conocimientos básicos de powerapps"
     ],
-    "fullDescription": "Aprende a gestionar tus proyectos de forma eficiente utilizando Power Apps y Google Sheets.  Este curso te enseñará a crear una aplicación personalizada para el seguimiento del progreso y la automatización de tareas.",
+    "fullDescription": "Aprende a gestionar tus proyectos de forma eficiente utilizando powerapps y App Sheet.  Este curso te enseñará a crear una aplicación personalizada para el seguimiento del progreso y la automatización de tareas.",
     "modules": [
       {
         "title": "Diseño de la Aplicación",
@@ -1152,14 +1200,14 @@
         ]
       },
       {
-        "title": "Integración con Google Sheets",
-        "description": "Integra Google Sheets para almacenar y gestionar los datos del proyecto.",
+        "title": "Integración con App Sheet",
+        "description": "Integra App Sheet para almacenar y gestionar los datos del proyecto.",
         "lessons": [
           {
             "id": "lesson-20",
-            "title": "Conectando con Google Sheets",
+            "title": "Conectando con App Sheet",
             "free": false,
-            "description": "Conecta tu aplicación Power Apps con Google Sheets.",
+            "description": "Conecta tu aplicación powerapps con App Sheet.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
@@ -1168,7 +1216,7 @@
             "id": "lesson-21",
             "title": "Gestión de Datos",
             "free": true,
-            "description": "Gestiona los datos del proyecto en Google Sheets.",
+            "description": "Gestiona los datos del proyecto en App Sheet.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
@@ -1211,11 +1259,17 @@
         "mimeType": "image/webp",
         "created_at": "2024-12-04T05:47:09Z"
       }
-    }
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
     "id": "336-asdfgh-7890123-qwerty-n9-0",
-    "title": "Automatización de Procesos de Ventas con Power Automate, Google Sheets y Power Apps",
+    "title": "Automatización de Procesos de Ventas con Power Automate, App Sheet y powerapps",
     "shortDescription": "Automatiza tus procesos de ventas para mejorar la eficiencia.",
     "rating": 4.7,
     "ratingCount": 200,
@@ -1235,11 +1289,11 @@
       "mimeType": "video/mp4",
       "created_at": "new Date()"
     },
-    "platform": "Power Automate",
+    "platform": "appsheet",
     "learningSubjects": [
       "Automatización de tareas de ventas.",
-      "Integración con Google Sheets para el seguimiento de clientes.",
-      "Creación de una interfaz de usuario con Power Apps."
+      "Integración con App Sheet para el seguimiento de clientes.",
+      "Creación de una interfaz de usuario con powerapps."
     ],
     "sector": [
       "Ventas",
@@ -1251,8 +1305,8 @@
     ],
     "toolsAndPlatforms": [
       "Power Automate",
-      "Google Sheets",
-      "Power Apps"
+      "App Sheet",
+      "powerapps"
     ],
     "functionalities": [
       "Notificaciones automáticas",
@@ -1262,7 +1316,7 @@
     "prevRequirements": [
       "Conocimientos básicos de Power Automate"
     ],
-    "fullDescription": "Aprende a automatizar tus procesos de ventas utilizando Power Automate, Google Sheets y Power Apps.  Este curso te enseñará a crear una solución integrada para mejorar la eficiencia y el seguimiento de clientes.",
+    "fullDescription": "Aprende a automatizar tus procesos de ventas utilizando Power Automate, App Sheet y powerapps.  Este curso te enseñará a crear una solución integrada para mejorar la eficiencia y el seguimiento de clientes.",
     "modules": [
       {
         "title": "Automatización de Tareas",
@@ -1289,14 +1343,14 @@
         ]
       },
       {
-        "title": "Integración con Google Sheets",
-        "description": "Integra Google Sheets para almacenar y gestionar los datos de tus clientes.",
+        "title": "Integración con App Sheet",
+        "description": "Integra App Sheet para almacenar y gestionar los datos de tus clientes.",
         "lessons": [
           {
             "id": "lesson-25",
-            "title": "Conectando con Google Sheets",
+            "title": "Conectando con App Sheet",
             "free": false,
-            "description": "Conecta Power Automate con Google Sheets.",
+            "description": "Conecta Power Automate con App Sheet.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
@@ -1305,7 +1359,7 @@
             "id": "lesson-26",
             "title": "Gestión de Datos de Clientes",
             "free": true,
-            "description": "Gestiona los datos de tus clientes en Google Sheets.",
+            "description": "Gestiona los datos de tus clientes en App Sheet.",
             "video": null,
             "documents": [],
             "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
@@ -1314,7 +1368,7 @@
       },
       {
         "title": "Creación de la Interfaz de Usuario",
-        "description": "Crea una interfaz de usuario con Power Apps para interactuar con tus datos.",
+        "description": "Crea una interfaz de usuario con powerapps para interactuar con tus datos.",
         "lessons": [
           {
             "id": "lesson-27",
@@ -1348,7 +1402,13 @@
         "mimeType": "image/webp",
         "created_at": "2024-12-04T05:47:09Z"
       }
-    }
+    },
+    "freeCourse": false,
+    "language": "spanish",
+    "contentType": "course",
+    "courseDifficulty": "basic",
+    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   }
 ]
 

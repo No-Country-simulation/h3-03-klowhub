@@ -42,7 +42,7 @@ const PromotionsSection = () => {
   });
 
   const [ showSelector, setShowSelector ] = useState(true);
-  const [ contentType, setContentType] = useState<ContentType>('applications');
+  const [ contentType, setContentType] = useState<ContentType>('courses');
   const { applications, courses } = useUserContent();
   const [ newCourseId, setNewCourseId ] = useState<string>();
 

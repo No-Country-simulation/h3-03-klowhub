@@ -53,7 +53,7 @@ const GeneralForm = () => {
             { value: "powerapps", label: "PowerApps" },
           ]}
           type="radio-group" 
-          label="Plataforma" { ...commonProps } 
+          label="Plataforma" { ...controlledCommonProps } 
           className="col-span-2"
         />
         <IsClientProvider>

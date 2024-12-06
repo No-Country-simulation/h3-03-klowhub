@@ -11,6 +11,7 @@ import { TProductCard } from "./product-card.types";
 import { Button } from "@/components/ui/button"
 import Icon from "../icon/icon.component";
 import Rating from "../rating/rating.component";
+import { EllipsisVertical } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -39,12 +40,16 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
     price,
   } = data
 
+    console.log('platform: ', platform);
   const pathname = usePathname();
   const orientation = pathname === "/courses" ? "horizontal" : "vertical";
 
   return (
     <Card
-      className={`overflow-hidden flex flex-col ${orientation === "vertical" ? "" : "md:flex-row items-center gap-4 mb-6 h-full"}`}
+      className={`
+        overflow-hidden flex flex-col
+        ${orientation === "vertical" ? "h-full" : "md:flex-row items-center gap-4 mb-6 h-full flex-grow"}
+      `}
     >
       <div className={orientation === "vertical" ? "flex-shrink-0 h-60" : "flex-grow h-full w-full md:h-80 md:w-1/4 flex-shrink-0 overflow-hidden"}>
         <Link 
@@ -63,48 +68,54 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
           />
         </Link>
       </div>
-      <div className="w-full md:w-3/4 flex flex-col justify-between h-full gap-6 p-4 ">
+      <div className={`w-full ${!onlyInfo ? "md:w-3/4" : ""} flex flex-col justify-between h-full gap-6 p-4 `}>
         <CardHeader className="flex flex-col">
-          <div className="flex justify-between items-center">
-            <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
-              <CardTitle>{title}</CardTitle>
+          <div className="flex justify-between items-start gap-5">
+            <Link 
+              href={{ pathname, query: `modal=true&product=${id}` }} 
+              scroll={false} 
+              className={`
+                ${unlink ? "pointer-events-none flex-1" : ""}
+              `}
+            >
+              <CardTitle className="leading-6">{ title }</CardTitle>
             </Link>
-            <Icon name="more-vertical" />
+            <EllipsisVertical className="grow-0" />
           </div>
           <Link href={{ pathname, query: `modal=true&product=${id}` }} scroll={false} className={ unlink ? "pointer-events-none" : "" }>
             <span className={`text-sm tracking-wide leading-6 ${orientation === "vertical" ? "h-[72px]" : ""}`}>
               {
-                truncate(shortDescription, orientation === "horizontal" ? 200 : undefined)
+                truncate(shortDescription, orientation === "horizontal" ? 200 : 80)
               }
             </span>
           </Link>
         </CardHeader>
 
-        <div>
+        <div className="flex flex-col gap-5">
           <Badge
             icon={<Icon name={getSlug(platform) as IconTypes} />}
-            className="bg-gray-100 text-white"
+            className="bg-gray-100 text-white self-start"
           >
             {platform}
           </Badge>
-        </div>
-        <CardContent className="flex flex-col gap-3">
-          <div className="flex gap-2">
-            {
-              tags.map((t, idx) => (
-                <Badge key={`product-card-badge-${idx}`}>{t}</Badge>
-              ))
-            }
-          </div>
-          { !onlyInfo && <Rating rating={rating} ratingCount={ratingCount} />}
-          { !onlyInfo && orientation === "vertical" ? <span className="text-xl font-bold">${formatPrice(price)}</span> : "" }
-          { !onlyInfo &&
-            <div className={`w-full flex items-center ${orientation === "vertical" ? "justify-between" : "justify-between md:justify-start gap-10"}`}>
-              <Button>Añadir al carrito</Button>
-              <Link href={`/courses/${title}`} className={`text-primary-200 ${ unlink ? "pointer-events-none" : "" }`} >Ver detalles</Link>
+          <CardContent className="flex flex-col gap-3">
+            <div className="flex flex-wrap gap-2">
+              {
+                tags.map((t, idx) => (
+                  <Badge key={`product-card-badge-${idx}`}>{t}</Badge>
+                ))
+              }
             </div>
-          }
-        </CardContent>
+            { !onlyInfo && <Rating rating={rating} ratingCount={ratingCount} />}
+            { !onlyInfo && orientation === "vertical" ? <span className="text-xl font-bold">${formatPrice(price)}</span> : "" }
+            { !onlyInfo &&
+              <div className={`w-full flex items-center ${orientation === "vertical" ? "justify-between" : "justify-between md:justify-start gap-10"}`}>
+                <Button>Añadir al carrito</Button>
+                <Link href={`/courses/${title}`} className={`text-primary-200 ${ unlink ? "pointer-events-none" : "" }`} >Ver detalles</Link>
+              </div>
+            }
+          </CardContent>
+        </div>
       </div>
     </Card>
   )

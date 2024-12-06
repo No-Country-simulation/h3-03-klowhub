@@ -260,7 +260,12 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                       ) :
                       <Dropzone
                         { ...{isMulti, filetypes} }
-                        onDrop={async (files) => onChange(await uploadAsset(files[0]))}
+                        onDrop={async (files) => {
+                          const uploadedFile = await uploadAsset(files[0]);
+                        console.log('uploadedFile: ', uploadedFile);
+                          onChange(uploadedFile)
+                        }
+                      }
                       >
                         { dropzoneLabel }
                       </Dropzone>
@@ -283,7 +288,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           name={name}
           control={control}
           render={({ field: { onChange, value } }) => (
-            <div onClick={() => onChange({ type: productType, id: productId })} className={"cursor-pointer relative"}>
+            <div onClick={() => onChange({ type: productType, id: productId })} className={"cursor-pointer relative h-full"}>
               <div className={`${value.id === productId ? "absolute w-full h-full ring-4 ring-inset ring-primary-400 rounded-lg" : ""}`}></div>
               { children }
             </div>

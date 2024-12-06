@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, createContext, ReactNode, Dispatch } from "react"
-import { CourseFormData } from "@/types/courses.types";
+import { Course, CourseFormData } from "@/types/courses.types";
 import { useReducer } from "react";
 import courseFormReducer, { COURSE_FORM_INITIAL_STATE } from "./course-form.reducer";
 import { CourseFormActions } from "./course-form.actions";
@@ -27,23 +27,23 @@ const CourseCtxProvider = ({ children }: Props) => {
     const formattedData = FDAdapter({...state, ...additionalData});
     console.log('creating course...', formattedData);
 
-    // const res = await fetch('http://localhost:3003/courses/createCourse', { 
-    //   method: 'post',
-    //   body: JSON.stringify(formattedData),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // });   
-    //
-    // const createdCourse = await res.json();
-    // console.log('createdCourse: ', createdCourse);
-    //
-    // return 'asdada'
+    const res = await fetch('http://localhost:3003/courses/createCourse', { 
+      method: 'post',
+      body: JSON.stringify(formattedData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });   
 
-    const temporaryId = "test-19u3-124-asdad";
-    window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
-    console.log(window.sessionStorage.getItem("courseForm"));
-    return temporaryId
+    const createdCourse: Course = await res.json();
+    console.log('createdCourse: ', createdCourse);
+
+    return createdCourse.id
+
+    // const temporaryId = "test-19u3-124-asdad";
+    // window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
+    // console.log(window.sessionStorage.getItem("courseForm"));
+    // return temporaryId
 
   }, [state]);
 
