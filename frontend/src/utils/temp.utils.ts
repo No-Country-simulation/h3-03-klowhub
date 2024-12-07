@@ -4,6 +4,7 @@ import { Course } from "@/types/courses.types";
 import { promises as fs, createReadStream } from 'fs';
 import path from "path";
 import authorsMock from "@/mocks/authors.mock.json"
+import { Application } from "@/types/application.types";
 
 export async function streamVideo (req: NextRequest) {
   try {
@@ -32,6 +33,6 @@ export async function streamVideo (req: NextRequest) {
   }
 };
 
-export const attachAuthors = (courses: Course[]) => {
-  return courses.map((c, idx) => ({ ...c, author: authorsMock[idx] }))
+export const attachAuthors = (entity: object[]) => {
+  return entity.map((c, idx) => ({ ...c, author: authorsMock[idx] }))
 };

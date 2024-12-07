@@ -4,7 +4,6 @@ export const breakCourse = (data: CourseFormData): Course => {
   const { general: { tags, sector, coreContent, toolsAndPlatforms, functionalities, language } } = data;
 
   const general = {
-    ...(data.id && { id: data.id }),
     ...data.general,
     language: language.name,
     sector: sector.map(s => s.name),

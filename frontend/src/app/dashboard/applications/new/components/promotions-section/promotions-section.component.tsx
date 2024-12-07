@@ -10,7 +10,10 @@ import { Promotion } from "@/types/global.types";
 import Input from "@/components/input/input.component";
 import ProductCard from "@/components/product-card/product-card.component";
 import { setPromotionData } from "../../context/application-form.actions";
+import Greeter from "@/components/greeter/greeter.component";
+import Link from "next/link";
 
+import { buttonVariants } from "@/components/ui/button";
 import useApplicationContext from "../../hooks/use-application-context.hook";
 import useUserContent from "@/hooks/use-user-content.hook";
 import promotionMock from "./promotions.mock.json"
@@ -40,6 +43,7 @@ const PromotionsSection = () => {
   const [ showSelector, setShowSelector ] = useState(true);
   const [ contentType, setContentType] = useState<ContentType>('applications');
   const { applications, courses } = useUserContent();
+  const [ newAppId, setNewAppId ] = useState<string>()
 
   useEffect(() => {
     reset()
@@ -57,6 +61,25 @@ const PromotionsSection = () => {
 
   return (
     <>
+      { newAppId &&
+        <Greeter
+          header="¡Felicitaciones! Tu aplicación se publicó con éxito"
+          message="Ya está disponible para que personas de todo el mundo la descubran y aprovechen."
+        >
+          <Link 
+            href={`/courses/${newAppId}`}
+            className={`${buttonVariants({ variant: "outline" })} px-10 bg-primary-500 border-none hover:bg-secondary-400`}
+          >
+            Ver aplicaión publicada
+          </Link>
+          <Link
+            href={`/dashboard/courses`}
+            className={`${buttonVariants({ variant: "outline" })} px-10 border-primary-200 text-primary-200`}
+          >
+            Volver al dashboard
+          </Link>
+        </Greeter>
+      }
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-5">
           <h3 className="font-bold">Ofrecé tu app en combinación con otros producto</h3>
@@ -131,6 +154,7 @@ const PromotionsSection = () => {
               <Input 
                 type="number" 
                 name="percentage" 
+                isPercentage
                 label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete." 
                 { ...commonProps }
               />
@@ -174,19 +198,14 @@ const PromotionsSection = () => {
           </RouteBtn>
           <Button 
             type="button"
-            onClick={ handleSubmit(data => submitApplication({ ...state, promotion: data })) }
-            className="mr-auto flex-1 md:grow-0"
-          >
-            Probar
-          </Button>
-          <RouteBtn 
-            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
-            route="temporary-route"
-            isDirty={isDirty}
-            className="mr-auto flex-1 md:grow-0"
+            className="flex-1 md:grow-0"
+            onClick={handleSubmit(async (promotion) => {
+              const applicationId = await submitApplication({ promotion }) 
+              setNewAppId(applicationId)
+            })}
           >
             Publicar
-          </RouteBtn>
+          </Button>
         </div>
       </div>
     </>

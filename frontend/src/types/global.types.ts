@@ -65,3 +65,9 @@ export type Promotion = {
   product: PromotedProduct
   percentage: number
 }
+
+export type Rating = {
+  rating: number
+  ratingCount: number
+}
+export type FlatPromotion = PromotedProduct & { percentage: Promotion["percentage"] }

@@ -18,5 +18,10 @@
     { "name": "twilio", "label": "Twilio" }
   ],
   "target": "Empresas medianas que necesitan una solución eficiente para administrar su inventario y mantener comunicación efectiva con sus proveedores y clientes.",
-  "advantages": "Automatiza el control de inventarios, mejora la comunicación interna y externa, reduce errores humanos y proporciona reportes visuales detallados para la toma de decisiones estratégicas."
+  "advantages": "Automatiza el control de inventarios, mejora la comunicación interna y externa, reduce errores humanos y proporciona reportes visuales detallados para la toma de decisiones estratégicas.",
+  "tags": [
+    { "name": "plataforma-de-cursos", "label": "Plataforma de cursos" },
+    { "name": "aplicaciones-sin-codigo", "label": "Aplicaciones sin código" },
+    { "name": "desarrolladores-nocode", "label": "Desarrolladores no-code" }
+  ]
 }

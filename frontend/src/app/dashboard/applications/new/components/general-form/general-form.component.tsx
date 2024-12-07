@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { ApplicationInfo } from "@/types/application.types";
 import Input from "@/components/input/input.component";
-import { language, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
+import { tags, language, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import useApplicationContext from "../../hooks/use-application-context.hook";
 import RouteBtn from "@/components/route-btn/route-btn.component";
@@ -79,6 +79,13 @@ const GeneralForm = () => {
             label="Agrega las funcionalidades relacionadas" { ...controlledCommonProps } 
             placeholder="Funcionalidades"
             isMulti
+          />
+          <Input 
+            name="tags" type="select" options={tags.items} 
+            label="Agrega etiquetas relacionadas" 
+            placeholder="Selecciona las etiquetas"
+            isMulti
+            { ...controlledCommonProps } 
           />
         </IsClientProvider>
         <Input 

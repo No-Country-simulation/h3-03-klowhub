@@ -68,7 +68,9 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
           />
         </Link>
       </div>
-      <div className={`w-full ${!onlyInfo ? "md:w-3/4" : ""} flex flex-col justify-between h-full gap-6 p-4 `}>
+      <div className={`
+        w-full flex flex-col justify-between h-full gap-6 p-4 
+      `}>
         <CardHeader className="flex flex-col">
           <div className="flex justify-between items-start gap-5">
             <Link 

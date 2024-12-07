@@ -1,11 +1,12 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
-import { Platform, TImage, TVideo, TDocument, PersonalReview, AuthorInfo } from "./global.types"
+import { Platform, TImage, TVideo, TDocument, PersonalReview, AuthorInfo, FlatPromotion } from "./global.types"
 import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
-import { Promotion } from "./global.types";
+import { Promotion, Rating } from "./global.types";
 import { TReview } from "@/components/shared/reviews/review.types";
+import { Expand, NoUndefinedField, RequiredProperty } from "./utils.types";
 
 
 export type Link = {
@@ -61,14 +62,8 @@ export type PromotedProduct = {
   id: number
 }
 
-export type Feedback = {
-  rating: number
-  ratingCount: number
-  reviews: string[]
-}
-
 export type CourseFormData = {
-  id: number | null
+  // id: string | null
   general: CourseInfo
   details: CourseDetails
   modules: Module[]
@@ -82,23 +77,22 @@ export type CoursePayload = {
 
 } & CourseFormData["general"] & CourseFormData["details"]
 
-export type Course =
+type CourseOptionalFields = Partial<{
+  id?: string,
+  reviews?: TReview[]
+  author?: AuthorInfo
+} & Rating>
+
+export type Course = RequiredProperty<
   & Omit<CourseInfo, "sector" | "coreContent" | "toolsAndPlatforms" | "functionalities" | "tags" | "language"> 
-  & Omit<CourseDetails, "promotionalVideo">
-  & Feedback
+  & CourseDetails
   & {
-  id: string,
   sector: string[]
   coreContent: string[]
   toolsAndPlatforms: string[]
   functionalities: string[]
   tags: string[]
   language: string
-  promotion: Promotion
+  promotion: FlatPromotion | null
   modules: Module[]
-  reviews?: TReview[]
-  author?: AuthorInfo
-  promotionalVideo: TVideo
-} 
-
-// export type Course = CourseInfo & CourseDetails & Promotion & Feedback & { modules: Module[] }
+}> & CourseOptionalFields

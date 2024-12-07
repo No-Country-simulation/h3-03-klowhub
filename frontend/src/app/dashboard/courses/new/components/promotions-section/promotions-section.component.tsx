@@ -14,7 +14,6 @@ import ProductCard from "@/components/product-card/product-card.component";
 import { setPromotionData } from "../../context/course-form.actions";
 import { Button } from "@/components/ui/button";
 import Greeter from "@/components/greeter/greeter.component";
-import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import promotionMock from "./promotions.mock.json"
@@ -23,7 +22,6 @@ type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
   const { state, dispatch, submitCourse } = useCourseContext();
-  const pathname = usePathname()
 
   const {
     commonProps, 
@@ -202,7 +200,7 @@ const PromotionsSection = () => {
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
               const courseId = await submitCourse({ promotion }) 
-              // setNewCourseId(courseId)
+              setNewCourseId(courseId)
             })}
           >
             Publicar

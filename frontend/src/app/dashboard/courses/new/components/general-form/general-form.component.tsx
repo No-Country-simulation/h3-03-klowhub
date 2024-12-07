@@ -5,7 +5,7 @@ import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_INFO_INITIAL_STATE } from "./general-form.consts";
 import { CourseInfo } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
-import { courseDifficulty, language, coreContent, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
+import { courseDifficulty, language, coreContent, functionalities, sector, toolsAndPlatforms, tags } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import { CircleAlert } from "lucide-react";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
@@ -130,10 +130,11 @@ const GeneralForm = () => {
             isMulti
           />
           <Input 
-            name="tags" type="select" options={functionalities.items} 
-            label="Agrega etiquetas relacionadas" { ...controlledCommonProps } 
+            name="tags" type="select" options={tags.items} 
+            label="Agrega etiquetas relacionadas" 
             placeholder="Selecciona las etiquetas"
             isMulti
+            { ...controlledCommonProps } 
           />
         </IsClientProvider>
       </form>

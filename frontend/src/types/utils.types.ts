@@ -7,3 +7,4 @@ export type OneOf<T extends object[]> = {
 }[number];
 
 export type NoUndefinedField<T> = { [P in keyof T]-?: NoUndefinedField<NonNullable<T[P]>> };
+export type RequiredProperty<T> = { [P in keyof T]: Required<NonNullable<T[P]>>; };

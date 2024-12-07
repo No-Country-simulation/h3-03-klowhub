@@ -1,6 +1,6 @@
-import { ApplicationFormData } from "@/types/application.types";
+import { Application, ApplicationFormData } from "@/types/application.types";
 
-export const breakApplication = (data: ApplicationFormData) => {
+export const breakApplication = (data: ApplicationFormData): Application => {
   const { general: { tags, sector, toolsAndPlatforms, functionalities, language } } = data;
 
   const general = {
@@ -20,6 +20,6 @@ export const breakApplication = (data: ApplicationFormData) => {
   return {
     ...general,
     ...data.media,
-    promotion
+    promotion 
   }
 };
