@@ -13,10 +13,16 @@ export type ApplicationInfo = {
   sector: SelectOption[]
   functionalities: SelectOption[]
   toolsAndPlatforms: SelectOption[]
-  target: string
-  advantages: string
   tags: SelectOption[]
 };
+
+export type ApplicationDetails = {
+  // advantages: string
+  targetAudience: string[]
+  fullDescription: string
+  views: string[]
+  appIncludes: string[]
+}
 
 export type ApplicationMedia = {
   coverImg: TImage | null
@@ -30,6 +36,7 @@ export type ApplicationMedia = {
 export type ApplicationFormData = {
   id?: string | null
   general: ApplicationInfo
+  details: ApplicationDetails
   media: ApplicationMedia
   promotion: Promotion | null
 }

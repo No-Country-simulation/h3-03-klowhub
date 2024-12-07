@@ -41,7 +41,7 @@ const GeneralForm = () => {
           className="w-full"
         />
         <Input 
-          name="summarizedDescription" type="textarea" 
+          name="shortDescription" type="textarea" 
           label="Describí brevemente la función principal de tu aplicación en 1-2 líneas. Contanos cuál es la funcionalidad principal de tu app." { ...controlledCommonProps } 
           placeholder="Escribe una descripción básica de esta app"
           className="col-span-2"
@@ -88,23 +88,11 @@ const GeneralForm = () => {
             { ...controlledCommonProps } 
           />
         </IsClientProvider>
-        <Input 
-          name="target" type="textarea" 
-          label="Para quién es esta App" { ...controlledCommonProps } 
-          placeholder="Escribe para quien esta dirigido esta app"
-          className="col-span-2"
-        />
-        <Input 
-          name="advantages" type="textarea" 
-          label="Ventajas de tener esta app" { ...controlledCommonProps } 
-          placeholder="Escribe los beneficios que ofrece esta app"
-          className="col-span-2"
-        />
       </form>
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
         <RouteBtn 
           setter={handleSubmit( data => dispatch(setGeneralData(data)) )}
-          route="media"
+          route="details"
           isDirty={isDirty}
         >
           Continuar

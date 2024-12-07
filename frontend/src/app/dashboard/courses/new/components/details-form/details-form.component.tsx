@@ -14,6 +14,7 @@ const DetailsForm = () => {
   const { state, dispatch } = useCourseContext();
 
   const {
+    commonProps,
     controlledCommonProps, 
     handleSubmit,
     formState: { isDirty }
@@ -43,8 +44,9 @@ const DetailsForm = () => {
         />
         <Input 
           name="fullDescription" type="textarea" 
-          label="Hacé una descripción detallada del contenido y de los beneficios que ofrece." { ...controlledCommonProps } 
+          label="Hacé una descripción detallada del contenido y de los beneficios que ofrece." 
           placeholder="Hacé una descripción detallada del contenido y de los beneficios que ofrece."
+          { ...commonProps } 
         />
         <Input 
           name="coverImg" type="upload"
