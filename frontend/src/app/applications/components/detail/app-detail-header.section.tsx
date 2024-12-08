@@ -25,7 +25,7 @@ export const AppHeader: FC<AppDetailHeader> = ({
                 ratingCount={ratingCount}
             />
             <Image
-                src={coverImg.url}
+                src={coverImg.fileMetadata.url}
                 alt="Course Image"
                 width={600}
                 height={300}
@@ -37,7 +37,7 @@ export const AppHeader: FC<AppDetailHeader> = ({
                 <div className="flex space-x-4 overflow-x-auto">
                     <div className="flex-shrink-0 w-60">
                         <Image
-                            src={coverImg.url}
+                            src={coverImg.fileMetadata.url}
                             alt=""
                             width={1920}
                             height={1080}

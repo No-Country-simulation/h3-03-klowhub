@@ -3,24 +3,17 @@ import { ReactNode } from "react";
 import { platform } from '../../../../consts/filters.consts';
 
 export type AppProps = {
-    title: string
+    name: string
     shortDescription: string
     fullDescription: string
     rating?: number
     ratingCount?: number
-    advantages: string[]
-    coverImg: {
-        url: string
-        size: number
-        width: number
-        height: number
-        format: string
-        created_at: string
-    }
+    // advantages: string[]
+    coverImg: TImage
 
-    peechTitle: string
+    // peechTitle: string
 
-    peechDescription: string
+    // peechDescription: string
     platform: string
 
     mobileScreenshoot: TImage
@@ -31,7 +24,7 @@ export type AppProps = {
 
     coreContent?: string[];
 
-    toolsAndPlatform: string[];
+    toolsAndPlatforms: string[];
 
     functionalities: string[];
 
@@ -45,14 +38,7 @@ export type AppDetailHeader = {
     shortDescription: string
     rating?: number
     ratingCount?: number
-    coverImg: {
-        url: string
-        size: number
-        width: number
-        height: number
-        format: string
-        created_at: string
-    }
+    coverImg: TImage
 }
 
 export type AppIncludeProps = {

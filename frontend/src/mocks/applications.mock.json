@@ -32,7 +32,7 @@
       "expressions-and-formulas",
       "automation"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "power-bi",
       "google-sheets"
     ],
@@ -118,7 +118,7 @@
       "automation",
       "workflows"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "google-sheets",
       "airtable",
       "trello"
@@ -206,7 +206,7 @@
       "actions-behavior",
       "security-accesibility"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "zapier",
       "google-calendar",
       "airtable"
@@ -294,7 +294,7 @@
       "automation",
       "general"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "power-bi",
       "google-analytics",
       "mysql"
@@ -382,7 +382,7 @@
       "databases",
       "security-accesibility"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "google-maps",
       "postgresql",
       "twilio"
@@ -470,7 +470,7 @@
       "databases",
       "ux-ui"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "salesforce",
       "google-sheets",
       "google-analytics"
@@ -556,7 +556,7 @@
       "expressions-and-formulas",
       "automation"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "power-bi",
       "google-sheets"
     ],
@@ -642,7 +642,7 @@
       "actions-behavior",
       "security-accesibility"
     ],
-    "toolsAndPlatform": [
+    "toolsAndPlatforms": [
       "zapier",
       "google-calendar",
       "airtable"
@@ -680,7 +680,7 @@
         "created_at": "2024-12-04T05:47:09Z"
       }
     },
-    "platform": "AppSheet",
+    "platform": "appsheet",
     "tags": [
       "plataforma-de-cursos",
       "tecnologia-para-empresas",

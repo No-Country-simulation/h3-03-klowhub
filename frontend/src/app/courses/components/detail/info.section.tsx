@@ -2,7 +2,9 @@ import { AppInfoProps } from "@/types/course-detail-props";
 import { FC } from "react";
 import { Badge } from "@/components/ui/badge";
 
-export const CourseInfoSection: FC<AppInfoProps> = ({ sector, coreContent, toolsAndPlatforms, functionalities }) => {
+export const CourseInfoSection: FC<AppInfoProps> = ({ sector, tags, toolsAndPlatforms, functionalities }) => {
+  console.log('functionalities: ', functionalities);
+  console.log('toolsAndPlatforms: ', toolsAndPlatforms);
 
   console.log('sector', sector);
 
@@ -41,8 +43,8 @@ export const CourseInfoSection: FC<AppInfoProps> = ({ sector, coreContent, tools
         <div className="flex flex-col gap-2 items-center">
           <h3 className="text-sm font-semibold text-[#FFFFFF]">Pilar de Contenido</h3>
           <div className="flex flex-col items-center justify-center gap-2">
-            {coreContent?.map((coreContent, index) => (
-              <Badge key={index}>{coreContent}</Badge>
+            {tags.map((t, index) => (
+              <Badge key={index}>{t}</Badge>
             ))}
           </div>
         </div>

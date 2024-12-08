@@ -17,6 +17,7 @@ export const useApplicationData = () => {
   useEffect(() => {
     (async function () {
       const mockedData = window.sessionStorage.getItem("applicationForm"); // TODO: this should be the object retrieved from the api
+      console.log('mockedData: ', mockedData);
 
       if (applicationContext) {
         // preview case
@@ -35,6 +36,7 @@ export const useApplicationData = () => {
         console.log('getting data from internal api...');
         const res = await fetch(`/api/applications/${params.id}?withAuthor=true&withReviews=true`);
         const data: ApplicationData = await res.json();
+        // console.log('data: ', data);
         setPageData(data)
       };
     })()
@@ -42,4 +44,5 @@ export const useApplicationData = () => {
 
   return { pageData, submitCourse: applicationContext?.submitApplication }
 };
+
 

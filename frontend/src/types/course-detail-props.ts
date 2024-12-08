@@ -39,7 +39,7 @@ export type CourseDetailHeader = {
 export interface AppInfoProps {
     sector: string[];
 
-    coreContent?: string[];
+    tags: string[];
 
     toolsAndPlatforms: string[];
 
@@ -52,7 +52,7 @@ export interface ProgramModule {
 }
 
 export interface CourseProps {
-    title: string;
+    name: string;
     shortDescription: string
     rating?: number
     ratingCount?: number

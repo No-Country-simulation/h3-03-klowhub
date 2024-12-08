@@ -3,20 +3,19 @@ import { AppProps } from "./app-detail.types";
 import { AppHeader } from "./app-detail-header.section";
 import { instructor } from "@/mocks/instructor.mock";
 import { InstructorInfo } from "@/app/courses/components/detail/instructor-section";
-import { ObjectivesList } from "@/app/courses/components/detail/objectives.section";
 
 import { useSearchParams, usePathname } from 'next/navigation';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import parse from "html-react-parser"
 
 export const AppInfo: FC<AppProps> = ({
-    title, 
+    name, 
     shortDescription,
     fullDescription,
     rating,
     ratingCount, 
     coverImg,
-    advantages,
     children,
 }) => {
 
@@ -29,7 +28,7 @@ export const AppInfo: FC<AppProps> = ({
         <div className="md:col-span-2 space-y-4">
             {rating && ratingCount && (
                 <AppHeader
-                    title={title}
+                    title={name}
                     shortDescription={shortDescription}
                     rating={rating}
                     ratingCount={ratingCount}
@@ -38,12 +37,10 @@ export const AppInfo: FC<AppProps> = ({
             )}
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor}/>
-                <h3 className="text-sm font-semibold">Después de adquirir esta app, serás capaz de</h3>
-                <ObjectivesList objectives={advantages} />
                 <h3 className="text-sm font-semibold">Acerca de esta app</h3>
                 <div>
                     <p className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
-                        {fullDescription}
+                        {parse(fullDescription)}
                     </p>
                 </div>
 

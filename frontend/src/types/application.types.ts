@@ -1,4 +1,4 @@
-import { FlatPromotion, PromotedProduct, Promotion, TVideo } from "./global.types";
+import { FlatPromotion, Promotion, TVideo } from "./global.types";
 import { Platform, TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
 import { TReview } from "@/components/shared/reviews/review.types";
@@ -18,6 +18,7 @@ export type ApplicationInfo = {
 
 export type ApplicationDetails = {
   // advantages: string
+  features: string[]
   targetAudience: string[]
   fullDescription: string
   views: string[]
@@ -52,6 +53,15 @@ type ApplicationNullableFields = {
 }
 
 export type Application = RequiredProperty<
-  & ApplicationInfo 
-  & ApplicationMedia 
-> & ApplicationOptionalFields & ApplicationNullableFields
+  & Omit<ApplicationInfo, "language" | "sector" | "functionalities" | "toolsAndPlatforms" | "tags">
+  & ApplicationDetails
+  & ApplicationMedia>
+  & ApplicationOptionalFields 
+  & ApplicationNullableFields
+  & {
+    language: string
+    sector: string[]
+    functionalities: string[]
+    toolsAndPlatforms: string[]
+    tags: string[]
+  }

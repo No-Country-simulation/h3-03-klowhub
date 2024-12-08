@@ -1,4 +1,11 @@
 {
+  "features": [
+    "Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.",
+    "Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.",
+    "Establece prioridades claras y ajusta los plazos según las necesidades del proyecto",
+    "Facilita la comunicación entre los miembros del equipo con espacios compartidos para archivos.",
+    "Diseña tu panel de control para ver lo que más te interesa, desde gráficos de progreso hasta plazos críticos."
+  ],
   "targetAudience": [
     "Eres una empresa que quiere obtener su propia aplicación de facturación y presupuestos y el control de su negocio desde cualquier lugar.",
     "Eres un trabajador freelance o autónomo y quieres ahorrar tiempo y costes en las tareas administrativas que realmente no son las que te aportan ingresos.",

@@ -31,10 +31,17 @@ const DetailsForm = () => {
     <>
       <form className="flex flex-col gap-10">
         <Input 
-          name="fullDescription" type="textarea" 
+          name="fullDescription" type="richtext" 
           label="Hacé una descripción detallada de tu aplicación." 
           placeholder="Hacé una descripción detallada de tu aplicación."
-          { ...commonProps } 
+          { ...controlledCommonProps } 
+        />
+        <Input 
+          name="features" type="multitext" 
+          label="Describe las características principales de tu app" 
+          addButtonLabel="Añadir característica"
+          placeholder="¿Qué función princpal quieres destacar?"
+          { ...controlledCommonProps } 
         />
         <Input 
           name="views" type="multitext" 

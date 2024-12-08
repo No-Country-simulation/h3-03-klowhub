@@ -2,7 +2,6 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import YouTube from 'react-youtube';
 import { Button } from "@/components/ui/button";
 import { UseFormWatch } from "react-hook-form";
-import parse from "html-react-parser"
 import { Pencil } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { OneOf } from "@/types/utils.types";
@@ -36,7 +35,7 @@ const LessonsSection = ({ watch, readOnly, setCurrentLesson, setShowLessonForm, 
           <AccordionContent className="flex flex-col gap-5">
             <div>
               <h3 className="font-bold mb-5">Descripción</h3>
-              <span>{ parse(l.description) }</span>
+              <span>{ l.description }</span>
             </div>
             <div>
               <h3 className="font-bold mb-5">Contenido de la lección</h3>
