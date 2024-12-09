@@ -32,6 +32,7 @@ const AppliactionsPage = async () => {
   console.log('applications: ', applications);
   const queryParams = await getQueryParams();
 
+  console.log('applications: ', applications);
   return (
     <main>
       <BreadCrumb />
