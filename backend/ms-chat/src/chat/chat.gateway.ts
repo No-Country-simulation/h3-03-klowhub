@@ -1,13 +1,24 @@
-import { WebSocketGateway, SubscribeMessage, MessageBody } from "@nestjs/websockets";
+import { WebSocketGateway, SubscribeMessage, WebSocketServer } from "@nestjs/websockets";
 import { ChatService } from "./chat.service";
+import { Server, Socket } from "socket.io";
 
-@WebSocketGateway()
+
+@WebSocketGateway({ namespace: '/chat', cors: true })
 export class ChatGateway {
-  constructor(private readonly chatService: ChatService){}
+  @WebSocketServer()
+  server: Server;
+
+  constructor(private chatService: ChatService) {}
 
   @SubscribeMessage('sendMessage')
-  async handleMessage(@MessageBody() message: {senderId: string; receiverId: string; content: string}){
-    const saveMessage = await this.chatService.saveMessage(message);
-    return saveMessage;
+  async handleMessage(client: Socket, payload: any): Promise<void> {
+    const { chatId, userId, content, fileUrl } = payload;
+    const message = await this.chatService.sendMessage(chatId, userId, content, fileUrl);
+    this.server.to(`chat-${chatId}`).emit('newMessage', message);
+  }
+
+  @SubscribeMessage('joinChat')
+  handleJoinChat(client: Socket, chatId: number): void {
+    client.join(`chat-${chatId}`);
   }
 }
