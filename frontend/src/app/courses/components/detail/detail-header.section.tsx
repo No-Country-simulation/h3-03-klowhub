@@ -18,7 +18,7 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
     promotionalVideo,
     lessons
 }) => {
-  console.log('promotionalVideo: ', promotionalVideo);
+  // console.log('promotionalVideo: ', promotionalVideo);
 
     const [currentVideo, setCurrentVideo] = useState<{ 
         type: "video" | "youtube"; 

@@ -1,14 +1,14 @@
 "use client"
 
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import { AppInfo } from "./app-info.section";
-import { AppProps } from "./app-detail.types";
 import { ShareSection } from "@/app/courses/components/detail/share-section";
-import { CourseInfoSection } from "@/app/courses/components/detail/info.section";
+import PageFilters from "@/components/page-filters.component";
 import { ReviewsSection } from "@/app/courses/components/detail/reviews.section";
 import { reviews } from "@/mocks/reviews.mocks";
 import { InstructorDetail } from "@/app/courses/components/detail/instructor-detail.section";
 import { instructor } from "@/mocks/instructor.mock";
+import List from "@/components/list/list.component";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { AppInclude } from './app-include.section';
 import { Popover } from "@/components/popover/popover.component";
 import { useApplicationData } from "./hooks/use-application-data.hook";
+import { Check } from "lucide-react";
 
 type Props = {
     children?: ReactNode
@@ -25,24 +26,9 @@ type Props = {
 export const AppDetail: FC<Props> = () => {
 
     // const [data, setData] = useState<AppProps>();
-    const { pageData, submitCourse } = useApplicationData();
+    const { pageData, submitApplication } = useApplicationData();
+  console.log('pageData: ', pageData);
     const [showGreeter, setShowGreeter] = useState(false);
-
-    // useEffect(() => {
-    //
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch("/temp/json/app-detail.json");
-    //             const result = await response.json();
-    //             setData(result);
-    //         } catch (error) {
-    //             console.error("error fetching data:", error);
-    //         }
-    //     };
-    //
-    //     fetchData();
-    //
-    // }, []);
 
     const handleShowDesktopView = () => {
         setShowGreeter(true)
@@ -52,31 +38,43 @@ export const AppDetail: FC<Props> = () => {
         setShowGreeter(false);
     }
 
+  const filters = [
+    { label: "Funcionalidades", items: pageData?.applicationData.functionalities || [] },
+    { label: "Herramientas y plataformas", items: pageData?.applicationData.toolsAndPlatforms || [] },
+    { label: "Sector", items: pageData?.applicationData.sector || [] },
+    { label: "Tags", items: pageData?.applicationData.tags || [] },
+  ];
+
     return pageData && (
         <div className="min-h-screen">
             <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-                    <AppInfo {...pageData.applicationData}>
+                    <AppInfo {...pageData.applicationData} submitApplication={submitApplication}>
                         <ShareSection />
-                        {/* <AppPeechSection */}
+                          <List 
+                            header="Para quién es esta App" 
+                            subheader="Esta App de AppSheet es para ti sí:"
+                            items={pageData.applicationData.targetAudience}
+                          />
+                          <List 
+                            header="Vistas de la App" 
+                            subheader="Estás serán las pantallas (Vistas) a las que podrás acceder desde la app de facturas de AppSheet:"
+                            items={pageData.applicationData.views}
+                          />
+                       {/* <AppPeechSection */}
                         {/*     peechTitle={pageData.applicationData.pitchTitle} */}
                         {/*     peechDescription={data.peechDescription} */}
                         {/* /> */}
-                        <CourseInfoSection
-                            sector={pageData.applicationData.sector}
-                            toolsAndPlatforms={pageData.applicationData.toolsAndPlatforms}
-                            functionalities={pageData.applicationData.functionalities}
-                            tags={pageData.applicationData.tags}
-                        />
+                        <PageFilters filters={filters} />
                         <ReviewsSection reviews={reviews} />
                     </AppInfo>
                 <div className="space-y-6">
 
                         <div className="flex flex-col items-center gap-6 mt-4">
                             <Image
-                                src={pageData.applicationData.mobileScreenshoot.fileMetadata.url}
-                                alt={pageData.applicationData.mobileScreenshoot.fileMetadata.alt}
-                                height={pageData.applicationData.mobileScreenshoot.fileMetadata.height}
-                                width={pageData.applicationData.mobileScreenshoot.fileMetadata.width}
+                                src={pageData.applicationData.mobileLink}
+                                alt=""
+                                height={384}
+                                width={192}
                                 className="w-48 rounded-3xl h-96 border-8 border-[#374151]"
                             />
                             <Button
@@ -116,11 +114,11 @@ export const AppDetail: FC<Props> = () => {
             {showGreeter && (
                 <Popover onClose={handleCloseDesktopView}>
                     <Image
-                        className="w-ful h-full rounded-lg"
-                        src={pageData.applicationData.desktopScreenshot.fileMetadata.url}
-                        alt={pageData.applicationData.desktopScreenshot.fileMetadata.alt}
-                        height={pageData.applicationData.desktopScreenshot.fileMetadata.height}
-                        width={pageData.applicationData.desktopScreenshot.fileMetadata.width}
+                        className="w-full h-full rounded-lg"
+                        src={pageData.applicationData.desktopLink}
+                        alt=""
+                        width={1920}
+                        height={1080}
                     />
                 </Popover>
             )}

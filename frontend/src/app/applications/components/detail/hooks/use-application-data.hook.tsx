@@ -42,7 +42,7 @@ export const useApplicationData = () => {
     })()
   }, [applicationContext, params.id])
 
-  return { pageData, submitCourse: applicationContext?.submitApplication }
+  return { pageData, submitApplication: applicationContext?.submitApplication }
 };
 
 

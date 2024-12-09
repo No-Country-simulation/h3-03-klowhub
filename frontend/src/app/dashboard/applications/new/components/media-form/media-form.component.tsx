@@ -68,16 +68,16 @@ const MediaForm = () => {
           <h3>Versión Desktop</h3>
           <Input 
             name="desktopLink" type="link" 
-            label="Enlace" { ...controlledCommonProps } 
             className="w-full col-span-2"
+            { ...controlledCommonProps } 
           />
         </div>
         <div className="col-span-2 flex flex-col gap-5">
-          <h3>Versión Desktop</h3>
+          <h3>Versión Mobile</h3>
           <Input 
             name="mobileLink" type="link" 
-            label="Enlace" { ...controlledCommonProps } 
             className="w-full col-span-2"
+            { ...controlledCommonProps } 
           />
         </div>
       </form>

@@ -19,6 +19,7 @@ export const breakApplication = (data: ApplicationFormData): Application => {
 
   return {
     ...general,
+    ...data.details,
     ...data.media,
     promotion 
   }

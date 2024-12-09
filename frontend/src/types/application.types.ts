@@ -27,8 +27,8 @@ export type ApplicationDetails = {
 
 export type ApplicationMedia = {
   coverImg: TImage | null
-  desktopScreenshot: TImage | null
-  mobileScreenshoot: TImage | null
+  // desktopScreenshot: TImage | null
+  // mobileScreenshot: TImage | null
   desktopLink: string 
   mobileLink: string
   assets: (TImage | TVideo)[]

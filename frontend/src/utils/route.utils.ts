@@ -1,3 +1,5 @@
+// these are server only functions
+
 import { headers } from "next/headers";
 
 // for this to work the /src/middleware.ts should set the corresponding header
@@ -18,3 +20,4 @@ export const getPathname = async () => {
   const pathname = headerList.get("x-current-path") || '';
   return pathname
 };
+

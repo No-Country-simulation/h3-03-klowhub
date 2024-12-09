@@ -1,6 +1,6 @@
 {
   "name": "Gestión Ágil de Inventarios",
-  "summarizedDescription": "Una solución eficiente para gestionar inventarios en tiempo real, optimizando recursos y procesos.",
+  "shortDescription": "Una solución eficiente para gestionar inventarios en tiempo real, optimizando recursos y procesos.",
   "platform": "powerapps",
   "language": { "name": "español", "label": "Español" },
   "sector": [

@@ -16,7 +16,7 @@ import { ShareSection } from "./share-section";
 
 import { InstructorDetail } from "./instructor-detail.section";
 import { CourseProgramSection } from "./course-program.section";
-import { CourseInfoSection } from "./info.section";
+import PageFilters from "../../../../components/page-filters.component";
 import { useSearchParams } from "next/navigation";
 import { instructorPitch } from "@/mocks/course-detail";
 
@@ -33,7 +33,14 @@ export const CourseDetail: FC<Props> = ({ children }) => {
   const section = searchParams.get("section");
 
   const { pageData, submitCourse } = useCourseData();
-  console.log('pageData: ', pageData);
+
+  const filters = [
+    { label: "Pilar de contenido", items: pageData?.courseData.coreContent || [] },
+    { label: "Funcionalidades", items: pageData?.courseData.functionalities || [] },
+    { label: "Herramientas y plataformas", items: pageData?.courseData.toolsAndPlatforms || [] },
+    { label: "Sector", items: pageData?.courseData.sector || [] },
+    { label: "Tags", items: pageData?.courseData.tags || [] },
+  ];
 
     return pageData && (
         <div className="min-h-screen space-y-10">
@@ -44,12 +51,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
                     <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
                     <RequirementsSection requirements={pageData.courseData.prevRequirements} />
                     <IncludeSection />
-                    <CourseInfoSection
-                        coreContent={pageData.courseData.coreContent}
-                        sector={pageData.courseData.sector}
-                        toolsAndPlatforms={pageData.courseData.toolsAndPlatforms}
-                        functionalities={pageData.courseData.functionalities}
-                    />
+                    <PageFilters filters={filters} />
           { pageData.courseData.reviews &&
             <ReviewsSection reviews={pageData.courseData.reviews} />
           }

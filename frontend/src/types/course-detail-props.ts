@@ -36,13 +36,11 @@ export type CourseDetailHeader = {
     // };
 }
 
-export interface AppInfoProps {
+export interface CourseInfoProps {
     sector: string[];
-
     tags: string[];
-
+    coreContent: string[];
     toolsAndPlatforms: string[];
-
     functionalities: string[];
 }
 
@@ -52,7 +50,7 @@ export interface ProgramModule {
 }
 
 export interface CourseProps {
-    name: string;
+    title: string;
     shortDescription: string
     rating?: number
     ratingCount?: number

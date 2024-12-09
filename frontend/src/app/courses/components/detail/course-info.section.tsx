@@ -14,14 +14,10 @@ import { useSearchParams, usePathname, ReadonlyURLSearchParams } from 'next/navi
 import RouteBtn from '@/components/route-btn/route-btn.component';
 import { useRouter } from 'next/navigation';
 import Greeter from "@/components/greeter/greeter.component";
+import { updateSearchParams } from '@/utils/client.utils';
 
 import { instructor } from '@/mocks/instructor.mock';
 
-  const setParam = (key: string, value: string, searchParams: ReadonlyURLSearchParams) => {
-    const params = new URLSearchParams(searchParams);
-    params.set(key, value)
-    return params.toString()
-  };
 
 export const CourseInfo: FC<CourseProps> = ({
   submitCourse,
@@ -36,6 +32,7 @@ export const CourseInfo: FC<CourseProps> = ({
     promotionalVideo
 }) => {
   const [ newCourseId, setNewCourseId ] = useState<string>()
+  console.log('promotionalVideo: ', promotionalVideo);
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
@@ -92,7 +89,7 @@ export const CourseInfo: FC<CourseProps> = ({
             </div>
             <div className='w-full text-center'>
                 <Link
-                    href={`${pathname}?${setParam("isExpanded", String(!isExpanded), searchParams)}#detail-container`}
+                    href={`${pathname}?${updateSearchParams("isExpanded", String(!isExpanded), searchParams)}#detail-container`}
                     className="text-purple-400"
                     scroll={!isExpanded ? false : true}
                 >

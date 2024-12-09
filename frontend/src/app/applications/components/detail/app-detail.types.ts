@@ -1,4 +1,4 @@
-import { TImage } from "@/types/global.types";
+import { TDocument, TImage, TVideo } from "@/types/global.types";
 import { ReactNode } from "react";
 import { platform } from '../../../../consts/filters.consts';
 
@@ -16,11 +16,12 @@ export type AppProps = {
     // peechDescription: string
     platform: string
 
-    mobileScreenshoot: TImage
-
-    desktopScreenshot: TImage
+    // mobileScreenshot: TImage
+    //
+    // desktopScreenshot: TImage
     
     sector: string[];
+  assets: (TImage | TVideo | TDocument)[]
 
     coreContent?: string[];
 
@@ -31,6 +32,7 @@ export type AppProps = {
     appIncludes: string[];
 
     children: ReactNode[];
+  submitApplication?: () => Promise<string>
 }
 
 export type AppDetailHeader = {
@@ -39,6 +41,7 @@ export type AppDetailHeader = {
     rating?: number
     ratingCount?: number
     coverImg: TImage
+  assets: (TImage | TVideo | TDocument)[]
 }
 
 export type AppIncludeProps = {
