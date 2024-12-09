@@ -67,13 +67,13 @@ const PromotionsSection = () => {
           message="Ya está disponible para que personas de todo el mundo la descubran y aprovechen."
         >
           <Link 
-            href={`/courses/${newAppId}`}
+            href={`/applications/${newAppId}`}
             className={`${buttonVariants({ variant: "outline" })} px-10 bg-primary-500 border-none hover:bg-secondary-400`}
           >
             Ver aplicaión publicada
           </Link>
           <Link
-            href={`/dashboard/courses`}
+            href={`/dashboard/applications`}
             className={`${buttonVariants({ variant: "outline" })} px-10 border-primary-200 text-primary-200`}
           >
             Volver al dashboard

@@ -3,7 +3,7 @@
 import { FC, ReactNode, useState } from "react";
 import { AppInfo } from "./app-info.section";
 import { ShareSection } from "@/app/courses/components/detail/share-section";
-import PageFilters from "@/components/page-filters.component";
+import PageFilters from "@/components/page-filters/page-filters.component";
 import { ReviewsSection } from "@/app/courses/components/detail/reviews.section";
 import { reviews } from "@/mocks/reviews.mocks";
 import { InstructorDetail } from "@/app/courses/components/detail/instructor-detail.section";
