@@ -31,7 +31,7 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
   const {
     id,
     title,
-    coverImg: { fileMetadata: { width, height, url } },
+    coverImg,
     shortDescription,
     platform,
     tags,
@@ -60,9 +60,9 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
           `}
         >
           <Image 
-            width={width} height={height} 
+            width={coverImg.fileMetadata.width} height={coverImg.fileMetadata.height} 
             alt=""
-            src={url} 
+            src={coverImg.fileMetadata.url} 
             objectFit="cover"
             className="h-full object-cover"
           />

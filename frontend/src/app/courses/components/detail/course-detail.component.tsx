@@ -16,7 +16,7 @@ import { ShareSection } from "./share-section";
 
 import { InstructorDetail } from "./instructor-detail.section";
 import { CourseProgramSection } from "./course-program.section";
-import PageFilters from "../../../../components/page-filters.component";
+import PageFilters from "../../../../components/page-filters/page-filters.component";
 import { useSearchParams } from "next/navigation";
 import { instructorPitch } from "@/mocks/course-detail";
 
@@ -51,7 +51,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
                     <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
                     <RequirementsSection requirements={pageData.courseData.prevRequirements} />
                     <IncludeSection />
-                    <PageFilters filters={filters} />
+                    <PageFilters filters={filters} cols={filters.length} />
           { pageData.courseData.reviews &&
             <ReviewsSection reviews={pageData.courseData.reviews} />
           }

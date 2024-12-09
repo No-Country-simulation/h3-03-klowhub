@@ -10,11 +10,10 @@ type Props = {
 }
 
 const PageFilters: FC<Props> = ({ filters }) => {
-
   return (
     <div className="space-y-2">
       <h3 className="text-sm font-semibold">Información y Funcionalidades de la App</h3>
-      <div className={`grid grid-cols-1 md:grid-cols-${filters.length} gap-4 border border-[#D194E2] rounded-md p-4`}>
+      <div className={`grid grid-cols-1 gap-4 border border-[#D194E2] rounded-md p-4`} style={{ gridTemplateColumns: `repeat(${filters.length}, minmax(0, 1fr))` }}>
         {
           filters.map((filter, idx) => (
             <FilterDisplayer header="Pilar de contenido" key={`filter-${idx}`}>

@@ -53,7 +53,7 @@ export const AppHeader: FC<AppDetailHeader> = ({
       <div className="bg-[#FFFFFF0D] p-3 rounded-lg">
         <h2 className="text-sm font-semibold mb-2">Vista Previa</h2>
         <div className="flex space-x-4 overflow-x-auto">
-          <div className="flex-shrink-0 w-60 cursor-pointer h-40">
+          <div className="flex-shrink-0 w-60 cursor-pointer h-40 grow-0">
             <Image 
               src={coverImg.fileMetadata.url}
               width={coverImg.fileMetadata.width} 
