@@ -1,12 +1,12 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component"
 import { Button } from "@/components/ui/button";
+import { transactionsData } from "@/mocks/transactions.mocks";
 import { getQueryParams } from "@/utils/route.utils";
 import { Inter } from "next/font/google";
-import MyCoursesDesktopView from "./views/desktop.view";
-import MyCoursesMobileView from "./views/mobile.view";
 import { filterData, sortData } from "@/utils/filterdata.utils";
-
-import { transactionsData } from "@/mocks/transactions.mocks";
+import { products } from "@/mocks/products.mocks";
+import MyAppsDesktopView from "./views/desktop.view";
+import MyAppsMobileView from "./views/mobile.view";
 import { TQuickView } from "@/components/product-card/product-card.types";
 
 const endpoint = "http://localhost:3000/api/applications?withAuthor=true";
@@ -23,7 +23,7 @@ const inter = Inter({
     display: "swap",
 });
 
-const MyCoursesPage = async () => {
+const MyAppsPage = async () => {
 
     const applications = await getProducts(endpoint);
 
@@ -38,14 +38,14 @@ const MyCoursesPage = async () => {
             </div>
             <div className="flex flex-col gap-5">
                 <div className="mt-14 flex flex-col gap-5 sm:flex-row sm:justify-between sm:items-center">
-                    <h3 className="text-base font-bold">Mis cursos</h3>
-                    <Button className="sm:w-[250px] w-full">Crear curso</Button>
+                    <h3 className="text-base font-bold">Mis aplicaciones</h3>
+                    <Button className="sm:w-[250px] w-full">Crear aplicacion</Button>
                 </div>
-                <MyCoursesDesktopView transactionsData={sortedData} products={applications.data} />
-                <MyCoursesMobileView transactionsData={sortedData} products={applications.data} />
+                <MyAppsDesktopView transactionsData={sortedData} products={applications.data} />
+                <MyAppsMobileView transactionsData={sortedData} products={applications.data} />
             </div>
         </main>
     )
 }
 
-export default MyCoursesPage
+export default MyAppsPage

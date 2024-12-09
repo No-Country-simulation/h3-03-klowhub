@@ -31,3 +31,21 @@ export type ProjectFormData = {
 
 export type Project = ProjectInfo & ProjectDetails
 
+export type ProjectCard = {
+  id: number,
+  img : {
+    url: string,
+      width: number,
+      height: number,
+      alt: string
+  }
+  description: string,
+  platform : "PowerApps" | "AppSheet",
+  tags: string[],
+  rating: number,
+  ratingCount: number,
+  status: "En curso" | "Terminado",
+  initialDate: string,
+  finalDate: string,
+}
+
