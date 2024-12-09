@@ -19,4 +19,13 @@ export class ChatController {
   async getMessages(@Param('chatId') chatId: number) {
     return await this.chatService.getMessages(chatId);
   }
+  @Post(':chatId/messages')
+  async createMessage(
+    @Param('chatId') chatId: number,
+    @Body('userId') userId: number,
+    @Body('content') content: string,
+    @Body('fileUrl') fileUrl?: string,
+  ) {
+    return await this.chatService.createMessage(chatId, userId, content, fileUrl);
+  }
 }

@@ -36,4 +36,11 @@ export class ChatService {
   async getMessages(chatId: number): Promise<Message[]> {
     return await this.messageRepo.find({ where: { chatId }, order: { createdAt: 'ASC' } });
   }
+  async createMessage(chatId: number, userId: number, content: string, fileUrl?: string) {
+    const chat = await this.chatRepo.findOne({ where: { id: chatId } });
+    if (!chat) throw new Error('Chat not found');
+
+    const message = this.messageRepo.create({ chat, userId, content, fileUrl });
+    return await this.messageRepo.save(message);
+  }
 }
