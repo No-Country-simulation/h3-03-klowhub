@@ -1,9 +1,11 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component"
+import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { transactionsData } from "@/mocks/transactions.mocks";
 import { getQueryParams } from "@/utils/route.utils";
 import { Inter } from "next/font/google";
 import { filterData, sortData } from "@/utils/filterdata.utils";
+import Link from "next/link";
 import { products } from "@/mocks/products.mocks";
 import MyAppsDesktopView from "./views/desktop.view";
 import MyAppsMobileView from "./views/mobile.view";
@@ -39,7 +41,7 @@ const MyAppsPage = async () => {
             <div className="flex flex-col gap-5">
                 <div className="mt-14 flex flex-col gap-5 sm:flex-row sm:justify-between sm:items-center">
                     <h3 className="text-base font-bold">Mis aplicaciones</h3>
-                    <Button className="sm:w-[250px] w-full">Crear aplicacion</Button>
+                    <Link href="/dashboard/courses/new?section=general" className={`${buttonVariants({ variant: "default" })} sm:w-[250px] w-full`}>Crear aplicación</Link>
                 </div>
                 <MyAppsDesktopView transactionsData={sortedData} products={applications.data} />
                 <MyAppsMobileView transactionsData={sortedData} products={applications.data} />

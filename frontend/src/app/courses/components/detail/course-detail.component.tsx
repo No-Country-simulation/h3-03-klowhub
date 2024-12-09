@@ -51,7 +51,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
                     <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
                     <RequirementsSection requirements={pageData.courseData.prevRequirements} />
                     <IncludeSection />
-                    <PageFilters filters={filters} cols={filters.length} />
+                    <PageFilters filters={filters} />
           { pageData.courseData.reviews &&
             <ReviewsSection reviews={pageData.courseData.reviews} />
           }
