@@ -1,0 +1,45 @@
+{
+  "learningSubjects": [
+    "Crear aplicaciones personalizadas con PowerApps.",
+    "Diseñar flujos de trabajo automatizados y seguros.",
+    "Integrar aplicaciones con herramientas populares como Power BI y Google Sheets.",
+    "Configurar reportes dinámicos y notificaciones automatizadas.",
+    "Gestionar permisos y accesibilidad en tus aplicaciones."
+  ],
+  "prevRequirements": [
+    "Conocimientos básicos en el uso de hojas de cálculo como Google Sheets o Excel.",
+    "Cuenta activa en Microsoft Power Platform.",
+    "Familiaridad básica con procesos empresariales."
+  ],
+  "fullDescription": "En este curso aprenderás a usar PowerApps para diseñar, construir e implementar aplicaciones personalizadas que optimicen procesos empresariales sin necesidad de conocimientos de programación. Desde la creación de interfaces intuitivas hasta la integración con herramientas como Power BI y Google Sheets, este curso está diseñado para transformar la forma en que gestionas proyectos y datos. Además, explorarás cómo configurar flujos de trabajo automatizados y reportes dinámicos, mejorando la eficiencia en tiempo real.",
+  "coverImg": {
+    "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    "fileType": "image",
+    "fileMetadata": {
+      "url": "https://res.cloudinary.com/dvrgfyvou/image/upload/v1733291229/ymunalrnflfaq9ntsfn1.webp",
+      "size": 55508,
+      "width": 800,
+      "height": 800,
+      "format": "webp",
+      "mimeType": "image/webp",
+      "created_at": "2024-12-04T05:47:09Z"
+    }
+  },
+  "promotionalVideo": {
+    "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    "fileType": "video",
+    "fileMetadata": {
+      "duration": 9.08,
+      "size": 5596,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+      "thumbnail_width": 1920,
+      "thumbnail_height": 1080,
+      "width": 400,
+      "height": 300,
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "2024-12-04T03:05:07Z"
+    }
+  }
+}

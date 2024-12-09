@@ -2,6 +2,7 @@
 import { NextRequest } from "next/server";
 import { promises as fs, createReadStream } from 'fs';
 import path from "path";
+import authorsMock from "@/mocks/authors.mock.json"
 
 export async function streamVideo (req: NextRequest) {
   try {
@@ -28,4 +29,8 @@ export async function streamVideo (req: NextRequest) {
   } catch (err) {
     throw err;
   }
+};
+
+export const attachAuthors = (entity: object[]) => {
+  return entity.map((c, idx) => ({ ...c, author: authorsMock[idx] }))
 };

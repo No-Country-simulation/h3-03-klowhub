@@ -21,14 +21,14 @@ const useUserContent = () => {
         return {
           id: c.id,
           title: c.title,
-          img: c.img,
-          description: c.about,
+          coverImg: c.coverImg,
+          shortDescription: c.shortDescription,
           platform: c.platform,
           tags: c.tags,
           rating: c.rating,
           ratingCount: c.ratingCount,
           price: c.price,
-          about: c.about
+          fullDescription: c.fullDescription
         }
       });
 
@@ -36,16 +36,17 @@ const useUserContent = () => {
         return {
           id: a.id,
           title: a.title,
-          img: a.img,
-          description: a.about,
+          coverImg: a.coverImg,
+          shortDescription: a.shortDescription,
           platform: a.platform,
           tags: a.tags,
           rating: a.rating,
           ratingCount: a.ratingCount,
           price: a.price,
-          about: a.about
+          fullDescription: a.fullDescription
         }
       });
+      console.log('applicationCards: ', applicationCards);
 
       setContent({ applications: applicationCards, courses: courseCards })
     })()

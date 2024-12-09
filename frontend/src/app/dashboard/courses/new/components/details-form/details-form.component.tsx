@@ -1,26 +1,31 @@
 "use client"
 
+import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { CourseDetails } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
-import { useContext } from "react";
-import { CourseCtx } from "../../context/course-form.context";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
+import useCourseContext from "../../hooks/use-course-context.hook";
+import detailsMock from "./course-detail-form.mock.json"
 
-const GeneralForm = () => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state, dispatch } = courseCtx
+const DetailsForm = () => {
+  const { state, dispatch } = useCourseContext();
 
   const {
+    commonProps,
     controlledCommonProps, 
     handleSubmit,
     formState: { isDirty }
   } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, state.details);
+
+  useEffect(() => {
+    console.log("inserting mocked data...");
+    console.log('detailsMock: ', detailsMock);
+
+    dispatch(setDetailsData(detailsMock))
+  }, [dispatch])
 
   return (
     <>
@@ -38,15 +43,24 @@ const GeneralForm = () => {
           placeholder="¿Qué necesitan saber?"
         />
         <Input 
-          name="courseContent" type="textarea" 
-          label="Hacé una descripción detallada del contenido y de los beneficios que ofrece." { ...controlledCommonProps } 
+          name="fullDescription" type="textarea" 
+          label="Hacé una descripción detallada del contenido y de los beneficios que ofrece." 
           placeholder="Hacé una descripción detallada del contenido y de los beneficios que ofrece."
+          { ...commonProps } 
         />
         <Input 
           name="coverImg" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
-          dropzoneLabel="Sube una imagen para promocionar tu curso o lección" { ...controlledCommonProps }
-          className="w-full md:w-64"
+          label="Subí una imagen que represente tu curso de manera atractiva para utilizarla de portada" 
+          dropzoneLabel="Subí una imagen para promocionar tu curso o lección" 
+          { ...controlledCommonProps }
+        />
+        <Input 
+          name="promotionalVideo" type="upload"
+          filetypes={{ "video/mp4": [".mp4"] }}
+          label="Subí un video que sirva de introducción general a tu curso o lección" 
+          dropzoneLabel="Subí un video para introducir tu curso o lección" 
+          { ...controlledCommonProps }
         />
       </form>
       <div className="
@@ -73,4 +87,4 @@ const GeneralForm = () => {
   )
 };
 
-export default GeneralForm
+export default DetailsForm

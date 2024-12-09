@@ -1,6 +1,6 @@
-import { TProduct } from "@/components/product-card/product-card.types";
+import { TProductCard } from "@/components/product-card/product-card.types";
 
-export const getProduct = (products: TProduct[], currentProductId: number) => {
-  const currentProduct = products.find(p => p.product.id === currentProductId)
+export const getProduct = <T extends TProductCard>(products: T[], currentProductId: string) => {
+  const currentProduct = products.find(p => p.id === currentProductId)
   return currentProduct
 };

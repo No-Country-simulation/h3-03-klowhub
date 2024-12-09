@@ -1,25 +1,19 @@
 import { TImage } from "@/types/global.types"
+import { AuthorInfo } from "@/types/global.types"
 
-export type ProductCard = {
-  id: number
+export type TProductCard = {
+  id: string
   title: string
-  img: TImage
-  description: string
+  coverImg: TImage
+  shortDescription: string
   platform: string
   tags: string[]
   rating: number
   ratingCount: number
   price: number
-  about: string
+  fullDescription: string
 }
 
-export type AuthorInfo = {
-  name: string
-  about: string
-  img: TImage
-}
-
-export type QuickView = {
-  product: ProductCard
+export type TQuickView = TProductCard & {
   author: AuthorInfo
 }

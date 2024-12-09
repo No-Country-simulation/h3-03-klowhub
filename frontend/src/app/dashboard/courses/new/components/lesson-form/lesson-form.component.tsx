@@ -6,27 +6,30 @@ import { Lesson } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
-import { useContext } from "react";
-import { CourseCtx } from "../../context/course-form.context";
-import { setModulesData } from "../../context/course-form.actions";
-import { FieldValues, Path, UseFormGetValues, UseFormSetValue } from "react-hook-form";
+import { UseFormGetValues, UseFormSetValue } from "react-hook-form";
 import { X } from "lucide-react";
+import useCourseContext from "../../hooks/use-course-context.hook";
+import { Module } from "@/types/courses.types";
 
-type Props<F extends FieldValues> = {
+type Props = {
   lessonIdx: number
   setShowLessonForm: Dispatch<SetStateAction<boolean>>
-  updateModule: UseFormSetValue<F>
-  getValues: UseFormGetValues<F>
+  updateModule: UseFormSetValue<Module>
+  getValues: UseFormGetValues<Module>
   setCurrentLesson: Dispatch<SetStateAction<number>>
 }
 
-const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updateModule, getValues, setCurrentLesson }: Props<F>) => {
+const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, setCurrentLesson }: Props) => {
+  const { state } = useCourseContext();
+
   const {
     controlledCommonProps, 
     handleSubmit,
-    reset,
+    watch,
+    setValue
   } = useGenerateForm<Lesson>(LESSON_INITIAL_STATE, getValues("lessons")[lessonIdx] || LESSON_INITIAL_STATE);
-  console.log('lessonIdx: ', lessonIdx);
+
+  const free = watch("free");
 
   return (
     <>
@@ -44,7 +47,6 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
             onClick={() => { 
               setCurrentLesson(NaN)
               setShowLessonForm(false) 
-              reset()
             }}
           />
         </div>
@@ -53,40 +55,41 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
           label="Descripción" { ...controlledCommonProps } 
           placeholder="Detallá el contenido de la lección"
         />
-        <h3 className="col-span-2 font-bold">Contenido de la lección</h3>
-        <Input 
-          name="link" type="link" 
-          label="Enlace" { ...controlledCommonProps } 
-          className="w-full"
+        <Input
+          name="free" type="boolean"
+          options={[ "Sí", "No" ]}
+          label="¿Es una lección gratuita?" 
+          reactFn={() => {
+            setValue("video", null)
+            setValue("link", null)
+          }}
+          { ...controlledCommonProps }
         />
-        <Input 
-          name="videos" type="upload"
-          filetypes={{ "image/*": [".png", ".jpg"] }}
-          dropzoneLabel="Sube los videos que deseas agregar a esta lección" { ...controlledCommonProps }
-          isMulti
-          className="w-full"
-          limit={1}
-        />
-        <h3 className="col-span-2 font-bold">Material adicional</h3>
+        { free || state.general.freeCourse ?
+          <Input 
+            name="link" type="link" 
+            label="Contenido de la lección" 
+            className="w-full col-span-2"
+            { ...controlledCommonProps } 
+          /> : 
+          <Input 
+            name="video" type="upload"
+            filetypes={{ "video/mp4": [".mp4"] }}
+            label="Contenido de la lección" 
+            dropzoneLabel="Sube el video de esta lección" { ...controlledCommonProps }
+            className="w-full"
+          />
+        }
         <Input 
           filetypes={{ "application/pdf": [".pdf"] }}
-          name="resources" type="upload"
+          name="documents" type="upload"
           dropzoneLabel="Sube documentos extra como manuales o guías." { ...controlledCommonProps }
           isMulti
-          className="w-full md:w-64"
+          className="w-full"
           limit={4}
+          label="Material adicional"
         />
         <div className="flex justify-end gap-5">
-          {/* <Button  */}
-          {/*   variant="outline" className="px-14 self-end border-red-500 text-red-500 hover:bg-red-500" */}
-          {/*   onClick={() => {  */}
-          {/*     setCurrentLesson(NaN) */}
-          {/*     setShowLessonForm(false)  */}
-          {/*     reset() */}
-          {/*   }} */}
-          {/* > */}
-          {/*   Cancelar */}
-          {/* </Button> */}
           <Button 
             type="button"
             className="px-14 self-end" 
@@ -101,7 +104,6 @@ const LessonForm = <F extends FieldValues>({ lessonIdx, setShowLessonForm, updat
                 }));
                 updateModule("lessons", updatedLessons)
               };
-              reset()
               setCurrentLesson(NaN)
               setShowLessonForm(false)
             })}

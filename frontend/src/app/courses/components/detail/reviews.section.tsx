@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { review } from "@/components/shared/reviews/review.types";
+import { TReview } from "@/components/shared/reviews/review.types";
 import Rating from "@/components/rating/rating.component";
 import { Review } from "@/components/shared/reviews/reviews";
 
 interface ReviewListProps {
-    reviews: review[];
+    reviews: TReview[];
 }
 
 export const ReviewsSection: FC<ReviewListProps> = ({ reviews }) => {

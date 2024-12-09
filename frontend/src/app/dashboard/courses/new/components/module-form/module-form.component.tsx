@@ -2,17 +2,15 @@ import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { Module } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
 import { MODULE_INITIAL_STATE } from "../modules-section/modules-section.consts";
-import { SetStateAction, useContext, Dispatch } from "react";
-import { CourseCtx } from "../../context/course-form.context";
+import { SetStateAction, Dispatch } from "react";
 import { Button } from "@/components/ui/button";
 import { addNewModule } from "../../context/course-form.actions";
 import { setModulesData } from "../../context/course-form.actions";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import parse from "html-react-parser"
-import { Pencil, Plus, X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { useState } from "react";
 import LessonForm from "../lesson-form/lesson-form.component";
 import LessonsSection from "../lessons-section/lessons-section.component";
+import useCourseContext from "../../hooks/use-course-context.hook";
 
 type Props = {
   moduleIdx: number
@@ -21,11 +19,7 @@ type Props = {
 }
 
 const ModuleForm = ({ moduleIdx, setShowModuleForm, setCurrentModule }: Props) => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state, dispatch } = courseCtx
+  const { state, dispatch } = useCourseContext();
 
   const {
     controlledCommonProps, 

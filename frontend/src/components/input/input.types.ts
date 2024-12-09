@@ -3,7 +3,7 @@ import { OptionsOrGroups, GroupBase } from "react-select";
 import { ReactNode } from "react";
 import { FileType } from "@/types/global.types";
 
-type FieldType = "text" | "link" | "textarea" | "number" | "checkbox" | "date" | "time" | "password" | "textarea";
+type FieldType = "text" | "link" | "textarea" | "checkbox" | "date" | "time" | "password" | "textarea";
 
 type RadioOption = {
   value: string,
@@ -23,10 +23,21 @@ type CommonInput<T extends FieldValues> = {
   type: FieldType
 } & CommonProps<T>
 
+type NumberInput<T extends FieldValues> = {
+  type: "number"
+  isPercentage?: boolean
+} & CommonProps<T>
+
+type BooleanInput<T extends FieldValues> = {
+  type: "boolean"
+  options: [ string, string ] 
+  reactFn?: () => void
+} & Omit<ControlledInput<T>, "placeholder">
+
 type RadioInput<T extends FieldValues> = {
   type: "radio-group"
   options: [ RadioOption, RadioOption ] 
-} & Omit<CommonProps<T>, "placeholder">
+} & Omit<ControlledInput<T>, "placeholder">
 
 type ControlledInput<T extends FieldValues> = {
   control: Control<T>
@@ -56,6 +67,10 @@ type UploadInput<T extends FieldValues> = {
   dropzoneLabel?: string
 } & ControlledInput<T>
 
+type RangeInput<T extends FieldValues> = {
+  type: "range"
+} & ControlledInput<T>
+
 // type LinkInput<T extends FieldValues> = {
 //   type: "link"
 //   isMulti?: boolean
@@ -74,4 +89,14 @@ type SelectInput<T extends FieldValues> = {
   isMulti?: boolean
 } & ControlledInput<T>
 
-export type InputProps<T extends FieldValues> = CommonInput<T> | RadioInput<T> | SelectInput<T> | RichTextInput<T> | UploadInput<T> | ProductSelector<T> | MultitextInput<T>
+export type InputProps<T extends FieldValues> =
+  | CommonInput<T>
+  | RadioInput<T>
+  | BooleanInput<T>
+  | SelectInput<T>
+  | RichTextInput<T>
+  | UploadInput<T>
+  | ProductSelector<T>
+  | MultitextInput<T>
+  | RangeInput<T> 
+  | NumberInput<T> 

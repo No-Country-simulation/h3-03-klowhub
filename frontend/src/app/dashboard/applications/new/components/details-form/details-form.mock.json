@@ -1,0 +1,32 @@
+{
+  "features": [
+    "Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.",
+    "Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.",
+    "Establece prioridades claras y ajusta los plazos según las necesidades del proyecto",
+    "Facilita la comunicación entre los miembros del equipo con espacios compartidos para archivos.",
+    "Diseña tu panel de control para ver lo que más te interesa, desde gráficos de progreso hasta plazos críticos."
+  ],
+  "targetAudience": [
+    "Eres una empresa que quiere obtener su propia aplicación de facturación y presupuestos y el control de su negocio desde cualquier lugar.",
+    "Eres un trabajador freelance o autónomo y quieres ahorrar tiempo y costes en las tareas administrativas que realmente no son las que te aportan ingresos.",
+    "Quieres generar ingresos ofreciendo esta solución a empresas que necesiten digitalizar y automatizar con AppSheet las tareas de facturación y presupuestos.",
+    "Trabajas para una empresa y quieres automatizar y digitalizar determinadas tareas como la facturación y los presupuestos.",
+    "Quieres aprender más sobre AppSheet y quieres conocer cómo se ha creado esta aplicación."
+  ],
+  "views": [
+    "Menú: Menú interactivo con iconos, mucho más intuitivo que los menús superior e inferior propuestos por AppSheet.",
+    "Clientes: Listado de clientes con sus atributos como web, mapa con botón de navegación y siempre interrelacionado con los presupuestos y facturas que se generen, pudiendo acceder a estos desde la ficha del propio cliente.",
+    "Proveedores: Listado de proveedores exactamente igual al de clientes, interrelacionado con las facturas recibidas.",
+    "Presupuestos: Documentos de presupuesto registrados desde la app. Interrelacionado con las facturas y clientes.",
+    "Facturas Emitidas: Documentos de facturas registrados desde la app. Interrelacionado con los presupuestos y clientes.",
+    "Facturas recibidas: Documentos de facturas recibidas registrados desde la app. Interrelacionado con clientes.",
+    "IVA: Pantalla desde la cual podrás acceder a los datos de impuestos a pagar registrados en las facturas tanto emitidas como recibidas.",
+    "Resultado: Pantalla de tipo gráfico de barras donde podrás ver la evolución del beneficio mes a mes durante el año."
+  ],
+  "fullDescription": "<h3><strong>Todo para la gestión de tus proyectos</strong></h3><p><br></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Establece prioridades claras y ajusta los plazos según las necesidades del proyecto</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Facilita la comunicación entre los miembros del equipo con espacios compartidos para archivos.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Diseña tu panel de control para ver lo que más te interesa, desde gráficos de progreso hasta plazos críticos.</li></ol><p><br></p><p>App de Facturas&nbsp;en AppSheet ha sido generada con la finalidad de que&nbsp;autónomos y empresas&nbsp;puedan crear facturas y presupuestos desde su propio teléfono móvil. Sin necesidad de verse obligados a crear las facturas desde un lugar concreto y permitiendo&nbsp;aprovechar cualquier momento&nbsp;para llevar a cabo estas tareas&nbsp;gracias a la tecnología de AppSheet.</p><p><br></p><p>Por ejemplo,&nbsp;uno de los casos más interesantes&nbsp;puede ser el de un autónomo que acude a&nbsp;valorar una obra/instalación a realizar y quiere dar presupuesto a su cliente. Actualmente ese autónomo tiene que llegar a casa después del trabajo y, entre otras muchas cosas, preparar los presupuestos que le han solicitado. Incluso&nbsp;hay trabajadores que dejan esas tareas para el fin de semana.</p><p><br></p><p>El problema de esto es que hasta que este presupuesto es enviado, sus clientes potenciales han buscado otras alternativas y&nbsp;el 80% de las veces los clientes se quedan con el primer presupuesto que reciben, porque las personas buscamos sobre todo la inmediatez. Con esta app de AppSheet, ese trabajador, si tiene claras las tareas a desempeñar en su obra, puede&nbsp;generar su presupuesto en un minuto y enviárselo al correo automáticamente o por WhatsApp, de manera que&nbsp;en la misma cita&nbsp;de valoración puede entregar el presupuesto y concertar la fecha para realizar esa obra o instalación.</p><p><br></p><p>Con la App de facturas de AppSheet se mejora el control de cualquier&nbsp;negocio, la&nbsp;agilidad&nbsp;con la que se resuelven tareas administrativas,&nbsp;se ahorra tiempo y/o personal, se&nbsp;ahorra en costes. Y, sobre todo, permite la dedicación a las tareas que de verdad generan ingresos en un negocio.</p>",
+  "appIncludes": [
+    "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+    "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+    "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+  ]
+}

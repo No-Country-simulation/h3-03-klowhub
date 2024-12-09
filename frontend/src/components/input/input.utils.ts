@@ -1,3 +1,10 @@
+import { MultiValue, SingleValue } from "react-select";
+import { SelectOption } from "./input.types";
+
+function isMultiValue (value: MultiValue<SelectOption> | SingleValue<SelectOption>): value is MultiValue<SelectOption> {
+  return (value as MultiValue<SelectOption>).map !== undefined
+}
+
 export const getImage = <T extends File>(file: File) => {
   return new Promise((resolve, reject) => {
     try {
@@ -32,4 +39,11 @@ export const formatImage = (files: File[]) => {
   }));
 
   return images
+}
+
+export const getPureValue = (value: MultiValue<SelectOption> | SingleValue<SelectOption>) => {
+  if (isMultiValue(value)) {
+    return value.map(v => v.name)
+  };
+  return value?.name
 }

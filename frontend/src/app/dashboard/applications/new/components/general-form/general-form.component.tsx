@@ -1,17 +1,19 @@
 "use client"
 
+import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { ApplicationInfo } from "@/types/application.types";
 import Input from "@/components/input/input.component";
-import { language, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
+import { tags, language, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import useApplicationContext from "../../hooks/use-application-context.hook";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/application-form.actions";
 import { APPLICATION_INFO_INITIAL_STATE } from "./general-form.consts";
+import generalMock from "./general-form.mock.json"
 
 const GeneralForm = () => {
-  const [ state, dispatch ] = useApplicationContext();
+  const { state, dispatch } = useApplicationContext();
 
   const {
     commonProps, 
@@ -19,6 +21,11 @@ const GeneralForm = () => {
     handleSubmit,
     formState: { isDirty }
   } = useGenerateForm<ApplicationInfo>(APPLICATION_INFO_INITIAL_STATE, state.general);
+
+  useEffect(() => {
+    console.log("inserting generalMock: ", generalMock);
+    dispatch(setGeneralData(generalMock))
+  }, [dispatch])
 
   return (
     <>
@@ -34,7 +41,7 @@ const GeneralForm = () => {
           className="w-full"
         />
         <Input 
-          name="summarizedDescription" type="textarea" 
+          name="shortDescription" type="textarea" 
           label="Describí brevemente la función principal de tu aplicación en 1-2 líneas. Contanos cuál es la funcionalidad principal de tu app." { ...controlledCommonProps } 
           placeholder="Escribe una descripción básica de esta app"
           className="col-span-2"
@@ -46,7 +53,7 @@ const GeneralForm = () => {
             { value: "powerapps", label: "PowerApps" },
           ]}
           type="radio-group" 
-          label="Plataforma" { ...commonProps } 
+          label="Plataforma" { ...controlledCommonProps } 
           className="col-span-2"
         />
         <IsClientProvider>
@@ -73,24 +80,19 @@ const GeneralForm = () => {
             placeholder="Funcionalidades"
             isMulti
           />
+          <Input 
+            name="tags" type="select" options={tags.items} 
+            label="Agrega etiquetas relacionadas" 
+            placeholder="Selecciona las etiquetas"
+            isMulti
+            { ...controlledCommonProps } 
+          />
         </IsClientProvider>
-        <Input 
-          name="target" type="textarea" 
-          label="Para quién es esta App" { ...controlledCommonProps } 
-          placeholder="Escribe para quien esta dirigido esta app"
-          className="col-span-2"
-        />
-        <Input 
-          name="advantages" type="textarea" 
-          label="Ventajas de tener esta app" { ...controlledCommonProps } 
-          placeholder="Escribe los beneficios que ofrece esta app"
-          className="col-span-2"
-        />
       </form>
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
         <RouteBtn 
           setter={handleSubmit( data => dispatch(setGeneralData(data)) )}
-          route="media"
+          route="details"
           isDirty={isDirty}
         >
           Continuar

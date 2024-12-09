@@ -1,4 +1,4 @@
-import { TAuthorInfo, TProduct } from "../product-card/product-card.types";
+import { AuthorInfo, TProductCard, TQuickView } from "../product-card/product-card.types";
 import { getQueryParams } from "@/utils/route.utils";
 import { getProduct } from "@/utils/product.utils";
 import Icon from "../icon/icon.component";
@@ -11,28 +11,25 @@ import Link from "next/link";
 import { Video, Clock3 } from "lucide-react";
 import { IconTypes } from "../icon/icon.types";
 
-type QuickViewProps = {
-  products: TProduct[]
+type Props = {
+  products: TQuickView[]
 }
 
-type AuthorBlockProps = {
-  author: TAuthorInfo
-}
-
-const QuickView = async ({ products }: QuickViewProps) => {
+const QuickView = async ({ products }: Props) => {
   const queryParams = await getQueryParams();
 
-  const currentProduct = getProduct(products, Number(queryParams.product))
+  const currentProduct = getProduct<TQuickView>(products, queryParams.product)
+  console.log('currentProduct: ', currentProduct);
   if (!currentProduct) return <div>No se encontro el curso</div>;
 
   const {
   title,
-  description,
+  shortDescription,
   platform,
   rating,
   ratingCount,
-  about,
-  } = currentProduct.product
+  author,
+  } = currentProduct
 
 
   return (
@@ -42,7 +39,7 @@ const QuickView = async ({ products }: QuickViewProps) => {
       2xl:w-[800px] 2xl:px-8
     ">
       <h2 className="font-bold">{ title }</h2>
-      <p>{ description }</p>
+      <p>{ shortDescription }</p>
       <div>
         <Badge
           icon={<Icon name={getSlug(platform) as IconTypes} />}
@@ -67,9 +64,9 @@ const QuickView = async ({ products }: QuickViewProps) => {
       <video controls className="rounded-xl">
         <source src="/api/video" type="video/mp4"></source>
       </video>
-      <AuthorBlock author={ currentProduct.author } />
+      <AuthorBlock author={author} />
       <h2 className="font-bold">Acerca de este curso</h2>
-      <p>{ about }</p>
+      <p>{ author.about }</p>
       <div>
         <Button className="text-center px-16 py-2 border-primary-200 text-primary-100 font-bold bg-transparent hover:bg-primary-500 outline outline-1">
           Ver detalles
@@ -88,12 +85,12 @@ const QuickView = async ({ products }: QuickViewProps) => {
   )
 };
 
-const AuthorBlock = ({ author }: AuthorBlockProps) => {
-  const { name, img, about } = author;
+const AuthorBlock = ({ author }: { author: TQuickView["author"]}) => {
+  const { name, img: { fileMetadata: { url, width, height } }, about } = author;
   return (
     <div className="flex gap-3">
       <div className="shrink-0">
-        <Image src={ img.url } width={ img.width } height={ img.height } alt={ img.alt }></Image>
+        <Image src={url} width={width} height={height} alt=""></Image>
       </div>
       <blockquote className="flex flex-col">
         <cite className="font-bold not-italic">{ name }</cite>

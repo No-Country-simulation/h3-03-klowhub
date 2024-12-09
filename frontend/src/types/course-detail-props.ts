@@ -1,10 +1,13 @@
 import { ReactNode } from "react";
+import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
+import { TVideo } from "./global.types";
+import { Lesson } from "./courses.types";
 
-export interface Lesson {
-    id: number;
-    image: string;
-    title: string;
-}
+// export interface Lesson {
+//     id: string;
+//     link: string; // this should be a TImage
+//     title: string;
+// }
 
 export interface Instructor {
     name: string;
@@ -18,17 +21,27 @@ export interface Instructor {
 
 export type CourseDetailHeader = {
     title: string;
-    description: string;
-    rating: number;
-    ratingCount: number;
-    image: string;
+    summarizeDescription: string;
+    rating?: number;
+    ratingCount?: number;
+    promotionalVideo: TVideo;
+    lessons: Lesson[];
+    // coverImg: {
+    //     url: string
+    //     size: number
+    //     width: number
+    //     height: number
+    //     format: string
+    //     created_at: string
+    // };
 }
 
-export interface AppInfoProps {
-    sections: {
-        title: string;
-        badges: string[];
-    }[];
+export interface CourseInfoProps {
+    sector: string[];
+    tags: string[];
+    coreContent: string[];
+    toolsAndPlatforms: string[];
+    functionalities: string[];
 }
 
 export interface ProgramModule {
@@ -37,21 +50,15 @@ export interface ProgramModule {
 }
 
 export interface CourseProps {
-    details: CourseDetailHeader;
-    lessons: Lesson[];
-    instructor: Instructor;
-    objectives: string[];
-    about: string;
-    // additionalDetails: {
-    //     title: string;
-    //     content: string;
-    // }[];
-    // requirements: string[];
-    // appInfoSections: AppInfoProps;
-    // reviews: {
-    //     author: string;
-    //     rating: number;
-    //     comment: string;
-    // }[];
-  children?: ReactNode[]
+    title: string;
+    shortDescription: string
+    rating?: number
+    ratingCount?: number
+    promotionalVideo: TVideo;
+    learningSubjects: string[];
+    fullDescription: string;
+    freelessons: Lesson[];
+    prevRequirements: string[];
+    children: ReactNode[];
+  submitCourse?: () => Promise<string>
 }

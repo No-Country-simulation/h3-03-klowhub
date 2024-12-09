@@ -1,16 +1,13 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
-import { Language, Platform, TImage } from "./global.types"
-import { CourseDificulty, Sectors, Funcionalitites, ToolsAndPlatforms, CoreContent, ContentType, AccessType } from "@/consts/filters.types";
+import { Platform, TImage, TVideo, TDocument, PersonalReview, AuthorInfo, FlatPromotion } from "./global.types"
+import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
-import { Promotion } from "./global.types";
+import { Promotion, Rating } from "./global.types";
+import { TReview } from "@/components/shared/reviews/review.types";
+import { Expand, NoUndefinedField, RequiredProperty } from "./utils.types";
 
-
-type Resource = {
-  filename: string
-  mimetype: string
-}
 
 export type Link = {
   url: string
@@ -19,39 +16,42 @@ export type Link = {
 
 export type CourseInfo = {
   title: string
-  freeCourse: AccessType | null
-  contentType: ContentType | null
-  about: string
-  level: CourseDificulty | null
-  platform: Platform | null
+  freeCourse: boolean
   language: SelectOption
+  shortDescription: string
+  contentType: ContentType | null
+  courseDifficulty: CourseDificulty | null
+  platform: Platform | null
   sector: SelectOption[]
   coreContent: SelectOption[]
-  tools: SelectOption[]
+  toolsAndPlatforms: SelectOption[]
   functionalities: SelectOption[]
-  tags: string[]
+  tags: SelectOption[]
   price: number // this is not included in the design but I need to get this info from somewhere
   targetAudience: string
 };
 
+
 export type CourseDetails = {
   learningSubjects: string[]
   prevRequirements: string[]
-  courseContent: string
+  fullDescription: string
   coverImg: TImage | null
+  promotionalVideo: TVideo | null
 }
 
 export type Lesson = {
   id?: string
   title: string
   description: string
-  videos: File[]
-  resources: Resource[]
-  link: string
+  video: TVideo | null
+  documents: TDocument[]
+  link: string | null
   free: boolean
 }
 
 export type Module = {
+  id?: string
   title: string
   description: string
   lessons: Lesson[]
@@ -62,18 +62,37 @@ export type PromotedProduct = {
   id: number
 }
 
-export type Feedback = {
-  rating: number
-  ratingCount: number
-  reviews: string[]
-}
-
 export type CourseFormData = {
-  id: number | null
+  // id: string | null
   general: CourseInfo
   details: CourseDetails
   modules: Module[]
   promotion: Promotion | null
 }
 
-export type Course = CourseInfo & CourseDetails & Promotion & Feedback & { modules: Module[] }
+export type CoursePayload = {
+  id: number | null
+  modules: CourseFormData["modules"]
+  promotion: CourseFormData["promotion"]
+
+} & CourseFormData["general"] & CourseFormData["details"]
+
+type CourseOptionalFields = Partial<{
+  id?: string,
+  reviews?: TReview[]
+  author?: AuthorInfo
+} & Rating>
+
+export type Course = RequiredProperty<
+  & Omit<CourseInfo, "sector" | "coreContent" | "toolsAndPlatforms" | "functionalities" | "tags" | "language"> 
+  & CourseDetails
+  & {
+  sector: string[]
+  coreContent: string[]
+  toolsAndPlatforms: string[]
+  functionalities: string[]
+  tags: string[]
+  language: string
+  promotion: FlatPromotion | null
+  modules: Module[]
+}> & CourseOptionalFields

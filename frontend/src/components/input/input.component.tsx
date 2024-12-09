@@ -12,14 +12,15 @@ import { FieldValues } from "react-hook-form";
 import Dropzone from "../dropzone/dropzone.component";
 import { removeImage } from "./input.utils";
 import UploadedImage from "../uploaded-image/uploaded-image.component";
-import { Files, X, Plus, Minus } from "lucide-react";
+import UploadedVideo from "../uploaded-video/uploaded-video.component";
+import { X, Plus } from "lucide-react";
 import FileBadge from "../file-badge/file-badge.component";
 import { Button } from "../ui/button";
 
 import 'react-quill-new/dist/quill.snow.css';
 import "./input.styles.css"
-import { Badge } from "../ui/badge";
-import { humanFileSize } from "@/utils/file.utils";
+import { uploadAsset } from "./input.api";
+import { TDocument, TImage, TVideo } from "@/types/global.types";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false })
 
@@ -120,26 +121,78 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
   };
 
   if (type === "number") {
-    const { placeholder } = props;
+    const { placeholder, isPercentage } = props;
 
     return (
       <div className={`${containerStyles} ${className || ""}`}>
         <Label htmlFor={name} className={labelStyles}>{ label }</Label>
         <div className="relative w-full">
-          <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" {...otherProps} />
-          <span className="absolute top-0 right-0 mr-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
+          <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" />
+          { isPercentage &&
+            <span className="absolute top-0 right-0 mr-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
+          }
         </div>
       </div>
     )
   };
 
+  // if (type === "range") {
+  //   const { control } = props;
+  //
+  //   return (
+  //     <div className={`${containerStyles} ${className || ""}`}>
+  //       <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+  //       <Controller 
+  //         name={name}
+  //         control={control}
+  //         render={({ field: { onChange, value } }) => {
+  //
+  //           return (
+  //           <div className="w-full flex gap-5 items-center">
+  //             <input
+  //               type="number" 
+  //               placeholder="min" 
+  //               value={value.min} 
+  //               { ...register(name)} 
+  //               onChange={(e) => onChange({ ...value, min: Number(e.target.value) })}
+  //               className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
+  //               {...otherProps} 
+  //             />
+  //             <span className="font-bold">-</span>
+  //             <input
+  //               type="number" 
+  //               placeholder="max" 
+  //               value={value.max}
+  //               { ...register(name)} 
+  //               onChange={(e) => onChange({ ...value, max: Number(e.target.value) })}
+  //               className="w-full flex-1 px-3 py-5 h-8 text-card rounded-md"
+  //               {...otherProps}
+  //             />
+  //           </div>
+  //         )}}
+  //       />
+  //     </div>
+  //   )
+  // };
+
   if (type === "link") {
     const { placeholder } = props;
 
     return (
-      <div className={`flex ${className || ""}`}>
-        <Label htmlFor={name} className={`border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 grow-0 ${labelStyles}`}>{label || "Enlace"}</Label>
-        <input type="text" placeholder={placeholder} { ...register(name)} className="px-3 py-5 h-8 text-card rounded-r-lg flex-1 w-full sm:w-auto sm:grow-0" {...otherProps} />
+      <div className={`flex ${containerStyles} ${className || ""}`}>
+        { label && <Label htmlFor={name} className={`${labelStyles}`}>{label}</Label> }
+        <div className="flex">
+          <span className={"border border-solid border-primary-200 text-primary-200 rounded-l-lg flex flex-col justify-center px-5 grow-0"}>
+            Enlace
+          </span>
+          <input
+            type="text" 
+            placeholder={placeholder} 
+            className="px-3 py-5 h-8 text-card rounded-r-lg flex-1 w-full sm:w-auto sm:grow-0" 
+            {...otherProps} 
+            { ...register(name)} 
+          />
+        </div>
       </div>
     )
   };
@@ -152,42 +205,76 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
         name={name}
         control={control}
         render={({ field: { onChange, value } }) => (
-          <div className={`flex flex-col gap-5 col-span-2 ${className}`}>
-            { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
-            { isMulti ? 
-              <div className={`${filetypes["image/*"] ? "grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start" : "flex flex-col gap-3 items-start"}`}>
-                { value.map((v: File, idx: number) => {
-                  if (v.type === "application/pdf") {
-                    return (
-                      <FileBadge key={`resource-${idx}`} file={v} removeCb={() => onChange(removeImage(value, idx))} />
-                    )
-                  };
-
-                  if (v.type.includes("image")) {
-                    return (
-                      <UploadedImage 
-                        key={`${name}-thumbnail-${idx}`}
-                        src={URL.createObjectURL(v)}
-                        deleteCb={() => onChange(removeImage(value, idx))}
+            <div className={`flex flex-col gap-5 col-span-2 ${className}`}>
+              { label && <Label htmlFor={name} className={labelStyles}>{ label }</Label> }
+              { isMulti ? 
+                <div className={"grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start"}>
+                  { value.map((asset: TImage | TVideo | TDocument, idx: number) => {
+                    if (asset.fileMetadata.mimeType.includes("pdf")) {
+                      return <FileBadge 
+                        key={`resource-${idx}`} 
+                        data={asset as TDocument}
+                        removeCb={() => onChange(removeImage(value, idx))}
                       />
-                    )
-                  };
-                }) }
-                { value.length < limit ?  
-                  <Dropzone filetypes={filetypes} onDrop={(files) => onChange([...value, ...files])}>{ dropzoneLabel }</Dropzone> : <></>
-                }
-              </div>
-              :  value ? 
-                <UploadedImage 
-                  src={URL.createObjectURL(value[0])}
-                  deleteCb={() => onChange(null)}
-                /> :
-                <Dropzone filetypes={filetypes} onDrop={(files) => onChange(files)}>{ dropzoneLabel }</Dropzone>
+                    };
 
-            }
+                    if (asset.fileMetadata.mimeType.includes("image")) {
+                      return <UploadedImage 
+                        key={`${name}-thumbnail-${idx}`}
+                        src={asset.fileMetadata.url}
+                        deleteCb={() => onChange(removeImage(value, idx))}
+                      />      
+                    };
 
-          </div>
-        )}
+                    if (asset.fileMetadata.mimeType.includes("video")) {
+                      return <UploadedVideo 
+                        key={`${name}-thumbnail-${idx}`}
+                        video={asset as TVideo}
+                        deleteCb={() => onChange(removeImage(value, idx))}
+                      />      
+                    };
+                  })}
+                  { value.length < limit &&
+                    <Dropzone 
+                      { ...{isMulti, limit, filetypes} }
+                      onDrop={async (files) => {
+                        const uploadedFile = await uploadAsset(files[0]);
+                        onChange([ ...value, uploadedFile ]) 
+                      }}
+                    >
+                      { dropzoneLabel }
+                    </Dropzone> 
+                  }
+                </div>
+                : <div className="grid grid-cols-1 md:grid-cols-3 gap-5 grid-rows-auto items-start">
+                  { 
+                    value ?
+                      (
+                        value.fileMetadata.mimeType.includes("video") ?
+                          <UploadedVideo video={value} deleteCb={() => onChange(null)} />
+
+                          : value.fileMetadata.mimeType.includes("image") ?
+                            <UploadedImage src={value.fileMetadata.url} deleteCb={() => onChange(null) } /> 
+
+                            : <FileBadge data={value} removeCb={() => onChange(null) } /> 
+                      ) :
+                      <Dropzone
+                        { ...{isMulti, filetypes} }
+                        onDrop={async (files) => {
+                          const uploadedFile = await uploadAsset(files[0]);
+                        console.log('uploadedFile: ', uploadedFile);
+                          onChange(uploadedFile)
+                        }
+                      }
+                      >
+                        { dropzoneLabel }
+                      </Dropzone>
+                  }
+                </div>
+              }
+
+            </div>
+          )}
       />
     )
   };
@@ -201,7 +288,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           name={name}
           control={control}
           render={({ field: { onChange, value } }) => (
-            <div onClick={() => onChange({ type: productType, id: productId })} className={"cursor-pointer relative"}>
+            <div onClick={() => onChange({ type: productType, id: productId })} className={"cursor-pointer relative h-full"}>
               <div className={`${value.id === productId ? "absolute w-full h-full ring-4 ring-inset ring-primary-400 rounded-lg" : ""}`}></div>
               { children }
             </div>
@@ -211,23 +298,61 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
     )
   };
 
-  if (type === "radio-group") {
-    const { options } = props;
+  if (type === "boolean") {
+    const { options, control, reactFn } = props;
 
     return (
-      <div className={`${containerStyles} ${className || ""}`}>
-        <Label htmlFor={name} className={labelStyles}>{ label }</Label>
-        <div className="flex flex-col gap-4">
-          <Label htmlFor={name} className="flex gap-2">
-            { options[0].label }
-            <input type="radio" { ...register(name) } value={options[0].value} />
-          </Label>
-          <Label htmlFor={name} className="flex gap-2">
-            { options[1].label }
-            <input type="radio" { ...register(name) } value={options[1].value} />
-          </Label>
-        </div>
-      </div>
+      <Controller 
+        name={name}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <div className={`${containerStyles} ${className || ""}`}>
+            <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+            <div className="flex flex-col gap-4">
+              <Label htmlFor={name} className="flex gap-2">
+                { options[0] }
+                <input type="radio" checked={value === true} onChange={() => {
+                  onChange(true)
+                  if (reactFn) reactFn();
+                }} />
+              </Label>
+              <Label htmlFor={name} className="flex gap-2">
+                { options[1] }
+                <input type="radio" checked={value === false} onChange={() => {
+                  onChange(false)
+                  if (reactFn) reactFn();
+                }} />
+              </Label>
+            </div>
+          </div>
+        )}
+      />
+    )
+  };
+
+  if (type === "radio-group") {
+    const { options, control } = props;
+
+    return (
+      <Controller 
+        name={name}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <div className={`${containerStyles} ${className || ""}`}>
+            <Label htmlFor={name} className={labelStyles}>{ label }</Label>
+            <div className="flex flex-col gap-4">
+              <Label htmlFor={name} className="flex gap-2">
+                <span>{ options[0].label }</span>
+                <input type="radio" checked={value === options[0].value} onChange={() => onChange(options[0].value)} />
+              </Label>
+              <Label htmlFor={name} className="flex gap-2">
+                <span>{ options[1].label }</span>
+                <input type="radio" checked={value === options[1].value} onChange={() => onChange(options[1].value)} />
+              </Label>
+            </div>
+          </div>
+        )}
+      />
     )
   };
 

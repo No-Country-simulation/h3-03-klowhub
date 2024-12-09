@@ -1,11 +1,9 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { useContext } from "react";
 import CourseLesson from "../course-lesson/course-lesson.component";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
-import { CourseCtx } from "../../context/course-form.context";
 import {
   Accordion,
   AccordionContent,
@@ -16,25 +14,33 @@ import parse from "html-react-parser"
 import { Pencil } from "lucide-react";
 import ModuleForm from "../module-form/module-form.component";
 import LessonsSection from "../lessons-section/lessons-section.component";
+import useCourseContext from "../../hooks/use-course-context.hook";
+import modulesMock from "./modules.mock.json"
+import { setModulesData } from "../../context/course-form.actions";
+import { Plus } from "lucide-react";
+import styles from "@/styles/accordion.styles.module.css"
 
-const ModulesForm = () => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state } = courseCtx
+const ModulesSection = () => {
+  const { state, dispatch } = useCourseContext();
   const [ currentModule, setCurrentModule ] = useState(NaN);
-  const [ showModuleForm, setShowModuleForm ] = useState(!Boolean(state.modules.length));
+  const [ showModuleForm, setShowModuleForm ] = useState(state.modules.length === 0);
+
+  useEffect(() => {
+    // console.log("inserting modules mock...");
+    // console.log('modulesMock.modules: ', modulesMock.modules);
+
+    dispatch(setModulesData(modulesMock.modules))
+  }, [dispatch])
 
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       { showModuleForm &&
         <ModuleForm  moduleIdx={currentModule} setCurrentModule={setCurrentModule} setShowModuleForm={setShowModuleForm}/>
       }
       { (!showModuleForm) &&
         <div className="flex flex-col items-end gap-5">
           <div className="w-full bg-gray-200 rounded-lg overflow-hidden">
-              <Accordion type="single" collapsible className="px-5">
+              <Accordion type="single" collapsible className={`${styles['accordion-root']} px-5`}>
                 { state.modules.map((m, mIdx) => ( 
                   <AccordionItem key={`module-panel-${mIdx}`} value={`module-${mIdx}`}>
                     <AccordionTrigger>{ m.title }</AccordionTrigger>
@@ -58,9 +64,20 @@ const ModulesForm = () => {
         </div>
       }
       { !showModuleForm &&
-        <Button variant="outline" className="px-14" onClick={() => setShowModuleForm(true)}>
-          Añadir módulo
-        </Button>
+          <Button 
+            type="button"
+            variant="outline" 
+            className="
+              px-3 self-end border-primary-200 text-primary-200 hover:primary-200 justify-self-end w-full
+              sm:w-auto sm:px-14 
+            "
+            onClick={() => { 
+              setShowModuleForm(true) 
+            }}
+          >
+            <span>Añadir Módulo</span>
+            <Plus />
+          </Button>
       }
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5 gap-5">
         <RouteBtn route="details" className="flex-1 md:grow-0">Retroceder</RouteBtn>
@@ -70,4 +87,4 @@ const ModulesForm = () => {
   )
 };
 
-export default ModulesForm
+export default ModulesSection

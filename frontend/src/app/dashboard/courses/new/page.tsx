@@ -15,22 +15,25 @@ const CreateCoursePage = async () => {
   return (
     <>
       <main className={`flex flex-col gap-5 relative ${section === "promotion" ? "mb-32" : "mb-28"}`}>
-        <div>
-          <Tab active={section === "general"} className={section !== "general" ? "hidden md:inline-block" : ""}>Información general</Tab>
-          <Tab active={section === "details"} className={section !== "details" ? "hidden md:inline-block" : ""}>Detalles del curso</Tab>
-          <Tab active={section === "modules"} className={section !== "modules" ? "hidden md:inline-block" : ""}>Módulos y lecciones</Tab>
-          <Tab active={section === "promotion"} className={section !== "promotion" ? "hidden md:inline-block" : ""}>Promociones</Tab>
-        </div>
-        <div className="
-          flex bg-card rounded-lg p-6
+        { section !== "preview" &&
+          <div>
+            <Tab active={section === "general"} className={section !== "general" ? "hidden md:inline-block" : ""}>Información general</Tab>
+            <Tab active={section === "details"} className={section !== "details" ? "hidden md:inline-block" : ""}>Detalles del curso</Tab>
+            <Tab active={section === "modules"} className={section !== "modules" ? "hidden md:inline-block" : ""}>Módulos y lecciones</Tab>
+            <Tab active={section === "promotion"} className={section !== "promotion" ? "hidden md:inline-block" : ""}>Promociones</Tab>
+          </div>
+        }
+        <div className={`
+          ${section !== "preview" ? "bg-card p-6" : ""}
+          flex rounded-lg
           lg:gap-10
           xl:gap-20
           2xl:gap-40
-          ">
-          <div className="
+        `}>
+          <div className={`
             w-full
-            lg:w-3/4
-            ">
+            lg:${section !== "preview" ? "w-3/4" : "w-full"}
+          `}>
             <CourseCtxProvider>
               { section === "general" && <GeneralForm /> }
               { section === "details" && <DetailsForm /> }
@@ -39,23 +42,25 @@ const CreateCoursePage = async () => {
               { section === "preview" && <CourseDetail /> }
             </CourseCtxProvider>
           </div>
-          <div className="
-            hidden
-            lg:block lg:w-1/4
-            ">
-            { 
-              advices.map((adv, idx) => (
-                <FormAdvice 
-                  key={`advice-${idx}`} 
-                  src={adv.img.url} 
-                  alt={adv.img.alt}
-                  display={adv.section === section}
-                  header={adv.header}
-                  text={adv.text}
-                />
-              ))
-            }
-          </div>
+          { section !== "preview" &&
+            <div className="
+              hidden
+              lg:block lg:w-1/4
+              ">
+              { 
+                advices.map((adv, idx) => (
+                  <FormAdvice 
+                    key={`advice-${idx}`} 
+                    src={adv.img.url} 
+                    alt={adv.img.alt}
+                    display={adv.section === section}
+                    header={adv.header}
+                    text={adv.text}
+                  />
+                ))
+              }
+            </div>
+          }
         </div>
       </main>
     </>

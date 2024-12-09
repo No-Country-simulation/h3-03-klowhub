@@ -4,7 +4,7 @@ import { COURSE_INFO_INITIAL_STATE } from "../components/general-form/general-fo
 import { COURSE_DETAILS_INITIAL_STATE } from "../components/details-form/details-form.consts";
 
 export const COURSE_FORM_INITIAL_STATE: CourseFormData = {
-  id: null,
+  // id: null,
   general: COURSE_INFO_INITIAL_STATE,
   details: COURSE_DETAILS_INITIAL_STATE,
   modules: [],

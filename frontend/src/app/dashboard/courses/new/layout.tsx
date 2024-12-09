@@ -1,15 +1,23 @@
+"use client"
+
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import { ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   children: ReactNode
 }
 
 const CreateCourseLayout = ({ children }: Props) => {
+  const searchParams = useSearchParams();
+  const section = searchParams.get("section");
+
   return (
     <main>
       <BreadCrumb />
-      <h1 className="font-bold mt-5 mb-12">Presenta tu App: Conéctala con el mundo</h1>
+      { section !== "preview" && 
+        <h1 className="font-bold mt-5 mb-12">Lanza tu curso: Comparte tu conocimiento</h1>
+      }
       { children }
     </main>
   )

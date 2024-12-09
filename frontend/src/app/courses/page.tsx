@@ -8,15 +8,15 @@ import { categories } from "@/mocks/categories.mocks";
 import { getQueryParams } from "@/utils/route.utils";
 import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
-import { QuickView as TQuickVIew } from "@/components/product-card/product-card.types";
+import { TQuickView } from "@/components/product-card/product-card.types";
 
-import { sector, plaform, language, functionalities, toolsAndPlatforms, coreContent, level, contentType } from "@/consts/filters.consts";
+import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
 
 const filters = [
-  plaform,
+  platform,
   language,
   contentType,
-  level,
+  courseDifficulty,
   coreContent,
   sector,
   functionalities,
@@ -27,7 +27,7 @@ const endpoint = "http://localhost:3000/api/courses?withAuthor=true";
 
 const getProducts = async (endpoint: string) => {
   const res = await fetch(endpoint, { cache: "force-cache" });
-  const items: { data: TQuickVIew[] } = await res.json();
+  const items: { data: TQuickView[] } = await res.json();
   return items
 };
 
@@ -45,7 +45,7 @@ const Page = async () => {
 
       <div>
         {products.data.map((c, idx) => (
-          <ProductCard data={c.product} key={idx} />
+          <ProductCard data={c} key={idx} />
         ))}
       </div>
         { queryParams.modal && 

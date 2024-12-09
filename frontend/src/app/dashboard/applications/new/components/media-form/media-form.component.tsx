@@ -12,9 +12,10 @@ import useApplicationContext from "../../hooks/use-application-context.hook";
 
 import { ApplicationMedia } from "@/types/application.types";
 import { Badge } from "@/components/ui/badge";
+import mediaMock from "./media-form.mock.json"
 
 const MediaForm = () => {
-  const [ state, dispatch ] = useApplicationContext();
+  const { state, dispatch } = useApplicationContext();
 
   const {
     commonProps, 
@@ -24,14 +25,16 @@ const MediaForm = () => {
     formState: { isDirty }
   } = useGenerateForm<ApplicationMedia>(APPLICATION_MEDIA_INITIAL_STATE, state.media || APPLICATION_MEDIA_INITIAL_STATE);
 
-  const { watch, commonProps: radioCommonProps } = useGenerateForm<{ selection: boolean }>({ selection: false }, { selection: false });
-
-  const [ showSelector, setShowSelector ] = useState(true);
-  const [ contentType, setContentType] = useState<ContentType>('applications');
+  // const [ contentType, setContentType] = useState<ContentType>('applications');
+  //
+  // useEffect(() => {
+  //   reset()
+  // }, [contentType, reset])
 
   useEffect(() => {
-    reset()
-  }, [contentType, reset, showSelector])
+    console.log("inserting mediaMock: ", mediaMock);
+    dispatch(setMediaData(mediaMock))
+  }, [dispatch])
 
   return (
     <>
@@ -46,7 +49,7 @@ const MediaForm = () => {
             filetypes={{ "image/*": [".png", ".jpg"] }}
             label="Subí una imagen para tu aplicación"
             dropzoneLabel="Sube una imagen representativa de la app"
-            className="w-full md:w-72 col-span-2"
+            className="w-full md:w-76 col-span-2"
             { ...controlledCommonProps }
           />
           <Badge className="px-3 py-2 bg-gray-100 text-primary-300 shrink-0">Esta será la imágen que se visualizará</Badge>
@@ -65,16 +68,16 @@ const MediaForm = () => {
           <h3>Versión Desktop</h3>
           <Input 
             name="desktopLink" type="link" 
-            label="Enlace" { ...controlledCommonProps } 
             className="w-full col-span-2"
+            { ...controlledCommonProps } 
           />
         </div>
         <div className="col-span-2 flex flex-col gap-5">
-          <h3>Versión Desktop</h3>
+          <h3>Versión Mobile</h3>
           <Input 
             name="mobileLink" type="link" 
-            label="Enlace" { ...controlledCommonProps } 
             className="w-full col-span-2"
+            { ...controlledCommonProps } 
           />
         </div>
       </form>

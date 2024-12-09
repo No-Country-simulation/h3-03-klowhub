@@ -13,11 +13,15 @@ import Input from "@/components/input/input.component";
 import ProductCard from "@/components/product-card/product-card.component";
 import { setPromotionData } from "../../context/course-form.actions";
 import { Button } from "@/components/ui/button";
+import Greeter from "@/components/greeter/greeter.component";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import promotionMock from "./promotions.mock.json"
 
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
-  const [ state, dispatch ] = useCourseContext();
+  const { state, dispatch, submitCourse } = useCourseContext();
 
   const {
     commonProps, 
@@ -36,8 +40,9 @@ const PromotionsSection = () => {
   });
 
   const [ showSelector, setShowSelector ] = useState(true);
-  const [ contentType, setContentType] = useState<ContentType>('applications');
+  const [ contentType, setContentType] = useState<ContentType>('courses');
   const { applications, courses } = useUserContent();
+  const [ newCourseId, setNewCourseId ] = useState<string>();
 
   useEffect(() => {
     reset()
@@ -48,8 +53,32 @@ const PromotionsSection = () => {
     if (selection === "no") setShowSelector(false);
   }, [selection])
 
+  useEffect(() => {
+    console.log('promotionMock: ', promotionMock);
+    dispatch(setPromotionData(promotionMock))
+  }, [dispatch])
+
   return (
     <>
+      { newCourseId &&
+        <Greeter
+          header="¡Felicitaciones! Tu curso/Leccion se publicó con exito"
+          message="Ya está disponible para que estudiantes de todo el mundo lo descubran y aprovechen."
+        >
+          <Link 
+            href={`/courses/${newCourseId}`}
+            className={`${buttonVariants({ variant: "outline" })} px-10 bg-primary-500 border-none hover:bg-secondary-400`}
+          >
+            Ver curso publicado
+          </Link>
+          <Link
+            href={`/dashboard/courses`}
+            className={`${buttonVariants({ variant: "outline" })} px-10 border-primary-200 text-primary-200`}
+          >
+            Volver al dashboard
+          </Link>
+        </Greeter>
+      }
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-5">
           <h3 className="font-bold">Fusiona tus cursos y apps, expande tus posibilidades</h3>
@@ -126,6 +155,7 @@ const PromotionsSection = () => {
                 name="percentage" 
                 label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete." 
                 { ...commonProps }
+                isPercentage
               />
             </form>
           </div>
@@ -167,27 +197,14 @@ const PromotionsSection = () => {
           </RouteBtn>
           <Button 
             type="button"
-            onClick={ handleSubmit( async (data) => {
-              dispatch(setPromotionData(data)) 
-              const res = await fetch("http://localhost:3003/courses", {
-                method: "post",
-                body: JSON.stringify(data)
-              })
-              const createdCourse = await res.json();
-              console.log('createdCourse: ', createdCourse);
-            } ) }
-            className="mr-auto flex-1 md:grow-0"
-          >
-            Probar
-          </Button>
-          <RouteBtn 
-            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
-            route="temporary-route"
-            isDirty={isDirty}
-            className="mr-auto flex-1 md:grow-0"
+            className="flex-1 md:grow-0"
+            onClick={handleSubmit(async (promotion) => {
+              const courseId = await submitCourse({ promotion }) 
+              setNewCourseId(courseId)
+            })}
           >
             Publicar
-          </RouteBtn>
+          </Button>
         </div>
       </div>
     </>

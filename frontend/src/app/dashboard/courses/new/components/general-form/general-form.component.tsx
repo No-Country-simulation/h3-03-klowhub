@@ -1,23 +1,20 @@
 "use client"
 
+import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_INFO_INITIAL_STATE } from "./general-form.consts";
 import { CourseInfo } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
-import { language, coreContent, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
+import { courseDifficulty, language, coreContent, functionalities, sector, toolsAndPlatforms, tags } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import { CircleAlert } from "lucide-react";
-import { useContext } from "react";
-import { CourseCtx } from "../../context/course-form.context";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/course-form.actions";
+import useCourseContext from "../../hooks/use-course-context.hook";
+import formMock from "./course-general-form.mock.json"
 
 const GeneralForm = () => {
-  const courseCtx = useContext(CourseCtx);
-
-  if (!courseCtx) throw new Error("no context found");
-
-  const { state, dispatch } = courseCtx
+  const { state, dispatch } = useCourseContext();
 
   const {
     commonProps, 
@@ -26,7 +23,11 @@ const GeneralForm = () => {
     formState: { isDirty }
   } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, state.general);
 
-  console.log('toolsAndPlatforms: ', toolsAndPlatforms);
+  useEffect(() => {
+    console.log('inserting mocked data...');
+    console.log('formMock: ', formMock);
+    dispatch(setGeneralData(formMock))
+  }, [dispatch])
   return (
     <>
       <form className="
@@ -50,14 +51,11 @@ const GeneralForm = () => {
           <span>El contenido gratuito ofrece acceso limitado a [características breves del contenido gratuito]. El contenido premium desbloquea [principales beneficios del contenido de pago]. Más información en nuestra <span className="text-secondary-400">[documentación]</span>.</span>
         </div>
         <Input
-          name="freeCourse"
-          options={[ 
-            { value: "free", label: "Gratuito" },
-            { value: "payed", label: "Pago" },
-          ]} 
-          type="radio-group"
-          label="¿Qué tipo de contenido estás buscando: gratuito o premium?" { ...commonProps }
+          name="freeCourse" type="boolean"
+          options={[ "Gratuito", "Pago" ]} 
+          label="¿Qué tipo de contenido estás buscando: gratuito o premium?" 
           className="w-full"
+          { ...controlledCommonProps }
         />
         <Input 
           name="contentType" 
@@ -66,10 +64,11 @@ const GeneralForm = () => {
             { value: "lesson", label: "Lección" },
           ]} 
           type="radio-group" 
-          label="Seleccioná si vas a crear un curso  o una lección." { ...commonProps } 
+          label="Seleccioná si vas a crear un curso  o una lección." 
+          { ...controlledCommonProps } 
         />
         <Input 
-          name="about" type="textarea" 
+          name="shortDescription" type="textarea" 
           label="Contá de qué trata, en no más de 3 líneas." { ...controlledCommonProps } 
           placeholder="Escribí una descripción básica del proyecto"
           className="col-span-2"
@@ -81,13 +80,14 @@ const GeneralForm = () => {
           className="col-span-2"
         />
         <Input
-          name="level" 
+          name="courseDifficulty" 
           options={[
             { value: "basic", label: "Básico" },
             { value: "intermediate", label: "Intermedio" }
           ]}
           type="radio-group"
-          label="Nivel de competencia" { ...commonProps }
+          label="Nivel de competencia" 
+          { ...controlledCommonProps }
         />
         <Input 
           name="platform"
@@ -96,7 +96,8 @@ const GeneralForm = () => {
             { value: "powerapps", label: "PowerApps" },
           ]}
           type="radio-group" 
-          label="Plataforma" { ...commonProps } 
+          label="Plataforma" 
+          { ...controlledCommonProps } 
         />
         <IsClientProvider>
           <Input 
@@ -123,16 +124,17 @@ const GeneralForm = () => {
             isMulti
           />
           <Input 
-            name="tools" type="select" options={toolsAndPlatforms.items} 
+            name="toolsAndPlatforms" type="select" options={toolsAndPlatforms.items} 
             label="Herramientas y plataformas" { ...controlledCommonProps } 
             placeholder="Herramientas y plataformas"
             isMulti
           />
           <Input 
-            name="tags" type="select" options={functionalities.items} 
-            label="Agrega etiquetas relacionadas" { ...controlledCommonProps } 
+            name="tags" type="select" options={tags.items} 
+            label="Agrega etiquetas relacionadas" 
             placeholder="Selecciona las etiquetas"
             isMulti
+            { ...controlledCommonProps } 
           />
         </IsClientProvider>
       </form>

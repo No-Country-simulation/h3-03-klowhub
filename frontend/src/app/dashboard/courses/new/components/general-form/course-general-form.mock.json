@@ -1,0 +1,63 @@
+{
+  "title": "Automatización de Procesos Empresariales con PowerApps",
+  "freeCourse": false,
+  "contentType": "course",
+  "shortDescription": "Aprende a crear aplicaciones empresariales con PowerApps sin escribir una sola línea de código. Ideal para optimizar procesos y mejorar la productividad",
+  "courseDifficulty": "basic",
+  "platform": "powerapps",
+  "language": {
+    "name": "spanish",
+    "label": "Español"
+  },
+  "sector": [
+    {
+      "name": "gestion-de-proyectos", 
+      "label": "Gestion de proyectos" 
+    },
+    { 
+      "name": "ventas-y-crm", 
+      "label": "Ventas y crm" 
+    },
+    {
+      "name": "logistica-y-transporte",
+      "label": "Logistica y transporte" 
+    }
+  ],
+  "coreContent": [
+    { 
+      "name": "automation", 
+      "label": "Automatización" 
+    }
+  ],
+  "toolsAndPlatforms": [
+    {
+      "name": "power-bi", 
+      "label": "Power bi"
+    },
+    {
+      "name": "zapier", 
+      "label": "Zapier"
+    },
+    {
+      "name": "google-sheets", 
+      "label": "Google sheets"
+    },
+    {
+      "name": "google-drive", 
+      "label": "Google drive"
+    }
+  ],
+  "tags": [
+    { "name": "plataforma-de-cursos", "label": "Plataforma de cursos" },
+    { "name": "aplicaciones-sin-codigo", "label": "Aplicaciones sin código" },
+    { "name": "desarrolladores-nocode", "label": "Desarrolladores no-code" }
+  ],
+  "functionalities": [
+    { "name": "notificaciones-push", "label": "Notificaciones push" },
+    { "name": "generacion-y-escaneo-qr", "label": "Generación y \n Escaneo QR" },
+    { "name": "geolocalizacion", "label": "Geolocalización" },
+    { "name": "ocr", "label": "Ocr" }
+  ],
+  "price": 99.99,
+  "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
+}

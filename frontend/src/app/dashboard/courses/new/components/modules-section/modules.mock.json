@@ -1,0 +1,794 @@
+{
+  "modules": [
+    {
+      "title": "Introducción a PowerApps y su Impacto en la Automatización Empresarial",
+      "description": "Explora los fundamentos de PowerApps, su interfaz intuitiva y cómo esta herramienta de Microsoft potencia la automatización sin necesidad de programar. Conoce casos de éxito y las posibilidades que ofrece para optimizar procesos empresariales.",
+      "lessons": [
+        {
+          "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+          "title": "¿Qué es PowerApps?",
+          "description": "Conoce el propósito y las capacidades principales de PowerApps dentro del ecosistema de Microsoft.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": null,
+          "free": true,
+          "link": "https://www.youtube.com/watch?v=TrDlCiUCu2g"
+        },
+        {
+          "id": "29df9cc3-69da-4aaf-ae12-8b0db3179d3e",
+          "title": "Beneficios de la Automatización Empresarial",
+          "description": "Descubre cómo PowerApps puede simplificar y optimizar procesos empresariales comunes.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        },
+        {
+          "id": "52b0eb8b-8171-41c7-819e-c8d7c447e0f0",
+          "title": "Casos de Uso y Ejemplos Reales",
+          "description": "Analiza ejemplos concretos de aplicaciones creadas con PowerApps y sus impactos en empresas.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        }
+      ]
+    },
+    {
+      "title": "Creación de Aplicaciones desde Cero",
+      "description": "Aprende a construir tu primera aplicación en PowerApps utilizando plantillas prediseñadas o partiendo desde cero. Configura pantallas, integra controles básicos y experimenta con opciones de personalización.",
+      "lessons": [
+        {
+          "id": "3ae9df81-8f85-4b77-a2a6-345e10ec3129",
+          "title": "Explorando la Interfaz de PowerApps",
+          "description": "Familiarízate con el entorno de desarrollo y sus herramientas principales.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": null,
+          "free": true,
+          "link": "https://www.youtube.com/watch?v=C13-V32oLQo"
+        },
+        {
+          "id": "60b5bc3f-bcd1-4e1d-9f7e-d07c9a5d26f7",
+          "title": "Creando tu Primera Aplicación",
+          "description": "Paso a paso, desarrolla una aplicación básica utilizando plantillas o un diseño en blanco.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        },
+        {
+          "id": "73d58ff5-0542-4ae5-9a22-75a469f3d2a6",
+          "title": "Personalización y Diseño",
+          "description": "Aprende a ajustar colores, fuentes y distribuciones para crear una interfaz profesional.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        }
+      ]
+    },
+    {
+      "id": "8111e263-01b3-488b-a10e-dbac7d8be1f5",
+      "title": "Conexión y Gestión de Datos",
+      "description": "Descubre cómo integrar PowerApps con diversas fuentes de datos, como SharePoint, Excel, SQL Server o servicios en la nube. Aprende a diseñar formularios dinámicos que capturen información clave de manera eficiente.",
+      "lessons": [
+        {
+          "title": "Introducción a las Fuentes de Datos",
+          "description": "Explora las opciones disponibles para conectar datos a tus aplicaciones.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": null,
+          "free": true,
+          "link": "https://www.youtube.com/watch?v=3Hv1SvAmyg0"
+        },
+        {
+          "id": "4c5e2d34-9a91-4fae-81f6-f663cc8e1d1f",
+          "title": "Configuración de Conexiones",
+          "description": "Aprende a enlazar PowerApps con servicios externos, desde Excel hasta bases de datos SQL.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        },
+        {
+          "id": "e1d5b3cf-3756-465e-85db-c5a75a1d6b63",
+          "title": "Diseño de Formularios Dinámicos",
+          "description": "Crea formularios que respondan automáticamente a las entradas de los usuarios.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        }
+      ]
+    },
+    {
+      "id": "b2da61f9-b8b8-4d85-9e91-cf37a4572d21",
+      "title": "Automatización Inteligente con Power Automate",
+      "description": "Conecta PowerApps con Power Automate para crear flujos de trabajo automatizados. Desde aprobaciones hasta notificaciones automáticas, descubre cómo optimizar tareas recurrentes y ahorrar tiempo en tu organización.",
+      "lessons": [
+        {
+          "title": "Introducción a Power Automate",
+          "description": "Descubre cómo Power Automate complementa a PowerApps con flujos automatizados.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": null,
+          "free": true,
+          "link": "https://www.youtube.com/watch?v=1_F9msqF-f8"
+        },
+        {
+          "id": "d13c495b-5e91-41af-8bd8-d70e3b9e5c1d",
+          "title": "Creación de un Flujo de Trabajo",
+          "description": "Aprende a configurar un flujo básico que conecte aplicaciones y datos.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        },
+        {
+          "id": "a7dca952-19eb-4e75-a7b4-cf5d3e78123f",
+          "title": "Integración Avanzada con PowerApps",
+          "description": "Explora cómo utilizar triggers y condiciones para automatizar procesos empresariales complejos.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        }
+      ]
+    },
+    {
+      "id": "5b91d8e1-2dc6-40b7-90eb-1c8f75a9b4f6",
+      "title": "Publicación, Seguridad y Mejores Prácticas",
+      "description": "Aprende a publicar y compartir tus aplicaciones de manera segura dentro de tu empresa. Descubre cómo gestionar permisos, garantizar la calidad y aplicar prácticas recomendadas para el mantenimiento continuo de tus soluciones.",
+      "lessons": [
+        {
+          "title": "Publicación de Aplicaciones",
+          "description": "Paso a paso, publica tu aplicación y compártela con tu equipo de trabajo.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": null,
+          "free": true,
+          "link": "https://www.youtube.com/watch?v=Qk8TLYBaIq4"
+        },
+        {
+          "id": "6a5b9371-8e41-42da-97b1-d2c6e59b43f7",
+          "title": "Gestión de Permisos y Seguridad",
+          "description": "Asegura que tus datos y aplicaciones estén protegidos con configuraciones de acceso adecuadas.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        },
+        {
+          "id": "37c1d845-b9e7-405d-8c1e-f47b0a5e9b2a",
+          "title": "Mantenimiento y Actualizaciones",
+          "description": "Descubre cómo mantener tus aplicaciones actualizadas y funcionales a largo plazo.",
+          "documents": [
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "id": "3b7f3d85-4516-47e1-90d8-4693f8af9b58",
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": false,
+          "link": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+// DELETE THIS AFTER IMPLEMENTING INTERNATIONALIZATION
 export const categories = [
     "UI-UX",
     "Base de datos",
