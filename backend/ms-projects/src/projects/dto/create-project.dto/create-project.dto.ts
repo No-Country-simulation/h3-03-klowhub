@@ -30,12 +30,12 @@ export class CreateProjectDto {
   @ApiProperty({ description: 'Requisitos técnicos', example: ['NestJS', 'PostgreSQL'] })
   @IsArray()
   @IsString({ each: true })
-  technicalRequirements: string[];
+  technicalRequirements: string[]; 
 
-  @ApiProperty({ description: 'Conocimientos requeridos', example: ['Arquitectura de microservicios'] })
+  @ApiProperty({ description: 'Requisitos adicionales', example: ['Arquitectura de microservicios'] })
   @IsArray()
   @IsString({ each: true })
-  requiredKnowledge: string[];
+  additionalRequirements: string[];
 
   @ApiProperty({ description: 'Duración estimada en días', example: 30 })
   @IsNumber()
@@ -52,7 +52,7 @@ export class CreateProjectDto {
   @ApiProperty({ description: 'Habilidades requeridas', example: ['Trabajo en equipo', 'Liderazgo'] })
   @IsArray()
   @IsString({ each: true })
-  requiredSkills: string[];
+  requiredSkills: string[]; // conocimientos necesarios/ habilidades necesarias
 
   @ApiProperty({ description: 'Activos opcionales', example: [{ type: 'logo', url: 'http://example.com/logo.png' }] })
   @IsArray()

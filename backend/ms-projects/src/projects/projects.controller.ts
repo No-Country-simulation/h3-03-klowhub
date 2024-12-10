@@ -32,19 +32,6 @@ export class ProjectsController {
       throw new BadRequestException('El userId es requerido para crear un proyecto');
     }
 
-    // Validar que el usuario existe en el microservicio de usuarios
-    try {
-      const userResponse = await firstValueFrom(
-        this.httpService.get(`http://localhost:3001/users/${userId}`),
-      );
-
-      if (!userResponse.data) {
-        throw new BadRequestException('Usuario no encontrado');
-      }
-    } catch (error) {
-      throw new BadRequestException('Error al validar el usuario');
-    }
-
     // Crear el proyecto
     try {
       const newProject = await this.projectsService.createProject(projectData, userId);

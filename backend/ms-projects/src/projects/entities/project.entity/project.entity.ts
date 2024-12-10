@@ -27,10 +27,10 @@ export class Project {
   experienceLevel: string;
 
   @Column("simple-array", { nullable: true })
-  technicalRequirements: string[];
+  technicalRequirements: string[]; 
 
   @Column("simple-array", { nullable: true })
-  requiredKnowledge: string[];
+  requiredKnowledge: string[]; 
 
   @Column()
   days: number;
@@ -42,7 +42,7 @@ export class Project {
   maxBudget: number;
 
   @Column("text", { array: true, nullable: true })
-  requiredSkills: string[];
+  additionalRequirements: string[];
 
   @Column("json", { nullable: true })
   assets: object[];
