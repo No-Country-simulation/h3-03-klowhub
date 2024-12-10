@@ -17,7 +17,7 @@ export class CreateProjectDto {
 
   @ApiProperty({ description: 'Sector del proyecto', example: 'Tecnología' })
   @IsString()
-  sector: string;
+  sector: string[];
 
   @ApiProperty({ description: 'Metodología de trabajo', example: 'Ágil' })
   @IsString()
@@ -59,9 +59,9 @@ export class CreateProjectDto {
   @IsOptional()
   assets?: object[];
 
-  @ApiProperty({ description: 'Estado del proyecto', example: 'Activo' })
-  @IsString()
-  status: string;
+  // @ApiProperty({ description: 'Estado del proyecto', example: 'Activo' })
+  // @IsString()
+  // status: string;
 
   @ApiProperty({ description: 'ID del usuario asociado', example: '123e4567-e89b-12d3-a456-426614174000' })
   @IsString()
