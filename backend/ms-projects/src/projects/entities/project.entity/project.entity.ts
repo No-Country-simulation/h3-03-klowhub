@@ -17,7 +17,7 @@ export class Project {
   @Column()
   description: string;
 
-  @Column()
+  @Column("simple-array", { nullable: true })
   sector: string[];
 
   @Column()
