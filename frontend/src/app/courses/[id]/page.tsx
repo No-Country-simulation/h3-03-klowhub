@@ -7,7 +7,7 @@ const page: FC= () => {
 
     return (
         <main>
-            <BreadCrumb />
+            <BreadCrumb/>
 
             <CourseDetail>
               <SimilarCourses />

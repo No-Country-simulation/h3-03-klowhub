@@ -23,6 +23,7 @@ import { instructorPitch } from "@/mocks/course-detail";
 
 import { instructor } from "@/mocks/instructor.mock";
 import { useCourseData } from "./hooks/use-course-data.hook";
+import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 
 type Props = {
   children?: ReactNode
@@ -43,58 +44,60 @@ export const CourseDetail: FC<Props> = ({ children }) => {
   ];
 
   return pageData && (
-    <div className="min-h-screen space-y-10">
-      <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-        <CourseInfo {...pageData.courseData} freelessons={pageData.freeLessons} submitCourse={submitCourse}>
-          <ShareSection />
-          <GenericSection header={instructorPitch.title} text={instructorPitch.content} />
-          <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
-          <RequirementsSection requirements={pageData.courseData.prevRequirements} />
-          <IncludeSection />
-          <PageFilters filters={filters} cols={filters.length} />
-          {pageData.courseData.reviews &&
-            <ReviewsSection reviews={pageData.courseData.reviews} />
-          }
-        </CourseInfo>
+    <>
+      <div className="min-h-screen space-y-10">
+        <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
+          <CourseInfo {...pageData.courseData} freelessons={pageData.freeLessons} submitCourse={submitCourse}>
+            <ShareSection />
+            <GenericSection header={instructorPitch.title} text={instructorPitch.content} />
+            <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
+            <RequirementsSection requirements={pageData.courseData.prevRequirements} />
+            <IncludeSection />
+            <PageFilters filters={filters} cols={filters.length} />
+            {pageData.courseData.reviews &&
+              <ReviewsSection reviews={pageData.courseData.reviews} />
+            }
+          </CourseInfo>
 
-        <div className="space-y-6">
-          <InstructorDetail
-            name={instructor.name}
-            description={instructor.description}
-            image={instructor.image}
-            rating={instructor.rating}
-            students={instructor.students}
-            courses={instructor.courses}
-            profileLink={instructor.profileLink}
-          />
+          <div className="space-y-6">
+            <InstructorDetail
+              name={instructor.name}
+              description={instructor.description}
+              image={instructor.image}
+              rating={instructor.rating}
+              students={instructor.students}
+              courses={instructor.courses}
+              profileLink={instructor.profileLink}
+            />
 
-          <Badge
-            className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
-            icon={<Icon name="powerapps" style="w-8 h-8" />}
-          >
-            {pageData.courseData.platform}
-          </Badge>
+            <Badge
+              className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
+              icon={<Icon name="powerapps" style="w-8 h-8" />}
+            >
+              {pageData.courseData.platform}
+            </Badge>
 
-          <CourseProgramSection program={pageData.transformedProgram} />
+            <CourseProgramSection program={pageData.transformedProgram} />
 
-          <Button
-            className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}
-            disabled={section === "preview"}
-          >
-            Comprar curso
-          </Button>
-          <Button
-            variant="outline"
-            className="w-full"
-            disabled={section === "preview"}
-          >
-            <Link href="/cart">
-              Añadir al carrito
-            </Link>
-          </Button>
+            <Button
+              className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}
+              disabled={section === "preview"}
+            >
+              Comprar curso
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full"
+              disabled={section === "preview"}
+            >
+              <Link href="/cart">
+                Añadir al carrito
+              </Link>
+            </Button>
+          </div>
         </div>
+        {children}
       </div>
-      {children}
-    </div>
+    </>
   );
 }
