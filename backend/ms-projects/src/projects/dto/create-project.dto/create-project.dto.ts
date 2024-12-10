@@ -7,8 +7,9 @@ export class CreateProjectDto {
   @IsString()
   platform: string;
 
+  @IsOptional()
   @IsString()
-  description: string;
+  description?: string;
 
   @IsString()
   sector: string;
@@ -19,27 +20,33 @@ export class CreateProjectDto {
   @IsString()
   experienceLevel: string;
 
-  @IsString()
-  technicalRequirements: string;
+  @IsArray()
+  @IsString({ each: true })
+  technicalRequirements: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  requiredKnowledge: string[];
 
   @IsNumber()
   days: number;
 
   @IsNumber()
-  budget: number;
-
-  @IsString()
-  requiredSkills: string;
-
-  @IsString()
-  requiredFiles: string;
-
-  @IsArray()
-  @IsOptional()
-  reviews?: string[];
+  minBudget: number;
 
   @IsNumber()
-  rating: number;
+  maxBudget: number;
+
+  @IsArray()
+  @IsString({ each: true })
+  requiredSkills: string[];
+  
+  @IsArray()
+  @IsOptional()
+  assets?: object[];
+
+  @IsString()
+  status: string;
 
   @IsString()
   userId: string;

@@ -12,15 +12,22 @@ export class ProjectsService {
   ){}
 
   async createProject(projectData: CreateProjectDto, userId: string): Promise<Project> {
-    // Combinar el userId con los datos del proyecto
-    const newProject = this.projectRepository.create({
-      ...projectData,
-      userId, // Asignar el ID del usuario al proyecto
-    });
+    // Validar y transformar los datos si es necesario
+    const { assets, ...rest } = projectData;
 
-    // Guardar el proyecto en la base de datos
+    // Convertir 'assets' de string a object[] si es necesario
+    const transformedAssets = assets || [];
+
+    // Crear el nuevo proyecto
+    const newProject = this.projectRepository.create({
+      ...rest,
+      assets: transformedAssets,
+      userId,
+    });
+    // Guardar en la base de datos
     return await this.projectRepository.save(newProject);
   }
+
 
   async deleteProject(id: number): Promise<void> {
     await this.projectRepository.delete(id);
