@@ -34,6 +34,8 @@ export const AppDetail: FC<Props> = () => {
     const searchParams = useSearchParams();
     const section = searchParams.get("section");
 
+    console.log(pageData?.applicationData)
+
     const handleShowDesktopView = () => {
         setShowGreeter(true)
     }
