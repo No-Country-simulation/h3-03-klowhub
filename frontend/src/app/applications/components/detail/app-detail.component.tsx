@@ -9,6 +9,7 @@ import { reviews } from "@/mocks/reviews.mocks";
 import { InstructorDetail } from "@/app/courses/components/detail/instructor-detail.section";
 import { instructor } from "@/mocks/instructor.mock";
 import List from "@/components/list/list.component";
+import { useSearchParams } from "next/navigation";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -18,12 +19,15 @@ import { AppInclude } from './app-include.section';
 import { Popover } from "@/components/popover/popover.component";
 import { useApplicationData } from "./hooks/use-application-data.hook";
 import { Check } from "lucide-react";
+import Link from "next/link";
 
 type Props = {
     children?: ReactNode
 }
 
 export const AppDetail: FC<Props> = () => {
+  const searchParams = useSearchParams();
+  const section = searchParams.get("section");
 
     // const [data, setData] = useState<AppProps>();
     const { pageData, submitApplication } = useApplicationData();
@@ -65,7 +69,9 @@ export const AppDetail: FC<Props> = () => {
                         {/*     peechDescription={data.peechDescription} */}
                         {/* /> */}
                         <PageFilters filters={filters} />
-                        <ReviewsSection reviews={reviews} />
+          { section !== "preview" &&
+            <ReviewsSection reviews={reviews} />
+          }
                     </AppInfo>
                 <div className="space-y-6">
 
@@ -108,6 +114,21 @@ export const AppDetail: FC<Props> = () => {
                         title={pageData?.applicationData.name}
                         appIncludes={pageData?.applicationData.appIncludes}
                     />
+          <Button 
+            className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}
+            disabled={section === "preview"}
+          >
+            Comprar curso
+          </Button>
+          <Button 
+            variant="outline" 
+            className="w-full"
+            disabled={section === "preview"}
+          >
+            <Link href="/cart">
+                Añadir al carrito
+            </Link>
+          </Button>
 
                 </div>
             </div>

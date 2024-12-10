@@ -59,7 +59,7 @@ const MyCoursesDesktopView = async ({ transactionsData, products }: Props) => {
                             </Table>
                             {transactionsData.length === 0 && <span className="text-center p-5">No hay datos que mostrar.</span>}
                         </div>
-                        <div className="xl:w-1/4 w-full p-5 flex bg-white/10 justify-center items-center relative">
+                        <div className="xl:w-1/4 w-full p-5 flex bg-white/10 justify-center pt-20 relative">
                             <DonutChart
                                 totalRevenue={totalRevenue}
                                 totalCommissions={totalCommissions}

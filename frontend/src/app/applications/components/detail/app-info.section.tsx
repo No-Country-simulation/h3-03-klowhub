@@ -81,7 +81,7 @@ export const AppInfo: FC<AppProps> = ({
             <div className="space-y-4" id='detail-container'>
                 <InstructorInfo instructor={instructor}/>
                 <h3 className="text-sm font-semibold">Acerca de esta app</h3>
-                <div>
+                <div className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
                         {parse(fullDescription, options)}
                     {/* <p className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}> */}
                     {/* </p> */}
@@ -89,7 +89,10 @@ export const AppInfo: FC<AppProps> = ({
 
                 <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
 
-                    <Button className="mt-3 px-20">COMPRAR APP</Button>
+                    <Button 
+            className={`mt-3 px-20 ${section === "preview" ? "bg-gray-400" : ""}`}
+            disabled={section === "preview"}
+          >COMPRAR APP</Button>
 
                     {children}
 
