@@ -9,7 +9,8 @@ import {
   CoreContent, 
   AccessType, 
   ExperienceLevel,
-  Tag
+  Tag,
+  RequiredSkill
 } from "./filters.types";
 
 type Filter<T> = {
@@ -154,7 +155,7 @@ export const coreContent: Filter<CoreContent> = {
 };
 
 export const workMethodology: Filter<WorkMethodology> = {
-  header: "Sector",
+  header: "Metodología de trabajo",
   items: [
     { name: "por-hora", label: "Por hora" },
     { name: "por-proyecto", label: "Por proyecto" },
@@ -164,12 +165,22 @@ export const workMethodology: Filter<WorkMethodology> = {
 };
 
 export const experienceLevel: Filter<ExperienceLevel> = {
-  header: "Sector",
+  header: "Nivel de experiencia",
   items: [
     { name: "sin-experiencia-previa", label: "Sin experiencia previa" },
     { name: "junior", label: "Junior" },
     { name: "semi-senior", label: "Semi senior" },
     { name: "senior", label: "Senior" },
+  ] as const
+};
+
+export const requiredSkills: Filter<RequiredSkill> = {
+  header: "Habilidades requeridas",
+  items: [
+    { name: "diseño-responsivo", label: "Diseño responsivo" },
+    { name: "integracion-de-bases-de-datos", label: "Integración de bases de datos" },
+    { name: "desarrollo-nocode", label: "Desarrollo Nocode" },
+    { name: "desarrollo-lowcode", label: "Desarrollo Lowcode" },
   ] as const
 };
 

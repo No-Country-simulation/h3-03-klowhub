@@ -1,14 +1,16 @@
 "use client"
 
 import useGenerateForm from "@/hooks/use-generate-form.hook";
+import { useEffect } from "react";
 import { PROJECT_INFO_INITIAL_STATE } from "./general-form.consts";
 import { ProjectInfo } from "@/types/project.types";
 import Input from "@/components/input/input.component";
-import { language, coreContent, functionalities, sector, experienceLevel, toolsAndPlatforms, workMethodology } from "@/consts/filters.consts";
+import { sector, experienceLevel, workMethodology, requiredSkills } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/project-form.actions";
 import useProjectContext from "../../hooks/use-project-context.hook";
+import formMock from "./general-form.mock.json"
 
 const GeneralForm = () => {
   const { state, dispatch } = useProjectContext();
@@ -19,6 +21,11 @@ const GeneralForm = () => {
     handleSubmit,
     formState: { isDirty }
   } = useGenerateForm<ProjectInfo>(PROJECT_INFO_INITIAL_STATE, state.general);
+
+  useEffect(() => {
+    console.log("inserting mocked data...");
+    dispatch(setGeneralData(formMock))
+  }, [dispatch])
 
   return (
     <>
@@ -54,11 +61,6 @@ const GeneralForm = () => {
           { ...commonProps }
         />
         <IsClientProvider>
-          {/* <Input  */}
-          {/*   name="language" type="select" options={language.items}  */}
-          {/*   label="Elige el idioma del curso" { ...controlledCommonProps }  */}
-          {/*   placeholder="Seleccionar idioma" */}
-          {/* /> */}
           <Input 
             name="sector" 
             type="select"
@@ -78,8 +80,16 @@ const GeneralForm = () => {
           <Input 
             name="experienceLevel" type="select"
             options={experienceLevel.items} 
-            label="Metodología de trabajo"  
+            label="Nivel de experiencia"  
             placeholder="Ingresa la metodología de trabajo"
+            { ...controlledCommonProps }
+          />
+          <Input 
+            name="requiredSkills" type="select"
+            options={requiredSkills.items} 
+            label="Habilidades requeridas"  
+            placeholder="Habilidades requeridas"
+            isMulti
             { ...controlledCommonProps }
           />
         </IsClientProvider>

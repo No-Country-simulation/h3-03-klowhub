@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { PROJECT_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { ProjectDetails } from "@/types/project.types";
@@ -8,6 +9,7 @@ import { IsClientProvider } from "@/contexts/is-client.context";
 import RouteBtn from "../../../../../../components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/project-form.actions";
 import useProjectContext from "../../hooks/use-project-context.hook";
+import formMock from "./details-form.mock.json"
 
 const DetailsForm = () => {
   const { state, dispatch } = useProjectContext();
@@ -22,6 +24,11 @@ const DetailsForm = () => {
 
   console.log("minBudget: ", watch("minBudget"));
   console.log("maxBudget: ", watch("maxBudget"));
+
+  useEffect(() => {
+    console.log("inserting mocked data...");
+    dispatch(setDetailsData(formMock))
+  }, [dispatch])
 
   return (
     <>
@@ -53,22 +60,30 @@ const DetailsForm = () => {
             />
           </div>
         </div>
-        <IsClientProvider>
-          <Input 
-            name="requiredKnowledge"
-            type="select"
-            label="Conocimientos necesarios"
-            placeholder="Conocimientos necesarios"
-            className="col-span-2"
-            { ...controlledCommonProps }
-          />
-        </IsClientProvider>
         <Input
-          name="requiredSkills"
+          name="requiredKnowledge"
+          type="multitext"
+          label="Conocimientos necesarios"
+          addButtonLabel="Añadir conocimiento requerido"
+          placeholder="¿Qué necesita saber tu candidato?"
+          className="col-span-2"
+          { ...controlledCommonProps }
+        />
+        <Input
+          name="technicalRequirements"
           type="multitext"
           label="Para avanzar con tu propuesta, por favor indicá los requerimientos técnicos necesarios para el desarrollo de tu proyecto. Cuanto más detallada sea la información, mejor podremos adaptar la solución a tus necesidades específicas. Incluí aspectos como funcionalidades, integraciones, plataformas y cualquier otro detalle que consideres relevante."
-          addButtonLabel="Añadir habilidad requerida"
-          placeholder="¿Qué habilidad tiene tu candidato ideal?"
+          addButtonLabel="Añadir requerimiento técnico"
+          placeholder="Requerimiento técnico"
+          className="col-span-2"
+          { ...controlledCommonProps }
+        />
+        <Input
+          name="additionalRequirements"
+          type="multitext"
+          label="Indicá que requisitos adicionales esperas de tus candidatos"
+          addButtonLabel="Añadir requisito adicional"
+          placeholder="¿Qué requisito adicional debería tener tu cantidato?"
           className="col-span-2"
           { ...controlledCommonProps }
         />
@@ -88,10 +103,20 @@ const DetailsForm = () => {
           />
         </IsClientProvider>
       </form>
-      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
+      <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5">
         <RouteBtn 
           setter={handleSubmit( data => dispatch(setDetailsData(data)) )}
-          route="details"
+          route="general"
+          isDirty={isDirty}
+        >
+          Regresar
+        </RouteBtn>
+        <RouteBtn 
+          setter={handleSubmit( data => {
+            console.log('data: ', data);
+            dispatch(setDetailsData(data))
+          } )}
+          route="preview"
           isDirty={isDirty}
         >
           Continuar

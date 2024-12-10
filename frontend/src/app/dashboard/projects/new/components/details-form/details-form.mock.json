@@ -1,0 +1,66 @@
+{
+  "days": 30,
+  "minBudget": 4000,
+  "maxBudget": 5000,
+  "technicalRequirements": [
+    "Integración con Google Sheets para almacenamiento de datos.",
+    "Notificaciones automáticas por correo electrónico usando Gmail API.",
+    "Compatibilidad con dispositivos Android e iOS."
+  ],
+  "requiredKnowledge": [
+    "Manejo avanzado de AppSheet.",
+    "Configuración de automatizaciones en Zapier o Make.",
+    "Experiencia en diseño de interfaces de usuario intuitivas."
+  ],
+  "additionalRequirements": [
+    "Buena comunicación: Capacidad para explicar el proceso de desarrollo y proporcionar actualizaciones periódicas.",
+    "Creatividad: Proactividad para proponer mejoras que puedan optimizar la aplicación.",
+    "Cumplimiento de plazos: Capacidad para entregar el proyecto dentro del tiempo establecido.",
+    "Documentación clara: Incluir documentación detallada para facilitar el mantenimiento futuro."
+  ],
+  "assets": [
+    {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://i.imgur.com/bOZGtzx.png",
+        "size": 0,
+        "width": 1919,
+        "height": 1024,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://i.imgur.com/MRWOLQv.png",
+        "size": 55508,
+        "width": 1920,
+        "height": 1080,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    {
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733728782/tpdnnzmlacjgya6y1ilu.mp4",
+        "duration": 48.386,
+        "size": 10694930,
+        "format": "mp4",
+        "width": 1920,
+        "height": 1080,
+        "mimeType": "video/mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/tpdnnzmlacjgya6y1ilu.jpg?_a=BAMCkGUo0",
+        "thumbnailWidth": 400,
+        "thumbnailHeight": 300,
+        "created_at": "2024-12-09T07:19:42Z"
+      },
+      "fileType": "video",
+      "id": "31ce57f0-eee4-48b1-9473-747ea29fa41c"
+    }
+  ]
+}

@@ -4,7 +4,6 @@ import { PROJECT_INFO_INITIAL_STATE } from "../components/general-form/general-f
 import { PROJECT_DETAILS_INITIAL_STATE } from "../components/details-form/details-form.consts";
 
 export const PROJECT_FORM_INITIAL_STATE: ProjectFormData = {
-  id: null,
   general: PROJECT_INFO_INITIAL_STATE,
   details: PROJECT_DETAILS_INITIAL_STATE,
 };

@@ -5,7 +5,7 @@ import Icon from "../icon/icon.component";
 type Props = {
   header: string
   message: string
-  children: ReactNode[]
+  children: ReactNode | ReactNode[]
 }
 
 const Greeter = ({ header, message, children }: Props) => {

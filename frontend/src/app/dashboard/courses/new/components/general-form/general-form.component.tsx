@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect } from "react";
+import { useSearchParams, usePathname} from "next/navigation";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_INFO_INITIAL_STATE } from "./general-form.consts";
 import { CourseInfo } from "@/types/courses.types";
@@ -15,6 +16,8 @@ import formMock from "./course-general-form.mock.json"
 
 const GeneralForm = () => {
   const { state, dispatch } = useCourseContext();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const {
     commonProps, 
@@ -28,6 +31,11 @@ const GeneralForm = () => {
     console.log('formMock: ', formMock);
     dispatch(setGeneralData(formMock))
   }, [dispatch])
+
+  useEffect(() => {
+    console.log('changing route...');
+    return () => console.log('unmounting general form...')
+  }, [pathname, searchParams])
   return (
     <>
       <form className="

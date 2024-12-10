@@ -44,5 +44,6 @@ export async function GET (req: NextRequest) {
     transformedProgram: modulesAdapter(coursesMock[0]),
   };
 
+  console.log('mockedResponse: ', mockedResponse);
   return NextResponse.json(mockedResponse, { status: 200 })
 }

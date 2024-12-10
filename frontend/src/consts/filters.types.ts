@@ -109,3 +109,9 @@ export type Tag =
   | 'tecnologia-para-empresas'
   | 'herramientas-nocode'
   | 'creacion-de-aplicaciones'
+
+export type RequiredSkill = 
+  | "diseño-responsivo"
+  | "integracion-de-bases-de-datos"
+  | "desarrollo-nocode"
+  | "desarrollo-lowcode"

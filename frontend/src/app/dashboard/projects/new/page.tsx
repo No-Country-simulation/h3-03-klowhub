@@ -5,6 +5,7 @@ import Tab from "@/components/tab/tab.component";
 import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";
 import ProjectCtxProvider from "./context/project-form.context";
+import ProjectPreviewSection from "./components/preview-section/preview-section.component";
 
 const CreateCoursePage = async () => {
   const { section } = await getQueryParams();
@@ -15,6 +16,7 @@ const CreateCoursePage = async () => {
         <div>
           <Tab active={section === "general"} className={section !== "general" ? "hidden md:inline-block" : ""}>Información general</Tab>
           <Tab active={section === "details"} className={section !== "details" ? "hidden md:inline-block" : ""}>Detalles del curso</Tab>
+          <Tab active={section === "preview"} className={section !== "preview" ? "hidden md:inline-block" : ""}>Publicar proyecto</Tab>
         </div>
         <div className="
           flex bg-card rounded-lg p-6
@@ -29,6 +31,7 @@ const CreateCoursePage = async () => {
             <ProjectCtxProvider>
               { section === "general" && <GeneralForm /> }
               { section === "details" && <DetailsForm /> }
+              { section === "preview" && <ProjectPreviewSection /> }
             </ProjectCtxProvider>
           </div>
           <div className="

@@ -1,0 +1,29 @@
+{
+  "title": "Gestión de Inventario para Tiendas de Ropa",
+  "description": "Se busca desarrollar una aplicación no-code/low-code para gestionar el inventario de una tienda de ropa. La aplicación debe permitir registrar productos con información como nombre, categoría, talla, color, cantidad en stock y precio. Además, se requiere un sistema de notificaciones automáticas para alertar sobre productos con bajo inventario.",
+  "methodology": {
+    "name": "por-hora", 
+    "label": "Por hora" 
+  },
+  "experienceLevel": {
+    "name": "semi-senior",
+    "label": "Semi Senior"
+  },
+  "sector": [
+    {
+      "name": "logistica-y-transporte",
+      "label": "Logística y transporte"
+    }
+  ],
+  "platform": "appsheet",
+  "requiredSkills": [
+    {
+      "name": "diseño-responsivo",
+      "label": "Diseño responsivo"
+    },
+    {
+      "name": "desarrollo-lowcode",
+      "label": "Desarrollo Lowcode"
+    }
+  ]
+}
