@@ -14,6 +14,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  app.enableCors();
   const config = new DocumentBuilder()
   .setTitle('Klowhub API')
   .setDescription('Microservicio de usuarios')
