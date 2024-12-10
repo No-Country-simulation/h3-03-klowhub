@@ -18,6 +18,16 @@
     "Cumplimiento de plazos: Capacidad para entregar el proyecto dentro del tiempo establecido.",
     "Documentación clara: Incluir documentación detallada para facilitar el mantenimiento futuro."
   ],
+  "requiredSkills": [
+    {
+      "name": "diseño-responsivo",
+      "label": "Diseño responsivo"
+    },
+    {
+      "name": "desarrollo-lowcode",
+      "label": "Desarrollo Lowcode"
+    }
+  ],
   "assets": [
     {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",

@@ -10,8 +10,9 @@ import RouteBtn from "../../../../../../components/route-btn/route-btn.component
 import { setDetailsData } from "../../context/project-form.actions";
 import useProjectContext from "../../hooks/use-project-context.hook";
 import formMock from "./details-form.mock.json"
-
+import { requiredSkills } from "@/consts/filters.consts";
 const DetailsForm = () => {
+
   const { state, dispatch } = useProjectContext();
 
   const {
@@ -60,15 +61,25 @@ const DetailsForm = () => {
             />
           </div>
         </div>
-        <Input
-          name="requiredKnowledge"
-          type="multitext"
-          label="Conocimientos necesarios"
-          addButtonLabel="Añadir conocimiento requerido"
-          placeholder="¿Qué necesita saber tu candidato?"
-          className="col-span-2"
-          { ...controlledCommonProps }
-        />
+        <IsClientProvider>
+          <Input 
+            name="requiredSkills" type="select"
+            options={requiredSkills.items} 
+            label="Habilidades requeridas"  
+            placeholder="Habilidades requeridas"
+            isMulti
+            { ...controlledCommonProps }
+          />
+        </IsClientProvider>
+        {/* <Input */}
+        {/*   name="requiredKnowledge" */}
+        {/*   type="multitext" */}
+        {/*   label="Conocimientos necesarios" */}
+        {/*   addButtonLabel="Añadir conocimiento requerido" */}
+        {/*   placeholder="¿Qué necesita saber tu candidato?" */}
+        {/*   className="col-span-2" */}
+        {/*   { ...controlledCommonProps } */}
+        {/* /> */}
         <Input
           name="technicalRequirements"
           type="multitext"

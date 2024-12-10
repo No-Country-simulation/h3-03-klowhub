@@ -24,7 +24,8 @@ const ProjectCtxProvider = ({ children }: Props) => {
   const [ state, dispatch ] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
 
   const submitProject = useCallback(async (additionalData = {}) => {
-    const formattedData = breakProject({...state, ...additionalData});
+    const userId = "550e8400-e29b-41d4-a716-446655440000"; // TODO: this should be taken from the global state
+    const formattedData = breakProject({...state, ...additionalData, userId});
     console.log('creating course...', formattedData);
 
     // const res = await fetch('http://localhost:3003/courses/createCourse', { 

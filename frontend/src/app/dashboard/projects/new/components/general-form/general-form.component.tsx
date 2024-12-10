@@ -84,14 +84,14 @@ const GeneralForm = () => {
             placeholder="Ingresa la metodología de trabajo"
             { ...controlledCommonProps }
           />
-          <Input 
-            name="requiredSkills" type="select"
-            options={requiredSkills.items} 
-            label="Habilidades requeridas"  
-            placeholder="Habilidades requeridas"
-            isMulti
-            { ...controlledCommonProps }
-          />
+          {/* <Input  */}
+          {/*   name="requiredSkills" type="select" */}
+          {/*   options={requiredSkills.items}  */}
+          {/*   label="Habilidades requeridas"   */}
+          {/*   placeholder="Habilidades requeridas" */}
+          {/*   isMulti */}
+          {/*   { ...controlledCommonProps } */}
+          {/* /> */}
         </IsClientProvider>
       </form>
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">

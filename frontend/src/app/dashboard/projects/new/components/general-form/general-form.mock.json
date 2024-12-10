@@ -15,15 +15,5 @@
       "label": "Logística y transporte"
     }
   ],
-  "platform": "appsheet",
-  "requiredSkills": [
-    {
-      "name": "diseño-responsivo",
-      "label": "Diseño responsivo"
-    },
-    {
-      "name": "desarrollo-lowcode",
-      "label": "Desarrollo Lowcode"
-    }
-  ]
+  "platform": "appsheet"
 }

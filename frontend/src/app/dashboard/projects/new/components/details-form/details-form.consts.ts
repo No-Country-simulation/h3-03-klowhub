@@ -5,7 +5,7 @@ export const PROJECT_DETAILS_INITIAL_STATE: ProjectDetails = {
   minBudget: NaN,
   maxBudget: NaN,
   technicalRequirements: [""],
-  requiredKnowledge: [""],
+  requiredSkills: [],
   additionalRequirements: [""],
   assets: []
 };

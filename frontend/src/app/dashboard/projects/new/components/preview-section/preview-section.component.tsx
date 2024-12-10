@@ -57,7 +57,7 @@ const ProjectPreviewSection = () => {
             </PreviewFilter>
           </FilterDisplayer>
           <FilterDisplayer header="Habilidades necesarias" orientation="horizontal" containerStyles="border-1 py-2 px-5 rounded-lg border-primary-300">
-            {state.general.requiredSkills.map((sk, idx) => (
+            {state.details.requiredSkills.map((sk, idx) => (
               <PreviewFilter key={`required-skill-${idx}`}>{sk.label}</PreviewFilter>
             ))}
           </FilterDisplayer>
