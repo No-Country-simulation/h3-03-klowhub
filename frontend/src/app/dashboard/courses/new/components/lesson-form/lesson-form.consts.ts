@@ -6,6 +6,6 @@ export const LESSON_INITIAL_STATE: Lesson = {
   video: null,
   documents: [],
   link: null,
-  free: false
+  freeLesson: false
 };
 

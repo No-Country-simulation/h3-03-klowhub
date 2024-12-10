@@ -16,7 +16,7 @@ export const modulesAdapter = (courseData: Course) => {
 
 export const lessonsAdapter = (courseData: Course) => {
   return courseData.modules.flatMap((module) => 
-      module.lessons.filter((lesson) => lesson.free === true
+      module.lessons.filter((lesson) => lesson.freeLesson === true
   ))
 };
 

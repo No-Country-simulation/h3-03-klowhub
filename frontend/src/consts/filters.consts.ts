@@ -61,8 +61,8 @@ export const functionalities: Filter<Funcionalitites> = {
   header: "Funcionalidades",
   items: [
     { name: "calendario", label: "Calendario" },
-    { name: "generación-de-pdf", label: "Generación de pdf" },
-    { name: "reportes-automáticos", label: "Reportes automáticos" },
+    { name: "generacion-de-pdf", label: "Generación de pdf" },
+    { name: "reportes-automaticos", label: "Reportes automáticos" },
     { name: "chatbot-bot", label: "Chatbot (bot)" },
     { name: "emails", label: "Emails" },
     { name: "sms", label: "Sms" },
@@ -114,6 +114,7 @@ export const toolsAndPlatforms: Filter<ToolsAndPlatforms> = {
   ]
 };
 
+// do we need to change this 'free' to 'freeCourse'?
 export const accessType: Filter<AccessType> = {
   header: "Tipo de acceso",
   items: [
