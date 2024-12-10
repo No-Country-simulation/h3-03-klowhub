@@ -26,32 +26,30 @@ export class Project {
   @Column()
   experienceLevel: string;
 
-  @Column()
-  requiredKnowledge: string[];
+  @Column("simple-array", { nullable: true })
+  technicalRequirements: string[]; 
 
-  @Column()
-  technicalRequirements: string[];
+  @Column("simple-array", { nullable: true })
+  requiredKnowledge: string[]; 
 
   @Column()
   days: number;
 
   @Column('decimal')
-  budget: [number, number];
+  minBudget: number;
 
-  @Column()
-  requiredSkills: string[];
+  @Column('decimal')
+  maxBudget: number;
 
-  @Column()
+  @Column("text", { array: true, nullable: true })
+  additionalRequirements: string[];
+
+  @Column("json", { nullable: true })
   assets: object[];
 
   @Column()
   status: string;
 
-  // @Column('text', {array: true})
-  // reviews: string[];
-
-  // @Column('int', {default: 0 })
-  // rating: number;
 
   @Column()
   userId: string;
