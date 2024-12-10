@@ -18,7 +18,7 @@ export class Project {
   description: string;
 
   @Column()
-  sector: string;
+  sector: string[];
 
   @Column()
   methodology: string;
@@ -47,8 +47,8 @@ export class Project {
   @Column("json", { nullable: true })
   assets: object[];
 
-  @Column()
-  status: string;
+  // @Column()
+  // status: string;
 
 
   @Column()
