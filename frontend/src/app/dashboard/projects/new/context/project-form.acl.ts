@@ -1,7 +1,7 @@
 import { ProjectFormData, Project } from "@/types/project.types";
 
 export const breakProject = (data: ProjectFormData): Project | void=> {
-  const { general: { sector, methodology, experienceLevel, requiredSkills } } = data;
+  const { general: { sector, methodology, experienceLevel }, details: { requiredSkills }, userId } = data;
   if (!methodology) return console.error("methodology is null");
   if (!experienceLevel) return console.error("experienceLevel is null");
 
@@ -13,12 +13,18 @@ export const breakProject = (data: ProjectFormData): Project | void=> {
     requiredSkills: requiredSkills.map(sk => sk.name)
   };
 
-  const formattedData = {
-    ...general,
+  const details = {
     ...data.details,
+    requiredSkills: requiredSkills.map(sk => sk.name)
   };
 
-  console.log('formattedData: ', formattedData);
+  const formattedData = {
+    userId,
+    ...general,
+    ...details,
+  };
+
+  // console.log('formattedData: ', formattedData);
 
   return formattedData
 };

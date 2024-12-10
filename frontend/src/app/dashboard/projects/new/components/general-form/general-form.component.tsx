@@ -11,6 +11,7 @@ import RouteBtn from "../../../../../../components/route-btn/route-btn.component
 import { setGeneralData } from "../../context/project-form.actions";
 import useProjectContext from "../../hooks/use-project-context.hook";
 import formMock from "./general-form.mock.json"
+console.log('formMock: ', formMock);
 
 const GeneralForm = () => {
   const { state, dispatch } = useProjectContext();

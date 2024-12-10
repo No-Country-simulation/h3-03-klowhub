@@ -8,6 +8,7 @@ import { ProjectFormActions } from "./project-form.actions";
 import { useCallback } from "react";
 import { useEffect } from "react";
 import { breakProject } from "./project-form.acl";
+import { Project } from "@/types/project.types";
 
 type Props = {
   children: ReactNode[]
@@ -28,23 +29,23 @@ const ProjectCtxProvider = ({ children }: Props) => {
     const formattedData = breakProject({...state, ...additionalData, userId});
     console.log('creating course...', formattedData);
 
-    // const res = await fetch('http://localhost:3003/courses/createCourse', { 
-    //   method: 'post',
-    //   body: JSON.stringify(formattedData),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // });   
-    //
-    // const createdCourse: Course = await res.json();
-    // console.log('createdCourse: ', createdCourse);
-    //
-    // return createdCourse.id
+    const res = await fetch('http://localhost:3002/projects', { 
+      method: 'post',
+      body: JSON.stringify(formattedData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });   
 
-    const temporaryId = "course-19u3-124-asdad";
-    window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
-    console.log(window.sessionStorage.getItem("courseForm"));
-    return temporaryId
+    const createdProject: Project = await res.json();
+    console.log('createdProject: ', createdProject);
+
+    // return createdProject.id
+
+    // const temporaryId = "course-19u3-124-asdad";
+    // window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
+    // console.log(window.sessionStorage.getItem("courseForm"));
+    // return temporaryId
 
   }, [state]);
 

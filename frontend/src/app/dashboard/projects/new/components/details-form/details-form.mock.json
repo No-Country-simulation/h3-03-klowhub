@@ -7,11 +7,6 @@
     "Notificaciones automáticas por correo electrónico usando Gmail API.",
     "Compatibilidad con dispositivos Android e iOS."
   ],
-  "requiredKnowledge": [
-    "Manejo avanzado de AppSheet.",
-    "Configuración de automatizaciones en Zapier o Make.",
-    "Experiencia en diseño de interfaces de usuario intuitivas."
-  ],
   "additionalRequirements": [
     "Buena comunicación: Capacidad para explicar el proceso de desarrollo y proporcionar actualizaciones periódicas.",
     "Creatividad: Proactividad para proponer mejoras que puedan optimizar la aplicación.",
