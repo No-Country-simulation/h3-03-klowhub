@@ -4,7 +4,9 @@ import { Project } from './entities/project.entity/project.entity';
 import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { CreateProjectDto } from './dto/create-project.dto/create-project.dto';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
+@ApiTags('Projects')
 @Controller('projects')
 export class ProjectsController {
   constructor(
@@ -13,6 +15,15 @@ export class ProjectsController {
   ){}
 
   @Post()
+  @ApiOperation({ summary: 'Crear un nuevo proyecto' })
+  @ApiResponse({
+    status: 201,
+    description: 'El proyecto ha sido creado exitosamente.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Error al crear el proyecto o usuario no encontrado.',
+  })
   async createProject(@Body() projectData: CreateProjectDto) {
     const { userId } = projectData;
 
@@ -47,17 +58,48 @@ export class ProjectsController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Eliminar un proyecto' })
+  @ApiResponse({
+    status: 200,
+    description: 'El proyecto ha sido eliminado con éxito.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'El proyecto no fue encontrado.',
+  })
+  @ApiParam({ name: 'id', description: 'ID del proyecto a eliminar', type: Number })
   delete(@Param('id') id: number) {
     return this.projectsService.deleteProject(id);
   }
 
   @Put(':id')
+  @ApiOperation({ summary: 'Actualizar un proyecto' })
+  @ApiResponse({
+    status: 200,
+    description: 'El proyecto ha sido actualizado exitosamente.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'El proyecto no fue encontrado.',
+  })
+  @ApiParam({ name: 'id', description: 'ID del proyecto a actualizar', type: Number })
+  @ApiBody({ description: 'Datos para actualizar el proyecto'})
   update(@Param('id') id: number, @Body() data: Partial<Project>) {
     return this.projectsService.updateProject(id, data);
   }
 
 
   @Get(':userId')
+  @ApiOperation({ summary: 'Obtener proyectos por ID de usuario' })
+  @ApiResponse({
+    status: 200,
+    description: 'Proyectos encontrados para el usuario especificado.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'No se encontraron proyectos para el usuario especificado.',
+  })
+  @ApiParam({ name: 'userId', description: 'ID del usuario', type: String })
   async getProjectsByUserId(@Param('userId') userId: string) {
     if (!userId) {
       throw new BadRequestException('El userId es requerido');
@@ -74,6 +116,11 @@ export class ProjectsController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Listar todos los proyectos' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de proyectos obtenida exitosamente.',
+  })
   findAll() {
     return this.projectsService.getAllProjects();
   }
