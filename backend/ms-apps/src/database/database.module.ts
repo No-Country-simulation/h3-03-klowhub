@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { envs } from 'src/config';
 import { App } from 'src/apps/entities/app.entity';
+import { Asset } from 'src/apps/entities/asset.entity';
+import { Promotion } from 'src/apps/entities/promotion.entity';
 
 @Module({
   imports: [
@@ -12,7 +14,7 @@ import { App } from 'src/apps/entities/app.entity';
       username: envs.dbUsername,
       password: envs.dbPassword,
       database: envs.dbDatabaseName,
-      entities: [App],
+      entities: [App, Asset, Promotion],
       synchronize: true,
       //ssl: false,
       logging: true,

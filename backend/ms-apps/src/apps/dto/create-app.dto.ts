@@ -1,20 +1,17 @@
-import { IsString, IsArray, IsBoolean } from 'class-validator';
+import { IsString, IsBoolean, IsArray, IsOptional } from 'class-validator';
 
 export class CreateAppDto {
   @IsString()
   name: string;
 
   @IsString()
-  description: string;
+  shortDescription: string;
 
   @IsString()
   platform: string;
 
-  @IsArray()
-  tools: string[];
-
-  @IsArray()
-  languages: string[];
+  @IsString()
+  languages: string;
 
   @IsArray()
   functionalities: string[];
@@ -23,7 +20,7 @@ export class CreateAppDto {
   sector: string;
 
   @IsArray()
-  relatedFunctionalities: string[];
+  tools: string[];
 
   @IsString()
   targetAudience: string;
@@ -31,11 +28,23 @@ export class CreateAppDto {
   @IsString()
   advantages: string;
 
-  @IsString()
-  coverImage: string;
+  @IsArray()
+  tags: string[];
 
   @IsArray()
-  mockupImages: string[];
+  features: string[];
+
+  @IsString()
+  views: string;
+
+  @IsString()
+  appIncludes: string;
+
+  @IsString()
+  fullDescription: string;
+
+  @IsString()
+  coverImage: string;
 
   @IsString()
   mobileVersionLink: string;
@@ -60,4 +69,8 @@ export class CreateAppDto {
 
   @IsString()
   emailToAccess: string;
+
+  @IsArray()
+  @IsOptional()
+  assetsIds?: string[];
 }
