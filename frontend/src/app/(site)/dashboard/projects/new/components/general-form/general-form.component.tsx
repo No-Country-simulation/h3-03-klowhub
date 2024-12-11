@@ -23,11 +23,11 @@ const GeneralForm = () => {
     formState: { isDirty }
   } = useGenerateForm<ProjectInfo>(PROJECT_INFO_INITIAL_STATE, state.general);
 
-  useEffect(() => {
-    console.log("inserting mocked data...");
-    // @ts-ignore: Unreachable code error
-    dispatch(setGeneralData(formMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("inserting mocked data...");
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setGeneralData(formMock))
+  // }, [dispatch])
 
   return (
     <>

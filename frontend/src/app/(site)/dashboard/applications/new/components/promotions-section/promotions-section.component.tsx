@@ -16,7 +16,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import useApplicationContext from "../../hooks/use-application-context.hook";
 import useUserContent from "@/hooks/use-user-content.hook";
-import promotionMock from "./promotions.mock.json"
+// import promotionMock from "./promotions.mock.json"
 import { Button } from "@/components/ui/button";
 
 type ContentType = "applications" | "courses"
@@ -54,11 +54,11 @@ const PromotionsSection = () => {
     if (selection === "no") setShowSelector(false);
   }, [selection])
 
-  useEffect(() => {
-    console.log("inserting promotionMock: ", promotionMock);
-    // @ts-ignore: Unreachable code error
-    dispatch(setPromotionData(promotionMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("inserting promotionMock: ", promotionMock);
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setPromotionData(promotionMock))
+  // }, [dispatch])
 
   return (
     <>

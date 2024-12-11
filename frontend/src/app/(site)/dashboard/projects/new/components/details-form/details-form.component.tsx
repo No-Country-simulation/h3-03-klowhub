@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { PROJECT_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { ProjectDetails } from "@/types/project.types";
@@ -9,7 +9,7 @@ import { IsClientProvider } from "@/contexts/is-client.context";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/project-form.actions";
 import useProjectContext from "../../hooks/use-project-context.hook";
-import formMock from "./details-form.mock.json"
+// import formMock from "./details-form.mock.json"
 import { requiredSkills } from "@/consts/filters.consts";
 const DetailsForm = () => {
 
@@ -26,11 +26,11 @@ const DetailsForm = () => {
   console.log("minBudget: ", watch("minBudget"));
   console.log("maxBudget: ", watch("maxBudget"));
 
-  useEffect(() => {
-    console.log("inserting mocked data...");
-    // @ts-ignore: Unreachable code error
-    dispatch(setDetailsData(formMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("inserting mocked data...");
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setDetailsData(formMock))
+  // }, [dispatch])
 
   return (
     <>

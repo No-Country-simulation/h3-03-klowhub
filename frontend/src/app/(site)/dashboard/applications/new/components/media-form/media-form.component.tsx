@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { APPLICATION_MEDIA_INITIAL_STATE } from "./media-form.consts";
@@ -12,16 +12,16 @@ import useApplicationContext from "../../hooks/use-application-context.hook";
 
 import { ApplicationMedia } from "@/types/application.types";
 import { Badge } from "@/components/ui/badge";
-import mediaMock from "./media-form.mock.json"
+// import mediaMock from "./media-form.mock.json"
 
 const MediaForm = () => {
   const { state, dispatch } = useApplicationContext();
 
   const {
-    commonProps,
+    // commonProps,
     controlledCommonProps,
     handleSubmit,
-    reset,
+    // reset,
     formState: { isDirty }
   } = useGenerateForm<ApplicationMedia>(APPLICATION_MEDIA_INITIAL_STATE, state.media || APPLICATION_MEDIA_INITIAL_STATE);
 
@@ -31,11 +31,11 @@ const MediaForm = () => {
   //   reset()
   // }, [contentType, reset])
 
-  useEffect(() => {
-    console.log("inserting mediaMock: ", mediaMock);
-    // @ts-ignore: Unreachable code error
-    dispatch(setMediaData(mediaMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("inserting mediaMock: ", mediaMock);
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setMediaData(mediaMock))
+  // }, [dispatch])
 
   return (
     <>

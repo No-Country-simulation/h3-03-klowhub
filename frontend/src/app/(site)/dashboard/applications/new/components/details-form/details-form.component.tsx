@@ -1,31 +1,31 @@
 "use client"
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { APPLICATION_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import Input from "@/components/input/input.component";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/application-form.actions";
 import useApplicationContext from "../../hooks/use-application-context.hook";
-import detailsMock from "./details-form.mock.json"
+// import detailsMock from "./details-form.mock.json"
 import { ApplicationDetails } from "@/types/application.types";
 
 const DetailsForm = () => {
   const { state, dispatch } = useApplicationContext();
 
   const {
-    commonProps,
+    // commonProps,
     controlledCommonProps, 
     handleSubmit,
     formState: { isDirty }
   } = useGenerateForm<ApplicationDetails>(APPLICATION_DETAILS_INITIAL_STATE, state.details);
 
-  useEffect(() => {
-    console.log("inserting mocked data...");
-    console.log('detailsMock: ', detailsMock);
-
-    dispatch(setDetailsData(detailsMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("inserting mocked data...");
+  //   console.log('detailsMock: ', detailsMock);
+  //
+  //   dispatch(setDetailsData(detailsMock))
+  // }, [dispatch])
 
   return (
     <>

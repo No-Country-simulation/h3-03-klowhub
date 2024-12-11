@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { ApplicationInfo } from "@/types/application.types";
 import Input from "@/components/input/input.component";
@@ -10,7 +10,7 @@ import useApplicationContext from "../../hooks/use-application-context.hook";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/application-form.actions";
 import { APPLICATION_INFO_INITIAL_STATE } from "./general-form.consts";
-import generalMock from "./general-form.mock.json"
+// import generalMock from "./general-form.mock.json"
 
 const GeneralForm = () => {
   const { state, dispatch } = useApplicationContext();
@@ -22,11 +22,11 @@ const GeneralForm = () => {
     formState: { isDirty }
   } = useGenerateForm<ApplicationInfo>(APPLICATION_INFO_INITIAL_STATE, state.general);
 
-  useEffect(() => {
-    console.log("inserting generalMock: ", generalMock);
-    // @ts-ignore: Unreachable code error
-    dispatch(setGeneralData(generalMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("inserting generalMock: ", generalMock);
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setGeneralData(generalMock))
+  // }, [dispatch])
 
   return (
     <>
