@@ -1,6 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Promotion } from './promotion.entity';
-import { Asset } from './asset.entity';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class App {
@@ -8,80 +6,56 @@ export class App {
   id: string;
 
   @Column()
-  name: string;
+  title: string;
 
-  @Column({ name: 'shortDescription' })
+  @Column()
   shortDescription: string;
 
   @Column()
   platform: string;
 
-  @Column({ name: 'language' })
-  languages: string;
+  @Column()
+  language: string;
 
-  @Column('text', { array: true, name: 'functionalities' })
+  @Column({ type: 'simple-array', name: 'sector' }) // Cambiado a simple-array
+  sector: string[];
+
+  @Column('simple-array', { name: 'functionalities' }) // Cambiado a simple-array
   functionalities: string[];
 
-  @Column()
-  sector: string;
+  @Column({ type: 'simple-array', name: 'toolsAndPlatforms' }) // Cambiado a simple-array, renombrado de toolsAndPlatforms
+  toolsAndPlatforms: string[];
 
-  @Column('text', { array: true, name: 'toolsAndPlatforms' })
-  tools: string[];
-
-  @Column()
-  targetAudience: string;
-
-  @Column()
-  advantages: string;
-
-  @Column('text', { array: true, name: 'tags' })
+  @Column('simple-array', { name: 'tags' }) // Cambiado a simple-array
   tags: string[];
 
-  @Column('text', { array: true, name: 'features' })
+  @Column('simple-array', { name: 'features' }) // Cambiado a simple-array
   features: string[];
 
-  @Column()
-  views: string;
+  @Column('simple-array', { name: 'targetAudience' }) // Cambiado a simple-array
+  targetAudience: string[];
 
-  @Column()
-  appIncludes: string;
+  @Column('simple-array', { name: 'views' }) // Cambiado a simple-array
+  views: string[];
 
-  @Column('text', { name: 'fullDescription' })
+  @Column({ type: 'text', name: 'fullDescription' }) // Cambiado a text para manejar texto largo
   fullDescription: string;
 
-  @Column()
-  coverImage: string;
+  @Column('simple-array', { name: 'appIncludes' }) // Cambiado a simple-array
+  appIncludes: string[];
 
   @Column()
-  mobileVersionLink: string;
+  coverImg: string;
 
   @Column()
-  desktopVersionLink: string;
+  desktopLink: string;
 
   @Column()
-  isPromotion: boolean;
+  mobileLink: string;
 
-  @Column()
-  course: string;
+  @Column('simple-array', { name: 'assets' }) // Cambiado a simple-array
+  assets: string[];
 
-  @Column()
-  discount: string;
-
-  @Column()
-  rating: string;
-
-  @Column()
-  review: string;
-
-  @Column()
-  emailToAccess: string;
-
-  @Column('text', { array: true, name: 'assetsIds' })
-  assetsIds: string[];
-
-  @OneToMany(() => Asset, (asset) => asset.application)
-  assets: Asset[];
-
-  @OneToMany(() => Promotion, (promotion) => promotion.application)
-  promotions: Promotion[];
+  @Column('jsonb', { name: 'promotion', nullable: true })
+  promotion: object;
 }

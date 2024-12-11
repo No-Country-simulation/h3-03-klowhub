@@ -15,6 +15,6 @@ export class Promotion {
   @Column('float')
   percentage: number;
 
-  @ManyToOne(() => App, (application) => application.promotions)
+  @ManyToOne(() => App, (application) => application.promotion)
   application: App;
 }
