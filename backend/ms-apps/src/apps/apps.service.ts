@@ -152,12 +152,28 @@ export class AppsService {
   async findOne(id: string): Promise<App> {
     const app = await this.appRepository.findOne({
       where: { id },
-      relations: ['assets'], // Incluye la relación 'assets' para obtener los datos
+      // relations: ['assets'], // Incluye la relación 'assets' para obtener los datos
     });
     if (!app) {
       throw new NotFoundException(`App with ID ${id} not found`);
     }
-    return app;
+
+    const assetsProms = app.assets.map(async (ast) => (
+      await this.assetRepository.find({
+        where: { id: ast }
+      })
+    ));
+    const assets = await Promise.all(assetsProms);
+
+    const coverImg = await this.assetRepository.find({ where: { id: app.coverImg } });
+
+
+    const payload = {
+      ...app,
+      coverImg,
+      assets
+    };
+    return payload as unknown as App;
   }
 
   async findAll(): Promise<App[]> {
