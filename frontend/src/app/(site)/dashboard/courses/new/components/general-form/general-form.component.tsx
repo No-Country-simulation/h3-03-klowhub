@@ -26,12 +26,12 @@ const GeneralForm = () => {
     formState: { isDirty }
   } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, state.general);
 
-  useEffect(() => {
-    console.log('inserting mocked data...');
-    console.log('formMock: ', formMock);
-    // @ts-ignore: Unreachable code error
-    dispatch(setGeneralData(formMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log('inserting mocked data...');
+  //   console.log('formMock: ', formMock);
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setGeneralData(formMock))
+  // }, [dispatch])
 
   useEffect(() => {
     console.log('changing route...');

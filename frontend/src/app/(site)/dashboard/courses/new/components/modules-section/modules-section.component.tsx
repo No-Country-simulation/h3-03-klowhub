@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import CourseLesson from "../course-lesson/course-lesson.component";
+// import CourseLesson from "../course-lesson/course-lesson.component";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import {
   Accordion,
@@ -15,23 +15,23 @@ import { Pencil } from "lucide-react";
 import ModuleForm from "../module-form/module-form.component";
 import LessonsSection from "../lessons-section/lessons-section.component";
 import useCourseContext from "../../hooks/use-course-context.hook";
-import modulesMock from "./modules.mock.json"
-import { setModulesData } from "../../context/course-form.actions";
+// import modulesMock from "./modules.mock.json"
+// import { setModulesData } from "../../context/course-form.actions";
 import { Plus } from "lucide-react";
 import styles from "@/styles/accordion.styles.module.css"
 
 const ModulesSection = () => {
-  const { state, dispatch } = useCourseContext();
+  const { state } = useCourseContext();
   const [currentModule, setCurrentModule] = useState(NaN);
   const [showModuleForm, setShowModuleForm] = useState(state.modules.length === 0);
 
-  useEffect(() => {
-    // console.log("inserting modules mock...");
-    // console.log('modulesMock.modules: ', modulesMock.modules);
-
-    // @ts-ignore: Unreachable code error
-    dispatch(setModulesData(modulesMock.modules))
-  }, [dispatch])
+  // useEffect(() => {
+  //   // console.log("inserting modules mock...");
+  //   // console.log('modulesMock.modules: ', modulesMock.modules);
+  //
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setModulesData(modulesMock.modules))
+  // }, [dispatch])
 
   return (
     <div className="flex flex-col gap-5">

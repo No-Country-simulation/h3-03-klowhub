@@ -24,26 +24,22 @@ const CourseCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
 
   const submitCourse = useCallback(async (additionalData = {}) => {
-    const { id, ...formattedData } = breakCourse({ ...state, ...additionalData });
+    const formattedData = breakCourse({ ...state, ...additionalData });
     console.log('creating course...', formattedData);
 
-    // const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/createCourse`, { 
-    //   method: 'post',
-    //   body: JSON.stringify(formattedData),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // });   
-    //
-    // const createdCourse: Course = await res.json();
-    // console.log('createdCourse: ', createdCourse);
-    //
-    // return createdCourse.id
+    const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/createCourse`, { 
+      method: 'post',
+      body: JSON.stringify(formattedData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });   
 
-    const temporaryId = "course-19u3-124-asdad";
-    window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
-    console.log(window.sessionStorage.getItem("courseForm"));
-    return temporaryId
+    const createdCourse: Course = await res.json();
+    console.log('createdCourse: ', createdCourse);
+
+    return createdCourse.id as string
+
 
   }, [state]);
 

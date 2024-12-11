@@ -20,12 +20,12 @@ const DetailsForm = () => {
     formState: { isDirty }
   } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, state.details);
 
-  useEffect(() => {
-    console.log("inserting mocked data...");
-    console.log('detailsMock: ', detailsMock);
-    // @ts-ignore: Unreachable code error
-    dispatch(setDetailsData(detailsMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log("inserting mocked data...");
+  //   console.log('detailsMock: ', detailsMock);
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setDetailsData(detailsMock))
+  // }, [dispatch])
 
   return (
     <>

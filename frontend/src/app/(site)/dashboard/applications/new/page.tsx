@@ -9,6 +9,7 @@ import DetailsForm from "./components/details-form/details-form.component";
 import MediaForm from "./components/media-form/media-form.component";
 import PromotionsSection from "./components/promotions-section/promotions-section.component";
 import { AppDetail } from "@/app/(site)/applications/components/detail/app-detail.component";
+import { Suspense } from "react";
 
 const CreateCoursePage = async () => {
   const { section } = await getQueryParams();
@@ -40,7 +41,9 @@ const CreateCoursePage = async () => {
               { section === "details" && <DetailsForm /> }
               { section === "media" && <MediaForm /> }
               { section === "promotion" && <PromotionsSection /> }
-              { section === "preview" && <AppDetail /> }
+              <Suspense>
+                { section === "preview" && <AppDetail /> }
+              </Suspense>
             </ApplicationCtxProvider>
           </div>
           { section !== "preview" &&

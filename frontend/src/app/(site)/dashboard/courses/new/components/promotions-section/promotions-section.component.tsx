@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import Greeter from "@/components/greeter/greeter.component";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import promotionMock from "./promotions.mock.json"
+// import promotionMock from "./promotions.mock.json"
 
 type ContentType = "applications" | "courses"
 
@@ -53,11 +53,11 @@ const PromotionsSection = () => {
     if (selection === "no") setShowSelector(false);
   }, [selection])
 
-  useEffect(() => {
-    console.log('promotionMock: ', promotionMock);
-    // @ts-ignore: Unreachable code error
-    dispatch(setPromotionData(promotionMock))
-  }, [dispatch])
+  // useEffect(() => {
+  //   console.log('promotionMock: ', promotionMock);
+  //   // @ts-ignore: Unreachable code error
+  //   dispatch(setPromotionData(promotionMock))
+  // }, [dispatch])
 
   return (
     <>

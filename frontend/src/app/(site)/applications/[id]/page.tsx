@@ -1,11 +1,13 @@
-import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import { AppDetail } from "../components/detail/app-detail.component";
+import { Suspense } from "react";
 
 const page = () => {
 
 	return (
 		<main>
-			<AppDetail />
+      <Suspense>
+        <AppDetail />
+      </Suspense>
 		</main>
 	);
 	
