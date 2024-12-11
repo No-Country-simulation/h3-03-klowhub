@@ -18,9 +18,9 @@ import { Project } from "src/projects/entities/project.entity/project.entity";
       entities: [Application, Project], // Lista de entidades que usarás
       synchronize: true, // No usar en producción
       logging: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      // ssl: {
+      //   rejectUnauthorized: false,
+      // },
     }),
   ],
 })
