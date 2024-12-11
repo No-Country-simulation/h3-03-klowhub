@@ -19,7 +19,7 @@ export class AppsController {
   constructor(private readonly appService: AppsService) {}
 
   //MULTIMEDIA ROUTES
-  @Post('assets')
+  @Post('multimedia')
   @UseInterceptors(FileInterceptor('file'))
   async createAsset(
     @Body() createAssetDto: CreateAssetDto,
@@ -38,13 +38,7 @@ export class AppsController {
     } else {
       throw new BadRequestException('Tipo de archivo no soportado');
     }
-
     try {
-      console.log('Datos enviados al servicio:', {
-        createAssetDto,
-        file,
-        fileType,
-      }); // Log de los datos antes de enviar al servicio
       return await this.appService.createAssets(createAssetDto, file, fileType);
     } catch (error) {
       console.error('Error capturado en catch:', error); // Log del error capturado

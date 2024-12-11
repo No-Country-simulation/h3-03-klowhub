@@ -2,12 +2,12 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
+  //OneToMany,
   JoinColumn,
   OneToOne,
 } from 'typeorm';
 import { Promotion } from './promotion.entity'; // Asegúrate de que esta importación sea correcta
-import { Asset } from './asset.entity'; // Asegúrate de que esta importación sea correcta
+//import { Asset } from './asset.entity'; // Asegúrate de que esta importación sea correcta
 
 @Entity()
 export class App {
@@ -83,8 +83,8 @@ export class App {
   @Column()
   emailToAccess: string;
 
-  @OneToMany(() => Asset, (asset) => asset.application, { cascade: true }) // cascade: true para que se guarden los assets
-  assets: Asset[];
+  // @OneToMany(() => Asset, (asset) => asset.application, { cascade: true }) // cascade: true para que se guarden los assets
+  // assets: Asset[];
 
   @JoinColumn() // Para relacionar con la tabla de promociones
   @OneToOne(() => Promotion)

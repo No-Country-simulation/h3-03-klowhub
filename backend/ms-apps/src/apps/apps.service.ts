@@ -118,7 +118,7 @@ export class AppsService {
 
     // Guarda los datos en la base de datos
     const multimedia = this.assetRepository.create(createAssetDto);
-    console.log('fileType antes de la inserción:', createAssetDto.fileType);
+    //console.log('fileType antes de la inserción:', createAssetDto.fileType);
     return await this.assetRepository.save(multimedia);
     // const course = this.courseRepository.create({
     //   multimedia: [savedMultimedia],
