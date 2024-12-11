@@ -22,20 +22,20 @@ type TProjectCtx = {
 export const ProjectCtx = createContext<TProjectCtx | undefined>(undefined)
 
 const ProjectCtxProvider = ({ children }: Props) => {
-  const [ state, dispatch ] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
+  const [state, dispatch] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
 
   const submitProject = useCallback(async (additionalData = {}) => {
     const userId = "550e8400-e29b-41d4-a716-446655440000"; // TODO: this should be taken from the global state
-    const formattedData = breakProject({...state, ...additionalData, userId});
+    const formattedData = breakProject({ ...state, ...additionalData, userId });
     console.log('creating course...', formattedData);
 
-    const res = await fetch('http://localhost:3002/projects', { 
+    const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}/projects`, {
       method: 'post',
       body: JSON.stringify(formattedData),
       headers: {
         "Content-Type": "application/json"
       }
-    });   
+    });
 
     const createdProject: Project = await res.json();
     console.log('createdProject: ', createdProject);
@@ -49,10 +49,10 @@ const ProjectCtxProvider = ({ children }: Props) => {
 
   }, [state]);
 
-  useEffect(() => { console.log('project form state', state) }, [ state ])
+  useEffect(() => { console.log('project form state', state) }, [state])
 
   return (
-    <ProjectCtx.Provider value={{ state, dispatch, submitProject }}>{ children }</ProjectCtx.Provider>
+    <ProjectCtx.Provider value={{ state, dispatch, submitProject }}>{children}</ProjectCtx.Provider>
   )
 };
 

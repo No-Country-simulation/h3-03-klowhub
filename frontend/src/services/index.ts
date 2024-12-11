@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
     // url que viene del .env o el local
-    baseURL: process.env.NEXT_PUBLIC_BASE_API_URL || "http://localhost:3001", 
+    baseURL: process.env.NEXT_PUBLIC_COURSES_URL || "http://localhost:3001", 
     headers: {
       "Content-Type": "application/json",
     },
