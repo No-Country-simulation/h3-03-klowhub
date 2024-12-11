@@ -24,6 +24,7 @@ const GeneralForm = () => {
 
   useEffect(() => {
     console.log("inserting generalMock: ", generalMock);
+     // @ts-ignore: Unreachable code error
     dispatch(setGeneralData(generalMock))
   }, [dispatch])
 

@@ -68,7 +68,7 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
             {currentVideo.type === "video" ? (
                 <video controls className="rounded-xl">
                     <source
-                        src={currentVideo.link}
+                        src={currentVideo.link!!}
                         type={`video/${promotionalVideo.fileMetadata.format}`}
                     />
                 </video>
