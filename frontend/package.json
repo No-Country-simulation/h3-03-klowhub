@@ -15,6 +15,7 @@
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -29,6 +30,7 @@
     "react-quill-new": "^3.3.3",
     "react-select": "^5.8.3",
     "react-youtube": "^10.1.0",
+    "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },
