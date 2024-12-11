@@ -252,7 +252,7 @@ docker-compose up --build
       <td>QA Tester</td>
       <td>Fernando Lamas</td>
       <td><a href="https://github.com/FernandoLam">GitHub</a></td>
-      <td>N/A</td>
+      <td><a href="https://www.linkedin.com/in/fernando-la-949842316/">LinkedIn</a></td>
     </tr>
     <tr>
       <td>Project Manager</td>
