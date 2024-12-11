@@ -6,7 +6,7 @@ import { Facebook, Linkedin, Twitter } from "lucide-react"
 export const Footer: FC = () => {
 
     return (
-        <footer className="text-white mt-8" style={{ background: "linear-gradient(263.17deg, #201C2D 0.4%, #201D43 50.02%, #262136 99.65%)" }}>
+        <footer className="text-white mt-auto" style={{ background: "linear-gradient(263.17deg, #201C2D 0.4%, #201D43 50.02%, #262136 99.65%)" }}>
             <div className="container mx-auto px-20 py-10">
                 <div className="flex flex-col gap-10 md:gap-32 md:flex-row">
                     <div className="space-y-3">

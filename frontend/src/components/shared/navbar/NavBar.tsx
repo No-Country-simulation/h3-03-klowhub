@@ -41,7 +41,7 @@ export const NavBar = () => {
               </Link>
             </div>
             <div className="md:flex hidden space-x-4">
-              <NavItem href="#">Dashboard</NavItem>
+              <NavItem href="/dashboard">Dashboard</NavItem>
               <NavItem href="/courses">Curso y lecciones</NavItem>
               <NavItem href="/applications">Appstore</NavItem>
               <NavItem href="#">Proyectos</NavItem>
