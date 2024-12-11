@@ -16,7 +16,8 @@ export class CreateProjectDto {
   description?: string;
 
   @ApiProperty({ description: 'Sector del proyecto', example: 'Tecnología' })
-  @IsString()
+  @IsArray()
+  @IsString({ each: true })
   sector: string[];
 
   @ApiProperty({ description: 'Metodología de trabajo', example: 'Ágil' })
