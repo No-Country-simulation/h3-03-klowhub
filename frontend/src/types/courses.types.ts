@@ -6,7 +6,7 @@ import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
 import { Promotion, Rating } from "./global.types";
 import { TReview } from "@/components/shared/reviews/review.types";
-import { Expand, NoUndefinedField, RequiredProperty } from "./utils.types";
+import { RequiredProperty } from "./utils.types";
 
 
 export type Link = {

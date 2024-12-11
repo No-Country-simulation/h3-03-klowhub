@@ -1,7 +1,7 @@
 "use client"
 
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 type Props = {
@@ -15,10 +15,12 @@ const CreateCourseLayout = ({ children }: Props) => {
   return (
     <main>
       <BreadCrumb />
-      { section !== "preview" && 
-        <h1 className="font-bold mt-5 mb-12">Lanza tu curso: Comparte tu conocimiento</h1>
-      }
-      { children }
+      <Suspense fallback={<p>Cargando ...</p>}>
+        {section !== "preview" &&
+          <h1 className="font-bold mt-5 mb-12">Lanza tu curso: Comparte tu conocimiento</h1>
+        }
+        {children}
+      </Suspense>
     </main>
   )
 };

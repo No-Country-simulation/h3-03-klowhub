@@ -1,5 +1,5 @@
 import { Module } from "@/types/courses.types"
-import { Promotion, TDocument, TImage, TVideo } from "@/types/global.types"
+import { Promotion, TDocument, TVideo } from "@/types/global.types"
 
 export type TCourseDetail = {
   id: string | null

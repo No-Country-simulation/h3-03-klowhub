@@ -46,7 +46,8 @@ type ControlledInput<T extends FieldValues> = {
 type ProductSelector<T extends FieldValues> = {
   type: "product-selector"
   children: ReactNode
-  productId: number
+  // este input no debe recibir un id indefinido. Este undefined es temporal.
+  productId: string | undefined
   productType: "application" | "course"
 } & ControlledInput<T>
 
