@@ -1,6 +1,5 @@
 import { TDocument, TImage, TVideo } from "@/types/global.types";
 import { ReactNode } from "react";
-import { platform } from '../../../../consts/filters.consts';
 
 export type AppProps = {
     title: string

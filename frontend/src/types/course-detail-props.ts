@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { coreContent, toolsAndPlatforms, functionalities } from '../consts/filters.consts';
 import { TVideo } from "./global.types";
 import { Lesson } from "./courses.types";
 

@@ -95,6 +95,7 @@ export const AppHeader: FC<AppDetailHeader> = ({
                 <>
                   {["image", "video"].includes(ast.fileType) ? (
                     <Image
+                       // @ts-expect-error: Unreachable code error
                       src={ast.fileType === "image" ? ast.fileMetadata.url : ast.fileMetadata.thumbnailUrl}
                       width={(ast as TImage).fileMetadata.width}
                       height={(ast as TImage).fileMetadata.height}

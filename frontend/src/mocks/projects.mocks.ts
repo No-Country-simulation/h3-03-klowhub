@@ -1,6 +1,6 @@
-import { ProjectCard } from "@/types/project.types";
+import { TProjectCard } from "@/types/project.types";
 
-export const projectsData: ProjectCard[] = [
+export const projectsData: TProjectCard[] = [
   {
     id: 1,
     img: {

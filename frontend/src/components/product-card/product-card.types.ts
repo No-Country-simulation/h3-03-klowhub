@@ -2,7 +2,7 @@ import { TImage } from "@/types/global.types"
 import { AuthorInfo } from "@/types/global.types"
 
 export type TProductCard = {
-  id: string
+  id?: string
   title: string
   coverImg: TImage
   shortDescription: string

@@ -56,11 +56,11 @@ const Page = async () => {
           <ProductCard data={c} key={idx} />
         ))}
       </div>
-        { queryParams.modal && 
-          <SideModal>
-            <QuickView products={products.data} />
-          </SideModal>
-        }
+      {queryParams.modal &&
+        <SideModal>
+          <QuickView products={products.data} />
+        </SideModal>
+      }
       <Pager />
     </main>
   );

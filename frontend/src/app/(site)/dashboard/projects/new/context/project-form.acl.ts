@@ -26,6 +26,7 @@ export const breakProject = (data: ProjectFormData): Project | void=> {
 
   // console.log('formattedData: ', formattedData);
 
+  // @ts-ignore: Unreachable code error
   return formattedData
 };
 

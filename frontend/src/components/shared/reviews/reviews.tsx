@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import { review } from './review.types';
+import { TReview } from './review.types';
 import Rating from '@/components/rating/rating.component';
 
-export const Review: FC<review> = ({ author, rating, comment }) => {
+export const Review: FC<TReview> = ({ author, rating, comment }) => {
 
     return (
         <div className="space-y-1 border-b border-[#F3F3F3] pb-2">

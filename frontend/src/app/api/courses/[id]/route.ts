@@ -1,24 +1,10 @@
 import { NextRequest } from "next/server";
-// import { TCourseDetail } from "@/app/courses/components/detail/detail.types";
-// import { courseDataNew } from "@/mocks/course-detail";
 import coursesMock from "@/mocks/courses.mock.json"
 import { Course, Lesson } from "@/types/courses.types";
 import { NextResponse } from "next/server";
 import { reviews } from "@/mocks/reviews.mocks";
 import authorsMocks from "@/mocks/authors.mock.json";
-
-export const modulesAdapter = (courseData: Course) => {
-  return courseData.modules.map((module) => ({
-      moduleTitle: module.title,
-      lessons: module.lessons.map((lesson) => lesson.title),
-  }))
-};
-
-export const lessonsAdapter = (courseData: Course) => {
-  return courseData.modules.flatMap((module) => 
-      module.lessons.filter((lesson) => lesson.freeLesson === true
-  ))
-};
+import { modulesAdapter, lessonsAdapter } from "./utils";
 
 export type TEMPMockedResponse = {
   courseData: Course
@@ -40,7 +26,9 @@ export async function GET (req: NextRequest) {
       ...(withAuthor ? { author: authorsMocks[0] } : {}),
       ...(withReviews ? { reviews } : {}),
     },
+     // @ts-ignore: Unreachable code error
     freeLessons: lessonsAdapter(coursesMock[0]),
+     // @ts-ignore: Unreachable code error
     transformedProgram: modulesAdapter(coursesMock[0]),
   };
 

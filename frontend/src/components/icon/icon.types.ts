@@ -17,3 +17,6 @@ export type IconTypes =
   | "whatsapp"
   | "messenger"
   | "greeter-check"
+  | "github"
+  | "facebook"
+  | "google"

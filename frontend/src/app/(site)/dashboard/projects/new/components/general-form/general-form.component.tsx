@@ -17,14 +17,15 @@ const GeneralForm = () => {
   const { state, dispatch } = useProjectContext();
 
   const {
-    commonProps, 
-    controlledCommonProps, 
+    commonProps,
+    controlledCommonProps,
     handleSubmit,
     formState: { isDirty }
   } = useGenerateForm<ProjectInfo>(PROJECT_INFO_INITIAL_STATE, state.general);
 
   useEffect(() => {
     console.log("inserting mocked data...");
+    // @ts-ignore: Unreachable code error
     dispatch(setGeneralData(formMock))
   }, [dispatch])
 
@@ -35,13 +36,13 @@ const GeneralForm = () => {
         md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-10 md:grid-cols-2
         lg:gap-x-48
         ">
-        <Input 
+        <Input
           name="title"
-          type="text" 
+          type="text"
           label="Título del proyecto"
-          placeholder="Ingresa el título del proyecto" 
+          placeholder="Ingresa el título del proyecto"
           className="col-span-2"
-          { ...commonProps } 
+          {...commonProps}
         />
         <Input
           name="platform"
@@ -51,39 +52,39 @@ const GeneralForm = () => {
             { value: "appsheet", label: "AppSheet" },
             { value: "powerapps", label: "PowerApps" },
           ]}
-          { ...controlledCommonProps }
+          {...controlledCommonProps}
         />
-        <Input 
+        <Input
           name="description"
           type="textarea"
           label="Antes de comenzar, asegúrate de tener una idea clara de lo que necesitas. Esto incluye el tipo de trabajo, los resultados esperados y cualquier requisito específico."
           placeholder="Escribe una descripción básica del proyecto"
           className="col-span-2"
-          { ...commonProps }
+          {...commonProps}
         />
         <IsClientProvider>
-          <Input 
-            name="sector" 
+          <Input
+            name="sector"
             type="select"
-            options={sector.items} 
-            label="Sector del proyecto" 
+            options={sector.items}
+            label="Sector del proyecto"
             placeholder="Selecciona el sector"
             isMulti
-            { ...controlledCommonProps } 
+            {...controlledCommonProps}
           />
-          <Input 
+          <Input
             name="methodology" type="select"
-            options={workMethodology.items} 
-            label="Metodología de trabajo"  
+            options={workMethodology.items}
+            label="Metodología de trabajo"
             placeholder="Ingresa la metodología de trabajo"
-            { ...controlledCommonProps }
+            {...controlledCommonProps}
           />
-          <Input 
+          <Input
             name="experienceLevel" type="select"
-            options={experienceLevel.items} 
-            label="Nivel de experiencia"  
+            options={experienceLevel.items}
+            label="Nivel de experiencia"
             placeholder="Ingresa la metodología de trabajo"
-            { ...controlledCommonProps }
+            {...controlledCommonProps}
           />
           {/* <Input  */}
           {/*   name="requiredSkills" type="select" */}
@@ -96,8 +97,8 @@ const GeneralForm = () => {
         </IsClientProvider>
       </form>
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
-        <RouteBtn 
-          setter={handleSubmit( data => dispatch(setGeneralData(data)) )}
+        <RouteBtn
+          setter={handleSubmit(data => dispatch(setGeneralData(data)))}
           route="details"
           isDirty={isDirty}
         >

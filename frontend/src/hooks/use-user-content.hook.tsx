@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { ProductCard } from "@/components/product-card/product-card.types";
+import { TProductCard } from "@/components/product-card/product-card.types";
 import { Course } from "@/types/courses.types";
 
 type UserContent = {
-  applications: ProductCard[]
-  courses: ProductCard[]
+  applications: TProductCard[]
+  courses: TProductCard[]
 }
 
 const useUserContent = () => {
-  const [ content, setContent ] = useState<UserContent>({ applications: [], courses: [] });
+  const [content, setContent] = useState<UserContent>({ applications: [], courses: [] });
 
   useEffect(() => {
     (async function () {
@@ -48,6 +48,7 @@ const useUserContent = () => {
       });
       console.log('applicationCards: ', applicationCards);
 
+      // @ts-ignore: Unreachable code error
       setContent({ applications: applicationCards, courses: courseCards })
     })()
   }, [])

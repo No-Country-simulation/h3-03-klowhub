@@ -32,7 +32,7 @@ export type ProjectFormData = {
 
 export type Project = RequiredProperty<ProjectInfo & ProjectDetails>
 
-export type ProjectCard = {
+export type TProjectCard = {
   id: number,
   img : {
     url: string,

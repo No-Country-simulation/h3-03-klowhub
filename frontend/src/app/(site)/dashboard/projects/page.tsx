@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Inter } from "next/font/google";
 import ProjectCard from "./components/project-card.component";
 import { projectsData } from "@/mocks/projects.mocks";
+import Link from "next/link";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -27,7 +28,10 @@ const MyProjectsPage = () => {
                         <Button variant={"outline"} className="sm:w-[250px] w-full text-primary-200 border-1 border-primary-200">
                             Explorar proyecto
                         </Button>
-                        <Button className="sm:w-[250px] w-full">Publicar proyecto</Button>
+                        <Button className="sm:w-[250px] w-full">
+
+                            <Link href={"projects/new?section=general"}>Publicar proyecto</Link>
+                        </Button>
                     </div>
                 </div>
                 <div className="flex flex-col-reverse md:flex-row gap-14 md:gap-6">

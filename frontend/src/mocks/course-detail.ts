@@ -1,6 +1,7 @@
 // CANDIDATE FOR DELETION
 
-import { GenericSection } from "@/app/courses/components/detail/detail.types";
+import { GenericSection } from "@/app/(site)/courses/components/detail/detail.types";
+
 // import { Course } from "@/types/courses.types";
 
 // export const courseData = {

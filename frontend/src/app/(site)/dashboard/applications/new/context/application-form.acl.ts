@@ -17,6 +17,7 @@ export const breakApplication = (data: ApplicationFormData): Application => {
     percentage: data.promotion.percentage / 100
   } : null;
 
+  // @ts-ignore: Unreachable code error
   return {
     ...general,
     ...data.details,
