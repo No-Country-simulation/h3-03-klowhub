@@ -1,4 +1,12 @@
-import { IsString, IsBoolean, IsArray, IsOptional } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsString,
+  IsBoolean,
+  IsArray,
+  IsOptional,
+  ValidateNested,
+} from 'class-validator';
+import { CreateAssetDto } from './create-asset-dto';
 
 export class CreateAppDto {
   @IsString()
@@ -69,6 +77,11 @@ export class CreateAppDto {
 
   @IsString()
   emailToAccess: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAssetDto)
+  assets: CreateAssetDto[];
 
   @IsArray()
   @IsOptional()

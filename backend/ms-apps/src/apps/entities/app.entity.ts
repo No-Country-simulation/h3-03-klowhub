@@ -1,6 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Promotion } from './promotion.entity';
-import { Asset } from './asset.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  JoinColumn,
+  OneToOne,
+} from 'typeorm';
+import { Promotion } from './promotion.entity'; // Asegúrate de que esta importación sea correcta
+import { Asset } from './asset.entity'; // Asegúrate de que esta importación sea correcta
 
 @Entity()
 export class App {
@@ -10,43 +17,43 @@ export class App {
   @Column()
   name: string;
 
-  @Column({ name: 'shortDescription' })
+  @Column()
   shortDescription: string;
 
   @Column()
   platform: string;
 
-  @Column({ name: 'language' })
-  languages: string;
+  @Column({ type: 'simple-array', name: 'languages' }) // Cambiado a simple-array
+  languages: string[];
 
-  @Column('text', { array: true, name: 'functionalities' })
+  @Column({ type: 'simple-array', name: 'sector' }) // Cambiado a simple-array
+  sector: string[];
+
+  @Column('simple-array', { name: 'functionalities' }) // Cambiado a simple-array
   functionalities: string[];
 
-  @Column()
-  sector: string;
-
-  @Column('text', { array: true, name: 'toolsAndPlatforms' })
+  @Column({ type: 'simple-array', name: 'tools' }) // Cambiado a simple-array, renombrado de toolsAndPlatforms
   tools: string[];
 
-  @Column()
+  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
   targetAudience: string;
 
-  @Column()
+  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
   advantages: string;
 
-  @Column('text', { array: true, name: 'tags' })
+  @Column('simple-array', { name: 'tags' }) // Cambiado a simple-array
   tags: string[];
 
-  @Column('text', { array: true, name: 'features' })
+  @Column('simple-array', { name: 'features' }) // Cambiado a simple-array
   features: string[];
 
-  @Column()
+  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
   views: string;
 
-  @Column()
+  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
   appIncludes: string;
 
-  @Column('text', { name: 'fullDescription' })
+  @Column({ type: 'text', name: 'fullDescription' }) // Cambiado a text para manejar texto largo
   fullDescription: string;
 
   @Column()
@@ -76,12 +83,10 @@ export class App {
   @Column()
   emailToAccess: string;
 
-  @Column('text', { array: true, name: 'assetsIds' })
-  assetsIds: string[];
-
-  @OneToMany(() => Asset, (asset) => asset.application)
+  @OneToMany(() => Asset, (asset) => asset.application, { cascade: true }) // cascade: true para que se guarden los assets
   assets: Asset[];
 
-  @OneToMany(() => Promotion, (promotion) => promotion.application)
-  promotions: Promotion[];
+  @JoinColumn() // Para relacionar con la tabla de promociones
+  @OneToOne(() => Promotion)
+  promotion: Promotion; // Relacion uno a uno con Promotion
 }

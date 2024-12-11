@@ -1,0 +1,122 @@
+{
+  "name": "Gestión Ágil de Inventarios",
+  "shortDescription": "Una solución eficiente para gestionar inventarios en tiempo real, optimizando recursos y procesos.",
+  "platform": "powerapps",
+  "language": "español",
+  "sector": [
+    "gestión-de-inventarios",
+    "logística-y-transporte",
+    "ventas-y-crm"
+  ],
+  "functionalities": [
+    "dashboard_reportes-y-análisis",
+    "gestión-de-usuarios"
+  ],
+  "toolsAndPlatforms": [
+    "airtable",
+    "google-sheets",
+    "twilio"
+  ],
+  "target": "Empresas medianas que necesitan una solución eficiente para administrar su inventario y mantener comunicación efectiva con sus proveedores y clientes.",
+  "advantages": "Automatiza el control de inventarios, mejora la comunicación interna y externa, reduce errores humanos y proporciona reportes visuales detallados para la toma de decisiones estratégicas.",
+  "tags": [
+    "plataforma-de-cursos",
+    "aplicaciones-sin-codigo",
+    "desarrolladores-nocode"
+  ],
+  "features": [
+    "Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.",
+    "Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.",
+    "Establece prioridades claras y ajusta los plazos según las necesidades del proyecto",
+    "Facilita la comunicación entre los miembros del equipo con espacios compartidos para archivos.",
+    "Diseña tu panel de control para ver lo que más te interesa, desde gráficos de progreso hasta plazos críticos."
+  ],
+  "targetAudience": [
+    "Eres una empresa que quiere obtener su propia aplicación de facturación y presupuestos y el control de su negocio desde cualquier lugar.",
+    "Eres un trabajador freelance o autónomo y quieres ahorrar tiempo y costes en las tareas administrativas que realmente no son las que te aportan ingresos.",
+    "Quieres generar ingresos ofreciendo esta solución a empresas que necesiten digitalizar y automatizar con AppSheet las tareas de facturación y presupuestos.",
+    "Trabajas para una empresa y quieres automatizar y digitalizar determinadas tareas como la facturación y los presupuestos.",
+    "Quieres aprender más sobre AppSheet y quieres conocer cómo se ha creado esta aplicación."
+  ],
+  "views": [
+    "Menú: Menú interactivo con iconos, mucho más intuitivo que los menús superior e inferior propuestos por AppSheet.",
+    "Clientes: Listado de clientes con sus atributos como web, mapa con botón de navegación y siempre interrelacionado con los presupuestos y facturas que se generen, pudiendo acceder a estos desde la ficha del propio cliente.",
+    "Proveedores: Listado de proveedores exactamente igual al de clientes, interrelacionado con las facturas recibidas.",
+    "Presupuestos: Documentos de presupuesto registrados desde la app. Interrelacionado con las facturas y clientes.",
+    "Facturas Emitidas: Documentos de facturas registrados desde la app. Interrelacionado con los presupuestos y clientes.",
+    "Facturas recibidas: Documentos de facturas recibidas registrados desde la app. Interrelacionado con clientes.",
+    "IVA: Pantalla desde la cual podrás acceder a los datos de impuestos a pagar registrados en las facturas tanto emitidas como recibidas.",
+    "Resultado: Pantalla de tipo gráfico de barras donde podrás ver la evolución del beneficio mes a mes durante el año."
+  ],
+  "fullDescription": "<h3><strong>Todo para la gestión de tus proyectos</strong></h3><p><br></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Organiza y asigna tareas de manera intuitiva, facilitando la colaboración y el seguimiento de cada actividad.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Monitorea el progreso de tu equipo y recibe actualizaciones instantáneas para tomar decisiones informadas.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Establece prioridades claras y ajusta los plazos según las necesidades del proyecto</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Facilita la comunicación entre los miembros del equipo con espacios compartidos para archivos.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Diseña tu panel de control para ver lo que más te interesa, desde gráficos de progreso hasta plazos críticos.</li></ol><p><br></p><p>App de Facturas&nbsp;en AppSheet ha sido generada con la finalidad de que&nbsp;autónomos y empresas&nbsp;puedan crear facturas y presupuestos desde su propio teléfono móvil. Sin necesidad de verse obligados a crear las facturas desde un lugar concreto y permitiendo&nbsp;aprovechar cualquier momento&nbsp;para llevar a cabo estas tareas&nbsp;gracias a la tecnología de AppSheet.</p><p><br></p><p>Por ejemplo,&nbsp;uno de los casos más interesantes&nbsp;puede ser el de un autónomo que acude a&nbsp;valorar una obra/instalación a realizar y quiere dar presupuesto a su cliente. Actualmente ese autónomo tiene que llegar a casa después del trabajo y, entre otras muchas cosas, preparar los presupuestos que le han solicitado. Incluso&nbsp;hay trabajadores que dejan esas tareas para el fin de semana.</p><p><br></p><p>El problema de esto es que hasta que este presupuesto es enviado, sus clientes potenciales han buscado otras alternativas y&nbsp;el 80% de las veces los clientes se quedan con el primer presupuesto que reciben, porque las personas buscamos sobre todo la inmediatez. Con esta app de AppSheet, ese trabajador, si tiene claras las tareas a desempeñar en su obra, puede&nbsp;generar su presupuesto en un minuto y enviárselo al correo automáticamente o por WhatsApp, de manera que&nbsp;en la misma cita&nbsp;de valoración puede entregar el presupuesto y concertar la fecha para realizar esa obra o instalación.</p><p><br></p><p>Con la App de facturas de AppSheet se mejora el control de cualquier&nbsp;negocio, la&nbsp;agilidad&nbsp;con la que se resuelven tareas administrativas,&nbsp;se ahorra tiempo y/o personal, se&nbsp;ahorra en costes. Y, sobre todo, permite la dedicación a las tareas que de verdad generan ingresos en un negocio.</p>",
+  "appIncludes": [
+    "Acceso completo a la aplicación: Descargá y utilizá la app en todos tus dispositivos sin restricciones.",
+    "Actualizaciones gratuitas: Disfrutá de mejoras y nuevas funcionalidades sin costo adicional.",
+    "Soporte técnico dedicado: Asistencia personalizada para resolver cualquier duda o inconveniente que tengas."
+  ],
+  "coverImg": {
+    "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    "fileType": "image",
+    "fileMetadata": {
+      "url": "https://i2-prod.mirror.co.uk/tech/article11620942.ece/ALTERNATES/s1200e/Datally.jpg",
+      "size": 0,
+      "width": 1200,
+      "height": 667,
+      "format": "webp",
+      "mimeType": "image/webp",
+      "created_at": "2024-12-04T05:47:09Z"
+    }
+  },
+  "desktopLink": "https://i.imgur.com/inuDM3W.png",
+  "mobileLink": "https://i.imgur.com/5X8qpQP.png",
+  "assets": [
+    {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://i.imgur.com/bOZGtzx.png",
+        "size": 0,
+        "width": 1919,
+        "height": 1024,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    {
+      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+      "fileType": "image",
+      "fileMetadata": {
+        "url": "https://i.imgur.com/MRWOLQv.png",
+        "size": 55508,
+        "width": 1920,
+        "height": 1080,
+        "format": "webp",
+        "mimeType": "image/webp",
+        "created_at": "2024-12-04T05:47:09Z"
+      }
+    },
+    {
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733728782/tpdnnzmlacjgya6y1ilu.mp4",
+        "duration": 48.386,
+        "size": 10694930,
+        "format": "mp4",
+        "width": 1920,
+        "height": 1080,
+        "mimeType": "video/mp4",
+        "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/tpdnnzmlacjgya6y1ilu.jpg?_a=BAMCkGUo0",
+        "thumbnailWidth": 400,
+        "thumbnailHeight": 300,
+        "created_at": "2024-12-09T07:19:42Z"
+      },
+      "fileType": "video",
+      "id": "31ce57f0-eee4-48b1-9473-747ea29fa41c"
+    }
+  ],
+  "promotion": {
+    "type": "application",
+    "id": "7da0f9af-0b40-4f1d-ba95-eefb991649f7",
+    "percentage": 0.2
+  }
+}

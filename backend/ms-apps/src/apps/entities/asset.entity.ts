@@ -1,17 +1,19 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { App } from './app.entity';
 
-@Entity('archivo')
+@Entity('assets')
 export class Asset {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: ['image', 'video', 'audio', 'document'] })
   fileType: string;
 
   @Column('json')
   fileMetadata: object;
 
-  @ManyToOne(() => App, (application) => application.assets)
+  @ManyToOne(() => App, (application) => application.assets, {
+    onDelete: 'CASCADE',
+  })
   application: App;
 }
