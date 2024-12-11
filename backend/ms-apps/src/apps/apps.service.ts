@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-//import { CreateAppDto } from './dto/create-app.dto';
+import { CreateAppDto } from './dto/create-app.dto';
 import { App } from './entities/app.entity';
 import { Asset } from './entities/asset.entity';
 import { CreateAssetDto } from './dto/create-asset-dto';
@@ -130,33 +130,24 @@ export class AppsService {
     // return savedCourse;
   }
 
-  ///// JAVI SErVICE////////////////////////////////
+  async createApp(createAppDto: CreateAppDto): Promise<App> {
+    try {
+      // Crea la aplicación con los datos recibidos
+      const app = this.appRepository.create({
+        ...createAppDto, // Crea la aplicación con todos los datos del DTO
+      });
 
-  // async create(createAppDto: CreateAppDto): Promise<App> {
-  //   try {
-  //     const app = this.appRepository.create({ ...createAppDto, assets: [] }); // Inicializa assets como array vacío
-  //     const savedApp = await this.appRepository.save(app);
+      // Guarda la aplicación en la base de datos
+      const savedApp = await this.appRepository.save(app);
 
-  //     if (createAppDto.assets && createAppDto.assets.length > 0) {
-  //       const assetsToCreate = createAppDto.assets.map((assetData) => ({
-  //         ...assetData,
-  //         application: savedApp, // Establece la relación con la aplicación recién creada
-  //       }));
-  //       await this.assetRepository.save(assetsToCreate);
-  //     }
-
-  //     // Actualiza la aplicación para incluir los IDs de los assets
-  //     const appWithAssets = await this.appRepository.findOne({
-  //       where: { id: savedApp.id },
-  //       relations: ['assets'], // Incluye la relación 'assets' para obtener los datos
-  //     });
-  //     return appWithAssets;
-  //   } catch (error) {
-  //     throw new ConflictException(
-  //       `Error al crear la aplicación: ${error.message}`,
-  //     );
-  //   }
-  // }
+      // Devuelve el ID de la aplicación creada
+      return savedApp;
+    } catch (error) {
+      throw new ConflictException(
+        `Error al crear la aplicación: ${error.message}`,
+      );
+    }
+  }
 
   async findOne(id: string): Promise<App> {
     const app = await this.appRepository.findOne({

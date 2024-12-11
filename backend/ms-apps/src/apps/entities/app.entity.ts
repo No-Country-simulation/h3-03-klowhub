@@ -1,13 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  //OneToMany,
-  JoinColumn,
-  OneToOne,
-} from 'typeorm';
-import { Promotion } from './promotion.entity'; // Asegúrate de que esta importación sea correcta
-//import { Asset } from './asset.entity'; // Asegúrate de que esta importación sea correcta
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class App {
@@ -15,7 +6,7 @@ export class App {
   id: string;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column()
   shortDescription: string;
@@ -23,8 +14,8 @@ export class App {
   @Column()
   platform: string;
 
-  @Column({ type: 'simple-array', name: 'languages' }) // Cambiado a simple-array
-  languages: string[];
+  @Column()
+  language: string;
 
   @Column({ type: 'simple-array', name: 'sector' }) // Cambiado a simple-array
   sector: string[];
@@ -32,14 +23,8 @@ export class App {
   @Column('simple-array', { name: 'functionalities' }) // Cambiado a simple-array
   functionalities: string[];
 
-  @Column({ type: 'simple-array', name: 'tools' }) // Cambiado a simple-array, renombrado de toolsAndPlatforms
-  tools: string[];
-
-  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
-  targetAudience: string;
-
-  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
-  advantages: string;
+  @Column({ type: 'simple-array', name: 'toolsAndPlatforms' }) // Cambiado a simple-array, renombrado de toolsAndPlatforms
+  toolsAndPlatforms: string[];
 
   @Column('simple-array', { name: 'tags' }) // Cambiado a simple-array
   tags: string[];
@@ -47,46 +32,30 @@ export class App {
   @Column('simple-array', { name: 'features' }) // Cambiado a simple-array
   features: string[];
 
-  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
-  views: string;
+  @Column('simple-array', { name: 'targetAudience' }) // Cambiado a simple-array
+  targetAudience: string[];
 
-  @Column({ type: 'text' }) // Cambiado a text para manejar texto largo
-  appIncludes: string;
+  @Column('simple-array', { name: 'views' }) // Cambiado a simple-array
+  views: string[];
 
   @Column({ type: 'text', name: 'fullDescription' }) // Cambiado a text para manejar texto largo
   fullDescription: string;
 
-  @Column()
-  coverImage: string;
+  @Column('simple-array', { name: 'appIncludes' }) // Cambiado a simple-array
+  appIncludes: string[];
 
   @Column()
-  mobileVersionLink: string;
+  coverImg: string;
 
   @Column()
-  desktopVersionLink: string;
+  desktopLink: string;
 
   @Column()
-  isPromotion: boolean;
+  mobileLink: string;
 
-  @Column()
-  course: string;
+  @Column('simple-array', { name: 'assets' }) // Cambiado a simple-array
+  assets: string[];
 
-  @Column()
-  discount: string;
-
-  @Column()
-  rating: string;
-
-  @Column()
-  review: string;
-
-  @Column()
-  emailToAccess: string;
-
-  // @OneToMany(() => Asset, (asset) => asset.application, { cascade: true }) // cascade: true para que se guarden los assets
-  // assets: Asset[];
-
-  @JoinColumn() // Para relacionar con la tabla de promociones
-  @OneToOne(() => Promotion)
-  promotion: Promotion; // Relacion uno a uno con Promotion
+  @Column('jsonb', { name: 'promotion', nullable: true })
+  promotion: object;
 }

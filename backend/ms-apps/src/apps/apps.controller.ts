@@ -8,7 +8,7 @@ import {
   UseInterceptors,
   UploadedFile,
 } from '@nestjs/common';
-//import { CreateAppDto } from './dto/create-app.dto';
+import { CreateAppDto } from './dto/create-app.dto';
 import { AppsService } from './apps.service';
 import { App } from './entities/app.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -46,10 +46,10 @@ export class AppsController {
   }
 
   //APP ROUTES
-  // @Post()
-  // async create(@Body() createAppDto: CreateAppDto): Promise<App> {
-  //   return this.appService.create(createAppDto);
-  // }
+  @Post()
+  async create(@Body() createAppDto: CreateAppDto): Promise<App> {
+    return this.appService.createApp(createAppDto);
+  }
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<App> {
