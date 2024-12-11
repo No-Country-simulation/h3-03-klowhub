@@ -11,16 +11,13 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-const BreadCrumb = () => {
-    
+const BreadCrumb = ({ title }: { title?: string }) => {
     const pathname = usePathname();
-
     const segments = pathname.split("/").filter(Boolean);
 
     return (
         <Breadcrumb className="mt-6">
             <BreadcrumbList>
-                
                 <BreadcrumbItem>
                     <BreadcrumbLink className="text-white text-xs tracking-tight leading-5" href="/">
                         Home
@@ -35,12 +32,11 @@ const BreadCrumb = () => {
                     const isLast = index === segments.length - 1;
                     const href = `/${segments.slice(0, index + 1).join("/")}`;
 
-                    const label = segment === "id" ? "Courses" : segment.replace(/-/g, " ");
+                    const label = isLast && title ? title : segment.replace(/-/g, " ");
 
                     return (
                         <BreadcrumbItem key={index}>
                             {isLast ? (
-                                
                                 <BreadcrumbPage className="text-white text-xs tracking-tight leading-5 capitalize">
                                     {label}
                                 </BreadcrumbPage>

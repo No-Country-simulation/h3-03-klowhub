@@ -45,6 +45,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
 
   return pageData && (
     <>
+      <BreadCrumb title={pageData.courseData.title}/>
       <div className="min-h-screen space-y-10">
         <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
           <CourseInfo {...pageData.courseData} freelessons={pageData.freeLessons} submitCourse={submitCourse}>
