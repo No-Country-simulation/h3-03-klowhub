@@ -1,0 +1,25 @@
+{
+  "title": "Gestión Ágil de Inventarios",
+  "shortDescription": "Una solución eficiente para gestionar inventarios en tiempo real, optimizando recursos y procesos.",
+  "platform": "powerapps",
+  "language": { "name": "español", "label": "Español" },
+  "sector": [
+    { "name": "gestión-de-inventarios", "label": "Gestión de inventarios" }, 
+    { "name": "logística-y-transporte", "label": "Logística y transporte" },
+    { "name": "ventas-y-crm", "label": "Ventas y crm" }
+  ],
+  "functionalities": [
+    { "name": "dashboard_reportes-y-análisis", "label": "Dashboard - \n Reportes y análisis" },
+    { "name": "gestión-de-usuarios", "label": "Gestión de usuarios" }
+  ],
+  "toolsAndPlatforms": [
+    { "name": "airtable", "label": "Airtable" },
+    { "name": "google-sheets", "label": "Google sheets" },
+    { "name": "twilio", "label": "Twilio" }
+  ],
+  "tags": [
+    { "name": "plataforma-de-cursos", "label": "Plataforma de cursos" },
+    { "name": "aplicaciones-sin-codigo", "label": "Aplicaciones sin código" },
+    { "name": "desarrolladores-nocode", "label": "Desarrolladores no-code" }
+  ]
+}
