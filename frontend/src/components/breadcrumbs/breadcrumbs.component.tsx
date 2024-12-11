@@ -48,9 +48,9 @@ const BreadCrumb = ({ title }: { title?: string }) => {
                                     >
                                         {label}
                                     </BreadcrumbLink>
-                                    <BreadcrumbSeparator className="text-white text-xs tracking-tight leading-5">
+                                    <span className="text-white text-xs tracking-tight leading-5">
                                         /
-                                    </BreadcrumbSeparator>
+                                    </span>
                                 </>
                             )}
                         </BreadcrumbItem>
