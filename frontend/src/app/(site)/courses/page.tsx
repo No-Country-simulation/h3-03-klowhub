@@ -13,6 +13,7 @@ import { TQuickView } from "@/components/product-card/product-card.types";
 import { getPathname } from "@/utils/route.utils";
 
 import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
+import coursesMock from '@/mocks/courses.mock.json';
 
 const filters = [
   platform,
@@ -37,6 +38,10 @@ const Page = async () => {
   const products = await getProducts(endpoint);
   const queryParams = await getQueryParams();
   const pathname = await getPathname();
+
+  const courses = { data: coursesMock };
+
+  console.log('courses xdd', courses)
 
   return (
     <main>
