@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Promotion } from './promotion.entity';
+import { Asset } from './asset.entity';
 
 @Entity()
 export class App {
@@ -8,26 +10,23 @@ export class App {
   @Column()
   name: string;
 
-  @Column()
-  description: string;
+  @Column({ name: 'shortDescription' })
+  shortDescription: string;
 
   @Column()
   platform: string;
 
-  @Column('text', { array: true })
-  tools: string[];
+  @Column({ name: 'language' })
+  languages: string;
 
-  @Column('text', { array: true })
-  languages: string[];
-
-  @Column('text', { array: true })
+  @Column('text', { array: true, name: 'functionalities' })
   functionalities: string[];
 
   @Column()
   sector: string;
 
-  @Column('text', { array: true })
-  relatedFunctionalities: string[];
+  @Column('text', { array: true, name: 'toolsAndPlatforms' })
+  tools: string[];
 
   @Column()
   targetAudience: string;
@@ -35,11 +34,23 @@ export class App {
   @Column()
   advantages: string;
 
+  @Column('text', { array: true, name: 'tags' })
+  tags: string[];
+
+  @Column('text', { array: true, name: 'features' })
+  features: string[];
+
+  @Column()
+  views: string;
+
+  @Column()
+  appIncludes: string;
+
+  @Column('text', { name: 'fullDescription' })
+  fullDescription: string;
+
   @Column()
   coverImage: string;
-
-  @Column('text', { array: true })
-  mockupImages: string[];
 
   @Column()
   mobileVersionLink: string;
@@ -64,4 +75,13 @@ export class App {
 
   @Column()
   emailToAccess: string;
+
+  @Column('text', { array: true, name: 'assetsIds' })
+  assetsIds: string[];
+
+  @OneToMany(() => Asset, (asset) => asset.application)
+  assets: Asset[];
+
+  @OneToMany(() => Promotion, (promotion) => promotion.application)
+  promotions: Promotion[];
 }
