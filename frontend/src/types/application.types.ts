@@ -17,7 +17,6 @@ export type ApplicationInfo = {
 };
 
 export type ApplicationDetails = {
-  // advantages: string
   features: string[]
   targetAudience: string[]
   fullDescription: string
@@ -27,8 +26,6 @@ export type ApplicationDetails = {
 
 export type ApplicationMedia = {
   coverImg: TImage | null
-  // desktopScreenshot: TImage | null
-  // mobileScreenshot: TImage | null
   desktopLink: string 
   mobileLink: string
   assets: (TImage | TVideo)[]

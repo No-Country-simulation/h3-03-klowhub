@@ -16,12 +16,14 @@ import { Button } from "@/components/ui/button";
 import Greeter from "@/components/greeter/greeter.component";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { Popover } from "@/components/popover/popover.component";
 // import promotionMock from "./promotions.mock.json"
 
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
   const { state, dispatch, submitCourse } = useCourseContext();
+  const [ error, setError ] = useState<object | null>(null)
 
   const {
     commonProps,
@@ -61,6 +63,13 @@ const PromotionsSection = () => {
 
   return (
     <>
+      { error && 
+        <Popover onClose={() => setError(null)}>
+          {error.message.map((err, idx) => (
+            <span key={`error-${idx}`}>{err}</span>
+          ))}
+        </Popover>
+      }
       {newCourseId &&
         <Greeter
           header="¡Felicitaciones! Tu curso/Leccion se publicó con exito"
@@ -200,8 +209,13 @@ const PromotionsSection = () => {
             type="button"
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
-              const courseId = await submitCourse({ promotion })
-              setNewCourseId(courseId)
+              try {
+              throw new Error()
+                const courseId = await submitCourse({ promotion })
+                setNewCourseId(courseId)
+              } catch (err) {
+              setError({ message: ['asdasdasd asdadaasda adadadd', '81e98u asdjadoadj asdua8db', 'asoidjd asd9ia asda9sdaid ac'] })
+              }
             })}
           >
             Publicar

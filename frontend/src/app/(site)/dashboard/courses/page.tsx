@@ -1,6 +1,5 @@
 import Link from "next/link";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component"
-import { Button } from "@/components/ui/button";
 import { getQueryParams } from "@/utils/route.utils";
 import { Inter } from "next/font/google";
 import MyCoursesDesktopView from "./views/desktop.view";
@@ -11,7 +10,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { transactionsData } from "@/mocks/transactions.mocks";
 import { TQuickView } from "@/components/product-card/product-card.types";
 
-const endpoint = "http://localhost:3000/api/applications?withAuthor=true";
 
 const getProducts = async (endpoint: string) => {
     const res = await fetch(endpoint, { cache: "force-cache" });
@@ -27,7 +25,7 @@ const inter = Inter({
 
 const MyCoursesPage = async () => {
 
-    const applications = await getProducts(endpoint);
+    const applications = await getProducts(process.env.NEXT_PUBLIC_APPLICATIONS_URL + "?withAuthor=true");
 
     const { sortBy, order, filterBy, from, to, items } = await getQueryParams();
     const filteredData = filterData(filterBy, { from: from, to: to, items: items }, transactionsData)

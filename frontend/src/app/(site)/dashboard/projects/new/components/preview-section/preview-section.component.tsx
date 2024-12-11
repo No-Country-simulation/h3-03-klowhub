@@ -9,13 +9,22 @@ import { Button } from "@/components/ui/button";
 import Greeter from "@/components/greeter/greeter.component";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { Popover } from "@/components/popover/popover.component";
 
 const ProjectPreviewSection = () => {
   const { state, submitProject } = useProjectContext();
   const [ newProjectId, setNewProjectId ] = useState<string>()
+  const [ error, setError ] = useState<object | null>(null)
 
   return (
     <>
+      { error && 
+        <Popover onClose={() => setError(null)}>
+          {error.message.map((err, idx) => (
+            <span key={`error-${idx}`}>{err}</span>
+          ))}
+        </Popover>
+      }
       { newProjectId &&
         <Greeter
           header="¡Proyecto publicado!"
@@ -82,8 +91,13 @@ const ProjectPreviewSection = () => {
           type="button"
           className="flex-1 md:grow-0"
           onClick={async () => {
-            const projectId = await submitProject() 
-            setNewProjectId(projectId)
+            try {
+              throw new Error()
+              const projectId = await submitProject() 
+              setNewProjectId(projectId)
+            } catch (err) {
+              setError({ message: ['asdasdasd asdadaasda adadadd', '81e98u asdjadoadj asdua8db', 'asoidjd asd9ia asda9sdaid ac'] })
+            }
           }}
         >
           Publicar

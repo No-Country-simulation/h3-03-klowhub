@@ -101,6 +101,7 @@ const DetailsForm = () => {
         />
         <IsClientProvider>
           <Input
+            entity="project"
             name="assets" type="upload"
             filetypes={{
               "image/*": [".png", ".jpg"],

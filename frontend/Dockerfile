@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
  
 RUN npm install --legacy-peer-deps
-RUN npm build
+RUN npm run build
 
 EXPOSE 3000
 

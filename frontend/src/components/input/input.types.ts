@@ -66,6 +66,7 @@ type UploadInput<T extends FieldValues> = {
   limit?: number
   filetypes: FileType
   dropzoneLabel?: string
+  entity: "course" | "app" | "project" 
 } & ControlledInput<T>
 
 type RangeInput<T extends FieldValues> = {

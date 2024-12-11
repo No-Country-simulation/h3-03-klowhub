@@ -73,6 +73,7 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
             { ...controlledCommonProps } 
           /> : 
           <Input 
+            entity="course"
             name="video" type="upload"
             filetypes={{ "video/mp4": [".mp4"] }}
             label="Contenido de la lección" 
@@ -81,6 +82,7 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           />
         }
         <Input 
+          entity="course"
           filetypes={{ "application/pdf": [".pdf"] }}
           name="documents" type="upload"
           dropzoneLabel="Sube documentos extra como manuales o guías." { ...controlledCommonProps }

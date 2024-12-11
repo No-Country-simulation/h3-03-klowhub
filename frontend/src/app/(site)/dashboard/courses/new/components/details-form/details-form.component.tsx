@@ -49,6 +49,7 @@ const DetailsForm = () => {
           {...commonProps}
         />
         <Input
+          entity="course"
           name="coverImg" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
           label="Subí una imagen que represente tu curso de manera atractiva para utilizarla de portada"
@@ -56,6 +57,7 @@ const DetailsForm = () => {
           {...controlledCommonProps}
         />
         <Input
+          entity="course"
           name="promotionalVideo" type="upload"
           filetypes={{ "video/mp4": [".mp4"] }}
           label="Subí un video que sirva de introducción general a tu curso o lección"

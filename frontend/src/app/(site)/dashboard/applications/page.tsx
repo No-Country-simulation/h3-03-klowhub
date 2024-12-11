@@ -1,17 +1,17 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component"
 import { buttonVariants } from "@/components/ui/button";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { transactionsData } from "@/mocks/transactions.mocks";
 import { getQueryParams } from "@/utils/route.utils";
 import { Inter } from "next/font/google";
 import { filterData, sortData } from "@/utils/filterdata.utils";
 import Link from "next/link";
-import { products } from "@/mocks/products.mocks";
+// import { products } from "@/mocks/products.mocks";
 import MyAppsDesktopView from "./views/desktop.view";
 import MyAppsMobileView from "./views/mobile.view";
 import { TQuickView } from "@/components/product-card/product-card.types";
 
-const endpoint = "http://localhost:3000/api/applications?withAuthor=true";
+const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
 
 const getProducts = async (endpoint: string) => {
     const res = await fetch(endpoint, { cache: "force-cache" });
@@ -28,6 +28,7 @@ const inter = Inter({
 const MyAppsPage = async () => {
 
     const applications = await getProducts(endpoint);
+  console.log('applications: ', applications);
 
     const { sortBy, order, filterBy, from, to, items } = await getQueryParams();
     const filteredData = filterData(filterBy, { from: from, to: to, items: items }, transactionsData)

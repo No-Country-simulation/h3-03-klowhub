@@ -1,7 +1,6 @@
 import ProductCard from "@/components/product-card/product-card.component";
 import { TProductCard } from "@/components/product-card/product-card.types";
 
-const endpoint = "http://localhost:3000/api/courses";
 
 const getProducts = async (endpoint: string) => {
 	const res = await fetch(endpoint, { cache: "force-cache" });
@@ -11,7 +10,7 @@ const getProducts = async (endpoint: string) => {
 
 export const SimilarCourses = async () => {
 
-	const courses = await getProducts(endpoint);
+	const courses = await getProducts(process.env.NEXT_PUBLIC_COURSES_URL as string);
   console.log('courses: ', courses);
 
 	return (

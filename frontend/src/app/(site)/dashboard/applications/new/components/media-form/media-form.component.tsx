@@ -46,6 +46,7 @@ const MediaForm = () => {
       ">
         <div className="flex flex-col gap-5 col-span-2 items-start">
           <Input
+            entity="app"
             name="coverImg" type="upload"
             filetypes={{ "image/*": [".png", ".jpg"] }}
             label="Subí una imagen para tu aplicación"
@@ -56,6 +57,7 @@ const MediaForm = () => {
           <Badge className="px-3 py-2 bg-gray-100 text-primary-300 shrink-0">Esta será la imágen que se visualizará</Badge>
         </div>
         <Input
+          entity="app"
           name="assets" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
           label="Puede agregar hasta 5 imágenes o videos"

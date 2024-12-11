@@ -198,7 +198,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
   };
 
   if (type === "upload") {
-    const { control, isMulti, limit = 1, filetypes, dropzoneLabel } = props;
+    const { entity, control, isMulti, limit = 1, filetypes, dropzoneLabel } = props;
 
     return (
       <Controller 
@@ -238,7 +238,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                     <Dropzone 
                       { ...{isMulti, limit, filetypes} }
                       onDrop={async (files) => {
-                        const uploadedFile = await uploadAsset(files[0]);
+                        const uploadedFile = await uploadAsset(files[0], entity);
                         onChange([ ...value, uploadedFile ]) 
                       }}
                     >
@@ -261,7 +261,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                       <Dropzone
                         { ...{isMulti, filetypes} }
                         onDrop={async (files) => {
-                          const uploadedFile = await uploadAsset(files[0]);
+                          const uploadedFile = await uploadAsset(files[0], entity);
                         console.log('uploadedFile: ', uploadedFile);
                           onChange(uploadedFile)
                         }

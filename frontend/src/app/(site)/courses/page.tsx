@@ -25,7 +25,6 @@ const filters = [
   toolsAndPlatforms
 ];
 
-const endpoint = "http://localhost:3000/api/courses?withAuthor=true";
 
 const getProducts = async (endpoint: string) => {
   const res = await fetch(endpoint, { cache: "force-cache" });
@@ -34,9 +33,8 @@ const getProducts = async (endpoint: string) => {
 };
 
 const Page = async () => {
-  const products = await getProducts(endpoint);
+  const products = await getProducts(process.env.NEXT_PUBLIC_COURSES_URL + "?withAuthor=true");
   const queryParams = await getQueryParams();
-  const pathname = await getPathname();
 
   return (
     <main>
