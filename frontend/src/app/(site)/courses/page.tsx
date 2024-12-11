@@ -33,7 +33,8 @@ const getProducts = async (endpoint: string) => {
 };
 
 const Page = async () => {
-  const products = await getProducts(process.env.NEXT_PUBLIC_COURSES_URL + "?withAuthor=true");
+  // const products = await getProducts(process.env.NEXT_PUBLIC_COURSES_URL + "?withAuthor=true");
+  const products = await getProducts(process.env.NEXT_PUBLIC_COURSES_URL as string);
   const queryParams = await getQueryParams();
 
   return (

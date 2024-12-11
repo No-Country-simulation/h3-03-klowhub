@@ -63,13 +63,13 @@ const PromotionsSection = () => {
 
   return (
     <>
-      { error && 
-        <Popover onClose={() => setError(null)}>
-          {error.message.map((err, idx) => (
-            <span key={`error-${idx}`}>{err}</span>
-          ))}
-        </Popover>
-      }
+      {/* { error &&  */}
+      {/*   <Popover onClose={() => setError(null)}> */}
+      {/*     {error.message.map((err, idx) => ( */}
+      {/*       <span key={`error-${idx}`}>{err}</span> */}
+      {/*     ))} */}
+      {/*   </Popover> */}
+      {/* } */}
       {newCourseId &&
         <Greeter
           header="¡Felicitaciones! Tu curso/Leccion se publicó con exito"

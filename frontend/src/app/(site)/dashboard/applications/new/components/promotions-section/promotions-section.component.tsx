@@ -64,13 +64,13 @@ const PromotionsSection = () => {
 
   return (
     <>
-      { error && 
-        <Popover onClose={() => setError(null)}>
-          {error.message.map((err, idx) => (
-            <span key={`error-${idx}`}>{err}</span>
-          ))}
-        </Popover>
-      }
+      {/* { error &&  */}
+      {/*   <Popover onClose={() => setError(null)}> */}
+      {/*     {error.message.map((err, idx) => ( */}
+      {/*       <span key={`error-${idx}`}>{err}</span> */}
+      {/*     ))} */}
+      {/*   </Popover> */}
+      {/* } */}
       {newAppId &&
         <Greeter
           header="¡Felicitaciones! Tu aplicación se publicó con éxito"

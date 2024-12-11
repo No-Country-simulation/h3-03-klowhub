@@ -18,13 +18,13 @@ const ProjectPreviewSection = () => {
 
   return (
     <>
-      { error && 
-        <Popover onClose={() => setError(null)}>
-          {error.message.map((err, idx) => (
-            <span key={`error-${idx}`}>{err}</span>
-          ))}
-        </Popover>
-      }
+      {/* { error &&  */}
+      {/*   <Popover onClose={() => setError(null)}> */}
+      {/*     {error.message.map((err, idx) => ( */}
+      {/*       <span key={`error-${idx}`}>{err}</span> */}
+      {/*     ))} */}
+      {/*   </Popover> */}
+      {/* } */}
       { newProjectId &&
         <Greeter
           header="¡Proyecto publicado!"

@@ -55,7 +55,7 @@ const ApplicationCtxProvider = ({ children }: Props) => {
   useEffect(() => { console.log('state', state) }, [state])
 
   return (
-    <ApplicationCtx.Provider value={{ state, dispatch, submitApplication }}>{children}</ApplicationCtx.Provider>
+    <ApplicationCtx.Provider value={{ state, dispatch, submitApplication: submitApplication as () => Promise<string>}}>{children}</ApplicationCtx.Provider>
   )
 };
 

@@ -18,7 +18,8 @@ const filters = [
   toolsAndPlatforms
 ];
 
-const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
+// const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
+const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}`;
 
 const getProducts = async (endpoint: string) => {
   const res = await fetch(endpoint, { cache: "force-cache" });
