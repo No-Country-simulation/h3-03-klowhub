@@ -6,7 +6,7 @@ import { AuthorInfo, Rating } from "./global.types";
 import { RequiredProperty } from "./utils.types";
 
 export type ApplicationInfo = {
-  name: string
+  title: string
   shortDescription: string
   platform: Platform | null
   language: SelectOption

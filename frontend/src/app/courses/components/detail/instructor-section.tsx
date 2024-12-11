@@ -8,7 +8,7 @@ interface InstructorInfoProps {
 }
 
 export const InstructorInfo: React.FC<InstructorInfoProps> = ({ instructor }) => (
-    <div className="flex items-start space-x-3">
+    <div className="flex flex-col md:flex-row items-center md:items-start space-x-3">
         <div className="flex flex-col items-center gap-2 w-24 h-24">
             <Image
                 src={instructor.image}
@@ -19,8 +19,8 @@ export const InstructorInfo: React.FC<InstructorInfoProps> = ({ instructor }) =>
             />
             <Link href="/mentor" className="text-xs">Ver Perfil</Link>
         </div>
-        <div>
-            <p className="font-semibold">{instructor.name}</p>
+        <div className="space-y-2 md:space-y-0">
+            <p className="font-semibold text-center md:text-left">{instructor.name}</p>
             <p className="text-sm text-gray-400">{instructor.description}</p>
         </div>
     </div>

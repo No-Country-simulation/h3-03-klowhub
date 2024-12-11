@@ -5,8 +5,6 @@ const page = () => {
 
 	return (
 		<main>
-			<BreadCrumb />
-
 			<AppDetail />
 		</main>
 	);
