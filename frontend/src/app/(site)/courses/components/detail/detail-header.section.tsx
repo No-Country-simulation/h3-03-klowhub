@@ -36,7 +36,7 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
     const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
         loop: true,
         slides: {
-            perView: 2,
+            perView: 3,
             spacing: 15,
         },
         breakpoints: {
