@@ -23,6 +23,7 @@ export const useCourseData = () => {
         setPageData({ courseData: previewData, transformedProgram, freeLessons })
 
       } else if (mockedData) {
+        // delete this case after integrating with api
         // backend sends data case
         console.log('getting data from sessionStorage...');
         const parsedMockedData = JSON.parse(mockedData);
@@ -31,7 +32,7 @@ export const useCourseData = () => {
         setPageData({ courseData: parsedMockedData, transformedProgram, freeLessons })
 
       } else {
-        // TEMPORARY mock case
+        // api integration goes here
         console.log('getting data from internal api...');
         const res = await fetch(`/api/courses/${params.id}?withAuthor=true&withReviews=true`);
         const data: TEMPMockedResponse = await res.json();

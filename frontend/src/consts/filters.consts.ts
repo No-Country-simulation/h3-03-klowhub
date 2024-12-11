@@ -9,7 +9,8 @@ import {
   CoreContent, 
   AccessType, 
   ExperienceLevel,
-  Tag
+  Tag,
+  RequiredSkill
 } from "./filters.types";
 
 type Filter<T> = {
@@ -61,8 +62,8 @@ export const functionalities: Filter<Funcionalitites> = {
   header: "Funcionalidades",
   items: [
     { name: "calendario", label: "Calendario" },
-    { name: "generación-de-pdf", label: "Generación de pdf" },
-    { name: "reportes-automáticos", label: "Reportes automáticos" },
+    { name: "generacion-de-pdf", label: "Generación de pdf" },
+    { name: "reportes-automaticos", label: "Reportes automáticos" },
     { name: "chatbot-bot", label: "Chatbot (bot)" },
     { name: "emails", label: "Emails" },
     { name: "sms", label: "Sms" },
@@ -114,6 +115,7 @@ export const toolsAndPlatforms: Filter<ToolsAndPlatforms> = {
   ]
 };
 
+// do we need to change this 'free' to 'freeCourse'?
 export const accessType: Filter<AccessType> = {
   header: "Tipo de acceso",
   items: [
@@ -153,7 +155,7 @@ export const coreContent: Filter<CoreContent> = {
 };
 
 export const workMethodology: Filter<WorkMethodology> = {
-  header: "Sector",
+  header: "Metodología de trabajo",
   items: [
     { name: "por-hora", label: "Por hora" },
     { name: "por-proyecto", label: "Por proyecto" },
@@ -163,12 +165,22 @@ export const workMethodology: Filter<WorkMethodology> = {
 };
 
 export const experienceLevel: Filter<ExperienceLevel> = {
-  header: "Sector",
+  header: "Nivel de experiencia",
   items: [
     { name: "sin-experiencia-previa", label: "Sin experiencia previa" },
     { name: "junior", label: "Junior" },
     { name: "semi-senior", label: "Semi senior" },
     { name: "senior", label: "Senior" },
+  ] as const
+};
+
+export const requiredSkills: Filter<RequiredSkill> = {
+  header: "Habilidades requeridas",
+  items: [
+    { name: "diseño-responsivo", label: "Diseño responsivo" },
+    { name: "integracion-de-bases-de-datos", label: "Integración de bases de datos" },
+    { name: "desarrollo-nocode", label: "Desarrollo Nocode" },
+    { name: "desarrollo-lowcode", label: "Desarrollo Lowcode" },
   ] as const
 };
 

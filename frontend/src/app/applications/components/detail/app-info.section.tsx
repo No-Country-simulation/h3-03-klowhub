@@ -41,7 +41,7 @@ const options = {
 
 export const AppInfo: FC<AppProps> = ({
   submitApplication,
-    name, 
+    title, 
     shortDescription,
     fullDescription,
     rating,
@@ -71,7 +71,7 @@ export const AppInfo: FC<AppProps> = ({
         </Greeter>
       }
             <AppHeader
-                title={name}
+                title={title}
                 shortDescription={shortDescription}
                 rating={rating}
                 ratingCount={ratingCount}

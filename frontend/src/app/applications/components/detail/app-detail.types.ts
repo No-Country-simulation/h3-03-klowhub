@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { platform } from '../../../../consts/filters.consts';
 
 export type AppProps = {
-    name: string
+    title: string
     shortDescription: string
     fullDescription: string
     rating?: number

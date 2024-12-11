@@ -29,7 +29,7 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
     setValue
   } = useGenerateForm<Lesson>(LESSON_INITIAL_STATE, getValues("lessons")[lessonIdx] || LESSON_INITIAL_STATE);
 
-  const free = watch("free");
+  const freeLesson = watch("freeLesson");
 
   return (
     <>
@@ -56,7 +56,7 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           placeholder="Detallá el contenido de la lección"
         />
         <Input
-          name="free" type="boolean"
+          name="freeLesson" type="boolean"
           options={[ "Sí", "No" ]}
           label="¿Es una lección gratuita?" 
           reactFn={() => {
@@ -65,7 +65,7 @@ const LessonForm = ({ lessonIdx, setShowLessonForm, updateModule, getValues, set
           }}
           { ...controlledCommonProps }
         />
-        { free || state.general.freeCourse ?
+        { freeLesson || state.general.freeCourse ?
           <Input 
             name="link" type="link" 
             label="Contenido de la lección" 

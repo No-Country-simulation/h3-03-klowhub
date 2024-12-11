@@ -47,7 +47,7 @@ export type Lesson = {
   video: TVideo | null
   documents: TDocument[]
   link: string | null
-  free: boolean
+  freeLesson: boolean
 }
 
 export type Module = {

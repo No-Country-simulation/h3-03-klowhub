@@ -1,3 +1,4 @@
+import { RequiredProperty } from "./utils.types";
 import { TVideo, TDocument, Platform } from "./global.types";
 import { TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
@@ -9,27 +10,27 @@ export type ProjectInfo = {
   platform: Platform | null
   methodology: SelectOption | null
   experienceLevel: SelectOption | null
-  sector: SelectOption | null
+  sector: SelectOption[]
 };
 
 export type ProjectDetails = {
   days: number
   minBudget: number
   maxBudget: number
-  technicalRequirement: string[]
-  requiredKnowledge: SelectOption[]
-  requiredSkills: string[]
+  technicalRequirements: string[]
+  requiredSkills: SelectOption[]
+  additionalRequirements: string[]
   assets: (TImage | TVideo | TDocument)[]
 }
 
 export type ProjectFormData = {
-  id?: string | null
+  // id?: string | null
   userId: string
   general: ProjectInfo
   details: ProjectDetails
 }
 
-export type Project = ProjectInfo & ProjectDetails
+export type Project = RequiredProperty<ProjectInfo & ProjectDetails>
 
 export type ProjectCard = {
   id: number,

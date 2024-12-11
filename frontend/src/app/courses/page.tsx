@@ -10,6 +10,8 @@ import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 import { TQuickView } from "@/components/product-card/product-card.types";
 
+import { getPathname } from "@/utils/route.utils";
+
 import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
 
 const filters = [
@@ -34,6 +36,7 @@ const getProducts = async (endpoint: string) => {
 const Page = async () => {
   const products = await getProducts(endpoint);
   const queryParams = await getQueryParams();
+  const pathname = await getPathname();
 
   return (
     <main>

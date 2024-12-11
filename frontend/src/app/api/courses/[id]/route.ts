@@ -16,7 +16,7 @@ export const modulesAdapter = (courseData: Course) => {
 
 export const lessonsAdapter = (courseData: Course) => {
   return courseData.modules.flatMap((module) => 
-      module.lessons.filter((lesson) => lesson.free === true
+      module.lessons.filter((lesson) => lesson.freeLesson === true
   ))
 };
 
@@ -44,5 +44,6 @@ export async function GET (req: NextRequest) {
     transformedProgram: modulesAdapter(coursesMock[0]),
   };
 
+  console.log('mockedResponse: ', mockedResponse);
   return NextResponse.json(mockedResponse, { status: 200 })
 }

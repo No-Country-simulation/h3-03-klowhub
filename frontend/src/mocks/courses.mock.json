@@ -59,7 +59,7 @@
           {
             "id": "lesson-1",
             "title": "¿Qué es powerapps?",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -68,7 +68,7 @@
           {
             "id": "lesson-2",
             "title": "Configuración de la cuenta y entorno de trabajo",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -77,7 +77,7 @@
           {
             "id": "lesson-3",
             "title": "Navegación por la interfaz de powerapps",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -92,7 +92,7 @@
           {
             "id": "lesson-4",
             "title": "Contenido del Módulo 2",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -107,7 +107,7 @@
           {
             "id": "lesson-5",
             "title": "Contenido del Módulo 3",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -214,7 +214,7 @@
           {
             "id": "lesson1",
             "title": "Conectando powerapps a App Sheet",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -223,7 +223,7 @@
           {
             "id": "lesson2",
             "title": "Autenticación y permisos",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -238,7 +238,7 @@
           {
             "id": "lesson3",
             "title": "Automatizando tareas con Power Automate",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -247,7 +247,7 @@
           {
             "id": "lesson4",
             "title": "Manejo de errores y excepciones",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -262,7 +262,7 @@
           {
             "id": "lesson5",
             "title": "Automatización de reportes",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -271,7 +271,7 @@
           {
             "id": "lesson6",
             "title": "Integración con otros servicios",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -368,7 +368,7 @@
           {
             "id": "lesson7",
             "title": "¿Qué es la gestión de inventario?",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -377,7 +377,7 @@
           {
             "id": "lesson8",
             "title": "Importancia de un buen sistema de inventario",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -392,7 +392,7 @@
           {
             "id": "lesson9",
             "title": "Creando la interfaz de usuario",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -401,7 +401,7 @@
           {
             "id": "lesson10",
             "title": "Personalizando la aplicación",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -416,7 +416,7 @@
           {
             "id": "lesson11",
             "title": "Conectando a App Sheet",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -425,7 +425,7 @@
           {
             "id": "lesson12",
             "title": "Importando y exportando datos",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -522,7 +522,7 @@
           {
             "id": "lesson13",
             "title": "Tipos de formularios",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -531,7 +531,7 @@
           {
             "id": "lesson14",
             "title": "Diseño de formularios responsivos",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -546,7 +546,7 @@
           {
             "id": "lesson15",
             "title": "Conectando a App Sheet",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -555,7 +555,7 @@
           {
             "id": "lesson16",
             "title": "Almacenando datos en App Sheet",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -570,7 +570,7 @@
           {
             "id": "lesson17",
             "title": "Validación de campos",
-            "free": true,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -579,7 +579,7 @@
           {
             "id": "lesson18",
             "title": "Manejo de errores",
-            "free": false,
+            "freeLesson": false,
             "description": "",
             "video": null,
             "documents": [],
@@ -675,7 +675,7 @@
           {
             "id": "lesson-1",
             "title": "Qué es Power Automate",
-            "free": true,
+            "freeLesson": true,
             "description": "Introducción a Power Automate y sus capacidades.",
             "video": null,
             "documents": [],
@@ -684,7 +684,7 @@
           {
             "id": "lesson-2",
             "title": "Creación de tu primera automatización",
-            "free": false,
+            "freeLesson": false,
             "description": "Crea un flujo de trabajo simple.",
             "video": null,
             "documents": [],
@@ -699,7 +699,7 @@
           {
             "id": "lesson-3",
             "title": "Conexión a App Sheet",
-            "free": false,
+            "freeLesson": false,
             "description": "Configura la conexión entre Power Automate y App Sheet.",
             "video": null,
             "documents": [],
@@ -708,7 +708,7 @@
           {
             "id": "lesson-4",
             "title": "Automatización de datos",
-            "free": true,
+            "freeLesson": true,
             "description": "Automatiza la entrada y salida de datos entre Power Automate y App Sheet.",
             "video": null,
             "documents": [],
@@ -804,7 +804,7 @@
           {
             "id": "lesson-5",
             "title": "Importando datos",
-            "free": true,
+            "freeLesson": true,
             "description": "Importa tus datos de App Sheet a Power BI.",
             "video": null,
             "documents": [],
@@ -813,7 +813,7 @@
           {
             "id": "lesson-6",
             "title": "Limpieza de datos",
-            "free": false,
+            "freeLesson": false,
             "description": "Aprende a limpiar y preparar tus datos para el análisis.",
             "video": null,
             "documents": [],
@@ -828,7 +828,7 @@
           {
             "id": "lesson-7",
             "title": "Creando gráficos",
-            "free": false,
+            "freeLesson": false,
             "description": "Crea diferentes tipos de gráficos para visualizar tus datos.",
             "video": null,
             "documents": [],
@@ -837,7 +837,7 @@
           {
             "id": "lesson-8",
             "title": "Creando informes",
-            "free": true,
+            "freeLesson": true,
             "description": "Crea informes interactivos para presentar tus hallazgos.",
             "video": null,
             "documents": [],
@@ -934,7 +934,7 @@
           {
             "id": "lesson-9",
             "title": "Principios de UX/UI",
-            "free": true,
+            "freeLesson": true,
             "description": "Aprende los principios básicos de diseño de UX/UI para aplicaciones móviles.",
             "video": null,
             "documents": [],
@@ -943,7 +943,7 @@
           {
             "id": "lesson-10",
             "title": "Diseño de la pantalla principal",
-            "free": false,
+            "freeLesson": false,
             "description": "Diseña la pantalla principal de tu aplicación.",
             "video": null,
             "documents": [],
@@ -958,7 +958,7 @@
           {
             "id": "lesson-11",
             "title": "Conexión a App Sheet",
-            "free": false,
+            "freeLesson": false,
             "description": "Conecta tu aplicación powerapps con tu hoja de cálculo de App Sheet.",
             "video": null,
             "documents": [],
@@ -967,7 +967,7 @@
           {
             "id": "lesson-12",
             "title": "Implementación de la funcionalidad de inventario",
-            "free": true,
+            "freeLesson": true,
             "description": "Implementa las funcionalidades para agregar, modificar y eliminar productos del inventario.",
             "video": null,
             "documents": [],
@@ -1064,7 +1064,7 @@
           {
             "id": "lesson-13",
             "title": "Importando datos de App Sheet",
-            "free": true,
+            "freeLesson": true,
             "description": "Importa tus datos de App Sheet a Power BI.",
             "video": null,
             "documents": [],
@@ -1073,7 +1073,7 @@
           {
             "id": "lesson-14",
             "title": "Transformación de Datos",
-            "free": false,
+            "freeLesson": false,
             "description": "Limpia y transforma tus datos para un mejor análisis.",
             "video": null,
             "documents": [],
@@ -1088,7 +1088,7 @@
           {
             "id": "lesson-15",
             "title": "Creando Visualizaciones",
-            "free": false,
+            "freeLesson": false,
             "description": "Crea diferentes visualizaciones para representar tus datos.",
             "video": null,
             "documents": [],
@@ -1097,7 +1097,7 @@
           {
             "id": "lesson-16",
             "title": "Implementando Interactividad",
-            "free": true,
+            "freeLesson": true,
             "description": "Agrega interactividad a tus dashboards con filtros y otras funcionalidades.",
             "video": null,
             "documents": [],
@@ -1112,7 +1112,7 @@
           {
             "id": "lesson-17",
             "title": "Conectando powerapps y Power BI",
-            "free": false,
+            "freeLesson": false,
             "description": "Establece la conexión entre powerapps y Power BI.",
             "video": null,
             "documents": [],
@@ -1209,7 +1209,7 @@
           {
             "id": "lesson-18",
             "title": "Planificación de la Aplicación",
-            "free": true,
+            "freeLesson": true,
             "description": "Planifica la estructura y las funcionalidades de tu aplicación.",
             "video": null,
             "documents": [],
@@ -1218,7 +1218,7 @@
           {
             "id": "lesson-19",
             "title": "Diseño de la Interfaz",
-            "free": false,
+            "freeLesson": false,
             "description": "Diseña la interfaz de usuario de tu aplicación.",
             "video": null,
             "documents": [],
@@ -1233,7 +1233,7 @@
           {
             "id": "lesson-20",
             "title": "Conectando con App Sheet",
-            "free": false,
+            "freeLesson": false,
             "description": "Conecta tu aplicación powerapps con App Sheet.",
             "video": null,
             "documents": [],
@@ -1242,7 +1242,7 @@
           {
             "id": "lesson-21",
             "title": "Gestión de Datos",
-            "free": true,
+            "freeLesson": true,
             "description": "Gestiona los datos del proyecto en App Sheet.",
             "video": null,
             "documents": [],
@@ -1257,7 +1257,7 @@
           {
             "id": "lesson-22",
             "title": "Automatizando Flujos de Trabajo",
-            "free": false,
+            "freeLesson": false,
             "description": "Automatiza tareas repetitivas dentro de tu aplicación.",
             "video": null,
             "documents": [],
@@ -1355,7 +1355,7 @@
           {
             "id": "lesson-23",
             "title": "Automatizando Emails",
-            "free": true,
+            "freeLesson": true,
             "description": "Automatiza el envío de emails a tus clientes.",
             "video": null,
             "documents": [],
@@ -1364,7 +1364,7 @@
           {
             "id": "lesson-24",
             "title": "Automatizando Seguimiento",
-            "free": false,
+            "freeLesson": false,
             "description": "Automatiza el seguimiento de tus clientes.",
             "video": null,
             "documents": [],
@@ -1379,7 +1379,7 @@
           {
             "id": "lesson-25",
             "title": "Conectando con App Sheet",
-            "free": false,
+            "freeLesson": false,
             "description": "Conecta Power Automate con App Sheet.",
             "video": null,
             "documents": [],
@@ -1388,7 +1388,7 @@
           {
             "id": "lesson-26",
             "title": "Gestión de Datos de Clientes",
-            "free": true,
+            "freeLesson": true,
             "description": "Gestiona los datos de tus clientes en App Sheet.",
             "video": null,
             "documents": [],
@@ -1403,7 +1403,7 @@
           {
             "id": "lesson-27",
             "title": "Diseño de la Interfaz",
-            "free": false,
+            "freeLesson": false,
             "description": "Diseña la interfaz de usuario de tu aplicación.",
             "video": null,
             "documents": [],
