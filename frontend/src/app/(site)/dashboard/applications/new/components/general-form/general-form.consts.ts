@@ -1,7 +1,7 @@
 import { ApplicationInfo } from "@/types/application.types";
 
 export const APPLICATION_INFO_INITIAL_STATE: ApplicationInfo = {
-  name: "",
+  title: "",
   shortDescription: "",
   platform: null,
   language: { name: "español", label: "Español"},

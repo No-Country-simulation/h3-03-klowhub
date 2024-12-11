@@ -1,7 +1,7 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
-import { Platform, TImage, TVideo, TDocument, PersonalReview, AuthorInfo, FlatPromotion } from "./global.types"
+import { Platform, TImage, TVideo, TDocument, AuthorInfo, FlatPromotion } from "./global.types"
 import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
 import { Promotion, Rating } from "./global.types";

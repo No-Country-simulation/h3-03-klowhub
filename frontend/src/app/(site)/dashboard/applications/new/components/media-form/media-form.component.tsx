@@ -18,8 +18,8 @@ const MediaForm = () => {
   const { state, dispatch } = useApplicationContext();
 
   const {
-    commonProps, 
-    controlledCommonProps, 
+    commonProps,
+    controlledCommonProps,
     handleSubmit,
     reset,
     formState: { isDirty }
@@ -33,6 +33,7 @@ const MediaForm = () => {
 
   useEffect(() => {
     console.log("inserting mediaMock: ", mediaMock);
+    // @ts-ignore: Unreachable code error
     dispatch(setMediaData(mediaMock))
   }, [dispatch])
 
@@ -44,56 +45,56 @@ const MediaForm = () => {
         lg:gap-x-48
       ">
         <div className="flex flex-col gap-5 col-span-2 items-start">
-          <Input 
+          <Input
             name="coverImg" type="upload"
             filetypes={{ "image/*": [".png", ".jpg"] }}
             label="Subí una imagen para tu aplicación"
             dropzoneLabel="Sube una imagen representativa de la app"
             className="w-full md:w-76 col-span-2"
-            { ...controlledCommonProps }
+            {...controlledCommonProps}
           />
           <Badge className="px-3 py-2 bg-gray-100 text-primary-300 shrink-0">Esta será la imágen que se visualizará</Badge>
         </div>
-        <Input 
+        <Input
           name="assets" type="upload"
           filetypes={{ "image/*": [".png", ".jpg"] }}
           label="Puede agregar hasta 5 imágenes o videos"
           dropzoneLabel="Sube una imagen representativa de la app"
           className="col-span-2"
           isMulti limit={5}
-          { ...controlledCommonProps }
+          {...controlledCommonProps}
         />
         <h3 className="col-span-2 font-bold">Agregá un enlace para que los usuarios puedan ver una demo o preview de la app en acción.</h3>
         <div className="col-span-2 flex flex-col gap-5">
           <h3>Versión Desktop</h3>
-          <Input 
-            name="desktopLink" type="link" 
+          <Input
+            name="desktopLink" type="link"
             className="w-full col-span-2"
-            { ...controlledCommonProps } 
+            {...controlledCommonProps}
           />
         </div>
         <div className="col-span-2 flex flex-col gap-5">
           <h3>Versión Mobile</h3>
-          <Input 
-            name="mobileLink" type="link" 
+          <Input
+            name="mobileLink" type="link"
             className="w-full col-span-2"
-            { ...controlledCommonProps } 
+            {...controlledCommonProps}
           />
         </div>
       </form>
       <div className="
         absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5 gap-5
       ">
-        <RouteBtn 
-          setter={ handleSubmit( data => dispatch(setMediaData(data)) ) }
+        <RouteBtn
+          setter={handleSubmit(data => dispatch(setMediaData(data)))}
           route="general"
           className="flex-1 md:grow-0"
           isDirty={isDirty}
         >
           Retroceder
         </RouteBtn>
-        <RouteBtn 
-          setter={ handleSubmit( data => dispatch(setMediaData(data)) )}
+        <RouteBtn
+          setter={handleSubmit(data => dispatch(setMediaData(data)))}
           route="promotion"
           className="flex-1 md:grow-0"
           isDirty={isDirty}

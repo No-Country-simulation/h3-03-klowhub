@@ -1,4 +1,4 @@
-import { AuthorInfo, TProductCard, TQuickView } from "../product-card/product-card.types";
+import { TQuickView } from "../product-card/product-card.types";
 import { getQueryParams } from "@/utils/route.utils";
 import { getProduct } from "@/utils/product.utils";
 import Icon from "../icon/icon.component";
@@ -23,12 +23,12 @@ const QuickView = async ({ products }: Props) => {
   if (!currentProduct) return <div>No se encontro el curso</div>;
 
   const {
-  title,
-  shortDescription,
-  platform,
-  rating,
-  ratingCount,
-  author,
+    title,
+    shortDescription,
+    platform,
+    rating,
+    ratingCount,
+    author,
   } = currentProduct
 
 
@@ -38,8 +38,8 @@ const QuickView = async ({ products }: Props) => {
       md:w-[600px]
       2xl:w-[800px] 2xl:px-8
     ">
-      <h2 className="font-bold">{ title }</h2>
-      <p>{ shortDescription }</p>
+      <h2 className="font-bold">{title}</h2>
+      <p>{shortDescription}</p>
       <div>
         <Badge
           icon={<Icon name={getSlug(platform) as IconTypes} />}
@@ -66,7 +66,7 @@ const QuickView = async ({ products }: Props) => {
       </video>
       <AuthorBlock author={author} />
       <h2 className="font-bold">Acerca de este curso</h2>
-      <p>{ author.about }</p>
+      <p>{author.about}</p>
       <div>
         <Button className="text-center px-16 py-2 border-primary-200 text-primary-100 font-bold bg-transparent hover:bg-primary-500 outline outline-1">
           Ver detalles
@@ -85,7 +85,7 @@ const QuickView = async ({ products }: Props) => {
   )
 };
 
-const AuthorBlock = ({ author }: { author: TQuickView["author"]}) => {
+const AuthorBlock = ({ author }: { author: TQuickView["author"] }) => {
   const { name, img: { fileMetadata: { url, width, height } }, about } = author;
   return (
     <div className="flex gap-3">
@@ -93,8 +93,8 @@ const AuthorBlock = ({ author }: { author: TQuickView["author"]}) => {
         <Image src={url} width={width} height={height} alt=""></Image>
       </div>
       <blockquote className="flex flex-col">
-        <cite className="font-bold not-italic">{ name }</cite>
-        <cite className="not-italic">{ about }</cite>
+        <cite className="font-bold not-italic">{name}</cite>
+        <cite className="not-italic">{about}</cite>
       </blockquote>
     </div>
   )

@@ -16,8 +16,8 @@ const DetailsForm = () => {
   const { state, dispatch } = useProjectContext();
 
   const {
-    commonProps, 
-    controlledCommonProps, 
+    commonProps,
+    controlledCommonProps,
     handleSubmit,
     formState: { isDirty },
     watch
@@ -28,6 +28,7 @@ const DetailsForm = () => {
 
   useEffect(() => {
     console.log("inserting mocked data...");
+    // @ts-ignore: Unreachable code error
     dispatch(setDetailsData(formMock))
   }, [dispatch])
 
@@ -38,12 +39,12 @@ const DetailsForm = () => {
         md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-10 md:grid-cols-2
         lg:gap-x-48
         ">
-        <Input 
+        <Input
           name="days"
-          type="number" 
+          type="number"
           label="Ingresa los tiempos estimados"
-          placeholder="Ingresa la cantidad de días" 
-          { ...commonProps } 
+          placeholder="Ingresa la cantidad de días"
+          {...commonProps}
         />
         <div className="w-full flex flex-col gap-5">
           <label>Ingresa presupuesto estimado para tu proyecto</label>
@@ -51,24 +52,24 @@ const DetailsForm = () => {
             <Input
               name="minBudget"
               type="number"
-              { ...controlledCommonProps }
+              {...controlledCommonProps}
             />
             <span className="font-bold">-</span>
             <Input
               name="maxBudget"
               type="number"
-              { ...controlledCommonProps }
+              {...controlledCommonProps}
             />
           </div>
         </div>
         <IsClientProvider>
-          <Input 
+          <Input
             name="requiredSkills" type="select"
-            options={requiredSkills.items} 
-            label="Habilidades requeridas"  
+            options={requiredSkills.items}
+            label="Habilidades requeridas"
             placeholder="Habilidades requeridas"
             isMulti
-            { ...controlledCommonProps }
+            {...controlledCommonProps}
           />
         </IsClientProvider>
         {/* <Input */}
@@ -87,7 +88,7 @@ const DetailsForm = () => {
           addButtonLabel="Añadir requerimiento técnico"
           placeholder="Requerimiento técnico"
           className="col-span-2"
-          { ...controlledCommonProps }
+          {...controlledCommonProps}
         />
         <Input
           name="additionalRequirements"
@@ -96,37 +97,37 @@ const DetailsForm = () => {
           addButtonLabel="Añadir requisito adicional"
           placeholder="¿Qué requisito adicional debería tener tu cantidato?"
           className="col-span-2"
-          { ...controlledCommonProps }
+          {...controlledCommonProps}
         />
         <IsClientProvider>
-          <Input 
+          <Input
             name="assets" type="upload"
-            filetypes={{ 
+            filetypes={{
               "image/*": [".png", ".jpg"],
               "application/pdf": [".pdf"],
               "video/mp4": [".mp4"]
             }}
-            label="Adjunta aquí los archivos que consideres necesarios para este proyecto." 
-            dropzoneLabel="Adjunta aquí los archivos que consideres necesarios para este proyecto." 
+            label="Adjunta aquí los archivos que consideres necesarios para este proyecto."
+            dropzoneLabel="Adjunta aquí los archivos que consideres necesarios para este proyecto."
             isMulti
             limit={99999}
-            { ...controlledCommonProps }
+            {...controlledCommonProps}
           />
         </IsClientProvider>
       </form>
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5">
-        <RouteBtn 
-          setter={handleSubmit( data => dispatch(setDetailsData(data)) )}
+        <RouteBtn
+          setter={handleSubmit(data => dispatch(setDetailsData(data)))}
           route="general"
           isDirty={isDirty}
         >
           Regresar
         </RouteBtn>
-        <RouteBtn 
-          setter={handleSubmit( data => {
+        <RouteBtn
+          setter={handleSubmit(data => {
             console.log('data: ', data);
             dispatch(setDetailsData(data))
-          } )}
+          })}
           route="preview"
           isDirty={isDirty}
         >

@@ -40,7 +40,9 @@ const ProjectCtxProvider = ({ children }: Props) => {
     const createdProject: Project = await res.json();
     console.log('createdProject: ', createdProject);
 
-    // return createdProject.id
+    // este id no existe en el type. ponerlo luego.
+    // @ts-ignore: Unreachable code error
+    return createdProject.id
 
     // const temporaryId = "course-19u3-124-asdad";
     // window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))

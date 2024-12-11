@@ -1,12 +1,12 @@
 "use client"
 
 import { useEffect } from "react";
-import { useSearchParams, usePathname} from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_INFO_INITIAL_STATE } from "./general-form.consts";
 import { CourseInfo } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
-import { courseDifficulty, language, coreContent, functionalities, sector, toolsAndPlatforms, tags } from "@/consts/filters.consts";
+import { language, coreContent, functionalities, sector, toolsAndPlatforms, tags } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client.context";
 import { CircleAlert } from "lucide-react";
 import RouteBtn from "@/components/route-btn/route-btn.component";
@@ -20,8 +20,8 @@ const GeneralForm = () => {
   const searchParams = useSearchParams();
 
   const {
-    commonProps, 
-    controlledCommonProps, 
+    commonProps,
+    controlledCommonProps,
     handleSubmit,
     formState: { isDirty }
   } = useGenerateForm<CourseInfo>(COURSE_INFO_INITIAL_STATE, state.general);
@@ -29,6 +29,7 @@ const GeneralForm = () => {
   useEffect(() => {
     console.log('inserting mocked data...');
     console.log('formMock: ', formMock);
+    // @ts-ignore: Unreachable code error
     dispatch(setGeneralData(formMock))
   }, [dispatch])
 
@@ -43,9 +44,9 @@ const GeneralForm = () => {
         md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-10 md:grid-cols-2
         lg:gap-x-48
         ">
-        <Input 
+        <Input
           name="title" type="text"
-          label="Título del curso / lección" { ...commonProps } 
+          label="Título del curso / lección" {...commonProps}
           placeholder="Nombrá tu curso o lección"
           className="w-full"
         />
@@ -60,95 +61,95 @@ const GeneralForm = () => {
         </div>
         <Input
           name="freeCourse" type="boolean"
-          options={[ "Gratuito", "Pago" ]} 
-          label="¿Qué tipo de contenido estás buscando: gratuito o premium?" 
+          options={["Gratuito", "Pago"]}
+          label="¿Qué tipo de contenido estás buscando: gratuito o premium?"
           className="w-full"
-          { ...controlledCommonProps }
+          {...controlledCommonProps}
         />
-        <Input 
-          name="contentType" 
-          options={[ 
+        <Input
+          name="contentType"
+          options={[
             { value: "course", label: "Curso" },
             { value: "lesson", label: "Lección" },
-          ]} 
-          type="radio-group" 
-          label="Seleccioná si vas a crear un curso  o una lección." 
-          { ...controlledCommonProps } 
+          ]}
+          type="radio-group"
+          label="Seleccioná si vas a crear un curso  o una lección."
+          {...controlledCommonProps}
         />
-        <Input 
-          name="shortDescription" type="textarea" 
-          label="Contá de qué trata, en no más de 3 líneas." { ...controlledCommonProps } 
+        <Input
+          name="shortDescription" type="textarea"
+          label="Contá de qué trata, en no más de 3 líneas." {...controlledCommonProps}
           placeholder="Escribí una descripción básica del proyecto"
           className="col-span-2"
         />
-        <Input 
-          name="targetAudience" type="textarea" 
-          label="¿Para quién es este curso?" { ...controlledCommonProps } 
+        <Input
+          name="targetAudience" type="textarea"
+          label="¿Para quién es este curso?" {...controlledCommonProps}
           placeholder="Detallá el perfil de tu público objetivo"
           className="col-span-2"
         />
         <Input
-          name="courseDifficulty" 
+          name="courseDifficulty"
           options={[
             { value: "basic", label: "Básico" },
             { value: "intermediate", label: "Intermedio" }
           ]}
           type="radio-group"
-          label="Nivel de competencia" 
-          { ...controlledCommonProps }
+          label="Nivel de competencia"
+          {...controlledCommonProps}
         />
-        <Input 
+        <Input
           name="platform"
           options={[
             { value: "appsheet", label: "AppSheet" },
             { value: "powerapps", label: "PowerApps" },
           ]}
-          type="radio-group" 
-          label="Plataforma" 
-          { ...controlledCommonProps } 
+          type="radio-group"
+          label="Plataforma"
+          {...controlledCommonProps}
         />
         <IsClientProvider>
-          <Input 
-            name="language" type="select" options={language.items} 
-            label="Elige el idioma del curso" { ...controlledCommonProps } 
+          <Input
+            name="language" type="select" options={language.items}
+            label="Elige el idioma del curso" {...controlledCommonProps}
             placeholder="Seleccionar idioma"
           />
-          <Input 
-            name="coreContent" type="select" options={coreContent.items} 
-            label="Define el contenido de tu curso" { ...controlledCommonProps } 
+          <Input
+            name="coreContent" type="select" options={coreContent.items}
+            label="Define el contenido de tu curso" {...controlledCommonProps}
             placeholder="Pilar de contenido"
             isMulti
           />
-          <Input 
-            name="functionalities" type="select" options={functionalities.items} 
-            label="Funcionalidades" { ...controlledCommonProps } 
+          <Input
+            name="functionalities" type="select" options={functionalities.items}
+            label="Funcionalidades" {...controlledCommonProps}
             placeholder="Funcionalidades"
             isMulti
           />
-          <Input 
-            name="sector" type="select" options={sector.items} 
-            label="Elige el sector al que deseas dirigir tu curso" { ...controlledCommonProps } 
+          <Input
+            name="sector" type="select" options={sector.items}
+            label="Elige el sector al que deseas dirigir tu curso" {...controlledCommonProps}
             placeholder="Seleccionar sector"
             isMulti
           />
-          <Input 
-            name="toolsAndPlatforms" type="select" options={toolsAndPlatforms.items} 
-            label="Herramientas y plataformas" { ...controlledCommonProps } 
+          <Input
+            name="toolsAndPlatforms" type="select" options={toolsAndPlatforms.items}
+            label="Herramientas y plataformas" {...controlledCommonProps}
             placeholder="Herramientas y plataformas"
             isMulti
           />
-          <Input 
-            name="tags" type="select" options={tags.items} 
-            label="Agrega etiquetas relacionadas" 
+          <Input
+            name="tags" type="select" options={tags.items}
+            label="Agrega etiquetas relacionadas"
             placeholder="Selecciona las etiquetas"
             isMulti
-            { ...controlledCommonProps } 
+            {...controlledCommonProps}
           />
         </IsClientProvider>
       </form>
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
-        <RouteBtn 
-          setter={handleSubmit( data => dispatch(setGeneralData(data)) )}
+        <RouteBtn
+          setter={handleSubmit(data => dispatch(setGeneralData(data)))}
           route="details"
           isDirty={isDirty}
         >

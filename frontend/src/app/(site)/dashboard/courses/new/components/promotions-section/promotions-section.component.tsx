@@ -24,8 +24,8 @@ const PromotionsSection = () => {
   const { state, dispatch, submitCourse } = useCourseContext();
 
   const {
-    commonProps, 
-    controlledCommonProps, 
+    commonProps,
+    controlledCommonProps,
     handleSubmit,
     reset,
     formState: { isDirty }
@@ -39,10 +39,10 @@ const PromotionsSection = () => {
     defaultValue: "yes"
   });
 
-  const [ showSelector, setShowSelector ] = useState(true);
-  const [ contentType, setContentType] = useState<ContentType>('courses');
+  const [showSelector, setShowSelector] = useState(true);
+  const [contentType, setContentType] = useState<ContentType>('courses');
   const { applications, courses } = useUserContent();
-  const [ newCourseId, setNewCourseId ] = useState<string>();
+  const [newCourseId, setNewCourseId] = useState<string>();
 
   useEffect(() => {
     reset()
@@ -55,17 +55,18 @@ const PromotionsSection = () => {
 
   useEffect(() => {
     console.log('promotionMock: ', promotionMock);
+    // @ts-ignore: Unreachable code error
     dispatch(setPromotionData(promotionMock))
   }, [dispatch])
 
   return (
     <>
-      { newCourseId &&
+      {newCourseId &&
         <Greeter
           header="¡Felicitaciones! Tu curso/Leccion se publicó con exito"
           message="Ya está disponible para que estudiantes de todo el mundo lo descubran y aprovechen."
         >
-          <Link 
+          <Link
             href={`/courses/${newCourseId}`}
             className={`${buttonVariants({ variant: "outline" })} px-10 bg-primary-500 border-none hover:bg-secondary-400`}
           >
@@ -84,16 +85,16 @@ const PromotionsSection = () => {
           <h3 className="font-bold">Fusiona tus cursos y apps, expande tus posibilidades</h3>
           <p>En AppSheetHub, te damos la libertad de combinar tus aplicaciones y cursos para crear soluciones únicas y personalizadas. No te limites a una sola herramienta: potencia tu creatividad uniendo conocimientos y funcionalidades para lograr un impacto mayor. Diseña, comparte y aprende como nunca antes. ¡El límite lo pones vos!</p>
         </div>
-        <Input 
+        <Input
           name="selection"
           type="radio-group"
-          options={[ 
+          options={[
             { value: "yes", label: "Sí" },
             { value: "no", label: "No" },
-          ]} 
-          { ...selectionProps }
+          ]}
+          {...selectionProps}
         />
-        { showSelector &&
+        {showSelector &&
           <div className="
             rounded-lg flex flex-col gap-5
             sm:p-5 sm:bg-gray-200
@@ -113,15 +114,15 @@ const PromotionsSection = () => {
                 md:grid-cols-2
                 xl:grid-cols-3
               ">
-                { contentType === "applications"
+                {contentType === "applications"
                   ? applications.map((app, idx) => (
-                    <Input 
-                      key={`product-option-${idx}`} 
-                      type="product-selector" 
-                      name="product" 
+                    <Input
+                      key={`product-option-${idx}`}
+                      type="product-selector"
+                      name="product"
                       productId={app.id}
                       productType={"application"}
-                      { ...controlledCommonProps }
+                      {...controlledCommonProps}
                     >
                       <ProductCard
                         key={`product-card-${idx}`}
@@ -133,12 +134,12 @@ const PromotionsSection = () => {
                   ))
                   : courses.map((cr, idx) => (
                     <Input
-                      key={`product-option-${idx}`} 
-                      type="product-selector" 
-                      name="product" 
-                      productId={cr.id} 
+                      key={`product-option-${idx}`}
+                      type="product-selector"
+                      name="product"
+                      productId={cr.id}
                       productType={"course"}
-                      { ...controlledCommonProps }
+                      {...controlledCommonProps}
                     >
                       <ProductCard
                         key={`product-card-${idx}`}
@@ -150,11 +151,11 @@ const PromotionsSection = () => {
                   ))
                 }
               </div>
-              <Input 
-                type="number" 
-                name="percentage" 
-                label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete." 
-                { ...commonProps }
+              <Input
+                type="number"
+                name="percentage"
+                label="Establecé el porcentaje de descuento que querés ofrecer al crear este paquete."
+                {...commonProps}
                 isPercentage
               />
             </form>
@@ -166,8 +167,8 @@ const PromotionsSection = () => {
         md:-mb-16
       ">
         <div className="w-full">
-          <RouteBtn 
-            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
+          <RouteBtn
+            setter={handleSubmit(data => dispatch(setPromotionData(data)))}
             route="preview"
             isDirty={isDirty}
             variant="outline"
@@ -176,18 +177,18 @@ const PromotionsSection = () => {
             Vista previa del curso
           </RouteBtn>
         </div>
-        
+
         <div className="flex justify-between w-full gap-5">
-          <RouteBtn 
-            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
+          <RouteBtn
+            setter={handleSubmit(data => dispatch(setPromotionData(data)))}
             route="modules"
             isDirty={isDirty}
             className="mr-auto flex-1 md:grow-0"
           >
             Retroceder
           </RouteBtn>
-          <RouteBtn 
-            setter={ handleSubmit( data => dispatch(setPromotionData(data)) ) }
+          <RouteBtn
+            setter={handleSubmit(data => dispatch(setPromotionData(data)))}
             route="preview"
             isDirty={isDirty}
             variant="outline"
@@ -195,11 +196,11 @@ const PromotionsSection = () => {
           >
             Vista previa del curso
           </RouteBtn>
-          <Button 
+          <Button
             type="button"
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
-              const courseId = await submitCourse({ promotion }) 
+              const courseId = await submitCourse({ promotion })
               setNewCourseId(courseId)
             })}
           >

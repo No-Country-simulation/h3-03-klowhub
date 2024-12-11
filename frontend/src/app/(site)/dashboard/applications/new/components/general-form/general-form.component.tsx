@@ -16,15 +16,15 @@ const GeneralForm = () => {
   const { state, dispatch } = useApplicationContext();
 
   const {
-    commonProps, 
-    controlledCommonProps, 
+    commonProps,
+    controlledCommonProps,
     handleSubmit,
     formState: { isDirty }
   } = useGenerateForm<ApplicationInfo>(APPLICATION_INFO_INITIAL_STATE, state.general);
 
   useEffect(() => {
     console.log("inserting generalMock: ", generalMock);
-     // @ts-ignore: Unreachable code error
+    // @ts-ignore: Unreachable code error
     dispatch(setGeneralData(generalMock))
   }, [dispatch])
 
@@ -35,64 +35,64 @@ const GeneralForm = () => {
         md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-10 md:grid-cols-2
         lg:gap-x-48
         ">
-        <Input 
-          name="name" type="text"
-          label="Dale un nombre atractivo a tu app." { ...commonProps } 
+        <Input
+          name="title" type="text"
+          label="Dale un nombre atractivo a tu app." {...commonProps}
           placeholder="Escribe el nombre de esta app"
           className="w-full"
         />
-        <Input 
-          name="shortDescription" type="textarea" 
-          label="Describí brevemente la función principal de tu aplicación en 1-2 líneas. Contanos cuál es la funcionalidad principal de tu app." { ...controlledCommonProps } 
+        <Input
+          name="shortDescription" type="textarea"
+          label="Describí brevemente la función principal de tu aplicación en 1-2 líneas. Contanos cuál es la funcionalidad principal de tu app." {...controlledCommonProps}
           placeholder="Escribe una descripción básica de esta app"
           className="col-span-2"
         />
-        <Input 
+        <Input
           name="platform"
           options={[
             { value: "appsheet", label: "AppSheet" },
             { value: "powerapps", label: "PowerApps" },
           ]}
-          type="radio-group" 
-          label="Plataforma" { ...controlledCommonProps } 
+          type="radio-group"
+          label="Plataforma" {...controlledCommonProps}
           className="col-span-2"
         />
         <IsClientProvider>
-          <Input 
-            name="language" type="select" options={language.items} 
-            label="Elige el idioma de la app" { ...controlledCommonProps } 
+          <Input
+            name="language" type="select" options={language.items}
+            label="Elige el idioma de la app" {...controlledCommonProps}
             placeholder="Seleccionar idioma"
           />
-          <Input 
-            name="sector" type="select" options={sector.items} 
-            label="Elige el sector al que deseas dirigir la app" { ...controlledCommonProps } 
+          <Input
+            name="sector" type="select" options={sector.items}
+            label="Elige el sector al que deseas dirigir la app" {...controlledCommonProps}
             placeholder="Seleccionar sector"
             isMulti
           />
-          <Input 
-            name="toolsAndPlatforms" type="select" options={toolsAndPlatforms.items} 
-            label="Selecciona sus herramientas" { ...controlledCommonProps } 
+          <Input
+            name="toolsAndPlatforms" type="select" options={toolsAndPlatforms.items}
+            label="Selecciona sus herramientas" {...controlledCommonProps}
             placeholder="Herramientas"
             isMulti
           />
-          <Input 
-            name="functionalities" type="select" options={functionalities.items} 
-            label="Agrega las funcionalidades relacionadas" { ...controlledCommonProps } 
+          <Input
+            name="functionalities" type="select" options={functionalities.items}
+            label="Agrega las funcionalidades relacionadas" {...controlledCommonProps}
             placeholder="Funcionalidades"
             isMulti
           />
-          <Input 
-            name="tags" type="select" options={tags.items} 
-            label="Agrega etiquetas relacionadas" 
+          <Input
+            name="tags" type="select" options={tags.items}
+            label="Agrega etiquetas relacionadas"
             placeholder="Selecciona las etiquetas"
             isMulti
-            { ...controlledCommonProps } 
+            {...controlledCommonProps}
           />
         </IsClientProvider>
       </form>
       <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-end pt-5">
-        <RouteBtn 
-          setter={handleSubmit( data => dispatch(setGeneralData(data)) )}
+        <RouteBtn
+          setter={handleSubmit(data => dispatch(setGeneralData(data)))}
           route="details"
           isDirty={isDirty}
         >

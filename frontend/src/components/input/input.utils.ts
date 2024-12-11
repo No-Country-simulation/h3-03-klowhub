@@ -5,6 +5,7 @@ function isMultiValue (value: MultiValue<SelectOption> | SingleValue<SelectOptio
   return (value as MultiValue<SelectOption>).map !== undefined
 }
 
+/*
 export const getImage = <T extends File>(file: File) => {
   return new Promise((resolve, reject) => {
     try {
@@ -25,7 +26,7 @@ export const getImage = <T extends File>(file: File) => {
         reject(err)
       }
   });
-}
+}*/
 
 export const removeImage = (imgs: File[], idxToRemove: number) => {
   const remaining = imgs.filter((_, idx) => idx !== idxToRemove);

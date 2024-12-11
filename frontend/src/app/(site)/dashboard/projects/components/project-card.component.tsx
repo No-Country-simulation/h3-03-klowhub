@@ -3,15 +3,15 @@ import { IconTypes } from "@/components/icon/icon.types";
 import Rating from "@/components/rating/rating.component";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card"
-import { TProject } from "@/types/project.types";
+import { TProjectCard } from "@/types/project.types";
 import { getSlug } from "@/utils/str.utils";
-import { ArrowBigRight, ArrowRight, CheckCircle, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
     active?: boolean
-    project: TProject
+    project: TProjectCard
 }
 
 const ProjectCard = ({ active, project }: Props) => {
