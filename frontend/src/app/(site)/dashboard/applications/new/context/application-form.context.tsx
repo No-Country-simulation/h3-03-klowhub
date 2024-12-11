@@ -20,13 +20,13 @@ type TApplicationCtx = {
 export const ApplicationCtx = createContext<TApplicationCtx | undefined>(undefined)
 
 const ApplicationCtxProvider = ({ children }: Props) => {
-  const [ state, dispatch ] = useReducer(applicationFormReducer, APPLICATION_FORM_INITIAL_STATE);
+  const [state, dispatch] = useReducer(applicationFormReducer, APPLICATION_FORM_INITIAL_STATE);
 
   const submitApplication = useCallback(async (additionalData = {}) => {
-    const { id, ...formattedData } = breakApplication({...state, ...additionalData});
+    const { id, ...formattedData } = breakApplication({ ...state, ...additionalData });
     console.log("creating aaplication: ", formattedData);
 
-    // const res = await fetch('http://localhost:3003/courses/createCourse', { 
+    // const res = await fetch(`${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/createCourse`, { 
     //   method: 'post',
     //   body: JSON.stringify(formattedData),
     //   headers: {
@@ -46,10 +46,10 @@ const ApplicationCtxProvider = ({ children }: Props) => {
 
   }, [state]);
 
-  useEffect(() => { console.log('state', state) }, [ state ])
+  useEffect(() => { console.log('state', state) }, [state])
 
   return (
-    <ApplicationCtx.Provider value={{ state, dispatch, submitApplication }}>{ children }</ApplicationCtx.Provider>
+    <ApplicationCtx.Provider value={{ state, dispatch, submitApplication }}>{children}</ApplicationCtx.Provider>
   )
 };
 

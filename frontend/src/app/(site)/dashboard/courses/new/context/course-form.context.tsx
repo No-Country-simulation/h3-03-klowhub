@@ -21,13 +21,13 @@ type CourseCtxType = {
 export const CourseCtx = createContext<CourseCtxType | undefined>(undefined)
 
 const CourseCtxProvider = ({ children }: Props) => {
-  const [ state, dispatch ] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
+  const [state, dispatch] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
 
   const submitCourse = useCallback(async (additionalData = {}) => {
-    const { id, ...formattedData } = breakCourse({...state, ...additionalData});
+    const { id, ...formattedData } = breakCourse({ ...state, ...additionalData });
     console.log('creating course...', formattedData);
 
-    // const res = await fetch('http://localhost:3003/courses/createCourse', { 
+    // const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/createCourse`, { 
     //   method: 'post',
     //   body: JSON.stringify(formattedData),
     //   headers: {
@@ -47,10 +47,10 @@ const CourseCtxProvider = ({ children }: Props) => {
 
   }, [state]);
 
-  useEffect(() => { console.log('state', state) }, [ state ])
+  useEffect(() => { console.log('state', state) }, [state])
 
   return (
-    <CourseCtx.Provider value={{ state, dispatch, submitCourse }}>{ children }</CourseCtx.Provider>
+    <CourseCtx.Provider value={{ state, dispatch, submitCourse }}>{children}</CourseCtx.Provider>
   )
 };
 
