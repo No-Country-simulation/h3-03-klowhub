@@ -211,10 +211,12 @@ const PromotionsSection = () => {
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
               try {
-                throw new Error()
+                // throw new Error()
                 const applicationId = await submitApplication({ promotion })
+
                 setNewAppId(applicationId)
               } catch (err) {
+                console.log('there is an error');
                 setError({ message: ['asdasdasd asdadaasda adadadd', '81e98u asdjadoadj asdua8db', 'asoidjd asd9ia asda9sdaid ac'] })
               }
             })}

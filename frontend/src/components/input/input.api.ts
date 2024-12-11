@@ -1,10 +1,11 @@
 import { FilePayload } from "@/types/global.types";
 
-export const uploadAsset = async (file: File, entity: "courses" | "apps" | "projects") => {
+export const uploadAsset = async (file: File, entity: "course" | "app" | "project") => {
   let endpoint = ""
-  if (entity === "courses") endpoint = process.env.NEXT_PUBLIC_COURSES_URL as string;
-  if (entity === "apps") endpoint = process.env.NEXT_PUBLIC_APPS_URL as string;
-  if (entity === "projects") endpoint = process.env.NEXT_PUBLIC_COURSES_URL as string; // temporary
+  if (entity === "course") endpoint = process.env.NEXT_PUBLIC_COURSES_URL as string;
+  if (entity === "app") endpoint = process.env.NEXT_PUBLIC_APPLICATIONS_URL as string;
+  if (entity === "project") endpoint = process.env.NEXT_PUBLIC_COURSES_URL as string; // temporary
+console.log('endpoint: ', endpoint);
 
   const formData = new FormData();
   formData.append('file', file)

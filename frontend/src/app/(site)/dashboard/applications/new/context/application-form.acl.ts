@@ -12,6 +12,12 @@ export const breakApplication = (data: ApplicationFormData): Application => {
     language: language.name
   };
 
+  const media = {
+    ...data.media,
+    coverImg: data.media.coverImg?.fileMetadata.url,
+    assets: data.media.assets.map(ast => ast.fileMetadata.url)
+  };
+
   const promotion = data.promotion ? {
     ...data.promotion.product,
     percentage: data.promotion.percentage / 100
@@ -21,7 +27,7 @@ export const breakApplication = (data: ApplicationFormData): Application => {
   return {
     ...general,
     ...data.details,
-    ...data.media,
+    ...media,
     promotion 
   }
 };

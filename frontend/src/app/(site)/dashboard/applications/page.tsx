@@ -27,8 +27,9 @@ const inter = Inter({
 
 const MyAppsPage = async () => {
 
-    const applications = await getProducts(endpoint);
-  console.log('applications: ', applications);
+    const applications = {
+      data: await getProducts(endpoint)
+    };
 
     const { sortBy, order, filterBy, from, to, items } = await getQueryParams();
     const filteredData = filterData(filterBy, { from: from, to: to, items: items }, transactionsData)
@@ -44,8 +45,8 @@ const MyAppsPage = async () => {
                     <h3 className="text-base font-bold">Mis aplicaciones</h3>
                     <Link href="/dashboard/applications/new?section=general" className={`${buttonVariants({ variant: "default" })} sm:w-[250px] w-full`}>Crear aplicación</Link>
                 </div>
-                <MyAppsDesktopView transactionsData={sortedData} products={applications.data} />
-                <MyAppsMobileView transactionsData={sortedData} products={applications.data} />
+                <MyAppsDesktopView transactionsData={sortedData} products={applications.data as unknown as TQuickView[]} />
+                <MyAppsMobileView transactionsData={sortedData} products={applications.data as unknown as TQuickView[]} />
             </div>
         </main>
     )
