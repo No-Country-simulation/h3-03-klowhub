@@ -16,8 +16,8 @@ export const useApplicationData = () => {
 
   useEffect(() => {
     (async function () {
-      const mockedData = window.sessionStorage.getItem("applicationForm"); // TODO: this should be the object retrieved from the api
-      console.log('mockedData: ', mockedData);
+      // const mockedData = window.sessionStorage.getItem("applicationForm"); // TODO: this should be the object retrieved from the api
+      // console.log('mockedData: ', mockedData);
 
       if (applicationContext) {
         // preview case
@@ -25,16 +25,11 @@ export const useApplicationData = () => {
         const previewData = breakApplication(applicationContext.state)
         setPageData({ applicationData: previewData })
 
-      } else if (mockedData) {
-        // backend sends data case
-        console.log('getting data from sessionStorage...');
-        const parsedMockedData = JSON.parse(mockedData);
-        setPageData({ applicationData: parsedMockedData })
-
       } else {
         // TEMPORARY mock case
         console.log('getting data from internal api...');
-        const res = await fetch(`/api/applications/${params.id}?withAuthor=true&withReviews=true`);
+        // const res = await fetch(`/api/applications/${params.id}?withAuthor=true&withReviews=true`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${params.id}?withAuthor=true&withReviews=true`);
         const data: ApplicationData = await res.json();
         // console.log('data: ', data);
         setPageData(data)
