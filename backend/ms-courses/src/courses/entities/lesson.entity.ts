@@ -7,18 +7,25 @@ export class Lesson {
   id: string;
 
   @Column()
-  freeLesson: boolean;
-
-  //La opcion es hacer la relacion a Multimedia-documents
-  @Column()
-  documents: string;
-
-  @Column()
   title: string;
 
   @Column()
   description: string;
 
-  @ManyToOne(() => CourseModule, (courseModule) => courseModule.lessons)
+  @Column({ type: 'simple-array', nullable: true })
+  documents: string[];
+
+  @Column({ type: 'simple-array', nullable: true })
+  video: string[];
+
+  @Column({ nullable: true })
+  freeLesson: boolean;
+
+  @Column({ nullable: true, name: 'link' })
+  link: string;
+
+  @ManyToOne(() => CourseModule, (module) => module.lessons, {
+    onDelete: 'CASCADE',
+  })
   module: CourseModule;
 }

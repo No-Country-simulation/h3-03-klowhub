@@ -10,18 +10,15 @@ import {
   // CourseCreationFailedException,
   CourseImageSizeFailed,
   CourseVideoSizeFailed,
-  createCourseFailed,
   ImageFileMissingException,
   PDF_FileSize,
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
 
-import { Video } from './entities/video.entity';
-import { VideoDto } from './dto/video-course.dto';
-import { Image } from './entities/image.entity';
-import { Thumbnail } from './entities/thumbnail_url.entity';
 import { Multimedia } from './entities/multimedia.entity';
 import { MultimediaDto } from './dto/multimedia.dto';
+import { CourseModule } from './entities/course-module.entity';
+import { Lesson } from './entities/lesson.entity';
 
 @Injectable()
 export class CoursesService {
@@ -33,17 +30,18 @@ export class CoursesService {
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
     private readonly cloudinaryService: CloudinaryService,
-    @InjectRepository(Video)
-    private readonly videoRepository: Repository<Video>,
-
-    @InjectRepository(Thumbnail)
-    private readonly thumbnailRepository: Repository<Thumbnail>,
-
-    @InjectRepository(Image)
-    private readonly imageRepository: Repository<Image>,
 
     @InjectRepository(Multimedia)
     private readonly multimediaRepository: Repository<Multimedia>,
+
+    @InjectRepository(CourseModule)
+    private readonly courseModuleRepository: Repository<CourseModule>,
+
+    @InjectRepository(Lesson)
+    private readonly lessonRepository: Repository<Lesson>,
+
+    // @InjectRepository(Document)
+    // private readonly documentRepository: Repository<Document>,
   ) {}
 
   private validateFile(
@@ -144,85 +142,95 @@ export class CoursesService {
     // return savedCourse;
   }
 
-  async createCourse(createCourseDto: CreateCourseDto) {
-    console.log('Creando curso:', createCourseDto);
-    const createCourse = this.courseRepository.create(createCourseDto);
-    if (!createCourse) {
-      throw new createCourseFailed();
+  async createCourse(createCourseDto: CreateCourseDto): Promise<Course> {
+    console.log(
+      'Received createCourseDto:',
+      JSON.stringify(createCourseDto, null, 2),
+    );
+
+    const course = this.courseRepository.create(createCourseDto);
+    console.log('Created course entity:', JSON.stringify(course, null, 2));
+
+    // Manejo de Multimedia
+    if (createCourseDto.multimedia) {
+      console.log('Processing multimedia...');
+      const multimediaPromises = createCourseDto.multimedia.map(
+        async (multimediaDto) => {
+          console.log(
+            'Creating multimedia entity:',
+            JSON.stringify(multimediaDto, null, 2),
+          );
+          const multimedia = this.multimediaRepository.create(multimediaDto);
+          return await this.multimediaRepository.save(multimedia);
+        },
+      );
+      course.multimedia = await Promise.all(multimediaPromises);
+      console.log(
+        'Saved multimedia:',
+        JSON.stringify(course.multimedia, null, 2),
+      );
     }
-    console.log('Curso creado:', createCourse);
-    return await this.courseRepository.save(createCourse);
-  }
 
-  async findCourse(title: string) {
-    // const normalizedTitle = title.trim().toLowerCase(); // Normalizar el título
-    return await this.courseRepository.findOne({
-      where: { title },
-    });
-  }
+    // Manejo de CourseModule
+    if (createCourseDto.modules) {
+      console.log('Processing modules...');
+      const modulePromises = createCourseDto.modules.map(async (moduleDto) => {
+        console.log(
+          'Creating module entity:',
+          JSON.stringify(moduleDto, null, 2),
+        );
+        const module = this.courseModuleRepository.create(moduleDto);
+        module.course = course;
 
-  //entidad de imagen
-  async createImage(imageFile: Express.Multer.File): Promise<Image> {
-    const uploadImage = await this.cloudinaryService.uploadFile(imageFile);
-    const imageData = {
-      url: uploadImage.secure_url,
-      size: uploadImage.bytes,
-      width: uploadImage.width,
-      height: uploadImage.height,
-      format: uploadImage.format,
-      created_at: uploadImage.created_at,
-    };
-    const imagen = await this.imageRepository.save(imageData);
-    console.log('video creado', imagen);
+        // Manejo de Lessons
+        if (moduleDto.lessons) {
+          console.log('Processing lessons for module:', module.title);
+          const lessonPromises = moduleDto.lessons.map(async (lessonDto) => {
+            console.log(
+              'Creating lesson entity:',
+              JSON.stringify(lessonDto, null, 2),
+            );
+            const lesson = this.lessonRepository.create(lessonDto);
+            lesson.module = module;
 
-    return imagen;
-  }
-  //entidad de Video
-  async createVideo(
-    VideoDto: VideoDto,
-    videoFile: Express.Multer.File,
-  ): Promise<Video> {
-    const uploadVideo = await this.cloudinaryService.uploadFile(videoFile);
-    console.log('UPLOAD VIDEO', uploadVideo);
-    const videoData = {
-      url: uploadVideo.secure_url,
-      duration: uploadVideo.duration,
-      size: uploadVideo.bytes,
-      format: uploadVideo.format,
-      width: uploadVideo.width,
-      height: uploadVideo.height,
-      thumbnail_url: uploadVideo.thumbnailUrl,
-      thumbnail_width: uploadVideo.thumbnailUrl_width,
-      thumbnail_height: uploadVideo.thumbnailUrl_height,
-      created_at: new Date(uploadVideo.created_at),
-    };
+            // Mostrar documentos antes de guardar la lección
+            if (lesson.documents) {
+              console.log(
+                'Documents before save:',
+                JSON.stringify(lesson.documents, null, 2),
+              );
+              lesson.documents = lesson.documents.map((doc) =>
+                JSON.stringify(doc),
+              );
+            }
 
-    const video = this.videoRepository.create(videoData);
-    const savedVideo = await this.videoRepository.save(video);
-    console.log('video creado', video);
-    console.log('Video guardado:', savedVideo);
+            // Guardar la lección
+            const savedLesson = await this.lessonRepository.save(lesson);
+            console.log('Saved lesson:', JSON.stringify(savedLesson, null, 2));
+            return savedLesson;
+          });
 
-    const imagenData = {
-      thumbnail_url: uploadVideo.thumbnailUrl,
-      video: savedVideo,
-    };
-    const imagen = this.thumbnailRepository.create(imagenData);
-    const savedImagen = this.thumbnailRepository.save(imagen);
-    console.log('imagen guardada:', savedImagen);
-
-    return savedVideo;
-    // return this.videoRepository.save(video);
-  }
-  async findOneVideo(id: string) {
-    const video = await this.videoRepository.findOne({
-      where: { id },
-      // relations: ['thumbnail_url'],
-    });
-    if (!video) {
-      return null;
+          module.lessons = await Promise.all(lessonPromises);
+        }
+        const savedModule = await this.courseModuleRepository.save(module);
+        console.log('Saved module:', JSON.stringify(savedModule, null, 2));
+        return savedModule;
+      });
+      course.modules = await Promise.all(modulePromises);
+      console.log('Saved modules:', JSON.stringify(course.modules, null, 2));
     }
-    return video;
+
+    const savedCourse = await this.courseRepository.save(course);
+    console.log('Final saved course:', JSON.stringify(savedCourse, null, 2));
+    return savedCourse;
   }
+
+  // async findCourse(title: string) {
+  //   // const normalizedTitle = title.trim().toLowerCase(); // Normalizar el título
+  //   return await this.courseRepository.findOne({
+  //     where: { title },
+  //   });
+  // }
 
   async findAll(): Promise<Course[]> {
     const course = await this.courseRepository.find({
@@ -264,4 +272,67 @@ export class CoursesService {
     await this.courseRepository.save(course);
     return course;
   }
+
+  //entidad de imagen
+  // async createImage(imageFile: Express.Multer.File): Promise<Image> {
+  //   const uploadImage = await this.cloudinaryService.uploadFile(imageFile);
+  //   const imageData = {
+  //     url: uploadImage.secure_url,
+  //     size: uploadImage.bytes,
+  //     width: uploadImage.width,
+  //     height: uploadImage.height,
+  //     format: uploadImage.format,
+  //     created_at: uploadImage.created_at,
+  //   };
+  //   const imagen = await this.imageRepository.save(imageData);
+  //   console.log('video creado', imagen);
+
+  //   return imagen;
+  // }
+  //entidad de Video
+  // async createVideo(
+  //   VideoDto: VideoDto,
+  //   videoFile: Express.Multer.File,
+  // ): Promise<Video> {
+  //   const uploadVideo = await this.cloudinaryService.uploadFile(videoFile);
+  //   console.log('UPLOAD VIDEO', uploadVideo);
+  //   const videoData = {
+  //     url: uploadVideo.secure_url,
+  //     duration: uploadVideo.duration,
+  //     size: uploadVideo.bytes,
+  //     format: uploadVideo.format,
+  //     width: uploadVideo.width,
+  //     height: uploadVideo.height,
+  //     thumbnail_url: uploadVideo.thumbnailUrl,
+  //     thumbnail_width: uploadVideo.thumbnailUrl_width,
+  //     thumbnail_height: uploadVideo.thumbnailUrl_height,
+  //     created_at: new Date(uploadVideo.created_at),
+  //   };
+
+  //   const video = this.videoRepository.create(videoData);
+  //   const savedVideo = await this.videoRepository.save(video);
+  //   console.log('video creado', video);
+  //   console.log('Video guardado:', savedVideo);
+
+  //   const imagenData = {
+  //     thumbnail_url: uploadVideo.thumbnailUrl,
+  //     video: savedVideo,
+  //   };
+  //   const imagen = this.thumbnailRepository.create(imagenData);
+  //   const savedImagen = this.thumbnailRepository.save(imagen);
+  //   console.log('imagen guardada:', savedImagen);
+
+  //   return savedVideo;
+  //   // return this.videoRepository.save(video);
+  // }
+  // async findOneVideo(id: string) {
+  //   const video = await this.videoRepository.findOne({
+  //     where: { id },
+  //     // relations: ['thumbnail_url'],
+  //   });
+  //   if (!video) {
+  //     return null;
+  //   }
+  //   return video;
+  // }
 }
