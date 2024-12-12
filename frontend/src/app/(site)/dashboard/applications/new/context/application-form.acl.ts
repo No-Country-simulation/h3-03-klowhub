@@ -14,8 +14,8 @@ export const breakApplication = (data: ApplicationFormData): Application => {
 
   const media = {
     ...data.media,
-    coverImg: data.media.coverImg?.fileMetadata.url,
-    assets: data.media.assets.map(ast => ast.fileMetadata.url)
+    coverImg: data.media.coverImg?.id,
+    assets: data.media.assets.map(ast => ast.id)
   };
 
   const promotion = data.promotion ? {
