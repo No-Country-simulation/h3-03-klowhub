@@ -1,19 +1,24 @@
 import { FC } from "react";
-import { Instructor } from "@/types/course-detail-props";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Star, User, BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { AuthorInfo } from "@/types/global.types";
 
-export const InstructorDetail: FC<Instructor> = ({
+type Props = {
+  data: AuthorInfo
+}
+
+const AuthorDetail: FC<Props> = ({ data }) => {
+  const {
     name,
-    description,
-    image,
+    about,
+    profileImg,
     rating,
     students,
     courses,
     profileLink
-}) => {
+  } = data 
 
     return (
         <Card className="p-3">
@@ -21,7 +26,7 @@ export const InstructorDetail: FC<Instructor> = ({
                 <CardTitle>
                     <div className="flex items-center space-x-2 px-2 border-b border-[#DFD1F3] pb-2">
                         <Image
-                            src={image}
+                            src={profileImg.fileMetadata.url}
                             alt={name}
                             width={40}
                             height={40}
@@ -29,7 +34,7 @@ export const InstructorDetail: FC<Instructor> = ({
                         />
                         <div className="space-y-2">
                             <p className="font-semibold">{name}</p>
-                            <p className="text-xs text-gray-400">{description}</p>
+                            <p className="text-xs text-gray-400">{about}</p>
                         </div>
                     </div>
                 </CardTitle>
@@ -59,3 +64,6 @@ export const InstructorDetail: FC<Instructor> = ({
     );
 
 };
+
+
+export default AuthorDetail

@@ -14,16 +14,18 @@ import { RequirementsSection } from "./requirements-section";
 import { GenericSection } from "./generic-section.section";
 import { ShareSection } from "./share-section";
 
-import { InstructorDetail } from "./instructor-detail.section";
+import AuthorDetail from "../../../../../components/instructor-detail.section";
 import { CourseProgramSection } from "./course-program.section";
 import PageFilters from "@/components/page-filters/page-filters.component";
 import { useSearchParams } from "next/navigation";
 import { instructorPitch } from "@/mocks/course-detail";
 
 
-import { instructor } from "@/mocks/instructor.mock";
 import { useCourseData } from "./hooks/use-course-data.hook";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
+import TempError from "@/components/temp-error/temp-error.component";
+import AuthorInfo from "./author-section";
+import { ObjectivesList } from "./objectives.section";
 
 type Props = {
   children?: ReactNode
@@ -49,6 +51,14 @@ export const CourseDetail: FC<Props> = ({ children }) => {
       <div className="min-h-screen space-y-10">
         <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
           <CourseInfo {...pageData.courseData} freelessons={pageData.freeLessons} submitCourse={submitCourse}>
+            { pageData.courseData.author
+              ? <AuthorInfo data={pageData.courseData.author} />
+              : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+            }
+            <ObjectivesList 
+              header="Después de completar este curso, serás capaz de"
+              objectives={pageData.courseData.learningSubjects} 
+            />
             <ShareSection />
             <GenericSection header={instructorPitch.title} text={instructorPitch.content} />
             <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
@@ -61,15 +71,10 @@ export const CourseDetail: FC<Props> = ({ children }) => {
           </CourseInfo>
 
           <div className="space-y-6">
-            <InstructorDetail
-              name={instructor.name}
-              description={instructor.description}
-              image={instructor.image}
-              rating={instructor.rating}
-              students={instructor.students}
-              courses={instructor.courses}
-              profileLink={instructor.profileLink}
-            />
+            { pageData.courseData.author
+              ? <AuthorDetail data={pageData.courseData.author } />
+              : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+            }
 
             <Badge
               className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"

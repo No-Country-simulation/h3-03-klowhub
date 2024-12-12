@@ -22,9 +22,13 @@ const filters = [
 const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}`;
 
 const getProducts = async (endpoint: string) => {
-  const res = await fetch(endpoint, { cache: "force-cache" });
-  const items: { data: TQuickView[] } = await res.json();
-  return items
+  try {
+    const res = await fetch(endpoint, { cache: "force-cache" });
+    const items: { data: TQuickView[] } = await res.json();
+    return items
+  } catch (err) {
+    console.log('ERR');
+  }
 };
 
 
@@ -33,7 +37,6 @@ const AppliactionsPage = async () => {
   console.log('applications: ', applications);
   const queryParams = await getQueryParams();
 
-  console.log('applications: ', applications);
   return (
     <main>
       <BreadCrumb />
@@ -50,7 +53,7 @@ const AppliactionsPage = async () => {
         xl:grid-cols-4
         "
       >
-        {applications.data.map((app, idx) => (
+        {applications.map((app, idx) => (
           <ProductCard
             key={`product-card-${idx}`}
             data={app}

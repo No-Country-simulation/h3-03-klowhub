@@ -4,34 +4,26 @@ import { ApplicationCtx } from "@/app/(site)/dashboard/applications/new/context/
 
 import { breakApplication } from "@/app/(site)/dashboard/applications/new/context/application-form.acl";
 import { Application } from "@/types/application.types";
+import { RequiredProperty } from "@/types/utils.types";
 
-type ApplicationData = {
-  applicationData: Application
-}
+// type ApplicationPayload = RequiredProperty<Omit<Application, "promotion">> & Application["promotion"]
 
 export const useApplicationData = () => {
-  const [ pageData, setPageData ] = useState<ApplicationData>();
+  const [ pageData, setPageData ] = useState<Application>();
   const applicationContext = useContext(ApplicationCtx);
   const params = useParams();
 
   useEffect(() => {
     (async function () {
-      // const mockedData = window.sessionStorage.getItem("applicationForm"); // TODO: this should be the object retrieved from the api
-      // console.log('mockedData: ', mockedData);
-
       if (applicationContext) {
-        // preview case
         console.log('getting data from course context...');
         const previewData = breakApplication(applicationContext.state)
-        setPageData({ applicationData: previewData })
+        setPageData({ ...previewData })
 
       } else {
-        // TEMPORARY mock case
         console.log('getting data from internal api...');
-        // const res = await fetch(`/api/applications/${params.id}?withAuthor=true&withReviews=true`);
         const res = await fetch(`${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${params.id}?withAuthor=true&withReviews=true`);
-        const data: ApplicationData = await res.json();
-        // console.log('data: ', data);
+        const data: Application = await res.json();
         setPageData(data)
       };
     })()

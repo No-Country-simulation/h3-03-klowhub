@@ -6,8 +6,7 @@ import { ShareSection } from "@/app/(site)/courses/components/detail/share-secti
 import PageFilters from "@/components/page-filters/page-filters.component";
 import { ReviewsSection } from "@/app/(site)/courses/components/detail/reviews.section";
 import { reviews } from "@/mocks/reviews.mocks";
-import { InstructorDetail } from "@/app/(site)/courses/components/detail/instructor-detail.section";
-import { instructor } from "@/mocks/instructor.mock";
+import AuthorDetail from "@/components/instructor-detail.section";
 import List from "@/components/list/list.component";
 
 import Image from "next/image";
@@ -20,53 +19,46 @@ import { useApplicationData } from "./hooks/use-application-data.hook";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
+import AuthorInfo from "@/app/(site)/courses/components/detail/author-section";
+import TempError from "@/components/temp-error/temp-error.component";
 
 type Props = {
     children?: ReactNode
 }
 
 export const AppDetail: FC<Props> = () => {
-
-    // const [data, setData] = useState<AppProps>();
     const { pageData, submitApplication } = useApplicationData();
-    console.log('pageData: ', pageData);
     const [showGreeter, setShowGreeter] = useState(false);
     const searchParams = useSearchParams();
     const section = searchParams.get("section");
 
-    console.log('application data', pageData)
-
-    const handleShowDesktopView = () => {
-        setShowGreeter(true)
-    }
-
-    const handleCloseDesktopView = () => {
-        setShowGreeter(false);
-    }
-
     const filters = [
-        { label: "Funcionalidades", items: pageData?.applicationData.functionalities || [] },
-        { label: "Herramientas y plataformas", items: pageData?.applicationData.toolsAndPlatforms || [] },
-        { label: "Sector", items: pageData?.applicationData.sector || [] },
-        { label: "Tags", items: pageData?.applicationData.tags || [] },
+        { label: "Funcionalidades", items: pageData?.functionalities || [] },
+        { label: "Herramientas y plataformas", items: pageData?.toolsAndPlatforms || [] },
+        { label: "Sector", items: pageData?.sector || [] },
+        { label: "Tags", items: pageData?.tags || [] },
     ];
 
     return pageData && (
       <>
-        <BreadCrumb title={pageData.applicationData.title} />
+        <BreadCrumb title={pageData.title} />
         <div className="min-h-screen">
           <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-            <AppInfo {...pageData.applicationData} submitApplication={submitApplication}>
+            <AppInfo {...pageData} submitApplication={submitApplication}>
+              { pageData.author
+                ? <AuthorInfo data={pageData.author}/>
+                : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+              }
               <ShareSection />
               <List
                 header="Para quién es esta App"
                 subheader="Esta App de AppSheet es para ti sí:"
-                items={pageData.applicationData.targetAudience}
+                items={pageData.targetAudience}
               />
               <List
                 header="Vistas de la App"
                 subheader="Estás serán las pantallas (Vistas) a las que podrás acceder desde la app de facturas de AppSheet:"
-                items={pageData.applicationData.views}
+                items={pageData.views}
               />
               <PageFilters filters={filters} />
               { section !== "preview" &&
@@ -77,7 +69,7 @@ export const AppDetail: FC<Props> = () => {
 
               <div className="flex flex-col items-center gap-6 mt-4">
                 <Image
-                  src={pageData.applicationData.mobileLink}
+                  src={pageData.mobileLink}
                   alt=""
                   height={384}
                   width={192}
@@ -87,32 +79,27 @@ export const AppDetail: FC<Props> = () => {
                   variant="outline"
                   size="sm"
                   className="border-[#D194E2] text-[#D194E2]"
-                  onClick={handleShowDesktopView}
+                  onClick={() => setShowGreeter(true)}
                 >
                   Ver en modo escritorio
                 </Button>
               </div>
 
-              <InstructorDetail
-                name={instructor.name}
-                description={instructor.description}
-                image={instructor.image}
-                rating={instructor.rating}
-                students={instructor.students}
-                courses={instructor.courses}
-                profileLink={instructor.profileLink}
-              />
+              { pageData.author
+                ? <AuthorDetail data={pageData.author} />
+                : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+              } 
 
               <Badge
                 className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
                 icon={<Icon name="powerapps" style="w-8 h-8" />}
               >
-                {pageData?.applicationData.platform}
+                {pageData?.platform}
               </Badge>
 
               <AppInclude
-                title={pageData?.applicationData.title}
-                appIncludes={pageData?.applicationData.appIncludes}
+                title={pageData?.title}
+                appIncludes={pageData?.appIncludes}
               />
               <Button 
                 className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}
@@ -133,10 +120,10 @@ export const AppDetail: FC<Props> = () => {
             </div>
           </div>
           {showGreeter && (
-            <Popover onClose={handleCloseDesktopView}>
+            <Popover onClose={() => setShowGreeter(false)}>
               <Image
                 className="w-full h-full rounded-lg"
-                src={pageData.applicationData.desktopLink}
+                src={pageData.desktopLink}
                 alt=""
                 width={1920}
                 height={1080}

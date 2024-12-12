@@ -9,11 +9,7 @@ import { getQueryParams } from "@/utils/route.utils";
 import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 import { TQuickView } from "@/components/product-card/product-card.types";
-
-import { getPathname } from "@/utils/route.utils";
-
 import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
-import coursesMock from '@/mocks/courses.mock.json';
 
 const filters = [
   platform,
@@ -28,19 +24,18 @@ const filters = [
 
 
 const getProducts = async (endpoint: string) => {
-  const res = await fetch(endpoint, { cache: "force-cache" });
-  const items: { data: TQuickView[] } = await res.json();
-  return items
+  try {
+    const res = await fetch(endpoint, { cache: "force-cache" });
+    const items: { data: TQuickView[] } = await res.json();
+    return items
+  } catch (err) {
+    console.error('there was an error when getting applications: ', err);
+  }
 };
 
 const Page = async () => {
-  // const products = await getProducts(process.env.NEXT_PUBLIC_COURSES_URL + "?withAuthor=true");
-  const products = await getProducts(process.env.NEXT_PUBLIC_COURSES_URL as string);
+  const products = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`);
   const queryParams = await getQueryParams();
-
-  const courses = { data: coursesMock };
-
-  console.log('courses xdd', courses)
 
   return (
     <main>
@@ -51,13 +46,13 @@ const Page = async () => {
       </IsClientProvider>
 
       <div>
-        {products.data.map((c, idx) => (
+        {products.map((c, idx) => (
           <ProductCard data={c} key={idx} />
         ))}
       </div>
       {queryParams.modal &&
         <SideModal>
-          <QuickView products={products.data} />
+          <QuickView products={products} />
         </SideModal>
       }
       <Pager />

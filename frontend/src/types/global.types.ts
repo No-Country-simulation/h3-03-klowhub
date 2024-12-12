@@ -2,9 +2,13 @@ export type Language = "english" | "spanish"
 export type Platform = "appsheet" | "powerapps"
 
 export type AuthorInfo = {
-  name: string
-  about: string
-  img: TImage
+  name: string;
+  about: string;
+  profileImg: TImage;
+  rating?: number;
+  students?: number;
+  courses?: number;
+  profileLink?: string;
 }
 
 export type FileType = {

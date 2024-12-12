@@ -2,6 +2,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -19,6 +23,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -36,6 +44,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -53,6 +65,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -70,6 +86,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -87,6 +107,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -104,6 +128,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -121,6 +149,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
@@ -138,57 +170,10 @@
   {
     "name": "Sebastián Ríos",
     "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
-    "img": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
-      "fileMetadata": {
-        "size": 0,
-        "url": "/temp/imgs/profile-mini.png",
-        "width": 60,
-        "height": 60,
-        "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
-  },
-  {
-    "name": "Sebastián Ríos",
-    "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
-    "img": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
-      "fileMetadata": {
-        "size": 0,
-        "url": "/temp/imgs/profile-mini.png",
-        "width": 60,
-        "height": 60,
-        "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
-  },
-  {
-    "name": "Sebastián Ríos",
-    "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
-    "img": {
-      "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fileType": "image",
-      "fileMetadata": {
-        "size": 0,
-        "url": "/temp/imgs/profile-mini.png",
-        "width": 60,
-        "height": 60,
-        "format": "webp",
-        "mimeType": "image/webp",
-        "created_at": "2024-12-04T05:47:09Z"
-      }
-    }
-  },
-  {
-    "name": "Sebastián Ríos",
-    "about": "Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.",
+    "rating": 4.7,
+    "students": 2000,
+    "courses": 5,
+    "profileLink": "/profile/juan-perez",
     "img": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
