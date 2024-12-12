@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
+import { Asset } from './asset.entity';
 
 @Entity()
 export class App {
@@ -44,8 +51,8 @@ export class App {
   @Column('simple-array', { name: 'appIncludes' }) // Cambiado a simple-array
   appIncludes: string[];
 
-  @Column()
-  coverImg: string;
+  // @Column()
+  // coverImg: string;
 
   @Column()
   desktopLink: string;
@@ -53,8 +60,14 @@ export class App {
   @Column()
   mobileLink: string;
 
-  @Column('simple-array', { name: 'assets' }) // Cambiado a simple-array
-  assets: string[];
+  // @Column('simple-array', { name: 'assets' }) // Cambiado a simple-array
+  // assets: string[];
+
+  @ManyToOne(() => Asset) // Cambiado a ManyToOne para coverImg
+  coverImg: Asset;
+
+  @OneToMany(() => Asset, (asset) => asset.application) // Cambiado a OneToMany para assets
+  assets: Asset[];
 
   @Column('jsonb', { name: 'promotion', nullable: true })
   promotion: object;
