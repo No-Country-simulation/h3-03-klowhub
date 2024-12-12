@@ -37,11 +37,18 @@ export class UsersService {
   }
 
   findAll() {
-    return this.usersRepository.find();
+    return this.usersRepository.find({ relations: ['seller'] });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    const user = await this.usersRepository.findOne({
+      where: { id },
+      relations: ['seller'], // Incluye la relación con Seller
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
   }
   remove(id: number) {
     return `This action removes a #${id} user`;

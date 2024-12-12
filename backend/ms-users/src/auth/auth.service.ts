@@ -24,6 +24,7 @@ export class AuthService {
 
     const existingUser = await this.userRepository.findOne({
       where: { email },
+      relations: ['seller'],
     });
     if (existingUser) {
       throw new ConflictException('Email already exists');
@@ -41,9 +42,14 @@ export class AuthService {
     return this.userRepository.save(user);
   }
 
-  async login(loginAuthDto: LoginAuthDto): Promise<{ accesToken: string }> {
+  async login(
+    loginAuthDto: LoginAuthDto,
+  ): Promise<{ accesToken: string; user: object }> {
     const { email, password } = loginAuthDto;
-    const user = await this.userRepository.findOne({ where: { email } });
+    const user = await this.userRepository.findOne({
+      where: { email },
+      relations: ['seller'],
+    });
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException('Invalid credentials');
@@ -56,6 +62,7 @@ export class AuthService {
     };
 
     const accesToken = this.jwtService.sign(payload);
-    return { accesToken };
+    //return { accesToken };
+    return { accesToken, user };
   }
 }

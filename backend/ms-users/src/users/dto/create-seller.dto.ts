@@ -19,9 +19,9 @@ export class CreateSellerDto {
   type: string;
 
   @ApiProperty()
-  @IsNotEmpty()
   @IsString()
-  description: string;
+  @IsOptional()
+  about: string;
 
   @ApiProperty({ required: false })
   @IsOptional()
