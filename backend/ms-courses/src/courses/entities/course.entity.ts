@@ -1,17 +1,12 @@
 import {
   Column,
   Entity,
-  // JoinColumn,
+  ManyToOne,
   OneToMany,
-  OneToOne,
-  JoinColumn,
-  // ManyToOne,
-  // OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Image, Multimedia } from './multimedia.entity';
 import { CourseModule } from './course-module.entity';
-import { PromotionProduct } from './promotion.entity';
+import { Multimedia } from './multimedia.entity';
 
 @Entity()
 export class Course {
@@ -21,131 +16,71 @@ export class Course {
   @Column()
   title: string;
 
-  // @Column({ type: 'enum', enum: ['Gratuito', 'Pago'] })
-  // tipoDeCurso: string;
-  @Column()
+  @Column({ type: 'boolean', name: 'freeCourse' })
   freeCourse: boolean;
 
-  @Column({ type: 'enum', enum: ['lesson', 'course'] })
+  @Column({ type: 'simple-array', name: 'contentType' }) // Cambiado a simple-array
   contentType: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', name: 'shortDescription' })
   shortDescription: string;
 
-  @Column({ type: 'enum', enum: ['basic', 'intermediate'] })
+  @Column({ type: 'simple-array', name: 'courseDifficulty' }) // Cambiado a simple-array
   courseDifficulty: string;
 
-  @Column({ type: 'enum', enum: ['appsheet', 'powerapps'] })
-  platform: string;
+  @Column({ type: 'simple-array', name: 'platform' }) // Cambiado a simple-array
+  platform: string[];
 
-  @Column({ type: 'enum', enum: ['english', 'spanish'] })
-  language: string;
+  @Column({ type: 'simple-array', name: 'language' }) // Cambiado a simple-array
+  language: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: CoreContent,
-  // })
-  // coreContent: CoreContent;
-
-  @Column('json', { nullable: true })
+  @Column({ type: 'simple-array', name: 'coreContent', nullable: true }) // Cambiado a simple-array
   coreContent: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: Functionalities,
-  // })
-  // functionalities: Functionalities;
-
-  @Column('json', { nullable: true })
+  @Column({ type: 'simple-array', name: 'functionalities', nullable: true }) // Cambiado a simple-array
   functionalities: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: Sector,
-  // })
-  // sector: Sector;
-
-  @Column('json', { nullable: true })
+  @Column({ type: 'simple-array', name: 'sector', nullable: true }) // Cambiado a simple-array
   sector: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: ToolsAndPlatform,
-  // })
-  // toolsAndPlatform: ToolsAndPlatform;
-
-  @Column('json', { nullable: true })
+  @Column({ type: 'simple-array', name: 'toolsAndPlatform', nullable: true }) // Cambiado a simple-array
   toolsAndPlatform: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: Tags,
-  // })
-  // tags: Tags;
-  @Column('json', { nullable: true })
+  @Column({ type: 'simple-array', name: 'tags', nullable: true }) // Cambiado a simple-array
   tags: string[];
 
-  //learningSubjects cambiarlo a array de strings
-  @Column({ type: 'text', array: true })
+  @Column({ type: 'simple-array', name: 'learningSubjects' }) // Cambiado a simple-array
   learningSubjects: string[];
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', name: 'prevRequirements' })
   prevRequirements: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', name: 'fullDescription' })
   fullDescription: string;
 
-  @Column({ nullable: true })
-  link: string;
+  // @Column({ type: 'text', name: 'coverImg' }) // Cambiado a texto para imágenes
+  // coverImg: string;
+  @ManyToOne(() => Multimedia)
+  coverImg: string;
 
-  // @Column({ type: 'jsonb', nullable: true })
+  @Column('jsonb', { name: 'promotion', nullable: true }) // Cambiado a simple-array
+  promotion: object;
 
-  // Imagen del curso
-  @Column('json')
-  coverImg: Image;
-
-  //promotion puede ser null hacerlo en el DTO
-  // @Column('json', { nullable: true })
-  // promotion: {
-  //   product: {
-  //     id: string;
-  //     type: string;
-  //   };
-  //   percentage: number;
-  // };
-
-  @OneToOne(() => PromotionProduct)
-  @JoinColumn()
-  promotion: PromotionProduct;
-
-  @Column({ type: 'boolean', default: true })
+  @Column({ type: 'boolean', default: true, name: 'available' })
   available: boolean;
 
-  @Column()
+  @Column({ type: 'text', name: 'targetAudience' })
   targetAudience: string;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', name: 'price' })
   price: number;
 
-  @OneToMany(() => CourseModule, (module) => module.id)
+  @Column({ type: 'simple-array', name: 'promotionalVideo', nullable: true })
+  promotionalVideo: string[];
+
+  @OneToMany(() => CourseModule, (module) => module.course)
   modules: CourseModule[];
 
-  // Relación OneToMany con Multimedia
-  @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
-    cascade: true, // Esto permite guardar los multimedia relacionados cuando se guarda el curso
-  })
-  promotionalVideo: Multimedia;
-  //promotionalVideo tiene que ser de tipo video
-
-  // @Column(() => Multimedia)
-  // promotionalVideo: Multimedia;
-
-  // @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
-  //   cascade: true,
-  // })
-  // multimedia: Multimedia[];
-
-  // @ManyToOne(() => Multimedia, { nullable: true, lazy: true })
-  // @JoinColumn({ name: 'promotional_video_id' }) // Nombre claro en la base de datos
-  // promotionalVideo: Multimedia;
+  @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
+  multimedia: Multimedia[];
 }

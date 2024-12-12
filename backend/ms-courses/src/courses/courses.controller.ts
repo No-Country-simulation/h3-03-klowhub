@@ -9,18 +9,13 @@ import {
   NotFoundException,
   BadRequestException,
   UseInterceptors,
-  UploadedFiles,
   UploadedFile,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { MultimediaDto } from './dto/multimedia.dto';
-import { VideoDto } from './dto/video-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import {
-  FileFieldsInterceptor,
-  FileInterceptor,
-} from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import {
   CloudinaryUploadFailedException,
   CourseCreationFailedException,
@@ -100,17 +95,8 @@ export class CoursesController {
   //Hacer el post de cursos
   @Post('createCourse')
   async createCourse(@Body() createCourseDto: CreateCourseDto) {
-    const normalizedTitle = createCourseDto.title.trim().toLowerCase();
-    // const { title } = createCourseDto;
     try {
-      const foundCourse = await this.coursesService.findCourse(normalizedTitle);
-      if (foundCourse) {
-        throw new BadRequestException('The course already exist');
-      }
-      return await this.coursesService.createCourse({
-        ...createCourseDto,
-        title: normalizedTitle,
-      });
+      return await this.coursesService.createCourse(createCourseDto);
     } catch (error) {
       if (error instanceof createCourseFailed) {
         throw new BadRequestException('Failed to create the course');
@@ -120,52 +106,52 @@ export class CoursesController {
   }
 
   //Post de la imagen
-  @Post('image')
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))
-  async createImage(@UploadedFiles() files: { image?: Express.Multer.File[] }) {
-    console.log('Files received:', files);
-    const imageFile = files.image?.[0];
-    try {
-      return await this.coursesService.createImage(imageFile);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // @Post('image')
+  // @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))
+  // async createImage(@UploadedFiles() files: { image?: Express.Multer.File[] }) {
+  //   console.log('Files received:', files);
+  //   const imageFile = files.image?.[0];
+  //   try {
+  //     return await this.coursesService.createImage(imageFile);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   //enviar el video unicamente
-  @Post('video')
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'video', maxCount: 1 }]))
-  async createVideo(
-    //no se esta usando el body por eso el dto queda como opcional
-    @Body() VideoDto: VideoDto,
-    @UploadedFiles() files: { video?: Express.Multer.File[] },
-  ) {
-    const videoFile = files.video?.[0];
-    console.log('Received video file:', videoFile);
+  // @Post('video')
+  // @UseInterceptors(FileFieldsInterceptor([{ name: 'video', maxCount: 1 }]))
+  // async createVideo(
+  //   //no se esta usando el body por eso el dto queda como opcional
+  //   @Body() VideoDto: VideoDto,
+  //   @UploadedFiles() files: { video?: Express.Multer.File[] },
+  // ) {
+  //   const videoFile = files.video?.[0];
+  //   console.log('Received video file:', videoFile);
 
-    if (!videoFile) {
-      throw new Error('No video file uploaded.');
-    }
-    console.log('ERROR', videoFile);
-    try {
-      return await this.coursesService.createVideo(VideoDto, videoFile);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //   if (!videoFile) {
+  //     throw new Error('No video file uploaded.');
+  //   }
+  //   console.log('ERROR', videoFile);
+  //   try {
+  //     return await this.coursesService.createVideo(VideoDto, videoFile);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   ///
-  @Get('video/:id')
-  async findOneVideo(@Param('id') id: string) {
-    try {
-      const getAsingleVideo = await this.coursesService.findOneVideo(id);
-      if (!getAsingleVideo) {
-        throw new NotFoundException('There is no video available');
-      }
-      return getAsingleVideo;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // @Get('video/:id')
+  // async findOneVideo(@Param('id') id: string) {
+  //   try {
+  //     const getAsingleVideo = await this.coursesService.findOneVideo(id);
+  //     if (!getAsingleVideo) {
+  //       throw new NotFoundException('There is no video available');
+  //     }
+  //     return getAsingleVideo;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   /////////////
   @Get()

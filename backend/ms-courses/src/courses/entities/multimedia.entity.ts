@@ -58,9 +58,8 @@ export class Multimedia {
   })
   fileType: 'video' | 'image' | 'document'; // Indica el tipo de archivo
 
-  // @ManyToOne(() => Course, (course) => course.multimedia)
-  // @JoinColumn({ name: 'course_id' }) // Especifica el nombre de la columna
-  // course: Promise<Course>;
-  @ManyToOne(() => Course, (course) => course.promotionalVideo)
-  course: Course[];
+  @ManyToOne(() => Course, (course) => course.multimedia, {
+    onDelete: 'CASCADE',
+  })
+  course: Course;
 }
