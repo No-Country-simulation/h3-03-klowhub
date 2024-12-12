@@ -18,7 +18,8 @@
 //   application: App;
 // }
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { App } from './app.entity';
 //import { App } from './app.entity';
 
 // interface File {
@@ -86,8 +87,6 @@ export class Asset {
   })
   fileType: 'video' | 'image' | 'document'; // Indica el tipo de archivo
 
-  // @ManyToOne(() => Course, (course) => course.multimedia, {
-  //   onDelete: 'CASCADE',
-  // })
-  // course: Course;
+  @ManyToOne(() => App, (app) => app.assets, { onDelete: 'CASCADE' }) // Relación inversa
+  application: App; // Esto permite la relación inversa
 }

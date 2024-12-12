@@ -5,7 +5,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateAppDto } from './dto/create-app.dto';
 import { App } from './entities/app.entity';
 import { Asset } from './entities/asset.entity';
@@ -132,41 +132,106 @@ export class AppsService {
 
   async createApp(createAppDto: CreateAppDto): Promise<App> {
     try {
-      // Crea la aplicación con los datos recibidos
+      // Asegúrate de que desktopLink tiene un valor
       const app = this.appRepository.create({
-        ...createAppDto, // Crea la aplicación con todos los datos del DTO
+        title: createAppDto.title,
+        shortDescription: createAppDto.shortDescription,
+        platform: createAppDto.platform,
+        language: createAppDto.language,
+        sector: createAppDto.sector,
+        functionalities: createAppDto.functionalities,
+        toolsAndPlatforms: createAppDto.toolsAndPlatforms,
+        tags: createAppDto.tags,
+        features: createAppDto.features,
+        targetAudience: createAppDto.targetAudience,
+        views: createAppDto.views,
+        fullDescription: createAppDto.fullDescription,
+        appIncludes: createAppDto.appIncludes,
+        desktopLink: createAppDto.desktopLink,
+        mobileLink: createAppDto.mobileLink,
+        promotion: createAppDto.promotion,
       });
 
       // Guarda la aplicación en la base de datos
       const savedApp = await this.appRepository.save(app);
 
-      // Devuelve el ID de la aplicación creada
-      return savedApp;
+      // Buscar y asignar el asset para coverImg
+      const coverImgAsset = await this.assetRepository.findOne({
+        where: { id: createAppDto.coverImg },
+      });
+      if (coverImgAsset) {
+        savedApp.coverImg = coverImgAsset; // Asigna el objeto Asset a coverImg
+      }
+
+      // Asignar los assets a la aplicación
+      const assetEntities = await this.assetRepository.find({
+        where: { id: In(createAppDto.assets) },
+      });
+      savedApp.assets = assetEntities;
+
+      // Guarda la aplicación actualizada con las relaciones
+      return await this.appRepository.save(savedApp);
     } catch (error) {
       throw new ConflictException(
         `Error al crear la aplicación: ${error.message}`,
       );
     }
   }
-
   async findOne(id: string): Promise<App> {
     const app = await this.appRepository.findOne({
       where: { id },
-      relations: ['assets'], // Incluye la relación 'assets' para obtener los datos
+      relations: ['coverImg', 'assets'],
     });
+
     if (!app) {
       throw new NotFoundException(`App with ID ${id} not found`);
     }
-    return app;
+
+    // Verificar si coverImg y assets están definidos antes de acceder a sus propiedades
+    const coverImageDetails = app.coverImg
+      ? await this.assetRepository.findOne({ where: { id: app.coverImg.id } })
+      : null;
+
+    const assetDetails =
+      app.assets && app.assets.length > 0
+        ? await this.assetRepository.find({
+            where: { id: In(app.assets.map((asset) => asset.id)) },
+          })
+        : [];
+
+    return {
+      ...app,
+      coverImg: coverImageDetails,
+      assets: assetDetails,
+    };
   }
 
   async findAll(): Promise<App[]> {
-    try {
-      return await this.appRepository.find({ relations: ['assets'] });
-    } catch (error) {
-      throw new ConflictException(
-        `Error al obtener las aplicaciones: ${error.message}`,
-      );
-    }
+    const apps = await this.appRepository.find({
+      relations: ['coverImg', 'assets'],
+    });
+
+    return Promise.all(
+      apps.map(async (app) => {
+        const coverImageDetails = app.coverImg
+          ? await this.assetRepository.findOne({
+              where: { id: app.coverImg.id },
+            })
+          : null;
+
+        const assetDetails =
+          app.assets && app.assets.length > 0
+            ? await this.assetRepository.find({
+                where: { id: In(app.assets.map((asset) => asset.id)) },
+              })
+            : [];
+
+        return {
+          ...app,
+          coverImg: coverImageDetails,
+          assets: assetDetails,
+        };
+      }),
+    );
   }
 }
