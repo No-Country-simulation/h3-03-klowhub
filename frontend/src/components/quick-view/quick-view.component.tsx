@@ -29,8 +29,8 @@ const QuickView = async ({ products }: Props) => {
     title,
     shortDescription,
     platform,
-    rating,
-    ratingCount,
+    // rating,
+    // ratingCount,
     author,
     video,
     coverImg
@@ -54,7 +54,7 @@ const QuickView = async ({ products }: Props) => {
         </Badge>
       </div>
       <div className="flex gap-5">
-        <Rating rating={rating} ratingCount={ratingCount} />
+        <Rating rating={4} ratingCount={35} />
         <span className="flex gap-2 items-center text-secondary-200">
           <Video size={24} strokeWidth={1} />
           {/* este texto es temporal */}
