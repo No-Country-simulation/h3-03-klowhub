@@ -1,4 +1,4 @@
-import { TImage } from "@/types/global.types"
+import { TImage, TVideo } from "@/types/global.types"
 import { AuthorInfo } from "@/types/global.types"
 
 export type TProductCard = {
@@ -16,4 +16,5 @@ export type TProductCard = {
 
 export type TQuickView = TProductCard & {
   author: AuthorInfo
+  video?: TVideo
 }

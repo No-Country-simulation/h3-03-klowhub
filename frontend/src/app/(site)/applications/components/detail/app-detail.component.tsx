@@ -66,7 +66,6 @@ export const AppDetail: FC<Props> = () => {
               }
             </AppInfo>
             <div className="space-y-6">
-
               <div className="flex flex-col items-center gap-6 mt-4">
                 <Image
                   src={pageData.mobileLink}
