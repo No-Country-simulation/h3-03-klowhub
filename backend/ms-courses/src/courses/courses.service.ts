@@ -19,6 +19,8 @@ import { Multimedia } from './entities/multimedia.entity';
 import { MultimediaDto } from './dto/multimedia.dto';
 import { CourseModule } from './entities/course-module.entity';
 import { Lesson } from './entities/lesson.entity';
+// import { CreateLessonDto } from './dto/lesson.dto';
+// import { CreateCourseModuleDto } from './dto/course-module.dto';
 
 @Injectable()
 export class CoursesService {
@@ -143,87 +145,79 @@ export class CoursesService {
   }
 
   async createCourse(createCourseDto: CreateCourseDto): Promise<Course> {
-    console.log(
-      'Received createCourseDto:',
-      JSON.stringify(createCourseDto, null, 2),
-    );
+    const {
+      title,
+      freeCourse,
+      contentType,
+      shortDescription,
+      courseDifficulty,
+      platform,
+      language,
+      modules,
+      multimedia,
+      coverImg,
+      ...rest
+    } = createCourseDto;
 
-    const course = this.courseRepository.create(createCourseDto);
-    console.log('Created course entity:', JSON.stringify(course, null, 2));
-
-    // Manejo de Multimedia
-    if (createCourseDto.multimedia) {
-      console.log('Processing multimedia...');
-      const multimediaPromises = createCourseDto.multimedia.map(
-        async (multimediaDto) => {
-          console.log(
-            'Creating multimedia entity:',
-            JSON.stringify(multimediaDto, null, 2),
-          );
-          const multimedia = this.multimediaRepository.create(multimediaDto);
-          return await this.multimediaRepository.save(multimedia);
-        },
-      );
-      course.multimedia = await Promise.all(multimediaPromises);
-      console.log(
-        'Saved multimedia:',
-        JSON.stringify(course.multimedia, null, 2),
-      );
-    }
-
-    // Manejo de CourseModule
-    if (createCourseDto.modules) {
-      console.log('Processing modules...');
-      const modulePromises = createCourseDto.modules.map(async (moduleDto) => {
-        console.log(
-          'Creating module entity:',
-          JSON.stringify(moduleDto, null, 2),
-        );
-        const module = this.courseModuleRepository.create(moduleDto);
-        module.course = course;
-
-        // Manejo de Lessons
-        if (moduleDto.lessons) {
-          console.log('Processing lessons for module:', module.title);
-          const lessonPromises = moduleDto.lessons.map(async (lessonDto) => {
-            console.log(
-              'Creating lesson entity:',
-              JSON.stringify(lessonDto, null, 2),
-            );
-            const lesson = this.lessonRepository.create(lessonDto);
-            lesson.module = module;
-
-            // Mostrar documentos antes de guardar la lección
-            if (lesson.documents) {
-              console.log(
-                'Documents before save:',
-                JSON.stringify(lesson.documents, null, 2),
-              );
-              lesson.documents = lesson.documents.map((doc) =>
-                JSON.stringify(doc),
-              );
-            }
-
-            // Guardar la lección
-            const savedLesson = await this.lessonRepository.save(lesson);
-            console.log('Saved lesson:', JSON.stringify(savedLesson, null, 2));
-            return savedLesson;
-          });
-
-          module.lessons = await Promise.all(lessonPromises);
-        }
-        const savedModule = await this.courseModuleRepository.save(module);
-        console.log('Saved module:', JSON.stringify(savedModule, null, 2));
-        return savedModule;
+    // Manejar la portada
+    let coverImgEntity: Multimedia = null;
+    if (coverImg) {
+      coverImgEntity = await this.multimediaRepository.findOne({
+        where: { id: coverImg.id },
       });
-      course.modules = await Promise.all(modulePromises);
-      console.log('Saved modules:', JSON.stringify(course.modules, null, 2));
+      console.log('Cover image found:', coverImgEntity);
     }
 
-    const savedCourse = await this.courseRepository.save(course);
-    console.log('Final saved course:', JSON.stringify(savedCourse, null, 2));
-    return savedCourse;
+    // Crear un nuevo curso
+    const course = this.courseRepository.create({
+      title,
+      freeCourse,
+      contentType,
+      shortDescription,
+      courseDifficulty,
+      platform,
+      language,
+      ...rest,
+      modules:
+        modules?.map((module) => this.courseModuleRepository.create(module)) ||
+        [],
+      multimedia:
+        multimedia?.map((media) => this.multimediaRepository.create(media)) ||
+        [],
+      coverImg: coverImgEntity,
+    });
+
+    // Verificar el curso antes de guardar
+    console.log('Course before saving:', course);
+
+    try {
+      return await this.courseRepository.save(course);
+    } catch (error) {
+      console.error('Error saving course:', error);
+      throw new Error('Failed to create the course');
+    }
   }
+
+  // LOS TRES SERVICIOS DE ABAJO SON TESTEOS VERIFICANDO QUE FUNCIONE CADA UNO (APROBADO)
+  // SOLO CURSOS
+  // async createCourse(createCourseDto: CreateCourseDto): Promise<Course> {
+  //   const course = this.courseRepository.create(createCourseDto);
+  //   return await this.courseRepository.save(course);
+  // }
+
+  // //SOLO  LECCIONES
+  // async createLesson(createLessonDto: CreateLessonDto): Promise<Lesson> {
+  //   const lesson = this.lessonRepository.create(createLessonDto);
+  //   return await this.lessonRepository.save(lesson);
+  // }
+
+  // //SOLO MODULOS
+  // async createModulos(
+  //   createCourseModuleDto: CreateCourseModuleDto,
+  // ): Promise<CourseModule> {
+  //   const lesson = this.courseModuleRepository.create(createCourseModuleDto);
+  //   return await this.courseModuleRepository.save(lesson);
+  // }
 
   // async findCourse(title: string) {
   //   // const normalizedTitle = title.trim().toLowerCase(); // Normalizar el título

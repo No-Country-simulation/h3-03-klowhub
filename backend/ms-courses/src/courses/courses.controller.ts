@@ -26,6 +26,8 @@ import {
   PDF_FileSize,
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
+// import { CreateLessonDto } from './dto/lesson.dto';
+// import { CreateCourseModuleDto } from './dto/course-module.dto';
 
 @Controller('courses')
 export class CoursesController {
@@ -92,7 +94,7 @@ export class CoursesController {
     }
   }
 
-  //Hacer el post de cursos
+  //Hacer el post de cursos con todas las entidades!!!
   @Post('createCourse')
   async createCourse(@Body() createCourseDto: CreateCourseDto) {
     try {
@@ -105,6 +107,46 @@ export class CoursesController {
     }
   }
 
+  //LAS TRES RUTAS INDIVIDUALES SON DE ABAJO TESTEO PARA CHEQUEAR QUE SE GUARDEN EN SUS TABLAS()
+  //Creamos solamente un curso
+  // @Post('createCourse')
+  // async createCourse(@Body() createCourseDto: CreateCourseDto) {
+  //   try {
+  //     return await this.coursesService.createCourse(createCourseDto);
+  //   } catch (error) {
+  //     if (error instanceof createCourseFailed) {
+  //       throw new BadRequestException('Failed to create the course');
+  //     }
+  //     throw error;
+  //   }
+  // }
+
+  // //Creamos solamente una lección
+  // @Post('createLesson')
+  // async createLesson(@Body() createLessonDto: CreateLessonDto) {
+  //   try {
+  //     return await this.coursesService.createLesson(createLessonDto);
+  //   } catch (error) {
+  //     if (error instanceof createCourseFailed) {
+  //       throw new BadRequestException('Failed to create the lesson');
+  //     }
+  //     throw error;
+  //   }
+  // }
+
+  // //Creamos solamente un modulo
+  // @Post('createModule')
+  // async createModule(@Body() createCourseModuleDto: CreateCourseModuleDto) {
+  //   try {
+  //     return await this.coursesService.createModulos(createCourseModuleDto);
+  //   } catch (error) {
+  //     if (error instanceof createCourseFailed) {
+  //       throw new BadRequestException('Failed to create the course');
+  //     }
+  //     throw error;
+  //   }
+  // }
+  ///////////////////////////////////////////////////////////////////////////////////////////
   //Post de la imagen
   // @Post('image')
   // @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))

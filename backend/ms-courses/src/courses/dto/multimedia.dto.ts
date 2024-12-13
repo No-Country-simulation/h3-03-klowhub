@@ -91,23 +91,11 @@ export class DocumentDto {
   created_at: string;
 }
 
-// Transformador personalizado para la propiedad `fileMetadata`
-// function fileMetadataTransformer({ value, obj }: TransformFnParams) {
-//   // Desestructuración de params correctamente tipados
-//   switch (obj.fileType) {
-//     case 'video':
-//       return Object.assign(new VideoDto(), value);
-//     case 'image':
-//       return Object.assign(new ImageDto(), value);
-//     case 'document':
-//       return Object.assign(new DocumentDto(), value);
-//     default:
-//       return value;
-//   }
-// }
-
 // DTO para Multimedia
 export class MultimediaDto {
+  @IsString()
+  id: string;
+
   @IsOptional()
   @IsUUID()
   courseId?: string;
@@ -116,6 +104,5 @@ export class MultimediaDto {
   fileType: 'video' | 'image' | 'document';
 
   @ValidateNested()
-  //@Transform(fileMetadataTransformer) // Usamos el transformador personalizado aquí
   fileMetadata: VideoDto | ImageDto | DocumentDto;
 }
