@@ -101,11 +101,12 @@ export class CoursesService {
       };
       multimediaDto.fileType = 'image';
     } else if (fileType === 'video') {
+      const resolution = `${uploadResult.width}x${uploadResult.height}`; // Cálculo de resolución
       multimediaDto.fileMetadata = {
         url: uploadResult.secure_url,
         duration: uploadResult.duration,
         size: uploadResult.bytes,
-        resolution: uploadResult.resolution,
+        resolution: resolution,
         format: uploadResult.format,
         width: uploadResult.width,
         height: uploadResult.height,
