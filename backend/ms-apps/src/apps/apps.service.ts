@@ -150,6 +150,8 @@ export class AppsService {
         desktopLink: createAppDto.desktopLink,
         mobileLink: createAppDto.mobileLink,
         promotion: createAppDto.promotion,
+        price: createAppDto.price,
+        userId: createAppDto.userId,
       });
 
       // Guarda la aplicación en la base de datos

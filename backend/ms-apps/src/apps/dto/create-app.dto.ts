@@ -1,9 +1,24 @@
-import { IsString, IsNotEmpty, IsArray, IsOptional } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsArray,
+  IsOptional,
+  IsUUID,
+  IsPositive,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateAppDto {
   @IsString()
   @IsNotEmpty()
   title: string;
+
+  userId: string;
+
+  @IsNotEmpty()
+  @IsPositive()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  price: string;
 
   @IsString()
   @IsNotEmpty()

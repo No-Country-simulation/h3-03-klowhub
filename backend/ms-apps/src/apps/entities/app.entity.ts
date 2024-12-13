@@ -15,6 +15,12 @@ export class App {
   @Column()
   title: string;
 
+  @Column('uuid')
+  userId: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2 }) // Asegura hasta 2 decimales
+  price: string;
+
   @Column()
   shortDescription: string;
 
