@@ -38,9 +38,9 @@ export type TVideoProps = {
   thumbnailUrl: string
 } & Dimensions
 
-export type TImage = UploadedFile<TImageProps>
-export type TVideo = UploadedFile<TVideoProps>
-export type TDocument = UploadedFile<TDocumentProps>
+export type TImage = UploadedFile<TImageProps, "image">
+export type TVideo = UploadedFile<TVideoProps, "video">
+export type TDocument = UploadedFile<TDocumentProps, "document">
 
 export type UploadedFileCommon = {
   url: string
@@ -48,10 +48,10 @@ export type UploadedFileCommon = {
   created_at: Date
 }
 
-export type UploadedFile<T> = {
+export type UploadedFile<Props, T extends string> = {
   id: string
-  fileType: string
-  fileMetadata: T & UploadedFileCommon
+  fileType: T
+  fileMetadata: Props & UploadedFileCommon
 }
 
 export type FilePayload = {
