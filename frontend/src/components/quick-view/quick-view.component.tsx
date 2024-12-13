@@ -86,7 +86,7 @@ const QuickView = async ({ products }: Props) => {
 };
 
 const AuthorBlock = ({ author }: { author: TQuickView["author"] }) => {
-  const { name, img: { fileMetadata: { url, width, height } }, about } = author;
+  const { name, profileImg: { fileMetadata: { url, width, height } }, about } = author;
   return (
     <div className="flex gap-3">
       <div className="shrink-0">

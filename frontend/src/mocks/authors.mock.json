@@ -6,7 +6,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -27,7 +27,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -48,7 +48,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -69,7 +69,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -90,7 +90,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -111,7 +111,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -132,7 +132,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -153,7 +153,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {
@@ -174,7 +174,7 @@
     "students": 2000,
     "courses": 5,
     "profileLink": "/profile/juan-perez",
-    "img": {
+    "profileImg": {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
       "fileType": "image",
       "fileMetadata": {

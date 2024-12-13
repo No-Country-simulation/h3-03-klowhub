@@ -210,7 +210,7 @@ const PromotionsSection = () => {
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
               try {
-              throw new Error()
+              // throw new Error()
                 const courseId = await submitCourse({ promotion })
                 setNewCourseId(courseId)
               } catch (err) {
