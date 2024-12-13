@@ -1,0 +1,89 @@
+{
+  "title": "Nest",
+  "freeCourse": true,
+  "contentType": ["Video", "Text", "Quiz"],
+  "shortDescription": "This course introduces the basics of TypeScript.",
+  "courseDifficulty": ["Beginner", "Intermediate"],
+  "platform": ["Web", "Mobile"],
+  "language": ["English"],
+  "coreContent": ["Introduction", "Advanced Topics"],
+  "functionalities": ["Interactive Quizzes", "Real-Time Feedback"],
+  "sector": ["Technology", "Education"],
+  "toolsAndPlatform": ["Visual Studio Code", "GitHub"],
+  "tags": ["TypeScript", "Programming", "JavaScript"],
+  "learningSubjects": ["Software Development", "Web Development"],
+  "prevRequirements": "Basic knowledge of programming concepts",
+  "fullDescription": "This is a comprehensive course that covers TypeScript from basics to advanced topics.",
+  "coverImg": {
+    "id": "456e1234-a89b-12d3-a456-426614174000",
+    "url": "https://example.com/cover-image.jpg",
+    "altText": "TypeScript Course Cover"
+  },
+  "promotion": {
+    "discount": "20%",
+    "validUntil": "2024-12-31"
+  },
+  "available": true,
+  "targetAudience": "Developers looking to learn TypeScript",
+  "price": 49.99,
+  "promotionalVideo": ["https://example.com/promo-video.mp4"],
+  "modules": [
+    {
+      "title": "Introduction to Nest Backend",
+      "description": "This module introduces the basics of programming, covering variables, loops, and functions.",
+      "lessons": [
+        {
+          "title": "Como hacer consultas SQL",
+          "description": "Conoce el propósito y las capacidades principales de PowerApps dentro del ecosistema de Microsoft.",
+          "documents": [
+            {
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            },
+            {
+              "fileType": "document",
+              "fileMetadata": {
+                "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+                "size": 734107,
+                "mimeType": "application/pdf",
+                "created_at": "2024-12-04T18:15:12Z"
+              }
+            }
+          ],
+          "video": {
+            "fileType": "video",
+            "fileMetadata": {
+              "duration": 9.08,
+              "size": 5596,
+              "format": "mp4",
+              "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+              "thumbnail_width": 1920,
+              "thumbnail_height": 1080,
+              "width": 400,
+              "height": 300,
+              "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+              "mimeType": "video/mp4",
+              "created_at": "2024-12-04T03:05:07Z"
+            }
+          },
+          "free": true,
+          "link": "https://www.youtube.com/watch?v=TrDlCiUCu2g"
+        }
+      ]
+    }
+  ]
+}

@@ -13,6 +13,9 @@ export class Course {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // @Column()
+  // userId: string;
+
   @Column()
   title: string;
 
@@ -20,13 +23,13 @@ export class Course {
   freeCourse: boolean;
 
   @Column({ type: 'simple-array', name: 'contentType' }) // Cambiado a simple-array
-  contentType: string;
+  contentType: string[];
 
   @Column({ type: 'text', name: 'shortDescription' })
   shortDescription: string;
 
   @Column({ type: 'simple-array', name: 'courseDifficulty' }) // Cambiado a simple-array
-  courseDifficulty: string;
+  courseDifficulty: string[];
 
   @Column({ type: 'simple-array', name: 'platform' }) // Cambiado a simple-array
   platform: string[];
@@ -58,10 +61,10 @@ export class Course {
   @Column({ type: 'text', name: 'fullDescription' })
   fullDescription: string;
 
-  // @Column({ type: 'text', name: 'coverImg' }) // Cambiado a texto para imágenes
+  //@Column({ type: 'text', name: 'coverImg' }) // Cambiado a texto para imágenes
   // coverImg: string;
   @ManyToOne(() => Multimedia)
-  coverImg: string;
+  coverImg: Multimedia;
 
   @Column('jsonb', { name: 'promotion', nullable: true }) // Cambiado a simple-array
   promotion: object;
@@ -78,7 +81,7 @@ export class Course {
   @Column({ type: 'simple-array', name: 'promotionalVideo', nullable: true })
   promotionalVideo: string[];
 
-  @OneToMany(() => CourseModule, (module) => module.course)
+  @OneToMany(() => CourseModule, (module) => module.course, { cascade: true })
   modules: CourseModule[];
 
   @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
