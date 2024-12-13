@@ -1,5 +1,6 @@
 import { TImage, TVideo } from "@/types/global.types"
 import { AuthorInfo } from "@/types/global.types"
+import { Module } from "@/types/courses.types"
 
 export type TProductCard = {
   id?: string
@@ -17,4 +18,5 @@ export type TProductCard = {
 export type TQuickView = TProductCard & {
   author: AuthorInfo
   video?: TVideo
+  modules?: Module[]
 }

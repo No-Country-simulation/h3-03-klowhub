@@ -10,6 +10,7 @@ import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 import { TQuickView } from "@/components/product-card/product-card.types";
 import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
+import authorsMock from "@/mocks/authors.mock.json"
 
 const filters = [
   platform,
@@ -26,15 +27,16 @@ const filters = [
 const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint, { cache: "force-cache" });
-    const items: { data: TQuickView[] } = await res.json();
-    return items
+    const courses: TQuickView[] = await res.json();
+    const appsWithAuthors = courses.map(app => ({ ...app, author: authorsMock[0] }));
+    return appsWithAuthors
   } catch (err) {
     console.error('there was an error when getting applications: ', err);
   }
 };
 
 const Page = async () => {
-  const products = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`);
+  const products = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`) || [];
   const queryParams = await getQueryParams();
 
   return (
