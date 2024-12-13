@@ -21,7 +21,7 @@ const ProjectCard = ({ active, project }: Props) => {
             <div className={`flex ${active ? "flex-col lg:flex-row lg:items-center gap-5" : "flex-col gap-3"}`}>
                 <div className={`flex ${active ? "gap-5 flex-col lg:flex-row lg:items-center" : "gap-3 flex-row items-center"}`}>
                     <div className={`shrink-0 relative ${active ? "lg:w-[70px] lg:h-[70px] w-[100px] h-[100px]" : "w-[50px] h-[50px]"}`}>
-                        <Image src={project.img.url} fill alt={project.img.alt}></Image>
+                        <Image src={project.instructor.img.url} fill alt={project.instructor.img.alt}></Image>
                     </div>
                     <p className="text-sm leading-6">{project.description}</p>
                 </div>

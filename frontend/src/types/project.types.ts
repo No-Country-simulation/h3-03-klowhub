@@ -32,14 +32,23 @@ export type ProjectFormData = {
 
 export type Project = RequiredProperty<ProjectInfo & ProjectDetails>
 
-export type TProjectCard = {
-  id: number,
+type TInstructorInfo = {
+  name: string,
   img : {
     url: string,
       width: number,
       height: number,
       alt: string
   }
+  userType?: string
+  description: string
+  rating: number
+}
+
+export type TProjectCard = {
+  id: number,
+  title: string,
+  instructor: TInstructorInfo,
   description: string,
   platform : "PowerApps" | "AppSheet",
   tags: string[],
