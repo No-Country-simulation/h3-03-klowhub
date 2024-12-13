@@ -89,7 +89,7 @@ const MediaForm = () => {
       ">
         <RouteBtn
           setter={handleSubmit(data => dispatch(setMediaData(data)))}
-          route="general"
+          route="details"
           className="flex-1 md:grow-0"
           isDirty={isDirty}
         >

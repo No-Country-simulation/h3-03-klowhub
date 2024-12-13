@@ -9,9 +9,10 @@ type Props = {
   filetypes: FileType
   isMulti?: boolean
   limit?: number
+  id: string
 }
 
-const Dropzone = ({ children, onDrop, filetypes, isMulti }: Props) => {
+const Dropzone = ({ children, onDrop, filetypes, isMulti, id }: Props) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: onDrop,
     accept: filetypes,
@@ -22,7 +23,7 @@ const Dropzone = ({ children, onDrop, filetypes, isMulti }: Props) => {
     <div {...getRootProps()} className='
       leading-6 border border-dashed border-primary-200 bg-gray-50 rounded-xl p-5 text-center flex flex-col items-center justify-center gap-5 cursor-pointer
     '>
-      <input {...getInputProps()} />
+      <input {...getInputProps()} id={id} />
       <CloudUpload className='text-primary-300' size={40}/>
       <span className='text-primary-300'>
         { children }

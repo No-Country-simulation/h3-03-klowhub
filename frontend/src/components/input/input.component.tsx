@@ -86,6 +86,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                     <div key={`${name}-${idx}`} className="flex gap-3">
                       <input 
                         type="text"
+                        id={`${name}-${idx}`}
                         placeholder={placeholder} 
                         className="px-3 py-5 h-8 text-card rounded-md w-full" 
                         value={b}
@@ -237,6 +238,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                   { value.length < limit &&
                     <Dropzone 
                       { ...{isMulti, limit, filetypes} }
+                      id={name}
                       onDrop={async (files) => {
                         const uploadedFile = await uploadAsset(files[0], entity);
                         onChange([ ...value, uploadedFile ]) 
@@ -259,6 +261,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
                             : <FileBadge data={value} removeCb={() => onChange(null) } /> 
                       ) :
                       <Dropzone
+                      id={name}
                         { ...{isMulti, filetypes} }
                         onDrop={async (files) => {
                           const uploadedFile = await uploadAsset(files[0], entity);
@@ -288,7 +291,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           name={name}
           control={control}
           render={({ field: { onChange, value } }) => (
-            <div onClick={() => onChange({ type: productType, id: productId })} className={"cursor-pointer relative h-full"}>
+            <div id={name} onClick={() => onChange({ type: productType, id: productId })} className={"cursor-pointer relative h-full"}>
               <div className={`${value.id === productId ? "absolute w-full h-full ring-4 ring-inset ring-primary-400 rounded-lg" : ""}`}></div>
               { children }
             </div>
@@ -343,11 +346,11 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
             <div className="flex flex-col gap-4">
               <Label htmlFor={name} className="flex gap-2">
                 <span>{ options[0].label }</span>
-                <input type="radio" checked={value === options[0].value} onChange={() => onChange(options[0].value)} />
+                <input id={name} type="radio" checked={value === options[0].value} onChange={() => onChange(options[0].value)} />
               </Label>
               <Label htmlFor={name} className="flex gap-2">
                 <span>{ options[1].label }</span>
-                <input type="radio" checked={value === options[1].value} onChange={() => onChange(options[1].value)} />
+                <input id={name} type="radio" checked={value === options[1].value} onChange={() => onChange(options[1].value)} />
               </Label>
             </div>
           </div>
@@ -378,6 +381,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           control={control}
           render={({ field: { onChange, value } }) => (
             <Select
+              id={name}
               getOptionLabel={(op: SelectOption) => op.label}
               getOptionValue={(op: SelectOption) => op.name}
               onChange={(selected) => onChange(selected)}
@@ -409,6 +413,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
               theme="snow" value={value as string} onChange={onChange} 
               className="bg-white text-card rounded-xl min-h-48"
               placeholder={placeholder}
+              id={name}
             />
           )}
         />
