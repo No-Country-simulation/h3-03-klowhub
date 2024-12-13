@@ -46,8 +46,12 @@ export class AppsController {
   }
 
   //APP ROUTES
-  @Post()
-  async create(@Body() createAppDto: CreateAppDto): Promise<App> {
+  @Post(':userId')
+  async create(
+    @Param('userId') userId: string,
+    @Body() createAppDto: CreateAppDto,
+  ): Promise<App> {
+    createAppDto.userId = userId;
     return this.appService.createApp(createAppDto);
   }
 
