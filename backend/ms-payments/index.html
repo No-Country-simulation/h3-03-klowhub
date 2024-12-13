@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stripe Test</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      #payment-form {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+      }
+      #card-element {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #card-errors {
+        color: red;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="payment-form">
+      <h2>Pago Seguro</h2>
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+      <button id="submit">Pagar</button>
+      <div id="card-errors" role="alert"></div>
+    </form>
+
+    <script>
+      const stripe = Stripe(
+        'pk_test_51QVd5eEutT09MKUq4OFqInjDGAif4ZvCaF2ElMYscG6UWsuTZ2O25LYy0rNtDloKNEtG1e6AhlV7CMVa2pVd1fqq00iuMecCfe',
+      ); // Reemplaza con tu clave pública
+      const elements = stripe.elements();
+      const cardElement = elements.create('card');
+      cardElement.mount('#card-element');
+
+      const form = document.getElementById('payment-form');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const { token, error } = await stripe.createToken(cardElement);
+        if (error) {
+          // Mostrar error en la interfaz
+          document.getElementById('card-errors').textContent = error.message;
+        } else {
+          // Enviar el token al servidor para crear el cargo
+          console.log(token); // Aquí tienes tu token
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,11 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStripeDto } from './dto/create-stripe.dto';
-import { UpdateStripeDto } from './dto/update-stripe.dto';
+import { envs } from 'config';
+import Stripe from 'stripe';
 
 @Injectable()
 export class StripeService {
-  create(createStripeDto: CreateStripeDto) {
-    return 'This action adds a new stripe';
+  private stripe: Stripe;
+
+  constructor() {
+    this.stripe = new Stripe(envs.stripeSecretKey, {
+      apiVersion: '2024-11-20.acacia',
+    });
+  }
+
+  async createCharge(amount: number, currency: string, source: string) {
+    return await this.stripe.charges.create({
+      amount,
+      currency,
+      source,
+    });
   }
 
   findAll() {
@@ -14,13 +26,5 @@ export class StripeService {
 
   findOne(id: number) {
     return `This action returns a #${id} stripe`;
-  }
-
-  update(id: number, updateStripeDto: UpdateStripeDto) {
-    return `This action updates a #${id} stripe`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} stripe`;
   }
 }

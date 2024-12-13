@@ -1,15 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { StripeService } from './stripe.service';
 import { CreateStripeDto } from './dto/create-stripe.dto';
-import { UpdateStripeDto } from './dto/update-stripe.dto';
 
 @Controller('stripe')
 export class StripeController {
   constructor(private readonly stripeService: StripeService) {}
 
-  @Post()
-  create(@Body() createStripeDto: CreateStripeDto) {
-    return this.stripeService.create(createStripeDto);
+  @Post('charge')
+  async charge(@Body() createStripeDto: CreateStripeDto) {
+    return await this.stripeService.createCharge(
+      createStripeDto.amount,
+      createStripeDto.currency,
+      createStripeDto.source,
+    );
   }
 
   @Get()
@@ -20,15 +23,5 @@ export class StripeController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.stripeService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStripeDto: UpdateStripeDto) {
-    return this.stripeService.update(+id, updateStripeDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.stripeService.remove(+id);
   }
 }
