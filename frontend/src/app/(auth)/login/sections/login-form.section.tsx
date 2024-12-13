@@ -7,35 +7,35 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import useStore from '@/contexts/store/use-store.hook'
 
 const LoginForm = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<ServiceTypes["login"]>({ mode: "onTouched" });
-    const [loading, setLoading] = useState(false);
-    const { fetchData } = useFetchData();
-    const router = useRouter();
+  const [ user, setUser ] = useStore("user");
 
-    const customSubmit: SubmitHandler<ServiceTypes["login"]> = async (
-        data: ServiceTypes["login"]
-    ) => {
-        setLoading(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ServiceTypes["login"]>({ mode: "onTouched" });
+  const [loading, setLoading] = useState(false);
+  const { fetchData } = useFetchData();
+  const router = useRouter();
 
-        const { status, response } = await fetchData("login", data);
+  const customSubmit: SubmitHandler<ServiceTypes["login"]> = async (
+    data: ServiceTypes["login"]
+  ) => {
+    setLoading(true);
 
-        if (status) {
-            const accessToken = response.accesToken;
+    const { status, response } = await fetchData("login", data);
 
-            localStorage.setItem("accessToken", accessToken);
-            router.push("dashboard/courses");
-        } else {
-            setLoading(false)
-            toast.error("Ha ocurrido un error.");
-        }
-
-    };
+    if (status) {
+      setUser({ ...user, ...response.user, jwtToken: response.accesToken })
+      router.push("dashboard");
+    } else {
+      setLoading(false)
+      toast.error("Ha ocurrido un error.");
+    }
+  };
 
     return (
         <form onSubmit={handleSubmit(customSubmit)} className="flex flex-col">

@@ -8,6 +8,8 @@ import applicationFormReducer, { APPLICATION_FORM_INITIAL_STATE } from "./applic
 import { ApplicationFormActions } from "./application-form.actions";
 import { useEffect } from "react";
 import { breakApplication } from "./application-form.acl";
+import useStore from "@/contexts/store/use-store.hook";
+import { User } from "@/contexts/store/store.types";
 
 type Props = {
   children: ReactNode[]
@@ -22,13 +24,14 @@ export const ApplicationCtx = createContext<TApplicationCtx | undefined>(undefin
 
 const ApplicationCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(applicationFormReducer, APPLICATION_FORM_INITIAL_STATE);
+  const [ user ] = useStore<User>("user");
 
   const submitApplication = useCallback(async (additionalData = {}) => {
     try {
       const { id, ...formattedData } = breakApplication({ ...state, ...additionalData });
       console.log("creating aaplication: ", formattedData);
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_APPLICATIONS_URL}`, { 
+      const res = await fetch(`${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${user.id}`, { 
         method: 'post',
         body: JSON.stringify(formattedData),
         headers: {
