@@ -6,13 +6,20 @@ import {
   IsJSON,
   IsDecimal,
   IsNotEmpty,
+  ValidateNested,
+  IsPositive,
 } from 'class-validator';
 import { MultimediaDto } from './multimedia.dto';
 import { CreateCourseModuleDto } from './course-module.dto';
+import { Type } from 'class-transformer';
 
 export class CreateCourseDto {
   @IsString()
   id: string;
+
+  // @IsString()
+  // @IsOptional()
+  // userId: string;
 
   @IsString()
   @IsNotEmpty()
@@ -23,7 +30,7 @@ export class CreateCourseDto {
 
   @IsArray()
   @IsString({ each: true })
-  contentType: string;
+  contentType: string[];
 
   @IsString()
   @IsNotEmpty()
@@ -31,7 +38,7 @@ export class CreateCourseDto {
 
   @IsArray()
   @IsString({ each: true })
-  courseDifficulty: string;
+  courseDifficulty: string[];
 
   @IsArray()
   @IsString({ each: true })
@@ -76,8 +83,11 @@ export class CreateCourseDto {
   @IsString()
   fullDescription: string;
 
-  @IsString()
-  coverImg: string;
+  @ValidateNested()
+  @Type(() => MultimediaDto)
+  coverImg?: MultimediaDto;
+  // @IsString()
+  // coverImg: string;
 
   @IsJSON()
   @IsOptional()
@@ -95,6 +105,7 @@ export class CreateCourseDto {
   targetAudience: string;
 
   @IsDecimal()
+  @IsPositive()
   price: number;
 
   @IsArray()
