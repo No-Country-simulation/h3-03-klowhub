@@ -30,31 +30,31 @@ export class App {
   @Column()
   language: string;
 
-  @Column({ type: 'simple-array', name: 'sector' }) // Cambiado a simple-array
+  @Column({ type: 'json', name: 'sector' }) // Cambiado a simple-array
   sector: string[];
 
-  @Column('simple-array', { name: 'functionalities' }) // Cambiado a simple-array
+  @Column('json', { name: 'functionalities' }) // Cambiado a simple-array
   functionalities: string[];
 
-  @Column({ type: 'simple-array', name: 'toolsAndPlatforms' }) // Cambiado a simple-array, renombrado de toolsAndPlatforms
+  @Column({ type: 'json', name: 'toolsAndPlatforms' }) // Cambiado a simple-array, renombrado de toolsAndPlatforms
   toolsAndPlatforms: string[];
 
-  @Column('simple-array', { name: 'tags' }) // Cambiado a simple-array
+  @Column('json', { name: 'tags' }) // Cambiado a simple-array
   tags: string[];
 
-  @Column('simple-array', { name: 'features' }) // Cambiado a simple-array
+  @Column('json', { name: 'features' }) // Cambiado a simple-array
   features: string[];
 
-  @Column('simple-array', { name: 'targetAudience' }) // Cambiado a simple-array
+  @Column('json', { name: 'targetAudience' }) // Cambiado a simple-array
   targetAudience: string[];
 
-  @Column('simple-array', { name: 'views' }) // Cambiado a simple-array
+  @Column('json', { name: 'views' }) // Cambiado a simple-array
   views: string[];
 
   @Column({ type: 'text', name: 'fullDescription' }) // Cambiado a text para manejar texto largo
   fullDescription: string;
 
-  @Column('simple-array', { name: 'appIncludes' }) // Cambiado a simple-array
+  @Column('json', { name: 'appIncludes' }) // Cambiado a simple-array
   appIncludes: string[];
 
   // @Column()
