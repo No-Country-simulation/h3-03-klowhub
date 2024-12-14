@@ -70,9 +70,9 @@ const ApplicationCtxProvider = ({ children }: Props) => {
         const applicationData = await res.json();
         const groupedApplication = groupApplication(applicationData);
 
+        dispatch(setMediaData(groupedApplication.media))
         dispatch(setGeneralData(groupedApplication.general))
         dispatch(setDetailsData(groupedApplication.details))
-        dispatch(setMediaData(groupedApplication.media))
         dispatch(setPromotionData(groupedApplication.promotion))
       } catch (err) {
         console.error("there was an error while getting course data: ", err)

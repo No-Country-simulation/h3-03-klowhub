@@ -17,7 +17,7 @@ export const useApplicationData = () => {
     (async function () {
       if (applicationContext) {
         console.log('getting data from course context...');
-        const previewData = breakApplication(applicationContext.state)
+        const previewData = breakApplication(applicationContext.state, false)
         setPageData({ ...previewData })
 
       } else {

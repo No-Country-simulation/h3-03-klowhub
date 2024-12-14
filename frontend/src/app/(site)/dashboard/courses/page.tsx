@@ -13,7 +13,7 @@ import { TQuickView } from "@/components/product-card/product-card.types";
 
 const getProducts = async (endpoint: string) => {
     const res = await fetch(endpoint, { cache: "force-cache" });
-    const items: { data: TQuickView[] } = await res.json();
+    const items: TQuickView[] = await res.json();
     return items
 };
 
@@ -39,10 +39,10 @@ const MyCoursesPage = async () => {
             <div className="flex flex-col gap-5">
                 <div className="mt-14 flex flex-col gap-5 sm:flex-row sm:justify-between sm:items-center">
                     <h3 className="text-base font-bold">Mis cursos</h3>
-                    <Link href="/dashboard/courses/new?section=general" className={`${buttonVariants({ variant: "default" })} sm:w-[250px] w-full`}>Crear curso</Link>
+                    <Link href="/dashboard/courses/form?section=general" className={`${buttonVariants({ variant: "default" })} sm:w-[250px] w-full`}>Crear curso</Link>
                 </div>
-                <MyCoursesDesktopView transactionsData={sortedData} products={applications.data} />
-                <MyCoursesMobileView transactionsData={sortedData} products={applications.data} />
+                <MyCoursesDesktopView transactionsData={sortedData} products={applications} />
+                <MyCoursesMobileView transactionsData={sortedData} products={applications} />
             </div>
         </main>
     )

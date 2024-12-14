@@ -31,6 +31,7 @@ export const AppDetail: FC<Props> = () => {
     const [showGreeter, setShowGreeter] = useState(false);
     const searchParams = useSearchParams();
     const section = searchParams.get("section");
+  console.log('pageData: ', pageData);
 
     const filters = [
         { label: "Funcionalidades", items: pageData?.functionalities || [] },
@@ -66,6 +67,7 @@ export const AppDetail: FC<Props> = () => {
               }
             </AppInfo>
             <div className="space-y-6">
+            { pageData.mobileLink &&
               <div className="flex flex-col items-center gap-6 mt-4">
                 <Image
                   src={pageData.mobileLink}
@@ -83,6 +85,7 @@ export const AppDetail: FC<Props> = () => {
                   Ver en modo escritorio
                 </Button>
               </div>
+            }
 
               { pageData.author
                 ? <AuthorDetail data={pageData.author} />
