@@ -1,41 +1,15 @@
 import { FC, useState } from "react";
 import { AppProps } from "./app-detail.types";
 import { AppHeader } from "./app-detail-header.section";
-import { instructor } from "@/mocks/instructor.mock";
 import Greeter from "@/components/greeter/greeter.component";
 import { updateSearchParams } from "@/utils/client.utils";
+import { reactParserOptions } from "@/utils/component.utils";
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import parse, {
-  DOMNode,
-  Element,
-  attributesToProps,
-  domToReact,
-} from "html-react-parser";
+import parse from "html-react-parser";
 import RouteBtn from "@/components/route-btn/route-btn.component";
-
-const options = {
-    replace(domNode: DOMNode) {
-      if (!(domNode instanceof Element)) return domNode;
-
-      if (domNode.tagName === "ol") {
-        return (
-          <ol {...attributesToProps(domNode.attribs)} className="list-disc text-sm flex flex-col gap-1">
-            {domToReact(domNode.children as DOMNode[], options)}
-          </ol>
-        );
-      }
-      if (domNode.tagName === "li") {
-        return (
-          <li {...attributesToProps(domNode.attribs)} className="ml-8 pl-2">
-            {domToReact(domNode.children as DOMNode[], options)}
-          </li>
-        );
-      }
-    },
-  };
 
 export const AppInfo: FC<AppProps> = ({
   submitApplication,
@@ -48,6 +22,7 @@ export const AppInfo: FC<AppProps> = ({
     children,
   assets
 }) => {
+  console.log('fullDescription: ', fullDescription);
 
   const [ newApplicationId, setNewApplicationId ] = useState<string>()
     const searchParams = useSearchParams();
@@ -80,7 +55,7 @@ export const AppInfo: FC<AppProps> = ({
         { children[0] }
         <h3 className="text-sm font-semibold">Acerca de esta app</h3>
         <div className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
-          {parse(fullDescription, options)}
+          {parse(fullDescription, reactParserOptions)}
         </div>
 
         <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>
