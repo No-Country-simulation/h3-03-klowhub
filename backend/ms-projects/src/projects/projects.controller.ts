@@ -14,6 +14,8 @@ export class ProjectsController {
     private readonly httpService: HttpService
   ){}
 
+
+
   @Post()
   @ApiOperation({ summary: 'Crear un nuevo proyecto' })
   @ApiResponse({
@@ -44,6 +46,8 @@ export class ProjectsController {
     }
   }
 
+
+
   @Delete(':id')
   @ApiOperation({ summary: 'Eliminar un proyecto' })
   @ApiResponse({
@@ -58,6 +62,9 @@ export class ProjectsController {
   delete(@Param('id') id: number) {
     return this.projectsService.deleteProject(id);
   }
+
+
+
 
   @Put(':id')
   @ApiOperation({ summary: 'Actualizar un proyecto' })
@@ -74,6 +81,8 @@ export class ProjectsController {
   update(@Param('id') id: number, @Body() data: Partial<Project>) {
     return this.projectsService.updateProject(id, data);
   }
+
+
 
 
   @Get(':userId')
@@ -102,6 +111,9 @@ export class ProjectsController {
     return projects;
   }
 
+
+
+  
   @Get()
   @ApiOperation({ summary: 'Listar todos los proyectos' })
   @ApiResponse({

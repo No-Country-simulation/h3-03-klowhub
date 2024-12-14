@@ -17,9 +17,9 @@ import { Message } from "src/chat/entities/message.entity";
       entities: [Message],
       synchronize: true, // No usar en producción
       logging: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      // ssl: {
+      //   rejectUnauthorized: false,
+      // },
     }),
   ],
 })
