@@ -42,9 +42,11 @@ export const AppDetail: FC<Props> = () => {
 
     return pageData && (
       <>
+      { !section &&
         <BreadCrumb title={pageData.title} />
+      }
         <div className="min-h-screen">
-          <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
+          <div className={`${!section ? "mt-8" : ""} mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14`}>
             <AppInfo {...pageData} submitApplication={submitApplication}>
               { pageData.author
                 ? <AuthorInfo data={pageData.author}/>

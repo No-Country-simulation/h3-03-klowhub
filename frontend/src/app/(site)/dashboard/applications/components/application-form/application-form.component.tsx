@@ -16,7 +16,7 @@ const ApplicationForm = async () => {
 
   return (
     <>
-      <main className={`flex flex-col gap-5 relative ${section === "promotion" ? "mb-32" : "mb-28"}`}>
+      <main className={`flex flex-col gap-5 relative ${section === "promotion" ? "mb-32" : "mb-28"} ${section === "preview" ? "mt-8" : ""}`}>
         { section !== "preview" &&
           <div>
             <Tab active={section === "general"} className={section !== "general" ? "hidden md:inline-block" : ""}>Información general</Tab>
