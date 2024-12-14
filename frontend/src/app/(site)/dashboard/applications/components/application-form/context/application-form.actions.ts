@@ -10,7 +10,7 @@ export type Action<T, P> = {
 type SetGeneralData = Action<applicationFormTypes.SET_GENERAL_DATA, ApplicationInfo>
 type SetDetailsData = Action<applicationFormTypes.SET_DETAILS_DATA, ApplicationDetails>
 type SetMediaData = Action<applicationFormTypes.SET_MEDIA_DATA, ApplicationMedia>
-type SetPromotionData = Action<applicationFormTypes.SET_PROMOTION_DATA, Promotion>
+type SetPromotionData = Action<applicationFormTypes.SET_PROMOTION_DATA, Promotion | null>
 
 export type ApplicationFormActions = 
   | SetGeneralData
@@ -27,6 +27,6 @@ export const setDetailsData = (detailsData: ApplicationDetails): SetDetailsData 
 export const setMediaData = (mediaData: ApplicationMedia): SetMediaData => {
   return { type: applicationFormTypes.SET_MEDIA_DATA, payload: mediaData }   
 };
-export const setPromotionData = (promotionData: Promotion): SetPromotionData => {
+export const setPromotionData = (promotionData: Promotion | null): SetPromotionData => {
   return { type: applicationFormTypes.SET_PROMOTION_DATA, payload: promotionData }   
 };

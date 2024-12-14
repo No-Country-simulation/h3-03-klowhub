@@ -128,7 +128,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
       <div className={`${containerStyles} ${className || ""}`}>
         <Label htmlFor={name} className={labelStyles}>{ label }</Label>
         <div className="relative w-full">
-          <input type="number" placeholder={placeholder} { ...register(name)} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" />
+          <input type="number" placeholder={placeholder} { ...register(name, { valueAsNumber: true })} className="px-3 appearance-none py-5 h-8 text-card rounded-md w-full" />
           { isPercentage &&
             <span className="absolute top-0 right-0 mr-5 z-40 text-gray-100 pointer-events-none flex items-center h-full font-bold">%</span>
           }

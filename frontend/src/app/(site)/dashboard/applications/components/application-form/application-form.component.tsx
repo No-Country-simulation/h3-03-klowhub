@@ -11,9 +11,8 @@ import PromotionsSection from "./components/promotions-section/promotions-sectio
 import { AppDetail } from "@/app/(site)/applications/components/detail/app-detail.component";
 import { Suspense } from "react";
 
-const CreateCoursePage = async () => {
+const ApplicationForm = async () => {
   const { section } = await getQueryParams();
-  console.log('section: ', section);
 
   return (
     <>
@@ -72,4 +71,4 @@ const CreateCoursePage = async () => {
 
 };
 
-export default  CreateCoursePage
+export default ApplicationForm

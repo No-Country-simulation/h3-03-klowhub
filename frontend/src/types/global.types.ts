@@ -1,3 +1,5 @@
+import { ImageProps } from "next/image";
+
 export type Language = "english" | "spanish"
 export type Platform = "appsheet" | "powerapps"
 
@@ -75,3 +77,9 @@ export type Rating = {
   ratingCount: number
 }
 export type FlatPromotion = PromotedProduct & { percentage: Promotion["percentage"] }
+
+export type FormAdvice = {
+  display: boolean
+  header: string
+  text: string
+} & ImageProps

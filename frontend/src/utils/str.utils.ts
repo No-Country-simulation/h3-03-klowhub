@@ -1,5 +1,4 @@
 export const getSlug = (str: string) => {
-  console.log('str: ', str);
   const toLower = str.toLowerCase();
   const withoutSpaces = toLower.replaceAll(' ', '-');
   return withoutSpaces

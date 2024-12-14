@@ -14,7 +14,7 @@ const DetailsForm = () => {
   const { state, dispatch } = useApplicationContext();
 
   const {
-    // commonProps,
+    commonProps,
     controlledCommonProps, 
     handleSubmit,
     formState: { isDirty }
@@ -63,6 +63,12 @@ const DetailsForm = () => {
           addButtonLabel="Añadir item"
           placeholder="Esta app es para ti sí..."
           { ...controlledCommonProps } 
+        />
+        <Input
+          type="number"
+          name="price"
+          label="Indica el precio de tu aplicación en USD."
+          {...commonProps}
         />
       </form>
       <div className="

@@ -40,7 +40,6 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
     price,
   } = data
 
-    console.log('platform: ', platform);
   const pathname = usePathname();
   const orientation = pathname === "/courses" ? "horizontal" : "vertical";
 

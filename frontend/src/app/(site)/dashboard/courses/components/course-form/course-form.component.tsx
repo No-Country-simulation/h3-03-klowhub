@@ -9,7 +9,7 @@ import { advices } from "./consts";
 import CourseCtxProvider from "./context/course-form.context";
 import { CourseDetail } from "@/app/(site)/courses/components/detail/course-detail.component";
 
-const CreateCoursePage = async () => {
+const CourseForm = async () => {
   const { section } = await getQueryParams();
 
   return (
@@ -68,4 +68,4 @@ const CreateCoursePage = async () => {
 
 };
 
-export default  CreateCoursePage
+export default CourseForm

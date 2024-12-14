@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "next/navigation";
-import { ApplicationCtx } from "@/app/(site)/dashboard/applications/new/context/application-form.context";
+import { ApplicationCtx } from "@/app/(site)/dashboard/applications/components/application-form/context/application-form.context";
 
-import { breakApplication } from "@/app/(site)/dashboard/applications/new/context/application-form.acl";
+import { breakApplication } from "@/app/(site)/dashboard/applications/components/application-form/context/application-form.acl";
 import { Application } from "@/types/application.types";
 import { RequiredProperty } from "@/types/utils.types";
 

@@ -13,7 +13,6 @@ const useStore = <T extends object>(key: string, initialValue?: T): [ T, (value:
   const [ isLoading, setIsLoading ] = useState(false)
   const [ localValue, setLocalValue ] = useState<T | undefined>(initializeState)
 
-
   useEffect(() => {
     setIsLoading(true)
 

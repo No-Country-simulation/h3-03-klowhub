@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "next/navigation";
-import { CourseCtx } from "@/app/(site)/dashboard/courses/new/context/course-form.context";
+import { CourseCtx } from "@/app/(site)/dashboard/courses/components/course-form/context/course-form.context";
 
-import { breakCourse } from "@/app/(site)/dashboard/courses/new/context/course-form.acl";
+import { breakCourse } from "@/app/(site)/dashboard/courses/components/course-form/context/course-form.acl";
 import { TEMPMockedResponse } from "@/app/api/courses/[id]/route";
 import { modulesAdapter, lessonsAdapter } from "@/app/api/courses/[id]/utils";
 

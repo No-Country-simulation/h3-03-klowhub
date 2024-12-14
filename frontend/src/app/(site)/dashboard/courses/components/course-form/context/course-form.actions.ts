@@ -11,7 +11,7 @@ type SetGeneralData = Action<courseFormTypes.SET_GENERAL_DATA, CourseInfo>
 type SetDetailsData = Action<courseFormTypes.SET_DETAILS_DATA, CourseDetails>
 type SetModulesData = Action<courseFormTypes.SET_MODULES_DATA, Module[]>
 type AddNewModule = Action<courseFormTypes.ADD_NEW_MODULE, Module>
-type SetPromotionData = Action<courseFormTypes.SET_PROMOTION_DATA, Promotion>
+type SetPromotionData = Action<courseFormTypes.SET_PROMOTION_DATA, Promotion | null>
 
 export type CourseFormActions = 
   | SetGeneralData
@@ -32,7 +32,7 @@ export const setModulesData = (modulesData: Module[]): SetModulesData => {
 export const addNewModule = (module: Module): AddNewModule => {
   return { type: courseFormTypes.ADD_NEW_MODULE, payload: module }   
 };
-export const setPromotionData = (promotionData: Promotion): SetPromotionData => {
+export const setPromotionData = (promotionData: Promotion | null): SetPromotionData => {
   return { type: courseFormTypes.SET_PROMOTION_DATA, payload: promotionData }   
 };
 

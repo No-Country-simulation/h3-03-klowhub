@@ -8,18 +8,20 @@ type Props = {
   setStore: Dispatch<SetStateAction<Store>>
 }
 
-const StoreCtx = createContext<Props>({
-  store: {
-    user: {
-      id: "",
-      email: "",
-      fullname: "",
-      jwtToken: "",
-    },
-    ui: {
-      mode: "explorer"
-    }
+export const STORE_INITIAL_STATE = {
+  user: {
+    id: "",
+    email: "",
+    fullname: "",
+    jwtToken: "",
   },
+  ui: {
+    mode: "explorer"
+  }
+};
+
+const StoreCtx = createContext<Props>({
+  store: STORE_INITIAL_STATE,
   setStore: () => {}
 });
 
