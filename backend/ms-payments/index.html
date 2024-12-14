@@ -51,9 +51,11 @@
   <body>
     <form id="payment-form">
       <h2>Pago Seguro</h2>
-      <div id="card-element">
-        <!-- A Stripe Element will be inserted here. -->
-      </div>
+      <div id="card-element"></div>
+      <input type="hidden" id="user-id" value="1" />
+      <!-- Cambia esto según tu lógica -->
+      <input type="hidden" id="course-id" value="1" />
+      <!-- Cambia esto según tu lógica -->
       <button id="submit">Pagar</button>
       <div id="card-errors" role="alert"></div>
     </form>
@@ -61,7 +63,7 @@
     <script>
       const stripe = Stripe(
         'pk_test_51QVd5eEutT09MKUq4OFqInjDGAif4ZvCaF2ElMYscG6UWsuTZ2O25LYy0rNtDloKNEtG1e6AhlV7CMVa2pVd1fqq00iuMecCfe',
-      ); // Reemplaza con tu clave pública
+      );
       const elements = stripe.elements();
       const cardElement = elements.create('card');
       cardElement.mount('#card-element');
@@ -71,12 +73,45 @@
         event.preventDefault();
 
         const { token, error } = await stripe.createToken(cardElement);
+        console.log('hola mundo');
         if (error) {
-          // Mostrar error en la interfaz
           document.getElementById('card-errors').textContent = error.message;
         } else {
+          // Obtener datos del formulario
+          //const userId = document.getElementById('user-id').value;
+          //const courseId = document.getElementById('course-id').value;
+          const userId = 'user_id';
+          const courseId = 'tier_id';
+          console.log(token);
+
           // Enviar el token al servidor para crear el cargo
-          console.log(token); // Aquí tienes tu token
+          try {
+            const response = await fetch(
+              'http://localhost:3006/stripe/charge',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  amount: 5000, // Cambia esto según el monto real
+                  currency: 'usd', // Cambia esto según tu lógica
+                  source: token.id,
+                  userId: userId,
+                  courseId: courseId,
+                }),
+              },
+            );
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log(data);
+          } catch (error) {
+            console.error('Error al enviar la solicitud:', error);
+          }
         }
       });
     </script>
