@@ -9,6 +9,8 @@ import { useCallback } from "react";
 import { useEffect } from "react";
 import { breakProject } from "./project-form.acl";
 import { Project } from "@/types/project.types";
+import { useParams } from "next/navigation";
+import { setGeneralData, setDetailsData } from "./project-form.actions";
 
 type Props = {
   children: ReactNode[]
@@ -23,13 +25,15 @@ export const ProjectCtx = createContext<TProjectCtx | undefined>(undefined)
 
 const ProjectCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
+  const params = useParams();
+  const projectId = params.id;
 
   const submitProject = useCallback(async (additionalData = {}) => {
     const userId = "550e8400-e29b-41d4-a716-446655440000"; // TODO: this should be taken from the global state
     const formattedData = breakProject({ ...state, ...additionalData, userId });
     console.log('creating course...', formattedData);
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}/projects`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}`, {
       method: 'post',
       body: JSON.stringify(formattedData),
       headers: {
@@ -50,6 +54,24 @@ const ProjectCtxProvider = ({ children }: Props) => {
     // return temporaryId
 
   }, [state]);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        if (!projectId) return;
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/${courseId}`);
+        const projectData = await res.json();
+        // const groupedCourse = groupCourse(courseData);
+        // console.log('groupedCourse: ', groupedCourse);
+
+        dispatch(setGeneralData(groupedCourse.general))
+        dispatch(setDetailsData(groupedCourse.general))
+      } catch (err) {
+        console.error("there was an error while getting course data: ", err)
+      }
+    })()
+  }, [projectId])
 
   useEffect(() => { console.log('project form state', state) }, [state])
 

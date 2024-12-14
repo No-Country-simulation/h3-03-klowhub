@@ -1,6 +1,7 @@
 "use client"
 
 import { ReactNode } from "react";
+import { TVideo } from "@/types/global.types";
 import useProjectContext from "../../hooks/use-project-context.hook";
 import FilterDisplayer from "@/components/filter-displayer/filter-displayer.component";
 import { useState } from "react";
@@ -9,12 +10,18 @@ import { Button } from "@/components/ui/button";
 import Greeter from "@/components/greeter/greeter.component";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import UploadedImage from "@/components/uploaded-image/uploaded-image.component";
+import FileBadge from "@/components/file-badge/file-badge.component";
+import UploadedVideo from "@/components/uploaded-video/uploaded-video.component";
 import { Popover } from "@/components/popover/popover.component";
 
 const ProjectPreviewSection = () => {
   const { state, submitProject } = useProjectContext();
   const [ newProjectId, setNewProjectId ] = useState<string>()
   const [ error, setError ] = useState<object | null>(null)
+
+  const graphicalAssets = state.details.assets.filter(ast => ["image", "video"].includes(ast.fileType))
+  const documents = state.details.assets.filter(ast => ast.fileType === "document");
 
   return (
     <>
@@ -76,6 +83,25 @@ const ProjectPreviewSection = () => {
             ))}
           </FilterDisplayer>
         </div>
+        <div className="space-y-5">
+          <h3 className="font-bold">Recursos</h3>
+          <div className="grid grid-cols-3 gap-5">
+            {
+              graphicalAssets.map((ast, idx) => {
+                if (ast.fileType === "image") 
+                  return <UploadedImage src={ast.fileMetadata.url} key={`image-${idx}`} />
+                  else return <UploadedVideo video={ast as TVideo} key={`video-${idx}`} />;
+              })
+            }
+          </div>
+          <div className="flex flex-col items-start gap-5">
+            {
+              documents.map((doc, idx) => (
+                <FileBadge data={doc} key={`document-${idx}`} />
+              ))
+            }
+          </div>
+        </div>
         <div>
           <h3 className="font-bold">Requisitos adicionales</h3>
           <ul className="list-disc mt-5 ml-5">{
@@ -92,11 +118,10 @@ const ProjectPreviewSection = () => {
           className="flex-1 md:grow-0"
           onClick={async () => {
             try {
-              throw new Error()
               const projectId = await submitProject() 
               setNewProjectId(projectId)
             } catch (err) {
-              setError({ message: ['asdasdasd asdadaasda adadadd', '81e98u asdjadoadj asdua8db', 'asoidjd asd9ia asda9sdaid ac'] })
+              setError(err as Error)
             }
           }}
         >

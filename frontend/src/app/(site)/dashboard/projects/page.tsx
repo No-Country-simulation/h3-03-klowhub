@@ -32,7 +32,7 @@ const MyProjectsPage = () => {
                         </Button>
                         <Button className="sm:w-[250px] w-full">
 
-                            <Link href={"projects/new?section=general"}>Publicar proyecto</Link>
+                            <Link href={"projects/form?section=general"}>Publicar proyecto</Link>
                         </Button>
                     </div>
                 </div>

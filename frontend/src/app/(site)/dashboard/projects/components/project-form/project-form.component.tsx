@@ -7,7 +7,7 @@ import { advices } from "./consts";
 import ProjectCtxProvider from "./context/project-form.context";
 import ProjectPreviewSection from "./components/preview-section/preview-section.component";
 
-const CreateCoursePage = async () => {
+const ProjectForm = async () => {
   const { section } = await getQueryParams();
 
   return (
@@ -58,4 +58,4 @@ const CreateCoursePage = async () => {
 
 };
 
-export default  CreateCoursePage
+export default ProjectForm

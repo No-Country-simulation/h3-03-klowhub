@@ -59,7 +59,10 @@ const MediaForm = () => {
         <Input
           entity="app"
           name="assets" type="upload"
-          filetypes={{ "image/*": [".png", ".jpg"] }}
+          filetypes={{
+            "image/*": [".png", ".jpg"],
+            "video/mp4": [".mp4"]
+          }}
           label="Puede agregar hasta 5 imágenes o videos"
           dropzoneLabel="Sube una imagen representativa de la app"
           className="col-span-2"
