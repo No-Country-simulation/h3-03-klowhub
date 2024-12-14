@@ -1,12 +1,17 @@
-import { ReactNode } from "react";
-
 type Props = {
-  children: ReactNode
+  element: string
+  reason: string
 }
 
-const TempError = ({ children }: Props) => {
+const TempError = ({ element, reason }: Props) => {
   return (
-    <div className="bg-red-600 text-white">{ children }</div>
+    <div className="bg-red-600 text-white flex flex-col gap-3">
+      <span>Sección {element} temporalmente deshabilitado</span>
+      <span>
+        <strong>Razón: </strong>
+        <span>{ reason }</span>
+      </span>
+    </div>
   )   
 };
 

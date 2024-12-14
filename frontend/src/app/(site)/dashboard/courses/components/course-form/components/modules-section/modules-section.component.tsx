@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 // import CourseLesson from "../course-lesson/course-lesson.component";
+import TempError from "@/components/temp-error/temp-error.component";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import {
   Accordion,
@@ -23,7 +24,8 @@ import styles from "@/styles/accordion.styles.module.css"
 const ModulesSection = () => {
   const { state } = useCourseContext();
   const [currentModule, setCurrentModule] = useState(NaN);
-  const [showModuleForm, setShowModuleForm] = useState(state.modules.length === 0);
+  // const [showModuleForm, setShowModuleForm] = useState(state.modules.length === 0);
+  const [showModuleForm, setShowModuleForm] = useState(false);
 
   // useEffect(() => {
   //   // console.log("inserting modules mock...");
@@ -36,31 +38,39 @@ const ModulesSection = () => {
   return (
     <div className="flex flex-col gap-5">
       {showModuleForm &&
-        <ModuleForm moduleIdx={currentModule} setCurrentModule={setCurrentModule} setShowModuleForm={setShowModuleForm} />
+        <TempError
+          element="module form"
+          reason="no se estan enviando los modulos desde el backend, entonces esto rompe la pagina al ser indefinido"
+        />
+
+        // <ModuleForm moduleIdx={currentModule} setCurrentModule={setCurrentModule} setShowModuleForm={setShowModuleForm} />
       }
       {(!showModuleForm) &&
         <div className="flex flex-col items-end gap-5">
           <div className="w-full bg-gray-200 rounded-lg overflow-hidden">
             <Accordion type="single" collapsible className={`${styles['accordion-root']} px-5`}>
-              {state && state.modules.map((m, mIdx) => (
-                <AccordionItem key={`module-panel-${mIdx}`} value={`module-${mIdx}`}>
-                  <AccordionTrigger>{m.title}</AccordionTrigger>
-                  <AccordionContent className="flex flex-col gap-5">
-                    <span>{parse(m.description)}</span>
-                    <div className="flex gap-5 self-end">
-                      <Button variant="outline" className="h-10 py-0 px-5 text-sm" onClick={() => {
-                        setCurrentModule(mIdx)
-                        setShowModuleForm(true)
-                      }}>
-                        <Pencil />
-                        Editar Módulo
-                      </Button>
-                    </div>
-                    {/* @ts-ignore: Unreachable code error */}
-                    <LessonsSection moduleIdx={mIdx} lessons={state.modules[mIdx].lessons} readOnly />
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
+              <TempError
+                element="items del acordion"
+                reason="el backend no esta enviando los modulos, la prop modules llega como indefinido"
+              />
+              {/* {state && state.modules.map((m, mIdx) => ( */}
+              {/*   <AccordionItem key={`module-panel-${mIdx}`} value={`module-${mIdx}`}> */}
+              {/*     <AccordionTrigger>{m.title}</AccordionTrigger> */}
+              {/*     <AccordionContent className="flex flex-col gap-5"> */}
+              {/*       <span>{parse(m.description)}</span> */}
+              {/*       <div className="flex gap-5 self-end"> */}
+              {/*         <Button variant="outline" className="h-10 py-0 px-5 text-sm" onClick={() => { */}
+              {/*           setCurrentModule(mIdx) */}
+              {/*           setShowModuleForm(true) */}
+              {/*         }}> */}
+              {/*           <Pencil /> */}
+              {/*           Editar Módulo */}
+              {/*         </Button> */}
+              {/*       </div> */}
+              {/*       <LessonsSection moduleIdx={mIdx} lessons={state.modules[mIdx].lessons} readOnly /> */}
+              {/*     </AccordionContent> */}
+              {/*   </AccordionItem> */}
+              {/* ))} */}
             </Accordion>
           </div>
         </div>

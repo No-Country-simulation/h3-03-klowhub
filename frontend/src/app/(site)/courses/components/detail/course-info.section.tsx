@@ -15,6 +15,7 @@ import RouteBtn from '@/components/route-btn/route-btn.component';
 import { useRouter } from 'next/navigation';
 import Greeter from "@/components/greeter/greeter.component";
 import { updateSearchParams } from '@/utils/client.utils';
+import { buttonVariants } from '@/components/ui/button';
 
 import { instructor } from '@/mocks/instructor.mock';
 
@@ -84,7 +85,7 @@ export const CourseInfo: FC<CourseProps> = ({
       <div className='w-full text-center'>
         <Link
           href={`${pathname}?${updateSearchParams("isExpanded", String(!isExpanded), searchParams)}#detail-container`}
-          className="text-purple-400"
+          className={`text-purple-400 border-primary-300 px-16 mt-5 ${buttonVariants({ variant: "outline" })}`}
           scroll={!isExpanded ? false : true}
         >
           {isExpanded ? "Ver menos" : "Ver más"}

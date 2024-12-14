@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Video, Clock3 } from "lucide-react";
 import { IconTypes } from "../icon/icon.types";
 import { buttonVariants } from "../ui/button";
+import TempError from "../temp-error/temp-error.component";
 
 type Props = {
   products: TQuickView[]
@@ -47,7 +48,7 @@ const QuickView = async ({ products }: Props) => {
       <p>{shortDescription}</p>
       <div>
         <Badge
-          icon={<Icon name={getSlug(platform) as IconTypes} />}
+          icon={<Icon name={platform as IconTypes} />}
           className="bg-gray-100 text-white"
         >
           {platform}
@@ -67,17 +68,18 @@ const QuickView = async ({ products }: Props) => {
         </span>
       </div>
       <div className="aspect-video overflow-hidden flex flex-col justify-center rounded-xl">
-        { video
-          ? <video controls>
-            <source src={video.fileMetadata.url} type="video/mp4"></source>
-          </video>
-          : <Image 
-            src={coverImg.fileMetadata.url}
-            width={coverImg.fileMetadata.width}
-            height={coverImg.fileMetadata.height}
-            alt=""
-          />
-        }
+        <TempError element="video" reason="funciona en apps pero no en cursos" />
+        {/* { video */}
+        {/*   ? <video controls> */}
+        {/*     <source src={video.fileMetadata.url} type="video/mp4"></source> */}
+        {/*   </video> */}
+        {/*   : <Image  */}
+        {/*     src={coverImg.fileMetadata.url} */}
+        {/*     width={coverImg.fileMetadata.width} */}
+        {/*     height={coverImg.fileMetadata.height} */}
+        {/*     alt="" */}
+        {/*   /> */}
+        {/* } */}
       </div>
       <AuthorBlock author={author} />
       {/* <h2 className="font-bold">Acerca de este curso</h2> */}

@@ -40,7 +40,7 @@ const AppliactionsPage = async () => {
   const queryParams = await getQueryParams();
 
   return (
-    <main>
+    <main className="pb-6">
       <BreadCrumb />
 
       <IsClientProvider>

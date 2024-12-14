@@ -50,7 +50,10 @@ export const AppDetail: FC<Props> = () => {
             <AppInfo {...pageData} submitApplication={submitApplication}>
               { pageData.author
                 ? <AuthorInfo data={pageData.author}/>
-                : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+                : <TempError
+                element="author section"
+                reason="la api no esta enviando informacion del autor"
+              />
               }
               <ShareSection />
               <List
@@ -91,7 +94,10 @@ export const AppDetail: FC<Props> = () => {
 
               { pageData.author
                 ? <AuthorDetail data={pageData.author} />
-                : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+                : <TempError
+                element="author section"
+                reason="la api no esta enviando informacion del autor"
+              />
               } 
 
               <Badge

@@ -9,6 +9,7 @@ import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
 import detailsMock from "./course-detail-form.mock.json"
+import TempError from "@/components/temp-error/temp-error.component";
 
 const DetailsForm = () => {
   const { state, dispatch } = useCourseContext();
@@ -32,15 +33,27 @@ const DetailsForm = () => {
       <form className="flex flex-col gap-10">
         <Input
           name="learningSubjects" type="multitext"
-          label="Decinos qué van a aprender tus estudiantes al finalizar el curso." {...controlledCommonProps}
+          label="Decinos qué van a aprender tus estudiantes al finalizar el curso." 
           addButtonLabel="Añadir materia"
           placeholder="Qué aprenderán tus estudiantes?"
+          {...controlledCommonProps}
         />
+        <TempError
+          element="multitext input para 'prevRequirements'"
+          reason="la api devuelve un string en vez de un array de strings"
+        />
+        {/* <Input */}
+        {/*   name="prevRequirements" type="multitext" */}
+        {/*   label="Requisitos previos: ¿Qué necesitan saber o tener tus estudiantes antes de empezar?" {...controlledCommonProps} */}
+        {/*   addButtonLabel="Añadir requisito" */}
+        {/*   placeholder="¿Qué necesitan saber?" */}
+        {/* /> */}
         <Input
-          name="prevRequirements" type="multitext"
-          label="Requisitos previos: ¿Qué necesitan saber o tener tus estudiantes antes de empezar?" {...controlledCommonProps}
-          addButtonLabel="Añadir requisito"
-          placeholder="¿Qué necesitan saber?"
+          name="courseIncludes" type="multitext"
+          label="Detalla qué material extra incluyes con la compra de tu curso."
+          addButtonLabel="Añadir item"
+          placeholder="¿Qué obtendrán tus estudiantes al comprar el curso?"
+          {...controlledCommonProps}
         />
         <Input
           name="fullDescription" type="textarea"
@@ -48,22 +61,30 @@ const DetailsForm = () => {
           placeholder="Hacé una descripción detallada del contenido y de los beneficios que ofrece."
           {...commonProps}
         />
-        <Input
-          entity="course"
-          name="coverImg" type="upload"
-          filetypes={{ "image/*": [".png", ".jpg"] }}
-          label="Subí una imagen que represente tu curso de manera atractiva para utilizarla de portada"
-          dropzoneLabel="Subí una imagen para promocionar tu curso o lección"
-          {...controlledCommonProps}
+        <TempError
+          element="coverImg upload input"
+          reason="las imágenes no estan siendo vinculadas al curso al momento de creación"
         />
-        <Input
-          entity="course"
-          name="promotionalVideo" type="upload"
-          filetypes={{ "video/mp4": [".mp4"] }}
-          label="Subí un video que sirva de introducción general a tu curso o lección"
-          dropzoneLabel="Subí un video para introducir tu curso o lección"
-          {...controlledCommonProps}
+        {/* <Input */}
+        {/*   entity="course" */}
+        {/*   name="coverImg" type="upload" */}
+        {/*   filetypes={{ "image/*": [".png", ".jpg"] }} */}
+        {/*   label="Subí una imagen que represente tu curso de manera atractiva para utilizarla de portada" */}
+        {/*   dropzoneLabel="Subí una imagen para promocionar tu curso o lección" */}
+        {/*   {...controlledCommonProps} */}
+        {/* /> */}
+        <TempError
+          element="promotionalVideo upload input"
+          reason="viene como string y no como un objeto"
         />
+        {/* <Input */}
+        {/*   entity="course" */}
+        {/*   name="promotionalVideo" type="upload" */}
+        {/*   filetypes={{ "video/mp4": [".mp4"] }} */}
+        {/*   label="Subí un video que sirva de introducción general a tu curso o lección" */}
+        {/*   dropzoneLabel="Subí un video para introducir tu curso o lección" */}
+        {/*   {...controlledCommonProps} */}
+        {/* /> */}
       </form>
       <div className="
         absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5 gap-5

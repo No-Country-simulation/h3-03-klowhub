@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import parse from "html-react-parser";
 import RouteBtn from "@/components/route-btn/route-btn.component";
+import { buttonVariants } from "@/components/ui/button";
 
 export const AppInfo: FC<AppProps> = ({
   submitApplication,
@@ -33,7 +34,7 @@ export const AppInfo: FC<AppProps> = ({
     const isExpanded = searchParams.get('isExpanded') === 'true';
 
   return ( 
-    <div className="md:col-span-2 space-y-4">
+    <div className="md:col-span-2 space-y-4 pb-20">
       { newApplicationId &&
         <Greeter 
           header="¡Felicitaciones! Tu aplicación se publicó con éxito"
@@ -71,7 +72,7 @@ export const AppInfo: FC<AppProps> = ({
       <div className='w-full text-center'>
         <Link
           href={`${pathname}?${updateSearchParams("isExpanded", String(!isExpanded), searchParams)}#detail-container`}
-          className="text-purple-400"
+          className={`text-purple-400 border-primary-300 px-16 mt-5 ${buttonVariants({ variant: "outline" })}`}
           scroll={!isExpanded ? false : true}
         >
           {isExpanded ? "Ver menos" : "Ver más"}

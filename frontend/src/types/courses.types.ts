@@ -35,6 +35,7 @@ export type CourseInfo = {
 export type CourseDetails = {
   learningSubjects: string[]
   prevRequirements: string[]
+  courseIncludes: string[]
   fullDescription: string
   coverImg: TImage | null
   promotionalVideo: TVideo | null

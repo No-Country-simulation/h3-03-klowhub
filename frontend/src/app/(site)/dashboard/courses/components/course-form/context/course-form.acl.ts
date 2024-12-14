@@ -1,6 +1,6 @@
 import { Course, CourseFormData } from "@/types/courses.types";
 
-export const breakCourse = (data: CourseFormData): Course => {
+export const breakCourse = (data: CourseFormData, reduceImgs?: boolean): Course => {
   const { general: { tags, sector, coreContent, toolsAndPlatforms, functionalities, language } } = data;
 
   const general = {
@@ -8,9 +8,17 @@ export const breakCourse = (data: CourseFormData): Course => {
     language: language.name,
     sector: sector.map(s => s.name),
     coreContent: coreContent.map(c => c.name),
-    toolsAndPlatforms: toolsAndPlatforms.map(t => t.name),
+    // WARNING: it should be toolsAndPlatforms with an 's', this is temporary until api returns the righr prop
+    toolsAndPlatform: toolsAndPlatforms.map(t => t.name),
     functionalities: functionalities.map(f => f.name),
     tags: tags.map(t => t.name),
+  };
+
+  const details = {
+    ...data.details,
+    // WARNING: this is temporary until api includes this column
+    courseIncludes: [],
+    coverImg: reduceImgs ? data.details.coverImg?.id : data.details.coverImg
   };
 
   const promotion = data.promotion ? {
@@ -20,7 +28,7 @@ export const breakCourse = (data: CourseFormData): Course => {
 
   const formattedData = {
     ...general,
-    ...data.details,
+    ...details,
     modules: data.modules,
     promotion
   };
@@ -32,6 +40,7 @@ export const breakCourse = (data: CourseFormData): Course => {
 };
 
 export const groupCourse = (data: Course): CourseFormData => {
+  console.log('data: ', data);
   const course = {
     general: {
       title: data.title,
@@ -43,7 +52,8 @@ export const groupCourse = (data: Course): CourseFormData => {
       platform: data.platform,
       sector: data.sector.map(s => ({ name: s, label: s })),
       coreContent: data.coreContent.map(c => ({ name: c, label: c })),
-      toolsAndPlatforms: data.toolsAndPlatforms.map(t => ({ name: t, label: t })),
+      // WARNING: it should be toolsAndPlatforms with an 's', this is temporary until api returns the righr prop
+      toolsAndPlatforms: data.toolsAndPlatform.map(t => ({ name: t, label: t })),
       functionalities: data.functionalities.map(f => ({ name: f, label: f })),
       tags: data.tags.map(t => ({ name: t, label: t })),
       price: data.price,
@@ -53,11 +63,19 @@ export const groupCourse = (data: Course): CourseFormData => {
       learningSubjects: data.learningSubjects,
       prevRequirements: data.prevRequirements,
       fullDescription: data.fullDescription,
+      // WARNING: it should be toolsAndPlatforms with an 's', this is temporary until api returns the righr prop
+      courseIncludes: [],
       coverImg: data.coverImg,
       promotionalVideo: data.promotionalVideo
     },
     modules: data.modules,
-    promotion: data.promotion
+    promotion: data.promotion ? {
+      product: {
+        id: data.promotion.id,
+        type: data.promotion.type
+      },
+      percentage: data.promotion.percentage
+    } : null
   };   
 
   // @ts-ignore: Unreachable code error

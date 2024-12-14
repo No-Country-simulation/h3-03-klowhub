@@ -54,8 +54,8 @@ const CourseCtxProvider = ({ children }: Props) => {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/${courseId}`);
         const courseData = await res.json();
-        console.log('courseData: ', courseData);
         const groupedCourse = groupCourse(courseData);
+        console.log('groupedCourse: ', groupedCourse);
 
         dispatch(setGeneralData(groupedCourse.general))
         dispatch(setDetailsData(groupedCourse.details))

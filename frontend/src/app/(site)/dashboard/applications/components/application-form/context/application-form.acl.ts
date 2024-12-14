@@ -1,6 +1,6 @@
 import { Application, ApplicationFormData } from "@/types/application.types";
 
-export const breakApplication = (data: ApplicationFormData, breakImgs?: boolean): Application => {
+export const breakApplication = (data: ApplicationFormData, reduceImgs?: boolean): Application => {
   const { general: { tags, sector, toolsAndPlatforms, functionalities, language } } = data;
 
   const general = {
@@ -14,8 +14,8 @@ export const breakApplication = (data: ApplicationFormData, breakImgs?: boolean)
 
   const media = {
     ...data.media,
-    coverImg: breakImgs ? data.media.coverImg?.id : data.media.coverImg,
-    assets: breakImgs ? data.media.assets.map(ast => ast.id) : data.media.assets
+    coverImg: reduceImgs ? data.media.coverImg?.id : data.media.coverImg,
+    assets: reduceImgs ? data.media.assets.map(ast => ast.id) : data.media.assets
   };
 
   const promotion = data.promotion ? {

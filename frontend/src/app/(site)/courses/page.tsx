@@ -36,11 +36,11 @@ const getProducts = async (endpoint: string) => {
 };
 
 const Page = async () => {
-  const products = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`) || [];
+  const courses = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`) || [];
   const queryParams = await getQueryParams();
 
   return (
-    <main>
+    <main className="pb-6">
       <BreadCrumb />
 
       <IsClientProvider>
@@ -48,13 +48,13 @@ const Page = async () => {
       </IsClientProvider>
 
       <div>
-        {products.map((c, idx) => (
+        {courses.map((c, idx) => (
           <ProductCard data={c} key={idx} />
         ))}
       </div>
       {queryParams.modal &&
         <SideModal>
-          <QuickView products={products} />
+          <QuickView products={courses} />
         </SideModal>
       }
       <Pager />

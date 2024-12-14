@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import Rating from "@/components/rating/rating.component";
 import Image from "next/image";
 import { CourseDetailHeader } from "@/types/course-detail-props";
+import TempError from "@/components/temp-error/temp-error.component";
 
 import YouTube from 'react-youtube';
 import { getYoutubeProps } from "@/utils/youtube.utils";
@@ -11,6 +12,10 @@ import { getYoutubeId } from "@/utils/str.utils";
 
 import { useKeenSlider } from "keen-slider/react";
 
+type CurrentVideo = {
+  type: "native" | "youtube";
+  link: string | null;
+}
 
 export const CourseHeader: FC<CourseDetailHeader> = ({
     title,
@@ -22,14 +27,12 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
 }) => {
     // console.log('promotionalVideo: ', promotionalVideo);
 
-    const [currentVideo, setCurrentVideo] = useState<{
-        type: "video" | "youtube";
-        link: string | null;
-    }>({
-        type: "video",
-        link: promotionalVideo.fileMetadata.url,
-
-    });
+  const [currentVideo, setCurrentVideo] = useState<CurrentVideo | null>( 
+    promotionalVideo ? {
+      type: "native",
+      link: promotionalVideo.fileMetadata.url,
+    } : null
+  );
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -65,33 +68,41 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                 />
             }
 
-            {currentVideo.type === "video" ? (
-                <video controls className="rounded-xl">
-                    <source
-                        src={currentVideo.link!!}
-                        type={`video/${promotionalVideo.fileMetadata.format}`}
-                    />
-                </video>
-            ) : (
-                <div className="rounded-xl overflow-hidden">
-                    <YouTube className="h-full" {...getYoutubeProps(currentVideo.link!!)} />
-                </div>
-            )}
+      <TempError element="mostrador de videos" reason="al editar, el video es un string (json)" />
+        {/* { */}
+        {/*   currentVideo && ( */}
+        {/*     currentVideo.type === 'native' ? */}
+        {/*       ( */}
+        {/*       <video controls className="rounded-xl"> */}
+        {/*         <source */}
+        {/*           src={currentVideo.link!!} */}
+        {/*           type={`video/${promotionalVideo.fileMetadata.format}`} */}
+        {/*         /> */}
+        {/*       </video> */}
+        {/*     ) : ( */}
+        {/*       <div className="rounded-xl overflow-hidden"> */}
+        {/*         <YouTube className="h-full" {...getYoutubeProps(currentVideo.link!!)} /> */}
+        {/*       </div> */}
+        {/*     ) */}
+        {/*   ) */}
+        {/* } */}
 
             <div className="bg-[#FFFFFF0D] p-3 rounded-lg">
                 <h2 className="text-sm font-semibold mb-2">Contenido gratuito</h2>
                 <div ref={sliderRef} className="keen-slider flex pr-4 overflow-hidden">
                     <div className="keen-slider__slide flex-shrink-0 w-50 grow-0">
-                        <Image
-                            src={promotionalVideo.fileMetadata.thumbnailUrl}
-                            alt=""
-                            width={promotionalVideo.fileMetadata.width}
-                            height={promotionalVideo.fileMetadata.height}
-                            className="h-40 rounded-xl cursor-pointer object-cover"
-                            onClick={() =>
-                                setCurrentVideo({ type: "video", link: promotionalVideo.fileMetadata.url })
-                            }
-                        />
+            { promotionalVideo &&
+              <Image
+                src={promotionalVideo.fileMetadata.thumbnailUrl}
+                alt=""
+                width={promotionalVideo.fileMetadata.width}
+                height={promotionalVideo.fileMetadata.height}
+                className="h-40 rounded-xl cursor-pointer object-cover"
+                onClick={() =>
+                  setCurrentVideo({ type: "native", link: promotionalVideo.fileMetadata.url })
+                }
+              />
+            }
                         <p className="text-left text-sm mt-2">Introducción</p>
                     </div>
                     {lessons.map((lesson, idx) => (

@@ -47,13 +47,15 @@ export const CourseDetail: FC<Props> = ({ children }) => {
 
   return pageData && (
     <>
-      <BreadCrumb title={pageData.courseData.title}/>
+      { !section &&
+        <BreadCrumb title={pageData.courseData.title}/>
+      }
       <div className="min-h-screen space-y-10">
         <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
           <CourseInfo {...pageData.courseData} freelessons={pageData.freeLessons} submitCourse={submitCourse}>
             { pageData.courseData.author
               ? <AuthorInfo data={pageData.courseData.author} />
-              : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+              : <TempError element="author section" reason="la api no esta enviando info del autor"/>
             }
             <ObjectivesList 
               header="Después de completar este curso, serás capaz de"
@@ -63,7 +65,8 @@ export const CourseDetail: FC<Props> = ({ children }) => {
             <GenericSection header={instructorPitch.title} text={instructorPitch.content} />
             <GenericSection header="¿Para quién es este curso?" text={pageData.courseData.targetAudience} />
             <RequirementsSection requirements={pageData.courseData.prevRequirements} />
-            <IncludeSection />
+            <TempError element="seccion 'incluye'" reason="es una nueva key, por lo que el backend aún no la esta enviando"  />
+            {/* <IncludeSection data={pageData.courseData.courseIncludes}/> */}
             <PageFilters filters={filters} />
             {pageData.courseData.reviews &&
               <ReviewsSection reviews={pageData.courseData.reviews} />
@@ -73,7 +76,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
           <div className="space-y-6">
             { pageData.courseData.author
               ? <AuthorDetail data={pageData.courseData.author } />
-              : <TempError>Lo sentimos, no podemos mostrar la información del autor ahora</TempError>
+              : <TempError element="author section" reason="la api no esta enviando info del autor"/>
             }
 
             <Badge

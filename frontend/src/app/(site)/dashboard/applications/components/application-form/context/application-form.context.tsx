@@ -32,7 +32,7 @@ const ApplicationCtxProvider = ({ children }: Props) => {
 
   const submitApplication = useCallback(async (additionalData = {}) => {
     try {
-      const formattedData = breakApplication({ ...state, ...additionalData });
+      const formattedData = breakApplication({ ...state, ...additionalData }, true);
       console.log("creating aaplication: ", formattedData);
 
       const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${user.id}${applicationId ? "/" + applicationId : ""}`;
@@ -68,6 +68,7 @@ const ApplicationCtxProvider = ({ children }: Props) => {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${applicationId}`);
         const applicationData = await res.json();
+        console.log('applicationData: ', applicationData);
         const groupedApplication = groupApplication(applicationData);
 
         dispatch(setMediaData(groupedApplication.media))
