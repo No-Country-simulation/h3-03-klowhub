@@ -15,7 +15,7 @@ export class UsersService {
   async switchToSeller(
     userId: string,
     createSellerDto: CreateSellerDto,
-  ): Promise<User> {
+  ): Promise<Omit<Seller,"user">> {
     // Verificar que el usuario existe
     const user = await this.usersRepository.findOne({ where: { id: userId } });
     if (!user) {
@@ -31,9 +31,9 @@ export class UsersService {
       ...createSellerDto,
       user, // Asociar el usuario con el vendedor
     });
-    await this.sellersRepository.save(seller);
+    const { user: userInsideSeller, ...savedSeller } = await this.sellersRepository.save(seller);
 
-    return user; // Retornar el usuario actualizado
+    return savedSeller; // Retornar el usuario actualizado
   }
 
   findAll() {
