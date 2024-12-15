@@ -1,5 +1,7 @@
-const LOGIN_URL = `${process.env.NEXT_PUBLIC_AUTH_URL}/login`
-const REGISTER_URL = `${process.env.NEXT_PUBLIC_AUTH_URL}/register`
+import { TLoginData, TRegisterData } from "@/types/service-types";
+
+const LOGIN_URL = `${process.env.NEXT_PUBLIC_AUTH_URL}/login`;
+const REGISTER_URL = `${process.env.NEXT_PUBLIC_AUTH_URL}/register`;
 
 const apiFetch = async (url: string, options?: RequestInit) => {
   const response = await fetch(`${url}`, {
@@ -11,23 +13,26 @@ const apiFetch = async (url: string, options?: RequestInit) => {
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || 'Error al realizar la solicitud');
+    return { status: false, error: errorData.message || 'Error al realizar la solicitud' };
   }
 
-  return response.json();
+  const data = await response.json();
+  return { status: true, response: data };
 };
 
-const login = async <T>(data: T) =>
-  apiFetch(LOGIN_URL, {
+const login = async (data: TLoginData) => {
+  return apiFetch(LOGIN_URL, {
     method: 'POST',
     body: JSON.stringify(data),
   });
+};
 
-const register = async <T>(data: T) =>
-  apiFetch(REGISTER_URL, {
+const register = async (data: TRegisterData) => {
+  return apiFetch(REGISTER_URL, {
     method: 'POST',
     body: JSON.stringify(data),
   });
+};
 
 const services = {
   login,

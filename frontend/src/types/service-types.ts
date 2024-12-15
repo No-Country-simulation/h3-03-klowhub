@@ -1,4 +1,12 @@
-export interface ServiceTypes {
-    login: { email: string, password: string },
-    register: { name: string, email: string, password: string },
-}
+export type TLoginData = {
+  email: string;
+  password: string;
+};
+
+export type TRegisterData = {
+  fullname: string;
+  email: string;
+  password: string;
+};
+
+
