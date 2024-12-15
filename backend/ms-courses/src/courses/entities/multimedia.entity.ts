@@ -50,6 +50,9 @@ export class Multimedia {
   })
   fileType: 'video' | 'image' | 'document'; // Indica el tipo de archivo
 
+  @Column({ nullable: true }) // Declarar explícitamente courseId como clave foránea
+  courseId: string;
+
   @ManyToOne(() => Course, (course) => course.multimedia, {
     onDelete: 'CASCADE',
   })
