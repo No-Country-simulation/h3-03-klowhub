@@ -10,6 +10,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { JwtService } from '@nestjs/jwt';
+import { UserResponseDto } from 'src/users/dto/user-response.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,9 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async register(createAuthDto: CreateAuthDto): Promise<User> {
+  async register(
+    createAuthDto: CreateAuthDto,
+  ): Promise<Partial<UserResponseDto>> {
     const { email, password } = createAuthDto;
 
     const existingUser = await this.userRepository.findOne({
@@ -37,14 +40,14 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    console.log('User', user);
+    const savedUser = await this.userRepository.save(user);
 
-    return this.userRepository.save(user);
+    return new UserResponseDto(savedUser);
   }
 
   async login(
     loginAuthDto: LoginAuthDto,
-  ): Promise<{ accesToken: string; user: object }> {
+  ): Promise<{ accesToken: string; user: UserResponseDto }> {
     const { email, password } = loginAuthDto;
     const user = await this.userRepository.findOne({
       where: { email },
@@ -62,7 +65,17 @@ export class AuthService {
     };
 
     const accesToken = this.jwtService.sign(payload);
-    //return { accesToken };
-    return { accesToken, user };
+
+    return {
+      accesToken,
+      user: new UserResponseDto({
+        id: user.id,
+        email: user.email,
+        fullname: user.fullname,
+        role: user.role,
+        imgProfile: user.imgProfile, // Incluye imgProfile
+        seller: user.seller,
+      }),
+    }; // Retornar el usuario sin la contraseña
   }
 }
