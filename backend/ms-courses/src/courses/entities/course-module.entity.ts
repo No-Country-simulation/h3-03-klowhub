@@ -19,7 +19,7 @@ export class CourseModule {
   @Column()
   description: string;
 
-  @ManyToOne(() => Course, (course) => course.modules, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Course, (course) => course.modules)
   course: Course;
 
   @OneToMany(() => Lesson, (lesson) => lesson.module, { cascade: true })

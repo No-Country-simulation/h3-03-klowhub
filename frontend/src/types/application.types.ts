@@ -22,6 +22,7 @@ export type ApplicationDetails = {
   fullDescription: string
   views: string[]
   appIncludes: string[]
+  price: number
 }
 
 export type ApplicationMedia = {
@@ -32,7 +33,6 @@ export type ApplicationMedia = {
 }
 
 export type ApplicationFormData = {
-  id?: string | null
   general: ApplicationInfo
   details: ApplicationDetails
   media: ApplicationMedia
@@ -40,7 +40,7 @@ export type ApplicationFormData = {
 }
 
 type ApplicationOptionalFields = Partial<{
-  id?: string,
+  id?: string
   reviews?: TReview[]
   author?: AuthorInfo
 } & Rating>

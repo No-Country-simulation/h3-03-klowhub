@@ -1,5 +1,11 @@
 import { CourseModule } from './course-module.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Lesson {
@@ -24,8 +30,7 @@ export class Lesson {
   @Column({ nullable: true, name: 'link' })
   link: string;
 
-  @ManyToOne(() => CourseModule, (module) => module.lessons, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => CourseModule, (module) => module.lessons)
+  @JoinColumn()
   module: CourseModule;
 }

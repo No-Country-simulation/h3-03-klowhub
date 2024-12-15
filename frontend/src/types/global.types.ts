@@ -1,10 +1,16 @@
+import { ImageProps } from "next/image";
+
 export type Language = "english" | "spanish"
 export type Platform = "appsheet" | "powerapps"
 
 export type AuthorInfo = {
-  name: string
-  about: string
-  img: TImage
+  name: string;
+  about: string;
+  profileImg: TImage;
+  rating?: number;
+  students?: number;
+  courses?: number;
+  profileLink?: string;
 }
 
 export type FileType = {
@@ -34,9 +40,9 @@ export type TVideoProps = {
   thumbnailUrl: string
 } & Dimensions
 
-export type TImage = UploadedFile<TImageProps>
-export type TVideo = UploadedFile<TVideoProps>
-export type TDocument = UploadedFile<TDocumentProps>
+export type TImage = UploadedFile<TImageProps, "image">
+export type TVideo = UploadedFile<TVideoProps, "video">
+export type TDocument = UploadedFile<TDocumentProps, "document">
 
 export type UploadedFileCommon = {
   url: string
@@ -44,10 +50,10 @@ export type UploadedFileCommon = {
   created_at: Date
 }
 
-export type UploadedFile<T> = {
+export type UploadedFile<Props, T extends string> = {
   id: string
-  fileType: string
-  fileMetadata: T & UploadedFileCommon
+  fileType: T
+  fileMetadata: Props & UploadedFileCommon
 }
 
 export type FilePayload = {
@@ -71,3 +77,9 @@ export type Rating = {
   ratingCount: number
 }
 export type FlatPromotion = PromotedProduct & { percentage: Promotion["percentage"] }
+
+export type FormAdvice = {
+  display: boolean
+  header: string
+  text: string
+} & ImageProps

@@ -1,0 +1,27 @@
+{
+  "title": "Nest",
+  "freeCourse": true,
+  "contentType": ["Video", "Text", "Quiz"],
+  "shortDescription": "This course introduces the basics of TypeScript.",
+  "courseDifficulty": ["Beginner", "Intermediate"],
+  "platform": ["Web", "Mobile"],
+  "language": ["English"],
+  "coreContent": ["Introduction", "Advanced Topics"],
+  "functionalities": ["Interactive Quizzes", "Real-Time Feedback"],
+  "sector": ["Technology", "Education"],
+  "toolsAndPlatform": ["Visual Studio Code", "GitHub"],
+  "tags": ["TypeScript", "Programming", "JavaScript"],
+  "learningSubjects": ["Software Development", "Web Development"],
+  "prevRequirements": "Basic knowledge of programming concepts",
+  "fullDescription": "This is a comprehensive course that covers TypeScript from basics to advanced topics.",
+  "coverImg": {
+    "id": "456e1234-a89b-12d3-a456-426614174000",
+    "url": "https://example.com/cover-image.jpg",
+    "altText": "TypeScript Course Cover"
+  },
+  "promotion": { "discount": "20%", "validUntil": "2024-12-31" },
+  "available": true,
+  "targetAudience": "Developers looking to learn TypeScript",
+  "price": 49.99,
+  "promotionalVideo": ["https://example.com/promo-video.mp4"]
+}

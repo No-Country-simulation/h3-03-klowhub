@@ -6,9 +6,10 @@ import { ShareSection } from "@/app/(site)/courses/components/detail/share-secti
 import PageFilters from "@/components/page-filters/page-filters.component";
 import { ReviewsSection } from "@/app/(site)/courses/components/detail/reviews.section";
 import { reviews } from "@/mocks/reviews.mocks";
-import { InstructorDetail } from "@/app/(site)/courses/components/detail/instructor-detail.section";
-import { instructor } from "@/mocks/instructor.mock";
+import AuthorCard from "@/components/author-card/author-card.component";
+import AuthorData from "@/components/author-card/components/author-data/author-data.component";
 import List from "@/components/list/list.component";
+import { Star, FileChartColumnIncreasing } from "lucide-react";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -20,130 +21,151 @@ import { useApplicationData } from "./hooks/use-application-data.hook";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
+import AuthorInfo from "@/app/(site)/courses/components/detail/author-section";
+import TempError from "@/components/temp-error/temp-error.component";
 
 type Props = {
     children?: ReactNode
 }
 
 export const AppDetail: FC<Props> = () => {
+  const [showGreeter, setShowGreeter] = useState(false);
+  const searchParams = useSearchParams();
+  const section = searchParams.get("section");
 
-    // const [data, setData] = useState<AppProps>();
-    const { pageData, submitApplication } = useApplicationData();
-    console.log('pageData: ', pageData);
-    const [showGreeter, setShowGreeter] = useState(false);
-    const searchParams = useSearchParams();
-    const section = searchParams.get("section");
+  const { pageData, submitApplication } = useApplicationData();
+  if (!pageData) return <div>Cargando...</div>;
 
-    console.log('application data', pageData)
+  const { 
+    functionalities,
+    toolsAndPlatforms,
+    sector,
+    tags,
+    author,
+    targetAudience,
+    views,
+    mobileLink,
+    desktopLink,
+    platform,
+    title,
+    appIncludes
+  } = pageData;
 
-    const handleShowDesktopView = () => {
-        setShowGreeter(true)
+  const filters = [
+      { label: "Funcionalidades", items: functionalities || [] },
+      { label: "Herramientas y plataformas", items: toolsAndPlatforms || [] },
+      { label: "Sector", items: sector || [] },
+      { label: "Tags", items: tags || [] },
+  ];
+
+  return pageData && (
+    <>
+    { !section &&
+      <BreadCrumb title={pageData.title} />
     }
-
-    const handleCloseDesktopView = () => {
-        setShowGreeter(false);
-    }
-
-    const filters = [
-        { label: "Funcionalidades", items: pageData?.applicationData.functionalities || [] },
-        { label: "Herramientas y plataformas", items: pageData?.applicationData.toolsAndPlatforms || [] },
-        { label: "Sector", items: pageData?.applicationData.sector || [] },
-        { label: "Tags", items: pageData?.applicationData.tags || [] },
-    ];
-
-    return pageData && (
-      <>
-        <BreadCrumb title={pageData.applicationData.title} />
-        <div className="min-h-screen">
-          <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-            <AppInfo {...pageData.applicationData} submitApplication={submitApplication}>
-              <ShareSection />
-              <List
-                header="Para quién es esta App"
-                subheader="Esta App de AppSheet es para ti sí:"
-                items={pageData.applicationData.targetAudience}
-              />
-              <List
-                header="Vistas de la App"
-                subheader="Estás serán las pantallas (Vistas) a las que podrás acceder desde la app de facturas de AppSheet:"
-                items={pageData.applicationData.views}
-              />
-              <PageFilters filters={filters} />
-              { section !== "preview" &&
-                <ReviewsSection reviews={reviews} />
-              }
-            </AppInfo>
-            <div className="space-y-6">
-
-              <div className="flex flex-col items-center gap-6 mt-4">
-                <Image
-                  src={pageData.applicationData.mobileLink}
-                  alt=""
-                  height={384}
-                  width={192}
-                  className="w-48 rounded-3xl h-96 border-8 border-[#374151]"
-                />
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-[#D194E2] text-[#D194E2]"
-                  onClick={handleShowDesktopView}
-                >
-                  Ver en modo escritorio
-                </Button>
-              </div>
-
-              <InstructorDetail
-                name={instructor.name}
-                description={instructor.description}
-                image={instructor.image}
-                rating={instructor.rating}
-                students={instructor.students}
-                courses={instructor.courses}
-                profileLink={instructor.profileLink}
-              />
-
-              <Badge
-                className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
-                icon={<Icon name="powerapps" style="w-8 h-8" />}
-              >
-                {pageData?.applicationData.platform}
-              </Badge>
-
-              <AppInclude
-                title={pageData?.applicationData.title}
-                appIncludes={pageData?.applicationData.appIncludes}
-              />
-              <Button 
-                className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}
-                disabled={section === "preview"}
-              >
-                Comprar curso
-              </Button>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                disabled={section === "preview"}
-              >
-                <Link href="/cart">
-                  Añadir al carrito
-                </Link>
-              </Button>
-
-            </div>
-          </div>
-          {showGreeter && (
-            <Popover onClose={handleCloseDesktopView}>
+      <div className="min-h-screen">
+        <div className={`${!section ? "mt-8" : ""} mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14`}>
+          <AppInfo {...pageData} submitApplication={submitApplication}>
+            { author
+              ? <AuthorInfo data={author}/>
+              : <TempError
+              element="author section"
+              reason="la api no esta enviando informacion del autor"
+            />
+            }
+            <ShareSection />
+            <List
+              header="Para quién es esta App"
+              subheader="Esta App de AppSheet es para ti sí:"
+              items={targetAudience}
+            />
+            <List
+              header="Vistas de la App"
+              subheader="Estás serán las pantallas (Vistas) a las que podrás acceder desde la app de facturas de AppSheet:"
+              items={views}
+            />
+            <PageFilters filters={filters} />
+            { section !== "preview" &&
+              <ReviewsSection reviews={reviews} />
+            }
+          </AppInfo>
+          <div className="space-y-6">
+          { mobileLink &&
+            <div className="flex flex-col items-center gap-6 mt-4">
               <Image
-                className="w-full h-full rounded-lg"
-                src={pageData.applicationData.desktopLink}
+                src={mobileLink}
                 alt=""
-                width={1920}
-                height={1080}
+                height={384}
+                width={192}
+                className="w-48 rounded-3xl h-96 border-8 border-[#374151]"
               />
-            </Popover>
-          )}
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-[#D194E2] text-[#D194E2]"
+                onClick={() => setShowGreeter(true)}
+              >
+                Ver en modo escritorio
+              </Button>
+            </div>
+          }
+
+            { author
+              ? (
+                <AuthorCard name={author.name} about={author.about} profileImg={author.profileImg}> 
+                  <AuthorData Icon={Star} data={"Calificación del creador: 4.8"} />
+                  <AuthorData Icon={FileChartColumnIncreasing} data={"20 aplicaciones vendidas"}  />
+                </AuthorCard>
+              )
+              : (
+                <TempError
+                element="author section"
+                reason="la api no esta enviando informacion del autor"
+              />
+              )
+            } 
+
+            <Badge
+              className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
+              icon={<Icon name="powerapps" style="w-8 h-8" />}
+            >
+              {platform}
+            </Badge>
+
+            <AppInclude
+              title={title}
+              appIncludes={appIncludes}
+            />
+            <Button 
+              className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}
+              disabled={section === "preview"}
+            >
+              Comprar curso
+            </Button>
+            <Button 
+              variant="outline" 
+              className="w-full"
+              disabled={section === "preview"}
+            >
+              <Link href="/cart">
+                Añadir al carrito
+              </Link>
+            </Button>
+
+          </div>
         </div>
-      </>
-    );
+        {showGreeter && (
+          <Popover onClose={() => setShowGreeter(false)}>
+            <Image
+              className="w-full h-full rounded-lg"
+              src={desktopLink}
+              alt=""
+              width={1920}
+              height={1080}
+            />
+          </Popover>
+        )}
+      </div>
+    </>
+  );
 };

@@ -1,5 +1,4 @@
 export const getSlug = (str: string) => {
-  console.log('str: ', str);
   const toLower = str.toLowerCase();
   const withoutSpaces = toLower.replaceAll(' ', '-');
   return withoutSpaces
@@ -17,3 +16,4 @@ export const getYoutubeId = (url: string) => {
 
   return videoId
 };
+

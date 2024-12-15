@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DashboardOptions from "@/components/home/dashboard-options.component";
 
 const sections = [
   { label: "Cursos", route: "/dashboard/courses" },
@@ -9,13 +10,14 @@ const sections = [
 const DashboardPage = () => {
   return (
     <div className="container h-full pt-10 lg:pt-40">
-      <div className="flex justify-center gap-10 h-full flex-wrap">
-        {
-          sections.map((s, idx) => (
-            <Link href={s.route} key={`section-${idx}`} className="p-20 border-1 border-primary-200 rounded-xl cursor-pointer flex-1 text-center">{s.label}</Link>
-          ))
-        }
-      </div>
+      <DashboardOptions />
+      {/* <div className="flex justify-center gap-10 h-full flex-wrap"> */}
+      {/*   { */}
+      {/*     sections.map((s, idx) => ( */}
+      {/*       <Link href={s.route} key={`section-${idx}`} className="p-20 border-1 border-primary-200 rounded-xl cursor-pointer flex-1 text-center">{s.label}</Link> */}
+      {/*     )) */}
+      {/*   } */}
+      {/* </div> */}
     </div>
   )   
 };

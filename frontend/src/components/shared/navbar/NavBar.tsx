@@ -41,10 +41,10 @@ export const NavBar = () => {
               </Link>
             </div>
             <div className="hidden xl:flex space-x-4">
-              <NavItem href="#">Dashboard</NavItem>
+              <NavItem href="/dashboard">Dashboard</NavItem>
               <NavItem href="/courses">Curso y lecciones</NavItem>
               <NavItem href="/applications">Appstore</NavItem>
-              <NavItem href="#">Proyectos</NavItem>
+              <NavItem href="/projects">Proyectos</NavItem>
               <NavItem href="#">Consultoría</NavItem>
               <NavItem href="#">Sobre Appsheet</NavItem>
             </div>

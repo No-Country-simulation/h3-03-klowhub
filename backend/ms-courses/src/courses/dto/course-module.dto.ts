@@ -3,6 +3,9 @@ import { MultimediaDto } from './multimedia.dto';
 import { CreateLessonDto } from './lesson.dto';
 
 export class CreateCourseModuleDto {
+  @IsString() // Asegúrate de que el ID sea de tipo string
+  id: string; // Cambiar `any` a `string`
+
   @IsString()
   @IsNotEmpty()
   title: string;
@@ -18,4 +21,8 @@ export class CreateCourseModuleDto {
   @IsOptional()
   @IsArray()
   lessons?: CreateLessonDto[];
+
+  @IsString()
+  @IsNotEmpty()
+  courseId: string; // Campo que se usará para asociar el módulo al curso
 }

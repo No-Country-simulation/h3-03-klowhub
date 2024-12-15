@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  // JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Course } from './course.entity';
 
 export interface Video {
@@ -44,9 +38,6 @@ export interface Document {
 export class Multimedia {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  // @Column('jsonb')
-  // file: File;
 
   @Column('jsonb', { nullable: false })
   fileMetadata: Video | Image | Document; // JSON que contiene la metadata específica

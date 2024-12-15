@@ -1,0 +1,52 @@
+{
+  "title": "Como hacer consultas SQL",
+  "description": "Conoce el propósito y las capacidades principales de PowerApps dentro del ecosistema de Microsoft.",
+  "documents": [
+    {
+      "fileType": "document",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+        "size": 734107,
+        "mimeType": "application/pdf",
+        "created_at": "2024-12-04T18:15:12Z"
+      }
+    },
+    {
+      "fileType": "document",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+        "size": 734107,
+        "mimeType": "application/pdf",
+        "created_at": "2024-12-04T18:15:12Z"
+      }
+    },
+    {
+      "fileType": "document",
+      "fileMetadata": {
+        "url": "https://res.cloudinary.com/dvrgfyvou/raw/upload/v1733336112/oavc6tke5hln2plnjwga",
+        "size": 734107,
+        "mimeType": "application/pdf",
+        "created_at": "2024-12-04T18:15:12Z"
+      }
+    }
+  ],
+  "video":  {
+    "fileType": "video",
+    "fileMetadata": {
+      "duration": 9.08,
+      "size": 5596,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+      "thumbnail_width": 1920,
+      "thumbnail_height": 1080,
+      "width": 400,
+      "height": 300,
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "2024-12-04T03:05:07Z"
+    }
+  },
+  "free": true,
+  "link": "https://www.youtube.com/watch?v=TrDlCiUCu2g"
+}
+
