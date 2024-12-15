@@ -75,6 +75,11 @@ export class App {
   @OneToMany(() => Asset, (asset) => asset.application) // Cambiado a OneToMany para assets
   assets: Asset[];
 
+  @Column({ nullable: true })
+  authorId: number;
+
+  author?: any;
+
   @Column('jsonb', { name: 'promotion', nullable: true })
   promotion: object;
 }

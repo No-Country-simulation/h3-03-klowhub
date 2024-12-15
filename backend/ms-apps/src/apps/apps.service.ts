@@ -4,6 +4,7 @@ import {
   ConflictException,
   BadRequestException,
 } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { CreateAppDto } from './dto/create-app.dto';
@@ -28,6 +29,7 @@ export class AppsService {
   constructor(
     @InjectRepository(App)
     private readonly appRepository: Repository<App>,
+    private readonly httpService: HttpService,
     @InjectRepository(Asset)
     private readonly assetRepository: Repository<Asset>,
     private readonly cloudinaryService: CloudinaryService,
@@ -179,7 +181,7 @@ export class AppsService {
       );
     }
   }
-  async findOne(id: string): Promise<App> {
+  async findOne(id: string, withAuthor: boolean = false): Promise<App> {
     const app = await this.appRepository.findOne({
       where: { id },
       relations: ['coverImg', 'assets'],
@@ -201,14 +203,24 @@ export class AppsService {
           })
         : [];
 
+    let authorInfo = null;
+    if (withAuthor) {
+      const authorResponse = await this.httpService
+        .get(`http://localhost:3001/users/${app.userId}`)
+        .toPromise();
+
+      authorInfo = authorResponse.data;
+    }
+
     return {
       ...app,
       coverImg: coverImageDetails,
       assets: assetDetails,
+      author: authorInfo,
     };
   }
 
-  async findAll(): Promise<App[]> {
+  async findAll(withAuthor: boolean = false): Promise<App[]> {
     const apps = await this.appRepository.find({
       relations: ['coverImg', 'assets'],
     });
@@ -227,11 +239,20 @@ export class AppsService {
                 where: { id: In(app.assets.map((asset) => asset.id)) },
               })
             : [];
+        let authorInfo = null;
+        if (withAuthor) {
+          const authorResponse = await this.httpService
+            .get(`http://localhost:3001/users/${app.userId}`)
+            .toPromise();
+
+          authorInfo = authorResponse.data;
+        }
 
         return {
           ...app,
           coverImg: coverImageDetails,
           assets: assetDetails,
+          author: authorInfo,
         };
       }),
     );
