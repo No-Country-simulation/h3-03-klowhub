@@ -11,7 +11,7 @@ type Props = {
   children: ReactNode[]
 }
 
-const AuthorDetail: FC<Props> = ({ name, about, profileImg, children }) => {
+const AuthorCard: FC<Props> = ({ name, about, profileImg, children }) => {
   return (
     <Card className="p-3">
       <CardHeader>
@@ -46,4 +46,4 @@ const AuthorDetail: FC<Props> = ({ name, about, profileImg, children }) => {
 };
 
 
-export default AuthorDetail
+export default AuthorCard

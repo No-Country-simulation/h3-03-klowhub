@@ -6,8 +6,8 @@ import { ShareSection } from "@/app/(site)/courses/components/detail/share-secti
 import PageFilters from "@/components/page-filters/page-filters.component";
 import { ReviewsSection } from "@/app/(site)/courses/components/detail/reviews.section";
 import { reviews } from "@/mocks/reviews.mocks";
-import AuthorDetail from "@/components/author-detail/author-detail.component";
-import AuthorData from "@/components/author-detail/components/author-data/author-data.component";
+import AuthorCard from "@/components/author-card/author-card.component";
+import AuthorData from "@/components/author-card/components/author-data/author-data.component";
 import List from "@/components/list/list.component";
 import { Star, FileChartColumnIncreasing } from "lucide-react";
 
@@ -112,10 +112,10 @@ export const AppDetail: FC<Props> = () => {
 
             { author
               ? (
-                <AuthorDetail name={author.name} about={author.about} profileImg={author.profileImg}> 
+                <AuthorCard name={author.name} about={author.about} profileImg={author.profileImg}> 
                   <AuthorData Icon={Star} data={"Calificación del creador: 4.8"} />
                   <AuthorData Icon={FileChartColumnIncreasing} data={"20 aplicaciones vendidas"}  />
-                </AuthorDetail>
+                </AuthorCard>
               )
               : (
                 <TempError

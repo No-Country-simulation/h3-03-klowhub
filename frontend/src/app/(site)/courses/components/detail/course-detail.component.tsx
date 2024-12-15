@@ -1,6 +1,6 @@
 "use client"
 
-import AuthorData from "@/components/author-detail/components/author-data/author-data.component";
+import AuthorData from "@/components/author-card/components/author-data/author-data.component";
 import { Star, User, BookOpen } from "lucide-react";
 import { FC, ReactNode } from "react";
 import { CourseInfo } from "./course-info.section";
@@ -14,7 +14,7 @@ import { RequirementsSection } from "./requirements-section";
 import { GenericSection } from "./generic-section.section";
 import { ShareSection } from "./share-section";
 
-import AuthorDetail from "../../../../../components/author-detail/author-detail.component";
+import AuthorCard from "../../../../../components/author-card/author-card.component";
 import { CourseProgramSection } from "./course-program.section";
 import PageFilters from "@/components/page-filters/page-filters.component";
 import { useSearchParams } from "next/navigation";
@@ -96,11 +96,11 @@ export const CourseDetail: FC<Props> = ({ children }) => {
           <div className="space-y-6">
             { author
               ? (
-                <AuthorDetail name={author.name} about={author.about} profileImg={author.profileImg}> 
+                <AuthorCard name={author.name} about={author.about} profileImg={author.profileImg}> 
                   <AuthorData Icon={Star} data={"Calificación del instructor: 4.5"} />
                   <AuthorData Icon={User} data={"12 Estudiantes"}  />
                   <AuthorData Icon={BookOpen} data={"5 Cursos"}  />
-                </AuthorDetail>
+                </AuthorCard>
               )
               : (
                 <TempError element="author section" reason="la api no esta enviando info del autor"/>
