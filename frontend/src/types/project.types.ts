@@ -24,13 +24,14 @@ export type ProjectDetails = {
 }
 
 export type ProjectFormData = {
-  // id?: string | null
   userId: string
   general: ProjectInfo
   details: ProjectDetails
 }
 
-export type Project = RequiredProperty<ProjectInfo & ProjectDetails>
+export type Project =
+  & RequiredProperty<ProjectInfo & ProjectDetails>
+  & { id?: string}
 
 type TInstructorInfo = {
   name: string,

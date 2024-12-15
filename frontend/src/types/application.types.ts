@@ -40,6 +40,7 @@ export type ApplicationFormData = {
 }
 
 type ApplicationOptionalFields = Partial<{
+  id?: string
   reviews?: TReview[]
   author?: AuthorInfo
 } & Rating>

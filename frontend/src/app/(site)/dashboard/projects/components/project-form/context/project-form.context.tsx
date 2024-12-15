@@ -1,16 +1,17 @@
 "use client"
 
-import { createContext, ReactNode, Dispatch } from "react"
-import { ProjectFormData } from "@/types/project.types";
-import { useReducer } from "react";
+import { useParams } from "next/navigation";
+import { useEffect, useCallback, useReducer, createContext, ReactNode, Dispatch } from "react"
+
+
+import useStore from "@/contexts/store/use-store.hook";
 import projectFormReducer, { PROJECT_FORM_INITIAL_STATE } from "./project-form.reducer";
 import { ProjectFormActions } from "./project-form.actions";
-import { useCallback } from "react";
-import { useEffect } from "react";
-import { breakProject } from "./project-form.acl";
-import { Project } from "@/types/project.types";
-import { useParams } from "next/navigation";
+import { breakProject, groupProject } from "./project-form.acl";
 import { setGeneralData, setDetailsData } from "./project-form.actions";
+
+import { User } from "@/contexts/store/store.types";
+import { Project, ProjectFormData } from "@/types/project.types";
 
 type Props = {
   children: ReactNode[]
@@ -19,7 +20,7 @@ type Props = {
 type TProjectCtx = {
   state: ProjectFormData,
   dispatch: Dispatch<ProjectFormActions>
-  submitProject: () => Promise<string>
+  submitProject: (additionalData?: object) => Promise<string | undefined>
 }
 export const ProjectCtx = createContext<TProjectCtx | undefined>(undefined)
 
@@ -27,13 +28,13 @@ const ProjectCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
   const params = useParams();
   const projectId = params.id;
+  const [ user ] = useStore<User>("user");
 
   const submitProject = useCallback(async (additionalData = {}) => {
-    const userId = "550e8400-e29b-41d4-a716-446655440000"; // TODO: this should be taken from the global state
-    const formattedData = breakProject({ ...state, ...additionalData, userId });
-    console.log('creating course...', formattedData);
+    const formattedData = breakProject({ ...state, ...additionalData });
+    console.log('creating project...', formattedData);
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}/${user.id}${projectId ? "/" + projectId : ""}`, {
       method: 'post',
       body: JSON.stringify(formattedData),
       headers: {
@@ -42,33 +43,26 @@ const ProjectCtxProvider = ({ children }: Props) => {
     });
 
     const createdProject: Project = await res.json();
-    console.log('createdProject: ', createdProject);
+    console.log("created project: ", createdProject);
 
-    // este id no existe en el type. ponerlo luego.
-    // @ts-ignore: Unreachable code error
     return createdProject.id
 
-    // const temporaryId = "course-19u3-124-asdad";
-    // window.sessionStorage.setItem("courseForm", JSON.stringify(formattedData))
-    // console.log(window.sessionStorage.getItem("courseForm"));
-    // return temporaryId
-
-  }, [state]);
+  }, [state, user.id, projectId]);
 
   useEffect(() => {
     (async function () {
       try {
         if (!projectId) return;
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/${courseId}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/${projectId}`);
         const projectData = await res.json();
-        // const groupedCourse = groupCourse(courseData);
-        // console.log('groupedCourse: ', groupedCourse);
+        const groupedProject = groupProject(projectData);
+        console.log('groupProject: ', groupProject);
 
-        dispatch(setGeneralData(groupedCourse.general))
-        dispatch(setDetailsData(groupedCourse.general))
+        dispatch(setGeneralData(groupedProject.general))
+        dispatch(setDetailsData(groupedProject.details))
       } catch (err) {
-        console.error("there was an error while getting course data: ", err)
+        console.error("there was an error when trying to get project data: ", err)
       }
     })()
   }, [projectId])

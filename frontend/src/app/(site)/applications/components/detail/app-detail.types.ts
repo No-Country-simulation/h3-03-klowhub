@@ -1,37 +1,23 @@
 import { TDocument, TImage, TVideo } from "@/types/global.types";
 import { ReactNode } from "react";
+import { TApplicationCtx } from "@/app/(site)/dashboard/applications/components/application-form/context/application-form.context";
 
 export type AppProps = {
-    title: string
-    shortDescription: string
-    fullDescription: string
-    rating?: number
-    ratingCount?: number
-    // advantages: string[]
-    coverImg: TImage
-
-    // peechTitle: string
-
-    // peechDescription: string
-    platform: string
-
-    // mobileScreenshot: TImage
-    //
-    // desktopScreenshot: TImage
-    
-    sector: string[];
+  title: string
+  shortDescription: string
+  fullDescription: string
+  rating?: number
+  ratingCount?: number
+  coverImg: TImage
+  platform: string
+  sector: string[];
   assets: (TImage | TVideo | TDocument)[]
-
-    coreContent?: string[];
-
-    toolsAndPlatforms: string[];
-
-    functionalities: string[];
-
-    appIncludes: string[];
-
-    children: ReactNode[];
-  submitApplication?: () => Promise<string>
+  coreContent?: string[];
+  toolsAndPlatforms: string[];
+  functionalities: string[];
+  appIncludes: string[];
+  children: ReactNode[];
+  submitApplication?: TApplicationCtx["submitApplication"]
 }
 
 export type AppDetailHeader = {
