@@ -160,13 +160,25 @@ export class CoursesService {
       ...rest
     } = createCourseDto;
 
+    console.log('CoverImg DTO:', coverImg);
+
     // Manejar la portada
-    let coverImgEntity: Multimedia = null;
-    if (coverImg) {
+    let coverImgEntity: Multimedia | null = null;
+    if (coverImg?.id) {
       coverImgEntity = await this.multimediaRepository.findOne({
         where: { id: coverImg.id },
       });
-      console.log('Cover image found:', coverImgEntity);
+
+      if (!coverImgEntity) {
+        console.log('Cover image not found, creating a new one...');
+        coverImgEntity = this.multimediaRepository.create({
+          id: coverImg.id,
+          fileType: coverImg.fileType,
+          fileMetadata: coverImg.fileMetadata,
+        });
+        await this.multimediaRepository.save(coverImgEntity);
+        console.log('New cover image created:', coverImgEntity);
+      }
     }
 
     // Crear un nuevo curso
@@ -189,7 +201,8 @@ export class CoursesService {
     });
 
     // Verificar el curso antes de guardar
-    console.log('Course before saving:', course);
+    // console.log('Course before saving:', course);
+    console.log('Course before saving:', JSON.stringify(course, null, 2)); // Esto debería mostrar el contenido completo.
 
     try {
       return await this.courseRepository.save(course);
