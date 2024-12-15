@@ -20,6 +20,7 @@ import {
   PDF_FileSize,
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
+import { envs } from 'src/config';
 
 @Injectable()
 export class AppsService {
@@ -206,7 +207,7 @@ export class AppsService {
     let authorInfo = null;
     if (withAuthor) {
       const authorResponse = await this.httpService
-        .get(`http://localhost:3001/users/${app.userId}`)
+        .get(`${envs.msUsersEndpoint}/${app.userId}`)
         .toPromise();
 
       authorInfo = authorResponse.data;
@@ -242,7 +243,7 @@ export class AppsService {
         let authorInfo = null;
         if (withAuthor) {
           const authorResponse = await this.httpService
-            .get(`http://localhost:3001/users/${app.userId}`)
+            .get(`${envs.msUsersEndpoint}/${app.userId}`)
             .toPromise();
 
           authorInfo = authorResponse.data;
