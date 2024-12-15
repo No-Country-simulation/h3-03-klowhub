@@ -33,7 +33,7 @@ const Chat = () => {
               <Image src={chatMock.contacts[0].profileImg.fileMetadata.url} width={50} height={50} alt="" />
             </div>
             <div className="flex flex-col space-y-1 items-start w-4/6">
-              <div>{ chatMock.contacts[0].fullname }</div>
+              <div>{ chatMock.contacts[0].name }</div>
             </div>
           </div>
           <div className="w-1/3"></div>

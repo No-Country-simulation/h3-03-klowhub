@@ -10,7 +10,7 @@ import {
 export class PasswordConstraint implements ValidatorConstraintInterface {
   validate(password: string, args: any) {
     const user = args.object as any; // Obtén el objeto completo
-    const name = user.fullname || ''; // Obtener el nombre del objeto que se valida
+    const name = user.name || ''; // Obtener el nombre del objeto que se valida
     const email = user.email || ''; // Obtener el email del objeto que se valida
 
     const hasUpperCase = /[A-Z]/.test(password);

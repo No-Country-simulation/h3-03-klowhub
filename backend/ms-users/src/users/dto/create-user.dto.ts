@@ -10,7 +10,7 @@ interface FileMetadata {
   created_at: string;
 }
 
-interface ImgProfile {
+interface ProfileImg {
   id: string;
   fileType: string;
   fileMetadata: FileMetadata;
@@ -18,7 +18,7 @@ interface ImgProfile {
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
-  fullname: string;
+  name: string;
 
   @IsEmail()
   @IsNotEmpty()
@@ -29,5 +29,5 @@ export class CreateUserDto {
   password: string;
 
   @IsObject()
-  imgProfile: ImgProfile;
+  profileImg: ProfileImg;
 }

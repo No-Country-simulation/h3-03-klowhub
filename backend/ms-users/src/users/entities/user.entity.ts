@@ -17,7 +17,7 @@ interface FileMetadata {
   created_at: string;
 }
 
-interface ImgProfile {
+interface ProfileImg {
   id: string;
   fileType: string;
   fileMetadata: FileMetadata;
@@ -28,7 +28,7 @@ export class User {
   id: string;
 
   @Column()
-  fullname: string;
+  name: string;
 
   @Column()
   email: string;
@@ -55,7 +55,7 @@ export class User {
       },
     },
   })
-  imgProfile: ImgProfile;
+  profileImg: ProfileImg;
 
   @OneToOne(() => Seller, (seller) => seller.user, { nullable: true })
   @JoinColumn()

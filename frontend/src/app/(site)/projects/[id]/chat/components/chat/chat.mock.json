@@ -2,7 +2,7 @@
   "contacts": [
     {
       "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
-      "fullname": "Jhon Doe",
+      "name": "Jhon Doe",
       "profileImg": {
         "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
         "fileType": "image",
@@ -24,7 +24,7 @@
     },
     {
       "id": "a1ea94ba-4e95sad-4f63-be60-36d265ddasddc9",
-      "fullname": "Maria Antonieta",
+      "name": "Maria Antonieta",
       "profileImg": {
         "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
         "fileType": "image",
@@ -46,7 +46,7 @@
     },
     {
       "id": "342hkjd-4asdas95sad-21adahjkf63-be60-qasd32198",
-      "fullname": "Malena",
+      "name": "Malena",
       "profileImg": {
         "id": "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
         "fileType": "image",

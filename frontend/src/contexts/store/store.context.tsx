@@ -12,7 +12,7 @@ export const STORE_INITIAL_STATE = {
   user: {
     id: "",
     email: "",
-    fullname: "",
+    name: "",
     jwtToken: "",
   },
   ui: {

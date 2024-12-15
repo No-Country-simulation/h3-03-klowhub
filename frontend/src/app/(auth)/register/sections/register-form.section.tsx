@@ -42,8 +42,8 @@ const RegisterForm = () => {
                     <input type="text"
                         placeholder="Nombre completo"
                         autoComplete="off"
-                        {...register('fullname', { required: true })} className={`w-full h-[45px] p-3 rounded-lg`} />
-                    {errors.fullname?.type === 'required' && (
+                        {...register('name', { required: true })} className={`w-full h-[45px] p-3 rounded-lg`} />
+                    {errors.name?.type === 'required' && (
                         <div className="z-10 lg:right-6 right-4 top-12 absolute w-full text-[#ffffff] font-semibold text-sm bg-card p-3.5 rounded-md flex gap-5">
                             <div className="absolute -top-2 left-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-card"></div>
                             <p>Complete este campo</p>

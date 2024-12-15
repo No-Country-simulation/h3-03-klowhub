@@ -5,7 +5,7 @@ import { CheckCheck } from "lucide-react";
 import { ContactCard as TContactCard } from "../../chat.types";
 import { useSearchParams } from "next/navigation";
 
-const ContactCard = ({ id, fullname, profileImg, messages }: TContactCard) => {
+const ContactCard = ({ id, name, profileImg, messages }: TContactCard) => {
   const searchParams = useSearchParams();
   const currentUser = searchParams.get("user");
 
@@ -18,7 +18,7 @@ const ContactCard = ({ id, fullname, profileImg, messages }: TContactCard) => {
         <Image src={profileImg.fileMetadata.url} width={50} height={50} alt="" />
       </div>
       <div className="flex flex-col space-y-1 items-start w-4/6">
-        <div>{ fullname }</div>
+        <div>{ name }</div>
         { messages &&
           <div>{ messages[0].text }</div>
         }
