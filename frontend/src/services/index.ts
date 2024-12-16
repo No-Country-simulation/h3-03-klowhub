@@ -1,4 +1,4 @@
-import { TLoginData, TRegisterData } from "@/types/service-types";
+import { TCreateBoardData, TCreateListData, TInviteBoardMemberData, TLoginData, TRegisterData } from "@/types/service-types";
 
 const LOGIN_URL = `${process.env.NEXT_PUBLIC_AUTH_URL}/login`;
 const REGISTER_URL = `${process.env.NEXT_PUBLIC_AUTH_URL}/register`;
@@ -34,9 +34,44 @@ const register = async (data: TRegisterData) => {
   });
 };
 
+// TRELLO API CALLS
+const API_TRELLO_URL = "https://api.trello.com";
+const TRELLO_API_KEY = process.env.NEXT_PUBLIC_TRELLO_API_KEY;
+const TRELLO_API_TOKEN = process.env.NEXT_PUBLIC_TRELLO_API_TOKEN;
+
+const createBoard = async (data: TCreateBoardData) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/boards/?name=${data.boardName}&defaultLists=false&prefs_permissionLevel=public&prefs_background=675dd7e068197fb1e0a2f7f4&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'POST',
+    }
+  );
+};
+
+const createList = async (data: TCreateListData) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/lists?name=${data.listName}&pos=bottom&idBoard=${data.boardId}&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'POST',
+    }
+  );
+};
+
+const inviteBoardMemberByEmail = async (data: TInviteBoardMemberData) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/boards/${data.boardId}/members?email=${data.memberEmail}&allowBillableGuest=true&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'PUT',
+    }
+  );
+};
+
 const services = {
   login,
   register,
+  createBoard,
+  createList,
+  inviteBoardMemberByEmail
 };
 
 export default services;
