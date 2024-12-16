@@ -9,7 +9,8 @@ import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 import { getQueryParams } from "@/utils/route.utils";
 import { TQuickView } from "@/components/product-card/product-card.types";
-import authorsMock from "@/mocks/authors.mock.json"
+import { transformApp, transformAuthor } from "./applications-page.acl";
+import { ApplicationWithFullImgs } from "@/types/application.types";
 
 const filters = [
   platform,
@@ -20,14 +21,14 @@ const filters = [
 ];
 
 // const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
-const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}`;
+const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
 
 const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint);
-    const apps: TQuickView[] = await res.json();
-    const appsWithAuthors = apps.map(app => ({ ...app, author: authorsMock[0] }));
-    return appsWithAuthors
+    const apps: ApplicationWithFullImgs[] = await res.json();
+    const transformedApps: TQuickView[] = apps.map(app => transformApp(app));
+    return transformedApps
   } catch (err) {
     console.log("there was an error when requesting apps: ", err);
   }

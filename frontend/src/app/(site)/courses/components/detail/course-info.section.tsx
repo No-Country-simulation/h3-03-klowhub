@@ -1,24 +1,17 @@
 'use client';
 
-//import { useState } from 'react';
 import { FC, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 import { CourseHeader } from './detail-header.section';
 import { CourseProps } from '@/types/course-detail-props';
-import { LessonList } from './lesson-list-section';
-import AuthorInfo from './author-section';
-import { ObjectivesList } from './objectives.section';
 import { useSearchParams, usePathname } from 'next/navigation';
 import RouteBtn from '@/components/route-btn/route-btn.component';
 import { useRouter } from 'next/navigation';
 import Greeter from "@/components/greeter/greeter.component";
 import { updateSearchParams } from '@/utils/client.utils';
 import { buttonVariants } from '@/components/ui/button';
-
-import { instructor } from '@/mocks/instructor.mock';
-
 
 export const CourseInfo: FC<CourseProps> = ({
   submitCourse,
@@ -27,21 +20,17 @@ export const CourseInfo: FC<CourseProps> = ({
     rating,
     ratingCount,
     freelessons, // comentar en caso de error
-    learningSubjects,
     fullDescription,
     children,
     promotionalVideo
 }) => {
   const [ newCourseId, setNewCourseId ] = useState<string>()
-  console.log('promotionalVideo: ', promotionalVideo);
-
-    const searchParams = useSearchParams();
-    const pathname = usePathname();
+  
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const section = searchParams.get("section");
   const router = useRouter();
-
-    const isExpanded = searchParams.get('isExpanded') === 'true';
-
+  const isExpanded = searchParams.get('isExpanded') === 'true';
 
   return (
     <div className="md:col-span-2 space-y-4">
@@ -103,10 +92,14 @@ export const CourseInfo: FC<CourseProps> = ({
             type="button"
             className="flex-1 md:grow-0"
             onClick={async () => {
-              if (submitCourse) {
-                const courseId = await submitCourse() 
-                setNewCourseId(courseId)
-              };
+              try {
+                if (submitCourse) {
+                  const courseId = await submitCourse() 
+                  setNewCourseId(courseId)
+                };
+              } catch (err) {
+                console.error("error when trying to get course data: ", err)
+              }
             }}
           >
             Publicar

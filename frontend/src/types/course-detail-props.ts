@@ -59,5 +59,5 @@ export interface CourseProps {
     freelessons: Lesson[];
     prevRequirements: string[];
     children: ReactNode[];
-  submitCourse?: () => Promise<string>
+  submitCourse?: () => Promise<string | undefined>
 }

@@ -7,9 +7,9 @@ type Props = {
   children: ReactNode
 }
 
-const CreateCourseLayout = ({ children }: Props) => {
+const CreateApplicationLayout= ({ children }: Props) => {
   return (
-    <main>
+    <main className="container">
       <BreadCrumb />
       <Suspense>
         <FormPageHeader>Lanza tu curso: Comparte tu conocimiento</FormPageHeader>
@@ -19,4 +19,4 @@ const CreateCourseLayout = ({ children }: Props) => {
   )
 };
 
-export default CreateCourseLayout
+export default CreateApplicationLayout

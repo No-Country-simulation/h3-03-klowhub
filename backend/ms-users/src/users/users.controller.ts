@@ -7,12 +7,12 @@ import { UserResponseDto } from './dto/user-response.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post(':id/switch-to-seller')
-  async switchToSeller(
+  @Post(':id/becomeseller')
+  async becomeSeller(
     @Param('id') id: string,
     @Body() createSellerDto: CreateSellerDto,
   ): Promise<UserResponseDto> {
-    return this.usersService.switchToSeller(id, createSellerDto);
+    return this.usersService.becomeSeller(id, createSellerDto);
   }
 
   @Get()

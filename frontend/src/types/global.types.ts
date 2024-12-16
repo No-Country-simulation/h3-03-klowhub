@@ -8,8 +8,6 @@ export type AuthorInfo = {
   about: string;
   profileImg: TImage;
   rating?: number;
-  students?: number;
-  courses?: number;
   profileLink?: string;
 }
 
@@ -83,3 +81,8 @@ export type FormAdvice = {
   header: string
   text: string
 } & ImageProps
+
+export type Action<T, P> = {
+  type: T
+  payload: P
+}

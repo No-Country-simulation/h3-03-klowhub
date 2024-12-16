@@ -9,7 +9,7 @@ type Props = {
 
 const CreateProjectLayout = ({ children }: Props) => {
   return (
-    <main>
+    <main className="flex flex-col gap-5">
       <BreadCrumb />
       <Suspense>
         <FormPageHeader>Publica tu proyecto</FormPageHeader>

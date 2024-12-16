@@ -13,14 +13,22 @@ export class UsersService {
     @InjectRepository(Seller) private sellersRepository: Repository<Seller>,
   ) {}
 
-  async switchToSeller(
+  async becomeSeller(
     userId: string,
     createSellerDto: CreateSellerDto,
   ): Promise<UserResponseDto> {
     // Verificar que el usuario existe
-    const user = await this.usersRepository.findOne({ where: { id: userId } });
+    const user = await this.usersRepository.findOne({
+      where: { id: userId },
+      relations: ['seller'],
+    });
     if (!user) {
       throw new NotFoundException('User not found');
+    }
+
+    // Verificar si el rol ya es 'vendor'
+    if (user.role === 'vendor') {
+      throw new Error('User is already a vendor'); // Lanza una excepción si ya es vendedor
     }
 
     // Cambiar el rol a 'vendor'
@@ -34,9 +42,16 @@ export class UsersService {
     });
     await this.sellersRepository.save(seller);
 
-    return new UserResponseDto(user); // Retornar el usuario actualizado
-  }
+    const userSeller = await this.usersRepository.findOne({
+      where: { id: user.id },
+      relations: ['seller'], // Asegúrate de incluir las relaciones necesarias
+    });
+    if (!userSeller) {
+      throw new NotFoundException('User not found');
+    }
 
+    return new UserResponseDto(userSeller);
+  }
   async findAll(): Promise<UserResponseDto[]> {
     const users = await this.usersRepository.find({ relations: ['seller'] });
     console.log('USERS', users);
@@ -45,9 +60,9 @@ export class UsersService {
         new UserResponseDto({
           id: user.id,
           email: user.email,
-          fullname: user.fullname,
+          name: user.name,
           role: user.role,
-          imgProfile: user.imgProfile, // Incluye imgProfile
+          profileImg: user.profileImg, // Incluye profileImg
           seller: user.seller,
         }),
     ); // Mapea cada usuario al DTO
@@ -77,9 +92,9 @@ export class UsersService {
     return new UserResponseDto({
       id: user.id,
       email: user.email,
-      fullname: user.fullname,
+      name: user.name,
       role: user.role,
-      imgProfile: user.imgProfile, // Incluye imgProfile
+      profileImg: user.profileImg, // Incluye profileImg
       seller: user.seller, // Incluye seller
     });
   }

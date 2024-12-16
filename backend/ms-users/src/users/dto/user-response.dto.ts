@@ -24,7 +24,7 @@ export class FileMetadata {
   created_at: string;
 }
 
-export class ImgProfile {
+export class ProfileImg {
   @Expose()
   id: string;
 
@@ -67,14 +67,14 @@ export class UserResponseDto {
   email: string;
 
   @Expose()
-  fullname: string;
+  name: string;
 
   @Expose()
   role: string;
 
   @Expose()
-  @Type(() => ImgProfile) // Mapea correctamente el perfil de imagen
-  imgProfile: ImgProfile;
+  @Type(() => ProfileImg) // Mapea correctamente el perfil de imagen
+  profileImg: ProfileImg;
 
   @Expose()
   @Type(() => Seller) // Mapea correctamente el vendedor

@@ -1,10 +1,6 @@
 import projectFormTypes from "./project-form.types";
 import { ProjectInfo, ProjectDetails } from "@/types/project.types";
-
-export type Action<T, P> = {
-  type: T
-  payload: P
-}
+import { Action } from "@/types/global.types";
 
 type SetGeneralData = Action<projectFormTypes.SET_GENERAL_DATA, ProjectInfo>
 type SetDetailsData = Action<projectFormTypes.SET_DETAILS_DATA, ProjectDetails>

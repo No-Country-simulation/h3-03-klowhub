@@ -40,9 +40,17 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    const savedUser = await this.userRepository.save(user);
+    //const savedUser =
+    await this.userRepository.save(user);
 
-    return new UserResponseDto(savedUser);
+    return new UserResponseDto({
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      profileImg: user.profileImg, // Incluye profileImg
+      seller: user.seller,
+    });
   }
 
   async login(
@@ -71,9 +79,9 @@ export class AuthService {
       user: new UserResponseDto({
         id: user.id,
         email: user.email,
-        fullname: user.fullname,
+        name: user.name,
         role: user.role,
-        imgProfile: user.imgProfile, // Incluye imgProfile
+        profileImg: user.profileImg, // Incluye profileImg
         seller: user.seller,
       }),
     }; // Retornar el usuario sin la contraseña

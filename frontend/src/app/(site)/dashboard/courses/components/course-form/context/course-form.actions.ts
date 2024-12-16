@@ -1,11 +1,7 @@
+import { Action } from "@/types/global.types";
 import courseFormTypes from "./course-form.types";
 import { CourseInfo, CourseDetails, Module } from "@/types/courses.types";
 import { Promotion } from "@/types/global.types";
-
-export type Action<T, P> = {
-  type: T
-  payload: P
-}
 
 type SetGeneralData = Action<courseFormTypes.SET_GENERAL_DATA, CourseInfo>
 type SetDetailsData = Action<courseFormTypes.SET_DETAILS_DATA, CourseDetails>

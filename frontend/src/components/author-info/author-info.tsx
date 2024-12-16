@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AuthorInfo as TAuthorInfo } from "@/types/global.types";
+import { BTUser } from "@/types/user.types";
 
 type Props = {
-  data: TAuthorInfo
+  data: BTUser
 }
 
 const AuthorInfo: React.FC<Props> = ({ data }) => {
@@ -21,7 +21,7 @@ const AuthorInfo: React.FC<Props> = ({ data }) => {
       </div>
       <div className="space-y-2 md:space-y-0">
         <p className="font-semibold text-center md:text-left">{data.name}</p>
-        <p className="text-sm text-gray-400">{data.about}</p>
+        <p className="text-sm text-gray-400">{data.seller?.about}</p>
       </div>
     </div>
   )

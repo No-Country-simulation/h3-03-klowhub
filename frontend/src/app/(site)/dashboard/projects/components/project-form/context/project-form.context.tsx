@@ -3,8 +3,8 @@
 import { useParams } from "next/navigation";
 import { useEffect, useCallback, useReducer, createContext, ReactNode, Dispatch } from "react"
 
-
 import useStore from "@/contexts/store/use-store.hook";
+import useSessionStore from "@/contexts/session-store/use-session-store.hook";
 import projectFormReducer, { PROJECT_FORM_INITIAL_STATE } from "./project-form.reducer";
 import { ProjectFormActions } from "./project-form.actions";
 import { breakProject, groupProject } from "./project-form.acl";
@@ -29,9 +29,10 @@ const ProjectCtxProvider = ({ children }: Props) => {
   const params = useParams();
   const projectId = params.id;
   const [ user ] = useStore<User>("user");
+  const [ projectForm, setProjectForm ] = useSessionStore<ProjectFormData>("projectForm");
 
   const submitProject = useCallback(async (additionalData = {}) => {
-    const formattedData = breakProject({ ...state, ...additionalData });
+    const formattedData = breakProject({ ...state, ...additionalData }, true);
     console.log('creating project...', formattedData);
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}/${user.id}${projectId ? "/" + projectId : ""}`, {
@@ -54,10 +55,14 @@ const ProjectCtxProvider = ({ children }: Props) => {
       try {
         if (!projectId) return;
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/${projectId}`);
+        // const endpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/${projectId}`;
+        const endpoint = "/api/projects/1";
+
+        const res = await fetch(endpoint);
         const projectData = await res.json();
         const groupedProject = groupProject(projectData);
-        console.log('groupProject: ', groupProject);
+
+        setProjectForm(groupedProject)
 
         dispatch(setGeneralData(groupedProject.general))
         dispatch(setDetailsData(groupedProject.details))
@@ -65,7 +70,7 @@ const ProjectCtxProvider = ({ children }: Props) => {
         console.error("there was an error when trying to get project data: ", err)
       }
     })()
-  }, [projectId])
+  }, [projectId, setProjectForm])
 
   useEffect(() => { console.log('project form state', state) }, [state])
 

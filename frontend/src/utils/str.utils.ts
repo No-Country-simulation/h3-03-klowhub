@@ -17,3 +17,6 @@ export const getYoutubeId = (url: string) => {
   return videoId
 };
 
+export const strForDisplay = (str: string) => {
+  return str.slice(0, 1).toUpperCase() + str.slice(1) 
+};

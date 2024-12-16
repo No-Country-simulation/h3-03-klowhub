@@ -1,17 +1,12 @@
 import StoreCtx from "./store.context";
 import { StoreKeys } from "./store.context";
-import { useState, useEffect, useCallback, useContext } from "react"
+import { useState, useEffect, useContext } from "react"
 
 const useStore = <T extends object>(key: string, initialValue?: T): [ T, (value: T) => void, boolean ] => {
   const { store, setStore } = useContext(StoreCtx);
 
-  const initializeState = useCallback(() => {
-    const storedValue = window.localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : initialValue
-  }, [key, initialValue]);
-
   const [ isLoading, setIsLoading ] = useState(false)
-  const [ localValue, setLocalValue ] = useState<T | undefined>(initializeState)
+  const [ localValue, setLocalValue ] = useState<T | undefined>()
 
   useEffect(() => {
     setIsLoading(true)
@@ -24,6 +19,12 @@ const useStore = <T extends object>(key: string, initialValue?: T): [ T, (value:
 
     setIsLoading(false)
   }, [key, localValue, setStore])
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem(key);
+    const parsedStoreValue = storedValue ? JSON.parse(storedValue) : initialValue;
+    setLocalValue(parsedStoreValue)
+  }, [initialValue, key])
 
   return [ store[key as StoreKeys] !== undefined ? (store[key as StoreKeys] as T) : (localValue as T), setLocalValue, isLoading]
 };

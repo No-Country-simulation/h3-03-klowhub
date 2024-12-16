@@ -1,5 +1,5 @@
 import ProjectForm from "../components/project-form/project-form.component";
 
-const CreateCoursePage = async () => <ProjectForm />;
+const CreateProjectPage = async () => <ProjectForm />;
 
-export default  CreateCoursePage
+export default CreateProjectPage
