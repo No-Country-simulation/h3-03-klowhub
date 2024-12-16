@@ -12,7 +12,7 @@ export class UsersService {
     @InjectRepository(Seller) private sellersRepository: Repository<Seller>,
   ) {}
 
-  async switchToSeller(
+  async becomeSeller(
     userId: string,
     createSellerDto: CreateSellerDto,
   ): Promise<Omit<Seller,"user">> {

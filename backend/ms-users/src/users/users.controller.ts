@@ -8,12 +8,12 @@ import { Seller } from './entities/seller.entity';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post(':id/switch-to-seller')
-  async switchToSeller(
+  @Post(':id/becomeseller')
+  async becomeSeller(
     @Param('id') id: string,
     @Body() createSellerDto: CreateSellerDto,
   ): Promise<Omit<Seller, "user">> {
-    return this.usersService.switchToSeller(id, createSellerDto);
+    return this.usersService.becomeSeller(id, createSellerDto);
   }
 
   @Get()
