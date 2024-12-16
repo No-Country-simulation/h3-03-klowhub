@@ -9,17 +9,17 @@ import { Message } from "src/chat/entities/message.entity";
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: '',
-      host: envs.dbHost, // Cambia esto si es necesario
-      port: envs.dbPort,
-      username: envs.dbUsername, // Cambia a tu usuario de PostgreSQL
-      password: envs.dbPassword, // Cambia a tu contraseña de PostgreSQL
-      database: envs.dbDatabaseName, // Nombre de tu base de datos
+      host: envs.dbHost || 'db', // Cambia esto si es necesario
+      port: envs.dbPort || 5432,
+      username: envs.dbUsername || 'root', // Cambia a tu usuario de PostgreSQL
+      password: envs.dbPassword || 'root', // Cambia a tu contraseña de PostgreSQL
+      database: envs.dbDatabaseName || 'klowhub', // Nombre de tu base de datos
       entities: [Message],
       synchronize: true, // No usar en producción
       logging: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      // ssl: {
+      //   rejectUnauthorized: false,
+      // },
     }),
   ],
 })

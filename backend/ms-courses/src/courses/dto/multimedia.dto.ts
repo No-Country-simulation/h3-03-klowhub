@@ -1,5 +1,6 @@
 // import { Transform } from 'class-transformer';
 // import { TransformFnParams } from 'class-transformer';
+import { Type } from 'class-transformer';
 import {
   IsString,
   IsNumber,
@@ -103,6 +104,19 @@ export class MultimediaDto {
   @IsEnum(['video', 'image', 'document'])
   fileType: 'video' | 'image' | 'document';
 
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => (obj: { fileType: 'video' | 'image' | 'document' }) => {
+    // Aquí, decidimos cuál tipo de DTO aplicar según fileType
+    if (obj.fileType === 'video') {
+      return VideoDto;
+    } else if (obj.fileType === 'image') {
+      return ImageDto;
+    } else if (obj.fileType === 'document') {
+      return DocumentDto;
+    }
+    return null; // Por si acaso no se encuentra un tipo válido
+  })
   @ValidateNested()
   fileMetadata: VideoDto | ImageDto | DocumentDto;
 }
