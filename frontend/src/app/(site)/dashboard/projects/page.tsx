@@ -27,7 +27,7 @@ const MyProjectsPage = () => {
                     <div className="flex gap-5">
 
                         <Button variant={"outline"} className="sm:w-[250px] w-full text-primary-200 border-1 border-primary-200">
-                            <Link href={"explore-projects"}>Explorar proyectos</Link>
+                            <Link href={"/projects"}>Explorar proyectos</Link>
 
                         </Button>
                         <Button className="sm:w-[250px] w-full">
