@@ -25,15 +25,15 @@ export const AppInfo: FC<AppProps> = ({
 }) => {
 
   const [ newApplicationId, setNewApplicationId ] = useState<string>()
-    const searchParams = useSearchParams();
-    const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const section = searchParams.get("section");
   const router = useRouter();
 
-    const isExpanded = searchParams.get('isExpanded') === 'true';
+  const isExpanded = searchParams.get('isExpanded') === 'true';
 
   return ( 
-    <div className="md:col-span-2 space-y-4 pb-20">
+    <div className="md:col-span-2 space-y-4">
       { newApplicationId &&
         <Greeter 
           header="¡Felicitaciones! Tu aplicación se publicó con éxito"

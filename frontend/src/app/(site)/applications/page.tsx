@@ -3,7 +3,7 @@ import SearchFilter from "@/components/search-filter/search-filter.component";
 import Pager from "@/components/pager/pager.component";
 
 import { sector, platform, language, functionalities, toolsAndPlatforms } from "@/consts/filters.consts";
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import ProductCard from "@/components/product-card/product-card.component";
 import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import { TImage, TVideo } from "@/types/global.types";
 import { useKeenSlider } from "keen-slider/react";
+import useIsClientCtx from "@/contexts/is-client/use-is-client.hook";
 
 export const AppHeader: FC<AppDetailHeader> = ({
   title,
@@ -17,6 +18,7 @@ export const AppHeader: FC<AppDetailHeader> = ({
   const [currentAsset, setCurrentAsset] = useState<TImage | TVideo>(coverImg);
   const [currentSlide, setCurrentSlide] = useState(0);
   const mediaAssets = assets.filter(ast => ast.fileType !== "document");
+  const isClientCtx = useIsClientCtx();
 
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
     loop: true,
@@ -39,7 +41,7 @@ export const AppHeader: FC<AppDetailHeader> = ({
 
   const slidesCount = mediaAssets.length + 1;
 
-  return (
+  return isClientCtx && (
     <>
       <h3 className="font-semibold text-sm">{title}</h3>
       <div className="flex items-center gap-2">

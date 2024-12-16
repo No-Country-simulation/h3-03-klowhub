@@ -6,7 +6,7 @@ import { PROJECT_INFO_INITIAL_STATE } from "./general-form.consts";
 import { ProjectInfo } from "@/types/project.types";
 import Input from "@/components/input/input.component";
 import { sector, experienceLevel, workMethodology, requiredSkills } from "@/consts/filters.consts";
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/project-form.actions";
 import useProjectContext from "../../hooks/use-project-context.hook";

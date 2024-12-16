@@ -10,6 +10,7 @@ import MediaForm from "./components/media-form/media-form.component";
 import PromotionsSection from "./components/promotions-section/promotions-section.component";
 import { AppDetail } from "@/app/(site)/applications/components/detail/app-detail.component";
 import { Suspense } from "react";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 
 const ApplicationForm = async () => {
   const { section } = await getQueryParams();
@@ -41,7 +42,12 @@ const ApplicationForm = async () => {
               { section === "media" && <MediaForm /> }
               { section === "promotion" && <PromotionsSection /> }
               <Suspense>
-                { section === "preview" && <AppDetail /> }
+                { 
+                  section === "preview" && 
+                    <IsClientProvider>
+                      <AppDetail /> 
+                    </IsClientProvider>
+                }
               </Suspense>
             </ApplicationCtxProvider>
           </div>

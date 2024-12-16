@@ -6,8 +6,8 @@ export type User = {
   email: string
   name: string
   jwtToken: string
-  seller: BTSeller
-  profileImg: TImage
+  seller: BTSeller | null
+  profileImg: TImage | null
 }
 
 export type SellerUser = Required<User>

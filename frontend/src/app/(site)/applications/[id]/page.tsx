@@ -1,6 +1,7 @@
 import { ApplicationWithFullImgs } from "@/types/application.types";
 import { AppDetail } from "../components/detail/app-detail.component";
 import { Suspense } from "react";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 
 const endpoint = process.env.NEXT_PUBLIC_APPLICATIONS_URL;
 
@@ -24,7 +25,9 @@ const page = async ({ params }: Props) => {
 	return (
 		<main>
       <Suspense>
-        <AppDetail serverSideData={application} />
+        <IsClientProvider>
+          <AppDetail serverSideData={application} />
+        </IsClientProvider>
       </Suspense>
 		</main>
 	);

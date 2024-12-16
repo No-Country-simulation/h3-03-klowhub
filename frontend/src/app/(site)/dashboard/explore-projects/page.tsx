@@ -1,6 +1,6 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import SearchFilter from "@/components/search-filter/search-filter.component";
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import { Inter } from "next/font/google";
 import { sector, platform, language, functionalities, toolsAndPlatforms } from "@/consts/filters.consts";
 import ProjectCard from "./components/project-card.component";

@@ -3,7 +3,7 @@ import ProductCard from "@/components/product-card/product-card.component";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import Pager from "@/components/pager/pager.component";
 
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import { categories } from "@/mocks/categories.mocks";
 import { getQueryParams } from "@/utils/route.utils";
 import SideModal from "@/components/side-modal/side-modal.component";
