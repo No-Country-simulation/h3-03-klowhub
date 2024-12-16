@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -47,7 +48,7 @@ export class Course {
   sector: string[];
 
   @Column({ type: 'simple-array', name: 'toolsAndPlatform', nullable: true }) // Cambiado a simple-array
-  toolsAndPlatform: string[];
+  toolsAndPlatforms: string[];
 
   @Column({ type: 'simple-array', name: 'tags', nullable: true }) // Cambiado a simple-array
   tags: string[];
@@ -63,7 +64,10 @@ export class Course {
 
   //@Column({ type: 'text', name: 'coverImg' }) // Cambiado a texto para imágenes
   // coverImg: string;
-  @ManyToOne(() => Multimedia)
+  // @ManyToOne(() => Multimedia)
+  // coverImg: Multimedia;
+  @ManyToOne(() => Multimedia, (multimedia) => multimedia.course)
+  @JoinColumn()
   coverImg: Multimedia;
 
   @Column('jsonb', { name: 'promotion', nullable: true }) // Cambiado a simple-array
@@ -84,6 +88,8 @@ export class Course {
   @OneToMany(() => CourseModule, (module) => module.course, { cascade: true })
   modules: CourseModule[];
 
-  @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
+  @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
+    cascade: true,
+  })
   multimedia: Multimedia[];
 }

@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Course } from './course.entity';
+import { Lesson } from './lesson.entity';
 
 export interface Video {
   url: string;
@@ -49,8 +50,16 @@ export class Multimedia {
   })
   fileType: 'video' | 'image' | 'document'; // Indica el tipo de archivo
 
+  @Column({ nullable: true }) // Declarar explícitamente courseId como clave foránea
+  courseId: string;
+
   @ManyToOne(() => Course, (course) => course.multimedia, {
     onDelete: 'CASCADE',
   })
   course: Course;
+
+  @ManyToOne(() => Lesson, (lesson) => lesson.multimedia, {
+    onDelete: 'CASCADE',
+  })
+  lesson: Lesson; // Relación con Lesson, indicando que un Multimedia pertenece a una Lesson
 }

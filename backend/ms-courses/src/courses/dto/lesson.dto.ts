@@ -1,4 +1,14 @@
-import { IsString, IsBoolean, IsOptional, IsNotEmpty } from 'class-validator';
+import {
+  IsString,
+  IsBoolean,
+  IsOptional,
+  IsNotEmpty,
+  IsArray,
+  ValidateNested,
+} from 'class-validator';
+import { DocumentDto, VideoDto } from './multimedia.dto';
+
+import { Type } from 'class-transformer';
 
 export class CreateLessonDto {
   @IsString()
@@ -12,14 +22,24 @@ export class CreateLessonDto {
   @IsNotEmpty()
   description: string;
 
-  @IsString()
-  @IsOptional()
-  documents: string[];
+  // @IsString()
+  // @IsOptional()
+  // documents?: DocumentDto[];
 
-  @IsString()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => DocumentDto)
   @IsOptional()
-  video?: string[];
+  documents?: DocumentDto[];
 
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => VideoDto)
+  @IsOptional()
+  video?: VideoDto[];
+  // @IsString()
+  // @IsOptional()
+  // video?: string[];
   @IsBoolean()
   @IsOptional()
   freeLesson: boolean;
