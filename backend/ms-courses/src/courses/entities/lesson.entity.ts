@@ -4,10 +4,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
+  // OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Multimedia } from './multimedia.entity';
+// import { Multimedia } from './multimedia.entity';
 
 @Entity()
 export class Lesson {
@@ -40,9 +40,9 @@ export class Lesson {
   @JoinColumn()
   module: CourseModule;
 
-  @OneToMany(() => Multimedia, (multimedia) => multimedia.lesson, {
-    cascade: true, // Esto asegura que al crear o actualizar una lección, los multimedia asociados se manejen correctamente
-    nullable: true,
-  })
-  multimedia: Multimedia[];
+  // @OneToMany(() => Multimedia, (multimedia) => multimedia.lesson, {
+  //   cascade: true, // Esto asegura que al crear o actualizar una lección, los multimedia asociados se manejen correctamente
+  //   nullable: true,
+  // })
+  // multimedia: Multimedia[];
 }

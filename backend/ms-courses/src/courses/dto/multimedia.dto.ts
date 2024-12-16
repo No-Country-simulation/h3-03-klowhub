@@ -1,6 +1,6 @@
 // import { Transform } from 'class-transformer';
 // import { TransformFnParams } from 'class-transformer';
-import { Type } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import {
   IsString,
   IsNumber,
@@ -92,6 +92,11 @@ export class DocumentDto {
   created_at: string;
 }
 
+type FileMetadata =
+  | { fileType: 'video'; metadata: VideoDto }
+  | { fileType: 'image'; metadata: ImageDto }
+  | { fileType: 'document'; metadata: DocumentDto };
+
 // DTO para Multimedia
 export class MultimediaDto {
   @IsString()
@@ -106,17 +111,22 @@ export class MultimediaDto {
 
   @IsOptional()
   @ValidateNested()
-  @Type(() => (obj: { fileType: 'video' | 'image' | 'document' }) => {
-    // Aquí, decidimos cuál tipo de DTO aplicar según fileType
-    if (obj.fileType === 'video') {
-      return VideoDto;
-    } else if (obj.fileType === 'image') {
-      return ImageDto;
-    } else if (obj.fileType === 'document') {
-      return DocumentDto;
-    }
-    return null; // Por si acaso no se encuentra un tipo válido
-  })
-  @ValidateNested()
   fileMetadata: VideoDto | ImageDto | DocumentDto;
+
+  // Método estático para transformar dinámicamente
+  static transform<T extends FileMetadata>(
+    metadata: T['metadata'],
+    fileType: T['fileType'],
+  ): VideoDto | ImageDto | DocumentDto {
+    switch (fileType) {
+      case 'video':
+        return plainToInstance(VideoDto, metadata);
+      case 'image':
+        return plainToInstance(ImageDto, metadata);
+      case 'document':
+        return plainToInstance(DocumentDto, metadata);
+      default:
+        throw new Error('Tipo de archivo no válido');
+    }
+  }
 }

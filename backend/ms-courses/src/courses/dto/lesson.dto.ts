@@ -6,7 +6,7 @@ import {
   IsArray,
   ValidateNested,
 } from 'class-validator';
-import { DocumentDto, VideoDto } from './multimedia.dto';
+import { DocumentDto, MultimediaDto, VideoDto } from './multimedia.dto';
 
 import { Type } from 'class-transformer';
 
@@ -47,4 +47,10 @@ export class CreateLessonDto {
   @IsString()
   @IsOptional()
   link?: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => MultimediaDto)
+  @IsOptional()
+  multimedia?: MultimediaDto[];
 }

@@ -77,8 +77,9 @@ export class CreateCourseDto {
   @IsString({ each: true })
   learningSubjects: string[];
 
+  @IsArray()
   @IsString()
-  prevRequirements: string;
+  prevRequirements: string[];
 
   @IsString()
   fullDescription: string;
@@ -107,6 +108,10 @@ export class CreateCourseDto {
   @IsDecimal()
   @IsPositive()
   price: number;
+
+  @IsArray()
+  @IsString()
+  courseIncludes: string[];
 
   @IsArray()
   @IsString({ each: true })
