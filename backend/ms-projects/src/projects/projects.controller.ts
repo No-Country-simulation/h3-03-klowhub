@@ -82,7 +82,7 @@ export class ProjectsController {
 
 
 
-  @Get(':userId')
+  @Get('user/:userId')
   @ApiOperation({ summary: 'Obtener proyectos por ID de usuario' })
   @ApiResponse({
     status: 200,
@@ -111,6 +111,7 @@ export class ProjectsController {
   @Get(':id')
   async getProjectByIdWithUser(@Param('id') id: string): Promise<any> {
     return this.projectsService.findOneByIdWithUser(id);
+
   }
 
   @Get()
