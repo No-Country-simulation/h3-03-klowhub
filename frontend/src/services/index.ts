@@ -41,7 +41,7 @@ const TRELLO_API_TOKEN = process.env.NEXT_PUBLIC_TRELLO_API_TOKEN;
 
 const createBoard = async (data: TCreateBoardData) => {
   return apiFetch(
-    `${API_TRELLO_URL}/1/boards/?name=${data.boardName}&defaultLists=false&prefs_permissionLevel=public&prefs_background=675dd7e068197fb1e0a2f7f4&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    `${API_TRELLO_URL}/1/boards/?name=${data.boardName}&defaultLists=false&prefs_permissionLevel=private&prefs_background=675dd7e068197fb1e0a2f7f4&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
     {
       method: 'POST',
     }
