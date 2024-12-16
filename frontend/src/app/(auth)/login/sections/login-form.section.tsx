@@ -1,41 +1,45 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import useFetchData from '@/hooks/use-fetch-data.hook'
-import { ServiceTypes } from '@/types/service-types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import useStore from '@/contexts/store/use-store.hook'
+import { TLoginData } from '@/types/service-types'
+import services from '@/services'
 
 const LoginForm = () => {
-  const [ user, setUser ] = useStore("user");
+    const [user, setUser] = useStore("user");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ServiceTypes["login"]>({ mode: "onTouched" });
-  const [loading, setLoading] = useState(false);
-  const { fetchData } = useFetchData();
-  const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<TLoginData>({ mode: "onTouched" });
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
-  const customSubmit: SubmitHandler<ServiceTypes["login"]> = async (
-    data: ServiceTypes["login"]
-  ) => {
-    setLoading(true);
+    const customSubmit: SubmitHandler<TLoginData> = async (
+        data: TLoginData
+    ) => {
+        setLoading(true);
 
-    const { status, response } = await fetchData("login", data);
+        try {
+            const { status, response } = await services.login(data);
 
-    if (status) {
-      setUser({ ...user, ...response.user, jwtToken: response.accesToken })
-      router.push("dashboard");
-    } else {
-      setLoading(false)
-      toast.error("Ha ocurrido un error.");
-    }
-  };
+            if (status) {
+                setUser({ ...user, ...response.user, jwtToken: response.accesToken });
+                router.push("dashboard");
+            } else {
+                setLoading(false);
+                toast.error("Ha ocurrido un error.");
+            }
+        } catch (error) {
+            setLoading(false);
+            toast.error("No se pudo conectar con el servidor. Vuelve a intentarlo más tarde o contacta con soporte.");
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit(customSubmit)} className="flex flex-col">

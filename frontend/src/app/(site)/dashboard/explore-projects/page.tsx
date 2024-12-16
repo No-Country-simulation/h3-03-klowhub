@@ -36,8 +36,7 @@ const ProjectsPage = () => {
             <div className="md:-translate-y-16 -translate-y-24">
 
                 <ul className="flex flex-col gap-5 mb-6">
-                    {projectsData.map((project) => <ProjectCard key={project.id} project={project} />)
-                    }
+                    {projectsData.map((project) => <ProjectCard key={project.id} project={project} />)}
                 </ul>
 
                 <Pager />
