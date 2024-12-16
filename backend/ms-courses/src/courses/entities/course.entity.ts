@@ -56,7 +56,7 @@ export class Course {
   @Column({ type: 'simple-array', name: 'learningSubjects' }) // Cambiado a simple-array
   learningSubjects: string[];
 
-  @Column({ type: 'simple-array', name: 'prevRequirements' })
+  @Column('jsonb', { name: 'prevRequirements', nullable: true })
   prevRequirements: string[];
 
   @Column({ type: 'text', name: 'fullDescription' })
@@ -77,7 +77,7 @@ export class Course {
   available: boolean;
 
   @Column({ type: 'text', name: 'targetAudience' })
-  targetAudience: string;
+  targetAudience: string[];
 
   @Column({ type: 'decimal', name: 'price' })
   price: number;
@@ -90,6 +90,14 @@ export class Course {
 
   @OneToMany(() => CourseModule, (module) => module.course, { cascade: true })
   modules: CourseModule[];
+
+  //para recibir id
+  // @Column()
+  // userId: number;
+
+  // @ManyToOne(() => User, (user) => user.courses)
+  // @JoinColumn() // No necesitas especificar el nombre de la columna si sigues la convención
+  // user: User;
 
   @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
   multimedia: Multimedia[];

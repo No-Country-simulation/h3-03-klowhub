@@ -78,7 +78,7 @@ export class CreateCourseDto {
   learningSubjects: string[];
 
   @IsArray()
-  @IsString()
+  @IsString({ each: true })
   prevRequirements: string[];
 
   @IsString()
@@ -103,7 +103,7 @@ export class CreateCourseDto {
   available: boolean = true;
 
   @IsString()
-  targetAudience: string;
+  targetAudience: string[];
 
   @IsDecimal()
   @IsPositive()
@@ -117,6 +117,9 @@ export class CreateCourseDto {
   @IsString({ each: true })
   @IsOptional()
   promotionalVideo?: string[];
+
+  // @IsNumber()
+  // userId: number;
 
   @IsArray()
   @IsOptional()

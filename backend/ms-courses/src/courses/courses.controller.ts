@@ -220,7 +220,7 @@ export class CoursesController {
     }
     return singleCourse;
   }
-
+  //cambiar a put
   @Patch(':id')
   async update(
     @Param('id') id: string,
