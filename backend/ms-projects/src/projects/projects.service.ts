@@ -1,14 +1,17 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Project } from './entities/project.entity/project.entity';
 import { CreateProjectDto } from './dto/create-project.dto/create-project.dto';
+import { lastValueFrom } from 'rxjs';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class ProjectsService {
   constructor(
     @InjectRepository(Project)
     private projectRepository: Repository<Project>,
+    private readonly httpService: HttpService,
   ){}
 
   async createProject(projectData: CreateProjectDto, userId: string): Promise<Project> {
@@ -29,11 +32,11 @@ export class ProjectsService {
   }
 
 
-  async deleteProject(id: number): Promise<void> {
+  async deleteProject(id: string): Promise<void> {
     await this.projectRepository.delete(id);
   }
 
-  async updateProject(id: number, data: Partial<Project>): Promise<Project> {
+  async updateProject(id: string, data: Partial<Project>): Promise<Project> {
     await this.projectRepository.update(id, data);
     return this.projectRepository.findOneBy({ id });
   }
@@ -46,6 +49,20 @@ export class ProjectsService {
     }
 
     return projects;
+  }
+
+  async findOneByIdWithUser(id: string): Promise<any> {
+    const project = await this.projectRepository.findOne({where: {id} });
+    if (!project){
+      throw new NotFoundException (`Project with ID ${id} not found`);
+    }
+    const userResponse = await lastValueFrom(
+      this.httpService.get(`http://localhost:3001/users/${project.userId}`),
+      );
+      return {
+        ...project,
+        user: userResponse.data,
+      }
   }
 
   async getAllProjects(): Promise<Project[]> {
