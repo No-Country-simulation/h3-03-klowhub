@@ -5,7 +5,7 @@ import Tab from "@/components/tab/tab.component";
 import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";
 import ProjectCtxProvider from "./context/project-form.context";
-import ProjectPreviewSection from "./components/preview-section/preview-section.component";
+import ProjectInfo from "../../../../projects/[id]/components/project-info/project-info.component";
 
 const ProjectForm = async () => {
   const { section } = await getQueryParams();
@@ -31,7 +31,7 @@ const ProjectForm = async () => {
             <ProjectCtxProvider>
               { section === "general" && <GeneralForm /> }
               { section === "details" && <DetailsForm /> }
-              { section === "preview" && <ProjectPreviewSection /> }
+              { section === "preview" && <ProjectInfo /> }
             </ProjectCtxProvider>
           </div>
           <div className="

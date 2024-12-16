@@ -24,7 +24,7 @@ import { instructorPitch } from "@/mocks/course-detail";
 import { useCourseData } from "./hooks/use-course-data.hook";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import TempError from "@/components/temp-error/temp-error.component";
-import AuthorInfo from "./author-section";
+import AuthorInfo from "../../../../../components/author-info/author-info";
 import { ObjectivesList } from "./objectives.section";
 
 type Props = {
@@ -71,10 +71,10 @@ export const CourseDetail: FC<Props> = ({ children }) => {
       <div className="min-h-screen space-y-10">
         <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
           <CourseInfo {...pageData.courseData} freelessons={freeLessons} submitCourse={submitCourse}>
-            { author
-              ? <AuthorInfo data={author} />
-              : <TempError element="author section" reason="la api no esta enviando info del autor"/>
-            }
+            {/* { author */}
+            {/*   ? <AuthorInfo data={author} /> */}
+            {/*   : <TempError element="author section" reason="la api no esta enviando info del autor"/> */}
+            {/* } */}
             <ObjectivesList 
               header="Después de completar este curso, serás capaz de"
               objectives={learningSubjects} 

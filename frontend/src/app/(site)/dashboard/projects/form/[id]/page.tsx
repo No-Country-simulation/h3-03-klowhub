@@ -1,4 +1,4 @@
-import ProjectForm from "../components/project-form/project-form.component";
+import ProjectForm from "../../components/project-form/project-form.component";
 
 const CreateCoursePage = async () => <ProjectForm />;
 

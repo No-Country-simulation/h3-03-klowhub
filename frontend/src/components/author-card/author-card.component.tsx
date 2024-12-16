@@ -13,7 +13,7 @@ type Props = {
 
 const AuthorCard: FC<Props> = ({ name, about, profileImg, children }) => {
   return (
-    <Card className="p-3">
+    <Card className="p-3 bg-gray-100">
       <CardHeader>
         <CardTitle>
           <div className="flex items-center space-x-2 px-2 border-b border-[#DFD1F3] pb-2">

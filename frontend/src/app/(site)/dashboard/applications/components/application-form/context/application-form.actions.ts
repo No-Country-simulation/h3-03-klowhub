@@ -1,11 +1,7 @@
+import { Action } from "@/types/global.types";
 import { Promotion } from "@/types/global.types";
 import applicationFormTypes from "./application-form.types";
 import { ApplicationDetails, ApplicationInfo, ApplicationMedia } from "@/types/application.types";
-
-export type Action<T, P> = {
-  type: T
-  payload: P
-}
 
 type SetGeneralData = Action<applicationFormTypes.SET_GENERAL_DATA, ApplicationInfo>
 type SetDetailsData = Action<applicationFormTypes.SET_DETAILS_DATA, ApplicationDetails>

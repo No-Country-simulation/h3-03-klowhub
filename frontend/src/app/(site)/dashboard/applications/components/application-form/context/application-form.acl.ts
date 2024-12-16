@@ -1,7 +1,9 @@
-import { Application, ApplicationFormData } from "@/types/application.types";
+import { ApplicationWithFullImgs, ApplicationWithReducedImgs, ApplicationFormData } from "@/types/application.types";
 
-export const breakApplication = (data: ApplicationFormData, reduceImgs?: boolean): Application => {
-  const { general: { tags, sector, toolsAndPlatforms, functionalities, language } } = data;
+export function breakApplication (data: ApplicationFormData, reduceImgs: true): ApplicationWithReducedImgs
+export function breakApplication (data: ApplicationFormData, reduceImgs: false): ApplicationWithFullImgs
+export function breakApplication (data: ApplicationFormData, reduceImgs = false) {
+  const { general: { tags, sector, toolsAndPlatforms, functionalities, language }, media: { coverImg, assets } } = data;
 
   const general = {
     ...data.general,
@@ -14,8 +16,8 @@ export const breakApplication = (data: ApplicationFormData, reduceImgs?: boolean
 
   const media = {
     ...data.media,
-    coverImg: reduceImgs ? data.media.coverImg?.id : data.media.coverImg,
-    assets: reduceImgs ? data.media.assets.map(ast => ast.id) : data.media.assets
+    coverImg: reduceImgs ? coverImg?.id : data.media.coverImg,
+    assets: reduceImgs ? assets.map(ast => ast.id) : data.media.assets
   };
 
   const promotion = data.promotion ? {
@@ -23,7 +25,6 @@ export const breakApplication = (data: ApplicationFormData, reduceImgs?: boolean
     percentage: data.promotion.percentage / 100
   } : null;
 
-  // @ts-ignore: Unreachable code error
   return {
     ...general,
     ...data.details,
@@ -32,7 +33,7 @@ export const breakApplication = (data: ApplicationFormData, reduceImgs?: boolean
   }
 };
 
-export const groupApplication = (data: Application): ApplicationFormData => {
+export const groupApplication = (data: ApplicationWithFullImgs) => {
   const application = {
     general: {
       title: data.title,

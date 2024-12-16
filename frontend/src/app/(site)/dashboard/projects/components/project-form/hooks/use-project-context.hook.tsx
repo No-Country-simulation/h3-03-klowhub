@@ -5,7 +5,8 @@ import { ProjectCtx } from "../context/project-form.context";
 
 const useProjectContext = () => {
   const projectContext = useContext(ProjectCtx);
-  if (!projectContext) throw new Error("no context found");
+  if (!projectContext) return { state: undefined, dispatch: undefined, submitProject: undefined }
+
   const { state, dispatch, submitProject } = projectContext
 
   return { state, dispatch, submitProject }

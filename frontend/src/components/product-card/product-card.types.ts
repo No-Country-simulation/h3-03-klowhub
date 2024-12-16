@@ -9,8 +9,8 @@ export type TProductCard = {
   shortDescription: string
   platform: string
   tags: string[]
-  rating: number
-  ratingCount: number
+  // rating: number
+  // ratingCount: number
   price: number
   fullDescription: string
 }
@@ -18,5 +18,5 @@ export type TProductCard = {
 export type TQuickView = TProductCard & {
   author: AuthorInfo
   video?: TVideo
-  modules?: Module[]
+  // modules?: Module[]
 }

@@ -23,7 +23,6 @@ export const AppInfo: FC<AppProps> = ({
     children,
   assets
 }) => {
-  console.log('fullDescription: ', fullDescription);
 
   const [ newApplicationId, setNewApplicationId ] = useState<string>()
     const searchParams = useSearchParams();

@@ -1,42 +1,39 @@
-import { ProjectFormData, Project } from "@/types/project.types";
+import { ProjectFormData, ProjectWithReducedImgs, ProjectWithFullImgs } from "@/types/project.types";
 
-export const breakProject = (data: ProjectFormData): Project | void=> {
-  const { general: { sector, methodology, experienceLevel }, details: { requiredSkills }, userId } = data;
-  if (!methodology) return console.error("methodology is null");
-  if (!experienceLevel) return console.error("experienceLevel is null");
+export function breakProject (data: ProjectFormData, reduceImgs: true): ProjectWithReducedImgs
+export function breakProject (data: ProjectFormData, reduceImgs: false): ProjectWithFullImgs
+export function breakProject (data: ProjectFormData, reduceImgs = false) {
+  const { general: { sector, methodology, experienceLevel }, details: { requiredSkills, assets } } = data;
 
   const general = {
     ...data.general,
     sector: sector.map(s => s.name),
-    methodology: methodology.name,
-    experienceLevel: experienceLevel.name,
+    methodology: methodology?.name || "",
+    experienceLevel: experienceLevel?.name || "",
     requiredSkills: requiredSkills.map(sk => sk.name)
   };
 
   const details = {
     ...data.details,
-    requiredSkills: requiredSkills.map(sk => sk.name)
+    requiredSkills: requiredSkills.map(sk => sk.name),
+    assets: reduceImgs ? assets.map(ast => ast.id) : assets
   };
 
   const formattedData = {
-    userId,
     ...general,
     ...details,
   };
 
-  // console.log('formattedData: ', formattedData);
-
-  // @ts-ignore: Unreachable code error
   return formattedData
 };
 
-export const groupProject = (data: Project): ProjectFormData => {
+export const groupProject = (data: ProjectWithFullImgs): ProjectFormData => {
   const general = {
     title: data.title,
     description: data.description,
     platform: data.platform,
-    methodology: data.methodology,
-    experienceLevel: data.experienceLevel,
+    methodology: { name: data.methodology, label: data.methodology },
+    experienceLevel: { name: data.experienceLevel, label: data.experienceLevel },
     sector: data.sector.map(s => ({ name: s, label: s }))
   };   
 
@@ -44,9 +41,9 @@ export const groupProject = (data: Project): ProjectFormData => {
     days: data.days,
     minBudget: data.minBudget,
     maxBudget: data.maxBudget,
-    technicalRequirements: data.technicalRequirements.map(t => ({ name: t, label: t })),
+    technicalRequirements: data.technicalRequirements,
     requiredSkills: data.requiredSkills.map(s => ({ name: s, label: s })),
-    additionalRequirements: data.additionalRequirements.map(r => ({ name: r, label: r })),
+    additionalRequirements: data.additionalRequirements,
     assets: data.assets
   };
 

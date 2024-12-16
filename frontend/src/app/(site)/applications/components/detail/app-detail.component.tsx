@@ -17,24 +17,39 @@ import Icon from "@/components/icon/icon.component";
 import { Badge } from "@/components/ui/badge";
 import { AppInclude } from './app-include.section';
 import { Popover } from "@/components/popover/popover.component";
-import { useApplicationData } from "./hooks/use-application-data.hook";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
-import AuthorInfo from "@/app/(site)/courses/components/detail/author-section";
+import AuthorInfo from "@/components/author-info/author-info";
+import { AuthorInfo as TAuthorInfo } from "@/types/global.types";
 import TempError from "@/components/temp-error/temp-error.component";
+import useStore from "@/contexts/store/use-store.hook";
+import { User } from "@/contexts/store/store.types";
+import useApplicationContext from "@/app/(site)/dashboard/applications/components/application-form/hooks/use-application-context.hook";
+import { breakApplication } from "@/app/(site)/dashboard/applications/components/application-form/context/application-form.acl";
+import { ApplicationWithFullImgs } from "@/types/application.types";
+import { BTUser } from "@/types/user.types";
 
 type Props = {
-    children?: ReactNode
+  serverSideData?: ApplicationWithFullImgs
 }
 
-export const AppDetail: FC<Props> = () => {
+export const AppDetail = ({ serverSideData }: Props) => {
   const [showGreeter, setShowGreeter] = useState(false);
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
+  const [ user ] = useStore<BTUser>("user");
 
-  const { pageData, submitApplication } = useApplicationData();
-  if (!pageData) return <div>Cargando...</div>;
+  const { state, submitApplication } = useApplicationContext();
+  const pageData = state ? {...breakApplication(state, false), author: user} : serverSideData;
+  if (!pageData || !user) return <div>Cargando...</div>;
+
+  // const authorFromStore: TAuthorInfo = {
+  //   name: user.name,
+  //   about: user.seller.about || "",
+  //   profileImg: user.profileImg,
+  // };
+
 
   const { 
     functionalities,
@@ -58,6 +73,9 @@ export const AppDetail: FC<Props> = () => {
       { label: "Tags", items: tags || [] },
   ];
 
+  console.log('author: ', author);
+  console.log('user: ', user);
+
   return pageData && (
     <>
     { !section &&
@@ -65,30 +83,25 @@ export const AppDetail: FC<Props> = () => {
     }
       <div className="min-h-screen">
         <div className={`${!section ? "mt-8" : ""} mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14`}>
-          <AppInfo {...pageData} submitApplication={submitApplication}>
-            { author
-              ? <AuthorInfo data={author}/>
-              : <TempError
-              element="author section"
-              reason="la api no esta enviando informacion del autor"
-            />
-            }
-            <ShareSection />
-            <List
-              header="Para quién es esta App"
-              subheader="Esta App de AppSheet es para ti sí:"
-              items={targetAudience}
-            />
-            <List
-              header="Vistas de la App"
-              subheader="Estás serán las pantallas (Vistas) a las que podrás acceder desde la app de facturas de AppSheet:"
-              items={views}
-            />
-            <PageFilters filters={filters} />
-            { section !== "preview" &&
-              <ReviewsSection reviews={reviews} />
-            }
-          </AppInfo>
+          {/* <AppInfo {...pageData} submitApplication={submitApplication}> */}
+          {/*   {/* this type error will be fixed when the hook returns always an app with its author */} */}
+          {/*   <AuthorInfo data={user}/> */}
+          {/*   <ShareSection /> */}
+          {/*   <List */}
+          {/*     header="Para quién es esta App" */}
+          {/*     subheader="Esta App de AppSheet es para ti sí:" */}
+          {/*     items={targetAudience} */}
+          {/*   /> */}
+          {/*   <List */}
+          {/*     header="Vistas de la App" */}
+          {/*     subheader="Estás serán las pantallas (Vistas) a las que podrás acceder desde la app de facturas de AppSheet:" */}
+          {/*     items={views} */}
+          {/*   /> */}
+          {/*   <PageFilters filters={filters} /> */}
+          {/*   { section !== "preview" && */}
+          {/*     <ReviewsSection reviews={reviews} /> */}
+          {/*   } */}
+          {/* </AppInfo> */}
           <div className="space-y-6">
           { mobileLink &&
             <div className="flex flex-col items-center gap-6 mt-4">
@@ -110,19 +123,11 @@ export const AppDetail: FC<Props> = () => {
             </div>
           }
 
-            { author
-              ? (
-                <AuthorCard name={author.name} about={author.about} profileImg={author.profileImg}> 
-                  <AuthorData Icon={Star} data={"Calificación del creador: 4.8"} />
-                  <AuthorData Icon={FileChartColumnIncreasing} data={"20 aplicaciones vendidas"}  />
-                </AuthorCard>
-              )
-              : (
-                <TempError
-                element="author section"
-                reason="la api no esta enviando informacion del autor"
-              />
-              )
+            {
+              <AuthorCard name={author.name} about={user.seller?.about} profileImg={author.profileImg}> 
+                <AuthorData Icon={Star} data={"Calificación del creador: 4.8"} />
+                <AuthorData Icon={FileChartColumnIncreasing} data={"20 aplicaciones vendidas"}  />
+              </AuthorCard>
             } 
 
             <Badge

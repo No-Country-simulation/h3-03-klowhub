@@ -1,5 +1,5 @@
 import ApplicationForm from "../components/application-form/application-form.component";
 
-const CreateCoursePage = async () => <ApplicationForm />
+const CreateApplicationPage = async () => <ApplicationForm />
 
-export default  CreateCoursePage
+export default CreateApplicationPage
