@@ -56,8 +56,8 @@ export class Course {
   @Column({ type: 'simple-array', name: 'learningSubjects' }) // Cambiado a simple-array
   learningSubjects: string[];
 
-  @Column({ type: 'text', name: 'prevRequirements' })
-  prevRequirements: string;
+  @Column({ type: 'simple-array', name: 'prevRequirements' })
+  prevRequirements: string[];
 
   @Column({ type: 'text', name: 'fullDescription' })
   fullDescription: string;
@@ -82,14 +82,15 @@ export class Course {
   @Column({ type: 'decimal', name: 'price' })
   price: number;
 
-  @Column({ type: 'simple-array', name: 'promotionalVideo', nullable: true })
-  promotionalVideo: string[];
+  @Column({ type: 'simple-array', name: 'courseIncludes' })
+  courseIncludes: string[];
+
+  @Column({ type: 'jsonb', name: 'promotionalVideo', nullable: true })
+  promotionalVideo: object;
 
   @OneToMany(() => CourseModule, (module) => module.course, { cascade: true })
   modules: CourseModule[];
 
-  @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
-    cascade: true,
-  })
+  @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
   multimedia: Multimedia[];
 }

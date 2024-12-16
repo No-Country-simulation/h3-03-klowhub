@@ -243,6 +243,7 @@ export class CoursesService {
   async findAll(): Promise<Course[]> {
     const course = await this.courseRepository.find({
       where: { available: true },
+      relations: ['modules', 'modules.lessons', 'multimedia', 'coverImg'],
     });
     return course;
   }
