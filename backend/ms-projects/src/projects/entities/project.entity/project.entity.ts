@@ -5,8 +5,8 @@ import { Application } from '../application.entity/application.entity';
 
 @Entity()
 export class Project {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   
   @Column()
   title: string;
@@ -30,7 +30,7 @@ export class Project {
   technicalRequirements: string[]; 
 
   @Column("simple-array", { nullable: true })
-  requiredKnowledge: string[]; 
+  requiredSkills: string[]; 
 
   @Column()
   days: number;
@@ -46,10 +46,6 @@ export class Project {
 
   @Column("json", { nullable: true })
   assets: object[];
-
-  // @Column()
-  // status: string;
-
 
   @Column()
   userId: string;

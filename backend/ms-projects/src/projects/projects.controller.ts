@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, BadRequestException  } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, BadRequestException, NotFoundException  } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { Project } from './entities/project.entity/project.entity';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, NotFoundError } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { CreateProjectDto } from './dto/create-project.dto/create-project.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
@@ -37,10 +37,7 @@ export class ProjectsController {
     // Crear el proyecto
     try {
       const newProject = await this.projectsService.createProject(projectData, userId);
-      return {
-        message: 'Proyecto creado exitosamente',
-        project: newProject,
-      };
+      return newProject
     } catch (error) {
       throw new BadRequestException(`Error al crear el proyecto: ${error.message}`);
     }
@@ -59,7 +56,7 @@ export class ProjectsController {
     description: 'El proyecto no fue encontrado.',
   })
   @ApiParam({ name: 'id', description: 'ID del proyecto a eliminar', type: Number })
-  delete(@Param('id') id: number) {
+  delete(@Param('id') id: string) {
     return this.projectsService.deleteProject(id);
   }
 
@@ -78,7 +75,7 @@ export class ProjectsController {
   })
   @ApiParam({ name: 'id', description: 'ID del proyecto a actualizar', type: Number })
   @ApiBody({ description: 'Datos para actualizar el proyecto'})
-  update(@Param('id') id: number, @Body() data: Partial<Project>) {
+  update(@Param('id') id: string, @Body() data: Partial<Project>) {
     return this.projectsService.updateProject(id, data);
   }
 
@@ -111,9 +108,11 @@ export class ProjectsController {
     return projects;
   }
 
+  @Get(':id')
+  async getProjectByIdWithUser(@Param('id') id: string): Promise<any> {
+    return this.projectsService.findOneByIdWithUser(id);
+  }
 
-
-  
   @Get()
   @ApiOperation({ summary: 'Listar todos los proyectos' })
   @ApiResponse({
@@ -123,4 +122,7 @@ export class ProjectsController {
   findAll() {
     return this.projectsService.getAllProjects();
   }
+
+
+
 }
