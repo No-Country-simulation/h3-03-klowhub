@@ -39,6 +39,7 @@ export type CourseDetails = {
   fullDescription: string
   coverImg: TImage | null
   promotionalVideo: TVideo | null
+  price: number
 }
 
 export type Lesson = {

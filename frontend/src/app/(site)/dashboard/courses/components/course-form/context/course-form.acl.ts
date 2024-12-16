@@ -8,16 +8,13 @@ export const breakCourse = (data: CourseFormData, reduceImgs?: boolean): Course 
     language: language.name,
     sector: sector.map(s => s.name),
     coreContent: coreContent.map(c => c.name),
-    // WARNING: it should be toolsAndPlatforms with an 's', this is temporary until api returns the righr prop
-    toolsAndPlatform: toolsAndPlatforms.map(t => t.name),
+    toolsAndPlatforms: toolsAndPlatforms.map(t => t.name),
     functionalities: functionalities.map(f => f.name),
     tags: tags.map(t => t.name),
   };
 
   const details = {
     ...data.details,
-    // WARNING: this is temporary until api includes this column
-    courseIncludes: [],
     coverImg: reduceImgs ? data.details.coverImg?.id : data.details.coverImg
   };
 
@@ -40,7 +37,6 @@ export const breakCourse = (data: CourseFormData, reduceImgs?: boolean): Course 
 };
 
 export const groupCourse = (data: Course): CourseFormData => {
-  console.log('data: ', data);
   const course = {
     general: {
       title: data.title,
@@ -52,8 +48,7 @@ export const groupCourse = (data: Course): CourseFormData => {
       platform: data.platform,
       sector: data.sector.map(s => ({ name: s, label: s })),
       coreContent: data.coreContent.map(c => ({ name: c, label: c })),
-      // WARNING: it should be toolsAndPlatforms with an 's', this is temporary until api returns the righr prop
-      toolsAndPlatforms: data.toolsAndPlatform.map(t => ({ name: t, label: t })),
+      toolsAndPlatforms: data.toolsAndPlatforms.map(t => ({ name: t, label: t })),
       functionalities: data.functionalities.map(f => ({ name: f, label: f })),
       tags: data.tags.map(t => ({ name: t, label: t })),
       price: data.price,
@@ -63,8 +58,7 @@ export const groupCourse = (data: Course): CourseFormData => {
       learningSubjects: data.learningSubjects,
       prevRequirements: data.prevRequirements,
       fullDescription: data.fullDescription,
-      // WARNING: it should be toolsAndPlatforms with an 's', this is temporary until api returns the righr prop
-      courseIncludes: [],
+      courseIncludes: data.courseIncludes,
       coverImg: data.coverImg,
       promotionalVideo: data.promotionalVideo
     },

@@ -17,6 +17,6 @@ export type TProductCard = {
 
 export type TQuickView = TProductCard & {
   author: AuthorInfo
-  video?: TVideo
+  promotionalVideo?: TVideo
   // modules?: Module[]
 }

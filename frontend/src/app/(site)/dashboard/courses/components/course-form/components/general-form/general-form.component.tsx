@@ -12,7 +12,6 @@ import { CircleAlert } from "lucide-react";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
-import formMock from "./course-general-form.mock.json"
 
 const GeneralForm = () => {
   const { state, dispatch } = useCourseContext();

@@ -68,24 +68,24 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
                 />
             }
 
-      <TempError element="mostrador de videos" reason="al editar, el video es un string (json)" />
-        {/* { */}
-        {/*   currentVideo && ( */}
-        {/*     currentVideo.type === 'native' ? */}
-        {/*       ( */}
-        {/*       <video controls className="rounded-xl"> */}
-        {/*         <source */}
-        {/*           src={currentVideo.link!!} */}
-        {/*           type={`video/${promotionalVideo.fileMetadata.format}`} */}
-        {/*         /> */}
-        {/*       </video> */}
-        {/*     ) : ( */}
-        {/*       <div className="rounded-xl overflow-hidden"> */}
-        {/*         <YouTube className="h-full" {...getYoutubeProps(currentVideo.link!!)} /> */}
-        {/*       </div> */}
-        {/*     ) */}
-        {/*   ) */}
-        {/* } */}
+      {/* <TempError element="mostrador de videos" reason="al editar, el video es un string (json)" /> */}
+        {
+          currentVideo && (
+            currentVideo.type === 'native' ?
+              (
+              <video controls className="rounded-xl">
+                <source
+                  src={currentVideo.link!!}
+                  type={`video/${promotionalVideo.fileMetadata.format}`}
+                />
+              </video>
+            ) : (
+              <div className="rounded-xl overflow-hidden">
+                <YouTube className="h-full" {...getYoutubeProps(currentVideo.link!!)} />
+              </div>
+            )
+          )
+        }
 
             <div className="bg-[#FFFFFF0D] p-3 rounded-lg">
                 <h2 className="text-sm font-semibold mb-2">Contenido gratuito</h2>

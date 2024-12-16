@@ -34,7 +34,7 @@ const CourseCtxProvider = ({ children }: Props) => {
     const formattedData = breakCourse({ ...state, ...additionalData });
     console.log('creating course...', formattedData);
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/createCourse/${user.id}`, { 
+    const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/createCourse`, { 
       method: 'post',
       body: JSON.stringify(formattedData),
       headers: {
