@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateSellerDto } from './dto/create-seller.dto';
-import { User } from './entities/user.entity';
-import { Seller } from './entities/seller.entity';
+import { UserResponseDto } from './dto/user-response.dto';
 
 @Controller('users')
 export class UsersController {
@@ -12,18 +11,18 @@ export class UsersController {
   async becomeSeller(
     @Param('id') id: string,
     @Body() createSellerDto: CreateSellerDto,
-  ): Promise<Omit<Seller, "user">> {
+  ): Promise<UserResponseDto> {
     return this.usersService.becomeSeller(id, createSellerDto);
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll(): Promise<UserResponseDto[]> {
+    return this.usersService.findAll(); // Asegúrate de que retorne el DTO
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  async findOne(@Param('id') id: string): Promise<UserResponseDto> {
+    return this.usersService.findOne(id); // Asegúrate de que retorne el DTO
   }
 
   @Delete(':id')
