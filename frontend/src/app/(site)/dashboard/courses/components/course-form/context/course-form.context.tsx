@@ -33,9 +33,12 @@ const CourseCtxProvider = ({ children }: Props) => {
   const submitCourse = useCallback(async (additionalData = {}) => {
     const formattedData = breakCourse({ ...state, ...additionalData });
     console.log('creating course...', formattedData);
+    
+    const createEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}`;
+    const editEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/${courseId}`;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/createCourse`, { 
-      method: 'post',
+    const res = await fetch(courseId ? editEndpoint : createEndpoint, { 
+      method: courseId ? 'put' : 'post',
       body: JSON.stringify(formattedData),
       headers: {
         "Content-Type": "application/json"
@@ -48,7 +51,7 @@ const CourseCtxProvider = ({ children }: Props) => {
     return createdCourse.id
 
 
-  }, [state, user]);
+  }, [state, courseId]);
 
   useEffect(() => {
     (async function () {

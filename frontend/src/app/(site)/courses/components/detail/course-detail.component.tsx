@@ -20,7 +20,6 @@ import PageFilters from "@/components/page-filters/page-filters.component";
 import { useSearchParams } from "next/navigation";
 import { instructorPitch } from "@/mocks/course-detail";
 
-
 import { useCourseData } from "./hooks/use-course-data.hook";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import { IncludeSection } from "./include-section";
@@ -85,7 +84,6 @@ export const CourseDetail: FC<Props> = ({ children }) => {
             <GenericSection header="¿Para quién es este curso?" text={targetAudience} />
             <RequirementsSection requirements={prevRequirements} />
 
-            {/* <TempError element="seccion 'incluye'" reason="es una nueva key, por lo que el backend aún no la esta enviando"  /> */}
             <IncludeSection data={pageData.courseData.courseIncludes}/>
 
             <PageFilters filters={filters} />

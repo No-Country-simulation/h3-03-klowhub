@@ -24,7 +24,9 @@ const ProjectCard = ({ project }: Props) => {
                         <div className="flex flex-col md:gap-5 lg:gap-0">
                             <p className="text-xs lg:h-[23px] md:h-[46px]">{formatPublicationDate(project.initialDate)}</p>
                             <h4 className="hidden lg:flex text-sm font-semibold lg:text-base lg:font-bold">
-                                {project.title}
+                <Link href={`/projects/${project.id}`}>
+                  {project.title}
+                </Link>
                             </h4>
                         </div>
                         <div className="flex gap-2 justify-end">
@@ -44,11 +46,15 @@ const ProjectCard = ({ project }: Props) => {
                             </div>
                         </div>
                     </div>
-                    <h4 className="text-sm font-semibold lg:text-base lg:font-bold lg:hidden">
-                        {project.title}
-                    </h4>
+            <h4 className="text-sm font-semibold lg:text-base lg:font-bold lg:hidden">
+          <Link href={`/projects/${project.id}`}>
+              {project.title}
+          </Link>
+            </h4>
                     <div className='flex flex-col gap-3.5'>
-                        <p className='text-xs lg:text-sm leading-6'>{project.description}</p>
+            <Link href={`/projects/${project.id}`}>
+              <p className='text-xs lg:text-sm leading-6'>{project.description}</p>
+            </Link>
                         <Badge
                             icon={<Icon name={getSlug(project.platform) as IconTypes} />}
                             className="bg-gray-100 text-white w-[147px]"
@@ -84,7 +90,12 @@ const ProjectCard = ({ project }: Props) => {
                             <span className='text-sm'>Calificacion del instructor: {project.instructor.rating}</span>
                         </div>
                     </div>
-                    <div className='w-full text-sm text-center lg:text-end p-3.5'><Link className='hover:text-primary-200 transition-colors' href={'#'}>Ver Detalles</Link></div>
+                    <div className='w-full text-sm text-center lg:text-end p-3.5'>
+            <Link className='hover:text-primary-200 transition-colors' href={`/projects/${project.id}`}>
+              Ver Detalles
+            </Link>
+
+          </div>
                 </div>
             </CardContent>
         </Card>
