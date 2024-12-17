@@ -201,7 +201,7 @@ export class ProjectsService {
       );
       return {
         ...project,
-        user: userResponse.data,
+        author: userResponse.data,
       }
   }
 

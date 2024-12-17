@@ -50,6 +50,12 @@ export class Project {
   @Column()
   userId: string;
 
+  @Column({ nullable: true })
+  authorId: number;
+
+  author?: any;
+
+
   @OneToMany(()=> Application, (application) => application.project)
   applications: Application[];
 

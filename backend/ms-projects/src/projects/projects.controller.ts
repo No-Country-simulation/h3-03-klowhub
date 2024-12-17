@@ -65,7 +65,16 @@ export class ProjectsController {
       // Crear el proyecto
       try {
         const newProject = await this.projectsService.createProject(projectData, userId);
-        return newProject;
+
+        const response = {
+          ...newProject,
+          authorId: newProject.userId, // Nuevo campo
+        };
+        delete response.userId; // Eliminar el campo original
+    
+
+
+        return response;
       } catch (error) {
         throw new BadRequestException(`Error al crear el proyecto: ${error.message}`);
       }
