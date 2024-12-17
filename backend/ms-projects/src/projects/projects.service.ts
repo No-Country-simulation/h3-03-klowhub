@@ -155,7 +155,9 @@ export class ProjectsService {
         minBudget: createProjectDto.minBudget,
         maxBudget: createProjectDto.maxBudget,
         additionalRequirements: createProjectDto.additionalRequirements,
-        userId: userId,
+        authorId: userId,
+        tags: createProjectDto.tags,
+        status: createProjectDto.status
       })
       const savedProject = await this.projectRepository.save(project);
 
