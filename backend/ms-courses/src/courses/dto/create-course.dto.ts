@@ -17,7 +17,7 @@ export class CreateCourseDto {
   id: string;
 
   // @IsString()
-  //  @IsNotEmpty()
+  // @IsNotEmpty()
   // userId: string;
 
   @IsString()
@@ -90,6 +90,7 @@ export class CreateCourseDto {
   @IsNotEmpty()
   fullDescription: string;
 
+  @IsNotEmpty()
   @ValidateNested()
   @Type(() => MultimediaDto)
   coverImg?: MultimediaDto;
@@ -131,10 +132,10 @@ export class CreateCourseDto {
   // @IsNumber()
   // userId: number;
 
-  @IsArray()
-  @IsNotEmpty()
-  @IsNotEmpty()
-  multimedia?: MultimediaDto[];
+  // @IsArray()
+  // @IsNotEmpty()
+  // @IsNotEmpty()
+  // multimedia?: MultimediaDto[];
 
   @IsArray()
   @IsNotEmpty()

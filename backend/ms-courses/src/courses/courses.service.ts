@@ -155,7 +155,7 @@ export class CoursesService {
       platform,
       language,
       modules,
-      multimedia,
+      // multimedia,
       coverImg,
       ...rest
     } = createCourseDto;
@@ -194,9 +194,9 @@ export class CoursesService {
       modules:
         modules?.map((module) => this.courseModuleRepository.create(module)) ||
         [],
-      multimedia:
-        multimedia?.map((media) => this.multimediaRepository.create(media)) ||
-        [],
+      // multimedia:
+      //   multimedia?.map((media) => this.multimediaRepository.create(media)) ||
+      //   [],
       coverImg: coverImgEntity,
     });
 
@@ -242,8 +242,8 @@ export class CoursesService {
 
   async findAll(): Promise<Course[]> {
     const course = await this.courseRepository.find({
-      where: { available: true },
-      relations: ['modules', 'modules.lessons', 'multimedia', 'coverImg'],
+      // where: { available: true },
+      relations: ['modules', 'modules.lessons', 'coverImg'],
     });
     return course;
   }
@@ -251,7 +251,7 @@ export class CoursesService {
   async findOne(id: string): Promise<Course | null> {
     const course = await this.courseRepository.findOne({
       where: { id },
-      relations: ['modules', 'modules.lessons', 'multimedia', 'coverImg'],
+      relations: ['modules', 'modules.lessons', 'coverImg'],
     });
     console.log('Course found:', course);
     if (!course) {
