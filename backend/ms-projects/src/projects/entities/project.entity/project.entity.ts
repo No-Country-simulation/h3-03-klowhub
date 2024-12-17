@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Application } from '../application.entity/application.entity';
-
+import { Asset } from '../asset.entity/asset.entity';
 
 
 @Entity()
@@ -44,8 +44,8 @@ export class Project {
   @Column("text", { array: true, nullable: true })
   additionalRequirements: string[];
 
-  @Column("json", { nullable: true })
-  assets: object[];
+  @OneToMany(() => Asset, (asset) => asset.project) // Cambiado a OneToMany para assets
+  assets: Asset[];
 
   @Column()
   userId: string;

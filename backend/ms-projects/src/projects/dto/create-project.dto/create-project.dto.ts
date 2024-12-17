@@ -58,9 +58,10 @@ export class CreateProjectDto {
   @ApiProperty({ description: 'Activos opcionales', example: [{ type: 'logo', url: 'http://example.com/logo.png' }] })
   @IsArray()
   @IsOptional()
-  assets?: object[];
+  assets: string[];
 
   @ApiProperty({ description: 'ID del usuario asociado', example: '123e4567-e89b-12d3-a456-426614174000' })
   @IsString()
-  userId: string;
+  @IsOptional() 
+  userId?: string;
 }
