@@ -26,8 +26,6 @@ import useApplicationContext from "@/app/(site)/dashboard/applications/component
 import { breakApplication } from "@/app/(site)/dashboard/applications/components/application-form/context/application-form.acl";
 import { ApplicationWithFullImgs } from "@/types/application.types";
 import { BTUser } from "@/types/user.types";
-import { useContext } from "react";
-import { IsClientCtx } from "@/contexts/is-client/is-client.context";
 import useIsClientCtx from "@/contexts/is-client/use-is-client.hook";
 
 type Props = {

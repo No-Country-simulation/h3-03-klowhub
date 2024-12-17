@@ -12,6 +12,10 @@ import { TQuickView } from "@/components/product-card/product-card.types";
 import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
 import authorsMock from "@/mocks/authors.mock.json"
 import NoData from "@/components/no-data/no-data.component";
+import { CourseWithFullAssets } from "@/types/courses.types";
+import { transformBTCourse } from "./courses-page.acl";
+import { RequiredProperty } from "@/types/utils.types";
+
 
 const filters = [
   platform,
@@ -28,9 +32,9 @@ const filters = [
 const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint, { cache: "force-cache" });
-    const courses: TQuickView[] = await res.json();
-    const appsWithAuthors = courses.map(app => ({ ...app, author: authorsMock[0] }));
-    return appsWithAuthors
+    const courses: RequiredProperty<CourseWithFullAssets>[] = await res.json();
+    const transformedCourses = courses.map(c => transformBTCourse(c));
+    return transformedCourses
   } catch (err) {
     console.error('there was an error when getting applications: ', err);
   }
@@ -48,7 +52,7 @@ const Page = async () => {
         <SearchFilter filters={filters} categories={categories} />
       </IsClientProvider>
 
-      { courses ? 
+      { courses && courses.length ? 
         <>
           <div>
             {courses.map((c, idx) => (

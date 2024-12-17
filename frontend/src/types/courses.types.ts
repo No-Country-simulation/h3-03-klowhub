@@ -1,6 +1,7 @@
 // TODO: implement strict type, for this we first need internationalization added
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
+import { RecursiveNonNullable } from "./utils.types";
 import { Platform, TImage, TVideo, TDocument, AuthorInfo, FlatPromotion } from "./global.types"
 import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
@@ -73,6 +74,8 @@ export type CourseFormData = {
   promotion: Promotion | null
 }
 
+export type ValidatedCourseForm = RecursiveNonNullable<Omit<CourseFormData, "promotion">> & { promotion: Promotion | null }
+
 export type CoursePayload = {
   id: number | null
   modules: CourseFormData["modules"]
@@ -86,7 +89,9 @@ type Course =
   & { modules: Module[] }
   & { promotion: Promotion | null }
 
-export type BTCourse = BTEntity<Omit<Course, "modules" | "coverImg" | "promotionalVideo">>
+export type BTCourse = 
+  & BTEntity<Omit<Course, "modules" | "coverImg" | "promotionalVideo">>
+  & { id: string }
 
 export type CourseWithReducedAssets = BTCourse & {
   modules: (Omit<Module, "lessons"> & (BTEntity<Omit<Lesson, "video" | "link">> & { video: string | null, link: string | null })[])[]

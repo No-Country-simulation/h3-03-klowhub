@@ -48,16 +48,15 @@ const ProjectDetailPage = async ({ params }: Props) => {
           w-full
           lg:w-1/4
         `}>
-          {/* TODO: need backend to send me the author data with the project payload */}
-          {/* <AuthorCard  */}
-          {/*   name={projectData.seller?.name || }  */}
-          {/*   about={projectData.author.about } */}
-          {/*   profileImg={projectData.author.profileImg} */}
-          {/* > */}
-          {/*   <AuthorData Icon={Star} data="Calificación: 5" /> */}
-          {/*   <AuthorData Icon={MessageSquare} data="42 Reseñas" /> */}
-          {/*   <AuthorData Icon={FileChartColumnIncreasing} data="60 proyectos creados" /> */}
-          {/* </AuthorCard> */}
+          <AuthorCard 
+            name={projectData.author.name } 
+            about={projectData.author.seller!.about }
+            profileImg={projectData.author.profileImg}
+          >
+            <AuthorData Icon={Star} data="Calificación: 5" />
+            <AuthorData Icon={MessageSquare} data="42 Reseñas" />
+            <AuthorData Icon={FileChartColumnIncreasing} data="60 proyectos creados" />
+          </AuthorCard>
         </div>
         <div className={`
           w-full pt-5 border-t-1 

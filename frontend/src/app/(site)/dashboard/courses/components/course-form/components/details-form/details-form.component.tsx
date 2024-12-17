@@ -7,7 +7,6 @@ import Input from "@/components/input/input.component";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
-import TempError from "@/components/temp-error/temp-error.component";
 
 const DetailsForm = () => {
   const { state, dispatch } = useCourseContext();
@@ -31,10 +30,6 @@ const DetailsForm = () => {
           placeholder="Qué aprenderán tus estudiantes?"
           {...controlledCommonProps}
         />
-        {/* <TempError */}
-        {/*   element="multitext input para 'prevRequirements'" */}
-        {/*   reason="la api devuelve un string en vez de un array de strings" */}
-        {/* /> */}
         <Input
           name="prevRequirements" type="multitext"
           label="Requisitos previos: ¿Qué necesitan saber o tener tus estudiantes antes de empezar?" {...controlledCommonProps}
@@ -54,10 +49,6 @@ const DetailsForm = () => {
           placeholder="Hacé una descripción detallada del contenido y de los beneficios que ofrece."
           {...commonProps}
         />
-        {/* <TempError */}
-        {/*   element="coverImg upload input" */}
-        {/*   reason="las imágenes no estan siendo vinculadas al curso al momento de creación" */}
-        {/* /> */}
         <Input
           entity="course"
           name="coverImg" type="upload"
@@ -66,10 +57,6 @@ const DetailsForm = () => {
           dropzoneLabel="Subí una imagen para promocionar tu curso o lección"
           {...controlledCommonProps}
         />
-        {/* <TempError */}
-        {/*   element="promotionalVideo upload input" */}
-        {/*   reason="viene como string y no como un objeto" */}
-        {/* /> */}
         <Input
           entity="course"
           name="promotionalVideo" type="upload"

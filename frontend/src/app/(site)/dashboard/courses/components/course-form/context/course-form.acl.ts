@@ -1,6 +1,7 @@
 import { CourseWithFullAssets, CourseWithReducedAssets, CourseFormData } from "@/types/courses.types";
-import { Expand } from "tailwindcss/types/config";
+import { Platform } from "@/types/global.types";
 
+// @ts-ignore: Unreachable code error
 export function breakCourse (data: CourseFormData, reduceAssets: true): CourseWithReducedAssets 
 export function breakCourse (data: CourseFormData, reduceAssets: false): CourseWithFullAssets
 export function breakCourse (data: CourseFormData, reduceAssets = false) {
@@ -12,6 +13,7 @@ export function breakCourse (data: CourseFormData, reduceAssets = false) {
 
   const general = {
     ...data.general,
+    platform: data.general.platform as Platform,
     language: language.name,
     sector: sector.map(s => s.name),
     coreContent: coreContent.map(c => c.name),
@@ -41,8 +43,8 @@ export function breakCourse (data: CourseFormData, reduceAssets = false) {
         video: l.video!.id,
         documents: l.documents.map(d => d.id)
       })) 
-    })) : modules
-    // promotion
+    })) : modules,
+    promotion
   };
 
   return formattedData
@@ -57,7 +59,7 @@ export const groupCourse = (data: CourseWithFullAssets) => {
       shortDescription: data.shortDescription,
       contentType: data.contentType,
       courseDifficulty: data.courseDifficulty,
-      platform: data.platform,
+      platform: data.platform as Platform,
       sector: data.sector.map(s => ({ name: s, label: s })),
       coreContent: data.coreContent.map(c => ({ name: c, label: c })),
       toolsAndPlatforms: data.toolsAndPlatforms.map(t => ({ name: t, label: t })),

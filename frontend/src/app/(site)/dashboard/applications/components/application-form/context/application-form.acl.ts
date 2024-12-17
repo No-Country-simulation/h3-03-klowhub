@@ -1,8 +1,11 @@
-import { ApplicationWithFullImgs, ApplicationWithReducedImgs, ApplicationFormData } from "@/types/application.types";
+import { ApplicationWithFullImgs, ApplicationWithReducedImgs, ApplicationFormData, ValidatedApplicationForm } from "@/types/application.types";
+import { RecursiveNonNullable } from "@/types/utils.types";
+import { Platform, Promotion } from "@/types/global.types";
 
+// @ts-ignore: Unreachable code error
 export function breakApplication (data: ApplicationFormData, reduceImgs: true): ApplicationWithReducedImgs
 export function breakApplication (data: ApplicationFormData, reduceImgs: false): ApplicationWithFullImgs
-export function breakApplication (data: ApplicationFormData, reduceImgs = false) {
+export function breakApplication (data: ValidatedApplicationForm, reduceImgs = false) {
   const { general: { tags, sector, toolsAndPlatforms, functionalities, language }, media: { coverImg, assets } } = data;
 
   const general = {
@@ -16,8 +19,8 @@ export function breakApplication (data: ApplicationFormData, reduceImgs = false)
 
   const media = {
     ...data.media,
-    coverImg: reduceImgs ? coverImg!.id : data.media.coverImg,
-    assets: reduceImgs ? assets.map(ast => ast.id) : data.media.assets
+    coverImg: reduceImgs ? coverImg!.id : coverImg,
+    assets: reduceImgs ? assets.map(ast => ast.id) : assets
   };
 
   const promotion = data.promotion ? {
@@ -38,7 +41,7 @@ export const groupApplication = (data: ApplicationWithFullImgs) => {
     general: {
       title: data.title,
       shortDescription: data.shortDescription,
-      platform: data.platform,
+      platform: data.platform as Platform,
       language: { name: data.language, label: data.language },
       sector: data.sector.map(s => ({ name: s, label: s })),
       functionalities: data.functionalities.map(f => ({ name: f, label: f })),

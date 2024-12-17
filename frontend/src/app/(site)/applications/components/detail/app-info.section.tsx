@@ -14,13 +14,13 @@ import { buttonVariants } from "@/components/ui/button";
 
 export const AppInfo: FC<AppProps> = ({
   submitApplication,
-    title, 
-    shortDescription,
-    fullDescription,
-    rating,
-    ratingCount, 
-    coverImg,
-    children,
+  title, 
+  shortDescription,
+  fullDescription,
+  rating,
+  ratingCount, 
+  coverImg,
+  children,
   assets,
   authorId
 }) => {

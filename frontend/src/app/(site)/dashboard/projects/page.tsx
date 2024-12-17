@@ -1,37 +1,32 @@
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Inter } from "next/font/google";
 import ProjectCard from "./components/project-card.component";
-import { projectsData } from "@/mocks/projects.mocks";
 import Link from "next/link";
 import NoData from "@/components/no-data/no-data.component";
 import { ProjectWithFullImgs } from "@/types/project.types";
-
-const inter = Inter({
-    subsets: ["latin"],
-    weight: ["100", "200", "400", "600", "700"],
-    display: "swap",
-});
+import { transformBTProject } from "../../projects/projects-page.acl";
+import { RequiredProperty } from "@/types/utils.types";
 
 const getProjects = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}`);
-    const projects: ProjectWithFullImgs[] = await res.json();
-    return projects
+    const projects: RequiredProperty<ProjectWithFullImgs>[] = await res.json();
+    const transformedProjects = projects.map(p => transformBTProject(p));
+
+    return transformedProjects
   } catch (err) {
     console.error("error when getting projects: ", err)
   }
 };
 
 const MyProjectsPage = async () => {
-  const projectsData = await getProjects();
-
-    // const activeProjects = projectsData.filter((project) => project.status === "En curso");
-    // const completedProjects = projectsData.filter((project) => project.status === "Terminado");
+    const projectsData = await getProjects();
+    const activeProjects = projectsData && projectsData.filter((project) => project.status === "en-curso");
+    const completedProjects = projectsData && projectsData.filter((project) => project.status === "finalizado");
 
     return (
-        <main className={`${inter.className} w-full tracking-wide pb-28`}>
+        <main className={`w-full tracking-wide pb-28`}>
             <div className="px-6 md:px-0 mx-auto">
                 <BreadCrumb />
             </div>
@@ -51,30 +46,30 @@ const MyProjectsPage = async () => {
                     </div>
                 </div>
                 <div className="flex flex-col-reverse md:flex-row gap-14 md:gap-6">
-          { projectsData ?
-            <>
-              <div className="flex flex-col gap-6 w-full xl:w-2/5">
-                <Card className="p-3">
-                  <h3 className="text-sm font-semibold">Proyectos Terminados</h3>
-                </Card>
-                <ul className="flex flex-col gap-6">
-                  {projectsData.map((project) => (
-                    <ProjectCard key={project.id} project={project} />
-                  ))}
-                </ul>
-              </div>
+          { completedProjects && completedProjects.length ?
+            <div className="flex flex-col gap-6 w-full xl:w-2/5">
+              <Card className="p-3">
+                <h3 className="text-sm font-semibold">Proyectos Terminados</h3>
+              </Card>
+              <ul className="flex flex-col gap-6">
+                {completedProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </ul>
+            </div> : <NoData entity="proyectos" />
+          }
 
-              <div className="flex flex-col gap-3 xl:gap-6 w-full xl:w-3/5">
-                <Card className="p-3">
-                  <h3 className="text-sm font-semibold">Proyectos activos</h3>
-                </Card>
-                <ul className="flex flex-col gap-3 xl:gap-6">
-                  {projectsData.map((project) => (
-                    <ProjectCard key={project.id} project={project} active />
-                  ))}
-                </ul>
-              </div>
-            </> : <NoData entity="proyectos" />
+          { activeProjects && activeProjects.length ?
+            <div className="flex flex-col gap-3 xl:gap-6 w-full xl:w-3/5">
+              <Card className="p-3">
+                <h3 className="text-sm font-semibold">Proyectos activos</h3>
+              </Card>
+              <ul className="flex flex-col gap-3 xl:gap-6">
+                {activeProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} active />
+                ))}
+              </ul>
+            </div> : <NoData entity="proyectos" />
           }
                 </div>
             </div>

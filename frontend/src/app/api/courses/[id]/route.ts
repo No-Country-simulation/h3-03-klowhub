@@ -21,13 +21,9 @@ export async function GET (req: NextRequest) {
   const withReviews = searchParams.get("withReviews");
 
   const mockedResponse = {
-    courseData: {
       ...coursesMock[0], 
       ...(withAuthor ? { author: authorsMocks[0] } : {}),
       ...(withReviews ? { reviews } : {}),
-    },
-    freeLessons: lessonsAdapter(coursesMock[0]),
-    transformedProgram: modulesAdapter(coursesMock[0]),
   };
 
   return NextResponse.json(mockedResponse, { status: 200 })

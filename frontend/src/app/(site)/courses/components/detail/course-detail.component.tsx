@@ -2,7 +2,7 @@
 
 import AuthorData from "@/components/author-card/components/author-data/author-data.component";
 import { Star, User, BookOpen } from "lucide-react";
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import { CourseInfo } from "./course-info.section";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/icon/icon.component";
@@ -20,20 +20,15 @@ import PageFilters from "@/components/page-filters/page-filters.component";
 import { useSearchParams } from "next/navigation";
 import { instructorPitch } from "@/mocks/course-detail";
 
-import { useCourseData } from "./hooks/use-course-data.hook";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import { IncludeSection } from "./include-section";
-import TempError from "@/components/temp-error/temp-error.component";
 import AuthorInfo from "../../../../../components/author-info/author-info";
 import { ObjectivesList } from "./objectives.section";
 import { CourseWithFullAssets } from "@/types/courses.types";
-import { useContext } from "react";
 import useStore from "@/contexts/store/use-store.hook";
 import { BTUser } from "@/types/user.types";
-import { IsClientCtx } from "@/contexts/is-client/is-client.context";
 import useCourseContext from "@/app/(site)/dashboard/courses/components/course-form/hooks/use-course-context.hook";
 import { breakCourse } from "@/app/(site)/dashboard/courses/components/course-form/context/course-form.acl";
-import { Lesson } from "@/types/courses.types";
 import { reviews } from "@/mocks/reviews.mocks";
 import useIsClientCtx from "@/contexts/is-client/use-is-client.hook";
 
@@ -112,7 +107,7 @@ export const CourseDetail = ({ serverSideData, children }: Props) => {
           </CourseInfo>
 
           <div className="space-y-6">
-            <AuthorCard name={author.name} about={author.seller.about} profileImg={author.profileImg}> 
+            <AuthorCard name={author.name} about={author.seller?.about || ""} profileImg={author.profileImg}> 
               <AuthorData Icon={Star} data={"Calificación del instructor: 4.5"} />
               <AuthorData Icon={User} data={"12 Estudiantes"}  />
               <AuthorData Icon={BookOpen} data={"5 Cursos"}  />

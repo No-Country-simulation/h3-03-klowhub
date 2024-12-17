@@ -15,7 +15,7 @@ export const STORE_INITIAL_STATE: Store = {
     email: "",
     profileImg: null,
     jwtToken: "",
-    seller: null
+    sellerData: null
   },
   ui: {
     mode: "explorer"

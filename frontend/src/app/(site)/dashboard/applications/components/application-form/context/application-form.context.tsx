@@ -10,7 +10,7 @@ import { breakApplication, groupApplication } from "./application-form.acl";
 import { setGeneralData, setDetailsData, setMediaData, setPromotionData } from "./application-form.actions";
 
 import { User } from "@/contexts/store/store.types";
-import { Application, ApplicationFormData } from "@/types/application.types";
+import { ApplicationWithFullImgs, ApplicationFormData } from "@/types/application.types";
 
 type Props = {
   children: ReactNode[]
@@ -21,7 +21,11 @@ export type TApplicationCtx = {
   dispatch: Dispatch<ApplicationFormActions>
   submitApplication: (additionalData?: object) => Promise<string | undefined>
 }
-export const ApplicationCtx = createContext<TApplicationCtx | undefined>(undefined)
+export const ApplicationCtx = createContext<TApplicationCtx>({
+  state: APPLICATION_FORM_INITIAL_STATE,
+  dispatch: () => {},
+  submitApplication: async () => undefined
+})
 
 const ApplicationCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(applicationFormReducer, APPLICATION_FORM_INITIAL_STATE);
@@ -44,7 +48,7 @@ const ApplicationCtxProvider = ({ children }: Props) => {
         }
       });   
 
-      const createdApplication: Application = await res.json();
+      const createdApplication: ApplicationWithFullImgs = await res.json();
       console.log("created application: ", createdApplication);
 
       return createdApplication.id
@@ -63,9 +67,9 @@ const ApplicationCtxProvider = ({ children }: Props) => {
         const applicationData = await res.json();
         const groupedApplication = groupApplication(applicationData);
 
-        dispatch(setMediaData(groupedApplication.media))
         dispatch(setGeneralData(groupedApplication.general))
         dispatch(setDetailsData(groupedApplication.details))
+        dispatch(setMediaData(groupedApplication.media))
         dispatch(setPromotionData(groupedApplication.promotion))
       } catch (err) {
         console.error("there was an error while getting application data: ", err)

@@ -10,7 +10,7 @@ import { breakProject, groupProject } from "./project-form.acl";
 import { setGeneralData, setDetailsData } from "./project-form.actions";
 
 import { User } from "@/contexts/store/store.types";
-import { ProjectWithFullImgs, ProjectFormData } from "@/types/project.types";
+import { ProjectWithFullImgs, ProjectFormData, ValidatedProjectForm } from "@/types/project.types";
 
 type Props = {
   children: ReactNode[]
@@ -21,7 +21,11 @@ type TProjectCtx = {
   dispatch: Dispatch<ProjectFormActions>
   submitProject: (additionalData?: object) => Promise<string | undefined>
 }
-export const ProjectCtx = createContext<TProjectCtx | undefined>(undefined)
+export const ProjectCtx = createContext<TProjectCtx>({
+  state: PROJECT_FORM_INITIAL_STATE,
+  dispatch: () => {},
+  submitProject: async () => undefined
+})
 
 const ProjectCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
@@ -29,8 +33,8 @@ const ProjectCtxProvider = ({ children }: Props) => {
   const projectId = params.id;
   const [ user ] = useStore<User>("user");
 
-  const submitProject = useCallback(async (additionalData = {}) => {
-    const formattedData = breakProject({ ...state, ...additionalData }, true);
+  const submitProject = useCallback(async () => {
+    const formattedData = breakProject(state as ValidatedProjectForm, true);
     const createEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/user/${user.id}`;
     const editEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/${projectId}`;
 

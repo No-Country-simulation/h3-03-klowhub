@@ -8,7 +8,7 @@ import Link from 'next/link'
 import Image from "next/image"
 import React from 'react'
 import { TProjectCard } from '@/types/project.types'
-import { formatPublicationDate } from '../utils/project-card.utils'
+// import { formatPublicationDate } from '../utils/project-card.utils'
 
 type Props = {
     project: TProjectCard
@@ -22,7 +22,7 @@ const ProjectCard = ({ project }: Props) => {
                 <div className="flex flex-col gap-3 md:gap-5 px-3.5">
                     <div className="flex flex-col-reverse md:flex-row md:justify-between">
                         <div className="flex flex-col md:gap-5 lg:gap-0">
-                            <p className="text-xs lg:h-[23px] md:h-[46px]">{formatPublicationDate(project.initialDate)}</p>
+                            {/* <p className="text-xs lg:h-[23px] md:h-[46px]">{formatPublicationDate(project.initialDate)}</p> */}
                             <h4 className="hidden lg:flex text-sm font-semibold lg:text-base lg:font-bold">
                 <Link href={`/projects/${project.id}`}>
                   {project.title}
