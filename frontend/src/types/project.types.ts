@@ -3,6 +3,7 @@ import { TVideo, TDocument, Platform } from "./global.types";
 import { TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
 import { BTSeller } from "./backend-responses.types";
+import { BTUser } from "./user.types";
 
 export type ProjectInfo = {
   title: string
@@ -44,6 +45,7 @@ export type ProjectWithReducedImgs = BTProject & {
 
 export type ProjectWithFullImgs = BTProject & {
   assets: (TImage | TVideo | TDocument)[]
+  author: BTUser
 }
 
 type TInstructorInfo = {
@@ -65,9 +67,9 @@ export type TProjectCard = {
   instructor: TInstructorInfo,
   description: string,
   platform : "PowerApps" | "AppSheet",
-  tags: string[],
-  rating: number,
-  ratingCount: number,
+  // tags: string[],
+  // rating: number,
+  // ratingCount: number,
   status: "En curso" | "Terminado",
   initialDate: string,
   finalDate: string,

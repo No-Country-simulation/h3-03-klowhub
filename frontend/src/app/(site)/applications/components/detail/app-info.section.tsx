@@ -21,7 +21,8 @@ export const AppInfo: FC<AppProps> = ({
     ratingCount, 
     coverImg,
     children,
-  assets
+  assets,
+  authorId
 }) => {
 
   const [ newApplicationId, setNewApplicationId ] = useState<string>()
@@ -50,12 +51,13 @@ export const AppInfo: FC<AppProps> = ({
         ratingCount={ratingCount}
         assets={assets}
         coverImg={coverImg}
+        authorId={authorId}
       />
       <div className="space-y-4" id='detail-container'>
         { children[0] }
         <h3 className="text-sm font-semibold">Acerca de esta app</h3>
         <div className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
-          {parse(fullDescription, reactParserOptions)}
+          {fullDescription}
         </div>
 
         <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>

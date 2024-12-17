@@ -31,7 +31,7 @@ const CourseCtxProvider = ({ children }: Props) => {
   const [ user ] = useStore<User>("user");
 
   const submitCourse = useCallback(async (additionalData = {}) => {
-    const formattedData = breakCourse({ ...state, ...additionalData });
+    const formattedData = breakCourse({ ...state, ...additionalData }, true);
     console.log('creating course...', formattedData);
     
     const createEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}`;

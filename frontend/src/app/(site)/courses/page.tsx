@@ -11,6 +11,7 @@ import QuickView from "@/components/quick-view/quick-view.component";
 import { TQuickView } from "@/components/product-card/product-card.types";
 import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
 import authorsMock from "@/mocks/authors.mock.json"
+import NoData from "@/components/no-data/no-data.component";
 
 const filters = [
   platform,
@@ -36,7 +37,7 @@ const getProducts = async (endpoint: string) => {
 };
 
 const Page = async () => {
-  const courses = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`) || [];
+  const courses = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`);
   const queryParams = await getQueryParams();
 
   return (
@@ -47,16 +48,20 @@ const Page = async () => {
         <SearchFilter filters={filters} categories={categories} />
       </IsClientProvider>
 
-      <div>
-        {courses.map((c, idx) => (
-          <ProductCard data={c} key={idx} />
-        ))}
-      </div>
-      {queryParams.modal &&
-        <SideModal>
-          <QuickView products={courses} />
-        </SideModal>
-      }
+      { courses ? 
+        <>
+          <div>
+            {courses.map((c, idx) => (
+              <ProductCard data={c} key={idx} />
+            ))}
+          </div>
+          {queryParams.modal &&
+            <SideModal>
+              <QuickView products={courses} />
+            </SideModal>
+          }
+        </> : <NoData entity="cursos" />
+    }
       <Pager />
     </main>
   );

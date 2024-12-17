@@ -61,14 +61,14 @@ const ProjectCard = ({ project }: Props) => {
                         >
                             {project.platform}
                         </Badge>
-                        <div className='flex gap-3'>
-
-                            {
-                                project.tags.map((t, idx) => (
-                                    <Badge key={`product-card-badge-${idx}`}>{t}</Badge>
-                                ))
-                            }
-                        </div>
+                        {/* <div className='flex gap-3'> */}
+                        {/**/}
+                        {/*     { */}
+                        {/*         project.tags.map((t, idx) => ( */}
+                        {/*             <Badge key={`product-card-badge-${idx}`}>{t}</Badge> */}
+                        {/*         )) */}
+                        {/*     } */}
+                        {/* </div> */}
                     </div>
                     <div className='flex flex-col gap-3.5'>
                         <div className='flex gap-3.5 items-center'>
@@ -87,7 +87,7 @@ const ProjectCard = ({ project }: Props) => {
                         </div>
                         <div className='flex gap-5'>
                             <Icon name="rated-star" />
-                            <span className='text-sm'>Calificacion del instructor: {project.instructor.rating}</span>
+                            <span className='text-sm'>Calificacion del instructor: 4.5</span>
                         </div>
                     </div>
                     <div className='w-full text-sm text-center lg:text-end p-3.5'>

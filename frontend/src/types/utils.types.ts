@@ -14,7 +14,7 @@ export type BTEntity<T> = {
     T[K] extends (SelectOption | null) ? string 
   : T[K] extends SelectOption[] ? string[]
   : T[K] extends (TImage | TVideo | TDocument)[] ? string[]
-  : T[K] extends (TImage | null) ? string
+  : T[K] extends TImage | TVideo | null ? string
   : T[K]
 }
 

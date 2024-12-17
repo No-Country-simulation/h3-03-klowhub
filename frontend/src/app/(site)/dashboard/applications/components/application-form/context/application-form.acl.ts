@@ -16,7 +16,7 @@ export function breakApplication (data: ApplicationFormData, reduceImgs = false)
 
   const media = {
     ...data.media,
-    coverImg: reduceImgs ? coverImg?.id : data.media.coverImg,
+    coverImg: reduceImgs ? coverImg!.id : data.media.coverImg,
     assets: reduceImgs ? assets.map(ast => ast.id) : data.media.assets
   };
 

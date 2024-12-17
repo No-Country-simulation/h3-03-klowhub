@@ -11,6 +11,7 @@ import { getQueryParams } from "@/utils/route.utils";
 import { TQuickView } from "@/components/product-card/product-card.types";
 import { transformApp, transformAuthor } from "./applications-page.acl";
 import { ApplicationWithFullImgs } from "@/types/application.types";
+import NoData from "@/components/no-data/no-data.component";
 
 const filters = [
   platform,
@@ -30,14 +31,13 @@ const getProducts = async (endpoint: string) => {
     const transformedApps: TQuickView[] = apps.map(app => transformApp(app));
     return transformedApps
   } catch (err) {
-    console.log("there was an error when requesting apps: ", err);
+    console.log("error when getting apps: ", err);
   }
 };
 
 
 const AppliactionsPage = async () => {
-  const applications = await getProducts(endpoint) || [];
-  console.log('applications: ', applications);
+  const applications = await getProducts(endpoint);
   const queryParams = await getQueryParams();
 
   return (
@@ -47,22 +47,24 @@ const AppliactionsPage = async () => {
       <IsClientProvider>
         <SearchFilter filters={filters} />
       </IsClientProvider>
-      <div 
-        className="
-        mb-6
-        grid grid-cols-1 gap-5
-        md:grid-cols-2 md:px-0
-        lg:grid-cols-3
-        xl:grid-cols-4
-        "
-      >
-        {applications.map((app, idx) => (
-          <ProductCard
-            key={`product-card-${idx}`}
-            data={app}
-          />
-        ))}
-      </div>
+      { applications ?
+        <div 
+          className="
+          mb-6
+          grid grid-cols-1 gap-5
+          md:grid-cols-2 md:px-0
+          lg:grid-cols-3
+          xl:grid-cols-4
+          "
+        >
+          {applications.map((app, idx) => (
+            <ProductCard
+              key={`product-card-${idx}`}
+              data={app}
+            />
+          ))}
+        </div> : <NoData entity="aplicaciones" />
+      }
 
         { queryParams.modal && 
           <SideModal>

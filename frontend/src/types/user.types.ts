@@ -5,10 +5,9 @@ type UserMode =
   | { name: "publisher", label: "Vendedor" }
 
 export type BTUser = {
-  id?: string
+  id: string
   name: string
   email: string
-  mode: UserMode
   role: string
   jwtToken: string
   seller?: BTSeller

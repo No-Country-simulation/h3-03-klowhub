@@ -26,34 +26,51 @@ import { IncludeSection } from "./include-section";
 import TempError from "@/components/temp-error/temp-error.component";
 import AuthorInfo from "../../../../../components/author-info/author-info";
 import { ObjectivesList } from "./objectives.section";
+import { CourseWithFullAssets } from "@/types/courses.types";
+import { useContext } from "react";
+import useStore from "@/contexts/store/use-store.hook";
+import { BTUser } from "@/types/user.types";
+import { IsClientCtx } from "@/contexts/is-client/is-client.context";
+import useCourseContext from "@/app/(site)/dashboard/courses/components/course-form/hooks/use-course-context.hook";
+import { breakCourse } from "@/app/(site)/dashboard/courses/components/course-form/context/course-form.acl";
+import { Lesson } from "@/types/courses.types";
+import { reviews } from "@/mocks/reviews.mocks";
+import useIsClientCtx from "@/contexts/is-client/use-is-client.hook";
 
 type Props = {
+  serverSideData?: CourseWithFullAssets
   children?: ReactNode
 }
 
-export const CourseDetail: FC<Props> = ({ children }) => {
+export const CourseDetail = ({ serverSideData, children }: Props) => {
+  const isClientCtx = useIsClientCtx();
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
+  const [ user ] = useStore<BTUser>("user");
 
-  const { pageData, submitCourse } = useCourseData();
+  const { state, submitCourse } = useCourseContext();
+  const clientSideData = state && isClientCtx && {...breakCourse(state, false), author: user};
+  const pageData = clientSideData || serverSideData;
   if (!pageData) return <div>Cargando...</div>;
 
+
   const { 
-    courseData: { 
-      coreContent,
-      functionalities,
-      toolsAndPlatforms,
-      sector,
-      tags,
-      author,
-      targetAudience,
-      prevRequirements,
-      platform,
-      learningSubjects,
-    },
-    freeLessons,
-    transformedProgram
+    coreContent,
+    functionalities,
+    toolsAndPlatforms,
+    sector,
+    tags,
+    author,
+    targetAudience,
+    prevRequirements,
+    platform,
+    learningSubjects,
+    modules
   } = pageData;
+
+  const lessons = modules.map(m => m.lessons).flat();
+  const freeLessons = lessons.filter(l => l.freeLesson);
+  const modulesForDisplay = modules.map(m => ({ title: m.title, lessons: m.lessons }));
 
   const filters = [
     { label: "Pilar de contenido", items: coreContent || [] },
@@ -66,15 +83,17 @@ export const CourseDetail: FC<Props> = ({ children }) => {
   return pageData && (
     <>
       { !section &&
-        <BreadCrumb title={pageData.courseData.title}/>
+        <BreadCrumb title={pageData.title}/>
       }
       <div className="min-h-screen space-y-10">
         <div className="mt-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14">
-          <CourseInfo {...pageData.courseData} freelessons={freeLessons} submitCourse={submitCourse}>
-            {/* { author */}
-            {/*   ? <AuthorInfo data={author} /> */}
-            {/*   : <TempError element="author section" reason="la api no esta enviando info del autor"/> */}
-            {/* } */}
+          <CourseInfo 
+            {...pageData} 
+            freelessons={freeLessons} 
+            submitCourse={submitCourse}
+            authorId={author.id}
+          >
+            <AuthorInfo data={author} />
             <ObjectivesList 
               header="Después de completar este curso, serás capaz de"
               objectives={learningSubjects} 
@@ -84,27 +103,20 @@ export const CourseDetail: FC<Props> = ({ children }) => {
             <GenericSection header="¿Para quién es este curso?" text={targetAudience} />
             <RequirementsSection requirements={prevRequirements} />
 
-            <IncludeSection data={pageData.courseData.courseIncludes}/>
+            <IncludeSection data={pageData.courseIncludes}/>
 
             <PageFilters filters={filters} />
-            {pageData.courseData.reviews &&
-              <ReviewsSection reviews={pageData.courseData.reviews} />
+            { section !== "preview" &&
+              <ReviewsSection reviews={reviews} />
             }
           </CourseInfo>
 
           <div className="space-y-6">
-            { author
-              ? (
-                <AuthorCard name={author.name} about={author.about} profileImg={author.profileImg}> 
-                  <AuthorData Icon={Star} data={"Calificación del instructor: 4.5"} />
-                  <AuthorData Icon={User} data={"12 Estudiantes"}  />
-                  <AuthorData Icon={BookOpen} data={"5 Cursos"}  />
-                </AuthorCard>
-              )
-              : (
-                <TempError element="author section" reason="la api no esta enviando info del autor"/>
-              )
-            }
+            <AuthorCard name={author.name} about={author.seller.about} profileImg={author.profileImg}> 
+              <AuthorData Icon={Star} data={"Calificación del instructor: 4.5"} />
+              <AuthorData Icon={User} data={"12 Estudiantes"}  />
+              <AuthorData Icon={BookOpen} data={"5 Cursos"}  />
+            </AuthorCard>
 
             <Badge
               className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"
@@ -113,7 +125,7 @@ export const CourseDetail: FC<Props> = ({ children }) => {
               {platform}
             </Badge>
 
-            <CourseProgramSection program={transformedProgram} />
+            <CourseProgramSection modules={modulesForDisplay} />
 
             <Button
               className={`w-full ${section === "preview" ? "bg-gray-400" : ""}`}

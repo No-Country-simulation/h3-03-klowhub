@@ -54,11 +54,11 @@ const ProjectCtxProvider = ({ children }: Props) => {
       try {
         if (!projectId) return;
 
-        // const endpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/${projectId}`;
-        const endpoint = "/api/projects/1";
+        const endpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/${projectId}`;
 
         const res = await fetch(endpoint);
         const projectData = await res.json();
+        console.log('projectData: ', projectData);
         const groupedProject = groupProject(projectData);
 
 

@@ -1,7 +1,14 @@
-import { Course, CourseFormData } from "@/types/courses.types";
+import { CourseWithFullAssets, CourseWithReducedAssets, CourseFormData } from "@/types/courses.types";
+import { Expand } from "tailwindcss/types/config";
 
-export const breakCourse = (data: CourseFormData, reduceImgs?: boolean): Course => {
-  const { general: { tags, sector, coreContent, toolsAndPlatforms, functionalities, language } } = data;
+export function breakCourse (data: CourseFormData, reduceAssets: true): CourseWithReducedAssets 
+export function breakCourse (data: CourseFormData, reduceAssets: false): CourseWithFullAssets
+export function breakCourse (data: CourseFormData, reduceAssets = false) {
+  const {
+    general: { tags, sector, coreContent, toolsAndPlatforms, functionalities, language },
+    details: { coverImg },
+    modules
+  } = data;
 
   const general = {
     ...data.general,
@@ -14,8 +21,9 @@ export const breakCourse = (data: CourseFormData, reduceImgs?: boolean): Course 
   };
 
   const details = {
-    ...data.details,
-    coverImg: reduceImgs ? data.details.coverImg?.id : data.details.coverImg
+    ...data.details,  
+    coverImg: reduceAssets ? coverImg!.id : coverImg,
+    promotionalVideo: reduceAssets ? data.details.promotionalVideo!.id : data.details.promotionalVideo
   };
 
   const promotion = data.promotion ? {
@@ -26,22 +34,26 @@ export const breakCourse = (data: CourseFormData, reduceImgs?: boolean): Course 
   const formattedData = {
     ...general,
     ...details,
-    modules: data.modules,
-    promotion
+    modules: reduceAssets ? modules.map(m => ({
+      ...m,
+      lessons: m.lessons.map(l => ({
+        ...l, 
+        video: l.video!.id,
+        documents: l.documents.map(d => d.id)
+      })) 
+    })) : modules
+    // promotion
   };
 
-  console.log('formattedData: ', formattedData);
-
-  // @ts-ignore: Unreachable code error
   return formattedData
 };
 
-export const groupCourse = (data: Course): CourseFormData => {
+export const groupCourse = (data: CourseWithFullAssets) => {
   const course = {
     general: {
       title: data.title,
       freeCourse: data.freeCourse,
-      language: data.language,
+      language: { name: data.language, label: data.language },
       shortDescription: data.shortDescription,
       contentType: data.contentType,
       courseDifficulty: data.courseDifficulty,
@@ -60,18 +72,19 @@ export const groupCourse = (data: Course): CourseFormData => {
       fullDescription: data.fullDescription,
       courseIncludes: data.courseIncludes,
       coverImg: data.coverImg,
-      promotionalVideo: data.promotionalVideo
+      promotionalVideo: data.promotionalVideo,
+      price: data.price
     },
     modules: data.modules,
     promotion: data.promotion ? {
+      id: data.promotion.id,
       product: {
-        id: data.promotion.id,
-        type: data.promotion.type
+        id: data.promotion.id!,
+        type: data.promotion.product.type
       },
       percentage: data.promotion.percentage
     } : null
   };   
 
-  // @ts-ignore: Unreachable code error
   return course
 };

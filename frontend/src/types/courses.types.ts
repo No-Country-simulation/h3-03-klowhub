@@ -6,7 +6,8 @@ import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
 import { Promotion, Rating } from "./global.types";
 import { TReview } from "@/components/shared/reviews/review.types";
-import { RequiredProperty } from "./utils.types";
+import { BTEntity, Expand, RequiredProperty } from "./utils.types";
+import { BTUser } from "./user.types";
 
 
 export type Link = {
@@ -79,22 +80,43 @@ export type CoursePayload = {
 
 } & CourseFormData["general"] & CourseFormData["details"]
 
-type CourseOptionalFields = Partial<{
-  id?: string,
-  reviews?: TReview[]
-  author?: AuthorInfo
-} & Rating>
-
-export type Course = RequiredProperty<
-  & Omit<CourseInfo, "sector" | "coreContent" | "toolsAndPlatforms" | "functionalities" | "tags" | "language"> 
+type Course = 
+  & CourseInfo
   & CourseDetails
-  & {
-  sector: string[]
-  coreContent: string[]
-  toolsAndPlatforms: string[]
-  functionalities: string[]
-  tags: string[]
-  language: string
-  promotion: FlatPromotion | null
+  & { modules: Module[] }
+  & { promotion: Promotion | null }
+
+export type BTCourse = BTEntity<Omit<Course, "modules" | "coverImg" | "promotionalVideo">>
+
+export type CourseWithReducedAssets = BTCourse & {
+  modules: (Omit<Module, "lessons"> & (BTEntity<Omit<Lesson, "video" | "link">> & { video: string | null, link: string | null })[])[]
+  coverImg: string
+  promotionalVideo: string
+}
+
+export type CourseWithFullAssets = BTCourse & {
   modules: Module[]
-}> & CourseOptionalFields
+  coverImg: TImage
+  promotionalVideo: TVideo
+  author: Required<BTUser>
+}
+
+// type CourseOptionalFields = Partial<{
+//   id?: string,
+//   reviews?: TReview[]
+//   author?: AuthorInfo
+// } & Rating>
+
+// export type Course = RequiredProperty<
+//   & Omit<CourseInfo, "sector" | "coreContent" | "toolsAndPlatforms" | "functionalities" | "tags" | "language"> 
+//   & CourseDetails
+//   & {
+//   sector: string[]
+//   coreContent: string[]
+//   toolsAndPlatforms: string[]
+//   functionalities: string[]
+//   tags: string[]
+//   language: string
+//   promotion: FlatPromotion | null
+//   modules: Module[]
+// }> & CourseOptionalFields

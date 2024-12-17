@@ -28,20 +28,22 @@ import { ApplicationWithFullImgs } from "@/types/application.types";
 import { BTUser } from "@/types/user.types";
 import { useContext } from "react";
 import { IsClientCtx } from "@/contexts/is-client/is-client.context";
+import useIsClientCtx from "@/contexts/is-client/use-is-client.hook";
 
 type Props = {
   serverSideData?: ApplicationWithFullImgs
 }
 
 export const AppDetail = ({ serverSideData }: Props) => {
-  const isClient = useContext(IsClientCtx);
+  const isClientCtx = useIsClientCtx();
   const [showGreeter, setShowGreeter] = useState(false);
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
   const [ user ] = useStore<BTUser>("user");
 
   const { state, submitApplication } = useApplicationContext();
-  const pageData = state && isClient ? {...breakApplication(state, false), author: user} : serverSideData;
+  const clientSideData = state && isClientCtx && {...breakApplication(state, false), author: user};
+  const pageData = clientSideData || serverSideData;
   if (!pageData) return <div>Cargando...</div>;
 
   const { 
@@ -76,7 +78,11 @@ export const AppDetail = ({ serverSideData }: Props) => {
     }
       <div className="min-h-screen">
         <div className={`${!section ? "mt-8" : ""} mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14`}>
-          <AppInfo {...pageData} submitApplication={submitApplication}>
+          <AppInfo 
+            {...pageData} 
+            submitApplication={submitApplication}
+            authorId={author?.id as string}
+          >
             {/* this type error will be fixed when the hook returns always an app with its author */}
             { author &&
               <AuthorInfo data={author}/>

@@ -22,7 +22,8 @@ export const CourseInfo: FC<CourseProps> = ({
     freelessons, // comentar en caso de error
     fullDescription,
     children,
-    promotionalVideo
+    promotionalVideo,
+  authorId
 }) => {
   const [ newCourseId, setNewCourseId ] = useState<string>()
   
@@ -50,6 +51,7 @@ export const CourseInfo: FC<CourseProps> = ({
         ratingCount={ratingCount}
         promotionalVideo={promotionalVideo}
         lessons={freelessons}
+        authorId={authorId}
       />
       <div className="space-y-4" id='detail-container'>
         <h3 className="text-sm font-semibold">Acerca de este curso</h3>
