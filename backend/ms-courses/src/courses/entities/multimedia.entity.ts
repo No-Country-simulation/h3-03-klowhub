@@ -2,7 +2,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne,
+  // ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Course } from './course.entity';
@@ -59,9 +59,9 @@ export class Multimedia {
   @Column({ nullable: true }) // Declarar explícitamente courseId como clave foránea
   courseId: string;
 
-  @ManyToOne(() => Course, (course) => course.multimedia, {
-    onDelete: 'CASCADE',
-  })
+  // @ManyToOne(() => Course, (course) => course.multimedia, {
+  //   onDelete: 'CASCADE',
+  // })
   @JoinColumn({ name: 'courseId' })
   course: Course;
 

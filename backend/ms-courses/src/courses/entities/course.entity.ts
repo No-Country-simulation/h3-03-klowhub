@@ -69,7 +69,9 @@ export class Course {
   // coverImg: string;
   // @ManyToOne(() => Multimedia)
   // coverImg: Multimedia;
-  @ManyToOne(() => Multimedia, (multimedia) => multimedia.course)
+  @ManyToOne(() => Multimedia, (multimedia) => multimedia.course, {
+    nullable: false,
+  })
   @JoinColumn()
   coverImg: Multimedia;
 
@@ -107,6 +109,6 @@ export class Course {
   // @JoinColumn() // No necesitas especificar el nombre de la columna si sigues la convención
   // user: User;
 
-  @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
-  multimedia: Multimedia[];
+  // @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
+  // multimedia: Multimedia[];
 }
