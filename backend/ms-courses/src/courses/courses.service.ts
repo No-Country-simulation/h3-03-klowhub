@@ -269,8 +269,15 @@ export class CoursesService {
     if (!course) {
       return null;
     }
-    await this.courseRepository.update(id, updateCourseDto);
-    return this.findOne(id);
+    // Actualizar los campos del curso en memoria
+    Object.assign(course, updateCourseDto); // Aplicar los cambios del DTO
+
+    // Guardar el curso actualizado en la base de datos
+    await this.courseRepository.save(course); // Esto actualizará y validará
+
+    return course; // Retornar el curso actualizado
+    // await this.courseRepository.update(id, updateCourseDto);
+    // return this.findOne(id);
   }
 
   async remove(id: string): Promise<Course | null> {

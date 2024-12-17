@@ -3,13 +3,13 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   NotFoundException,
   BadRequestException,
   UseInterceptors,
   UploadedFile,
+  Put,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -95,7 +95,7 @@ export class CoursesController {
   }
 
   //Hacer el post de cursos con todas las entidades!!!
-  @Post('createCourse')
+  @Post()
   async createCourse(@Body() createCourseDto: CreateCourseDto) {
     try {
       return await this.coursesService.createCourse(createCourseDto);
@@ -221,7 +221,7 @@ export class CoursesController {
     return singleCourse;
   }
   //cambiar a put
-  @Patch(':id')
+  @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() updateCourseDto: UpdateCourseDto,
