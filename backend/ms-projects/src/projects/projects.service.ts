@@ -199,7 +199,7 @@ export class ProjectsService {
       throw new NotFoundException (`Project with ID ${id} not found`);
     }
     const userResponse = await lastValueFrom(
-      this.httpService.get(`http://localhost:3001/users/${project.userId}`),
+      this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.userId}`),
       );
       return {
         ...project,
