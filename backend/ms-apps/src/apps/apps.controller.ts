@@ -7,6 +7,7 @@ import {
   BadRequestException,
   UseInterceptors,
   UploadedFile,
+  Query,
 } from '@nestjs/common';
 import { CreateAppDto } from './dto/create-app.dto';
 import { AppsService } from './apps.service';
@@ -46,18 +47,28 @@ export class AppsController {
   }
 
   //APP ROUTES
-  @Post()
-  async create(@Body() createAppDto: CreateAppDto): Promise<App> {
+  @Post(':userId')
+  async create(
+    @Param('userId') userId: string,
+    @Body() createAppDto: CreateAppDto,
+  ): Promise<App> {
+    createAppDto.userId = userId;
     return this.appService.createApp(createAppDto);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<App> {
-    return this.appService.findOne(id);
+  async findOne(
+    @Param('id') id: string,
+    @Query('withAuthor') withAuthor?: string,
+  ): Promise<App> {
+    const isWithAuthor = withAuthor === 'true';
+    return this.appService.findOne(id, isWithAuthor);
   }
 
   @Get()
-  async findAll(): Promise<App[]> {
-    return this.appService.findAll();
+  async findAll(@Query('withAuthor') withAuthor?: string): Promise<App[]> {
+    const isWithAuthor = withAuthor === 'true';
+    console.log('withAuthor:', withAuthor, 'isWithAuthor:', isWithAuthor);
+    return this.appService.findAll(isWithAuthor);
   }
 }

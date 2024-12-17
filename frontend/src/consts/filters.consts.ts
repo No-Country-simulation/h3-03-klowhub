@@ -10,7 +10,8 @@ import {
   AccessType, 
   ExperienceLevel,
   Tag,
-  RequiredSkill
+  RequiredSkill,
+  SellerType
 } from "./filters.types";
 
 type Filter<T> = {
@@ -197,6 +198,16 @@ export const tags: Filter<Tag> = {
     { name: "tecnologia-para-empresas", label: "Tecnología para empresas" },
     { name: "herramientas-nocode", label: "Herramientas no-code" },
     { name: "creacion-de-aplicaciones", label: "Creación de aplicaciones" },
+  ]
+}
+
+export const sellerType: Filter<SellerType> = {
+  header: "Tags",
+  items: [
+    { name: "desarrollador-de-apps", label: "Desarrollador de apps" },
+    { name: "creador-de-contenido-educativo", label: "Creador de contenido exclusivo" },
+    { name: "equipo-de-desarrollo", label: "Equipo de desarrollo" },
+    { name: "appsheet-expert", label: "Appsheet Expert" },
   ]
 }
 

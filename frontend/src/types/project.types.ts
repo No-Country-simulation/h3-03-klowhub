@@ -1,7 +1,8 @@
-import { RequiredProperty } from "./utils.types";
+import { BTEntity, Expand, RequiredProperty } from "./utils.types";
 import { TVideo, TDocument, Platform } from "./global.types";
 import { TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
+import { BTSeller } from "./backend-responses.types";
 
 export type ProjectInfo = {
   title: string
@@ -24,22 +25,44 @@ export type ProjectDetails = {
 }
 
 export type ProjectFormData = {
-  // id?: string | null
-  userId: string
+  // userId: string
   general: ProjectInfo
   details: ProjectDetails
 }
 
-export type Project = RequiredProperty<ProjectInfo & ProjectDetails>
+export type BTProject = 
+  & BTEntity<ProjectInfo & Omit<ProjectDetails, "assets">>
+  & {
+    id?: string,
+    userId?: string,
+    seller?: BTSeller
+  }
 
-export type TProjectCard = {
-  id: number,
+export type ProjectWithReducedImgs = BTProject & {
+  assets: string[]
+}
+
+export type ProjectWithFullImgs = BTProject & {
+  assets: (TImage | TVideo | TDocument)[]
+}
+
+type TInstructorInfo = {
+  name: string,
   img : {
     url: string,
       width: number,
       height: number,
       alt: string
   }
+  userType?: string
+  description: string
+  rating: number
+}
+
+export type TProjectCard = {
+  id: number,
+  title: string,
+  instructor: TInstructorInfo,
   description: string,
   platform : "PowerApps" | "AppSheet",
   tags: string[],

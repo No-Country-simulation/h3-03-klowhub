@@ -4,13 +4,22 @@ type UserMode =
   | { name: "explorer", label: "Explorador" }
   | { name: "publisher", label: "Vendedor" }
 
-type UserProfile = {
+export type BTUser = {
+  id?: string
+  name: string
   email: string
+  mode: UserMode
+  role: string
+  jwtToken: string
+  seller?: BTSeller
   profileImg: TImage
 }
 
-type User = {
-  id: string
-  mode: UserMode
-  profile: UserProfile
+export type BTSeller = {
+  type: string,
+  website: string | null,
+  documentImg: TImage | null,
+  paymentMethod: string | null,
+  id: string,
+  about: string 
 }

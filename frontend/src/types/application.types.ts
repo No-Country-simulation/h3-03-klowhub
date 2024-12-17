@@ -1,9 +1,10 @@
 import { FlatPromotion, Promotion, TVideo } from "./global.types";
 import { Platform, TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
-import { TReview } from "@/components/shared/reviews/review.types";
-import { AuthorInfo, Rating } from "./global.types";
-import { RequiredProperty } from "./utils.types";
+import { AuthorInfo } from "./global.types";
+import { BTEntity } from "./utils.types";
+import { BTAuthor, BTSeller } from "./backend-responses.types";
+import { BTUser } from "./user.types";
 
 export type ApplicationInfo = {
   title: string
@@ -22,6 +23,7 @@ export type ApplicationDetails = {
   fullDescription: string
   views: string[]
   appIncludes: string[]
+  price: number
 }
 
 export type ApplicationMedia = {
@@ -32,33 +34,29 @@ export type ApplicationMedia = {
 }
 
 export type ApplicationFormData = {
-  id?: string | null
   general: ApplicationInfo
   details: ApplicationDetails
   media: ApplicationMedia
   promotion: Promotion | null
 }
 
-type ApplicationOptionalFields = Partial<{
-  id?: string,
-  reviews?: TReview[]
-  author?: AuthorInfo
-} & Rating>
+export type BTApplication = 
+  & BTEntity<ApplicationInfo & ApplicationDetails & Omit<ApplicationMedia, "coverImg" | "assets">> & { promotion: Promotion | null }
+  & {
+    id?: string,
+    userId?: string,
+    author?: BTUser
+    promotion: FlatPromotion
+  }
 
-type ApplicationNullableFields = {
-  promotion: FlatPromotion | null
+export type ApplicationWithFullImgs = BTApplication & {
+  coverImg: TImage
+  assets: (TImage | TVideo)[]
 }
 
-export type Application = RequiredProperty<
-  & Omit<ApplicationInfo, "language" | "sector" | "functionalities" | "toolsAndPlatforms" | "tags">
-  & ApplicationDetails
-  & ApplicationMedia>
-  & ApplicationOptionalFields 
-  & ApplicationNullableFields
-  & {
-    language: string
-    sector: string[]
-    functionalities: string[]
-    toolsAndPlatforms: string[]
-    tags: string[]
-  }
+export type ApplicationWithReducedImgs = BTApplication & {
+  coverImg: string
+  assets: string[]
+}
+
+export type ApplicationWithAuthor = Omit<ApplicationWithFullImgs, "author"> & { author: AuthorInfo }

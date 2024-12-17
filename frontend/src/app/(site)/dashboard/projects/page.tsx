@@ -25,12 +25,14 @@ const MyProjectsPage = () => {
                 <div className="mt-14 flex flex-col gap-5 md:flex-row md:justify-between md:items-center">
                     <h3 className="text-base font-bold">Mis proyectos</h3>
                     <div className="flex gap-5">
+
                         <Button variant={"outline"} className="sm:w-[250px] w-full text-primary-200 border-1 border-primary-200">
-                            Explorar proyecto
+                            <Link href={"explore-projects"}>Explorar proyectos</Link>
+
                         </Button>
                         <Button className="sm:w-[250px] w-full">
 
-                            <Link href={"projects/new?section=general"}>Publicar proyecto</Link>
+                            <Link href={"projects/form?section=general"}>Publicar proyecto</Link>
                         </Button>
                     </div>
                 </div>

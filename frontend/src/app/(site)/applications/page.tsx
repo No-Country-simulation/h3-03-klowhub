@@ -9,6 +9,8 @@ import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 import { getQueryParams } from "@/utils/route.utils";
 import { TQuickView } from "@/components/product-card/product-card.types";
+import { transformApp, transformAuthor } from "./applications-page.acl";
+import { ApplicationWithFullImgs } from "@/types/application.types";
 
 const filters = [
   platform,
@@ -19,23 +21,27 @@ const filters = [
 ];
 
 // const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
-const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}`;
+const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
 
 const getProducts = async (endpoint: string) => {
-  const res = await fetch(endpoint, { cache: "force-cache" });
-  const items: { data: TQuickView[] } = await res.json();
-  return items
+  try {
+    const res = await fetch(endpoint);
+    const apps: ApplicationWithFullImgs[] = await res.json();
+    const transformedApps: TQuickView[] = apps.map(app => transformApp(app));
+    return transformedApps
+  } catch (err) {
+    console.log("there was an error when requesting apps: ", err);
+  }
 };
 
 
 const AppliactionsPage = async () => {
-  const applications = await getProducts(endpoint);
+  const applications = await getProducts(endpoint) || [];
   console.log('applications: ', applications);
   const queryParams = await getQueryParams();
 
-  console.log('applications: ', applications);
   return (
-    <main>
+    <main className="pb-6">
       <BreadCrumb />
 
       <IsClientProvider>
@@ -50,7 +56,7 @@ const AppliactionsPage = async () => {
         xl:grid-cols-4
         "
       >
-        {applications.data.map((app, idx) => (
+        {applications.map((app, idx) => (
           <ProductCard
             key={`product-card-${idx}`}
             data={app}
@@ -60,7 +66,7 @@ const AppliactionsPage = async () => {
 
         { queryParams.modal && 
           <SideModal>
-            <QuickView products={applications.data} />
+            <QuickView products={applications} />
           </SideModal>
         }
 

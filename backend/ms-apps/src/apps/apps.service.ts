@@ -4,6 +4,7 @@ import {
   ConflictException,
   BadRequestException,
 } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { CreateAppDto } from './dto/create-app.dto';
@@ -19,6 +20,7 @@ import {
   PDF_FileSize,
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
+import { envs } from 'src/config';
 
 @Injectable()
 export class AppsService {
@@ -28,6 +30,7 @@ export class AppsService {
   constructor(
     @InjectRepository(App)
     private readonly appRepository: Repository<App>,
+    private readonly httpService: HttpService,
     @InjectRepository(Asset)
     private readonly assetRepository: Repository<Asset>,
     private readonly cloudinaryService: CloudinaryService,
@@ -150,6 +153,8 @@ export class AppsService {
         desktopLink: createAppDto.desktopLink,
         mobileLink: createAppDto.mobileLink,
         promotion: createAppDto.promotion,
+        price: createAppDto.price,
+        userId: createAppDto.userId,
       });
 
       // Guarda la aplicación en la base de datos
@@ -177,7 +182,7 @@ export class AppsService {
       );
     }
   }
-  async findOne(id: string): Promise<App> {
+  async findOne(id: string, withAuthor: boolean = false): Promise<App> {
     const app = await this.appRepository.findOne({
       where: { id },
       relations: ['coverImg', 'assets'],
@@ -199,14 +204,24 @@ export class AppsService {
           })
         : [];
 
+    let authorInfo = null;
+    if (withAuthor) {
+      const authorResponse = await this.httpService
+        .get(`${envs.msUsersEndpoint}/${app.userId}`)
+        .toPromise();
+
+      authorInfo = authorResponse.data;
+    }
+
     return {
       ...app,
       coverImg: coverImageDetails,
       assets: assetDetails,
+      author: authorInfo,
     };
   }
 
-  async findAll(): Promise<App[]> {
+  async findAll(withAuthor: boolean = false): Promise<App[]> {
     const apps = await this.appRepository.find({
       relations: ['coverImg', 'assets'],
     });
@@ -225,11 +240,20 @@ export class AppsService {
                 where: { id: In(app.assets.map((asset) => asset.id)) },
               })
             : [];
+        let authorInfo = null;
+        if (withAuthor) {
+          const authorResponse = await this.httpService
+            .get(`${envs.msUsersEndpoint}/${app.userId}`)
+            .toPromise();
+
+          authorInfo = authorResponse.data;
+        }
 
         return {
           ...app,
           coverImg: coverImageDetails,
           assets: assetDetails,
+          author: authorInfo,
         };
       }),
     );

@@ -6,7 +6,7 @@ export class CreateAuthDto {
   @ApiProperty({ example: 'Franco David' })
   @IsNotEmpty()
   @IsString()
-  fullname: string;
+  name: string;
 
   @ApiProperty({ example: 'franco.david@email.com' })
   @IsEmail()

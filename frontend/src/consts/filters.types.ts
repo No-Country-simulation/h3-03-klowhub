@@ -115,3 +115,9 @@ export type RequiredSkill =
   | "integracion-de-bases-de-datos"
   | "desarrollo-nocode"
   | "desarrollo-lowcode"
+
+export type SellerType = 
+  | "desarrollador-de-apps"
+  | "creador-de-contenido-educativo"
+  | "equipo-de-desarrollo"
+  | "appsheet-expert"

@@ -46,7 +46,6 @@ const useUserContent = () => {
           fullDescription: a.fullDescription
         }
       });
-      console.log('applicationCards: ', applicationCards);
 
       // @ts-ignore: Unreachable code error
       setContent({ applications: applicationCards, courses: courseCards })
