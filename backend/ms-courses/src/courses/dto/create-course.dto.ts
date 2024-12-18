@@ -16,9 +16,9 @@ export class CreateCourseDto {
   @IsString()
   id: string;
 
-  // @IsString()
-  // @IsNotEmpty()
-  // userId: string;
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
 
   @IsString()
   @IsNotEmpty()
@@ -132,10 +132,13 @@ export class CreateCourseDto {
   // @IsNumber()
   // userId: number;
 
-  // @IsArray()
-  // @IsNotEmpty()
-  // @IsNotEmpty()
-  // multimedia?: MultimediaDto[];
+  @IsArray()
+  @IsNotEmpty()
+  @IsNotEmpty()
+  multimedia?: MultimediaDto[];
+  @IsNotEmpty()
+  @IsString()
+  authorId: string;
 
   @IsArray()
   @IsNotEmpty()
