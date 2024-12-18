@@ -16,6 +16,7 @@ export const transformBTProject = (project: RequiredProperty<ProjectWithFullImgs
     },
     platform: "PowerApps" as TProjectCard["platform"],
     status: "en-curso" as TProjectCard["status"],
+    tags: project.tags,
     rating: 4.5,
     ratingCount: 16
   };   

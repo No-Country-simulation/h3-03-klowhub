@@ -66,7 +66,7 @@ export const AppHeader: FC<AppDetailHeader> = ({
             className={`${buttonVariants({ variant: "default" })}`}
           >
             <Pencil />
-            <span>Editar Curso</span>
+            <span>Editar Aplicación</span>
           </Link>
         }
       </div>

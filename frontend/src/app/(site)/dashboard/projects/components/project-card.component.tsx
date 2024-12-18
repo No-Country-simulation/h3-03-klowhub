@@ -15,6 +15,7 @@ type Props = {
 }
 
 const ProjectCard = ({ active, project }: Props) => {
+  console.log('project: ', project);
 
 
   return (
@@ -35,13 +36,13 @@ const ProjectCard = ({ active, project }: Props) => {
               {project.platform}
             </Badge>
 
-            {/* {!active && <div className="flex gap-2"> */}
-            {/*     { */}
-            {/*         project.tags.map((t, idx) => ( */}
-            {/*             <Badge key={`product-card-badge-${idx}`}>{t}</Badge> */}
-            {/*         )) */}
-            {/*     } */}
-            {/* </div>} */}
+            {!active && <div className="flex gap-2">
+                {
+                    project.tags.map((t, idx) => (
+                        <Badge key={`product-card-badge-${idx}`}>{t}</Badge>
+                    ))
+                }
+            </div>}
           </div>
           {!active && <Rating rating={project.rating} ratingCount={project.ratingCount} />}
           <div
