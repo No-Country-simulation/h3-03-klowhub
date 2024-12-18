@@ -8,9 +8,7 @@ import { categories } from "@/mocks/categories.mocks";
 import { getQueryParams } from "@/utils/route.utils";
 import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
-import { TQuickView } from "@/components/product-card/product-card.types";
 import { sector, platform, language, functionalities, toolsAndPlatforms, coreContent, courseDifficulty, contentType } from "@/consts/filters.consts";
-import authorsMock from "@/mocks/authors.mock.json"
 import NoData from "@/components/no-data/no-data.component";
 import { CourseWithFullAssets } from "@/types/courses.types";
 import { transformBTCourse } from "./courses-page.acl";
@@ -33,6 +31,9 @@ const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint, { cache: "force-cache" });
     const courses: RequiredProperty<CourseWithFullAssets>[] = await res.json();
+    //
+    // @ts-ignore: Unreachable code error
+    if (courses.codeStatus) return [];
     const transformedCourses = courses.map(c => transformBTCourse(c));
     return transformedCourses
   } catch (err) {
