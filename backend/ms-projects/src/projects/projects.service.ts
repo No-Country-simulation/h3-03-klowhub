@@ -156,6 +156,7 @@ export class ProjectsService {
         maxBudget: createProjectDto.maxBudget,
         additionalRequirements: createProjectDto.additionalRequirements,
         authorId: userId,
+        userId,
         tags: createProjectDto.tags,
         status: createProjectDto.status
       })
