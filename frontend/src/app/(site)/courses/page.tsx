@@ -31,9 +31,9 @@ const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint, { cache: "force-cache" });
     const courses: RequiredProperty<CourseWithFullAssets>[] = await res.json();
-    //
+
     // @ts-ignore: Unreachable code error
-    if (courses.codeStatus) return [];
+    if (courses.statusCode) return [];
     const transformedCourses = courses.map(c => transformBTCourse(c));
     return transformedCourses
   } catch (err) {
