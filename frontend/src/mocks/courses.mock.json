@@ -53,7 +53,7 @@
     "fullDescription": "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de powerapps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
     "modules": [
       {
-        "title": "Módulo App",
+        "title": "Módulo 1",
         "description": "Aprende los fundamentos básicos de Appsheet.",
         "lessons": [
           {
@@ -63,25 +63,32 @@
             "description": "",
             "video": null,
             "documents": [],
-            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs&t=1s"
           },
           {
             "id": "lesson-2",
             "title": "Configuración de la cuenta y entorno de trabajo",
-            "freeLesson": true,
-            "description": "",
-            "video": null,
-            "documents": [],
-            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
-          },
-          {
-            "id": "lesson-3",
-            "title": "Navegación por la interfaz de powerapps",
             "freeLesson": false,
             "description": "",
-            "video": null,
+            "video": {
+              "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+              "fileType": "video",
+              "fileMetadata": {
+                "duration": 9.08,
+                "size": 5596,
+                "format": "mp4",
+                "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+                "thumbnailWidth": 1920,
+                "thumbnailHeight": 1080,
+                "width": 400,
+                "height": 300,
+                "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+                "mimeType": "video/mp4",
+                "created_at": "new Date()"
+              }
+            },
             "documents": [],
-            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+            "link": null
           }
         ]
       },
@@ -94,9 +101,25 @@
             "title": "Contenido del Módulo 2",
             "freeLesson": false,
             "description": "",
-            "video": null,
+            "video": {
+              "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+              "fileType": "video",
+              "fileMetadata": {
+                "duration": 9.08,
+                "size": 5596,
+                "format": "mp4",
+                "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+                "thumbnailWidth": 1920,
+                "thumbnailHeight": 1080,
+                "width": 400,
+                "height": 300,
+                "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+                "mimeType": "video/mp4",
+                "created_at": "new Date()"
+              }
+            },
             "documents": [],
-            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+            "link": null
           }
         ]
       },
@@ -107,11 +130,36 @@
           {
             "id": "lesson-5",
             "title": "Contenido del Módulo 3",
+            "freeLesson": false,
+            "description": "",
+            "video": {
+              "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+              "fileType": "video",
+              "fileMetadata": {
+                "duration": 9.08,
+                "size": 5596,
+                "format": "mp4",
+                "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+                "thumbnailWidth": 1920,
+                "thumbnailHeight": 1080,
+                "width": 400,
+                "height": 300,
+                "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+                "mimeType": "video/mp4",
+                "created_at": "new Date()"
+              }
+            },
+            "documents": [],
+            "link": null
+          },
+          {
+            "id": "lesson-12",
+            "title": "¿Last?",
             "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
-            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
           }
         ]
       }
@@ -150,7 +198,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -305,7 +357,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -368,16 +424,32 @@
           {
             "id": "lesson7",
             "title": "¿Qué es la gestión de inventario?",
-            "freeLesson": true,
+            "freeLesson": false,
             "description": "",
-            "video": null,
+            "video": {
+              "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+              "fileType": "video",
+              "fileMetadata": {
+                "duration": 9.08,
+                "size": 5596,
+                "format": "mp4",
+                "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+                "thumbnailWidth": 1920,
+                "thumbnailHeight": 1080,
+                "width": 400,
+                "height": 300,
+                "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+                "mimeType": "video/mp4",
+                "created_at": "2024-12-04T05:47:09Z"
+              }
+            },
             "documents": [],
-            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+            "link": null
           },
           {
             "id": "lesson8",
             "title": "Importancia de un buen sistema de inventario",
-            "freeLesson": false,
+            "freeLesson": true,
             "description": "",
             "video": null,
             "documents": [],
@@ -403,9 +475,25 @@
             "title": "Personalizando la aplicación",
             "freeLesson": false,
             "description": "",
-            "video": null,
+            "video": {
+              "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+              "fileType": "video",
+              "fileMetadata": {
+                "duration": 9.08,
+                "size": 5596,
+                "format": "mp4",
+                "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+                "thumbnailWidth": 1920,
+                "thumbnailHeight": 1080,
+                "width": 400,
+                "height": 300,
+                "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+                "mimeType": "video/mp4",
+                "created_at": "2024-12-04T05:47:09Z"
+              }
+            },
             "documents": [],
-            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+            "link": null
           }
         ]
       },
@@ -459,7 +547,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -613,7 +705,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -742,7 +838,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -871,7 +971,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -1001,7 +1105,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -1146,7 +1254,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -1291,7 +1403,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   },
   {
@@ -1437,8 +1553,11 @@
     "language": "spanish",
     "contentType": "course",
     "courseDifficulty": "basic",
-    "tags": [ "plataforma-de-cursos", "aplicaciones-sin-codigo", "powerapps-para-empresas" ],
+    "tags": [
+      "plataforma-de-cursos",
+      "aplicaciones-sin-codigo",
+      "powerapps-para-empresas"
+    ],
     "targetAudience": "Profesionales sin experiencia en programación que desean automatizar procesos en sus empresas. Ideal para administradores, gerentes y emprendedores."
   }
 ]
-
