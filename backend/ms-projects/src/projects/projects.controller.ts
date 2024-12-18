@@ -145,21 +145,32 @@ export class ProjectsController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Lista un proyecto en especifico con informacion de los autores'})
+  @ApiResponse({
+    status: 200,
+    description: 'Proyectos encontrados con los authores',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'No se encontraron proyectos',
+  })
   async getProjectByIdWithUser(@Param('id') id: string): Promise<any> {
     return this.projectsService.findOneByIdWithUser(id);
 
   }
 
   @Get()
-  @ApiOperation({ summary: 'Listar todos los proyectos' })
+  @ApiOperation({ summary: 'Listar todos los proyectos con información de los autores' })
   @ApiResponse({
     status: 200,
-    description: 'Lista de proyectos obtenida exitosamente.',
+    description: 'Lista de proyectos con información de autores obtenida exitosamente.',
   })
-  findAll() {
-    return this.projectsService.getAllProjects();
+  @ApiResponse({
+    status: 404,
+    description: 'No se encontraron proyectos.',
+  })
+  async findAllWithUsers() {
+    return this.projectsService.getAllProjectsWithUsers();
   }
-
-
 
 }
