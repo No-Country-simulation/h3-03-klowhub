@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -10,18 +14,26 @@ import {
   // CourseCreationFailedException,
   CourseImageSizeFailed,
   CourseVideoSizeFailed,
-  createCourseFailed,
   ImageFileMissingException,
   PDF_FileSize,
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
 
-import { Video } from './entities/video.entity';
-import { VideoDto } from './dto/video-course.dto';
-import { Image } from './entities/image.entity';
-import { Thumbnail } from './entities/thumbnail_url.entity';
 import { Multimedia } from './entities/multimedia.entity';
 import { MultimediaDto } from './dto/multimedia.dto';
+import { CourseModule } from './entities/course-module.entity';
+import { Lesson } from './entities/lesson.entity';
+import { HttpService } from '@nestjs/axios';
+// import { lastValueFrom } from 'rxjs';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+import { envs } from 'src/config';
+import { lastValueFrom } from 'rxjs';
+// import { firstValueFrom } from 'rxjs';
+
+// import { CreateLessonDto } from './dto/lesson.dto';
+// import { CreateCourseModuleDto } from './dto/course-module.dto';
 
 @Injectable()
 export class CoursesService {
@@ -33,17 +45,18 @@ export class CoursesService {
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
     private readonly cloudinaryService: CloudinaryService,
-    @InjectRepository(Video)
-    private readonly videoRepository: Repository<Video>,
-
-    @InjectRepository(Thumbnail)
-    private readonly thumbnailRepository: Repository<Thumbnail>,
-
-    @InjectRepository(Image)
-    private readonly imageRepository: Repository<Image>,
-
+    private readonly httpService: HttpService,
     @InjectRepository(Multimedia)
     private readonly multimediaRepository: Repository<Multimedia>,
+
+    @InjectRepository(CourseModule)
+    private readonly courseModuleRepository: Repository<CourseModule>,
+
+    @InjectRepository(Lesson)
+    private readonly lessonRepository: Repository<Lesson>,
+
+    // @InjectRepository(Document)
+    // private readonly documentRepository: Repository<Document>,
   ) {}
 
   private validateFile(
@@ -101,11 +114,12 @@ export class CoursesService {
       };
       multimediaDto.fileType = 'image';
     } else if (fileType === 'video') {
+      const resolution = `${uploadResult.width}x${uploadResult.height}`; // Cálculo de resolución
       multimediaDto.fileMetadata = {
         url: uploadResult.secure_url,
         duration: uploadResult.duration,
         size: uploadResult.bytes,
-        resolution: uploadResult.resolution,
+        resolution: resolution,
         format: uploadResult.format,
         width: uploadResult.width,
         height: uploadResult.height,
@@ -144,96 +158,220 @@ export class CoursesService {
     // return savedCourse;
   }
 
-  async createCourse(createCourseDto: CreateCourseDto) {
-    console.log('Creando curso:', createCourseDto);
-    const createCourse = this.courseRepository.create(createCourseDto);
-    if (!createCourse) {
-      throw new createCourseFailed();
+  async createCourse(createCourseDto: CreateCourseDto): Promise<Course> {
+    const {
+      title,
+      freeCourse,
+      contentType,
+      shortDescription,
+      courseDifficulty,
+      platform,
+      language,
+      modules,
+      multimedia,
+      coverImg,
+      ...rest
+    } = createCourseDto;
+
+    console.log('CoverImg DTO:', coverImg);
+
+    // Manejar la portada
+    let coverImgEntity: Multimedia | null = null;
+    if (coverImg?.id) {
+      coverImgEntity = await this.multimediaRepository.findOne({
+        where: { id: coverImg.id },
+      });
+
+      if (!coverImgEntity) {
+        console.log('Cover image not found, creating a new one...');
+        coverImgEntity = this.multimediaRepository.create({
+          id: coverImg.id,
+          fileType: coverImg.fileType,
+          fileMetadata: coverImg.fileMetadata,
+        });
+        await this.multimediaRepository.save(coverImgEntity);
+        console.log('New cover image created:', coverImgEntity);
+      }
     }
-    console.log('Curso creado:', createCourse);
-    return await this.courseRepository.save(createCourse);
-  }
 
-  async findCourse(title: string) {
-    // const normalizedTitle = title.trim().toLowerCase(); // Normalizar el título
-    return await this.courseRepository.findOne({
-      where: { title },
+    // Crear un nuevo curso
+    const course = this.courseRepository.create({
+      title,
+      freeCourse,
+      contentType,
+      shortDescription,
+      courseDifficulty,
+      platform,
+      language,
+      ...rest,
+      modules:
+        modules?.map((module) => this.courseModuleRepository.create(module)) ||
+        [],
+      multimedia:
+        multimedia?.map((media) => this.multimediaRepository.create(media)) ||
+        [],
+      coverImg: coverImgEntity,
     });
-  }
 
-  //entidad de imagen
-  async createImage(imageFile: Express.Multer.File): Promise<Image> {
-    const uploadImage = await this.cloudinaryService.uploadFile(imageFile);
-    const imageData = {
-      url: uploadImage.secure_url,
-      size: uploadImage.bytes,
-      width: uploadImage.width,
-      height: uploadImage.height,
-      format: uploadImage.format,
-      created_at: uploadImage.created_at,
-    };
-    const imagen = await this.imageRepository.save(imageData);
-    console.log('video creado', imagen);
+    // Verificar el curso antes de guardar
+    // console.log('Course before saving:', course);
+    console.log('Course before saving:', JSON.stringify(course, null, 2)); // Esto debería mostrar el contenido completo.
 
-    return imagen;
-  }
-  //entidad de Video
-  async createVideo(
-    VideoDto: VideoDto,
-    videoFile: Express.Multer.File,
-  ): Promise<Video> {
-    const uploadVideo = await this.cloudinaryService.uploadFile(videoFile);
-    console.log('UPLOAD VIDEO', uploadVideo);
-    const videoData = {
-      url: uploadVideo.secure_url,
-      duration: uploadVideo.duration,
-      size: uploadVideo.bytes,
-      format: uploadVideo.format,
-      width: uploadVideo.width,
-      height: uploadVideo.height,
-      thumbnail_url: uploadVideo.thumbnailUrl,
-      thumbnail_width: uploadVideo.thumbnailUrl_width,
-      thumbnail_height: uploadVideo.thumbnailUrl_height,
-      created_at: new Date(uploadVideo.created_at),
-    };
-
-    const video = this.videoRepository.create(videoData);
-    const savedVideo = await this.videoRepository.save(video);
-    console.log('video creado', video);
-    console.log('Video guardado:', savedVideo);
-
-    const imagenData = {
-      thumbnail_url: uploadVideo.thumbnailUrl,
-      video: savedVideo,
-    };
-    const imagen = this.thumbnailRepository.create(imagenData);
-    const savedImagen = this.thumbnailRepository.save(imagen);
-    console.log('imagen guardada:', savedImagen);
-
-    return savedVideo;
-    // return this.videoRepository.save(video);
-  }
-  async findOneVideo(id: string) {
-    const video = await this.videoRepository.findOne({
-      where: { id },
-      // relations: ['thumbnail_url'],
-    });
-    if (!video) {
-      return null;
+    try {
+      return await this.courseRepository.save(course);
+    } catch (error) {
+      console.error('Error saving course:', error);
+      throw new Error('Failed to create the course');
     }
-    return video;
   }
+
+  // LOS TRES SERVICIOS DE ABAJO SON TESTEOS VERIFICANDO QUE FUNCIONE CADA UNO (APROBADO)
+  // SOLO CURSOS
+  // async createCourse(createCourseDto: CreateCourseDto): Promise<Course> {
+  //   const course = this.courseRepository.create(createCourseDto);
+  //   return await this.courseRepository.save(course);
+  // }
+
+  // //SOLO  LECCIONES
+  // async createLesson(createLessonDto: CreateLessonDto): Promise<Lesson> {
+  //   const lesson = this.lessonRepository.create(createLessonDto);
+  //   return await this.lessonRepository.save(lesson);
+  // }
+
+  // //SOLO MODULOS
+  // async createModulos(
+  //   createCourseModuleDto: CreateCourseModuleDto,
+  // ): Promise<CourseModule> {
+  //   const lesson = this.courseModuleRepository.create(createCourseModuleDto);
+  //   return await this.courseModuleRepository.save(lesson);
+  // }
+
+  // async findCourse(title: string) {
+  //   // const normalizedTitle = title.trim().toLowerCase(); // Normalizar el título
+  //   return await this.courseRepository.findOne({
+  //     where: { title },
+  //   });
+  // }
 
   async findAll(): Promise<Course[]> {
     const course = await this.courseRepository.find({
-      where: { available: true },
+      // where: { available: true },
+      relations: ['modules', 'modules.lessons', 'coverImg'],
     });
     return course;
   }
 
+  async findOneCourse(id: string): Promise<any> {
+    const course = await this.courseRepository.findOne({ where: { id } });
+    if (!course) {
+      throw new NotFoundException(`course with ID ${id} not found`);
+    }
+
+    const requestUrl = `${envs.msUsersEndpoint}/${course.userId}`;
+    console.log('Request URL:', requestUrl); // Imprime la URL para verificarla
+
+    try {
+      const userResponse = await lastValueFrom(
+        this.httpService.get(requestUrl),
+      );
+      console.log(userResponse, 'llega??');
+      return {
+        ...course,
+        author: userResponse.data,
+      };
+    } catch (error) {
+      console.error(
+        'Error in request:',
+        error.response ? error.response.data : error.message,
+      );
+      throw new NotFoundException(`User not found for ID ${course.userId}`);
+    }
+  }
+
+  async getAllCoursesWithUsers() {
+    try {
+      //const course = await this.courseRepository.find();
+      const courses = await this.courseRepository.find({
+        relations: ['multimedia'],
+      });
+
+      console.log('courses', courses);
+      if (!courses || courses.length === 0) {
+        throw new NotFoundException('No se econtraron proyectos.');
+      }
+
+      const proms = courses.map(async (course) => {
+        const { data: author } = await this.httpService
+          .get(`${envs.msUsersEndpoint}/${course.userId}`)
+          .toPromise();
+        return {
+          ...course,
+          author,
+        };
+      });
+
+      const courseWithAuthors = await Promise.all(proms);
+      return courseWithAuthors;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  // async findOneCourse(
+  //   id: string,
+  //   withAuthor: boolean = false,
+  // ): Promise<Course | null> {
+  //   const course = await this.courseRepository.findOne({
+  //     where: { id },
+  //     relations: ['modules', 'multimedia', 'modules.lessons', 'coverImg'],
+  //   });
+  //   console.log('Course found:', course);
+  //   if (!course) {
+  //     // return null;
+  //     throw new NotFoundException(`App with ID ${id} not found`);
+  //   }
+
+  //   // Verificar si coverImg y assets están definidos antes de acceder a sus propiedades
+  //   const coverImageDetails = course.coverImg
+  //     ? await this.multimediaRepository.findOne({
+  //         where: { id: course.coverImg.id },
+  //       })
+  //     : null;
+
+  //   const multimediaDetails =
+  //     course.multimedia && course.multimedia.length > 0
+  //       ? await this.multimediaRepository.find({
+  //           where: {
+  //             id: In(course.multimedia.map((multimedia) => multimedia.id)),
+  //           },
+  //         })
+  //       : [];
+
+  //   let authorInfo = null;
+  //   if (withAuthor) {
+  //     const authorResponse = await this.httpService
+  //       .get(`${envs.msUsersEndpoint}/${course.userId}`)
+  //       .toPromise();
+  //     // const authorResponse = await firstValueFrom(
+  //     //   this.httpService.get(`${envs.msUsersEndpoint}/${course.userId}`),
+  //     // );
+  //     authorInfo = authorResponse.data;
+  //   }
+  //   console.log('informacion del author', authorInfo);
+  //   return {
+  //     ...course,
+  //     coverImg: coverImageDetails,
+  //     multimedia: multimediaDetails,
+  //     author: authorInfo,
+  //   };
+
+  //   // return course;
+  // }
+
   async findOne(id: string): Promise<Course | null> {
     const course = await this.courseRepository.findOne({
       where: { id },
+      relations: ['modules', 'modules.lessons', 'coverImg'],
     });
     console.log('Course found:', course);
     if (!course) {
@@ -251,8 +389,15 @@ export class CoursesService {
     if (!course) {
       return null;
     }
-    await this.courseRepository.update(id, updateCourseDto);
-    return this.findOne(id);
+    // Actualizar los campos del curso en memoria
+    Object.assign(course, updateCourseDto); // Aplicar los cambios del DTO
+
+    // Guardar el curso actualizado en la base de datos
+    await this.courseRepository.save(course); // Esto actualizará y validará
+
+    return course; // Retornar el curso actualizado
+    // await this.courseRepository.update(id, updateCourseDto);
+    // return this.findOne(id);
   }
 
   async remove(id: string): Promise<Course | null> {
@@ -264,4 +409,67 @@ export class CoursesService {
     await this.courseRepository.save(course);
     return course;
   }
+
+  //entidad de imagen
+  // async createImage(imageFile: Express.Multer.File): Promise<Image> {
+  //   const uploadImage = await this.cloudinaryService.uploadFile(imageFile);
+  //   const imageData = {
+  //     url: uploadImage.secure_url,
+  //     size: uploadImage.bytes,
+  //     width: uploadImage.width,
+  //     height: uploadImage.height,
+  //     format: uploadImage.format,
+  //     created_at: uploadImage.created_at,
+  //   };
+  //   const imagen = await this.imageRepository.save(imageData);
+  //   console.log('video creado', imagen);
+
+  //   return imagen;
+  // }
+  //entidad de Video
+  // async createVideo(
+  //   VideoDto: VideoDto,
+  //   videoFile: Express.Multer.File,
+  // ): Promise<Video> {
+  //   const uploadVideo = await this.cloudinaryService.uploadFile(videoFile);
+  //   console.log('UPLOAD VIDEO', uploadVideo);
+  //   const videoData = {
+  //     url: uploadVideo.secure_url,
+  //     duration: uploadVideo.duration,
+  //     size: uploadVideo.bytes,
+  //     format: uploadVideo.format,
+  //     width: uploadVideo.width,
+  //     height: uploadVideo.height,
+  //     thumbnail_url: uploadVideo.thumbnailUrl,
+  //     thumbnail_width: uploadVideo.thumbnailUrl_width,
+  //     thumbnail_height: uploadVideo.thumbnailUrl_height,
+  //     created_at: new Date(uploadVideo.created_at),
+  //   };
+
+  //   const video = this.videoRepository.create(videoData);
+  //   const savedVideo = await this.videoRepository.save(video);
+  //   console.log('video creado', video);
+  //   console.log('Video guardado:', savedVideo);
+
+  //   const imagenData = {
+  //     thumbnail_url: uploadVideo.thumbnailUrl,
+  //     video: savedVideo,
+  //   };
+  //   const imagen = this.thumbnailRepository.create(imagenData);
+  //   const savedImagen = this.thumbnailRepository.save(imagen);
+  //   console.log('imagen guardada:', savedImagen);
+
+  //   return savedVideo;
+  //   // return this.videoRepository.save(video);
+  // }
+  // async findOneVideo(id: string) {
+  //   const video = await this.videoRepository.findOne({
+  //     where: { id },
+  //     // relations: ['thumbnail_url'],
+  //   });
+  //   if (!video) {
+  //     return null;
+  //   }
+  //   return video;
+  // }
 }

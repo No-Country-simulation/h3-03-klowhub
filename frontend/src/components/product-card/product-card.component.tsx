@@ -20,6 +20,7 @@ import { formatPrice } from "./product-card.utils";
 import { getSlug, truncate } from "@/utils/str.utils";
 import { IconTypes } from "../icon/icon.types";
 import { usePathname } from "next/navigation";
+import TempError from "../temp-error/temp-error.component";
 
 type ProductCardProps = {
   data: TProductCard
@@ -35,12 +36,9 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
     shortDescription,
     platform,
     tags,
-    rating,
-    ratingCount,
     price,
   } = data
 
-    console.log('platform: ', platform);
   const pathname = usePathname();
   const orientation = pathname === "/courses" ? "horizontal" : "vertical";
 
@@ -64,7 +62,7 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
             alt=""
             src={coverImg.fileMetadata.url} 
             objectFit="cover"
-            className="h-full object-cover"
+            className="h-full object-cover" 
           />
         </Link>
       </div>
@@ -95,7 +93,7 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
 
         <div className="flex flex-col gap-5">
           <Badge
-            icon={<Icon name={getSlug(platform) as IconTypes} />}
+            icon={<Icon name={platform as IconTypes} />}
             className="bg-gray-100 text-white self-start"
           >
             {platform}
@@ -108,7 +106,7 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
                 ))
               }
             </div>
-            { !onlyInfo && <Rating rating={rating} ratingCount={ratingCount} />}
+            { !onlyInfo && <Rating rating={4.5} ratingCount={16} />}
             { !onlyInfo && orientation === "vertical" ? <span className="text-xl font-bold">${formatPrice(price)}</span> : "" }
             { !onlyInfo &&
               <div className={`w-full flex items-center ${orientation === "vertical" ? "justify-between" : "justify-between md:justify-start gap-10"}`}>

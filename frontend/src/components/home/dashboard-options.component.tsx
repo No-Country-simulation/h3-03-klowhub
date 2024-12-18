@@ -5,17 +5,17 @@ const DashboardOptions = () => {
     const cards = [
         {
             title: "Mis cursos",
-            href: "#",
+            href: "/dashboard/courses",
             image: "/temp/imgs/options-bg.png"
         },
         {
             title: "Mis proyectos",
-            href: "#",
+            href: "/dashboard/projects",
             image: "/temp/imgs/options-bg.png"
         },
         {
             title: "Mis aplicaciones",
-            href: "#",
+            href: "/dashboard/applications",
             image: "/temp/imgs/options-bg.png"
         },
         {

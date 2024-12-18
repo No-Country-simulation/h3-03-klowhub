@@ -3,24 +3,19 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   NotFoundException,
   BadRequestException,
   UseInterceptors,
-  UploadedFiles,
   UploadedFile,
+  Put,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { MultimediaDto } from './dto/multimedia.dto';
-import { VideoDto } from './dto/video-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import {
-  FileFieldsInterceptor,
-  FileInterceptor,
-} from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import {
   CloudinaryUploadFailedException,
   CourseCreationFailedException,
@@ -31,6 +26,8 @@ import {
   PDF_FileSize,
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
+// import { CreateLessonDto } from './dto/lesson.dto';
+// import { CreateCourseModuleDto } from './dto/course-module.dto';
 
 @Controller('courses')
 export class CoursesController {
@@ -97,20 +94,11 @@ export class CoursesController {
     }
   }
 
-  //Hacer el post de cursos
-  @Post('createCourse')
+  //Hacer el post de cursos con todas las entidades!!!
+  @Post()
   async createCourse(@Body() createCourseDto: CreateCourseDto) {
-    const normalizedTitle = createCourseDto.title.trim().toLowerCase();
-    // const { title } = createCourseDto;
     try {
-      const foundCourse = await this.coursesService.findCourse(normalizedTitle);
-      if (foundCourse) {
-        throw new BadRequestException('The course already exist');
-      }
-      return await this.coursesService.createCourse({
-        ...createCourseDto,
-        title: normalizedTitle,
-      });
+      return await this.coursesService.createCourse(createCourseDto);
     } catch (error) {
       if (error instanceof createCourseFailed) {
         throw new BadRequestException('Failed to create the course');
@@ -119,81 +107,155 @@ export class CoursesController {
     }
   }
 
+  //LAS TRES RUTAS INDIVIDUALES SON DE ABAJO TESTEO PARA CHEQUEAR QUE SE GUARDEN EN SUS TABLAS()
+  //Creamos solamente un curso
+  // @Post('createCourse')
+  // async createCourse(@Body() createCourseDto: CreateCourseDto) {
+  //   try {
+  //     return await this.coursesService.createCourse(createCourseDto);
+  //   } catch (error) {
+  //     if (error instanceof createCourseFailed) {
+  //       throw new BadRequestException('Failed to create the course');
+  //     }
+  //     throw error;
+  //   }
+  // }
+
+  // //Creamos solamente una lección
+  // @Post('createLesson')
+  // async createLesson(@Body() createLessonDto: CreateLessonDto) {
+  //   try {
+  //     return await this.coursesService.createLesson(createLessonDto);
+  //   } catch (error) {
+  //     if (error instanceof createCourseFailed) {
+  //       throw new BadRequestException('Failed to create the lesson');
+  //     }
+  //     throw error;
+  //   }
+  // }
+
+  // //Creamos solamente un modulo
+  // @Post('createModule')
+  // async createModule(@Body() createCourseModuleDto: CreateCourseModuleDto) {
+  //   try {
+  //     return await this.coursesService.createModulos(createCourseModuleDto);
+  //   } catch (error) {
+  //     if (error instanceof createCourseFailed) {
+  //       throw new BadRequestException('Failed to create the course');
+  //     }
+  //     throw error;
+  //   }
+  // }
+  ///////////////////////////////////////////////////////////////////////////////////////////
   //Post de la imagen
-  @Post('image')
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))
-  async createImage(@UploadedFiles() files: { image?: Express.Multer.File[] }) {
-    console.log('Files received:', files);
-    const imageFile = files.image?.[0];
-    try {
-      return await this.coursesService.createImage(imageFile);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // @Post('image')
+  // @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))
+  // async createImage(@UploadedFiles() files: { image?: Express.Multer.File[] }) {
+  //   console.log('Files received:', files);
+  //   const imageFile = files.image?.[0];
+  //   try {
+  //     return await this.coursesService.createImage(imageFile);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   //enviar el video unicamente
-  @Post('video')
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'video', maxCount: 1 }]))
-  async createVideo(
-    //no se esta usando el body por eso el dto queda como opcional
-    @Body() VideoDto: VideoDto,
-    @UploadedFiles() files: { video?: Express.Multer.File[] },
-  ) {
-    const videoFile = files.video?.[0];
-    console.log('Received video file:', videoFile);
+  // @Post('video')
+  // @UseInterceptors(FileFieldsInterceptor([{ name: 'video', maxCount: 1 }]))
+  // async createVideo(
+  //   //no se esta usando el body por eso el dto queda como opcional
+  //   @Body() VideoDto: VideoDto,
+  //   @UploadedFiles() files: { video?: Express.Multer.File[] },
+  // ) {
+  //   const videoFile = files.video?.[0];
+  //   console.log('Received video file:', videoFile);
 
-    if (!videoFile) {
-      throw new Error('No video file uploaded.');
-    }
-    console.log('ERROR', videoFile);
-    try {
-      return await this.coursesService.createVideo(VideoDto, videoFile);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //   if (!videoFile) {
+  //     throw new Error('No video file uploaded.');
+  //   }
+  //   console.log('ERROR', videoFile);
+  //   try {
+  //     return await this.coursesService.createVideo(VideoDto, videoFile);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   ///
-  @Get('video/:id')
-  async findOneVideo(@Param('id') id: string) {
-    try {
-      const getAsingleVideo = await this.coursesService.findOneVideo(id);
-      if (!getAsingleVideo) {
-        throw new NotFoundException('There is no video available');
-      }
-      return getAsingleVideo;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // @Get('video/:id')
+  // async findOneVideo(@Param('id') id: string) {
+  //   try {
+  //     const getAsingleVideo = await this.coursesService.findOneVideo(id);
+  //     if (!getAsingleVideo) {
+  //       throw new NotFoundException('There is no video available');
+  //     }
+  //     return getAsingleVideo;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   /////////////
-  @Get()
-  async findAll() {
-    const allCourses = await this.coursesService.findAll();
-    if (!allCourses) {
-      throw new NotFoundException('There are no course available');
-    }
-    return allCourses;
-  }
+  // @Get()
+  // async findAll() {
+  //   const allCourses = await this.coursesService.findAll();
+  //   if (!allCourses) {
+  //     throw new NotFoundException('There are no course available');
+  //   }
+  //   return allCourses;
+  // }
 
+  // @Get(':id')
+  // async findOne(
+  //   @Param('id') id: string,
+  //   @Query('withAuthor') withAuthor?: string,
+  // ) {
+  //   const isWithAuthor = withAuthor === 'true';
+  //   return this.coursesService.findOneCourse(id, isWithAuthor);
+  // }
+
+  //OBTENEMOS UN CURSO PERTENECIENTE A UN USUARIO
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const uuidRegex =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-    if (!uuidRegex.test(id)) {
-      throw new BadRequestException('There in no course avaiable');
+  async findOne(@Param('id') id: string): Promise<any> {
+    try {
+      const userCourse = await this.coursesService.findOneCourse(id);
+      return userCourse;
+    } catch (error) {
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
     }
-    const singleCourse = await this.coursesService.findOne(id);
-    console.log('este es el singleCourse', singleCourse);
-    if (!singleCourse) {
-      throw new NotFoundException('There is no a course available');
+  }
+  //OBTENEMOS CURSOS PERTENECIENTES A UN USUARIO
+  @Get()
+  async findAllWithUser() {
+    try {
+      const findAll = this.coursesService.getAllCoursesWithUsers();
+      return findAll;
+    } catch (error) {
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
     }
-    return singleCourse;
   }
 
-  @Patch(':id')
+  //esta es la siguiente ruta a completar
+  // @Get('user/:userId')
+  // async getAllCoursesByUserId(@Param('userId') userId: string) {
+  //   if (!userId) {
+  //     throw new BadRequestException('El userId es requerido');
+  //   }
+  //   //const courses = await this.coursesService.getAllCoursesByUserId(userId);
+  //   if (!courses || courses.length === 0) {
+  //     throw new BadRequestException(
+  //       `No se encontraron proyectos para el usuario con ID ${userId}`,
+  //     );
+  //   }
+  //   return courses;
+  // }
+
+  //cambiar a put
+  @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() updateCourseDto: UpdateCourseDto,

@@ -13,16 +13,15 @@ export class CourseModule {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Course, (course) => course.modules)
   @Column()
   title: string;
 
   @Column()
   description: string;
 
-  @OneToMany(() => Lesson, (lesson) => lesson.module)
+  @ManyToOne(() => Course, (course) => course.modules)
+  course: Course;
+
+  @OneToMany(() => Lesson, (lesson) => lesson.module, { cascade: true })
   lessons: Lesson[];
 }
-/*
-course => module => lesson => :
-*/

@@ -3,12 +3,13 @@ import { ProgramModule } from "@/types/course-detail-props";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Plus, Minus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Lesson } from "@/types/courses.types";
 
 export interface CourseProgramProps {
-    program: ProgramModule[];
+    modules: { title: string, lessons: Lesson[] }[];
 }
 
-export const CourseProgramSection: FC<CourseProgramProps> = ({ program }) => {
+export const CourseProgramSection: FC<CourseProgramProps> = ({ modules }) => {
 
     return (
         <div>
@@ -16,12 +17,12 @@ export const CourseProgramSection: FC<CourseProgramProps> = ({ program }) => {
             <Card>
                 <CardContent className="mt-2">
                     <Accordion type="single" collapsible className="w-full">
-                        {program.map((module, index) => (
+                        {modules.map((module, index) => (
                             <AccordionItem key={index} value={`module-${index}`} className="px-4">
                                 <AccordionTrigger>
                                     <div className="flex items-center gap-3">
                                         <Plus className="w-4 h-4" />
-                                        <h3 className="text-sm font-semibold text-[#B95ED4]">{module.moduleTitle}</h3>
+                                        <h3 className="text-sm font-semibold text-[#B95ED4]">{module.title}</h3>
                                     </div>
                                 </AccordionTrigger>
                                 <AccordionContent>
@@ -29,7 +30,7 @@ export const CourseProgramSection: FC<CourseProgramProps> = ({ program }) => {
                                         {module.lessons.map((lesson, lessonIndex) => (
                                             <li key={lessonIndex} className="flex space-x-3">
                                                 <Minus className="w-4 h-4" />
-                                                <span>{lesson}</span>
+                                                <span>{lesson.title}</span>
                                             </li>
                                         ))}
                                     </ul>

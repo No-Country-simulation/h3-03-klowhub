@@ -1,11 +1,6 @@
-import {
-  Column,
-  Entity,
-  // JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Course } from './course.entity';
+//import { Lesson } from './lesson.entity';
 
 export interface Video {
   url: string;
@@ -45,9 +40,6 @@ export class Multimedia {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  // @Column('jsonb')
-  // file: File;
-
   @Column('jsonb', { nullable: false })
   fileMetadata: Video | Image | Document; // JSON que contiene la metadata específica
 
@@ -58,9 +50,19 @@ export class Multimedia {
   })
   fileType: 'video' | 'image' | 'document'; // Indica el tipo de archivo
 
-  // @ManyToOne(() => Course, (course) => course.multimedia)
-  // @JoinColumn({ name: 'course_id' }) // Especifica el nombre de la columna
-  // course: Promise<Course>;
-  @ManyToOne(() => Course, (course) => course.promotionalVideo)
-  course: Course[];
+  @Column({ nullable: true }) // Declarar explícitamente courseId como clave foránea
+  courseId: string;
+
+  @ManyToOne(() => Course, (course) => course.multimedia, {
+    onDelete: 'CASCADE',
+  })
+  // @JoinColumn({ name: 'courseId' })
+  course: Course;
+
+  // @ManyToOne(() => Lesson, (lesson) => lesson.multimedia)
+  // @JoinColumn()
+  // lesson: Lesson; // Relación con Lesson, indicando que un Multimedia pertenece a una Lesson
 }
+
+// @ManyToOne(() => Project, (project) => project.assets, { onDelete: 'CASCADE' }) // Relación inversa
+// project: Project; // Esto permite la relación inversa

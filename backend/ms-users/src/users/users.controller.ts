@@ -1,28 +1,28 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateSellerDto } from './dto/create-seller.dto';
-import { User } from './entities/user.entity';
+import { UserResponseDto } from './dto/user-response.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post(':id/switch-to-seller')
-  async switchToSeller(
+  @Post(':id/becomeseller')
+  async becomeSeller(
     @Param('id') id: string,
     @Body() createSellerDto: CreateSellerDto,
-  ): Promise<User> {
-    return this.usersService.switchToSeller(id, createSellerDto);
+  ): Promise<UserResponseDto> {
+    return this.usersService.becomeSeller(id, createSellerDto);
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll(): Promise<UserResponseDto[]> {
+    return this.usersService.findAll(); // Asegúrate de que retorne el DTO
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  async findOne(@Param('id') id: string): Promise<UserResponseDto> {
+    return this.usersService.findOne(id); // Asegúrate de que retorne el DTO
   }
 
   @Delete(':id')

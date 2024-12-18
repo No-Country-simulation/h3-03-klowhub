@@ -60,13 +60,13 @@ services:
       context: ./ms-chat
       dockerfile: Dockerfile
     ports:
-      - "3004:3004" # Puerto expuesto del microservicio de chat
+      - "3004:3004" 
     env_file:
       - ./ms-chat/.env
     networks:
       - klowhub
     depends_on:
-      - db # Depende de la base de datos PostgreSQL
+      - db 
 
   ms-apps:
     build:

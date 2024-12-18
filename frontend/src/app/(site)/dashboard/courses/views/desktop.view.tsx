@@ -18,6 +18,7 @@ type Props = {
 }
 
 const MyCoursesDesktopView = async ({ transactionsData, products }: Props) => {
+  console.log('products: ', products);
 
     const pathname = await getPathname();
     const { filterBy, sortBy, from, to, order } = await getQueryParams();

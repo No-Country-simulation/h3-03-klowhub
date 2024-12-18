@@ -1,5 +1,6 @@
 // import { Transform } from 'class-transformer';
 // import { TransformFnParams } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import {
   IsString,
   IsNumber,
@@ -91,23 +92,16 @@ export class DocumentDto {
   created_at: string;
 }
 
-// Transformador personalizado para la propiedad `fileMetadata`
-// function fileMetadataTransformer({ value, obj }: TransformFnParams) {
-//   // Desestructuración de params correctamente tipados
-//   switch (obj.fileType) {
-//     case 'video':
-//       return Object.assign(new VideoDto(), value);
-//     case 'image':
-//       return Object.assign(new ImageDto(), value);
-//     case 'document':
-//       return Object.assign(new DocumentDto(), value);
-//     default:
-//       return value;
-//   }
-// }
+type FileMetadata =
+  | { fileType: 'video'; metadata: VideoDto }
+  | { fileType: 'image'; metadata: ImageDto }
+  | { fileType: 'document'; metadata: DocumentDto };
 
 // DTO para Multimedia
 export class MultimediaDto {
+  @IsString()
+  id: string;
+
   @IsOptional()
   @IsUUID()
   courseId?: string;
@@ -115,7 +109,24 @@ export class MultimediaDto {
   @IsEnum(['video', 'image', 'document'])
   fileType: 'video' | 'image' | 'document';
 
+  @IsOptional()
   @ValidateNested()
-  //@Transform(fileMetadataTransformer) // Usamos el transformador personalizado aquí
   fileMetadata: VideoDto | ImageDto | DocumentDto;
+
+  // Método estático para transformar dinámicamente
+  static transform<T extends FileMetadata>(
+    metadata: T['metadata'],
+    fileType: T['fileType'],
+  ): VideoDto | ImageDto | DocumentDto {
+    switch (fileType) {
+      case 'video':
+        return plainToInstance(VideoDto, metadata);
+      case 'image':
+        return plainToInstance(ImageDto, metadata);
+      case 'document':
+        return plainToInstance(DocumentDto, metadata);
+      default:
+        throw new Error('Tipo de archivo no válido');
+    }
+  }
 }

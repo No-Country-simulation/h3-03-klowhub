@@ -1,253 +1,146 @@
-import { Type } from 'class-transformer';
 import {
   IsBoolean,
-  IsEnum,
-  IsNotEmpty,
-  IsOptional,
   IsString,
-  IsNumber,
   IsArray,
+  IsJSON,
+  IsDecimal,
+  IsNotEmpty,
   ValidateNested,
+  IsPositive,
 } from 'class-validator';
-import { VideoDto, DocumentDto, ImageDto } from './multimedia.dto';
-import { Multimedia } from '../entities/multimedia.entity';
-
-// class VideoDto {
-//   @IsString()
-//   url: string;
-
-//   @IsNumber()
-//   duration: number;
-
-//   @IsNumber()
-//   size: number;
-
-//   @IsString()
-//   resolution: string;
-
-//   @IsString()
-//   format: string;
-
-//   @IsString()
-//   width: string;
-
-//   @IsString()
-//   height: string;
-
-//   @IsString()
-//   created_at: string;
-// }
-
-class LessonDto {
-  @IsNotEmpty()
-  @IsString()
-  id: string;
-
-  @IsNotEmpty()
-  @IsBoolean()
-  free: boolean;
-
-  @IsNotEmpty()
-  @IsString()
-  title: string;
-
-  @IsNotEmpty()
-  @IsString()
-  description: string;
-
-  @ValidateNested()
-  @Type(() => VideoDto)
-  video: VideoDto;
-
-  @ValidateNested()
-  @Type(() => DocumentDto)
-  document: DocumentDto[];
-}
-
-class ModuleDto {
-  @IsNotEmpty()
-  @IsString()
-  id: string;
-
-  @IsNotEmpty()
-  @IsString()
-  title: string;
-
-  @IsNotEmpty()
-  @IsString()
-  description: string;
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => LessonDto)
-  lessons: LessonDto[];
-}
-
-// class ProductDto {
-//   @IsNotEmpty()
-//   @IsString()
-//   id: string;
-
-//   @IsNotEmpty()
-//   @IsString()
-//   type: string;
-// }
-
-// class PromotionDto {
-//   @IsNotEmpty()
-//   @ValidateNested()
-//   @Type(() => ProductDto) // Esto permite validar la clase anidada
-//   product: ProductDto;
-
-//   @IsNotEmpty()
-//   @IsNumber()
-//   percentage: number;
-// }
-
-// class CoverImgDto {
-//   @IsNotEmpty()
-//   @IsString()
-//   url: string;
-
-//   @IsNotEmpty()
-//   @IsNumber()
-//   size: number;
-
-//   @IsNotEmpty()
-//   @IsNumber()
-//   width: number;
-
-//   @IsNotEmpty()
-//   @IsNumber()
-//   height: number;
-
-//   @IsNotEmpty()
-//   @IsString()
-//   format: string;
-
-//   @IsNotEmpty()
-//   @IsString()
-//   created_at: string;
-// }
+import { MultimediaDto } from './multimedia.dto';
+import { CreateCourseModuleDto } from './course-module.dto';
+import { Type } from 'class-transformer';
 
 export class CreateCourseDto {
   @IsString()
-  @IsOptional()
   id: string;
 
-  @IsNotEmpty()
   @IsString()
+  @IsNotEmpty()
+  userId: string;
+
+  @IsString()
+  @IsNotEmpty()
   title: string;
 
-  @IsOptional()
   @IsBoolean()
   freeCourse: boolean;
 
+  @IsArray()
   @IsNotEmpty()
-  @IsEnum(['lesson', 'course'])
-  contentType: string;
+  @IsString({ each: true })
+  contentType: string[];
 
-  @IsNotEmpty()
   @IsString()
+  @IsNotEmpty()
   shortDescription: string;
 
+  @IsArray()
   @IsNotEmpty()
-  @IsEnum(['basic', 'intermediate'])
-  courseDifficulty: string;
+  @IsString({ each: true })
+  courseDifficulty: string[];
 
+  @IsArray()
   @IsNotEmpty()
-  @IsEnum(['appsheets', 'powerapps'])
-  platform: string;
+  @IsString({ each: true })
+  platform: string[];
 
+  @IsArray()
   @IsNotEmpty()
-  @IsEnum(['english', 'spanish'])
-  language: string;
+  @IsString({ each: true })
+  language: string[];
 
-  // @IsNotEmpty()
-  // @IsEnum(CoreContent)
-  // coreContent: CoreContent;
   @IsArray()
   @IsString({ each: true })
-  coreContent: string[];
-
-  // @IsNotEmpty()
-  // @IsEnum(Functionalities)
-  // functionalities: Functionalities;
-  @IsArray()
-  @IsString({ each: true })
-  functionalities: string[];
-
-  // @IsNotEmpty()
-  // @IsArray()
-  // @IsEnum(Sector)
-  // sector: Sector;
-  @IsArray()
-  @IsString({ each: true })
-  sector: string[];
-
-  // @IsNotEmpty()
-  // @IsEnum(ToolsAndPlatform)
-  // toolsAndPlatform: ToolsAndPlatform;
-  @IsArray()
-  @IsString({ each: true })
-  toolsAndPlatform: string[];
-
-  // @IsNotEmpty()
-  // @IsEnum(Tags)
-  // tags: Tags;
-  @IsArray()
-  @IsString({ each: true })
-  tags: string[];
-
   @IsNotEmpty()
+  coreContent?: string[];
+
   @IsArray()
+  @IsString({ each: true })
+  @IsNotEmpty()
+  functionalities?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsNotEmpty()
+  sector?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsNotEmpty()
+  toolsAndPlatform?: string[];
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsNotEmpty()
+  tags?: string[];
+
+  @IsArray()
+  @IsNotEmpty()
   @IsString({ each: true })
   learningSubjects: string[];
 
-  @IsNotEmpty()
-  @IsString()
-  prevRequirements: string;
-
-  @IsNotEmpty()
-  @IsString()
-  fullDescription: string;
-
   @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => ModuleDto)
-  modules: ModuleDto[];
-  ////////////////////////////////////
+  @IsNotEmpty()
+  @IsString({ each: true })
+  prevRequirements: string[];
 
   @IsString()
-  link: string;
+  @IsNotEmpty()
+  fullDescription: string;
 
   @IsNotEmpty()
   @ValidateNested()
-  @Type(() => ImageDto)
-  coverImg: ImageDto;
+  @Type(() => MultimediaDto)
+  coverImg?: MultimediaDto;
+  // @IsString()
+  // coverImg: string;
 
-  // @IsOptional()
-  // @ValidateNested()
-  // @Type(() => PromotionDto)
-  // promotion?: PromotionDto;
-
+  @IsJSON()
   @IsNotEmpty()
+  @IsNotEmpty()
+  promotion?: {
+    type?: string;
+    promoted?: string;
+    percentage?: number;
+  };
+
   @IsBoolean()
-  available: boolean;
-
   @IsNotEmpty()
+  available: boolean = true;
+
   @IsString()
-  targetAudience: string;
-
   @IsNotEmpty()
-  @IsNumber()
+  targetAudience: string[];
+
+  @IsDecimal()
+  @IsPositive()
+  @IsNotEmpty()
   price: number;
 
   @IsArray()
-  @IsOptional()
-  multimedia: Multimedia[];
+  @IsNotEmpty()
+  @IsString()
+  courseIncludes: string[];
 
   @IsArray()
-  @IsOptional()
-  files: any[];
+  @IsString({ each: true })
+  @IsNotEmpty()
+  promotionalVideo?: string[];
+
+  // @IsNumber()
+  // userId: number;
+
+  @IsArray()
+  @IsNotEmpty()
+  @IsNotEmpty()
+  multimedia?: MultimediaDto[];
+  @IsNotEmpty()
+  @IsString()
+  authorId: string;
+
+  @IsArray()
+  @IsNotEmpty()
+  modules?: CreateCourseModuleDto[];
 }

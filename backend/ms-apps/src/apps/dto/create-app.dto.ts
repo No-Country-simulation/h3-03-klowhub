@@ -1,76 +1,93 @@
-import { IsString, IsBoolean, IsArray, IsOptional } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsArray,
+  IsOptional,
+  IsPositive,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateAppDto {
   @IsString()
-  name: string;
+  @IsNotEmpty()
+  title: string;
+
+  userId: string;
+
+  @IsNotEmpty()
+  @IsPositive()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  price: string;
 
   @IsString()
+  @IsNotEmpty()
   shortDescription: string;
 
   @IsString()
+  @IsNotEmpty()
   platform: string;
 
   @IsString()
-  languages: string;
-
-  @IsArray()
-  functionalities: string[];
-
-  @IsString()
-  sector: string;
-
-  @IsArray()
-  tools: string[];
-
-  @IsString()
-  targetAudience: string;
-
-  @IsString()
-  advantages: string;
-
-  @IsArray()
-  tags: string[];
-
-  @IsArray()
-  features: string[];
-
-  @IsString()
-  views: string;
-
-  @IsString()
-  appIncludes: string;
-
-  @IsString()
-  fullDescription: string;
-
-  @IsString()
-  coverImage: string;
-
-  @IsString()
-  mobileVersionLink: string;
-
-  @IsString()
-  desktopVersionLink: string;
-
-  @IsBoolean()
-  isPromotion: boolean;
-
-  @IsString()
-  course: string;
-
-  @IsString()
-  discount: string;
-
-  @IsString()
-  rating: string;
-
-  @IsString()
-  review: string;
-
-  @IsString()
-  emailToAccess: string;
+  @IsNotEmpty()
+  language: string;
 
   @IsArray()
   @IsOptional()
-  assetsIds?: string[];
+  sector: string[];
+
+  @IsArray()
+  @IsOptional()
+  functionalities: string[];
+
+  @IsArray()
+  @IsOptional()
+  toolsAndPlatforms: string[];
+
+  @IsArray()
+  @IsOptional()
+  tags: string[];
+
+  @IsArray()
+  @IsOptional()
+  features: string[];
+
+  @IsArray()
+  @IsOptional()
+  targetAudience: string[];
+
+  @IsArray()
+  @IsOptional()
+  views: string[];
+
+  @IsString()
+  @IsNotEmpty()
+  fullDescription: string;
+
+  @IsArray()
+  @IsOptional()
+  appIncludes: string[];
+
+  @IsString()
+  @IsNotEmpty()
+  coverImg: string;
+
+  @IsString()
+  @IsNotEmpty()
+  desktopLink: string;
+
+  @IsString()
+  @IsNotEmpty()
+  mobileLink: string;
+
+  @IsArray()
+  @IsOptional()
+  assets: string[]; // IDs de assets de Cloudinary
+
+  @IsOptional() // Si la promoción es opcional
+  promotion?: {
+    // Define aquí la estructura de la promoción, si es necesaria
+    type?: string;
+    promoted?: string;
+    percentage?: number;
+  };
 }

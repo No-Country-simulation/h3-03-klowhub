@@ -1,5 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Promotion } from './promotion.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { Asset } from './asset.entity';
 
 @Entity()
@@ -8,80 +13,73 @@ export class App {
   id: string;
 
   @Column()
-  name: string;
+  title: string;
 
-  @Column({ name: 'shortDescription' })
+  @Column('uuid')
+  userId: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2 }) // Asegura hasta 2 decimales
+  price: string;
+
+  @Column()
   shortDescription: string;
 
   @Column()
   platform: string;
 
-  @Column({ name: 'language' })
-  languages: string;
+  @Column()
+  language: string;
 
-  @Column('text', { array: true, name: 'functionalities' })
+  @Column({ type: 'json', name: 'sector' }) // Cambiado a simple-array
+  sector: string[];
+
+  @Column('json', { name: 'functionalities' }) // Cambiado a simple-array
   functionalities: string[];
 
-  @Column()
-  sector: string;
+  @Column({ type: 'json', name: 'toolsAndPlatforms' }) // Cambiado a simple-array, renombrado de toolsAndPlatforms
+  toolsAndPlatforms: string[];
 
-  @Column('text', { array: true, name: 'toolsAndPlatforms' })
-  tools: string[];
-
-  @Column()
-  targetAudience: string;
-
-  @Column()
-  advantages: string;
-
-  @Column('text', { array: true, name: 'tags' })
+  @Column('json', { name: 'tags' }) // Cambiado a simple-array
   tags: string[];
 
-  @Column('text', { array: true, name: 'features' })
+  @Column('json', { name: 'features' }) // Cambiado a simple-array
   features: string[];
 
-  @Column()
-  views: string;
+  @Column('json', { name: 'targetAudience' }) // Cambiado a simple-array
+  targetAudience: string[];
 
-  @Column()
-  appIncludes: string;
+  @Column('json', { name: 'views' }) // Cambiado a simple-array
+  views: string[];
 
-  @Column('text', { name: 'fullDescription' })
+  @Column({ type: 'text', name: 'fullDescription' }) // Cambiado a text para manejar texto largo
   fullDescription: string;
 
-  @Column()
-  coverImage: string;
+  @Column('json', { name: 'appIncludes' }) // Cambiado a simple-array
+  appIncludes: string[];
+
+  // @Column()
+  // coverImg: string;
 
   @Column()
-  mobileVersionLink: string;
+  desktopLink: string;
 
   @Column()
-  desktopVersionLink: string;
+  mobileLink: string;
 
-  @Column()
-  isPromotion: boolean;
+  // @Column('simple-array', { name: 'assets' }) // Cambiado a simple-array
+  // assets: string[];
 
-  @Column()
-  course: string;
+  @ManyToOne(() => Asset) // Cambiado a ManyToOne para coverImg
+  coverImg: Asset;
 
-  @Column()
-  discount: string;
-
-  @Column()
-  rating: string;
-
-  @Column()
-  review: string;
-
-  @Column()
-  emailToAccess: string;
-
-  @Column('text', { array: true, name: 'assetsIds' })
-  assetsIds: string[];
-
-  @OneToMany(() => Asset, (asset) => asset.application)
+  @OneToMany(() => Asset, (asset) => asset.application) // Cambiado a OneToMany para assets
   assets: Asset[];
 
-  @OneToMany(() => Promotion, (promotion) => promotion.application)
-  promotions: Promotion[];
+  @Column({ nullable: true })
+  authorId: number;
+
+  author?: any;
+
+  @Column('jsonb', { name: 'promotion', nullable: true })
+  promotion: object;
 }

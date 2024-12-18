@@ -1,17 +1,13 @@
 import {
   Column,
   Entity,
-  // JoinColumn,
-  OneToMany,
-  OneToOne,
   JoinColumn,
-  // ManyToOne,
-  // OneToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Image, Multimedia } from './multimedia.entity';
 import { CourseModule } from './course-module.entity';
-import { PromotionProduct } from './promotion.entity';
+import { Multimedia } from './multimedia.entity';
 
 @Entity()
 export class Course {
@@ -19,133 +15,108 @@ export class Course {
   id: string;
 
   @Column()
+  userId: string;
+
+  @Column()
   title: string;
 
-  // @Column({ type: 'enum', enum: ['Gratuito', 'Pago'] })
-  // tipoDeCurso: string;
-  @Column()
+  @Column({ type: 'boolean', name: 'freeCourse', nullable: false })
   freeCourse: boolean;
 
-  @Column({ type: 'enum', enum: ['lesson', 'course'] })
-  contentType: string;
+  // @Column({ type: 'jsonb', name: 'promotionalVideo', nullable: true })
+  // promotionalVideo: object;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'jsonb', name: 'contentType', nullable: false }) // Cambiado a simple-array
+  contentType: string[];
+
+  @Column({ type: 'jsonb', name: 'shortDescription', nullable: false })
   shortDescription: string;
 
-  @Column({ type: 'enum', enum: ['basic', 'intermediate'] })
-  courseDifficulty: string;
+  @Column({ type: 'jsonb', name: 'courseDifficulty', nullable: false }) // Cambiado a simple-array
+  courseDifficulty: string[];
 
-  @Column({ type: 'enum', enum: ['appsheet', 'powerapps'] })
-  platform: string;
+  @Column({ type: 'jsonb', name: 'platform', nullable: false }) // Cambiado a simple-array
+  platform: string[];
 
-  @Column({ type: 'enum', enum: ['english', 'spanish'] })
-  language: string;
+  @Column({ type: 'jsonb', name: 'language', nullable: false }) // Cambiado a simple-array
+  language: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: CoreContent,
-  // })
-  // coreContent: CoreContent;
-
-  @Column('json', { nullable: true })
+  @Column({ type: 'jsonb', name: 'coreContent', nullable: false }) // Cambiado a simple-array
   coreContent: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: Functionalities,
-  // })
-  // functionalities: Functionalities;
-
-  @Column('json', { nullable: true })
+  @Column({ type: 'jsonb', name: 'functionalities', nullable: false }) // Cambiado a simple-array
   functionalities: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: Sector,
-  // })
-  // sector: Sector;
-
-  @Column('json', { nullable: true })
+  @Column({ type: 'jsonb', name: 'sector', nullable: false }) // Cambiado a simple-array
   sector: string[];
 
-  // @Column({
-  //   type: 'enum',
-  //   enum: ToolsAndPlatform,
-  // })
-  // toolsAndPlatform: ToolsAndPlatform;
+  @Column({ type: 'jsonb', name: 'toolsAndPlatform', nullable: false }) // Cambiado a simple-array
+  toolsAndPlatforms: string[];
 
-  @Column('json', { nullable: true })
-  toolsAndPlatform: string[];
-
-  // @Column({
-  //   type: 'enum',
-  //   enum: Tags,
-  // })
-  // tags: Tags;
-  @Column('json', { nullable: true })
+  @Column({ type: 'jsonb', name: 'tags', nullable: false }) // Cambiado a simple-array
   tags: string[];
 
-  //learningSubjects cambiarlo a array de strings
-  @Column({ type: 'text', array: true })
+  @Column({ type: 'jsonb', name: 'learningSubjects', nullable: false }) // Cambiado a simple-array
   learningSubjects: string[];
 
-  @Column({ type: 'text' })
-  prevRequirements: string;
+  @Column({ type: 'jsonb', name: 'prevRequirements', nullable: false })
+  prevRequirements: string[];
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', name: 'fullDescription', nullable: false })
   fullDescription: string;
 
-  @Column({ nullable: true })
-  link: string;
-
-  // @Column({ type: 'jsonb', nullable: true })
-
-  // Imagen del curso
-  @Column('json')
-  coverImg: Image;
-
-  //promotion puede ser null hacerlo en el DTO
-  // @Column('json', { nullable: true })
-  // promotion: {
-  //   product: {
-  //     id: string;
-  //     type: string;
-  //   };
-  //   percentage: number;
-  // };
-
-  @OneToOne(() => PromotionProduct)
+  //@Column({ type: 'text', name: 'coverImg' }) // Cambiado a texto para imágenes
+  // coverImg: string;
+  // @ManyToOne(() => Multimedia)
+  // coverImg: Multimedia;
+  @ManyToOne(() => Multimedia, (multimedia) => multimedia.course, {
+    nullable: false,
+  })
   @JoinColumn()
-  promotion: PromotionProduct;
+  coverImg: Multimedia;
 
-  @Column({ type: 'boolean', default: true })
+  @Column({ type: 'jsonb', name: 'promotion', nullable: true }) // Cambiado a simple-array
+  promotion: object;
+
+  @Column({
+    type: 'boolean',
+    default: true,
+    name: 'available',
+    nullable: false,
+  })
   available: boolean;
 
-  @Column()
-  targetAudience: string;
+  @Column({ type: 'text', name: 'targetAudience', nullable: false })
+  targetAudience: string[];
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', name: 'price', nullable: false })
   price: number;
 
-  @OneToMany(() => CourseModule, (module) => module.id)
+  @Column({ type: 'jsonb', name: 'courseIncludes', nullable: false })
+  courseIncludes: string[];
+
+  @Column({ type: 'jsonb', name: 'promotionalVideo', nullable: true })
+  promotionalVideo: object;
+
+  @OneToMany(() => CourseModule, (module) => module.course, { cascade: true })
   modules: CourseModule[];
 
-  // Relación OneToMany con Multimedia
-  @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
-    cascade: true, // Esto permite guardar los multimedia relacionados cuando se guarda el curso
-  })
-  promotionalVideo: Multimedia;
-  //promotionalVideo tiene que ser de tipo video
+  //para recibir id
+  // @Column()
+  // userId: number;
 
-  // @Column(() => Multimedia)
-  // promotionalVideo: Multimedia;
+  // @ManyToOne(() => User, (user) => user.courses)
+  // @JoinColumn() // No necesitas especificar el nombre de la columna si sigues la convención
+  // user: User;
 
-  // @OneToMany(() => Multimedia, (multimedia) => multimedia.course, {
-  //   cascade: true,
-  // })
-  // multimedia: Multimedia[];
+  @Column({ nullable: true })
+  authorId: string;
 
-  // @ManyToOne(() => Multimedia, { nullable: true, lazy: true })
-  // @JoinColumn({ name: 'promotional_video_id' }) // Nombre claro en la base de datos
-  // promotionalVideo: Multimedia;
+  author?: any;
+
+  @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
+  multimedia: Multimedia[];
 }
+
+// @OneToMany(() => Asset, (asset) => asset.project) // Cambiado a OneToMany para assets
+// assets: Asset[];

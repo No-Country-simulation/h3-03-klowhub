@@ -1,5 +1,4 @@
 export const getSlug = (str: string) => {
-  console.log('str: ', str);
   const toLower = str.toLowerCase();
   const withoutSpaces = toLower.replaceAll(' ', '-');
   return withoutSpaces
@@ -16,4 +15,11 @@ export const getYoutubeId = (url: string) => {
   const videoId = searchParams.get("v");
 
   return videoId
+};
+
+export const strForDisplay = (str: string) => {
+  const toUpperCase = str.slice(0, 1).toUpperCase() + str.slice(1)
+  const replaceHyphens = toUpperCase.replaceAll("-", " ");
+
+  return replaceHyphens
 };

@@ -6,8 +6,14 @@ import { Button } from "@/components/ui/button";
 import { NavItem } from './NavItem';
 import Image from 'next/image';
 import Link from 'next/link';
+import useStore from '@/contexts/store/use-store.hook';
+import { User } from '@/contexts/store/store.types';
+import { buttonVariants } from '@/components/ui/button';
 
 export const NavBar = () => {
+  const [ user, _, isLoading ] = useStore<User>("user");
+  console.log('user: ', user);
+  console.log('isLoading: ', isLoading);
 
     const [activeSection, setActiveSection] = useState('home')
     const [activeIcon, setActiveIcon] = useState('Explorador')
@@ -41,12 +47,13 @@ export const NavBar = () => {
               </Link>
             </div>
             <div className="hidden xl:flex space-x-4">
-              <NavItem href="#">Dashboard</NavItem>
+              <NavItem href="/dashboard">Dashboard</NavItem>
               <NavItem href="/courses">Curso y lecciones</NavItem>
               <NavItem href="/applications">Appstore</NavItem>
-              <NavItem href="#">Proyectos</NavItem>
+              <NavItem href="/projects">Proyectos</NavItem>
               <NavItem href="#">Consultoría</NavItem>
               <NavItem href="#">Sobre Appsheet</NavItem>
+              <NavItem href="/membership?section=selection"><span className='font-bold'>Planes</span></NavItem>
             </div>
           </div>
 
@@ -81,15 +88,22 @@ export const NavBar = () => {
                 <Rocket className="h-4 w-4" />
               </span>
             </div>
+          { user.id.length ?
             <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
               <Image
                 src="/temp/imgs/avatar.png"
                 alt="User profile"
                 className="w-full h-full object-cover"
                 width={41}
-              height={40}
+                height={40}
               />
-            </div>
+            </div> : (
+              <>
+                <Link href="/login" className={`${buttonVariants({ variant: "outline" })} border-primary-300 rounded-xl`}>Ingresar</Link>
+                <Link href="/register">Registrarse</Link>
+              </>
+            )
+          }
           </div>
         </div>
       </nav>

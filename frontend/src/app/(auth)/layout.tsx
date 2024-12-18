@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StoreCtxProvider from "@/contexts/store/store-provider";
 import localFont from "next/font/local";
 import "./../globals.css";
 import { Footer } from "@/components/footer/footer.component";
@@ -28,7 +29,9 @@ export default function RootLayout({
         <Toaster richColors />
 
         <div className="w-full h-full">
-          {children}
+          <StoreCtxProvider>
+            {children}
+          </StoreCtxProvider>
         </div>
         <div className="h-full w-full bg-[#201d42] -mt-8">
           <div className="relative z-10">

@@ -25,6 +25,7 @@ export type CourseDetailHeader = {
     ratingCount?: number;
     promotionalVideo: TVideo;
     lessons: Lesson[];
+  authorId: string
     // coverImg: {
     //     url: string
     //     size: number
@@ -59,5 +60,6 @@ export interface CourseProps {
     freelessons: Lesson[];
     prevRequirements: string[];
     children: ReactNode[];
-  submitCourse?: () => Promise<string>
+  authorId: string;
+  submitCourse?: () => Promise<string | undefined>
 }

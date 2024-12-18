@@ -1,0 +1,431 @@
+[
+  {
+    "id": "123-asdas-d234234-asd-f3-4",
+    "title": "Curso de Desarrollo Web",
+    "shortDescription": "Aprende a desarrollar aplicaciones web modernas.",
+    "rating": 4.5,
+    "ratingCount": 123,
+    "available": true,
+    "price": 39,
+    "promotionalVideo": {
+      "duration": 9.08,
+      "size": 5596,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/video/upload/c_fit,h_300,w_400/ejdimdypyz29vhu3a4m1.jpg?_a=BAMCkGUo0",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "ac28fcf3-7fd7-4fe4-81ec-8ef8b7fe199a",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/ejdimdypyz29vhu3a4m1.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Entender los fundamentos de HTML, CSS y JavaScript.",
+      "Construir aplicaciones interactivas con React.",
+      "Diseñar APIs robustas con Node.js."
+    ],
+    "sector": [
+      "Gestión de Usuarios",
+      "Marketing digital"
+    ],
+    "coreContent": [
+      "Expresiones y fórmulas",
+      "Automatización"
+    ],
+    "toolsAndPlatforms": [
+      "Power BI",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Reportes automáticos",
+      "Generación de PDF"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de programación",
+      "Ganas de aprender"
+    ],
+    "fullDescription": "Este curso está diseñado para quienes desean aprender a crear aplicaciones personalizadas de manera rápida y sencilla, sin necesidad de conocimientos previos en programación. A lo largo de las lecciones, explorarás las funcionalidades clave de Power Apps, desde los conceptos básicos hasta técnicas avanzadas, que te permitirán desarrollar soluciones adaptadas a tus necesidades. Con ejemplos prácticos y explicaciones claras, te guiaré en el proceso de convertir tus ideas en aplicaciones funcionales que mejoren la productividad y eficiencia de tus proyectos.",
+    "modules": [
+      {
+        "title": "Módulo App",
+        "description": "Aprende los fundamentos básicos de Appsheet.",
+        "lessons": [
+          {
+            "id": "lesson-1",
+            "title": "¿Qué es Power Apps?",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          },
+          {
+            "id": "lesson-2",
+            "title": "Configuración de la cuenta y entorno de trabajo",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=Kl35H8jpPOI"
+          },
+          {
+            "id": "lesson-3",
+            "title": "Navegación por la interfaz de Power Apps",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          }
+        ]
+      },
+      {
+        "title": "Módulo 2",
+        "description": "Aprende los fundamentos básicos de Appsheet.",
+        "lessons": [
+          {
+            "id": "lesson-4",
+            "title": "Contenido del Módulo 2",
+            "free": false,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=aFKyfi3qAeM"
+          }
+        ]
+      },
+      {
+        "title": "Módulo 3",
+        "description": "Aprende los fundamentos básicos de Appsheet.",
+        "lessons": [
+          {
+            "id": "lesson-5",
+            "title": "Contenido del Módulo 3",
+            "free": true,
+            "description": "",
+            "video": null,
+            "documents": [],
+            "link": "https://www.youtube.com/watch?v=bihOpGpdJMs"
+          }
+        ]
+      }
+    ],
+    "promotion": {
+      "product": {
+        "id": "promo123",
+        "type": "course"
+      },
+      "percentage": 20
+    },
+    "resource": [
+      {
+        "id": "132qw3",
+        "url": "https://example.com/resource1.pdf",
+        "size": "2000",
+        "mimeType": "application/pdf",
+        "created_at": "new Date()",
+        "filename": "example.pdf"
+      }
+    ]
+  },
+  {
+    "id": "456-qwerty-7890123-asdf-g4-5",
+    "title": "Automatización de Flujos de Trabajo con Power Apps y Google Sheets",
+    "shortDescription": "Integra Power Apps con Google Sheets para automatizar tareas repetitivas.",
+    "rating": 4.8,
+    "ratingCount": 87,
+    "available": true,
+    "price": 49,
+    "promotionalVideo": {
+      "duration": 12.5,
+      "size": 7800,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sample.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "b1c2d3e4-f5g6-h7i8-j9k0-l1m2n3o4p5",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sample.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Conexión de Power Apps a Google Sheets.",
+      "Creación de flujos de trabajo automatizados.",
+      "Manejo de datos en Google Sheets desde Power Apps."
+    ],
+    "sector": [
+      "Administración",
+      "Logística"
+    ],
+    "coreContent": [
+      "Conectores",
+      "Automatización"
+    ],
+    "toolsAndPlatforms": [
+      "Power Automate",
+      "Google Sheets",
+      "Power Apps"
+    ],
+    "functionalities": [
+      "Actualización automática de datos",
+      "Notificaciones"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de Google Sheets",
+      "Familiaridad con interfaces de usuario"
+    ],
+    "fullDescription": "Aprende a integrar Power Apps con Google Sheets para crear aplicaciones que automatizan tareas repetitivas.  Este curso te enseñará a conectar ambas plataformas, a manejar datos eficientemente y a construir flujos de trabajo automatizados que mejorarán tu productividad.",
+    "modules": [],
+    "promotion": {
+      "product": {
+        "id": "promo456",
+        "type": "course"
+      },
+      "percentage": 15
+    },
+    "resource": []
+  },
+  {
+    "id": "789-zxcvb-0987654-poiuy-t6-7",
+    "title": "Creación de Formularios Inteligentes con Power Apps y Google Sheets",
+    "shortDescription": "Desarrolla formularios dinámicos que se integran con Google Sheets.",
+    "rating": 4.2,
+    "ratingCount": 56,
+    "available": true,
+    "price": 35,
+    "promotionalVideo": {
+      "duration": 10.2,
+      "size": 6300,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sample2.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sample2.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Diseño de formularios en Power Apps.",
+      "Integración con Google Sheets para almacenamiento de datos.",
+      "Validación de datos en tiempo real."
+    ],
+    "sector": [
+      "Recursos Humanos",
+      "Ventas"
+    ],
+    "coreContent": [
+      "Diseño de formularios",
+      "Integración de datos"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Validación de datos",
+      "Almacenamiento en la nube"
+    ],
+    "prevRequirements": [
+      "Experiencia básica con formularios digitales",
+      "Conocimiento básico de Google Sheets"
+    ],
+    "fullDescription": "Crea formularios inteligentes que se integran con Google Sheets para una gestión eficiente de datos. Aprende a diseñar formularios dinámicos, validar datos en tiempo real y almacenar la información de forma segura en la nube.",
+    "modules": [],
+    "promotion": {
+      "product": {
+        "id": "promo789",
+        "type": "course"
+      },
+      "percentage": 25
+    },
+    "resource": []
+  },
+  {
+    "id": "101-asdfg-2345678-hjkl-u8-9",
+    "title": "Análisis de Datos con Power Apps y Google Sheets",
+    "shortDescription": "Extrae información valiosa de tus datos utilizando Power Apps y Google Sheets.",
+    "rating": 4.7,
+    "ratingCount": 105,
+    "available": true,
+    "price": 55,
+    "promotionalVideo": {
+      "duration": 15.1,
+      "size": 8900,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sample3.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "z1y2x3w4-v5u6-t7s8-r9q0-p1o2i3",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sample3.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Visualización de datos en Power Apps.",
+      "Análisis de datos con fórmulas y funciones en Google Sheets.",
+      "Creación de reportes personalizados."
+    ],
+    "sector": [
+      "Finanzas",
+      "Análisis de datos"
+    ],
+    "coreContent": [
+      "Visualización de datos",
+      "Análisis de datos"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets",
+      "Power BI"
+    ],
+    "functionalities": [
+      "Gráficos",
+      "Tablas dinámicas"
+    ],
+    "prevRequirements": [
+      "Conocimiento básico de estadística",
+      "Familiaridad con hojas de cálculo"
+    ],
+    "fullDescription": "Aprende a extraer información valiosa de tus datos utilizando Power Apps y Google Sheets.  Este curso te enseñará técnicas de visualización de datos, análisis con fórmulas y funciones, y la creación de reportes personalizados.",
+    "modules": [],
+    "promotion": {
+      "product": {
+        "id": "promo101",
+        "type": "course"
+      },
+      "percentage": 10
+    },
+    "resource": []
+  },
+  {
+    "id": "111-qazws-3456789-edcvf-y0-1",
+    "title": "Integración de Power Apps con Google Sheets para Inventario",
+    "shortDescription": "Gestiona tu inventario de forma eficiente con Power Apps y Google Sheets.",
+    "rating": 4.9,
+    "ratingCount": 72,
+    "available": true,
+    "price": 42,
+    "promotionalVideo": {
+      "duration": 11.8,
+      "size": 7100,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sample4.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "r1t2y3u4-i5o6-p7a8-s9d0-f1g2h3",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sample4.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Creación de una aplicación de inventario en Power Apps.",
+      "Conexión con Google Sheets para el almacenamiento de datos.",
+      "Gestión de stock y alertas de bajo inventario."
+    ],
+    "sector": [
+      "Logística",
+      "Almacenamiento"
+    ],
+    "coreContent": [
+      "Gestión de inventario",
+      "Alertas"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Seguimiento de stock",
+      "Generación de reportes"
+    ],
+    "prevRequirements": [
+      "Conocimiento básico de gestión de inventarios",
+      "Familiaridad con el uso de hojas de cálculo"
+    ],
+    "fullDescription": "Aprende a gestionar tu inventario de forma eficiente utilizando Power Apps y Google Sheets.  Este curso te enseñará a crear una aplicación de inventario, conectar con Google Sheets para almacenar datos, y configurar alertas de bajo stock.",
+    "modules": [],
+    "promotion": {
+      "product": {
+        "id": "promo111",
+        "type": "course"
+      },
+      "percentage": 20
+    },
+    "resource": []
+  },
+  {
+    "id": "121-yuiop-4567890-bnm,-x1-2",
+    "title": "Dashboard Personalizados con Power Apps y Google Sheets",
+    "shortDescription": "Crea dashboards dinámicos e interactivos para visualizar tus datos.",
+    "rating": 4.6,
+    "ratingCount": 98,
+    "available": true,
+    "price": 59,
+    "promotionalVideo": {
+      "duration": 13.9,
+      "size": 8200,
+      "format": "mp4",
+      "thumbnailUrl": "https://res.cloudinary.com/dvrgfyvou/image/upload/c_fit,h_300,w_400/sample5.jpg",
+      "thumbnailWidth": 1920,
+      "thumbnailHeight": 1080,
+      "width": 400,
+      "height": 300,
+      "id": "c1v2b3n4-m5a6-s7d8-f9g0-h1j2k3",
+      "url": "https://res.cloudinary.com/dvrgfyvou/video/upload/v1733281507/sample5.mp4",
+      "mimeType": "video/mp4",
+      "created_at": "new Date()"
+    },
+    "platform": "Power Apps",
+    "learningSubjects": [
+      "Diseño de dashboards en Power Apps.",
+      "Conexión con Google Sheets para obtener datos en tiempo real.",
+      "Personalización de la visualización de datos."
+    ],
+    "sector": [
+      "Gestión de Proyectos",
+      "Análisis de Negocios"
+    ],
+    "coreContent": [
+      "Diseño de dashboards",
+      "Visualización de datos"
+    ],
+    "toolsAndPlatforms": [
+      "Power Apps",
+      "Google Sheets"
+    ],
+    "functionalities": [
+      "Gráficos interactivos",
+      "Filtros"
+    ],
+    "prevRequirements": [
+      "Conocimientos básicos de diseño de dashboards",
+      "Familiaridad con el uso de Google Sheets"
+    ],
+    "fullDescription": "Aprende a crear dashboards dinámicos e interactivos para visualizar tus datos de forma eficiente.  Este curso te enseñará a diseñar dashboards en Power Apps, conectar con Google Sheets para datos en tiempo real, y personalizar la visualización.",
+    "modules": [],
+    "promotion": {
+      "product": {
+        "id": "promo121",
+        "type": "course"
+      },
+      "percentage": 18
+    },
+    "resource": []
+  }
+]
