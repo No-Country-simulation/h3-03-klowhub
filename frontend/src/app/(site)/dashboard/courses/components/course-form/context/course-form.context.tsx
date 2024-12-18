@@ -35,10 +35,10 @@ const CourseCtxProvider = ({ children }: Props) => {
   const [ user ] = useStore<User>("user");
 
   const submitCourse = useCallback(async (additionalData = {}) => {
+    if (!user) return;
+
     const formattedData = breakCourse({ ...state, ...additionalData }, true);
-    console.log('creating course...', formattedData);
-    
-    const createEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}`;
+    const createEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/user/${user.id}`;
     const editEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/${courseId}`;
 
     const res = await fetch(courseId ? editEndpoint : createEndpoint, { 
@@ -55,7 +55,7 @@ const CourseCtxProvider = ({ children }: Props) => {
     return createdCourse.id
 
 
-  }, [state, courseId]);
+  }, [state, courseId, user]);
 
   useEffect(() => {
     (async function () {
