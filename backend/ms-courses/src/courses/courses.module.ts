@@ -7,6 +7,7 @@ import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 import { Multimedia } from './entities/multimedia.entity';
 import { CourseModule } from './entities/course-module.entity';
 import { Lesson } from './entities/lesson.entity';
+import { HttpModule } from '@nestjs/axios';
 
 // import { Lesson } from './entities/lesson.entity';
 
@@ -14,6 +15,7 @@ import { Lesson } from './entities/lesson.entity';
   imports: [
     TypeOrmModule.forFeature([Course, Multimedia, CourseModule, Lesson]),
     CloudinaryModule,
+    HttpModule,
   ],
   controllers: [CoursesController],
   providers: [CoursesService],

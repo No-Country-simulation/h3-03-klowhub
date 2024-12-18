@@ -14,8 +14,8 @@ export class Course {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  // @Column()
-  // userId: string;
+  @Column()
+  userId: string;
 
   @Column()
   title: string;
@@ -69,7 +69,9 @@ export class Course {
   // coverImg: string;
   // @ManyToOne(() => Multimedia)
   // coverImg: Multimedia;
-  @ManyToOne(() => Multimedia, (multimedia) => multimedia.course)
+  @ManyToOne(() => Multimedia, (multimedia) => multimedia.course, {
+    nullable: false,
+  })
   @JoinColumn()
   coverImg: Multimedia;
 
@@ -107,6 +109,14 @@ export class Course {
   // @JoinColumn() // No necesitas especificar el nombre de la columna si sigues la convención
   // user: User;
 
+  @Column({ nullable: true })
+  authorId: string;
+
+  author?: any;
+
   @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
   multimedia: Multimedia[];
 }
+
+// @OneToMany(() => Asset, (asset) => asset.project) // Cambiado a OneToMany para assets
+// assets: Asset[];
