@@ -5,7 +5,7 @@ import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { PROJECT_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { ProjectDetails } from "@/types/project.types";
 import Input from "@/components/input/input.component";
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/project-form.actions";
 import useProjectContext from "../../hooks/use-project-context.hook";

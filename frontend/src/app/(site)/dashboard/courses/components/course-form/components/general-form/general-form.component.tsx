@@ -7,12 +7,11 @@ import { COURSE_INFO_INITIAL_STATE } from "./general-form.consts";
 import { CourseInfo } from "@/types/courses.types";
 import Input from "@/components/input/input.component";
 import { language, coreContent, functionalities, sector, toolsAndPlatforms, tags } from "@/consts/filters.consts";
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import { CircleAlert } from "lucide-react";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
-import formMock from "./course-general-form.mock.json"
 
 const GeneralForm = () => {
   const { state, dispatch } = useCourseContext();

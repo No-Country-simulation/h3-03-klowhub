@@ -6,6 +6,7 @@ import { FileChartColumnIncreasing, MessageSquare, Star } from "lucide-react";
 import ProposalForm from "./components/proposal-form/proposal-form.component";
 import { Button } from "@/components/ui/button";
 import { ProjectWithFullImgs } from "@/types/project.types";
+import { BTUser } from "@/types/user.types";
 
 // const endpoint = process.env.NEXT_PUBLIC_PROJECTS_URL;
 const endpoint = "http://localhost:3000/api/projects";
@@ -13,6 +14,9 @@ const endpoint = "http://localhost:3000/api/projects";
 const getProject = async (projectId: string) => {
   const res = await fetch(`${endpoint}/${projectId}?withAuthor=true`);
   const projectData: ProjectWithFullImgs = await res.json();
+  
+  // @ts-ignore: Unreachable code error
+  projectData.author = projectData.user
 
   return projectData
 };
@@ -44,16 +48,15 @@ const ProjectDetailPage = async ({ params }: Props) => {
           w-full
           lg:w-1/4
         `}>
-          {/* TODO: need backend to send me the author data with the project payload */}
-          {/* <AuthorCard  */}
-          {/*   name={projectData.seller?.name || }  */}
-          {/*   about={projectData.author.about } */}
-          {/*   profileImg={projectData.author.profileImg} */}
-          {/* > */}
-          {/*   <AuthorData Icon={Star} data="Calificación: 5" /> */}
-          {/*   <AuthorData Icon={MessageSquare} data="42 Reseñas" /> */}
-          {/*   <AuthorData Icon={FileChartColumnIncreasing} data="60 proyectos creados" /> */}
-          {/* </AuthorCard> */}
+          <AuthorCard 
+            name={projectData.author.name } 
+            about={projectData.author.seller!.about }
+            profileImg={projectData.author.profileImg}
+          >
+            <AuthorData Icon={Star} data="Calificación: 5" />
+            <AuthorData Icon={MessageSquare} data="42 Reseñas" />
+            <AuthorData Icon={FileChartColumnIncreasing} data="60 proyectos creados" />
+          </AuthorCard>
         </div>
         <div className={`
           w-full pt-5 border-t-1 

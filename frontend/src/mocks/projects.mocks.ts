@@ -2,7 +2,7 @@ import { TProjectCard } from "@/types/project.types";
 
 export const projectsData: TProjectCard[] = [
   {
-    id: 1,
+    id: "123-sda-234-sdf",
     title: "Solución integral para la gestión de tareas y seguimiento de proyectos en tiempo real.",
     instructor: {
       name: "John Doe",
@@ -18,15 +18,15 @@ export const projectsData: TProjectCard[] = [
     },
     description: "Crear una aplicación que permita a los equipos organizar, asignar y priorizar tareas diarias de manera intuitiva. La plataforma centraliza todas las actividades pendientes, mostrando plazos, responsables y estados de avance en tiempo real. Se busca mejorar la eficiencia del equipo, evitando retrasos y sobrecargas de trabajo. Además, se incluirán notificaciones automáticas para recordar fechas límite y reuniones importantes.",
     platform: "PowerApps",
-    tags: ["Logística", "Retail", "Inventarios"],
+    // tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.5,
     ratingCount: 120,
-    status: "En curso",
-    initialDate: "2024-12-13",
-    finalDate: "2024-12-13"
+    status: "en-curso",
+    // initialDate: "2024-12-13",
+    // finalDate: "2024-12-13"
   },
   {
-    id: 2,
+    id: "2",
     title: "App móvil para gestión de inventarios con AppSheet",
     instructor: {
       name: "Jane Smith",
@@ -42,15 +42,15 @@ export const projectsData: TProjectCard[] = [
     },
     description: "Implementación de una aplicación móvil en AppSheet para gestionar inventarios en tiendas minoristas.",
     platform: "AppSheet",
-    tags: ["Logística", "Retail", "Inventarios"],
+    // tags: ["Logística", "Retail", "Inventarios"],
     rating: 3.8,
     ratingCount: 85,
-    status: "Terminado",
-    initialDate: "2024-12-12",
-    finalDate: "2024-12-13"
+    status: "finalizado",
+    // initialDate: "2024-12-12",
+    // finalDate: "2024-12-13"
   },
   {
-    id: 3,
+    id: "3",
     title: "Optimización logística con PowerApps",
     instructor: {
       name: "Alice Johnson",
@@ -66,15 +66,15 @@ export const projectsData: TProjectCard[] = [
     },
     description: "Creación de dashboards en PowerApps para monitorear en tiempo real el estado de inventarios.",
     platform: "PowerApps",
-    tags: ["Logística", "Retail", "Inventarios"],
+    // tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.2,
     ratingCount: 98,
-    status: "En curso",
-    initialDate: "2024-12-01",
-    finalDate: "2024-12-13"
+    status: "en-curso",
+    // initialDate: "2024-12-01",
+    // finalDate: "2024-12-13"
   },
   {
-    id: 4,
+    id: "4",
     title: "App móvil para gestión de inventarios con AppSheet",
     instructor: {
       name: "Robert Brown",
@@ -90,15 +90,15 @@ export const projectsData: TProjectCard[] = [
     },
     description: "Automatización de reportes de inventarios con AppSheet para cadenas de tiendas.",
     platform: "AppSheet",
-    tags: ["Logística", "Retail", "Inventarios"],
+    // tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.7,
     ratingCount: 150,
-    status: "Terminado",
-    initialDate: "2024-12-01",
-    finalDate: "2024-12-10"
+    status: "finalizado",
+    // initialDate: "2024-12-01",
+    // finalDate: "2024-12-10"
   },
   {
-    id: 5,
+    id: "5",
     title: "Optimización logística con PowerApps",
     instructor: {
       name: "Emily Davis",
@@ -114,11 +114,11 @@ export const projectsData: TProjectCard[] = [
     },
     description: "Desarrollo de formularios personalizados en PowerApps para optimizar la logística de inventarios.",
     platform: "PowerApps",
-    tags: ["Logística", "Retail", "Inventarios"],
+    // tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.1,
     ratingCount: 73,
-    status: "En curso",
-    initialDate: "2024-11-21",
-    finalDate: "2024-12-13"
+    status: "en-curso",
+    // initialDate: "2024-11-21",
+    // finalDate: "2024-12-13"
   }
 ];

@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect } from "react";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { COURSE_DETAILS_INITIAL_STATE } from "./details-form.consts";
 import { CourseDetails } from "@/types/courses.types";
@@ -8,8 +7,6 @@ import Input from "@/components/input/input.component";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setDetailsData } from "../../context/course-form.actions";
 import useCourseContext from "../../hooks/use-course-context.hook";
-import detailsMock from "./course-detail-form.mock.json"
-import TempError from "@/components/temp-error/temp-error.component";
 
 const DetailsForm = () => {
   const { state, dispatch } = useCourseContext();
@@ -18,15 +15,10 @@ const DetailsForm = () => {
     commonProps,
     controlledCommonProps,
     handleSubmit,
-    formState: { isDirty }
+    formState: { isDirty },
   } = useGenerateForm<CourseDetails>(COURSE_DETAILS_INITIAL_STATE, state.details);
 
-  // useEffect(() => {
-  //   console.log("inserting mocked data...");
-  //   console.log('detailsMock: ', detailsMock);
-  //   // @ts-ignore: Unreachable code error
-  //   dispatch(setDetailsData(detailsMock))
-  // }, [dispatch])
+  const isFree = state.general.freeCourse;
 
   return (
     <>
@@ -38,16 +30,12 @@ const DetailsForm = () => {
           placeholder="Qué aprenderán tus estudiantes?"
           {...controlledCommonProps}
         />
-        <TempError
-          element="multitext input para 'prevRequirements'"
-          reason="la api devuelve un string en vez de un array de strings"
+        <Input
+          name="prevRequirements" type="multitext"
+          label="Requisitos previos: ¿Qué necesitan saber o tener tus estudiantes antes de empezar?" {...controlledCommonProps}
+          addButtonLabel="Añadir requisito"
+          placeholder="¿Qué necesitan saber?"
         />
-        {/* <Input */}
-        {/*   name="prevRequirements" type="multitext" */}
-        {/*   label="Requisitos previos: ¿Qué necesitan saber o tener tus estudiantes antes de empezar?" {...controlledCommonProps} */}
-        {/*   addButtonLabel="Añadir requisito" */}
-        {/*   placeholder="¿Qué necesitan saber?" */}
-        {/* /> */}
         <Input
           name="courseIncludes" type="multitext"
           label="Detalla qué material extra incluyes con la compra de tu curso."
@@ -61,30 +49,30 @@ const DetailsForm = () => {
           placeholder="Hacé una descripción detallada del contenido y de los beneficios que ofrece."
           {...commonProps}
         />
-        <TempError
-          element="coverImg upload input"
-          reason="las imágenes no estan siendo vinculadas al curso al momento de creación"
+        <Input
+          entity="course"
+          name="coverImg" type="upload"
+          filetypes={{ "image/*": [".png", ".jpg"] }}
+          label="Subí una imagen que represente tu curso de manera atractiva para utilizarla de portada"
+          dropzoneLabel="Subí una imagen para promocionar tu curso o lección"
+          {...controlledCommonProps}
         />
-        {/* <Input */}
-        {/*   entity="course" */}
-        {/*   name="coverImg" type="upload" */}
-        {/*   filetypes={{ "image/*": [".png", ".jpg"] }} */}
-        {/*   label="Subí una imagen que represente tu curso de manera atractiva para utilizarla de portada" */}
-        {/*   dropzoneLabel="Subí una imagen para promocionar tu curso o lección" */}
-        {/*   {...controlledCommonProps} */}
-        {/* /> */}
-        <TempError
-          element="promotionalVideo upload input"
-          reason="viene como string y no como un objeto"
+        <Input
+          entity="course"
+          name="promotionalVideo" type="upload"
+          filetypes={{ "video/mp4": [".mp4"] }}
+          label="Subí un video que sirva de introducción general a tu curso o lección"
+          dropzoneLabel="Subí un video para introducir tu curso o lección"
+          {...controlledCommonProps}
         />
-        {/* <Input */}
-        {/*   entity="course" */}
-        {/*   name="promotionalVideo" type="upload" */}
-        {/*   filetypes={{ "video/mp4": [".mp4"] }} */}
-        {/*   label="Subí un video que sirva de introducción general a tu curso o lección" */}
-        {/*   dropzoneLabel="Subí un video para introducir tu curso o lección" */}
-        {/*   {...controlledCommonProps} */}
-        {/* /> */}
+        { !isFree &&
+          <Input
+            type="number"
+            name="price"
+            label="Indica el precio de tu aplicación en USD."
+            {...commonProps}
+          />
+        }
       </form>
       <div className="
         absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5 gap-5

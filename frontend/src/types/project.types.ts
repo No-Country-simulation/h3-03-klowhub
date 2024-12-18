@@ -1,8 +1,10 @@
-import { BTEntity, Expand, RequiredProperty } from "./utils.types";
+import { BTEntity } from "./utils.types";
 import { TVideo, TDocument, Platform } from "./global.types";
 import { TImage } from "./global.types"
 import { SelectOption } from "@/components/input/input.types";
 import { BTSeller } from "./backend-responses.types";
+import { BTUser } from "./user.types";
+import { RecursiveNonNullable } from "./utils.types";
 
 export type ProjectInfo = {
   title: string
@@ -30,6 +32,8 @@ export type ProjectFormData = {
   details: ProjectDetails
 }
 
+export type ValidatedProjectForm = RecursiveNonNullable<Omit<ProjectFormData, "promotion">>
+
 export type BTProject = 
   & BTEntity<ProjectInfo & Omit<ProjectDetails, "assets">>
   & {
@@ -44,6 +48,7 @@ export type ProjectWithReducedImgs = BTProject & {
 
 export type ProjectWithFullImgs = BTProject & {
   assets: (TImage | TVideo | TDocument)[]
+  author: BTUser
 }
 
 type TInstructorInfo = {
@@ -60,16 +65,16 @@ type TInstructorInfo = {
 }
 
 export type TProjectCard = {
-  id: number,
+  id: string,
   title: string,
   instructor: TInstructorInfo,
   description: string,
   platform : "PowerApps" | "AppSheet",
-  tags: string[],
+  // tags: string[],
   rating: number,
   ratingCount: number,
-  status: "En curso" | "Terminado",
-  initialDate: string,
-  finalDate: string,
+  status: "en-curso" | "finalizado",
+  // initialDate: string,
+  // finalDate: string,
 }
 

@@ -4,7 +4,7 @@ import { Controller } from "react-hook-form";
 import { InputProps, SelectOption } from "./input.types";
 import dynamic from 'next/dynamic'
 import { useContext } from "react";
-import { IsClientCtx } from "@/contexts/is-client.context";
+import { IsClientCtx } from "@/contexts/is-client/is-client.context";
 import Select from "react-select";
 import { Label } from "../ui/label";
 import { StylesConfig } from "react-select";

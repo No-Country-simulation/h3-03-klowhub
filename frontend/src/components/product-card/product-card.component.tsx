@@ -36,8 +36,6 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
     shortDescription,
     platform,
     tags,
-    rating,
-    ratingCount,
     price,
   } = data
 
@@ -59,15 +57,13 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
             ${unlink ? "pointer-events-none" : ""}
           `}
         >
-          { coverImg ?
-            <Image 
-              width={coverImg.fileMetadata.width} height={coverImg.fileMetadata.height} 
-              alt=""
-              src={coverImg.fileMetadata.url} 
-              objectFit="cover"
-              className="h-full object-cover" 
-            /> : <TempError element="imagen de portada" reason="la imagen es indefinida" />
-          }
+          <Image 
+            width={coverImg.fileMetadata.width} height={coverImg.fileMetadata.height} 
+            alt=""
+            src={coverImg.fileMetadata.url} 
+            objectFit="cover"
+            className="h-full object-cover" 
+          />
         </Link>
       </div>
       <div className={`

@@ -1,7 +1,7 @@
-import { Application } from "./application.types"
+import { ApplicationWithFullImgs } from "./application.types"
 import { TImage } from "./global.types"
 
-export type BTApplicationWithAuthor = Application & {
+export type BTApplicationWithAuthor = ApplicationWithFullImgs & {
   author: BTAuthor
 }
 

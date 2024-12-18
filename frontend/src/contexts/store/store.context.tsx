@@ -8,12 +8,14 @@ type Props = {
   setStore: Dispatch<SetStateAction<Store>>
 }
 
-export const STORE_INITIAL_STATE = {
+export const STORE_INITIAL_STATE: Store = {
   user: {
     id: "",
-    email: "",
     name: "",
+    email: "",
+    profileImg: null,
     jwtToken: "",
+    sellerData: null
   },
   ui: {
     mode: "explorer"

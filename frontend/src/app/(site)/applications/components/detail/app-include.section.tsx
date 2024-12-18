@@ -4,7 +4,6 @@ import { AppIncludeProps } from "./app-detail.types";
 
 export const AppInclude: FC<AppIncludeProps> = ({ title, appIncludes }) => {
 
-    console.log(appIncludes)
     return (
         <Card className="p-4">
             <CardHeader className="space-y-8">

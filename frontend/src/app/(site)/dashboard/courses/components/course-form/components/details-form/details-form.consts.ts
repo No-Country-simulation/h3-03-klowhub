@@ -6,6 +6,7 @@ export const COURSE_DETAILS_INITIAL_STATE: CourseDetails = {
   courseIncludes: [""],
   fullDescription: "",
   coverImg: null,
-  promotionalVideo: null
+  promotionalVideo: null,
+  price: NaN
 };
 

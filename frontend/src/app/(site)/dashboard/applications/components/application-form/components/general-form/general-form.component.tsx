@@ -5,7 +5,7 @@ import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { ApplicationInfo } from "@/types/application.types";
 import Input from "@/components/input/input.component";
 import { tags, language, functionalities, sector, toolsAndPlatforms } from "@/consts/filters.consts";
-import { IsClientProvider } from "@/contexts/is-client.context";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import useApplicationContext from "../../hooks/use-application-context.hook";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/application-form.actions";

@@ -4,9 +4,10 @@ import { RequiredProperty } from "@/types/utils.types";
 export const breakMembership = (data: RequiredProperty<MembershipFormData>): Membership => {
   const sellerData = {
     ...data.sellerData,
-    type: data.sellerData.type!!.name 
+    type: data.sellerData.type!.name 
   };
 
+  // @ts-ignore: Unreachable code error
   return {
     ...data.selectionData,
     ...sellerData

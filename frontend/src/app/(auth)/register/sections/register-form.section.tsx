@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import useFetchData from '@/hooks/use-fetch-data.hook'
-import { ServiceTypes } from '@/types/service-types'
+import services from '@/services'
+import { TRegisterData } from '@/types/service-types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -13,24 +13,28 @@ const RegisterForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<ServiceTypes["register"]>({ mode: "onTouched" });
+    } = useForm<TRegisterData>({ mode: "onTouched" });
     const [loading, setLoading] = useState(false);
-    const { fetchData } = useFetchData();
     const router = useRouter();
 
-    const customSubmit: SubmitHandler<ServiceTypes["register"]> = async (
-        data: ServiceTypes["register"]
+    const customSubmit: SubmitHandler<TRegisterData> = async (
+        data: TRegisterData
     ) => {
         setLoading(true);
 
-        const { status, response } = await fetchData("register", data);
+        try {
+            const { status } = await services.register(data);
 
-        if (status) {
-            router.push("login");
-            toast.success("Su usuario ha sido creado con éxito. Por favor, inicie sesión.")
-        } else {
-            setLoading(false)
-            toast.error("Ha habido un error, vuelva a intentarlo.");
+            if (status) {
+                router.push("login");
+                toast.success("Su usuario ha sido creado con éxito. Por favor, inicie sesión.")
+            } else {
+                setLoading(false);
+                toast.error("Ha ocurrido un error.");
+            }
+        } catch (error) {
+            setLoading(false);
+            toast.error("No se pudo conectar con el servidor. Vuelve a intentarlo más tarde o contacta con soporte.");
         }
 
     };

@@ -1,35 +1,177 @@
-import { Injectable, NotFoundException} from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException,
+  BadRequestException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Project } from './entities/project.entity/project.entity';
 import { CreateProjectDto } from './dto/create-project.dto/create-project.dto';
 import { lastValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
+import { Asset } from './entities/asset.entity/asset.entity';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import {
+  CloudinaryUploadFailedException,
+  CourseImageSizeFailed,
+  CourseVideoSizeFailed,
+  ImageFileMissingException,
+  PDF_FileSize,
+  VideoFileMissingException,
+} from 'src/custom-exceptions/custom-exceptions';
+import { CreateAssetDto } from './dto/asset-proyect.dto/create-asset-dto';
+import { platform } from 'os';
 
 @Injectable()
 export class ProjectsService {
+  private readonly MAX_IMAGE_SIZE = 10000 * 1024; // 10 MB
+  private readonly MAX_VIDEO_SIZE = 500 * 1024 * 1024; // 500 MB
+  private readonly MAX_PDF_SIZE = 3 * 1024 * 1024; // 3 MB
   constructor(
+    @InjectRepository(Asset)
+    private readonly assetRepository: Repository<Asset>,
+    private readonly cloudinaryService: CloudinaryService,
     @InjectRepository(Project)
     private projectRepository: Repository<Project>,
     private readonly httpService: HttpService,
   ){}
 
-  async createProject(projectData: CreateProjectDto, userId: string): Promise<Project> {
-    // Validar y transformar los datos si es necesario
-    const { assets, ...rest } = projectData;
-
-    // Convertir 'assets' de string a object[] si es necesario
-    const transformedAssets = assets || [];
-
-    // Crear el nuevo proyecto
-    const newProject = this.projectRepository.create({
-      ...rest,
-      assets: transformedAssets,
-      userId,
-    });
-    // Guardar en la base de datos
-    return await this.projectRepository.save(newProject);
+  private validateFile(
+    file: Express.Multer.File,
+    maxSize: number,
+    fileType: string,
+  ): void {
+    if (!file) {
+      throw fileType === 'image'
+        ? new ImageFileMissingException()
+        : new VideoFileMissingException();
+    }
+    if (file.size > maxSize) {
+      throw fileType === 'image'
+        ? new CourseImageSizeFailed()
+        : fileType === 'video'
+          ? new CourseVideoSizeFailed()
+          : new PDF_FileSize();
+    }
   }
+
+  async createAssets(
+    createAssetDto: CreateAssetDto,
+    file: Express.Multer.File,
+    fileType: string,
+  ): Promise<CreateAssetDto> {
+    const isImage = file.mimetype.startsWith('image/');
+    const isVideo = file.mimetype.startsWith('video/');
+    const isPdf = file.mimetype.startsWith('application/pdf');
+
+    if (isImage) {
+      this.validateFile(file, this.MAX_IMAGE_SIZE, 'image');
+    } else if (isVideo) {
+      this.validateFile(file, this.MAX_VIDEO_SIZE, 'video');
+    } else if (isPdf) {
+      this.validateFile(file, this.MAX_PDF_SIZE, 'pdf');
+    } else {
+      throw new BadRequestException('Tipo de archivo no soportado');
+    }
+    // Subir el archivo a Cloudinary con las opciones adecuadas
+    const uploadResult = await this.cloudinaryService.uploadFile(file);
+
+    if (!uploadResult || !uploadResult.secure_url) {
+      throw new CloudinaryUploadFailedException();
+    }
+    if (fileType === 'image') {
+      createAssetDto.fileMetadata = {
+        url: uploadResult.secure_url,
+        size: uploadResult.bytes,
+        width: uploadResult.width,
+        height: uploadResult.height,
+        format: uploadResult.format,
+        mimeType: file.mimetype,
+        created_at: uploadResult.created_at,
+      };
+      createAssetDto.fileType = 'image';
+    } else if (fileType === 'video') {
+      createAssetDto.fileMetadata = {
+        url: uploadResult.secure_url,
+        duration: uploadResult.duration,
+        size: uploadResult.bytes,
+        resolution: uploadResult.resolution,
+        format: uploadResult.format,
+        width: uploadResult.width,
+        height: uploadResult.height,
+        mimeType: file.mimetype,
+        thumbnailUrl: uploadResult.thumbnailUrl,
+        thumbnailWidth: uploadResult.thumbnailWidth,
+        thumbnailHeight: uploadResult.thumbnailHeight,
+        created_at: uploadResult.created_at,
+      };
+      createAssetDto.fileType = 'video';
+    } else if (fileType === 'document') {
+      // multimediaDto.fileMetadata = multimediaDto.fileMetadata || [];
+      createAssetDto.fileMetadata = {
+        url: uploadResult.secure_url,
+        size: uploadResult.bytes,
+        mimeType: file.mimetype,
+        created_at: uploadResult.created_at,
+      };
+      createAssetDto.fileType = 'document';
+    } else {
+      throw new BadRequestException('Tipo de archivo no soportado');
+    }
+
+    // Guarda los datos en la base de datos
+    const multimedia = this.assetRepository.create(createAssetDto);
+  
+    return await this.assetRepository.save(multimedia);
+
+  }
+
+
+  // async createProject(createProjectDto: CreateProjectDto, userId: string): Promise<Project> {
+  //   const { assets, ...rest } = createProjectDto;
+
+  //   // Transformar `assets` si no está en el formato adecuado
+  //   const formattedAssets = assets ? assets.map((asset) => String(asset)) : [];
+
+  //   const project = this.projectRepository.create({
+  //     ...rest,
+  //     userId,
+  //     assets: formattedAssets,
+  //   });
+
+  //   return await this.projectRepository.save(project);
+  // }
+
+  async createProject(createProjectDto: CreateProjectDto, userId: string): Promise<Project> {
+  
+    try{
+      const project = this.projectRepository.create({
+        title:createProjectDto.title,
+        platform: createProjectDto.platform,
+        description: createProjectDto.description,
+        sector: createProjectDto.sector,
+        methodology: createProjectDto.methodology,
+        experienceLevel: createProjectDto.experienceLevel,
+        technicalRequirements: createProjectDto.technicalRequirements,
+        requiredSkills: createProjectDto.requiredSkills,
+        days: createProjectDto.days,
+        minBudget: createProjectDto.minBudget,
+        maxBudget: createProjectDto.maxBudget,
+        additionalRequirements: createProjectDto.additionalRequirements,
+        authorId: userId,
+        tags: createProjectDto.tags,
+        status: createProjectDto.status
+      })
+      const savedProject = await this.projectRepository.save(project);
+
+      const assetEntities = await this.assetRepository.find({
+        where: { id: In(createProjectDto.assets) },
+      });
+      savedProject.assets = assetEntities;
+
+      return await this.projectRepository.save(savedProject);
+    } catch (error){
+      throw new ConflictException(`Error al crear el proyecto: ${error.message}`);
+    }
+  }
+
 
 
   async deleteProject(id: string): Promise<void> {
@@ -57,15 +199,40 @@ export class ProjectsService {
       throw new NotFoundException (`Project with ID ${id} not found`);
     }
     const userResponse = await lastValueFrom(
-      this.httpService.get(`http://localhost:3001/users/${project.userId}`),
+      this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.authorId}`),
       );
       return {
         ...project,
-        user: userResponse.data,
+        author: userResponse.data,
       }
   }
 
-  async getAllProjects(): Promise<Project[]> {
-    return this.projectRepository.find();
+  async getAllProjectsWithUsers(): Promise<any> {
+    const projects = await this.projectRepository.find();
+
+    if (!projects || projects.length === 0 ){
+      throw new NotFoundException('No se econtraron proyectos.')
+    }
+
+    const projectsWhitUsers = await Promise.all(
+      projects.map(async (project) => {
+        try {
+          const userResponse = await lastValueFrom(
+            this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.authorId}`),
+          );
+          return {
+            ...project,
+            author: userResponse.data,
+          };
+        } catch (error) {
+          console.error(`Error al obtener informacion del usuario para el proyecto ${project.id}:`, error);
+          return{
+            ...project,
+            author: null,
+          };
+        }
+      }),
+    );
+    return projectsWhitUsers
   }
 }

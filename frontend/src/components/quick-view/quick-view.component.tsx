@@ -3,15 +3,12 @@ import { getPathname, getQueryParams } from "@/utils/route.utils";
 import { getProduct } from "@/utils/product.utils";
 import Icon from "../icon/icon.component";
 import { Badge } from "../ui/badge";
-import { getSlug } from "@/utils/str.utils";
 import Rating from "../rating/rating.component";
 import Image from "next/image";
-import { Button } from "../ui/button";
 import Link from "next/link";
 import { Video, Clock3 } from "lucide-react";
 import { IconTypes } from "../icon/icon.types";
 import { buttonVariants } from "../ui/button";
-import TempError from "../temp-error/temp-error.component";
 
 type Props = {
   products: TQuickView[]
@@ -22,7 +19,6 @@ const QuickView = async ({ products }: Props) => {
   const pathname = await getPathname();
 
   const currentProduct = getProduct<TQuickView>(products, queryParams.product)
-  console.log('currentProduct: ', currentProduct);
   if (!currentProduct) return <div>No se encontro el curso</div>;
 
   const {
@@ -30,10 +26,8 @@ const QuickView = async ({ products }: Props) => {
     title,
     shortDescription,
     platform,
-    // rating,
-    // ratingCount,
     author,
-    video,
+    promotionalVideo,
     coverImg
   } = currentProduct
 
@@ -58,32 +52,27 @@ const QuickView = async ({ products }: Props) => {
         <Rating rating={4} ratingCount={35} />
         <span className="flex gap-2 items-center text-secondary-200">
           <Video size={24} strokeWidth={1} />
-          {/* este texto es temporal */}
           18 videos
         </span>
         <span className="flex gap-2 items-center text-secondary-200">
           <Clock3 size={20} strokeWidth={1} />
-          {/* este texto es temporal */}
           1.6 horas
         </span>
       </div>
       <div className="aspect-video overflow-hidden flex flex-col justify-center rounded-xl">
-        <TempError element="video" reason="funciona en apps pero no en cursos" />
-        {/* { video */}
-        {/*   ? <video controls> */}
-        {/*     <source src={video.fileMetadata.url} type="video/mp4"></source> */}
-        {/*   </video> */}
-        {/*   : <Image  */}
-        {/*     src={coverImg.fileMetadata.url} */}
-        {/*     width={coverImg.fileMetadata.width} */}
-        {/*     height={coverImg.fileMetadata.height} */}
-        {/*     alt="" */}
-        {/*   /> */}
-        {/* } */}
+        { promotionalVideo
+          ? <video controls>
+            <source src={promotionalVideo.fileMetadata.url} type="video/mp4"></source>
+          </video>
+          : <Image 
+            src={coverImg.fileMetadata.url}
+            width={coverImg.fileMetadata.width}
+            height={coverImg.fileMetadata.height}
+            alt=""
+          />
+        }
       </div>
       <AuthorBlock author={author} />
-      {/* <h2 className="font-bold">Acerca de este curso</h2> */}
-      {/* <p>{author.about}</p> */}
       <div>
         <Link
           href={`${pathname}/${id}`}

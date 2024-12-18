@@ -5,6 +5,14 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import { TImage, TVideo } from "@/types/global.types";
 import { useKeenSlider } from "keen-slider/react";
+import useIsClientCtx from "@/contexts/is-client/use-is-client.hook";
+import { useParams } from "next/navigation";
+import { Pencil } from "lucide-react";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import useStore from "@/contexts/store/use-store.hook";
+import { BTUser } from "@/types/user.types";
+import { useSearchParams } from "next/navigation";
 
 export const AppHeader: FC<AppDetailHeader> = ({
   title,
@@ -12,8 +20,17 @@ export const AppHeader: FC<AppDetailHeader> = ({
   rating,
   ratingCount,
   coverImg,
-  assets
+  assets,
+  authorId
 }) => {
+  const params = useParams();
+  const searchParams = useSearchParams();
+
+  const [ user ] = useStore<BTUser>("user");
+  const formSection = searchParams.get("section");
+
+  const applicationId = params.id;
+
   const [currentAsset, setCurrentAsset] = useState<TImage | TVideo>(coverImg);
   const [currentSlide, setCurrentSlide] = useState(0);
   const mediaAssets = assets.filter(ast => ast.fileType !== "document");
@@ -41,7 +58,18 @@ export const AppHeader: FC<AppDetailHeader> = ({
 
   return (
     <>
-      <h3 className="font-semibold text-sm">{title}</h3>
+      <div className="flex justify-between items-center">
+        <h3 className="font-semibold text-sm">{title}</h3>
+        { user.id === authorId && formSection !== "preview" &&
+          <Link 
+            href={`/dashboard/applications/form/${applicationId}?section=general`}
+            className={`${buttonVariants({ variant: "default" })}`}
+          >
+            <Pencil />
+            <span>Editar Curso</span>
+          </Link>
+        }
+      </div>
       <div className="flex items-center gap-2">
         <Clock className="h-5 w-5" />
         <span className="text-xs">Ultima actualización: 12/06/2024</span>

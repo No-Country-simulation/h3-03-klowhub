@@ -8,6 +8,8 @@ import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";
 import CourseCtxProvider from "./context/course-form.context";
 import { CourseDetail } from "@/app/(site)/courses/components/detail/course-detail.component";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
+import { Suspense } from "react";
 
 const CourseForm = async () => {
   const { section } = await getQueryParams();
@@ -39,7 +41,14 @@ const CourseForm = async () => {
               { section === "details" && <DetailsForm /> }
               { section === "modules" && <ModuleSection /> }
               { section === "promotion" && <PromotionsSection /> }
-              { section === "preview" && <CourseDetail /> }
+              <Suspense>
+                { 
+                  section === "preview" && 
+                    <IsClientProvider>
+                      <CourseDetail /> 
+                    </IsClientProvider>
+                }
+              </Suspense>
             </CourseCtxProvider>
           </div>
           { section !== "preview" &&
