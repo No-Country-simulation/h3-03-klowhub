@@ -39,10 +39,6 @@ const Page = async () => {
   const queryParams = await getQueryParams();
   const pathname = await getPathname();
 
-  const courses = { data: coursesMock };
-
-  console.log('courses xdd', courses)
-
   return (
     <main>
       <BreadCrumb />
