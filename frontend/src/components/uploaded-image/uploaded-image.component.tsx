@@ -3,7 +3,7 @@ import Image from "next/image";
 
 type Props = {
   src: string
-  deleteCb: () => void
+  deleteCb?: () => void
   readOnly?: boolean
 }
 

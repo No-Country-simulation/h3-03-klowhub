@@ -17,8 +17,11 @@ export class Seller {
   })
   type: string; // Tipo de vendedor
 
-  @Column('text')
-  description: string; // Descripción de ti o empresa
+  @Column('text', {
+    default:
+      'Experto en desarrollo de aplicaciones no-code con más de 5 años de experiencia en AppSheet y Power Apps, ayudando a empresas y emprendedores.',
+  })
+  about: string; // Descripción de ti o empresa
 
   @Column({ nullable: true })
   website?: string; // Enlace de sitio web/portfolio

@@ -10,13 +10,18 @@ import Link from "next/link";
 import MyAppsDesktopView from "./views/desktop.view";
 import MyAppsMobileView from "./views/mobile.view";
 import { TQuickView } from "@/components/product-card/product-card.types";
+import NoData from "@/components/no-data/no-data.component";
 
 const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
 
 const getProducts = async (endpoint: string) => {
+  try {
     const res = await fetch(endpoint, { cache: "force-cache" });
     const items: { data: TQuickView[] } = await res.json();
     return items
+  } catch (err) {
+    console.error("error when getting applications: ", err)
+  }
 };
 
 const inter = Inter({
@@ -26,10 +31,7 @@ const inter = Inter({
 });
 
 const MyAppsPage = async () => {
-
-    const applications = {
-      data: await getProducts(endpoint)
-    };
+  const applicationsData = await getProducts(endpoint);
 
     const { sortBy, order, filterBy, from, to, items } = await getQueryParams();
     const filteredData = filterData(filterBy, { from: from, to: to, items: items }, transactionsData)
@@ -43,10 +45,14 @@ const MyAppsPage = async () => {
             <div className="flex flex-col gap-5">
                 <div className="mt-14 flex flex-col gap-5 sm:flex-row sm:justify-between sm:items-center">
                     <h3 className="text-base font-bold">Mis aplicaciones</h3>
-                    <Link href="/dashboard/applications/new?section=general" className={`${buttonVariants({ variant: "default" })} sm:w-[250px] w-full`}>Crear aplicación</Link>
+                    <Link href="/dashboard/applications/form?section=general" className={`${buttonVariants({ variant: "default" })} sm:w-[250px] w-full`}>Crear aplicación</Link>
                 </div>
-                <MyAppsDesktopView transactionsData={sortedData} products={applications.data as unknown as TQuickView[]} />
-                <MyAppsMobileView transactionsData={sortedData} products={applications.data as unknown as TQuickView[]} />
+        { applicationsData ?
+          <>
+            <MyAppsDesktopView transactionsData={sortedData} products={applicationsData as unknown as TQuickView[]} />
+            <MyAppsMobileView transactionsData={sortedData} products={applicationsData as unknown as TQuickView[]} />
+          </> : <NoData entity="aplicaciones" />
+        }
             </div>
         </main>
     )

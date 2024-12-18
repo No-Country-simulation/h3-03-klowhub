@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import useFetchData from '@/hooks/use-fetch-data.hook'
-import { ServiceTypes } from '@/types/service-types'
+import services from '@/services'
+import { TRegisterData } from '@/types/service-types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -13,24 +13,28 @@ const RegisterForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<ServiceTypes["register"]>({ mode: "onTouched" });
+    } = useForm<TRegisterData>({ mode: "onTouched" });
     const [loading, setLoading] = useState(false);
-    const { fetchData } = useFetchData();
     const router = useRouter();
 
-    const customSubmit: SubmitHandler<ServiceTypes["register"]> = async (
-        data: ServiceTypes["register"]
+    const customSubmit: SubmitHandler<TRegisterData> = async (
+        data: TRegisterData
     ) => {
         setLoading(true);
 
-        const { status, response } = await fetchData("register", data);
+        try {
+            const { status } = await services.register(data);
 
-        if (status) {
-            router.push("login");
-            toast.success("Su usuario ha sido creado con éxito. Por favor, inicie sesión.")
-        } else {
-            setLoading(false)
-            toast.error("Ha habido un error, vuelva a intentarlo.");
+            if (status) {
+                router.push("login");
+                toast.success("Su usuario ha sido creado con éxito. Por favor, inicie sesión.")
+            } else {
+                setLoading(false);
+                toast.error("Ha ocurrido un error.");
+            }
+        } catch (error) {
+            setLoading(false);
+            toast.error("No se pudo conectar con el servidor. Vuelve a intentarlo más tarde o contacta con soporte.");
         }
 
     };
@@ -42,8 +46,8 @@ const RegisterForm = () => {
                     <input type="text"
                         placeholder="Nombre completo"
                         autoComplete="off"
-                        {...register('fullname', { required: true })} className={`w-full h-[45px] p-3 rounded-lg`} />
-                    {errors.fullname?.type === 'required' && (
+                        {...register('name', { required: true })} className={`w-full h-[45px] p-3 rounded-lg`} />
+                    {errors.name?.type === 'required' && (
                         <div className="z-10 lg:right-6 right-4 top-12 absolute w-full text-[#ffffff] font-semibold text-sm bg-card p-3.5 rounded-md flex gap-5">
                             <div className="absolute -top-2 left-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-card"></div>
                             <p>Complete este campo</p>

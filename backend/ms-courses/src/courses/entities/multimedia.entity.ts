@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  // ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Course } from './course.entity';
 //import { Lesson } from './lesson.entity';
 
@@ -59,13 +53,16 @@ export class Multimedia {
   @Column({ nullable: true }) // Declarar explícitamente courseId como clave foránea
   courseId: string;
 
-  // @ManyToOne(() => Course, (course) => course.multimedia, {
-  //   onDelete: 'CASCADE',
-  // })
-  @JoinColumn({ name: 'courseId' })
+  @ManyToOne(() => Course, (course) => course.multimedia, {
+    onDelete: 'CASCADE',
+  })
+  // @JoinColumn({ name: 'courseId' })
   course: Course;
 
   // @ManyToOne(() => Lesson, (lesson) => lesson.multimedia)
   // @JoinColumn()
   // lesson: Lesson; // Relación con Lesson, indicando que un Multimedia pertenece a una Lesson
 }
+
+// @ManyToOne(() => Project, (project) => project.assets, { onDelete: 'CASCADE' }) // Relación inversa
+// project: Project; // Esto permite la relación inversa

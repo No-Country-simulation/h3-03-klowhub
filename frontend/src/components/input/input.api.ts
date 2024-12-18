@@ -4,8 +4,8 @@ export const uploadAsset = async (file: File, entity: "course" | "app" | "projec
   let endpoint = ""
   if (entity === "course") endpoint = process.env.NEXT_PUBLIC_COURSES_URL as string;
   if (entity === "app") endpoint = process.env.NEXT_PUBLIC_APPLICATIONS_URL as string;
-  if (entity === "project") endpoint = process.env.NEXT_PUBLIC_COURSES_URL as string; // temporary
-console.log('endpoint: ', endpoint);
+  if (entity === "project") endpoint = process.env.NEXT_PUBLIC_PROJECTS_URL as string; 
+  console.log('endpoint: ', endpoint);
 
   const formData = new FormData();
   formData.append('file', file)
