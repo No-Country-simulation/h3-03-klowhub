@@ -16,8 +16,6 @@ import { Button } from "@/components/ui/button";
 import Greeter from "@/components/greeter/greeter.component";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { Popover } from "@/components/popover/popover.component";
-// import promotionMock from "./promotions.mock.json"
 
 type ContentType = "applications" | "courses"
 
@@ -55,12 +53,6 @@ const PromotionsSection = () => {
     if (selection === "yes") setShowSelector(true);
     if (selection === "no") setShowSelector(false);
   }, [selection])
-
-  // useEffect(() => {
-  //   console.log('promotionMock: ', promotionMock);
-  //   // @ts-ignore: Unreachable code error
-  //   dispatch(setPromotionData(promotionMock))
-  // }, [dispatch])
 
   return (
     <>
