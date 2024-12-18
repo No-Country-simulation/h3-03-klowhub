@@ -2,6 +2,7 @@
 
 import { useCourseData } from "@/app/(site)/courses/components/detail/hooks/use-course-data.hook";
 import { CourseViewer } from "./course-viewer.section";
+import { Video } from '../../../../../../../../backend/ms-courses/src/courses/entities/multimedia.entity';
 
 
 const Course = () => {
@@ -20,6 +21,11 @@ const Course = () => {
             title: lesson.title,
             freeLesson: lesson.freeLesson,
             link: lesson.link,
+            video: {
+                id: lesson.video?.id,
+                fileType: lesson.video?.fileType,
+                fileMetadata: lesson.video?.fileMetadata
+            }
         })),
     }));
 
