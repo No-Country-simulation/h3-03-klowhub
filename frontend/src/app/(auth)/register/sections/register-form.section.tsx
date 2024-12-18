@@ -82,7 +82,7 @@ const RegisterForm = () => {
                         placeholder="Contraseña"
                         {...register('password', {
                             required: true,
-                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])[A-Za-z\d@$!%*?&^#_~:;,.|<>{}()[\]\\/+=`"'?-]{8,}$/,
+                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])[A-Za-z\d@$!%€*?&^#-_~:;,.|<>{}()[\]\\/+=`"'?-]{8,}$/,
                         })}
 
                         className="w-full h-[45px] p-3 rounded-lg" />
