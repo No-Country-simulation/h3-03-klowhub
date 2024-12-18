@@ -17,6 +17,6 @@ export type UI = {
 }
 
 export type Store = {
-  user: User
+  user: User | null
   ui: UI
 }

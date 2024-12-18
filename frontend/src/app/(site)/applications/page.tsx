@@ -27,6 +27,7 @@ const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint);
     const apps: Required<ApplicationWithFullImgs>[] = await res.json();
+    console.log('apps: ', apps);
     const transformedApps: TQuickView[] = apps.map(app => transformApp(app));
     return transformedApps
   } catch (err) {
