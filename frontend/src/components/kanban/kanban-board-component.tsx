@@ -5,7 +5,7 @@ import { DndContext, DragOverEvent, DragOverlay, DragStartEvent } from "@dnd-kit
 import { createPortal } from "react-dom";
 import { arrayMove } from "@dnd-kit/sortable";
 import { TColumn, TTask } from "@/types/kanban.types";
-import { useKanban } from "@/app/(site)/kanban/context/kanbanContext";
+import { useKanban } from "@/app/(site)/enviar-propuesta/context/kanbanContext";
 import ColumnContainer from "./column-container.component";
 import TaskCard from "./task-card.component";
 

@@ -5,7 +5,7 @@ import { ArrowRight, CodeXml, FilePen, PencilLine, Trash, User } from 'lucide-re
 import React from 'react'
 import Image from 'next/image';
 import { TTask } from "@/types/kanban.types";
-import { useKanban } from "@/app/(site)/kanban/context/kanbanContext";
+import { useKanban } from "@/app/(site)/enviar-propuesta/context/kanbanContext";
 
 type Props = {
     task: TTask;
