@@ -6,7 +6,6 @@ import { FileChartColumnIncreasing, MessageSquare, Star } from "lucide-react";
 import ProposalForm from "./components/proposal-form/proposal-form.component";
 import { Button } from "@/components/ui/button";
 import { ProjectWithFullImgs } from "@/types/project.types";
-import { BTUser } from "@/types/user.types";
 
 // const endpoint = process.env.NEXT_PUBLIC_PROJECTS_URL;
 const endpoint = "http://localhost:3000/api/projects";

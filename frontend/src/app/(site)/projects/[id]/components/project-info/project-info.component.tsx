@@ -31,6 +31,7 @@ const ProjectInfo = ({ serverSideData }: Props) => {
 
   const dataSources = { serverSideData, clientSideData };
   const pageData = useProjectData(dataSources);
+  console.log('pageData: ', pageData);
 
   if (!pageData) return <div>Cargando...</div>;
 
@@ -43,6 +44,7 @@ const ProjectInfo = ({ serverSideData }: Props) => {
     technicalRequirements,
     experienceLevel,
     sector,
+    tags,
     requiredSkills,
     additionalRequirements
   } = pageData;
@@ -122,6 +124,11 @@ const ProjectInfo = ({ serverSideData }: Props) => {
             <FilterDisplayer header="Sector" orientation="horizontal" containerStyles="border-1 py-2 px-5 rounded-lg border-primary-300">
               {sector.map((s, idx) => (
                 <PreviewFilter key={`sector-${idx}`}>{s}</PreviewFilter>
+              ))}
+            </FilterDisplayer>
+            <FilterDisplayer header="Tags" orientation="horizontal" containerStyles="border-1 py-2 px-5 rounded-lg border-primary-300">
+              {tags.map((t, idx) => (
+                <PreviewFilter key={`tag-${idx}`}>{t}</PreviewFilter>
               ))}
             </FilterDisplayer>
           </div>

@@ -5,7 +5,7 @@ import { ValidatedProjectForm, ProjectFormData, ProjectWithReducedImgs, ProjectW
 export function breakProject (data: ValidatedProjectForm, reduceImgs: true): ProjectWithReducedImgs
 export function breakProject (data: ValidatedProjectForm, reduceImgs: false): ProjectWithFullImgs
 export function breakProject (data: ValidatedProjectForm, reduceImgs = false) {
-  const { general: { sector, methodology, experienceLevel, platform }, details: { requiredSkills, assets } } = data;
+  const { general: { sector, methodology, experienceLevel, platform, tags }, details: { requiredSkills, assets } } = data;
 
   const general = {
     ...data.general,
@@ -13,7 +13,8 @@ export function breakProject (data: ValidatedProjectForm, reduceImgs = false) {
     platform: platform as Platform,
     methodology: methodology?.name || "",
     experienceLevel: experienceLevel?.name || "",
-    requiredSkills: requiredSkills.map(sk => sk.name)
+    requiredSkills: requiredSkills.map(sk => sk.name),
+    tags: tags.map(t => t.name)
   };
 
   const details = {
@@ -37,7 +38,8 @@ export const groupProject = (data: ProjectWithFullImgs): ProjectFormData => {
     platform: data.platform as Platform,
     methodology: { name: data.methodology, label: data.methodology },
     experienceLevel: { name: data.experienceLevel, label: data.experienceLevel },
-    sector: data.sector.map(s => ({ name: s, label: s }))
+    sector: data.sector.map(s => ({ name: s, label: s })),
+    tags: data.tags.map(t => ({ name: t, label: t }))
   };   
 
   const details = {

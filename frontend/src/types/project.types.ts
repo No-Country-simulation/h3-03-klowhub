@@ -14,6 +14,7 @@ export type ProjectInfo = {
   methodology: SelectOption | null
   experienceLevel: SelectOption | null
   sector: SelectOption[]
+  tags: SelectOption[]
 };
 
 export type ProjectDetails = {
