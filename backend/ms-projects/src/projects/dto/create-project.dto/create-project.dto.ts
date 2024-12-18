@@ -55,7 +55,7 @@ export class CreateProjectDto {
   @ApiProperty({ description: 'Habilidades requeridas', example: ['Trabajo en equipo', 'Liderazgo'] })
   @IsArray()
   @IsString({ each: true })
-  requiredSkills: string[]; // conocimientos necesarios/ habilidades necesarias
+  requiredSkills: string[]; 
 
   @ApiProperty({ description: 'Activos opcionales', example: [{ type: 'logo', url: 'http://example.com/logo.png' }] })
   @IsArray()

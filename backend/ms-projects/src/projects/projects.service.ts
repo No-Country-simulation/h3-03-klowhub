@@ -199,7 +199,7 @@ export class ProjectsService {
       throw new NotFoundException (`Project with ID ${id} not found`);
     }
     const userResponse = await lastValueFrom(
-      this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.userId}`),
+      this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.authorId}`),
       );
       return {
         ...project,
@@ -207,7 +207,32 @@ export class ProjectsService {
       }
   }
 
-  async getAllProjects(): Promise<Project[]> {
-    return this.projectRepository.find();
+  async getAllProjectsWithUsers(): Promise<any> {
+    const projects = await this.projectRepository.find();
+
+    if (!projects || projects.length === 0 ){
+      throw new NotFoundException('No se econtraron proyectos.')
+    }
+
+    const projectsWhitUsers = await Promise.all(
+      projects.map(async (project) => {
+        try {
+          const userResponse = await lastValueFrom(
+            this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.authorId}`),
+          );
+          return {
+            ...project,
+            author: userResponse.data,
+          };
+        } catch (error) {
+          console.error(`Error al obtener informacion del usuario para el proyecto ${project.id}:`, error);
+          return{
+            ...project,
+            author: null,
+          };
+        }
+      }),
+    );
+    return projectsWhitUsers
   }
 }
