@@ -13,8 +13,8 @@ import { buttonVariants } from "@/components/ui/button";
 import UploadedImage from "@/components/uploaded-image/uploaded-image.component";
 import FileBadge from "@/components/file-badge/file-badge.component";
 import UploadedVideo from "@/components/uploaded-video/uploaded-video.component";
-import { breakProject } from "@/app/(site)/dashboard/projects/components/project-form/context/project-form.acl";
-import { ProjectWithFullImgs, ValidatedProjectForm } from "@/types/project.types";
+import { ProjectWithFullImgs } from "@/types/project.types";
+import useProjectData from "../../use-application-data.hook";
 
 type Props = {
   serverSideData?: ProjectWithFullImgs
@@ -27,8 +27,11 @@ const ProjectInfo = ({ serverSideData }: Props) => {
   const [ error, setError ] = useState<object | null>(null)
   const [ activeTab, setActiveTab ] = useState(0)
 
-  const { state, submitProject } = useProjectContext();
-  const pageData = state ? breakProject(state as ValidatedProjectForm, false) : serverSideData;
+  const { state: clientSideData, submitProject } = useProjectContext();
+
+  const dataSources = { serverSideData, clientSideData };
+  const pageData = useProjectData(dataSources);
+
   if (!pageData) return <div>Cargando...</div>;
 
   const {

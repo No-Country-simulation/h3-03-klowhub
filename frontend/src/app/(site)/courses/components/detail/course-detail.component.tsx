@@ -25,12 +25,9 @@ import { IncludeSection } from "./include-section";
 import AuthorInfo from "../../../../../components/author-info/author-info";
 import { ObjectivesList } from "./objectives.section";
 import { CourseWithFullAssets } from "@/types/courses.types";
-import useStore from "@/contexts/store/use-store.hook";
-import { BTUser } from "@/types/user.types";
 import useCourseContext from "@/app/(site)/dashboard/courses/components/course-form/hooks/use-course-context.hook";
-import { breakCourse } from "@/app/(site)/dashboard/courses/components/course-form/context/course-form.acl";
 import { reviews } from "@/mocks/reviews.mocks";
-import useIsClientCtx from "@/contexts/is-client/use-is-client.hook";
+import useCourseData from "../../[id]/use-course-data.hook";
 
 type Props = {
   serverSideData?: CourseWithFullAssets
@@ -38,14 +35,13 @@ type Props = {
 }
 
 export const CourseDetail = ({ serverSideData, children }: Props) => {
-  const isClientCtx = useIsClientCtx();
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
-  const [ user ] = useStore<BTUser>("user");
 
-  const { state, submitCourse } = useCourseContext();
-  const clientSideData = state && isClientCtx && {...breakCourse(state, false), author: user};
-  const pageData = clientSideData || serverSideData;
+  const { state: clientSideData, submitCourse } = useCourseContext();
+
+  const dataSources = { serverSideData, clientSideData };
+  const pageData = useCourseData(dataSources);
   if (!pageData) return <div>Cargando...</div>;
 
 
@@ -86,9 +82,11 @@ export const CourseDetail = ({ serverSideData, children }: Props) => {
             {...pageData} 
             freelessons={freeLessons} 
             submitCourse={submitCourse}
-            authorId={author.id}
+            authorId={author?.id as string}
           >
-            <AuthorInfo data={author} />
+            { author &&
+              <AuthorInfo data={author} />
+            }
             <ObjectivesList 
               header="Después de completar este curso, serás capaz de"
               objectives={learningSubjects} 
