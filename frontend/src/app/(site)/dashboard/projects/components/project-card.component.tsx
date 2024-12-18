@@ -18,14 +18,14 @@ const ProjectCard = ({ active, project }: Props) => {
 
     return (
         <Card className={`px-3 ${active ? "py-3" : "py-2"}`}>
-            <div className={`flex ${active ? "flex-col lg:flex-row lg:items-center gap-5" : "flex-col gap-3"}`}>
-                <div className={`flex ${active ? "gap-5 flex-col lg:flex-row lg:items-center" : "gap-3 flex-row items-center"}`}>
+            <div className={`flex ${active ? "flex-col gap-5" : "flex-col gap-3"}`}>
+                <div className={`flex ${active ? "gap-5 flex-col" : "gap-3 flex-row items-center"}`}>
                     <div className={`shrink-0 relative ${active ? "lg:w-[70px] lg:h-[70px] w-[100px] h-[100px]" : "w-[50px] h-[50px]"}`}>
                         <Image src={project.instructor.img.url} fill alt={project.instructor.img.alt}></Image>
                     </div>
                     <p className="text-sm leading-6">{project.description}</p>
                 </div>
-                <div className={`flex ${active ? "lg:flex-row lg:items-center flex-col gap-3 lg:gap-5" : "flex-col gap-3"}`}>
+                <div className={`flex ${active ? "flex-col gap-3 lg:gap-5" : "flex-col gap-3"}`}>
                     <div className="flex flex-col-reverse lg:flex-col gap-3">
                         <Badge
                             icon={<Icon name={getSlug(project.platform) as IconTypes} />}
