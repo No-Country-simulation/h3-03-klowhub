@@ -99,7 +99,7 @@ const ProjectInfo = ({ serverSideData }: Props) => {
           }
         </div>
         <div>
-          { user.id === author.id && section !== "preview" &&
+          { user && user.id === author.id && section !== "preview" &&
             <Link 
               href={`/dashboard/projects/form/${projectId}?section=general`}
               className={`${buttonVariants({ variant: "default" })}`}
