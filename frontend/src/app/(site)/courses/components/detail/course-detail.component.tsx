@@ -105,11 +105,13 @@ export const CourseDetail = ({ serverSideData, children }: Props) => {
           </CourseInfo>
 
           <div className="space-y-6">
-            <AuthorCard name={author.name} about={author.seller?.about || ""} profileImg={author.profileImg}> 
-              <AuthorData Icon={Star} data={"Calificación del instructor: 4.5"} />
-              <AuthorData Icon={User} data={"12 Estudiantes"}  />
-              <AuthorData Icon={BookOpen} data={"5 Cursos"}  />
-            </AuthorCard>
+            { author && 
+              <AuthorCard name={author.name} about={author.seller?.about || ""} profileImg={author.profileImg}> 
+                <AuthorData Icon={Star} data={"Calificación del instructor: 4.5"} />
+                <AuthorData Icon={User} data={"12 Estudiantes"}  />
+                <AuthorData Icon={BookOpen} data={"5 Cursos"}  />
+              </AuthorCard>
+            }
 
             <Badge
               className="bg-[#1F2937] text-white w-full shadow-hrd flex justify-center"

@@ -103,7 +103,7 @@ export type CourseWithFullAssets = BTCourse & {
   modules: Module[]
   coverImg: TImage
   promotionalVideo: TVideo
-  author?: BTUser
+  author: BTUser
 }
 
 // type CourseOptionalFields = Partial<{
