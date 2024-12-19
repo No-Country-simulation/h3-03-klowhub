@@ -6,7 +6,7 @@ import RouteBtn from "@/components/route-btn/route-btn.component";
 import { useWatch } from "react-hook-form";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { PROMOTION_INITIAL_STATE } from "./promotions-section.consts";
-import { Promotion } from "@/types/global.types";
+import { BTError, Promotion } from "@/types/global.types";
 import Input from "@/components/input/input.component";
 import ProductCard from "@/components/product-card/product-card.component";
 import { setPromotionData } from "../../context/application-form.actions";
@@ -24,7 +24,7 @@ type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
   const { state, dispatch, submitApplication } = useApplicationContext();
-  const [ error, setError ] = useState<object | null>(null)
+  const [ error, setError ] = useState<BTError | null>(null)
 
   const {
     commonProps,
@@ -60,10 +60,12 @@ const PromotionsSection = () => {
     <>
       { error && 
         <Popover onClose={() => setError(null)}>
-          { error.map ?
-            error.message.map((err, idx) => (
+          {/* @ts-ignore: Unreachable code error */}
+          { error.messages.map ?
+            // @ts-ignore: Unreachable code error
+            error.messages.map((err, idx) => (
               <span key={`error-${idx}`}>{err}</span>
-            )) : <span>{ error.message }</span>
+            )) : <span>{ error.messages }</span>
           }
         </Popover>
       }
@@ -212,7 +214,7 @@ const PromotionsSection = () => {
                 setNewAppId(applicationId)
               } catch (err) {
                 console.log('err: ', err);
-                setError(err as Error)
+                setError(err as BTError)
               }
             })}
           >

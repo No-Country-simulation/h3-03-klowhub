@@ -50,7 +50,7 @@ const Page = async () => {
       <BreadCrumb />
 
       <IsClientProvider>
-        <SearchFilter filters={filters} categories={categories} />
+        <SearchFilter filters={filters} categories={categories} header="Encuentra el aprendizaje que estas buscando" />
       </IsClientProvider>
 
       { courses && courses.length ? 

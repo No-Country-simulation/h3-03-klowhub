@@ -9,7 +9,7 @@ const MentorsPage = () => {
         <main>
                 <BreadCrumb />
 
-            <SearchFilter filters={[]} />
+            <SearchFilter filters={[]} header="Encuentra los mentores que estas buscando" />
 
             <h3 className="text-sm py-2 mb-5 font-semibold">
                 Expertos recomendados

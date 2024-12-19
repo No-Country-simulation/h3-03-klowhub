@@ -42,7 +42,7 @@ const ProjectsPage = async () => {
       </div>
 
       <IsClientProvider>
-        <SearchFilter filters={filters} />
+        <SearchFilter filters={filters} header="Encuentra proyectos interesantes" />
       </IsClientProvider>
 
       <div className="md:-translate-y-16 -translate-y-24">

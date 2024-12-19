@@ -20,5 +20,5 @@ export type UI = {
 export type Store = {
   user: User | null
   ui: UI
-  proposal: FullProposal
+  proposal: FullProposal | null
 }

@@ -2,8 +2,8 @@ import { socket } from "@/socket/socket";
 import { ChatMessage } from "@/app/(site)/chat/components/message-box/message-box.types";
 import { useEffect, useState } from "react";
 
-const useSocket = () => {
-  const [ messages, setMessages ] = useState<ChatMessage[]>([])
+const useSocket = (loadedMessages?: ChatMessage[]) => {
+  const [ messages, setMessages ] = useState<ChatMessage[]>(loadedMessages || [])
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
 
@@ -42,7 +42,7 @@ const useSocket = () => {
     };
   }, []);
 
-  return messages
+  return { messages, setMessages }
 };
 
 export default useSocket
