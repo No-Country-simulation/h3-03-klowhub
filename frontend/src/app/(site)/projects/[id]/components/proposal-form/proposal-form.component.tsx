@@ -2,7 +2,7 @@
 
 import Input from "@/components/input/input.component";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
-import { Proposal } from "./proposal-form.types";
+import { FullProposal, Proposal } from "./proposal-form.types";
 import { PROPOSAL_FORM_INITIAL_STATE } from "./proposal.consts";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,12 +34,19 @@ const submitProposal = async (
 
   setLoading(true);
   //funcion para crear tablero en trello.
+  // const boardData = await createBoardWithDetails({
+  //   projectName: "Proyecto Demo",
+  //   columns: [{ id: "1", name: "Columna 1" }],
+  //   tasks: [
+  //     { columnId: "1", name: "Tarea 1", priority: "Alta", startDate: "2024-12-19", assignedUser: { fullname: "Juan Pérez" } },
+  //   ],
+  //   projectCreatorEmail: "martinkunbrc1990@gmail.com"
+  // });
+  
   const boardData = await createBoardWithDetails({
     projectName: "Proyecto Demo",
-    columns: [{ id: "1", name: "Columna 1" }],
-    tasks: [
-      { columnId: "1", name: "Tarea 1", priority: "Alta", startDate: "2024-12-19", assignedUser: { fullname: "Juan Pérez" } },
-    ],
+    columns,
+    tasks,
     projectCreatorEmail: "martinkunbrc1990@gmail.com"
   });
   setLoading(false)
@@ -48,8 +55,10 @@ const submitProposal = async (
     ...boardData,
     projectAuthorId,
     applicantId,
-    proposalMesage: data.message
+    message: data.message
   };
+
+  return fullProposal
 
   console.log('fullProposal: ', fullProposal);
 
@@ -65,6 +74,7 @@ const submitProposal = async (
 
 const ProposalForm = ({ projectAuthorId }: Props) => {
   const [ user ] = useStore<User>("user");
+  const [ proposal, setProposal ] = useStore<FullProposal>("proposal");
 
   const { controlledCommonProps, handleSubmit } = useGenerateForm<Proposal>(
     PROPOSAL_FORM_INITIAL_STATE,
@@ -82,9 +92,11 @@ const ProposalForm = ({ projectAuthorId }: Props) => {
       {isEditTaskOpen && <EditTaskModal />}
       <form
         className="flex gap-10"
-        onSubmit={handleSubmit((data) =>
-          submitProposal(data, projectAuthorId, user.id, setLoading, columns, tasks)
-        )}
+        onSubmit={handleSubmit(async (data) => {
+          const fullProposal = await submitProposal(data, projectAuthorId, user.id, setLoading, columns, tasks)
+          setProposal(fullProposal)
+
+        })}
         id="proposal-form"
       >
         <div className="flex flex-col gap-3 w-full lg:w-3/4 relative">
