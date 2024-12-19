@@ -22,6 +22,7 @@ type ContentType = "applications" | "courses"
 const PromotionsSection = () => {
   const { state, dispatch, submitCourse } = useCourseContext();
   const [ error, setError ] = useState<object | null>(null)
+  console.log('error: ', error);
 
   const {
     commonProps,
@@ -205,9 +206,9 @@ const PromotionsSection = () => {
               try {
               // throw new Error()
                 const courseId = await submitCourse({ promotion })
-                setNewCourseId(courseId)
+                setNewCourseId(courseId.message)
               } catch (err) {
-              setError({ message: ['asdasdasd asdadaasda adadadd', '81e98u asdjadoadj asdua8db', 'asoidjd asd9ia asda9sdaid ac'] })
+                setError(err as Error)
               }
             })}
           >

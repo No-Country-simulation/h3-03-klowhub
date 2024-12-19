@@ -56,21 +56,17 @@ const PromotionsSection = () => {
     if (selection === "no") setShowSelector(false);
   }, [selection])
 
-  // useEffect(() => {
-  //   console.log("inserting promotionMock: ", promotionMock);
-  //   // @ts-ignore: Unreachable code error
-  //   dispatch(setPromotionData(promotionMock))
-  // }, [dispatch])
-
   return (
     <>
-      {/* { error &&  */}
-      {/*   <Popover onClose={() => setError(null)}> */}
-      {/*     {error.message.map((err, idx) => ( */}
-      {/*       <span key={`error-${idx}`}>{err}</span> */}
-      {/*     ))} */}
-      {/*   </Popover> */}
-      {/* } */}
+      { error && 
+        <Popover onClose={() => setError(null)}>
+          { error.map ?
+            error.message.map((err, idx) => (
+              <span key={`error-${idx}`}>{err}</span>
+            )) : <span>{ error.message }</span>
+          }
+        </Popover>
+      }
       {newAppId &&
         <Greeter
           header="¡Felicitaciones! Tu aplicación se publicó con éxito"
@@ -215,7 +211,7 @@ const PromotionsSection = () => {
 
                 setNewAppId(applicationId)
               } catch (err) {
-                console.error('there is an error');
+                console.log('err: ', err);
                 setError(err as Error)
               }
             })}
