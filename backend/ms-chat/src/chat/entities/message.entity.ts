@@ -4,13 +4,13 @@ import { Chat } from './chat.entity';
 @Entity('messages')
 export class Message {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
-  userId: number;
+  userId: string;
 
   @Column()
-  chatId: number;
+  chatId: string;
 
   @Column('text')
   content: string;

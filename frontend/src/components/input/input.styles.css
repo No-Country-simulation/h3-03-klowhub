@@ -1,3 +1,13 @@
+.custom-quill-editor .ql-container {
+  max-height: 24rem; /* Limit editor height */
+  overflow-y: auto;
+}
+
+.custom-quill-editor .ql-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 .ql-toolbar.ql-snow {
   border: none
 }

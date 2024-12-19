@@ -87,3 +87,8 @@ export type Action<T, P> = {
   type: T
   payload: P
 }
+
+export type BTError = {
+  statusCode: number
+  messages: string | string[]
+}

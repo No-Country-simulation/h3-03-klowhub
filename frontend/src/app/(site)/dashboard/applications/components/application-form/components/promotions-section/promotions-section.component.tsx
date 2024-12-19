@@ -6,7 +6,7 @@ import RouteBtn from "@/components/route-btn/route-btn.component";
 import { useWatch } from "react-hook-form";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
 import { PROMOTION_INITIAL_STATE } from "./promotions-section.consts";
-import { Promotion } from "@/types/global.types";
+import { BTError, Promotion } from "@/types/global.types";
 import Input from "@/components/input/input.component";
 import ProductCard from "@/components/product-card/product-card.component";
 import { setPromotionData } from "../../context/application-form.actions";
@@ -24,7 +24,7 @@ type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
   const { state, dispatch, submitApplication } = useApplicationContext();
-  const [ error, setError ] = useState<object | null>(null)
+  const [ error, setError ] = useState<BTError | null>(null)
 
   const {
     commonProps,
@@ -56,21 +56,19 @@ const PromotionsSection = () => {
     if (selection === "no") setShowSelector(false);
   }, [selection])
 
-  // useEffect(() => {
-  //   console.log("inserting promotionMock: ", promotionMock);
-  //   // @ts-ignore: Unreachable code error
-  //   dispatch(setPromotionData(promotionMock))
-  // }, [dispatch])
-
   return (
     <>
-      {/* { error &&  */}
-      {/*   <Popover onClose={() => setError(null)}> */}
-      {/*     {error.message.map((err, idx) => ( */}
-      {/*       <span key={`error-${idx}`}>{err}</span> */}
-      {/*     ))} */}
-      {/*   </Popover> */}
-      {/* } */}
+      { error && 
+        <Popover onClose={() => setError(null)}>
+          {/* @ts-ignore: Unreachable code error */}
+          { error.messages.map ?
+            // @ts-ignore: Unreachable code error
+            error.messages.map((err, idx) => (
+              <span key={`error-${idx}`}>{err}</span>
+            )) : <span>{ error.messages }</span>
+          }
+        </Popover>
+      }
       {newAppId &&
         <Greeter
           header="¡Felicitaciones! Tu aplicación se publicó con éxito"
@@ -215,8 +213,8 @@ const PromotionsSection = () => {
 
                 setNewAppId(applicationId)
               } catch (err) {
-                console.error('there is an error');
-                setError(err as Error)
+                console.log('err: ', err);
+                setError(err as BTError)
               }
             })}
           >

@@ -19,7 +19,8 @@ export const STORE_INITIAL_STATE: Store = {
   },
   ui: {
     mode: "explorer"
-  }
+  },
+  proposal: null
 };
 
 const StoreCtx = createContext<Props>({

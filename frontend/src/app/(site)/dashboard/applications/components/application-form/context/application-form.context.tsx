@@ -35,13 +35,16 @@ const ApplicationCtxProvider = ({ children }: Props) => {
 
   const submitApplication = useCallback(async (additionalData = {}) => {
     try {
+      if (!user) return;
+
       const formattedData = breakApplication({ ...state, ...additionalData }, true);
       console.log("creating application: ", formattedData);
 
-      const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${user.id}${applicationId ? "/" + applicationId : ""}`;
+      const createEndpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${user.id}`;
+      const editEndpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}/${applicationId}`;
 
-      const res = await fetch(endpoint, { 
-        method: 'post',
+      const res = await fetch(applicationId ? editEndpoint : createEndpoint, { 
+        method: applicationId ? "put" : "post",
         body: JSON.stringify(formattedData),
         headers: {
           "Content-Type": "application/json"
@@ -49,14 +52,15 @@ const ApplicationCtxProvider = ({ children }: Props) => {
       });   
 
       const createdApplication: ApplicationWithFullImgs = await res.json();
+      // @ts-ignore: Unreachable code error
+      // if (createdApplication.statusCode) throw Error(createdApplication.messages);
       console.log("created application: ", createdApplication);
 
       return createdApplication.id
     } catch (err) {
-      console.error(`there was an error when trying to get application data: ${err}`);
       throw err
     }
-  }, [state, user.id, applicationId]);
+  }, [state, user, applicationId]);
 
   useEffect(() => {
     (async function () {

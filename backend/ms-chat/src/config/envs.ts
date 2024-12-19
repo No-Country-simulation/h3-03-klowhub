@@ -10,6 +10,7 @@ interface EnvVars {
   DB_PASSWORD: string;
   DB_DATABASE_NAME: string;
   JWT_SECRET: string;
+  MS_USERS_ENDPOINT: string;
 }
 
 const envsSchema = joi
@@ -21,6 +22,7 @@ const envsSchema = joi
     DB_USERNAME: joi.string().required(),
     DB_PASSWORD: joi.string().required(),
     DB_DATABASE_NAME: joi.string().required(),
+    MS_USERS_ENDPOINT: joi.string().required(),
   })
   .unknown(true);
 
@@ -40,4 +42,5 @@ export const envs = {
   dbUsername: envVars.DB_USERNAME,
   dbPassword: envVars.DB_PASSWORD,
   dbDatabaseName: envVars.DB_DATABASE_NAME,
+  msUsersEndpoint: envVars.MS_USERS_ENDPOINT
 };
