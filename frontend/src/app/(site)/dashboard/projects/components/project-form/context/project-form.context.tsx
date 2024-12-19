@@ -34,6 +34,8 @@ const ProjectCtxProvider = ({ children }: Props) => {
   const [ user ] = useStore<User>("user");
 
   const submitProject = useCallback(async () => {
+    if (!user) return;
+
     const formattedData = breakProject(state as ValidatedProjectForm, true);
     const createEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/user/${user.id}`;
     const editEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/${projectId}`;
@@ -51,7 +53,7 @@ const ProjectCtxProvider = ({ children }: Props) => {
 
     return createdProject.id
 
-  }, [state, user.id, projectId]);
+  }, [state, user, projectId]);
 
   useEffect(() => {
     (async function () {

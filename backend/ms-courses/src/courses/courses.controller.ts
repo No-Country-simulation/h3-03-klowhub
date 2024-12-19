@@ -95,9 +95,13 @@ export class CoursesController {
   }
 
   //Hacer el post de cursos con todas las entidades!!!
-  @Post()
-  async createCourse(@Body() createCourseDto: CreateCourseDto) {
+  @Post('user/:userId')
+  async createCourse(
+    @Param('userId') userId: string,
+    @Body() createCourseDto: CreateCourseDto,
+  ) {
     try {
+      createCourseDto.userId = userId;
       return await this.coursesService.createCourse(createCourseDto);
     } catch (error) {
       if (error instanceof createCourseFailed) {
@@ -195,15 +199,21 @@ export class CoursesController {
   //   }
   // }
 
-  /////////////
-  // @Get()
-  // async findAll() {
-  //   const allCourses = await this.coursesService.findAll();
-  //   if (!allCourses) {
-  //     throw new NotFoundException('There are no course available');
-  //   }
-  //   return allCourses;
-  // }
+  // TRAEMOS TODOS LOS CURSOS
+  @Get('all')
+  async findAll() {
+    try {
+      const allCourses = await this.coursesService.findAll();
+      if (!allCourses) {
+        throw new NotFoundException('No hay cursos disponibles');
+      }
+      return allCourses;
+    } catch (error) {
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
+    }
+  }
 
   // @Get(':id')
   // async findOne(
