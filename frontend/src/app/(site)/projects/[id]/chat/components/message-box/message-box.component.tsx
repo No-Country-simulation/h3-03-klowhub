@@ -7,8 +7,11 @@ import { Send } from "lucide-react";
 import useStore from "@/contexts/store/use-store.hook";
 import { User } from "@/contexts/store/store.types";
 
+import { socket } from "@/socket/socket";
+
+
 const submitMessage = (userId: string, message: string) => {
-  console.log(userId, message);
+  socket.emit("chatMessage", message)
 };
 
 const MessageBox = () => {

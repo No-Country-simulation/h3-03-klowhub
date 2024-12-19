@@ -6,13 +6,61 @@ import ContactCard from "../contact-card/contact-card.component";
 import { useSearchParams } from "next/navigation";
 import MessageBox from "../message-box/message-box.component";
 import { TImage } from "@/types/global.types";
+import { useEffect, useState } from "react";
+import { socket } from "@/socket/socket";
+import parse from "html-react-parser"
+import { reactParserOptions } from "@/utils/component.utils";
 
 
 const Chat = () => {
+  const [isConnected, setIsConnected] = useState(false);
+  const [transport, setTransport] = useState("N/A");
+
+  const [ messages, setMessages ] = useState<string[]>([])
+  
   const searchParams = useSearchParams();
   const currentUser = searchParams.get("user");
 
   const selectedUser = contactsMock.find(u => u.id === currentUser);
+
+  useEffect(() => {
+    if (socket.connected) {
+      onConnect();
+    }
+
+    function onConnect() {
+      setIsConnected(true);
+      setTransport(socket.io.engine.transport.name);
+
+      socket.io.engine.on("upgrade", (transport) => {
+        setTransport(transport.name);
+      });
+    }
+
+    function onChatMessageResponse (value: string) {
+      console.log('asdaddasd');
+      setMessages(prev => ([ ...prev, value ]))
+    };
+
+    function onDisconnect() {
+      setIsConnected(false);
+      setTransport("N/A");
+    }
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+    socket.on("chatMessageResponse", onChatMessageResponse)
+
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      socket.off("chatMessageResponse", onChatMessageResponse)
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(messages);
+  }, [messages])
 
   return (
     <div className="flex backdrop-blur-md bg-white/10 rounded-xl border-1 border-white h-screen">
@@ -43,12 +91,12 @@ const Chat = () => {
           <div className="flex flex-col w-2/3">
             <div className="flex flex-col gap-5 p-5 bg-white text-black grow w-full">
               {
-                selectedUser?.messages.map((m, idx) => (
+                messages.map((m, idx) => (
                   <div
                     key={`message-${idx}`}
                     className="bg-gray-50 text-white p-3 rounded-md"
                   >
-                    { m.content }
+                    { parse(m, reactParserOptions) }
                   </div>
                 ))
               }
