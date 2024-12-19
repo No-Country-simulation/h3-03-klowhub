@@ -121,6 +121,7 @@ const KanbanTestPage = () => {
             {isKanbanOpen && <KanbanModal />}
             {isEditTaskOpen && <EditTaskModal />}
             <Button
+                type="button"
                 className="w-[200px] mx-auto"
                 onClick={() => setIsKanbanOpen(!isKanbanOpen)}
                 disabled={loading || boardData !== null}

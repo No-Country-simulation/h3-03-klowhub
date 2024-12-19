@@ -411,7 +411,7 @@ const Input = <T extends FieldValues>(props: InputProps<T>) => {
           render={({ field: { value, onChange } }) => (
             <ReactQuill 
               theme="snow" value={value as string} onChange={onChange} 
-              className="bg-white text-card rounded-xl min-h-48"
+              className="bg-white text-card rounded-xl min-h-48 overflow-scroll max-h-72"
               placeholder={placeholder}
               id={name}
             />

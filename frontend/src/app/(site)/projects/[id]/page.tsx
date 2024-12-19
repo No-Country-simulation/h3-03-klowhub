@@ -59,10 +59,12 @@ const ProjectDetailPage = async ({ params }: Props) => {
           lg:w-full 
         `}>
           {/* <ProposalForm /> */}
-          <ProposalFormWithKanbanContext />
+          <ProposalFormWithKanbanContext projectAuthorId={projectData.author.id} />
         </div>
       </div>
-      <Button type="submit" form="proposal-form">Enviar propuesta</Button>
+      <div className="w-full flex justify-end pt-5">
+        <Button type="submit" form="proposal-form">Enviar propuesta</Button>
+      </div>
     </main>
   )
 };

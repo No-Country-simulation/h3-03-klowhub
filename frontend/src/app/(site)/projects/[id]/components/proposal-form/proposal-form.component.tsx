@@ -14,8 +14,18 @@ import { useState } from "react";
 import KanbanBoard from "@/components/kanban/kanban-board.component";
 import { TColumn, TTask } from "@/types/kanban.types";
 import { createBoardWithDetails } from "@/components/kanban/utils/kanban.utils";
+import AuthorCard from "@/components/author-card/author-card.component";
+import useStore from "@/contexts/store/use-store.hook";
+import { User } from "@/contexts/store/store.types";
+
+type Props = {
+  projectAuthorId: string
+}
+
 const submitProposal = async (
   data: Proposal,
+  projectAuthorId: string,
+  applicantId: string,
   setLoading: (loading: boolean) => void,
   columns: TColumn[],
   tasks: TTask[]
@@ -23,7 +33,6 @@ const submitProposal = async (
   console.log("data: ", data);
 
   setLoading(true);
-
   //funcion para crear tablero en trello.
   const boardData = await createBoardWithDetails({
     projectName: "Proyecto Demo",
@@ -33,16 +42,30 @@ const submitProposal = async (
     ],
     projectCreatorEmail: "martinkunbrc1990@gmail.com"
   });
-
   setLoading(false)
 
-  console.log(boardData)
-  alert(JSON.stringify(boardData));
+  const fullProposal = {
+    ...boardData,
+    projectAuthorId,
+    applicantId,
+    proposalMesage: data.message
+  };
 
+  console.log('fullProposal: ', fullProposal);
+
+  // await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}/proposal`, {
+  //   method: "post",
+  //   body: JSON.stringify(fullProposal),
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   }
+  // });
 
 };
 
-const ProposalForm = () => {
+const ProposalForm = ({ projectAuthorId }: Props) => {
+  const [ user ] = useStore<User>("user");
+
   const { controlledCommonProps, handleSubmit } = useGenerateForm<Proposal>(
     PROPOSAL_FORM_INITIAL_STATE,
     PROPOSAL_FORM_INITIAL_STATE
@@ -60,7 +83,7 @@ const ProposalForm = () => {
       <form
         className="flex gap-10"
         onSubmit={handleSubmit((data) =>
-          submitProposal(data, setLoading, columns, tasks)
+          submitProposal(data, projectAuthorId, user.id, setLoading, columns, tasks)
         )}
         id="proposal-form"
       >
