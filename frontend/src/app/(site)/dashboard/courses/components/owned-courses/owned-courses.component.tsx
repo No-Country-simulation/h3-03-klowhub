@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getSlug } from "@/utils/str.utils";
 import { EllipsisVertical } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+
 
 type ProductCardProps = {
     data: TProductCard
@@ -62,7 +64,9 @@ export const OwnedCourses = ({ data }: ProductCardProps) => {
                 </CardContent>
 
                 <div>
-                    <Button className="px-10">Ir al Curso</Button>
+                    <Link href={`/dashboard/courses/own/${id}`}  className="bg-primary-500 px-10 py-3 rounded-md">
+                        Ir al Curso
+                    </Link>
                 </div>
             </div>
         </Card>
