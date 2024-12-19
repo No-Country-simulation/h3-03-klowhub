@@ -56,7 +56,6 @@ import { Message } from './entities/message.entity';
 import { CreateChatDto } from './dto/create-chat.dto';
 import { AddMembersDto } from './dto/add-members.dto';
 import { CreateMessageDto } from './dto/create-message.dto';
-import { ChatGateway } from './chat.gateway';
 
 
 @Injectable()
@@ -65,7 +64,6 @@ export class ChatService {
     @InjectRepository(Chat) private readonly chatRepository: Repository<Chat>,
     @InjectRepository(Message) private readonly messageRepository: Repository<Message>,
     private readonly httpService: HttpService,
-    private readonly chatGateway: ChatGateway
   ) {}
 
   async createChat(createChatDto: CreateChatDto): Promise<Chat> {
@@ -151,7 +149,7 @@ export class ChatService {
 
   async createMessage(chatId: number, createMessageDto: CreateMessageDto): Promise<Message> {
     const { userId, content, fileUrl, emotes } = createMessageDto;
-  
+    
     // Crear el mensaje
     const newMessage = this.messageRepository.create({
       chatId,
@@ -160,13 +158,11 @@ export class ChatService {
       fileUrl,
       emotes,
     });
-  
+    
     // Guardar el mensaje en la base de datos
     const savedMessage = await this.messageRepository.save(newMessage);
-  
-    // Emitir el mensaje al Gateway para notificar a los clientes conectados
-    this.chatGateway.server.to(`chat-${chatId}`).emit('serverResponse', savedMessage);
-  
+    
+    // Enviar el mensaje al cliente a través del gateway
     return savedMessage;
   }
 }
