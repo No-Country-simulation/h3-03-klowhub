@@ -9,16 +9,24 @@ import { TImage } from "@/types/global.types";
 import parse from "html-react-parser"
 import { reactParserOptions } from "@/utils/component.utils";
 import useSocket from "@/socket/use-socket.hook";
-import ChatContact from "../chat-contact/chat-contact.component";
 import { Input } from "@/components/ui/input";
+import { useEffect } from "react";
 
 
 const ChatBox = () => {
   const searchParams = useSearchParams();
-  const currentUser = searchParams.get("user");
+  const currentContact = searchParams.get("contact");
   const messages = useSocket();
 
-  const selectedUser = contactsMock.find(u => u.id === currentUser);
+  const selectedContact = contactsMock.find(u => u.id === currentContact);
+
+  useEffect(() => {
+    (async function () {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_URL}/63fd8fd0-63ee-42e5-856d-91ede18b0e4a`);
+      const test = await res.json();
+      console.log('test: ', test);
+    })()
+  }, [/* dependencies */])
 
   return (
     <div className="flex backdrop-blur-md bg-white/10 rounded-xl border-1 border-white h-[600px]">
@@ -44,17 +52,17 @@ const ChatBox = () => {
         <div className="h-20 border-b-1">
           <div className="w-2/3 flex p-3 gap-5">
             <div className="w-1/6">
-              <Image src={ contactsMock[0].profileImg.fileMetadata.url} width={50} height={50} alt="" />
+              <Image src={ selectedContact?.profileImg.fileMetadata.url || contactsMock[0].profileImg.fileMetadata.url } width={50} height={50} alt="" />
             </div>
             <div className="flex flex-col space-y-1 items-start w-4/6">
-              <div>{ contactsMock[0].name }</div>
+              <div>{ selectedContact?.name }</div>
             </div>
           </div>
           <div className="w-1/3"></div>
         </div>
-        <div className="flex h-full">
-          <div className="flex flex-col w-2/3">
-            <div className="flex flex-col gap-5 p-5 bg-white text-black grow w-full overflow-scroll">
+        <div className="flex h-[520px]">
+          <div className="flex flex-col w-full">
+            <div className="flex flex-col bg-[#F3F4F6] text-black grow w-full overflow-scroll">
               {
                 messages.map((m, idx) => (
                   <div
@@ -70,7 +78,7 @@ const ChatBox = () => {
               <MessageBox />
             </div>
           </div>
-          <div className="w-1/3"></div>
+          {/* <div className="w-1/3"></div> */}
         </div>
       </div>
     </div>

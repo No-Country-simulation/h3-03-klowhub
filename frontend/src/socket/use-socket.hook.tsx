@@ -9,6 +9,7 @@ const useSocket = () => {
 
   useEffect(() => {
     if (socket.connected) {
+      console.log('AAAA');
       onConnect();
     }
 

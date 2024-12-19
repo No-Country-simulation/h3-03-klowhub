@@ -70,8 +70,8 @@ const LoginForm = () => {
                     <input type="password"
                         placeholder="Contraseña"
                         {...register('password', {
-                            required: true,
-                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                            // required: true,
+                            // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                         })}
                         className="w-full h-[45px] p-3 rounded-lg" />
                     {errors.password?.type === 'pattern' && (
