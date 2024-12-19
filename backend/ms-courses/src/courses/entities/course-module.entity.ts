@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -20,6 +21,7 @@ export class CourseModule {
   description: string;
 
   @ManyToOne(() => Course, (course) => course.modules)
+  @JoinColumn({ name: 'courseId' })
   course: Course;
 
   @OneToMany(() => Lesson, (lesson) => lesson.module, { cascade: true })
