@@ -77,12 +77,14 @@ const RegisterForm = () => {
                     )}
                 </div>
                 <div className='relative'>
-                    <input type="password"
+                    <input
+                        type="password"
                         placeholder="Contraseña"
                         {...register('password', {
                             required: true,
-                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])[A-Za-z\d@$!%€*?&^#-_~:;,.|<>{}()[\]\\/+=`"'?-]{8,}$/,
                         })}
+
                         className="w-full h-[45px] p-3 rounded-lg" />
                     {errors.password?.type === 'pattern' && (
                         <div className="z-10 lg:right-6 right-4 top-12 absolute w-full text-[#ffffff] font-semibold text-sm bg-card p-3.5 rounded-md flex gap-5">
