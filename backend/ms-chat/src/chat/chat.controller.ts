@@ -29,12 +29,12 @@ export class ChatController {
 
   @Get(':userId')
   async getChatsByUserId(@Param('userId') userId: string) {
-    return this.chatService.getChatsByUserId(Number(userId));
+    return this.chatService.getChatsByUserId(String(userId));
   }
 
   @Get(':chatId/messages')
   async getChatMessages(@Param('chatId') chatId: string) {
-    return this.chatService.getChatMessages(Number(chatId));
+    return this.chatService.getChatMessages(String(chatId));
   }
 
   @Post(':chatId/messages')
@@ -42,7 +42,7 @@ export class ChatController {
     @Param('chatId') chatId: string,
     @Body() createMessageDto: CreateMessageDto
   ) {
-    return this.chatService.createMessage(Number(chatId), createMessageDto);
+    return this.chatService.createMessage(String(chatId), createMessageDto);
   }
 }
 

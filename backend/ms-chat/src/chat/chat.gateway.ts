@@ -72,6 +72,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('clientMessage')
   async handleMessage(client: Socket, payload: any): Promise<void> {
     const { chatId, userId, content, fileUrl, emotes } = payload;
+    console.log('AAAAAAAAAa');
 
     try {
       const message = await this.chatService.createMessage(chatId, { userId, content, fileUrl, emotes });
@@ -83,7 +84,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   // Evento para cargar mensajes de un chat
   @SubscribeMessage('loadMessages')
-  async handleLoadMessages(client: Socket, chatId: number): Promise<void> {
+  async handleLoadMessages(client: Socket, chatId: string): Promise<void> {
     try {
       const messages = await this.chatService.getChatMessages(chatId);
       client.emit('messagesLoaded', messages);

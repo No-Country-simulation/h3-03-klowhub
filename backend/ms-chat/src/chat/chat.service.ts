@@ -110,10 +110,15 @@ export class ChatService {
     return this.chatRepository.save(chat);
   }
 
-  async getChatsByUserId(userId: number): Promise<any[]> {
+  async getChatsByUserId(userId: string): Promise<any[]> {
     const chats = await this.chatRepository.find();
+    console.log('chats: ', chats);
 
-    const userChats = chats.filter(chat => chat.members.includes(userId.toString()));
+    const userChats = chats.filter(chat => {
+      console.log("current chat members: ", chat.members);
+      console.log('userId: ', userId);
+      return chat.members.includes(userId.toString())
+      });
 
     if (userChats.length === 0) {
       throw new NotFoundException('No chats found for this user.');
@@ -123,6 +128,7 @@ export class ChatService {
       userChats.map(async (chat) => {
         const membersDetails = await Promise.all(
           chat.members.map(async (memberId) => {
+            console.log('A');
             const { data: user } = await this.httpService
               .get(`${process.env.MS_USERS_ENDPOINT}/${memberId}`)
               .toPromise();
@@ -137,7 +143,7 @@ export class ChatService {
     return enrichedChats;
   }
 
-  async getChatMessages(chatId: number): Promise<Message[]> {
+  async getChatMessages(chatId: string): Promise<Message[]> {
     const messages = await this.messageRepository.find({ where: { chatId } });
 
     if (!messages || messages.length === 0) {
@@ -147,7 +153,7 @@ export class ChatService {
     return messages;
   }
 
-  async createMessage(chatId: number, createMessageDto: CreateMessageDto): Promise<Message> {
+  async createMessage(chatId: string, createMessageDto: CreateMessageDto): Promise<Message> {
     const { userId, content, fileUrl, emotes } = createMessageDto;
     
     // Crear el mensaje
