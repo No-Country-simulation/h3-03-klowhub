@@ -2,7 +2,7 @@ import { WebSocketGateway, OnGatewayConnection, WebSocketServer } from '@nestjs/
 import { Socket } from 'socket.io';
 import { SocketService } from './socket.service';
 
-@WebSocketGateway()
+@WebSocketGateway({ namespace: '/chat', cors: true })
 export class SocketGateway implements OnGatewayConnection {
   @WebSocketServer()
   private server: Socket;

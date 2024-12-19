@@ -6,6 +6,9 @@ export class Chat {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column("simple-array", { nullable: true })
+  members: string[];
+
   @Column({ type: 'enum', enum: ['private', 'group'], default: 'private' })
   type: string;
 
