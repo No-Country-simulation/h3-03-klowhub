@@ -105,7 +105,7 @@ const ProjectInfo = ({ serverSideData }: Props) => {
               className={`${buttonVariants({ variant: "default" })}`}
             >
               <Pencil />
-              <span>Editar Curso</span>
+              <span>Editar Proyecto</span>
             </Link>
           }
         </div>

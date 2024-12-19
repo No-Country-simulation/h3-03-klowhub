@@ -11,7 +11,7 @@ import { socket } from "@/socket/socket";
 
 
 const submitMessage = (userId: string, message: string) => {
-  socket.emit("chatMessage", message)
+  socket.emit("clientMessage", { userId, content: message})
 };
 
 const MessageBox = () => {

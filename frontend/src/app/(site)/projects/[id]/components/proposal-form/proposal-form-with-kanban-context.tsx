@@ -2,10 +2,14 @@
 import { KanbanProvider } from "@/components/kanban/context/kanban.contex";
 import ProposalForm from "./proposal-form.component";
 
-const ProposalFormWithKanbanContext = () => {
+type Props = {
+  projectAuthorId: string
+}
+
+const ProposalFormWithKanbanContext = ({ projectAuthorId }: Props) => {
     return (
         <KanbanProvider>
-            <ProposalForm />
+            <ProposalForm projectAuthorId={projectAuthorId} />
         </KanbanProvider>
     );
 };

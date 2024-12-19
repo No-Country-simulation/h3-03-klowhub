@@ -1,72 +1,37 @@
 "use client"
 
-import contactsMock from "./chat.mock"
+import contactsMock from "./chat-box.mock"
 import Image from "next/image";
 import ContactCard from "../contact-card/contact-card.component";
 import { useSearchParams } from "next/navigation";
 import MessageBox from "../message-box/message-box.component";
 import { TImage } from "@/types/global.types";
-import { useEffect, useState } from "react";
-import { socket } from "@/socket/socket";
 import parse from "html-react-parser"
 import { reactParserOptions } from "@/utils/component.utils";
+import useSocket from "@/socket/use-socket.hook";
+import ChatContact from "../chat-contact/chat-contact.component";
+import { Input } from "@/components/ui/input";
 
 
-const Chat = () => {
-  const [isConnected, setIsConnected] = useState(false);
-  const [transport, setTransport] = useState("N/A");
-
-  const [ messages, setMessages ] = useState<string[]>([])
-  
+const ChatBox = () => {
   const searchParams = useSearchParams();
   const currentUser = searchParams.get("user");
+  const messages = useSocket();
 
   const selectedUser = contactsMock.find(u => u.id === currentUser);
 
-  useEffect(() => {
-    if (socket.connected) {
-      onConnect();
-    }
-
-    function onConnect() {
-      setIsConnected(true);
-      setTransport(socket.io.engine.transport.name);
-
-      socket.io.engine.on("upgrade", (transport) => {
-        setTransport(transport.name);
-      });
-    }
-
-    function onChatMessageResponse (value: string) {
-      console.log('asdaddasd');
-      setMessages(prev => ([ ...prev, value ]))
-    };
-
-    function onDisconnect() {
-      setIsConnected(false);
-      setTransport("N/A");
-    }
-
-    socket.on("connect", onConnect);
-    socket.on("disconnect", onDisconnect);
-    socket.on("chatMessageResponse", onChatMessageResponse)
-
-    return () => {
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
-      socket.off("chatMessageResponse", onChatMessageResponse)
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log(messages);
-  }, [messages])
-
   return (
-    <div className="flex backdrop-blur-md bg-white/10 rounded-xl border-1 border-white h-screen">
+    <div className="flex backdrop-blur-md bg-white/10 rounded-xl border-1 border-white h-[600px]">
       <div className="w-1/4">
-        <div className="h-20 border-r-1">Mensajes</div>
-        <div className="h-20 border-t-1">Buscador</div>
+        <div className="flex justify-center items-center h-20 border-r-1 font-bold">
+          Mensajes
+        </div>
+        <div className="h-20 border-t-1 flex justify-center items-center">
+          <Input
+            className="w-full mx-5 border-0 text-white bg-white/20 placeholder:text-white"
+            placeholder="Buscador"
+          />
+        </div>
         <div>
           {
             contactsMock.map((c, idx) => (
@@ -89,19 +54,19 @@ const Chat = () => {
         </div>
         <div className="flex h-full">
           <div className="flex flex-col w-2/3">
-            <div className="flex flex-col gap-5 p-5 bg-white text-black grow w-full">
+            <div className="flex flex-col gap-5 p-5 bg-white text-black grow w-full overflow-scroll">
               {
                 messages.map((m, idx) => (
                   <div
                     key={`message-${idx}`}
                     className="bg-gray-50 text-white p-3 rounded-md"
                   >
-                    { parse(m, reactParserOptions) }
+                    { parse(m.content, reactParserOptions) }
                   </div>
                 ))
               }
             </div>
-            <div className="grow-0">
+            <div className="">
               <MessageBox />
             </div>
           </div>
@@ -112,4 +77,4 @@ const Chat = () => {
   )   
 };
 
-export default Chat
+export default ChatBox
