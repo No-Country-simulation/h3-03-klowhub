@@ -1,7 +1,5 @@
 'use client'
 
-import services from "@/services";
-import { TColumn, TTask } from "@/types/kanban.types";
 import { useEffect, useState } from "react";
 import { useKanban } from "../kanban/context/use-kanban-context.hook";
 import KanbanBoard from "../kanban/kanban-board.component";

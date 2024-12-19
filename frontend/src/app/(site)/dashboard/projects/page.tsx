@@ -24,32 +24,25 @@ const getProjects = async () => {
 };
 
 const MyProjectsPage = async () => {
-    const projectsData = await getProjects();
-    const activeProjects = projectsData && projectsData.filter((project) => project.status === "en-curso");
-    const completedProjects = projectsData && projectsData.filter((project) => project.status === "finalizado");
+  const projectsData = await getProjects();
+  const activeProjects = projectsData && projectsData.filter((project) => project.status === "en-curso");
+  const completedProjects = projectsData && projectsData.filter((project) => project.status === "finalizado");
 
-    return (
-        <main className={`w-full tracking-wide pb-28`}>
-            <div className="px-6 md:px-0 mx-auto">
-                <BreadCrumb />
-            </div>
-            <div className="flex flex-col gap-5">
-                <div className="mt-14 flex flex-col gap-5 md:flex-row md:justify-between md:items-center">
-                    <h3 className="text-base font-bold">Mis proyectos</h3>
-                    <div className="flex gap-5">
-
-                        <Button variant={"outline"} className="sm:w-[250px] w-full text-primary-200 border-1 border-primary-200">
-                            <Link href={"/projects"}>Explorar proyectos</Link>
-
-                        </Button>
-                        <Button className="sm:w-[250px] w-full">
-
-                            <Link href={"projects/form?section=general"}>Publicar proyecto</Link>
-                        </Button>
-                    </div>
-                </div>
-                <div className="flex flex-col-reverse md:flex-row gap-14 md:gap-6">
-          { completedProjects && completedProjects.length ?
+  return (
+    <main className={`w-full tracking-wide pb-28`}>
+      <div className="px-6 md:px-0 mx-auto">
+        <BreadCrumb />
+      </div>
+      <div className="flex flex-col gap-5">
+        <div className="mt-14 flex flex-col gap-5 md:flex-row md:justify-between md:items-center">
+          <h3 className="text-base font-bold">Mis proyectos</h3>
+          <div className="flex gap-5">
+            <Link href={"/projects"} className="h-[40px] rounded-md flex items-center justify-center hover:bg-primary-500 hover:text-white hover:border-1 hover:border-white sm:w-[250px] w-full text-primary-200 border-1 border-primary-200 text-sm tracking-wider">Explorar proyectos</Link>
+            <Link href={"projects/form?section=general"} className="rounded-md flex items-center justify-center bg-primary-500 text-white sm:w-[250px] w-full text-primary-200 hover:bg-blue-600 text-sm tracking-wider">Publicar proyecto</Link>
+          </div>
+        </div>
+        <div className="flex flex-col-reverse md:flex-row gap-14 md:gap-6">
+          {completedProjects && completedProjects.length ?
             <div className="flex flex-col gap-6 w-full xl:w-2/5">
               <Card className="p-3">
                 <h3 className="text-sm font-semibold">Proyectos Terminados</h3>
@@ -62,7 +55,7 @@ const MyProjectsPage = async () => {
             </div> : <NoData entity="proyectos" />
           }
 
-          { activeProjects && activeProjects.length ?
+          {activeProjects && activeProjects.length ?
             <div className="flex flex-col gap-3 xl:gap-6 w-full xl:w-3/5">
               <Card className="p-3">
                 <h3 className="text-sm font-semibold">Proyectos activos</h3>
@@ -74,10 +67,10 @@ const MyProjectsPage = async () => {
               </ul>
             </div> : <NoData entity="proyectos" />
           }
-                </div>
-            </div>
-        </main>
-    );
+        </div>
+      </div>
+    </main>
+  );
 };
 
 export default MyProjectsPage;
