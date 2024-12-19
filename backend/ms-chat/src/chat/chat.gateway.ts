@@ -74,18 +74,10 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const { chatId, userId, content, fileUrl, emotes } = payload;
 
     try {
-      const message = await this.chatService.createMessage(chatId, {
-        userId,
-        content,
-        fileUrl,
-        emotes,
-      });
+      const message = await this.chatService.createMessage(chatId, { userId, content, fileUrl, emotes });
       this.server.to(`chat-${chatId}`).emit('serverResponse', message);
     } catch (error) {
-      client.emit('error', {
-        message: 'Error sending message',
-        details: error.message,
-      });
+      client.emit('error', { message: 'Error sending message', details: error.message });
     }
   }
 
