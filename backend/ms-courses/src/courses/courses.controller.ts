@@ -3,13 +3,13 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   NotFoundException,
   BadRequestException,
   UseInterceptors,
   UploadedFile,
+  Put,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -95,9 +95,13 @@ export class CoursesController {
   }
 
   //Hacer el post de cursos con todas las entidades!!!
-  @Post('createCourse')
-  async createCourse(@Body() createCourseDto: CreateCourseDto) {
+  @Post('user/:userId')
+  async createCourse(
+    @Param('userId') userId: string,
+    @Body() createCourseDto: CreateCourseDto,
+  ) {
     try {
+      createCourseDto.userId = userId;
       return await this.coursesService.createCourse(createCourseDto);
     } catch (error) {
       if (error instanceof createCourseFailed) {
@@ -195,33 +199,73 @@ export class CoursesController {
   //   }
   // }
 
-  /////////////
-  @Get()
+  // TRAEMOS TODOS LOS CURSOS
+  @Get('all')
   async findAll() {
-    const allCourses = await this.coursesService.findAll();
-    if (!allCourses) {
-      throw new NotFoundException('There are no course available');
+    try {
+      const allCourses = await this.coursesService.findAll();
+      if (!allCourses) {
+        throw new NotFoundException('No hay cursos disponibles');
+      }
+      return allCourses;
+    } catch (error) {
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
     }
-    return allCourses;
   }
 
+  // @Get(':id')
+  // async findOne(
+  //   @Param('id') id: string,
+  //   @Query('withAuthor') withAuthor?: string,
+  // ) {
+  //   const isWithAuthor = withAuthor === 'true';
+  //   return this.coursesService.findOneCourse(id, isWithAuthor);
+  // }
+
+  //OBTENEMOS UN CURSO PERTENECIENTE A UN USUARIO
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const uuidRegex =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-    if (!uuidRegex.test(id)) {
-      throw new BadRequestException('There in no course avaiable');
+  async findOne(@Param('id') id: string): Promise<any> {
+    try {
+      const userCourse = await this.coursesService.findOneCourse(id);
+      return userCourse;
+    } catch (error) {
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
     }
-    const singleCourse = await this.coursesService.findOne(id);
-    console.log('este es el singleCourse', singleCourse);
-    if (!singleCourse) {
-      throw new NotFoundException('There is no a course available');
+  }
+  //OBTENEMOS CURSOS PERTENECIENTES A UN USUARIO
+  @Get()
+  async findAllWithUser() {
+    try {
+      const findAll = this.coursesService.getAllCoursesWithUsers();
+      return findAll;
+    } catch (error) {
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
     }
-    return singleCourse;
   }
 
-  @Patch(':id')
+  //esta es la siguiente ruta a completar
+  // @Get('user/:userId')
+  // async getAllCoursesByUserId(@Param('userId') userId: string) {
+  //   if (!userId) {
+  //     throw new BadRequestException('El userId es requerido');
+  //   }
+  //   //const courses = await this.coursesService.getAllCoursesByUserId(userId);
+  //   if (!courses || courses.length === 0) {
+  //     throw new BadRequestException(
+  //       `No se encontraron proyectos para el usuario con ID ${userId}`,
+  //     );
+  //   }
+  //   return courses;
+  // }
+
+  //cambiar a put
+  @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() updateCourseDto: UpdateCourseDto,

@@ -20,7 +20,7 @@ const ContactCard = ({ id, name, profileImg, messages }: TContactCard) => {
       <div className="flex flex-col space-y-1 items-start w-4/6">
         <div>{ name }</div>
         { messages &&
-          <div>{ messages[0].text }</div>
+          <div>{ messages[0].content }</div>
         }
       </div>
       <div className="flex gap-3 w-1/6">

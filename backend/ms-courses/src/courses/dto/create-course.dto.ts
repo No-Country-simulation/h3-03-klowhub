@@ -1,6 +1,5 @@
 import {
   IsBoolean,
-  IsOptional,
   IsString,
   IsArray,
   IsJSON,
@@ -17,9 +16,9 @@ export class CreateCourseDto {
   @IsString()
   id: string;
 
-  // @IsString()
-  // @IsOptional()
-  // userId: string;
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
 
   @IsString()
   @IsNotEmpty()
@@ -29,6 +28,7 @@ export class CreateCourseDto {
   freeCourse: boolean;
 
   @IsArray()
+  @IsNotEmpty()
   @IsString({ each: true })
   contentType: string[];
 
@@ -37,53 +37,60 @@ export class CreateCourseDto {
   shortDescription: string;
 
   @IsArray()
+  @IsNotEmpty()
   @IsString({ each: true })
   courseDifficulty: string[];
 
   @IsArray()
+  @IsNotEmpty()
   @IsString({ each: true })
   platform: string[];
 
   @IsArray()
+  @IsNotEmpty()
   @IsString({ each: true })
   language: string[];
 
   @IsArray()
   @IsString({ each: true })
-  @IsOptional()
+  @IsNotEmpty()
   coreContent?: string[];
 
   @IsArray()
   @IsString({ each: true })
-  @IsOptional()
+  @IsNotEmpty()
   functionalities?: string[];
 
   @IsArray()
   @IsString({ each: true })
-  @IsOptional()
+  @IsNotEmpty()
   sector?: string[];
 
   @IsArray()
   @IsString({ each: true })
-  @IsOptional()
+  @IsNotEmpty()
   toolsAndPlatform?: string[];
 
   @IsArray()
   @IsString({ each: true })
-  @IsOptional()
+  @IsNotEmpty()
   tags?: string[];
 
   @IsArray()
+  @IsNotEmpty()
   @IsString({ each: true })
   learningSubjects: string[];
 
   @IsArray()
-  @IsString()
+  @IsNotEmpty()
+  @IsString({ each: true })
   prevRequirements: string[];
 
   @IsString()
+  @IsNotEmpty()
   fullDescription: string;
 
+  @IsNotEmpty()
   @ValidateNested()
   @Type(() => MultimediaDto)
   coverImg?: MultimediaDto;
@@ -91,7 +98,8 @@ export class CreateCourseDto {
   // coverImg: string;
 
   @IsJSON()
-  @IsOptional()
+  @IsNotEmpty()
+  @IsNotEmpty()
   promotion?: {
     type?: string;
     promoted?: string;
@@ -99,30 +107,40 @@ export class CreateCourseDto {
   };
 
   @IsBoolean()
-  @IsOptional()
+  @IsNotEmpty()
   available: boolean = true;
 
   @IsString()
-  targetAudience: string;
+  @IsNotEmpty()
+  targetAudience: string[];
 
   @IsDecimal()
   @IsPositive()
+  @IsNotEmpty()
   price: number;
 
   @IsArray()
+  @IsNotEmpty()
   @IsString()
   courseIncludes: string[];
 
   @IsArray()
   @IsString({ each: true })
-  @IsOptional()
+  @IsNotEmpty()
   promotionalVideo?: string[];
 
-  @IsArray()
-  @IsOptional()
-  multimedia?: MultimediaDto[];
+  // @IsNumber()
+  // userId: number;
 
   @IsArray()
-  @IsOptional()
+  @IsNotEmpty()
+  @IsNotEmpty()
+  multimedia?: MultimediaDto[];
+  @IsNotEmpty()
+  @IsString()
+  authorId: string;
+
+  @IsArray()
+  @IsNotEmpty()
   modules?: CreateCourseModuleDto[];
 }

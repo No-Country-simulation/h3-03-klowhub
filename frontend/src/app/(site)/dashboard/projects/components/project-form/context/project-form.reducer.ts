@@ -4,8 +4,6 @@ import { PROJECT_INFO_INITIAL_STATE } from "../components/general-form/general-f
 import { PROJECT_DETAILS_INITIAL_STATE } from "../components/details-form/details-form.consts";
 
 export const PROJECT_FORM_INITIAL_STATE: ProjectFormData = {
-  // este id es temporal
-  userId: "61432bda-22f2-403f-8f41-20edcb2f9237",
   general: PROJECT_INFO_INITIAL_STATE,
   details: PROJECT_DETAILS_INITIAL_STATE,
 };

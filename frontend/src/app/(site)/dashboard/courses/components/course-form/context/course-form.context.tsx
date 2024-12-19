@@ -10,7 +10,7 @@ import { CourseFormActions, setDetailsData } from "./course-form.actions";
 import { setGeneralData, setModulesData, setPromotionData } from "./course-form.actions";
 
 import { User } from "@/contexts/store/store.types";
-import { Course, CourseFormData } from "@/types/courses.types";
+import { CourseWithFullAssets, CourseFormData } from "@/types/courses.types";
 
 type Props = {
   children: ReactNode[]
@@ -22,7 +22,11 @@ type CourseCtxType = {
   submitCourse: (additionalData?: object) => Promise<string | undefined>
 }
 
-export const CourseCtx = createContext<CourseCtxType | undefined>(undefined)
+export const CourseCtx = createContext<CourseCtxType>({
+  state: COURSE_FORM_INITIAL_STATE,
+  dispatch: () => {},
+  submitCourse: async () => undefined,
+})
 
 const CourseCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
@@ -31,24 +35,27 @@ const CourseCtxProvider = ({ children }: Props) => {
   const [ user ] = useStore<User>("user");
 
   const submitCourse = useCallback(async (additionalData = {}) => {
-    const formattedData = breakCourse({ ...state, ...additionalData });
-    console.log('creating course...', formattedData);
+    if (!user) return;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_COURSES_URL}/createCourse`, { 
-      method: 'post',
+    const formattedData = breakCourse({ ...state, ...additionalData }, true);
+    const createEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/user/${user.id}`;
+    const editEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/${courseId}`;
+
+    const res = await fetch(courseId ? editEndpoint : createEndpoint, { 
+      method: courseId ? 'put' : 'post',
       body: JSON.stringify(formattedData),
       headers: {
         "Content-Type": "application/json"
       }
     });   
 
-    const createdCourse: Course = await res.json();
+    const createdCourse: CourseWithFullAssets = await res.json();
     console.log('createdCourse: ', createdCourse);
 
     return createdCourse.id
 
 
-  }, [state, user]);
+  }, [state, courseId, user]);
 
   useEffect(() => {
     (async function () {

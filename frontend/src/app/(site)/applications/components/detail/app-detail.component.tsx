@@ -21,27 +21,24 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component";
 import AuthorInfo from "@/components/author-info/author-info";
-import useStore from "@/contexts/store/use-store.hook";
 import useApplicationContext from "@/app/(site)/dashboard/applications/components/application-form/hooks/use-application-context.hook";
-import { breakApplication } from "@/app/(site)/dashboard/applications/components/application-form/context/application-form.acl";
 import { ApplicationWithFullImgs } from "@/types/application.types";
-import { BTUser } from "@/types/user.types";
-import { useContext } from "react";
-import { IsClientCtx } from "@/contexts/is-client/is-client.context";
 
+import useApplicationData from "../../[id]/use-application-data.hook";
 type Props = {
   serverSideData?: ApplicationWithFullImgs
 }
 
 export const AppDetail = ({ serverSideData }: Props) => {
-  const isClient = useContext(IsClientCtx);
   const [showGreeter, setShowGreeter] = useState(false);
   const searchParams = useSearchParams();
   const section = searchParams.get("section");
-  const [ user ] = useStore<BTUser>("user");
 
-  const { state, submitApplication } = useApplicationContext();
-  const pageData = state && isClient ? {...breakApplication(state, false), author: user} : serverSideData;
+  const { state: clientSideData, submitApplication } = useApplicationContext();
+
+  const dataSources = { serverSideData, clientSideData };
+
+  const pageData = useApplicationData(dataSources);
   if (!pageData) return <div>Cargando...</div>;
 
   const { 
@@ -66,9 +63,6 @@ export const AppDetail = ({ serverSideData }: Props) => {
       { label: "Tags", items: tags || [] },
   ];
 
-  // console.log('author: ', author);
-  // console.log('user: ', user);
-
   return pageData && (
     <>
     { !section &&
@@ -76,7 +70,11 @@ export const AppDetail = ({ serverSideData }: Props) => {
     }
       <div className="min-h-screen">
         <div className={`${!section ? "mt-8" : ""} mx-auto grid grid-cols-1 lg:grid-cols-3 gap-14`}>
-          <AppInfo {...pageData} submitApplication={submitApplication}>
+          <AppInfo 
+            {...pageData} 
+            submitApplication={submitApplication}
+            authorId={author?.id as string}
+          >
             {/* this type error will be fixed when the hook returns always an app with its author */}
             { author &&
               <AuthorInfo data={author}/>

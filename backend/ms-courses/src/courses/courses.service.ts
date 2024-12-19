@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -19,6 +23,15 @@ import { Multimedia } from './entities/multimedia.entity';
 import { MultimediaDto } from './dto/multimedia.dto';
 import { CourseModule } from './entities/course-module.entity';
 import { Lesson } from './entities/lesson.entity';
+import { HttpService } from '@nestjs/axios';
+// import { lastValueFrom } from 'rxjs';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+import { envs } from 'src/config';
+import { lastValueFrom } from 'rxjs';
+// import { firstValueFrom } from 'rxjs';
+
 // import { CreateLessonDto } from './dto/lesson.dto';
 // import { CreateCourseModuleDto } from './dto/course-module.dto';
 
@@ -32,7 +45,7 @@ export class CoursesService {
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
     private readonly cloudinaryService: CloudinaryService,
-
+    private readonly httpService: HttpService,
     @InjectRepository(Multimedia)
     private readonly multimediaRepository: Repository<Multimedia>,
 
@@ -242,15 +255,123 @@ export class CoursesService {
 
   async findAll(): Promise<Course[]> {
     const course = await this.courseRepository.find({
-      where: { available: true },
-      relations: ['modules', 'modules.lessons', 'multimedia', 'coverImg'],
+      // where: { available: true },
+      relations: ['modules', 'modules.lessons', 'coverImg'],
     });
     return course;
   }
 
+  async findOneCourse(id: string): Promise<any> {
+    const course = await this.courseRepository.findOne({ where: { id } });
+    if (!course) {
+      throw new NotFoundException(`course with ID ${id} not found`);
+    }
+
+    const requestUrl = `${envs.msUsersEndpoint}/${course.userId}`;
+    console.log('Request URL:', requestUrl); // Imprime la URL para verificarla
+
+    try {
+      const userResponse = await lastValueFrom(
+        this.httpService.get(requestUrl),
+      );
+      console.log(userResponse, 'llega??');
+      return {
+        ...course,
+        author: userResponse.data,
+      };
+    } catch (error) {
+      console.error(
+        'Error in request:',
+        error.response ? error.response.data : error.message,
+      );
+      throw new NotFoundException(`User not found for ID ${course.userId}`);
+    }
+  }
+
+  async getAllCoursesWithUsers() {
+    try {
+      //const course = await this.courseRepository.find();
+      const courses = await this.courseRepository.find({
+        relations: ['multimedia'],
+      });
+
+      console.log('courses', courses);
+      if (!courses || courses.length === 0) {
+        throw new NotFoundException('No se econtraron proyectos.');
+      }
+
+      const proms = courses.map(async (course) => {
+        const { data: author } = await this.httpService
+          .get(`${envs.msUsersEndpoint}/${course.userId}`)
+          .toPromise();
+        return {
+          ...course,
+          author,
+        };
+      });
+
+      const courseWithAuthors = await Promise.all(proms);
+      return courseWithAuthors;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  // async findOneCourse(
+  //   id: string,
+  //   withAuthor: boolean = false,
+  // ): Promise<Course | null> {
+  //   const course = await this.courseRepository.findOne({
+  //     where: { id },
+  //     relations: ['modules', 'multimedia', 'modules.lessons', 'coverImg'],
+  //   });
+  //   console.log('Course found:', course);
+  //   if (!course) {
+  //     // return null;
+  //     throw new NotFoundException(`App with ID ${id} not found`);
+  //   }
+
+  //   // Verificar si coverImg y assets están definidos antes de acceder a sus propiedades
+  //   const coverImageDetails = course.coverImg
+  //     ? await this.multimediaRepository.findOne({
+  //         where: { id: course.coverImg.id },
+  //       })
+  //     : null;
+
+  //   const multimediaDetails =
+  //     course.multimedia && course.multimedia.length > 0
+  //       ? await this.multimediaRepository.find({
+  //           where: {
+  //             id: In(course.multimedia.map((multimedia) => multimedia.id)),
+  //           },
+  //         })
+  //       : [];
+
+  //   let authorInfo = null;
+  //   if (withAuthor) {
+  //     const authorResponse = await this.httpService
+  //       .get(`${envs.msUsersEndpoint}/${course.userId}`)
+  //       .toPromise();
+  //     // const authorResponse = await firstValueFrom(
+  //     //   this.httpService.get(`${envs.msUsersEndpoint}/${course.userId}`),
+  //     // );
+  //     authorInfo = authorResponse.data;
+  //   }
+  //   console.log('informacion del author', authorInfo);
+  //   return {
+  //     ...course,
+  //     coverImg: coverImageDetails,
+  //     multimedia: multimediaDetails,
+  //     author: authorInfo,
+  //   };
+
+  //   // return course;
+  // }
+
   async findOne(id: string): Promise<Course | null> {
     const course = await this.courseRepository.findOne({
       where: { id },
+      relations: ['modules', 'modules.lessons', 'coverImg'],
     });
     console.log('Course found:', course);
     if (!course) {
@@ -268,8 +389,15 @@ export class CoursesService {
     if (!course) {
       return null;
     }
-    await this.courseRepository.update(id, updateCourseDto);
-    return this.findOne(id);
+    // Actualizar los campos del curso en memoria
+    Object.assign(course, updateCourseDto); // Aplicar los cambios del DTO
+
+    // Guardar el curso actualizado en la base de datos
+    await this.courseRepository.save(course); // Esto actualizará y validará
+
+    return course; // Retornar el curso actualizado
+    // await this.courseRepository.update(id, updateCourseDto);
+    // return this.findOne(id);
   }
 
   async remove(id: string): Promise<Course | null> {

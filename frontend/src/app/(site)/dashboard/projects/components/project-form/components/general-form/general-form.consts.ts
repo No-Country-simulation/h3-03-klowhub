@@ -7,4 +7,5 @@ export const PROJECT_INFO_INITIAL_STATE: ProjectInfo = {
   experienceLevel: null,
   sector: [],
   platform: null,
+  tags: []
 };

@@ -9,8 +9,9 @@ import SideModal from "@/components/side-modal/side-modal.component";
 import QuickView from "@/components/quick-view/quick-view.component";
 import { getQueryParams } from "@/utils/route.utils";
 import { TQuickView } from "@/components/product-card/product-card.types";
-import { transformApp, transformAuthor } from "./applications-page.acl";
+import { transformApp } from "./applications-page.acl";
 import { ApplicationWithFullImgs } from "@/types/application.types";
+import NoData from "@/components/no-data/no-data.component";
 
 const filters = [
   platform,
@@ -20,24 +21,23 @@ const filters = [
   toolsAndPlatforms
 ];
 
-// const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
 const endpoint = `${process.env.NEXT_PUBLIC_APPLICATIONS_URL}?withAuthor=true`;
 
 const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint);
-    const apps: ApplicationWithFullImgs[] = await res.json();
+    const apps: Required<ApplicationWithFullImgs>[] = await res.json();
+    console.log('apps: ', apps);
     const transformedApps: TQuickView[] = apps.map(app => transformApp(app));
     return transformedApps
   } catch (err) {
-    console.log("there was an error when requesting apps: ", err);
+    console.log("error when getting apps: ", err);
   }
 };
 
 
 const AppliactionsPage = async () => {
-  const applications = await getProducts(endpoint) || [];
-  console.log('applications: ', applications);
+  const applications = await getProducts(endpoint);
   const queryParams = await getQueryParams();
 
   return (
@@ -47,27 +47,31 @@ const AppliactionsPage = async () => {
       <IsClientProvider>
         <SearchFilter filters={filters} />
       </IsClientProvider>
-      <div 
-        className="
-        mb-6
-        grid grid-cols-1 gap-5
-        md:grid-cols-2 md:px-0
-        lg:grid-cols-3
-        xl:grid-cols-4
-        "
-      >
-        {applications.map((app, idx) => (
-          <ProductCard
-            key={`product-card-${idx}`}
-            data={app}
-          />
-        ))}
-      </div>
-
-        { queryParams.modal && 
+        { applications && applications.length ?
+          <div 
+            className="
+            mb-6
+            grid grid-cols-1 gap-5
+            md:grid-cols-2 md:px-0
+            lg:grid-cols-3
+            xl:grid-cols-4
+            "
+          >
+            {
+              applications.map((app, idx) => (
+              <ProductCard
+                key={`product-card-${idx}`}
+                data={app}
+              />
+            ))
+            }
+          </div>
+          : <NoData entity="aplicaciones" />
+        } 
+        { applications && applications.length && queryParams.modal ? 
           <SideModal>
             <QuickView products={applications} />
-          </SideModal>
+          </SideModal> : ""
         }
 
       <Pager/>

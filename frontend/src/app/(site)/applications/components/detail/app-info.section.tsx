@@ -14,14 +14,15 @@ import { buttonVariants } from "@/components/ui/button";
 
 export const AppInfo: FC<AppProps> = ({
   submitApplication,
-    title, 
-    shortDescription,
-    fullDescription,
-    rating,
-    ratingCount, 
-    coverImg,
-    children,
-  assets
+  title, 
+  shortDescription,
+  fullDescription,
+  rating,
+  ratingCount, 
+  coverImg,
+  children,
+  assets,
+  authorId
 }) => {
 
   const [ newApplicationId, setNewApplicationId ] = useState<string>()
@@ -50,6 +51,7 @@ export const AppInfo: FC<AppProps> = ({
         ratingCount={ratingCount}
         assets={assets}
         coverImg={coverImg}
+        authorId={authorId}
       />
       <div className="space-y-4" id='detail-container'>
         { children[0] }

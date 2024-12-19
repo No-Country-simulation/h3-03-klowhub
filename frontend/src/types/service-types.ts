@@ -4,7 +4,7 @@ export type TLoginData = {
 };
 
 export type TRegisterData = {
-  fullname: string;
+  name: string;
   email: string;
   password: string;
 };

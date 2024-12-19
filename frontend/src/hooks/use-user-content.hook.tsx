@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { TProductCard } from "@/components/product-card/product-card.types";
-import { Course } from "@/types/courses.types";
+import { CourseWithFullAssets } from "@/types/courses.types";
 
 type UserContent = {
   applications: TProductCard[]
@@ -13,9 +13,9 @@ const useUserContent = () => {
   useEffect(() => {
     (async function () {
       const applicationsRes = await fetch('/api/applications');
-      const { data: applications }: { data: Course[] } = await applicationsRes.json();
+      const { data: applications }: { data: CourseWithFullAssets[] } = await applicationsRes.json();
       const coursesRes = await fetch('/api/courses');
-      const { data: courses }: { data: Course[] } = await coursesRes.json()
+      const { data: courses }: { data: CourseWithFullAssets[] } = await coursesRes.json()
 
       const courseCards = courses.map((c) => {
         return {
@@ -25,8 +25,8 @@ const useUserContent = () => {
           shortDescription: c.shortDescription,
           platform: c.platform,
           tags: c.tags,
-          rating: c.rating,
-          ratingCount: c.ratingCount,
+          // rating: c.rating,
+          // ratingCount: c.ratingCount,
           price: c.price,
           fullDescription: c.fullDescription
         }
@@ -40,8 +40,8 @@ const useUserContent = () => {
           shortDescription: a.shortDescription,
           platform: a.platform,
           tags: a.tags,
-          rating: a.rating,
-          ratingCount: a.ratingCount,
+          // rating: a.rating,
+          // ratingCount: a.ratingCount,
           price: a.price,
           fullDescription: a.fullDescription
         }

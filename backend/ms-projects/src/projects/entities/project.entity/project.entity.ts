@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Application } from '../application.entity/application.entity';
-
-
+import { Asset } from '../asset.entity/asset.entity';
+import { ProjectStatus } from './project-status.enum';
 
 @Entity()
 export class Project {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   
   @Column()
   title: string;
@@ -30,7 +30,7 @@ export class Project {
   technicalRequirements: string[]; 
 
   @Column("simple-array", { nullable: true })
-  requiredKnowledge: string[]; 
+  requiredSkills: string[]; 
 
   @Column()
   days: number;
@@ -38,21 +38,34 @@ export class Project {
   @Column('decimal')
   minBudget: number;
 
+  @Column({
+    type: 'enum',
+    enum: ProjectStatus,
+    default: ProjectStatus.PENDIENTE, // Valor por defecto
+  })
+  status: ProjectStatus;
+
+
   @Column('decimal')
   maxBudget: number;
 
   @Column("text", { array: true, nullable: true })
   additionalRequirements: string[];
 
-  @Column("json", { nullable: true })
-  assets: object[];
+  @OneToMany(() => Asset, (asset) => asset.project) // Cambiado a OneToMany para assets
+  assets: Asset[];
 
-  // @Column()
-  // status: string;
-
+  @Column("simple-array", { nullable: true })
+  tags: string[];
 
   @Column()
   userId: string;
+
+  @Column()
+  authorId: string;
+
+  author?: any;
+
 
   @OneToMany(()=> Application, (application) => application.project)
   applications: Application[];

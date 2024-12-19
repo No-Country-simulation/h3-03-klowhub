@@ -4,14 +4,13 @@ import { useParams } from "next/navigation";
 import { useEffect, useCallback, useReducer, createContext, ReactNode, Dispatch } from "react"
 
 import useStore from "@/contexts/store/use-store.hook";
-import useSessionStore from "@/contexts/session-store/use-session-store.hook";
 import projectFormReducer, { PROJECT_FORM_INITIAL_STATE } from "./project-form.reducer";
 import { ProjectFormActions } from "./project-form.actions";
 import { breakProject, groupProject } from "./project-form.acl";
 import { setGeneralData, setDetailsData } from "./project-form.actions";
 
 import { User } from "@/contexts/store/store.types";
-import { Project, ProjectFormData } from "@/types/project.types";
+import { ProjectWithFullImgs, ProjectFormData, ValidatedProjectForm } from "@/types/project.types";
 
 type Props = {
   children: ReactNode[]
@@ -22,47 +21,52 @@ type TProjectCtx = {
   dispatch: Dispatch<ProjectFormActions>
   submitProject: (additionalData?: object) => Promise<string | undefined>
 }
-export const ProjectCtx = createContext<TProjectCtx | undefined>(undefined)
+export const ProjectCtx = createContext<TProjectCtx>({
+  state: PROJECT_FORM_INITIAL_STATE,
+  dispatch: () => {},
+  submitProject: async () => undefined
+})
 
 const ProjectCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
   const params = useParams();
   const projectId = params.id;
   const [ user ] = useStore<User>("user");
-  const [ projectForm, setProjectForm ] = useSessionStore<ProjectFormData>("projectForm");
 
-  const submitProject = useCallback(async (additionalData = {}) => {
-    const formattedData = breakProject({ ...state, ...additionalData }, true);
-    console.log('creating project...', formattedData);
+  const submitProject = useCallback(async () => {
+    if (!user) return;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}/${user.id}${projectId ? "/" + projectId : ""}`, {
-      method: 'post',
+    const formattedData = breakProject(state as ValidatedProjectForm, true);
+    const createEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/user/${user.id}`;
+    const editEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/${projectId}`;
+
+    const res = await fetch(projectId ? editEndpoint : createEndpoint, {
+      method: projectId ? 'put' : 'post',
       body: JSON.stringify(formattedData),
       headers: {
         "Content-Type": "application/json"
       }
     });
 
-    const createdProject: Project = await res.json();
+    const createdProject: ProjectWithFullImgs = await res.json();
     console.log("created project: ", createdProject);
 
     return createdProject.id
 
-  }, [state, user.id, projectId]);
+  }, [state, user, projectId]);
 
   useEffect(() => {
     (async function () {
       try {
         if (!projectId) return;
 
-        // const endpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/${projectId}`;
-        const endpoint = "/api/projects/1";
+        const endpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/${projectId}`;
 
         const res = await fetch(endpoint);
         const projectData = await res.json();
+        console.log('projectData: ', projectData);
         const groupedProject = groupProject(projectData);
 
-        setProjectForm(groupedProject)
 
         dispatch(setGeneralData(groupedProject.general))
         dispatch(setDetailsData(groupedProject.details))
@@ -70,7 +74,7 @@ const ProjectCtxProvider = ({ children }: Props) => {
         console.error("there was an error when trying to get project data: ", err)
       }
     })()
-  }, [projectId, setProjectForm])
+  }, [projectId])
 
   useEffect(() => { console.log('project form state', state) }, [state])
 
