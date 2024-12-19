@@ -20,17 +20,7 @@ const DetailsForm = () => {
     controlledCommonProps,
     handleSubmit,
     formState: { isDirty },
-    watch
   } = useGenerateForm<ProjectDetails>(PROJECT_DETAILS_INITIAL_STATE, state.details);
-
-  console.log("minBudget: ", watch("minBudget"));
-  console.log("maxBudget: ", watch("maxBudget"));
-
-  // useEffect(() => {
-  //   console.log("inserting mocked data...");
-  //   // @ts-ignore: Unreachable code error
-  //   dispatch(setDetailsData(formMock))
-  // }, [dispatch])
 
   return (
     <>
@@ -72,15 +62,6 @@ const DetailsForm = () => {
             {...controlledCommonProps}
           />
         </IsClientProvider>
-        {/* <Input */}
-        {/*   name="requiredKnowledge" */}
-        {/*   type="multitext" */}
-        {/*   label="Conocimientos necesarios" */}
-        {/*   addButtonLabel="Añadir conocimiento requerido" */}
-        {/*   placeholder="¿Qué necesita saber tu candidato?" */}
-        {/*   className="col-span-2" */}
-        {/*   { ...controlledCommonProps } */}
-        {/* /> */}
         <Input
           name="technicalRequirements"
           type="multitext"

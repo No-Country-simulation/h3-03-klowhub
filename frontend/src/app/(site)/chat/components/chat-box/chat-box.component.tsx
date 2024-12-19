@@ -11,22 +11,26 @@ import { reactParserOptions } from "@/utils/component.utils";
 import useSocket from "@/socket/use-socket.hook";
 import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
+import useStore from "@/contexts/store/use-store.hook";
+import { User } from "@/contexts/store/store.types";
 
 
 const ChatBox = () => {
   const searchParams = useSearchParams();
   const currentContact = searchParams.get("contact");
-  const messages = useSocket();
+  const { messages, setMessages } = useSocket();
+  const [ user ] = useStore<User>("user");
 
   const selectedContact = contactsMock.find(u => u.id === currentContact);
 
   useEffect(() => {
     (async function () {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_URL}/63fd8fd0-63ee-42e5-856d-91ede18b0e4a`);
-      const test = await res.json();
-      console.log('test: ', test);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_URL}/${user.id}`);
+      const messagesPayload = await res.json();
+
+      setMessages(messagesPayload)
     })()
-  }, [/* dependencies */])
+  }, [setMessages, user.id])
 
   return (
     <div className="flex backdrop-blur-md bg-white/10 rounded-xl border-1 border-white h-[600px]">
