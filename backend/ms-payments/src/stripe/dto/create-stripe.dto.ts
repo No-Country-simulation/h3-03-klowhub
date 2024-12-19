@@ -1,14 +1,14 @@
-// src/stripe/dto/create-stripe.dto.ts
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, IsEnum } from 'class-validator';
+import { SubscriptionTier } from '../../order/entities/order.entity'; // Asegúrate de que la ruta sea correcta
 
 export class CreateStripeDto {
   @IsNotEmpty()
   @IsNumber()
-  amount: number;
+  amount: number; // Precio a pagar
 
   @IsNotEmpty()
   @IsString()
-  currency: string;
+  currency: string; // Moneda del pago
 
   @IsNotEmpty()
   @IsString()
@@ -18,5 +18,6 @@ export class CreateStripeDto {
   userId: string; // ID del usuario
 
   @IsNotEmpty()
-  courseId: string; // ID del curso
+  @IsEnum(SubscriptionTier)
+  subscriptionTier: SubscriptionTier; // Tier de suscripción
 }

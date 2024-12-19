@@ -1,45 +1,36 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+// src/stripe/stripe.controller.ts
+import { Controller, Post, Body } from '@nestjs/common';
 import { StripeService } from './stripe.service';
 import { CreateStripeDto } from './dto/create-stripe.dto';
-import { Payment } from 'src/payments/entities/payment.entity';
-import { PaymentService } from 'src/payments/payment.service';
+import { PaymentsService } from 'src/order/payment.service';
 
 @Controller('stripe')
 export class StripeController {
   constructor(
     private readonly stripeService: StripeService,
-    private readonly paymentService: PaymentService,
+    private readonly paymentsService: PaymentsService,
   ) {}
 
   @Post('charge')
   async charge(@Body() createStripeDto: CreateStripeDto) {
+    // Crear un cargo en Stripe
     const charge = await this.stripeService.createCharge(
       createStripeDto.amount,
       createStripeDto.currency,
       createStripeDto.source,
     );
 
-    // Guarda el pago en la base de datos
-    const paymentData: Partial<Payment> = {
-      userId: createStripeDto.userId, // Asegúrate de recibir el userId
-      courseId: createStripeDto.courseId, // Asegúrate de recibir el courseId
+    // Crear un registro de pago en la base de datos
+    const paymentData: CreateStripeDto = {
+      userId: createStripeDto.userId,
       amount: createStripeDto.amount,
       currency: createStripeDto.currency,
-      paymentMethod: 'Stripe',
-      status: charge.status, // O el estado que devuelva Stripe
+      source: createStripeDto.source, // Asegúrate de incluir el source
+      subscriptionTier: createStripeDto.subscriptionTier, // Asegúrate de incluir el subscriptionTier
     };
 
-    await this.paymentService.createPayment(paymentData);
+    await this.paymentsService.createPayment(paymentData); // Cambia aquí
 
     return charge; // Devuelve el cargo o un mensaje de éxito
-  }
-  @Get()
-  async findAll() {
-    return await this.paymentService.findAllPayments(); // Cambiado para usar el servicio de pagos
-  }
-
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.paymentService.findPaymentById(+id); // Cambiado para usar el servicio de pagos
   }
 }
