@@ -294,13 +294,13 @@ export class CoursesService {
     }
 
     const requestUrl = `${envs.msUsersEndpoint}/${course.userId}`;
-    console.log('Request URL:', requestUrl); // Imprime la URL para verificarla
 
+    //console.log('Request URL:', requestUrl); // Imprime la URL para verificarla
+    //console.log('DEVOLVIENDO EL CURSO CREADO!', course.userId);
     try {
       const userResponse = await lastValueFrom(
         this.httpService.get(requestUrl),
       );
-      console.log(userResponse, 'llega??');
       return {
         ...course,
         author: userResponse.data,
@@ -318,10 +318,9 @@ export class CoursesService {
     try {
       //const course = await this.courseRepository.find();
       const courses = await this.courseRepository.find({
-        relations: ['multimedia'],
+        relations: ['modules'],
       });
 
-      console.log('courses', courses);
       if (!courses || courses.length === 0) {
         throw new NotFoundException('No se econtraron proyectos.');
       }
