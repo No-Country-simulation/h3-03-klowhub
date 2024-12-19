@@ -9,9 +9,11 @@ export class SocketService {
     const clientId = socket.id;
     this.connectedClients.set(clientId, socket);
 
-    // socket.on('connection', () => {
-    //   console.log("funciona")
-    // });
+    socket.on('clientMessage', (value) => {
+      console.log(value);
+      socket.emit("serverResponse", value)
+    });
+
     socket.on('disconnect', () => {
       console.log("desconectado")
       this.connectedClients.delete(clientId);
