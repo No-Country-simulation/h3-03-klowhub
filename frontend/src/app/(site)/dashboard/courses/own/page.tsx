@@ -11,7 +11,7 @@ const getProducts = async (endpoint: string) => {
 
 const page = async () => {
 
-    const products = await getProducts(endpoint);
+    const products = await getProducts(endpoint as string);
 
     return (
         <main>
@@ -20,7 +20,7 @@ const page = async () => {
             <h3 className="text-sm font-semibold mt-8 mb-4">Mis Cursos</h3>
 
             <div>
-                {products.data.map((course: any, index: any) => (
+                {products?.data.map((course: any, index: any) => (
                     <OwnedCourses data={course} key={index} />
                 ))}
             </div>
