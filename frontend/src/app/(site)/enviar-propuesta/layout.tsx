@@ -1,6 +1,7 @@
 'use client'
+import { KanbanProvider } from "@/components/kanban/context/kanban.contex";
 import React from "react";
-import { KanbanProvider } from "./context/kanbanContext";
+// import { KanbanProvider } from "./kanban-context/kanban-contex.tsx";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (

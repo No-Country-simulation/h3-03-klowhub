@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Expand, IndentIncrease, LayoutList, User, X } from "lucide-react";
 import React, { useEffect } from "react";
-import { useKanban } from "../context/kanbanContext";
 import { TTask } from "@/types/kanban.types";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useKanban } from "@/components/kanban/context/use-kanban-context.hook";
 
 const EditTaskModal = () => {
     const {

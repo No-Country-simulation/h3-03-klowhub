@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useKanban } from "./context/kanbanContext";
-import KanbanModal from "./components/kanban-modal.component";
-import KanbanBoard from "@/components/kanban/kanban-board-component";
-import EditTaskModal from "./components/edit-task-modal";
 import services from "@/services";
+import { useKanban } from "@/components/kanban/context/use-kanban-context.hook";
+import KanbanBoard from "@/components/kanban/kanban-board.component";
+import KanbanModal from "@/components/kanban/kanban-modal.component";
+import EditTaskModal from "@/components/kanban/edit-task-modal.component";
 
 const KanbanTestPage = () => {
     const {
@@ -22,6 +22,8 @@ const KanbanTestPage = () => {
 
     const projectName = "Proyecto AppSheet";
     const projectCreatorEmail = "martinkunbrc1990@gmail.com"
+
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 

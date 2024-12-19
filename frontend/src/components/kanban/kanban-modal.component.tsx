@@ -3,8 +3,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { PanelsTopLeft, SquareSplitHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useKanban } from "../context/kanbanContext";
-import KanbanBoard from "@/components/kanban/kanban-board-component";
+import { useKanban } from "@/components/kanban/context/use-kanban-context.hook";
+import KanbanBoard from "@/components/kanban/kanban-board.component";
 
 const KanbanModal = () => {
     const {
