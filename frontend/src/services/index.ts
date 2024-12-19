@@ -95,6 +95,51 @@ const inviteBoardMemberByEmail = async (data: TInviteBoardMemberData) => {
   );
 };
 
+const getBoard = async (boardId: string) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/boards/${boardId}?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'GET',
+    }
+  );
+};
+
+const getListsOnBoard = async (boardId: string) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/boards/${boardId}/lists?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'GET',
+    }
+  );
+};
+
+const getCustomFieldsOnBoard = async (boardId: string) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/boards/${boardId}/customFields?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'GET',
+    }
+  );
+};
+
+const getCardsOnBoard = async (boardId: string) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/boards/${boardId}/cards?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'GET',
+    }
+  );
+};
+
+const getCustomFieldItems = async (cardId: string) => {
+  return apiFetch(
+    `${API_TRELLO_URL}/1/cards/${cardId}/customFieldItems?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`,
+    {
+      method: 'GET',
+    }
+  );
+};
+
 const services = {
   login,
   register,
@@ -103,7 +148,13 @@ const services = {
   createCard,
   createCustomFieldOnBoard,
   updateCustomFieldItemOnCard,
-  inviteBoardMemberByEmail
+  inviteBoardMemberByEmail,
+  getBoard,
+  getListsOnBoard,
+  getCustomFieldsOnBoard,
+  getCardsOnBoard,
+  getCustomFieldItems
+
 };
 
 export default services;
