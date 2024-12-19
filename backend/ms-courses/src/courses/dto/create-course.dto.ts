@@ -124,22 +124,28 @@ export class CreateCourseDto {
   @IsString()
   courseIncludes: string[];
 
-  @IsArray()
-  @IsString({ each: true })
   @IsNotEmpty()
-  promotionalVideo?: string[];
+  @ValidateNested()
+  @Type(() => MultimediaDto)
+  promotionalVideo?: MultimediaDto;
 
   // @IsNumber()
   // userId: number;
 
-  @IsArray()
-  @IsNotEmpty()
-  @IsNotEmpty()
-  multimedia?: MultimediaDto[];
+  // @IsArray()
+  // @IsNotEmpty()
+  // @IsNotEmpty()
+  // multimedia?: MultimediaDto[];
   @IsNotEmpty()
   @IsString()
   authorId: string;
 
+  // @IsArray()
+  // @IsNotEmpty()
+  // @ValidateNested({ each: true })
+  // @Type(() => MultimediaDto)
+  // documents?: MultimediaDto[]; // Aquí agregamos la propiedad documents
+  //lo ultimo que agregue!!!!
   @IsArray()
   @IsNotEmpty()
   modules?: CreateCourseModuleDto[];

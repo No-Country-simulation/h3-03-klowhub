@@ -168,8 +168,9 @@ export class CoursesService {
       platform,
       language,
       modules,
-      multimedia,
+      // multimedia,
       coverImg,
+      promotionalVideo: promotionalVideo,
       ...rest
     } = createCourseDto;
 
@@ -177,20 +178,44 @@ export class CoursesService {
 
     // Manejar la portada
     let coverImgEntity: Multimedia | null = null;
-    if (coverImg?.id) {
+
+    if (coverImg) {
+      // Verifica si coverImg es un string (ID)
+      const coverImgId = typeof coverImg === 'string' ? coverImg : coverImg.id;
+
+      if (!coverImgId) {
+        throw new Error('Cover image ID is required.');
+      }
+
       coverImgEntity = await this.multimediaRepository.findOne({
-        where: { id: coverImg.id },
+        where: { id: coverImgId },
       });
 
       if (!coverImgEntity) {
-        console.log('Cover image not found, creating a new one...');
-        coverImgEntity = this.multimediaRepository.create({
-          id: coverImg.id,
-          fileType: coverImg.fileType,
-          fileMetadata: coverImg.fileMetadata,
-        });
-        await this.multimediaRepository.save(coverImgEntity);
-        console.log('New cover image created:', coverImgEntity);
+        throw new Error(
+          `Cover image with ID ${coverImgId} not found. Please provide a valid ID.`,
+        );
+      }
+    }
+
+    // Manejar el video promocional
+    let promotionalVideoEntity: Multimedia | null = null;
+    if (promotionalVideo) {
+      const promoVideoId =
+        typeof promotionalVideo === 'string'
+          ? promotionalVideo
+          : promotionalVideo.id;
+
+      if (!promoVideoId) {
+        throw new Error('Promotional video ID is required.');
+      }
+
+      promotionalVideoEntity = await this.multimediaRepository.findOne({
+        where: { id: promoVideoId },
+      });
+
+      if (!promotionalVideoEntity) {
+        throw new Error(`Promotional video with ID ${promoVideoId} not found.`);
       }
     }
 
@@ -207,10 +232,11 @@ export class CoursesService {
       modules:
         modules?.map((module) => this.courseModuleRepository.create(module)) ||
         [],
-      multimedia:
-        multimedia?.map((media) => this.multimediaRepository.create(media)) ||
-        [],
+      // multimedia:
+      //   multimedia?.map((media) => this.multimediaRepository.create(media)) ||
+      //   [],
       coverImg: coverImgEntity,
+      promotionalVideo: promotionalVideoEntity,
     });
 
     // Verificar el curso antes de guardar

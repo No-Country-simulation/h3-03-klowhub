@@ -69,11 +69,19 @@ export class Course {
   // coverImg: string;
   // @ManyToOne(() => Multimedia)
   // coverImg: Multimedia;
-  @ManyToOne(() => Multimedia, (multimedia) => multimedia.course, {
+  @ManyToOne(() => Multimedia, (multimedia) => multimedia.image, {
     nullable: false,
   })
   @JoinColumn()
   coverImg: Multimedia;
+
+  // @Column({ type: 'jsonb', name: 'promotionalVideo', nullable: true })
+  // promotionalVideo: object;
+  @ManyToOne(() => Multimedia, (multimedia) => multimedia.promo, {
+    nullable: false,
+  })
+  @JoinColumn()
+  promotionalVideo: Multimedia;
 
   @Column({ type: 'jsonb', name: 'promotion', nullable: true }) // Cambiado a simple-array
   promotion: object;
@@ -95,9 +103,6 @@ export class Course {
   @Column({ type: 'jsonb', name: 'courseIncludes', nullable: false })
   courseIncludes: string[];
 
-  @Column({ type: 'jsonb', name: 'promotionalVideo', nullable: true })
-  promotionalVideo: object;
-
   @OneToMany(() => CourseModule, (module) => module.course, { cascade: true })
   modules: CourseModule[];
 
@@ -114,8 +119,8 @@ export class Course {
 
   author?: any;
 
-  @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
-  multimedia: Multimedia[];
+  // @OneToMany(() => Multimedia, (multimedia) => multimedia.course)
+  // multimedia: Multimedia[];
 }
 
 // @OneToMany(() => Asset, (asset) => asset.project) // Cambiado a OneToMany para assets
