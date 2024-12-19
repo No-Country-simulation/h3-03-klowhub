@@ -3,12 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Message } from './entities/message.entity';
 import { Chat } from './entities/chat.entity';
-
-
+import { HttpService } from '@nestjs/axios';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable()
 export class ChatService {
-  constructor(
+  constructor( private readonly httpService: HttpService,
     @InjectRepository(Chat) private chatRepo: Repository<Chat>,
     @InjectRepository(Message) private messageRepo: Repository<Message>,
   ) {}
