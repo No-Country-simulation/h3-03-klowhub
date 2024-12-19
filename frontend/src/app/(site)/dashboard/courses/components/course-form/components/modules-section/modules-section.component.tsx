@@ -55,7 +55,7 @@ const ModulesSection = () => {
                         Editar Módulo
                       </Button>
                     </div>
-                    <LessonsSection moduleIdx={mIdx} lessons={state.modules[mIdx].lessons} readOnly />
+                    <LessonsSection lessons={state.modules[mIdx].lessons} readOnly />
                   </AccordionContent>
                 </AccordionItem>
               ))}

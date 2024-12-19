@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { envs } from './config';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import { Server } from 'socket.io';
 
 async function bootstrap() {
   const logger = new Logger('Main');

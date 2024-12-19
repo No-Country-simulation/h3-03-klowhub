@@ -1,5 +1,7 @@
-import { IsString, IsNumber, IsArray, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsOptional, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { ProjectStatus } from 'src/projects/entities/project.entity/project-status.enum';
+
 
 export class CreateProjectDto {
   @ApiProperty({ description: 'Título del proyecto', example: 'Proyecto Innovador' })
@@ -53,14 +55,34 @@ export class CreateProjectDto {
   @ApiProperty({ description: 'Habilidades requeridas', example: ['Trabajo en equipo', 'Liderazgo'] })
   @IsArray()
   @IsString({ each: true })
-  requiredSkills: string[]; // conocimientos necesarios/ habilidades necesarias
+  requiredSkills: string[]; 
 
   @ApiProperty({ description: 'Activos opcionales', example: [{ type: 'logo', url: 'http://example.com/logo.png' }] })
   @IsArray()
   @IsOptional()
-  assets?: object[];
+  assets: string[];
+
+  @ApiProperty({ description: 'Tags del proyecto'})
+  @IsArray()
+  @IsString({ each: true })
+  tags: string[];
 
   @ApiProperty({ description: 'ID del usuario asociado', example: '123e4567-e89b-12d3-a456-426614174000' })
   @IsString()
-  userId: string;
+  @IsOptional() 
+  authorId?: string;
+
+  @ApiProperty({
+    description: 'Estado del proyecto',
+    enum: ProjectStatus,
+    example: ProjectStatus.PENDIENTE,
+  })
+  @IsEnum(ProjectStatus) // Valida que el valor esté dentro del enum
+  @IsOptional() // Opcional en el DTO
+  status?: ProjectStatus;
+
+  @ApiProperty({ description: 'ID del usuario asociado', example: '123e4567-e89b-12d3-a456-426614174000' })
+  @IsString()
+  @IsOptional() 
+  userId?: string;
 }

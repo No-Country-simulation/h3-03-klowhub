@@ -22,16 +22,15 @@ export type Dimensions = {
 
 export type TDocumentProps = {
   filename: string
-  size: string
 }
 
 export type TImageProps = {
   alt: string
+  format: string
 } & Dimensions
 
 export type TVideoProps = {
   duration: number
-  size: number
   format: string
   thumbnailHeight: number
   thumbnailWidth: number
@@ -46,6 +45,7 @@ export type UploadedFileCommon = {
   url: string
   mimeType: string
   created_at: Date
+  size: number
 }
 
 export type UploadedFile<Props, T extends string> = {
@@ -66,6 +66,7 @@ export type PromotedProduct = {
 }
 
 export type Promotion = {
+  id?: string
   product: PromotedProduct
   percentage: number
 }

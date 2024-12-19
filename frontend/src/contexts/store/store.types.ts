@@ -6,7 +6,7 @@ export type User = {
   email: string
   name: string
   jwtToken: string
-  seller: BTSeller | null
+  sellerData: BTSeller | null
   profileImg: TImage | null
 }
 
@@ -17,6 +17,6 @@ export type UI = {
 }
 
 export type Store = {
-  user: User
+  user: User | null
   ui: UI
 }

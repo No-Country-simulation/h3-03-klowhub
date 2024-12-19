@@ -10,7 +10,7 @@ import { CourseFormActions, setDetailsData } from "./course-form.actions";
 import { setGeneralData, setModulesData, setPromotionData } from "./course-form.actions";
 
 import { User } from "@/contexts/store/store.types";
-import { Course, CourseFormData } from "@/types/courses.types";
+import { CourseWithFullAssets, CourseFormData } from "@/types/courses.types";
 
 type Props = {
   children: ReactNode[]
@@ -22,7 +22,11 @@ type CourseCtxType = {
   submitCourse: (additionalData?: object) => Promise<string | undefined>
 }
 
-export const CourseCtx = createContext<CourseCtxType | undefined>(undefined)
+export const CourseCtx = createContext<CourseCtxType>({
+  state: COURSE_FORM_INITIAL_STATE,
+  dispatch: () => {},
+  submitCourse: async () => undefined,
+})
 
 const CourseCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
@@ -31,7 +35,7 @@ const CourseCtxProvider = ({ children }: Props) => {
   const [ user ] = useStore<User>("user");
 
   const submitCourse = useCallback(async (additionalData = {}) => {
-    const formattedData = breakCourse({ ...state, ...additionalData });
+    const formattedData = breakCourse({ ...state, ...additionalData }, true);
     console.log('creating course...', formattedData);
     
     const createEndpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}`;
@@ -45,7 +49,7 @@ const CourseCtxProvider = ({ children }: Props) => {
       }
     });   
 
-    const createdCourse: Course = await res.json();
+    const createdCourse: CourseWithFullAssets = await res.json();
     console.log('createdCourse: ', createdCourse);
 
     return createdCourse.id

@@ -1,16 +1,22 @@
 "use client"
 
+import { Pencil } from "lucide-react";
 import { FC, useState } from "react";
+import { useParams } from "next/navigation";
 import Rating from "@/components/rating/rating.component";
 import Image from "next/image";
 import { CourseDetailHeader } from "@/types/course-detail-props";
-import TempError from "@/components/temp-error/temp-error.component";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 import YouTube from 'react-youtube';
 import { getYoutubeProps } from "@/utils/youtube.utils";
 import { getYoutubeId } from "@/utils/str.utils";
 
 import { useKeenSlider } from "keen-slider/react";
+import useStore from "@/contexts/store/use-store.hook";
+import { BTUser } from "@/types/user.types";
+import { useSearchParams } from "next/navigation";
 
 type CurrentVideo = {
   type: "native" | "youtube";
@@ -23,9 +29,16 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
     rating,
     ratingCount,
     promotionalVideo,
-    lessons
+    lessons,
+  authorId
 }) => {
-    // console.log('promotionalVideo: ', promotionalVideo);
+  const params = useParams();
+  const courseId = params.id;
+
+  const searchParams = useSearchParams();
+  const formSection = searchParams.get("section");
+
+  const [ user ] = useStore<BTUser>("user");
 
   const [currentVideo, setCurrentVideo] = useState<CurrentVideo | null>( 
     promotionalVideo ? {
@@ -59,7 +72,18 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
 
     return (
         <>
-            <h3 className="font-semibold text-sm">{title}</h3>
+      <div className="flex justify-between items-center">
+        <h3 className="font-semibold text-sm">{title}</h3>
+        { user && user.id === authorId && formSection !== "preview" &&
+          <Link 
+            href={`/dashboard/courses/form/${courseId}?section=general`}
+            className={`${buttonVariants({ variant: "default" })}`}
+          >
+            <Pencil />
+            <span>Editar Curso</span>
+          </Link>
+        }
+      </div>
             <p className="text-sm text-gray-300">{summarizeDescription}</p>
             {rating && ratingCount &&
                 <Rating

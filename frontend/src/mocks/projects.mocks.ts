@@ -2,7 +2,7 @@ import { TProjectCard } from "@/types/project.types";
 
 export const projectsData: TProjectCard[] = [
   {
-    id: 1,
+    id: "123-sda-234-sdf",
     title: "Solución integral para la gestión de tareas y seguimiento de proyectos en tiempo real.",
     instructor: {
       name: "John Doe",
@@ -21,12 +21,12 @@ export const projectsData: TProjectCard[] = [
     tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.5,
     ratingCount: 120,
-    status: "En curso",
-    initialDate: "2024-12-13",
-    finalDate: "2024-12-13"
+    status: "en-curso",
+    // initialDate: "2024-12-13",
+    // finalDate: "2024-12-13"
   },
   {
-    id: 2,
+    id: "2",
     title: "App móvil para gestión de inventarios con AppSheet",
     instructor: {
       name: "Jane Smith",
@@ -45,12 +45,12 @@ export const projectsData: TProjectCard[] = [
     tags: ["Logística", "Retail", "Inventarios"],
     rating: 3.8,
     ratingCount: 85,
-    status: "Terminado",
-    initialDate: "2024-12-12",
-    finalDate: "2024-12-13"
+    status: "finalizado",
+    // initialDate: "2024-12-12",
+    // finalDate: "2024-12-13"
   },
   {
-    id: 3,
+    id: "3",
     title: "Optimización logística con PowerApps",
     instructor: {
       name: "Alice Johnson",
@@ -69,12 +69,12 @@ export const projectsData: TProjectCard[] = [
     tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.2,
     ratingCount: 98,
-    status: "En curso",
-    initialDate: "2024-12-01",
-    finalDate: "2024-12-13"
+    status: "en-curso",
+    // initialDate: "2024-12-01",
+    // finalDate: "2024-12-13"
   },
   {
-    id: 4,
+    id: "4",
     title: "App móvil para gestión de inventarios con AppSheet",
     instructor: {
       name: "Robert Brown",
@@ -93,12 +93,12 @@ export const projectsData: TProjectCard[] = [
     tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.7,
     ratingCount: 150,
-    status: "Terminado",
-    initialDate: "2024-12-01",
-    finalDate: "2024-12-10"
+    status: "finalizado",
+    // initialDate: "2024-12-01",
+    // finalDate: "2024-12-10"
   },
   {
-    id: 5,
+    id: "5",
     title: "Optimización logística con PowerApps",
     instructor: {
       name: "Emily Davis",
@@ -117,8 +117,8 @@ export const projectsData: TProjectCard[] = [
     tags: ["Logística", "Retail", "Inventarios"],
     rating: 4.1,
     ratingCount: 73,
-    status: "En curso",
-    initialDate: "2024-11-21",
-    finalDate: "2024-12-13"
+    status: "en-curso",
+    // initialDate: "2024-11-21",
+    // finalDate: "2024-12-13"
   }
 ];

@@ -18,6 +18,7 @@ export type AppProps = {
   appIncludes: string[];
   children: ReactNode[];
   submitApplication?: TApplicationCtx["submitApplication"]
+  authorId: string
 }
 
 export type AppDetailHeader = {
@@ -27,6 +28,7 @@ export type AppDetailHeader = {
     ratingCount?: number
     coverImg: TImage
   assets: (TImage | TVideo | TDocument)[]
+  authorId: string
 }
 
 export type AppIncludeProps = {

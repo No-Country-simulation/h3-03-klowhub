@@ -36,8 +36,6 @@ const ProductCard = ({ data, unlink, onlyInfo }: ProductCardProps) => {
     shortDescription,
     platform,
     tags,
-    rating,
-    ratingCount,
     price,
   } = data
 
