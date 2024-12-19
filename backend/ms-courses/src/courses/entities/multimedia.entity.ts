@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Course } from './course.entity';
+import { Lesson } from './lesson.entity';
 //import { Lesson } from './lesson.entity';
 
 export interface Video {
@@ -53,11 +54,29 @@ export class Multimedia {
   @Column({ nullable: true }) // Declarar explícitamente courseId como clave foránea
   courseId: string;
 
-  @ManyToOne(() => Course, (course) => course.multimedia, {
+  @ManyToOne(() => Course, (course) => course.coverImg, {
     onDelete: 'CASCADE',
   })
   // @JoinColumn({ name: 'courseId' })
-  course: Course;
+  image: Course;
+
+  @ManyToOne(() => Course, (course) => course.promotionalVideo, {
+    onDelete: 'CASCADE',
+  })
+  // @JoinColumn({ name: 'courseId' })
+  promo: Course;
+
+  @ManyToOne(() => Lesson, (lesson) => lesson.documents, {
+    onDelete: 'CASCADE',
+  })
+  // @JoinColumn({ name: 'courseId' })
+  docs: Lesson;
+
+  // @ManyToOne(() => Course, (course) => course.multimedia, {
+  //   onDelete: 'CASCADE',
+  // })
+  // // @JoinColumn({ name: 'courseId' })
+  // course: Course;
 
   // @ManyToOne(() => Lesson, (lesson) => lesson.multimedia)
   // @JoinColumn()
