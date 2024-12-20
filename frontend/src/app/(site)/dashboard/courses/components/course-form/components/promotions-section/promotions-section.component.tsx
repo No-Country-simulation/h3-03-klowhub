@@ -204,9 +204,10 @@ const PromotionsSection = () => {
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
               try {
-              // throw new Error()
                 const courseId = await submitCourse({ promotion })
-                setNewCourseId(courseId.message)
+                // @ts-ignore: Unreachable code error
+                if (courseId.statusCode) throw Error(courseId);
+                setNewCourseId(courseId)
               } catch (err) {
                 setError(err as Error)
               }

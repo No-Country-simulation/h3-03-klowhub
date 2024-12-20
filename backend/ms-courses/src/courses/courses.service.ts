@@ -284,23 +284,24 @@ export class CoursesService {
       // where: { available: true },
       relations: ['modules', 'modules.lessons', 'coverImg'],
     });
+    console.log('course: ', course);
     return course;
   }
 
   async findOneCourse(id: string): Promise<any> {
-    const course = await this.courseRepository.findOne({ where: { id } });
+    const course = await this.courseRepository.findOne({ where: { id }, relations: ['modules', 'modules.lessons', 'coverImg'] });
     if (!course) {
       throw new NotFoundException(`course with ID ${id} not found`);
     }
 
     const requestUrl = `${envs.msUsersEndpoint}/${course.userId}`;
-    console.log('Request URL:', requestUrl); // Imprime la URL para verificarla
 
+    //console.log('Request URL:', requestUrl); // Imprime la URL para verificarla
+    //console.log('DEVOLVIENDO EL CURSO CREADO!', course.userId);
     try {
       const userResponse = await lastValueFrom(
         this.httpService.get(requestUrl),
       );
-      console.log(userResponse, 'llega??');
       return {
         ...course,
         author: userResponse.data,
@@ -316,12 +317,10 @@ export class CoursesService {
 
   async getAllCoursesWithUsers() {
     try {
-      //const course = await this.courseRepository.find();
       const courses = await this.courseRepository.find({
-        relations: ['multimedia'],
+        relations: ['modules', 'modules.lessons', 'coverImg'],
       });
 
-      console.log('courses', courses);
       if (!courses || courses.length === 0) {
         throw new NotFoundException('No se econtraron proyectos.');
       }
@@ -397,7 +396,7 @@ export class CoursesService {
   async findOne(id: string): Promise<Course | null> {
     const course = await this.courseRepository.findOne({
       where: { id },
-      relations: ['modules', 'modules.lessons', 'coverImg'],
+      relations: ['modules', 'modules.lessons', 'coverImg', 'promo'],
     });
     console.log('Course found:', course);
     if (!course) {

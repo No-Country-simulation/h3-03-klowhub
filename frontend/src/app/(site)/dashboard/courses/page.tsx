@@ -9,6 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { transactionsData } from "@/mocks/transactions.mocks";
 import { TQuickView } from "@/components/product-card/product-card.types";
 import NoData from "@/components/no-data/no-data.component";
+import PublishButton from "@/components/publish-button/publish-button.component";
 
 
 const getProducts = async (endpoint: string) => {
@@ -41,7 +42,7 @@ const MyCoursesPage = async () => {
             <div className="flex flex-col gap-5">
                 <div className="mt-14 flex flex-col gap-5 sm:flex-row sm:justify-between sm:items-center">
                     <h3 className="text-base font-bold">Mis cursos</h3>
-                    <Link href="/dashboard/courses/form?section=general" className={`${buttonVariants({ variant: "default" })} sm:w-[250px] w-full`}>Crear curso</Link>
+                    <PublishButton route="/dashboard/courses/form?section=general">Crear curso</PublishButton>
                 </div>
         { applications ?
           <>

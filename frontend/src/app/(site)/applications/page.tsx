@@ -45,7 +45,7 @@ const AppliactionsPage = async () => {
       <BreadCrumb />
 
       <IsClientProvider>
-        <SearchFilter filters={filters} />
+        <SearchFilter filters={filters} header="Encuentra las aplicaciones que estas buscando" />
       </IsClientProvider>
         { applications && applications.length ?
           <div 

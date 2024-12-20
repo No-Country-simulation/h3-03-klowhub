@@ -58,6 +58,7 @@ export const CourseDetail = ({ serverSideData, children }: Props) => {
     learningSubjects,
     modules
   } = pageData;
+  console.log('pageData: ', pageData);
 
   const lessons = modules.map(m => m.lessons).flat();
   const freeLessons = lessons.filter(l => l.freeLesson);

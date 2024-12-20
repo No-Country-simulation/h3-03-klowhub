@@ -19,8 +19,8 @@ const contactsMock = [
       }
     } as TImage,
     messages: [
-      { content: "olak ase" },
-      { content: "olak ase" }
+      { content: "olak ase", userId: "12" },
+      { content: "olak ase", userId: "12" },
     ]
   },
   {
@@ -41,8 +41,8 @@ const contactsMock = [
       }
     },
     messages: [
-      { content: "olak ase" },
-      { content: "olak ase" }
+      { content: "olak ase", userId: "12" },
+      { content: "olak ase", userId: "12" },
     ]
   },
   {
@@ -63,8 +63,8 @@ const contactsMock = [
       }
     },
     messages: [
-      { content: "olak ase" },
-      { content: "olak ase" }
+      { content: "olak ase", userId: "12" },
+      { content: "olak ase", userId: "12" },
     ]
   }
 ]
