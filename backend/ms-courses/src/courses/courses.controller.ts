@@ -224,7 +224,20 @@ export class CoursesController {
   //   return this.coursesService.findOneCourse(id, isWithAuthor);
   // }
 
-  //OBTENEMOS UN CURSO PERTENECIENTE A UN USUARIO
+  //OBTENEMOS LOS CURSOS DE UN USUARIO
+  @Get('user/:userId')
+  async findOneByUserId(@Param('userId') userId: string): Promise<any> {
+    try {
+      const userCourse = await this.coursesService.getAllCoursesWithUsers(userId);
+      return userCourse;
+    } catch (error) {
+      throw new BadRequestException(
+        `An unexpected error occured: ${error.message}`,
+      );
+    }
+  }
+  
+  //OBTENEMOS UN CURSO POR ID
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<any> {
     try {

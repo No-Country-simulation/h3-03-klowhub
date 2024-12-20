@@ -315,9 +315,10 @@ export class CoursesService {
     }
   }
 
-  async getAllCoursesWithUsers() {
+  async getAllCoursesWithUsers(userId?: string) {
     try {
       const courses = await this.courseRepository.find({
+        ...(userId ? { where: { userId } } : {}),
         relations: ['modules', 'modules.lessons', 'coverImg'],
       });
 
