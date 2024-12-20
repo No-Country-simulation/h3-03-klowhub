@@ -7,6 +7,7 @@ import NoData from "@/components/no-data/no-data.component";
 import { ProjectWithFullImgs } from "@/types/project.types";
 import { transformBTProject } from "../../projects/projects-page.acl";
 import { RequiredProperty } from "@/types/utils.types";
+import PublishButton from "@/components/publish-button/publish-button.component";
 
 const getProjects = async () => {
   try {
@@ -25,6 +26,7 @@ const getProjects = async () => {
 
 const MyProjectsPage = async () => {
     const projectsData = await getProjects();
+  console.log('projectsData: ', projectsData);
     const activeProjects = projectsData && projectsData.filter((project) => project.status === "en-curso");
     const completedProjects = projectsData && projectsData.filter((project) => project.status === "finalizado");
 
@@ -42,10 +44,11 @@ const MyProjectsPage = async () => {
                             <Link href={"/projects"}>Explorar proyectos</Link>
 
                         </Button>
-                        <Button className="sm:w-[250px] w-full">
-
-                            <Link href={"projects/form?section=general"}>Publicar proyecto</Link>
-                        </Button>
+                        <PublishButton route="projects/form?section=general">Publicar proyecto</PublishButton>
+                        {/* <Button className="sm:w-[250px] w-full"> */}
+                        {/**/}
+                        {/*     <Link href={"projects/form?section=general"}>Publicar proyecto</Link> */}
+                        {/* </Button> */}
                     </div>
                 </div>
                 <div className="flex flex-col-reverse md:flex-row gap-14 md:gap-6">

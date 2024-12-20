@@ -34,6 +34,8 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
 }) => {
   const params = useParams();
   const courseId = params.id;
+  // console.log('promotionalVideo: ', promotionalVideo);
+  // console.log('lessons: ', lessons);
 
   const searchParams = useSearchParams();
   const formSection = searchParams.get("section");

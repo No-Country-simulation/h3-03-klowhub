@@ -54,12 +54,7 @@ export type ProjectWithFullImgs = BTProject & {
 
 type TInstructorInfo = {
   name: string,
-  img : {
-    url: string,
-      width: number,
-      height: number,
-      alt: string
-  }
+  profileImg: TImage 
   userType?: string
   description: string
   rating: number
