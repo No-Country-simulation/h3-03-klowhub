@@ -12,11 +12,10 @@ type Props = {
 }
 
 const PublishButton = ({ children, route }: Props) => {
-  const [ user ] = useStore<BTUser>("user");
+  const [ user, _, isLoading ] = useStore<BTUser>("user");
   const router = useRouter();
 
-  // @ts-ignore: Unreachable code error
-  return user.sellerData || user.seller ? (
+  return !isLoading && user.seller ? (
     <Button onClick={() => router.push(route)}>{ children }</Button>
   ) :<Button onClick={() => router.push("/membership?section=selection")}>Elige un plan para empezar a publicar</Button>
  

@@ -10,20 +10,25 @@ import { transformCourse } from "./owned-course.acl";
 
 
 const OwnCoursesWrapper = () => {
-  const [ user ] = useStore<BTUser>("user");
+  const [ user, _, isLoading ] = useStore<BTUser>("user");
   const [ ownCourses, setOwnCourses ] = useState<TProductCard[]>([])
 
   useEffect(() => {
-    const endpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/${user.id}`;
+    if (isLoading) return;
+    const endpoint = `${process.env.NEXT_PUBLIC_COURSES_URL}/user/${user.id}`;
     (async function () {
       const res = await fetch(endpoint);
-      const courses: CourseWithFullAssets[] = await res.json() || [];
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message)
+      };
 
+      const courses: CourseWithFullAssets[] = await res.json() || [];
       const transformedCourses = courses.map(c => transformCourse(c));
 
       setOwnCourses(transformedCourses)
     })()
-  }, [user.id])
+  }, [user, isLoading])
 
   return (
     <div>
