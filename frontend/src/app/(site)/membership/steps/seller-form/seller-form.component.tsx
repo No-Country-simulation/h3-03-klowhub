@@ -2,9 +2,8 @@
 
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { Button } from "@/components/ui/button";
-import { BTSeller } from "@/types/backend-responses.types";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
+import { BTUser, BTSeller } from "@/types/user.types";
 import { useRouter } from "next/navigation";
 
 const tempSubmit = async (userId: string) => {
@@ -21,7 +20,7 @@ const tempSubmit = async (userId: string) => {
 };
 
 const SellerForm = () => {
-  const [ user, setUser ] = useStore<User>("user");
+  const [ user, setUser ] = useStore<BTUser>("user");
   const router = useRouter();
 
   return (
@@ -43,7 +42,7 @@ const SellerForm = () => {
           onClick={async () => {
             try {
               const sellerData = await tempSubmit(user.id)
-              setUser({ ...user, sellerData })
+              setUser({ ...user, seller: sellerData })
               router.push("/")
             } catch (err) {
               console.error("there was an error trying to set the membership of user to seller: ", err)

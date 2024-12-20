@@ -12,23 +12,33 @@ import useSocket from "@/socket/use-socket.hook";
 import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
-
+import { BTUser } from "@/types/user.types";
 
 const ChatBox = () => {
   const searchParams = useSearchParams();
   const currentContact = searchParams.get("contact");
-  const { messages, setMessages } = useSocket();
-  const [ user ] = useStore<User>("user");
+  const [ messages, setMessages ] = useSocket();
+  const [ user ] = useStore<BTUser>("user");
 
   const selectedContact = contactsMock.find(u => u.id === currentContact);
 
   useEffect(() => {
     (async function () {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_URL}/${user.id}`);
-      const messagesPayload = await res.json();
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_CHAT_URL}/${user.id}`);
 
-      setMessages(messagesPayload)
+        if (!res.ok) {
+          const error = await res.json();
+          setMessages([]) 
+          throw error
+
+        };
+
+        const messagesPayload = await res.json();
+        setMessages(messagesPayload)
+      } catch (err) {
+        console.error("error getting the chat messages: ", err)
+      }
     })()
   }, [setMessages, user.id])
 

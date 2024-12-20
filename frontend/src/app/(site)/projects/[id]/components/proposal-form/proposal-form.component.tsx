@@ -16,7 +16,7 @@ import { TColumn, TTask } from "@/types/kanban.types";
 import { createBoardWithDetails } from "@/components/kanban/utils/kanban.utils";
 import AuthorCard from "@/components/author-card/author-card.component";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 
 type Props = {
   projectAuthorId: string
@@ -73,7 +73,7 @@ const submitProposal = async (
 };
 
 const ProposalForm = ({ projectAuthorId }: Props) => {
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
   const [ proposal, setProposal ] = useStore<FullProposal>("proposal");
 
   const { controlledCommonProps, handleSubmit } = useGenerateForm<Proposal>(

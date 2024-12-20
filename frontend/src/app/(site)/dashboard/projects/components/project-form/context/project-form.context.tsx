@@ -9,7 +9,7 @@ import { ProjectFormActions } from "./project-form.actions";
 import { breakProject, groupProject } from "./project-form.acl";
 import { setGeneralData, setDetailsData } from "./project-form.actions";
 
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import { ProjectWithFullImgs, ProjectFormData, ValidatedProjectForm } from "@/types/project.types";
 
 type Props = {
@@ -31,7 +31,7 @@ const ProjectCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
   const params = useParams();
   const projectId = params.id;
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
 
   const submitProject = useCallback(async () => {
     if (!user) return;

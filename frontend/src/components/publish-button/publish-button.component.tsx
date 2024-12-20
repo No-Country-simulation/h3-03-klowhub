@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import useStore from "@/contexts/store/use-store.hook";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
@@ -12,7 +12,7 @@ type Props = {
 }
 
 const PublishButton = ({ children, route }: Props) => {
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
   const router = useRouter();
 
   // @ts-ignore: Unreachable code error

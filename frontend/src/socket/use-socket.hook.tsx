@@ -1,15 +1,14 @@
 import { socket } from "@/socket/socket";
 import { ChatMessage } from "@/app/(site)/chat/components/message-box/message-box.types";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-const useSocket = (loadedMessages?: ChatMessage[]) => {
+const useSocket = (loadedMessages?: ChatMessage[]): [ ChatMessage[], Dispatch<SetStateAction<ChatMessage[]>> ] => {
   const [ messages, setMessages ] = useState<ChatMessage[]>(loadedMessages || [])
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
 
   useEffect(() => {
     if (socket.connected) {
-      console.log('AAAA');
       onConnect();
     }
 
@@ -42,7 +41,7 @@ const useSocket = (loadedMessages?: ChatMessage[]) => {
     };
   }, []);
 
-  return { messages, setMessages }
+  return [ messages, setMessages ]
 };
 
 export default useSocket

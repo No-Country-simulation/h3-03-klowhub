@@ -2,7 +2,7 @@
 
 import { OwnedCourses } from "./owned-courses.component";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import { useEffect, useState } from "react";
 import { TProductCard } from "@/components/product-card/product-card.types";
 import { CourseWithFullAssets } from "@/types/courses.types";
@@ -10,7 +10,7 @@ import { transformCourse } from "./owned-course.acl";
 
 
 const OwnCoursesWrapper = () => {
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
   const [ ownCourses, setOwnCourses ] = useState<TProductCard[]>([])
 
   useEffect(() => {

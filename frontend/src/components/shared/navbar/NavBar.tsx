@@ -3,18 +3,11 @@
 import { useState } from 'react';
 import { Bell, Rocket, ShoppingCart, Backpack, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { NavItem } from './NavItem';
 import Image from 'next/image';
 import Link from 'next/link';
-import useStore from '@/contexts/store/use-store.hook';
-import { User } from '@/contexts/store/store.types';
 import { buttonVariants } from '@/components/ui/button';
 
 export const NavBar = () => {
-  // const [user, _, isLoading] = useStore<User>("user");
-  // console.log('user: ', user);
-  // console.log('isLoading: ', isLoading);
-
   const [activeSection, setActiveSection] = useState('home')
   const [activeIcon, setActiveIcon] = useState('Explorador')
 

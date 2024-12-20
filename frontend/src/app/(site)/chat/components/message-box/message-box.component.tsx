@@ -5,7 +5,7 @@ import Input from "@/components/input/input.component";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 
 import { socket } from "@/socket/socket";
 
@@ -21,7 +21,7 @@ const MessageBox = () => {
     handleSubmit,
   } = useGenerateForm<ChatMessage>(CHAT_MESSAGE_INITIAL_STATE, CHAT_MESSAGE_INITIAL_STATE);
 
-  const [ userState ] = useStore<User>("user");
+  const [ userState ] = useStore<BTUser>("user");
 
   return (
     <div className="relative">
