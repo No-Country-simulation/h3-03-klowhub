@@ -284,11 +284,12 @@ export class CoursesService {
       // where: { available: true },
       relations: ['modules', 'modules.lessons', 'coverImg'],
     });
+    console.log('course: ', course);
     return course;
   }
 
   async findOneCourse(id: string): Promise<any> {
-    const course = await this.courseRepository.findOne({ where: { id } });
+    const course = await this.courseRepository.findOne({ where: { id }, relations: ['modules', 'modules.lessons', 'coverImg'] });
     if (!course) {
       throw new NotFoundException(`course with ID ${id} not found`);
     }
@@ -316,9 +317,8 @@ export class CoursesService {
 
   async getAllCoursesWithUsers() {
     try {
-      //const course = await this.courseRepository.find();
       const courses = await this.courseRepository.find({
-        relations: ['modules'],
+        relations: ['modules', 'modules.lessons', 'coverImg'],
       });
 
       if (!courses || courses.length === 0) {
@@ -396,7 +396,7 @@ export class CoursesService {
   async findOne(id: string): Promise<Course | null> {
     const course = await this.courseRepository.findOne({
       where: { id },
-      relations: ['modules', 'modules.lessons', 'coverImg'],
+      relations: ['modules', 'modules.lessons', 'coverImg', 'promo'],
     });
     console.log('Course found:', course);
     if (!course) {
