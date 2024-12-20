@@ -37,7 +37,7 @@ const getProducts = async (endpoint: string) => {
     const transformedCourses = courses.map(c => transformBTCourse(c));
     return transformedCourses
   } catch (err) {
-    console.error('there was an error when getting applications: ', err);
+    console.error('error when getting courses: ', err);
   }
 };
 

@@ -15,7 +15,8 @@ const PublishButton = ({ children, route }: Props) => {
   const [ user ] = useStore<User>("user");
   const router = useRouter();
 
-  return user.sellerData ? (
+  // @ts-ignore: Unreachable code error
+  return user.sellerData || user.seller ? (
     <Button onClick={() => router.push(route)}>{ children }</Button>
   ) :<Button onClick={() => router.push("/membership?section=selection")}>Elige un plan para empezar a publicar</Button>
  

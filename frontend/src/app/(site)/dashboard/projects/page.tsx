@@ -26,7 +26,6 @@ const getProjects = async () => {
 
 const MyProjectsPage = async () => {
     const projectsData = await getProjects();
-  console.log('projectsData: ', projectsData);
     const activeProjects = projectsData && projectsData.filter((project) => project.status === "en-curso");
     const completedProjects = projectsData && projectsData.filter((project) => project.status === "finalizado");
 
