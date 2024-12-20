@@ -59,17 +59,6 @@ const submitProposal = async (
   };
 
   return fullProposal
-
-  console.log('fullProposal: ', fullProposal);
-
-  // await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}/proposal`, {
-  //   method: "post",
-  //   body: JSON.stringify(fullProposal),
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }
-  // });
-
 };
 
 const ProposalForm = ({ projectAuthorId }: Props) => {
@@ -111,6 +100,7 @@ const ProposalForm = ({ projectAuthorId }: Props) => {
           <Button
             onClick={() => setIsKanbanOpen(!isKanbanOpen)}
             disabled={loading}
+            type="button"
             className="z-10 md:z-0 md:absolute w-fit top-[40px] text-xs md:text-sm right-1 md:right-6 md:w-fit md:top-[50px] md:h-[35px]"
           >
             {columns.length === 0

@@ -36,8 +36,8 @@ const register = async (data: TRegisterData) => {
 
 // TRELLO API CALLS
 const API_TRELLO_URL = "https://api.trello.com";
-const TRELLO_API_KEY = process.env.TRELLO_API_KEY;
-const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
+const TRELLO_API_KEY = process.env.NEXT_PUBLIC_TRELLO_API_KEY;
+const TRELLO_API_TOKEN = process.env.NEXT_PUBLIC_TRELLO_API_TOKEN;
 
 const createBoard = async (data: TCreateBoardData) => {
   return apiFetch(
