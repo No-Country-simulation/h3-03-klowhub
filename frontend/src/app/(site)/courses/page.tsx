@@ -45,6 +45,8 @@ const Page = async () => {
   const courses = await getProducts(`${process.env.NEXT_PUBLIC_COURSES_URL}?withAuthor=true`);
   const queryParams = await getQueryParams();
 
+  console.log(courses)
+
   return (
     <main className="pb-6">
       <BreadCrumb />

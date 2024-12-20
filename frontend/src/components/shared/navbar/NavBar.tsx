@@ -112,11 +112,11 @@ export const NavBar = () => {
             <SheetContent className='pt-14'>
               <SheetTitle className='absolute top-3 fond-semibold'>Menu</SheetTitle>
               <div className='flex flex-col items-center space-y-4 mb-8'>
-                <NavItem><Link href="/dashboard"></Link></NavItem>
-                <NavItem><Link href="/courses">Curso y lecciones</Link></NavItem>
-                <NavItem><Link href="/applications">AppStore</Link></NavItem>
-                <NavItem><Link href="/projects">Proyectos</Link></NavItem>
-                <NavItem><Link href="/membership?section=selection">Planes</Link></NavItem>
+                <Link href="/dashboard">Dashboard</Link>
+                <Link href="/courses">Curso y lecciones</Link>
+                <Link href="/applications">AppStore</Link>
+                <Link href="/projects">Proyectos</Link>
+                <Link href="/membership?section=selection">Planes</Link>
               </div>
               <div className='flex flex-col space-y-4'>
                 <Link href="/login" className={`${buttonVariants({ variant: "outline" })} border-primary-300 rounded-xl`}>Ingresar</Link>
