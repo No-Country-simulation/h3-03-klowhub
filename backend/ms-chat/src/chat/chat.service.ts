@@ -1,52 +1,3 @@
-// import { Injectable } from '@nestjs/common';
-// import { InjectRepository } from '@nestjs/typeorm';
-// import { Repository } from 'typeorm';
-// import { Message } from './entities/message.entity';
-// import { Chat } from './entities/chat.entity';
-// import { HttpService } from '@nestjs/axios';
-// import { lastValueFrom } from 'rxjs';
-
-// @Injectable()
-// export class ChatService {
-//   constructor( private readonly httpService: HttpService,
-//     @InjectRepository(Chat) private chatRepo: Repository<Chat>,
-//     @InjectRepository(Message) private messageRepo: Repository<Message>,
-//   ) {}
-
-//   async createPrivateChat(userIds: number[]): Promise<Chat> {
-//     const chat = this.chatRepo.create({ type: 'private' });
-//     return await this.chatRepo.save(chat);
-//   }
-
-//   async createGroupChat(courseId: number): Promise<Chat> {
-//     const chat = this.chatRepo.create({ type: 'group', courseId });
-//     return await this.chatRepo.save(chat);
-//   }
-
-//   async sendMessage(chatId: number, userId: number, content: string, fileUrl?: string): Promise<Message> {
-//     // Validar mensajes sin correos ni teléfonos
-//     if (/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/.test(content)) {
-//       throw new Error('Prohibido enviar correos electrónicos');
-//     }
-
-//     const message = this.messageRepo.create({ chatId, userId, content, fileUrl });
-//     return await this.messageRepo.save(message);
-//   }
-
-//   async getMessages(chatId: number): Promise<Message[]> {
-//     return await this.messageRepo.find({ where: { chatId }, order: { createdAt: 'ASC' } });
-//   }
-
-//   async createMessage(chatId: number, userId: number, content: string, fileUrl?: string) {
-//     const chat = await this.chatRepo.findOne({ where: { id: chatId } });
-//     if (!chat) throw new Error('Chat not found');
-
-//     const message = this.messageRepo.create({ chat, userId, content, fileUrl });
-//     return await this.messageRepo.save(message);
-//   }
-// }
-
-
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -98,7 +49,7 @@ export class ChatService {
     return this.chatRepository.save(newChat);
   }
 
-  async addMembersToGroupChat(chatId: number, addMembersDto: AddMembersDto): Promise<Chat> {
+  async addMembersToGroupChat(chatId: string, addMembersDto: AddMembersDto): Promise<Chat> {
     const chat = await this.chatRepository.findOne({ where: { id: chatId } });
 
     if (!chat || chat.type !== 'group') {
@@ -110,8 +61,8 @@ export class ChatService {
     return this.chatRepository.save(chat);
   }
 
-  async getChatsByUserId(userId: number): Promise<any[]> {
-    const chats = await this.chatRepository.find();
+  async getChatsByUserId(userId: string): Promise<any[]> {
+    const chats = await this.chatRepository.find({ relations: ["messages"] });
 
     const userChats = chats.filter(chat => chat.members.includes(userId.toString()));
 
@@ -137,7 +88,7 @@ export class ChatService {
     return enrichedChats;
   }
 
-  async getChatMessages(chatId: number): Promise<Message[]> {
+  async getChatMessages(chatId: string): Promise<Message[]> {
     const messages = await this.messageRepository.find({ where: { chatId } });
 
     if (!messages || messages.length === 0) {
@@ -147,7 +98,7 @@ export class ChatService {
     return messages;
   }
 
-  async createMessage(chatId: number, createMessageDto: CreateMessageDto): Promise<Message> {
+  async createMessage(chatId: string, createMessageDto: CreateMessageDto): Promise<Message> {
     const { userId, content, fileUrl, emotes } = createMessageDto;
     
     // Crear el mensaje
@@ -164,5 +115,24 @@ export class ChatService {
     
     // Enviar el mensaje al cliente a través del gateway
     return savedMessage;
+  }
+
+
+  async getChatBetweenUsers(userId1: string, userId2: string): Promise<{ chat: Chat; messages: Message[] }> {
+    const chat = await this.chatRepository.findOne({
+      where: { members: [userId1, userId2].sort().join(',') },
+      relations: ['messages'],
+    });
+
+    if (!chat) {
+      throw new NotFoundException('No chat found between these users.');
+    }
+
+    const messages = await this.messageRepository.find({
+      where: { chatId: chat.id },
+      order: { createdAt: 'ASC' },
+    });
+
+    return { chat, messages };
   }
 }
