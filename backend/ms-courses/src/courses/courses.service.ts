@@ -1,13 +1,14 @@
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Course } from './entities/course.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import {
   CloudinaryUploadFailedException,
@@ -251,52 +252,61 @@ export class CoursesService {
     }
   }
 
-  // LOS TRES SERVICIOS DE ABAJO SON TESTEOS VERIFICANDO QUE FUNCIONE CADA UNO (APROBADO)
-  // SOLO CURSOS
-  // async createCourse(createCourseDto: CreateCourseDto): Promise<Course> {
-  //   const course = this.courseRepository.create(createCourseDto);
-  //   return await this.courseRepository.save(course);
-  // }
+  async findAll(): Promise<any[]> {
+    try {
+      const courses = await this.courseRepository.find({
+        relations: [
+          'modules',
+          'modules.lessons',
+          'coverImg',
+          'promotionalVideo',
+        ],
+      });
 
-  // //SOLO  LECCIONES
-  // async createLesson(createLessonDto: CreateLessonDto): Promise<Lesson> {
-  //   const lesson = this.lessonRepository.create(createLessonDto);
-  //   return await this.lessonRepository.save(lesson);
-  // }
+      if (!courses || courses.length === 0) {
+        throw new NotFoundException('No hay cursos disponibles.');
+      }
 
-  // //SOLO MODULOS
-  // async createModulos(
-  //   createCourseModuleDto: CreateCourseModuleDto,
-  // ): Promise<CourseModule> {
-  //   const lesson = this.courseModuleRepository.create(createCourseModuleDto);
-  //   return await this.courseModuleRepository.save(lesson);
-  // }
+      const enrichedCourses = await Promise.all(
+        courses.map(async (course) => {
+          try {
+            const { data: author } = await this.httpService
+              .get(`${envs.msUsersEndpoint}/${course.userId}`)
+              .toPromise();
+            return {
+              ...course,
+              author, // Agregamos la propiedad author
+            };
+          } catch (error) {
+            console.error(
+              `Error fetching author for course ${course.id}:`,
+              error.message,
+            );
+            return {
+              ...course,
+              author: null, // Valor predeterminado si falla la consulta
+            };
+          }
+        }),
+      );
 
-  // async findCourse(title: string) {
-  //   // const normalizedTitle = title.trim().toLowerCase(); // Normalizar el título
-  //   return await this.courseRepository.findOne({
-  //     where: { title },
-  //   });
-  // }
-
-  async findAll(): Promise<Course[]> {
-    const course = await this.courseRepository.find({
-      // where: { available: true },
-      relations: ['modules', 'modules.lessons', 'coverImg'],
-    });
-    return course;
+      return enrichedCourses;
+    } catch (error) {
+      console.error('Error fetching courses:', error.message);
+      throw new InternalServerErrorException('Error retrieving courses.');
+    }
   }
 
   async findOneCourse(id: string): Promise<any> {
-    const course = await this.courseRepository.findOne({ where: { id } });
+    const course = await this.courseRepository.findOne({
+      where: { id },
+      relations: ['modules', 'modules.lessons', 'coverImg', 'promotionalVideo'],
+    });
     if (!course) {
       throw new NotFoundException(`course with ID ${id} not found`);
     }
-
     const requestUrl = `${envs.msUsersEndpoint}/${course.userId}`;
 
-    //console.log('Request URL:', requestUrl); // Imprime la URL para verificarla
-    //console.log('DEVOLVIENDO EL CURSO CREADO!', course.userId);
     try {
       const userResponse = await lastValueFrom(
         this.httpService.get(requestUrl),
@@ -314,11 +324,17 @@ export class CoursesService {
     }
   }
 
-  async getAllCoursesWithUsers() {
+  async getAllCoursesByUserId(userId: string) {
     try {
       //const course = await this.courseRepository.find();
       const courses = await this.courseRepository.find({
-        relations: ['modules'],
+        where: { userId },
+        relations: [
+          'modules',
+          'modules.lessons',
+          'coverImg',
+          'promotionalVideo',
+        ],
       });
 
       if (!courses || courses.length === 0) {
@@ -341,57 +357,6 @@ export class CoursesService {
       throw err;
     }
   }
-
-  // async findOneCourse(
-  //   id: string,
-  //   withAuthor: boolean = false,
-  // ): Promise<Course | null> {
-  //   const course = await this.courseRepository.findOne({
-  //     where: { id },
-  //     relations: ['modules', 'multimedia', 'modules.lessons', 'coverImg'],
-  //   });
-  //   console.log('Course found:', course);
-  //   if (!course) {
-  //     // return null;
-  //     throw new NotFoundException(`App with ID ${id} not found`);
-  //   }
-
-  //   // Verificar si coverImg y assets están definidos antes de acceder a sus propiedades
-  //   const coverImageDetails = course.coverImg
-  //     ? await this.multimediaRepository.findOne({
-  //         where: { id: course.coverImg.id },
-  //       })
-  //     : null;
-
-  //   const multimediaDetails =
-  //     course.multimedia && course.multimedia.length > 0
-  //       ? await this.multimediaRepository.find({
-  //           where: {
-  //             id: In(course.multimedia.map((multimedia) => multimedia.id)),
-  //           },
-  //         })
-  //       : [];
-
-  //   let authorInfo = null;
-  //   if (withAuthor) {
-  //     const authorResponse = await this.httpService
-  //       .get(`${envs.msUsersEndpoint}/${course.userId}`)
-  //       .toPromise();
-  //     // const authorResponse = await firstValueFrom(
-  //     //   this.httpService.get(`${envs.msUsersEndpoint}/${course.userId}`),
-  //     // );
-  //     authorInfo = authorResponse.data;
-  //   }
-  //   console.log('informacion del author', authorInfo);
-  //   return {
-  //     ...course,
-  //     coverImg: coverImageDetails,
-  //     multimedia: multimediaDetails,
-  //     author: authorInfo,
-  //   };
-
-  //   // return course;
-  // }
 
   async findOne(id: string): Promise<Course | null> {
     const course = await this.courseRepository.findOne({
@@ -425,76 +390,24 @@ export class CoursesService {
     // return this.findOne(id);
   }
 
+  //   //ELIMINAR UN CURSO
   async remove(id: string): Promise<Course | null> {
     const course = await this.findOne(id);
     if (!course) {
       return null;
     }
-    course.available = false;
-    await this.courseRepository.save(course);
-    return course;
+
+    // Eliminar las lecciones asociadas a los módulos del curso
+    await this.lessonRepository.delete({
+      module: In(course.modules.map((module) => module.id)),
+    });
+
+    // Eliminar los módulos relacionados con el curso
+    await this.courseModuleRepository.delete({ course });
+
+    // Eliminar el curso
+    await this.courseRepository.delete(id);
+
+    return null; // Devolver el curso eliminado
   }
-
-  //entidad de imagen
-  // async createImage(imageFile: Express.Multer.File): Promise<Image> {
-  //   const uploadImage = await this.cloudinaryService.uploadFile(imageFile);
-  //   const imageData = {
-  //     url: uploadImage.secure_url,
-  //     size: uploadImage.bytes,
-  //     width: uploadImage.width,
-  //     height: uploadImage.height,
-  //     format: uploadImage.format,
-  //     created_at: uploadImage.created_at,
-  //   };
-  //   const imagen = await this.imageRepository.save(imageData);
-  //   console.log('video creado', imagen);
-
-  //   return imagen;
-  // }
-  //entidad de Video
-  // async createVideo(
-  //   VideoDto: VideoDto,
-  //   videoFile: Express.Multer.File,
-  // ): Promise<Video> {
-  //   const uploadVideo = await this.cloudinaryService.uploadFile(videoFile);
-  //   console.log('UPLOAD VIDEO', uploadVideo);
-  //   const videoData = {
-  //     url: uploadVideo.secure_url,
-  //     duration: uploadVideo.duration,
-  //     size: uploadVideo.bytes,
-  //     format: uploadVideo.format,
-  //     width: uploadVideo.width,
-  //     height: uploadVideo.height,
-  //     thumbnail_url: uploadVideo.thumbnailUrl,
-  //     thumbnail_width: uploadVideo.thumbnailUrl_width,
-  //     thumbnail_height: uploadVideo.thumbnailUrl_height,
-  //     created_at: new Date(uploadVideo.created_at),
-  //   };
-
-  //   const video = this.videoRepository.create(videoData);
-  //   const savedVideo = await this.videoRepository.save(video);
-  //   console.log('video creado', video);
-  //   console.log('Video guardado:', savedVideo);
-
-  //   const imagenData = {
-  //     thumbnail_url: uploadVideo.thumbnailUrl,
-  //     video: savedVideo,
-  //   };
-  //   const imagen = this.thumbnailRepository.create(imagenData);
-  //   const savedImagen = this.thumbnailRepository.save(imagen);
-  //   console.log('imagen guardada:', savedImagen);
-
-  //   return savedVideo;
-  //   // return this.videoRepository.save(video);
-  // }
-  // async findOneVideo(id: string) {
-  //   const video = await this.videoRepository.findOne({
-  //     where: { id },
-  //     // relations: ['thumbnail_url'],
-  //   });
-  //   if (!video) {
-  //     return null;
-  //   }
-  //   return video;
-  // }
 }
