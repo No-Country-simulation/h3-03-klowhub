@@ -1,5 +1,14 @@
 import { TImage } from "@/types/global.types"
 
+export const lastMessageMock = {
+  id: "",
+  userId: "",
+  chatId: "",
+  content: "",
+  fileUrl: "",
+  createdAt: ""
+}
+
 export const defaultContact = {
   id: "xxxxx",
   name: "No se pudo cargar el contacto",
