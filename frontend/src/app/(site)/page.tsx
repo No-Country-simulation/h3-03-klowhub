@@ -14,7 +14,7 @@ export default function Home() {
           className="w-full"
         />
         <DashboardOptions/>
-        <SimilarCourses/> 
+        {/* <SimilarCourses/>  */}
       </main>
     </>
   );

@@ -3,15 +3,16 @@ import { TProjectCard } from "@/types/project.types";
 import { RequiredProperty } from "@/types/utils.types";
 
 export const transformBTProject = (project: RequiredProperty<ProjectWithFullImgs>): TProjectCard => {
+  console.log('project.author.seller: ', project.author.seller);
   const projectFT = {
     id: project.id!,
     title: project.title,
     description: project.description,
     instructor: {
       name: project.author.name,
-      img: project.author.profileImg.fileMetadata,
+      profileImg: project.author.profileImg,
       userType: project.author.seller.type,
-      description: project.author.seller.about,
+      description: "asdasdasd",
       rating: 4.5
     },
     platform: "PowerApps" as TProjectCard["platform"],
@@ -20,6 +21,7 @@ export const transformBTProject = (project: RequiredProperty<ProjectWithFullImgs
     rating: 4.5,
     ratingCount: 16
   };   
+  console.log('projectFT: ', projectFT);
 
   return projectFT
 };

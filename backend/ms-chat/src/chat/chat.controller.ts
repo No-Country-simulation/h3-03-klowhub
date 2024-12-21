@@ -24,7 +24,7 @@ export class ChatController {
     @Param('chatId') chatId: string,
     @Body() addMembersDto: AddMembersDto
   ) {
-    return this.chatService.addMembersToGroupChat(Number(chatId), addMembersDto);
+    return this.chatService.addMembersToGroupChat(String(chatId), addMembersDto);
   }
 
   @Get(':userId')
@@ -44,31 +44,9 @@ export class ChatController {
   ) {
     return this.chatService.createMessage(String(chatId), createMessageDto);
   }
+  
+  @Post('between-users')
+  async getChatBetweenUsers(@Body('userId1') userId1: string, @Body('userId2') userId2: string) {
+    return this.chatService.getChatBetweenUsers(userId1, userId2);
+  }
 }
-
-
-
-  // @Post('private')
-  // async createPrivateChat(@Body('userIds') userIds: number[]) {
-  //   return await this.chatService.createPrivateChat(userIds);
-  // }
-
-  // @Post('group')
-  // async createGroupChat(@Body('courseId') courseId: number) {
-  //   return await this.chatService.createGroupChat(courseId);
-  // }
-
-  // @Get(':chatId/messages')
-  // async getMessages(@Param('chatId') chatId: number) {
-  //   return await this.chatService.getMessages(chatId);
-  // }
-  // @Post(':chatId/messages')
-  // async createMessage(
-  //   @Param('chatId') chatId: number,
-  //   @Body('userId') userId: number,
-  //   @Body('content') content: string,
-  //   @Body('fileUrl') fileUrl?: string,
-  // ) {
-  //   return await this.chatService.createMessage(chatId, userId, content, fileUrl);
-  // }
-// }

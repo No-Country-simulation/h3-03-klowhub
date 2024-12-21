@@ -326,7 +326,6 @@ export class CoursesService {
 
   async getAllCoursesByUserId(userId: string) {
     try {
-      //const course = await this.courseRepository.find();
       const courses = await this.courseRepository.find({
         where: { userId },
         relations: [
@@ -361,7 +360,7 @@ export class CoursesService {
   async findOne(id: string): Promise<Course | null> {
     const course = await this.courseRepository.findOne({
       where: { id },
-      relations: ['modules', 'modules.lessons', 'coverImg'],
+      relations: ['modules', 'modules.lessons', 'coverImg', 'promotionalVideo'],
     });
     console.log('Course found:', course);
     if (!course) {

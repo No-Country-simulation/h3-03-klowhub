@@ -61,13 +61,19 @@ export type FilePayload = {
 }
 
 export type PromotedProduct = {
-  type: "application" | "course" | null
+  type: string | null
   id: string | null
 }
 
 export type Promotion = {
   id?: string
   product: PromotedProduct
+  percentage: number
+}
+
+export type BTPromotion = {
+  id: string
+  type: string
   percentage: number
 }
 

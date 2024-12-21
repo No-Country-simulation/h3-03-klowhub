@@ -15,6 +15,8 @@ type Props = {
 }
 
 const ProjectCard = ({ project }: Props) => {
+  // console.log(project.instructor.img.url);
+  // console.log('project: ', project);
 
     return (
         <Card className='tracking-wider'>
@@ -73,7 +75,7 @@ const ProjectCard = ({ project }: Props) => {
                     <div className='flex flex-col gap-3.5'>
                         <div className='flex gap-3.5 items-center'>
                             <div className={`shrink-0 relative w-[50px] h-[50px]`}>
-                                <Image src={project.instructor.img.url} fill alt="" />
+                                <Image src={project.instructor.profileImg.fileMetadata.url} fill alt="" />
                             </div>
                             <div className='flex flex-col gap-1 h-[50px]'>
                                 <div className='flex gap-3 items-center'>

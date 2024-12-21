@@ -9,7 +9,7 @@ import { breakCourse, groupCourse } from "./course-form.acl";
 import { CourseFormActions, setDetailsData } from "./course-form.actions";
 import { setGeneralData, setModulesData, setPromotionData } from "./course-form.actions";
 
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import { CourseWithFullAssets, CourseFormData } from "@/types/courses.types";
 
 type Props = {
@@ -32,7 +32,7 @@ const CourseCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(courseFormReducer, COURSE_FORM_INITIAL_STATE);
   const params = useParams();
   const courseId = params.id;
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
 
   const submitCourse = useCallback(async (additionalData = {}) => {
     if (!user) return;

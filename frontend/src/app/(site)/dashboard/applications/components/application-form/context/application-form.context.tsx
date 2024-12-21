@@ -9,7 +9,7 @@ import { ApplicationFormActions } from "./application-form.actions";
 import { breakApplication, groupApplication } from "./application-form.acl";
 import { setGeneralData, setDetailsData, setMediaData, setPromotionData } from "./application-form.actions";
 
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import { ApplicationWithFullImgs, ApplicationFormData } from "@/types/application.types";
 
 type Props = {
@@ -29,7 +29,7 @@ export const ApplicationCtx = createContext<TApplicationCtx>({
 
 const ApplicationCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(applicationFormReducer, APPLICATION_FORM_INITIAL_STATE);
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
   const params = useParams();
   const applicationId = params.id;
 

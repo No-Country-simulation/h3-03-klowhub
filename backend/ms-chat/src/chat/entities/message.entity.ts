@@ -3,13 +3,13 @@ import { Chat } from './chat.entity';
 
 @Entity('messages')
 export class Message {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   userId: string;
 
-  @Column()
+  @Column({ nullable: true })
   chatId: string;
 
   @Column('text')

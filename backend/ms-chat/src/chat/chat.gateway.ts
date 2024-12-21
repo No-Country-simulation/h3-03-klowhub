@@ -63,7 +63,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   // Evento para unirse a un chat
   @SubscribeMessage('joinChat')
-  async handleJoinChat(client: Socket, chatId: number): Promise<void> {
+  async handleJoinChat(client: Socket, chatId: string): Promise<void> {
     client.join(`chat-${chatId}`);
     console.log(`Client ${client.id} joined chat-${chatId}`);
   }
@@ -100,7 +100,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('addMemberToGroup')
   async handleAddMemberToGroup(
     client: Socket,
-    payload: { chatId: number; userId: number }
+    payload: { chatId: string; userId: string }
   ): Promise<void> {
     const { chatId, userId } = payload;
 
@@ -117,7 +117,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   // Notificación de usuarios conectados en un chat (opcional)
   @SubscribeMessage('notifyConnectedUsers')
-  async handleNotifyConnectedUsers(client: Socket, chatId: number): Promise<void> {
+  async handleNotifyConnectedUsers(client: Socket, chatId: string): Promise<void> {
     const connectedUsers = Array.from(
       this.server.sockets.adapter.rooms.get(`chat-${chatId}`) || []
     );

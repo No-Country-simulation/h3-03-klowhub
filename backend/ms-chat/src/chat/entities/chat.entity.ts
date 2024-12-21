@@ -3,8 +3,8 @@ import { Message } from './message.entity';
 
 @Entity('chats')
 export class Chat {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column("simple-array", { nullable: true })
   members: string[];
@@ -13,7 +13,7 @@ export class Chat {
   type: string;
 
   @Column({ nullable: true })
-  courseId: number;
+  courseId: string;
 
   @OneToMany(() => Message, (message) => message.chat)
   messages: Message[];

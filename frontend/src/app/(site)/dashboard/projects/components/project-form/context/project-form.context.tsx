@@ -9,7 +9,7 @@ import { ProjectFormActions } from "./project-form.actions";
 import { breakProject, groupProject } from "./project-form.acl";
 import { setGeneralData, setDetailsData } from "./project-form.actions";
 
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import { ProjectWithFullImgs, ProjectFormData, ValidatedProjectForm } from "@/types/project.types";
 
 type Props = {
@@ -31,7 +31,7 @@ const ProjectCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(projectFormReducer, PROJECT_FORM_INITIAL_STATE);
   const params = useParams();
   const projectId = params.id;
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
 
   const submitProject = useCallback(async () => {
     if (!user) return;
@@ -40,6 +40,7 @@ const ProjectCtxProvider = ({ children }: Props) => {
     const createEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/user/${user.id}`;
     const editEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/${projectId}`;
 
+    console.log('formattedData: ', formattedData);
     const res = await fetch(projectId ? editEndpoint : createEndpoint, {
       method: projectId ? 'put' : 'post',
       body: JSON.stringify(formattedData),
