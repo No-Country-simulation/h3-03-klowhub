@@ -1,3 +1,4 @@
+import { FullProposal } from "@/app/(site)/projects/[id]/components/proposal-form/proposal-form.types"
 import { BTSeller } from "@/types/backend-responses.types"
 import { TImage } from "@/types/global.types"
 
@@ -17,6 +18,7 @@ export type UI = {
 }
 
 export type Store = {
-  user: User
+  user: User | null
   ui: UI
+  proposal: FullProposal | null
 }

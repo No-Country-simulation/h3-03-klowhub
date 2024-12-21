@@ -41,7 +41,8 @@ export function breakCourse (data: CourseFormData, reduceAssets = false) {
       lessons: m.lessons.map(l => ({
         ...l, 
         video: l.video!.id,
-        documents: l.documents.map(d => d.id)
+        // documents: l.documents.map(d => d.id)
+        documents: l.documents
       })) 
     })) : modules,
     promotion

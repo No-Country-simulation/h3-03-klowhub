@@ -2,7 +2,7 @@ import Icon from '@/components/icon/icon.component'
 import { IconTypes } from '@/components/icon/icon.types'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { getSlug } from '@/utils/str.utils'
+import { getSlug, strForDisplay } from '@/utils/str.utils'
 import { EllipsisVertical, Heart, Link as LinkIcon } from 'lucide-react'
 import Link from 'next/link'
 import Image from "next/image"
@@ -61,25 +61,25 @@ const ProjectCard = ({ project }: Props) => {
                         >
                             {project.platform}
                         </Badge>
-                        {/* <div className='flex gap-3'> */}
-                        {/**/}
-                        {/*     { */}
-                        {/*         project.tags.map((t, idx) => ( */}
-                        {/*             <Badge key={`product-card-badge-${idx}`}>{t}</Badge> */}
-                        {/*         )) */}
-                        {/*     } */}
-                        {/* </div> */}
+                        <div className='flex gap-3'>
+
+                            {
+                                project.tags.map((t, idx) => (
+                                    <Badge key={`product-card-badge-${idx}`}>{t}</Badge>
+                                ))
+                            }
+                        </div>
                     </div>
                     <div className='flex flex-col gap-3.5'>
                         <div className='flex gap-3.5 items-center'>
                             <div className={`shrink-0 relative w-[50px] h-[50px]`}>
-                                <Image src={project.instructor.img.url} fill alt={project.instructor.img.alt}></Image>
+                                <Image src={project.instructor.img.url} fill alt="" />
                             </div>
                             <div className='flex flex-col gap-1 h-[50px]'>
                                 <div className='flex gap-3 items-center'>
-                                    <span className='text-sm'>{project.instructor.name}</span>
-                                    <span className="bg-pro-badge-gradient w-[45px] h-[27px] flex justify-center items-center text-xs font-[100] rounded-lg">
-                                        {project.instructor.userType}
+                                    <span className='text-sm'>{project.instructor.name && strForDisplay(project.instructor.name)}</span>
+                                    <span className="bg-pro-badge-gradient px-3 py-2 flex justify-center items-center text-xs font-[100] rounded-lg">
+                                        {project.instructor.userType && strForDisplay(project.instructor.userType)}
                                     </span>
                                 </div>
                                 <span className='text-xs text-primary-100'>{project.instructor.description}</span>

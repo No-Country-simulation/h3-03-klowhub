@@ -1,7 +1,6 @@
 import Link from "next/link";
 import BreadCrumb from "@/components/breadcrumbs/breadcrumbs.component"
 import { getQueryParams } from "@/utils/route.utils";
-import { Inter } from "next/font/google";
 import MyCoursesDesktopView from "./views/desktop.view";
 import MyCoursesMobileView from "./views/mobile.view";
 import { filterData, sortData } from "@/utils/filterdata.utils";
@@ -16,17 +15,15 @@ const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint, { cache: "force-cache" });
     const items: TQuickView[] = await res.json();
+    
+    // @ts-ignore: Unreachable code error
+    if (items.statusCode) return [];
+
     return items
   } catch (err) {
     console.error("error while getting published courses: ", err)
   }
 };
-
-const inter = Inter({
-    subsets: ["latin"],
-    weight: ["100", "200", "400", "600", "700"],
-    display: "swap",
-});
 
 const MyCoursesPage = async () => {
 
@@ -37,7 +34,7 @@ const MyCoursesPage = async () => {
     const sortedData = sortData(sortBy, order, filteredData)
 
     return (
-        <main className={`${inter.className} w-full tracking-wide pb-28`}>
+        <main className={`w-full tracking-wide pb-28`}>
             <div className="px-6 md:px-0 mx-auto">
                 <BreadCrumb />
             </div>

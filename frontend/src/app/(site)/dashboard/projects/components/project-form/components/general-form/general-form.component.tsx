@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { PROJECT_INFO_INITIAL_STATE } from "./general-form.consts";
 import { ProjectInfo } from "@/types/project.types";
 import Input from "@/components/input/input.component";
-import { sector, experienceLevel, workMethodology, requiredSkills } from "@/consts/filters.consts";
+import { sector, experienceLevel, workMethodology, tags } from "@/consts/filters.consts";
 import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 import RouteBtn from "@/components/route-btn/route-btn.component";
 import { setGeneralData } from "../../context/project-form.actions";
@@ -84,6 +84,13 @@ const GeneralForm = () => {
             options={experienceLevel.items}
             label="Nivel de experiencia"
             placeholder="Ingresa la metodología de trabajo"
+            {...controlledCommonProps}
+          />
+          <Input
+            name="tags" type="select" options={tags.items}
+            label="Agrega etiquetas relacionadas"
+            placeholder="Selecciona las etiquetas"
+            isMulti
             {...controlledCommonProps}
           />
         </IsClientProvider>

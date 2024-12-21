@@ -3,20 +3,16 @@ import ProjectInfo from "./components/project-info/project-info.component";
 import AuthorCard from "@/components/author-card/author-card.component";
 import AuthorData from "@/components/author-card/components/author-data/author-data.component";
 import { FileChartColumnIncreasing, MessageSquare, Star } from "lucide-react";
-import ProposalForm from "./components/proposal-form/proposal-form.component";
 import { Button } from "@/components/ui/button";
 import { ProjectWithFullImgs } from "@/types/project.types";
-import { BTUser } from "@/types/user.types";
+import ProposalFormWithKanbanContext from "./components/proposal-form/proposal-form-with-kanban-context";
 
-// const endpoint = process.env.NEXT_PUBLIC_PROJECTS_URL;
-const endpoint = "http://localhost:3000/api/projects";
+const endpoint = process.env.NEXT_PUBLIC_PROJECTS_URL;
 
 const getProject = async (projectId: string) => {
   const res = await fetch(`${endpoint}/${projectId}?withAuthor=true`);
   const projectData: ProjectWithFullImgs = await res.json();
-  
-  // @ts-ignore: Unreachable code error
-  projectData.author = projectData.user
+  console.log('projectData: ', projectData);
 
   return projectData
 };
@@ -48,9 +44,9 @@ const ProjectDetailPage = async ({ params }: Props) => {
           w-full
           lg:w-1/4
         `}>
-          <AuthorCard 
-            name={projectData.author.name } 
-            about={projectData.author.seller!.about }
+          <AuthorCard
+            name={projectData.author.name}
+            about={projectData.author.seller!.about}
             profileImg={projectData.author.profileImg}
           >
             <AuthorData Icon={Star} data="Calificación: 5" />
@@ -62,10 +58,13 @@ const ProjectDetailPage = async ({ params }: Props) => {
           w-full pt-5 border-t-1 
           lg:w-full 
         `}>
-          <ProposalForm />
+          {/* <ProposalForm /> */}
+          <ProposalFormWithKanbanContext projectAuthorId={projectData.author.id} />
         </div>
       </div>
-      <Button type="submit" form="proposal-form">Enviar propuesta</Button>
+      <div className="w-full flex justify-end pt-5">
+        <Button type="submit" form="proposal-form">Enviar propuesta</Button>
+      </div>
     </main>
   )
 };

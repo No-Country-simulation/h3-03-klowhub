@@ -16,14 +16,13 @@ import { Button } from "@/components/ui/button";
 import Greeter from "@/components/greeter/greeter.component";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { Popover } from "@/components/popover/popover.component";
-// import promotionMock from "./promotions.mock.json"
 
 type ContentType = "applications" | "courses"
 
 const PromotionsSection = () => {
   const { state, dispatch, submitCourse } = useCourseContext();
   const [ error, setError ] = useState<object | null>(null)
+  console.log('error: ', error);
 
   const {
     commonProps,
@@ -55,12 +54,6 @@ const PromotionsSection = () => {
     if (selection === "yes") setShowSelector(true);
     if (selection === "no") setShowSelector(false);
   }, [selection])
-
-  // useEffect(() => {
-  //   console.log('promotionMock: ', promotionMock);
-  //   // @ts-ignore: Unreachable code error
-  //   dispatch(setPromotionData(promotionMock))
-  // }, [dispatch])
 
   return (
     <>
@@ -211,11 +204,12 @@ const PromotionsSection = () => {
             className="flex-1 md:grow-0"
             onClick={handleSubmit(async (promotion) => {
               try {
-              // throw new Error()
                 const courseId = await submitCourse({ promotion })
+                // @ts-ignore: Unreachable code error
+                if (courseId.statusCode) throw Error(courseId);
                 setNewCourseId(courseId)
               } catch (err) {
-              setError({ message: ['asdasdasd asdadaasda adadadd', '81e98u asdjadoadj asdua8db', 'asoidjd asd9ia asda9sdaid ac'] })
+                setError(err as Error)
               }
             })}
           >

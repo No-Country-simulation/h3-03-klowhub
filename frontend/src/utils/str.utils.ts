@@ -18,5 +18,8 @@ export const getYoutubeId = (url: string) => {
 };
 
 export const strForDisplay = (str: string) => {
-  return str.slice(0, 1).toUpperCase() + str.slice(1) 
+  const toUpperCase = str.slice(0, 1).toUpperCase() + str.slice(1)
+  const replaceHyphens = toUpperCase.replaceAll("-", " ");
+
+  return replaceHyphens
 };

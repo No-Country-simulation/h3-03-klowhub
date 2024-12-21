@@ -8,12 +8,14 @@ import {
   UseInterceptors,
   UploadedFile,
   Query,
+  Patch,
 } from '@nestjs/common';
 import { CreateAppDto } from './dto/create-app.dto';
 import { AppsService } from './apps.service';
 import { App } from './entities/app.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateAssetDto } from './dto/create-asset-dto';
+import { UpdateAppDto } from './dto/update-app.dto';
 
 @Controller('apps')
 export class AppsController {
@@ -70,5 +72,13 @@ export class AppsController {
     const isWithAuthor = withAuthor === 'true';
     console.log('withAuthor:', withAuthor, 'isWithAuthor:', isWithAuthor);
     return this.appService.findAll(isWithAuthor);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateAppDto: UpdateAppDto,
+  ): Promise<App> {
+    return this.appService.updateApp(id, updateAppDto);
   }
 }

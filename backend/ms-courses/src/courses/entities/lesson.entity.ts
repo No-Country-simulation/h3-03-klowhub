@@ -36,8 +36,10 @@ export class Lesson {
   @Column({ nullable: true, name: 'link' })
   link: string;
 
-  @ManyToOne(() => CourseModule, (module) => module.lessons)
-  @JoinColumn()
+  @ManyToOne(() => CourseModule, (courseModule) => courseModule.lessons, {
+    eager: false,
+  })
+  @JoinColumn({ name: 'moduleId' })
   module: CourseModule;
 
   // @OneToMany(() => Multimedia, (multimedia) => multimedia.lesson, {

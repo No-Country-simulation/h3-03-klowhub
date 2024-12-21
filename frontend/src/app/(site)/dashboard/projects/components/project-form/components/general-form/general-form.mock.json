@@ -15,5 +15,11 @@
       "label": "Logística y transporte"
     }
   ],
-  "platform": "appsheet"
+  "platform": "appsheet",
+  "tags": [
+    {
+      "name": "tecnologia-para-empresas",
+      "label": "Tecnología para empresas"
+    }
+  ]
 }

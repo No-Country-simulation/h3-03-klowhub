@@ -74,7 +74,7 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
         <>
       <div className="flex justify-between items-center">
         <h3 className="font-semibold text-sm">{title}</h3>
-        { user.id === authorId && formSection !== "preview" &&
+        { user && user.id === authorId && formSection !== "preview" &&
           <Link 
             href={`/dashboard/courses/form/${courseId}?section=general`}
             className={`${buttonVariants({ variant: "default" })}`}

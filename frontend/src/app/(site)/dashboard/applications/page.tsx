@@ -18,27 +18,24 @@ const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint, { cache: "force-cache" });
     const items: { data: TQuickView[] } = await res.json();
+    // @ts-ignore: Unreachable code error
+    if (items.statusCode) return []
     return items
   } catch (err) {
     console.error("error when getting applications: ", err)
   }
 };
 
-const inter = Inter({
-    subsets: ["latin"],
-    weight: ["100", "200", "400", "600", "700"],
-    display: "swap",
-});
-
 const MyAppsPage = async () => {
   const applicationsData = await getProducts(endpoint);
+  console.log('applicationsData: ', applicationsData);
 
     const { sortBy, order, filterBy, from, to, items } = await getQueryParams();
     const filteredData = filterData(filterBy, { from: from, to: to, items: items }, transactionsData)
     const sortedData = sortData(sortBy, order, filteredData)
 
     return (
-        <main className={`${inter.className} w-full tracking-wide pb-28`}>
+        <main className={`w-full tracking-wide pb-28`}>
             <div className="px-6 md:px-0 mx-auto">
                 <BreadCrumb />
             </div>

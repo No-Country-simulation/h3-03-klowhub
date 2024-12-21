@@ -170,7 +170,11 @@ export class ProjectsController {
     description: 'No se encontraron proyectos.',
   })
   async findAllWithUsers() {
-    return this.projectsService.getAllProjectsWithUsers();
+    try {
+      return this.projectsService.getAllProjectsWithUsers();
+    } catch (err) {
+      throw new NotFoundException("No se encontró ningún proyecto")
+    }
   }
 
 }

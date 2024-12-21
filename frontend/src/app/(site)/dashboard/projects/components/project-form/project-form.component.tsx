@@ -6,6 +6,8 @@ import FormAdvice from "@/components/form-advice/form-advice.component";
 import { advices } from "./consts";
 import ProjectCtxProvider from "./context/project-form.context";
 import ProjectInfo from "../../../../projects/[id]/components/project-info/project-info.component";
+import { Suspense } from "react";
+import { IsClientProvider } from "@/contexts/is-client/is-client.context";
 
 const ProjectForm = async () => {
   const { section } = await getQueryParams();
@@ -15,7 +17,7 @@ const ProjectForm = async () => {
       <main className={`flex flex-col gap-5 relative ${section === "promotion" ? "mb-32" : "mb-28"}`}>
         <div>
           <Tab active={section === "general"} className={section !== "general" ? "hidden md:inline-block" : ""}>Información general</Tab>
-          <Tab active={section === "details"} className={section !== "details" ? "hidden md:inline-block" : ""}>Detalles del curso</Tab>
+          <Tab active={section === "details"} className={section !== "details" ? "hidden md:inline-block" : ""}>Detalles del proyecto</Tab>
           <Tab active={section === "preview"} className={section !== "preview" ? "hidden md:inline-block" : ""}>Publicar proyecto</Tab>
         </div>
         <div className="
@@ -31,7 +33,14 @@ const ProjectForm = async () => {
             <ProjectCtxProvider>
               { section === "general" && <GeneralForm /> }
               { section === "details" && <DetailsForm /> }
-              { section === "preview" && <ProjectInfo /> }
+              <Suspense>
+                {
+                  section === "preview" &&
+                    <IsClientProvider>
+                      <ProjectInfo /> 
+                    </IsClientProvider>
+                }
+              </Suspense>
             </ProjectCtxProvider>
           </div>
           <div className="

@@ -6,6 +6,10 @@ const getProducts = async (endpoint: string) => {
   try {
     const res = await fetch(endpoint, { cache: "force-cache" });
     const items: TProductCard[] = await res.json();
+
+    // @ts-ignore: Unreachable code error
+    if (items.statusCode) return [];
+
     return items
   } catch (err) {
     console.error("error when getting courses: ", err)

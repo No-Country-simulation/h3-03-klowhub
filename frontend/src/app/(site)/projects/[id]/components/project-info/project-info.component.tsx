@@ -13,8 +13,12 @@ import { buttonVariants } from "@/components/ui/button";
 import UploadedImage from "@/components/uploaded-image/uploaded-image.component";
 import FileBadge from "@/components/file-badge/file-badge.component";
 import UploadedVideo from "@/components/uploaded-video/uploaded-video.component";
-import { breakProject } from "@/app/(site)/dashboard/projects/components/project-form/context/project-form.acl";
-import { ProjectWithFullImgs, ValidatedProjectForm } from "@/types/project.types";
+import { ProjectWithFullImgs } from "@/types/project.types";
+import useProjectData from "../../use-application-data.hook";
+import { useParams, useSearchParams } from "next/navigation";
+import useStore from "@/contexts/store/use-store.hook";
+import { User } from "@/contexts/store/store.types";
+import { Pencil } from "lucide-react";
 
 type Props = {
   serverSideData?: ProjectWithFullImgs
@@ -23,12 +27,23 @@ type Props = {
 const tabs = [ "Información", "Recursos" ];
 
 const ProjectInfo = ({ serverSideData }: Props) => {
+  const [ user ] = useStore<User>("user");
   const [ newProjectId, setNewProjectId ] = useState<string>()
   const [ error, setError ] = useState<object | null>(null)
   const [ activeTab, setActiveTab ] = useState(0)
 
-  const { state, submitProject } = useProjectContext();
-  const pageData = state ? breakProject(state as ValidatedProjectForm, false) : serverSideData;
+  const params = useParams();
+  const searchParams = useSearchParams();
+
+  const projectId = params.id;
+  const section = searchParams.get("section");
+
+  const { state: clientSideData, submitProject } = useProjectContext();
+
+  const dataSources = { serverSideData, clientSideData };
+  const pageData = useProjectData(dataSources);
+  console.log('pageData: ', pageData);
+
   if (!pageData) return <div>Cargando...</div>;
 
   const {
@@ -40,8 +55,10 @@ const ProjectInfo = ({ serverSideData }: Props) => {
     technicalRequirements,
     experienceLevel,
     sector,
+    tags,
     requiredSkills,
-    additionalRequirements
+    additionalRequirements,
+    author
   } = pageData;
 
   const images = pageData.assets.filter(ast => ast.fileType === "image")
@@ -71,14 +88,27 @@ const ProjectInfo = ({ serverSideData }: Props) => {
           </Link>
         </Greeter>
       }
-      <div className="mb-5">
-        { 
-          tabs.map((t, idx) => (
-          <button onClick={ () => setActiveTab(idx) } key={`tab-${idx}`}>
-            <Tab active={activeTab === idx}>{t}</Tab>
-          </button>
-          ))
-        }
+      <div className="flex justify-between items-center mb-5">
+        <div>
+          { 
+            tabs.map((t, idx) => (
+              <button onClick={ () => setActiveTab(idx) } key={`tab-${idx}`}>
+                <Tab active={activeTab === idx}>{t}</Tab>
+              </button>
+            ))
+          }
+        </div>
+        <div>
+          { user && user.id === author.id && section !== "preview" &&
+            <Link 
+              href={`/dashboard/projects/form/${projectId}?section=general`}
+              className={`${buttonVariants({ variant: "default" })}`}
+            >
+              <Pencil />
+              <span>Editar Proyecto</span>
+            </Link>
+          }
+        </div>
       </div>
       { activeTab === 0 &&
         <div className="flex flex-col gap-5">
@@ -119,6 +149,11 @@ const ProjectInfo = ({ serverSideData }: Props) => {
             <FilterDisplayer header="Sector" orientation="horizontal" containerStyles="border-1 py-2 px-5 rounded-lg border-primary-300">
               {sector.map((s, idx) => (
                 <PreviewFilter key={`sector-${idx}`}>{s}</PreviewFilter>
+              ))}
+            </FilterDisplayer>
+            <FilterDisplayer header="Tags" orientation="horizontal" containerStyles="border-1 py-2 px-5 rounded-lg border-primary-300">
+              {tags.map((t, idx) => (
+                <PreviewFilter key={`tag-${idx}`}>{t}</PreviewFilter>
               ))}
             </FilterDisplayer>
           </div>
@@ -162,7 +197,7 @@ const ProjectInfo = ({ serverSideData }: Props) => {
           </div>
         </div>
       }
-      { submitProject &&
+      { section === "preview" &&
         <div className="absolute w-full bottom-0 -mb-16 -ml-6 flex justify-between pt-5">
           <RouteBtn route="details">Regresar</RouteBtn>
           <Button 

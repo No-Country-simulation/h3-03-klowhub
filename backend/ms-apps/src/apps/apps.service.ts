@@ -21,6 +21,7 @@ import {
   VideoFileMissingException,
 } from 'src/custom-exceptions/custom-exceptions';
 import { envs } from 'src/config';
+import { UpdateAppDto } from './dto/update-app.dto';
 
 @Injectable()
 export class AppsService {
@@ -257,5 +258,39 @@ export class AppsService {
         };
       }),
     );
+  }
+
+  // apps.service.ts
+
+  async updateApp(id: string, updateAppDto: UpdateAppDto): Promise<App> {
+    const app = await this.findOne(id); // Asumiendo que tienes un método para encontrar la app
+    if (!app) {
+      throw new NotFoundException('Aplicación no encontrada');
+    }
+
+    // Actualiza los campos que se proporcionaron
+    Object.assign(app, updateAppDto);
+
+    // Manejo de relaciones
+    if (updateAppDto.coverImg) {
+      const coverImgAsset = await this.assetRepository.findOne({
+        where: { id: updateAppDto.coverImg },
+      });
+      if (coverImgAsset) {
+        app.coverImg = coverImgAsset; // Asigna el objeto Asset a coverImg
+      } else {
+        throw new NotFoundException('Cover image no encontrada');
+      }
+    }
+
+    if (updateAppDto.assets) {
+      const assetEntities = await this.assetRepository.find({
+        where: { id: In(updateAppDto.assets) },
+      });
+      app.assets = assetEntities; // Asigna los assets
+    }
+
+    // Guarda los cambios en la base de datos
+    return await this.appRepository.save(app); // Asumiendo que usas un repositorio
   }
 }

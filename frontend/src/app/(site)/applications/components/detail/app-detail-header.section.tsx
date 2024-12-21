@@ -60,13 +60,13 @@ export const AppHeader: FC<AppDetailHeader> = ({
     <>
       <div className="flex justify-between items-center">
         <h3 className="font-semibold text-sm">{title}</h3>
-        { user.id === authorId && formSection !== "preview" &&
+        { user && user.id === authorId && formSection !== "preview" &&
           <Link 
             href={`/dashboard/applications/form/${applicationId}?section=general`}
             className={`${buttonVariants({ variant: "default" })}`}
           >
             <Pencil />
-            <span>Editar Curso</span>
+            <span>Editar Aplicación</span>
           </Link>
         }
       </div>

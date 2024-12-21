@@ -22,6 +22,8 @@ const getProjects = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}`);   
     const projects: RequiredProperty<ProjectWithFullImgs>[] = await res.json();
+    // @ts-ignore: Unreachable code error
+    if (projects.statusCode) return [];
     const transformedProjects = projects.map(p => transformBTProject(p));
 
     return transformedProjects
@@ -40,7 +42,7 @@ const ProjectsPage = async () => {
       </div>
 
       <IsClientProvider>
-        <SearchFilter filters={filters} />
+        <SearchFilter filters={filters} header="Encuentra proyectos interesantes" />
       </IsClientProvider>
 
       <div className="md:-translate-y-16 -translate-y-24">

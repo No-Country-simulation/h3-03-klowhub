@@ -57,7 +57,7 @@ export const AppInfo: FC<AppProps> = ({
         { children[0] }
         <h3 className="text-sm font-semibold">Acerca de esta app</h3>
         <div className={`text-sm ${isExpanded ? 'text-gray-300' : 'text-gradient-mask'}`}>
-          {fullDescription}
+          {parse(fullDescription, reactParserOptions)}
         </div>
 
         <div className={`${isExpanded ? 'block space-y-6 overflow-hidden' : 'hidden'}`}>

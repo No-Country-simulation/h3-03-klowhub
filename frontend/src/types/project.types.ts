@@ -14,6 +14,7 @@ export type ProjectInfo = {
   methodology: SelectOption | null
   experienceLevel: SelectOption | null
   sector: SelectOption[]
+  tags: SelectOption[]
 };
 
 export type ProjectDetails = {
@@ -70,7 +71,7 @@ export type TProjectCard = {
   instructor: TInstructorInfo,
   description: string,
   platform : "PowerApps" | "AppSheet",
-  // tags: string[],
+  tags: string[],
   rating: number,
   ratingCount: number,
   status: "en-curso" | "finalizado",

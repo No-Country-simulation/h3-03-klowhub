@@ -1,31 +1,74 @@
-import { Controller, Post, Get, Param, Body } from '@nestjs/common';
+import { Controller, Post, Get, Param, Body, Patch } from '@nestjs/common';
 import { ChatService } from './chat.service';
+import { CreateChatDto } from './dto/create-chat.dto';
+import { AddMembersDto } from './dto/add-members.dto';
+import { CreateMessageDto } from './dto/create-message.dto';
 
 @Controller('chat')
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
-  @Post('private')
-  async createPrivateChat(@Body('userIds') userIds: number[]) {
-    return await this.chatService.createPrivateChat(userIds);
+
+  @Post()
+  async createChat(@Body() createChatDto: CreateChatDto) {
+    return this.chatService.createChat(createChatDto);
   }
 
   @Post('group')
-  async createGroupChat(@Body('courseId') courseId: number) {
-    return await this.chatService.createGroupChat(courseId);
+  async createGroupChat(@Body() createChatDto: CreateChatDto) {
+    return this.chatService.createGroupChat(createChatDto);
+  }
+
+  @Patch(':chatId/members')
+  async addMembersToGroupChat(
+    @Param('chatId') chatId: string,
+    @Body() addMembersDto: AddMembersDto
+  ) {
+    return this.chatService.addMembersToGroupChat(Number(chatId), addMembersDto);
+  }
+
+  @Get(':userId')
+  async getChatsByUserId(@Param('userId') userId: string) {
+    return this.chatService.getChatsByUserId(String(userId));
   }
 
   @Get(':chatId/messages')
-  async getMessages(@Param('chatId') chatId: number) {
-    return await this.chatService.getMessages(chatId);
+  async getChatMessages(@Param('chatId') chatId: string) {
+    return this.chatService.getChatMessages(String(chatId));
   }
+
   @Post(':chatId/messages')
   async createMessage(
-    @Param('chatId') chatId: number,
-    @Body('userId') userId: number,
-    @Body('content') content: string,
-    @Body('fileUrl') fileUrl?: string,
+    @Param('chatId') chatId: string,
+    @Body() createMessageDto: CreateMessageDto
   ) {
-    return await this.chatService.createMessage(chatId, userId, content, fileUrl);
+    return this.chatService.createMessage(String(chatId), createMessageDto);
   }
 }
+
+
+
+  // @Post('private')
+  // async createPrivateChat(@Body('userIds') userIds: number[]) {
+  //   return await this.chatService.createPrivateChat(userIds);
+  // }
+
+  // @Post('group')
+  // async createGroupChat(@Body('courseId') courseId: number) {
+  //   return await this.chatService.createGroupChat(courseId);
+  // }
+
+  // @Get(':chatId/messages')
+  // async getMessages(@Param('chatId') chatId: number) {
+  //   return await this.chatService.getMessages(chatId);
+  // }
+  // @Post(':chatId/messages')
+  // async createMessage(
+  //   @Param('chatId') chatId: number,
+  //   @Body('userId') userId: number,
+  //   @Body('content') content: string,
+  //   @Body('fileUrl') fileUrl?: string,
+  // ) {
+  //   return await this.chatService.createMessage(chatId, userId, content, fileUrl);
+  // }
+// }

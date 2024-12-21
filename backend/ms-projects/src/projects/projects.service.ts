@@ -8,6 +8,7 @@ import { lastValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { Asset } from './entities/asset.entity/asset.entity';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { envs } from 'src/config';
 import {
   CloudinaryUploadFailedException,
   CourseImageSizeFailed,
@@ -156,6 +157,7 @@ export class ProjectsService {
         maxBudget: createProjectDto.maxBudget,
         additionalRequirements: createProjectDto.additionalRequirements,
         authorId: userId,
+        userId,
         tags: createProjectDto.tags,
         status: createProjectDto.status
       })
@@ -199,7 +201,7 @@ export class ProjectsService {
       throw new NotFoundException (`Project with ID ${id} not found`);
     }
     const userResponse = await lastValueFrom(
-      this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.authorId}`),
+      this.httpService.get(`${process.env.MS_USERS_ENDPOINT}/${project.authorId}`),
       );
       return {
         ...project,
@@ -208,31 +210,26 @@ export class ProjectsService {
   }
 
   async getAllProjectsWithUsers(): Promise<any> {
-    const projects = await this.projectRepository.find();
+    try {
+      const projects = await this.projectRepository.find({ relations: ['assets'] });
 
-    if (!projects || projects.length === 0 ){
-      throw new NotFoundException('No se econtraron proyectos.')
+      if (!projects || projects.length === 0 ){
+        throw new NotFoundException('No se econtraron proyectos.')
+      }
+
+      const proms = projects.map(async (project) => {
+        const { data: author } = await this.httpService
+          .get(`${envs.msUsersEndpoint}/${project.userId}`)
+          .toPromise()
+
+        return { ...project, author }
+      });
+
+      const projectsWithAuthors = await Promise.all(proms);
+
+      return projectsWithAuthors
+    } catch (err) {
+      throw err
     }
-
-    const projectsWhitUsers = await Promise.all(
-      projects.map(async (project) => {
-        try {
-          const userResponse = await lastValueFrom(
-            this.httpService.get(`${process.env.MS_USERS_ENPOINT}/${project.authorId}`),
-          );
-          return {
-            ...project,
-            author: userResponse.data,
-          };
-        } catch (error) {
-          console.error(`Error al obtener informacion del usuario para el proyecto ${project.id}:`, error);
-          return{
-            ...project,
-            author: null,
-          };
-        }
-      }),
-    );
-    return projectsWhitUsers
   }
 }
