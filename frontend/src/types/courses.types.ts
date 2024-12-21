@@ -2,7 +2,7 @@
 // for example "coreContent" is not just a string but a very specific set of posible strings
 
 import { RecursiveNonNullable } from "./utils.types";
-import { Platform, TImage, TVideo, TDocument, AuthorInfo, FlatPromotion } from "./global.types"
+import { Platform, TImage, TVideo, TDocument, AuthorInfo, FlatPromotion, BTPromotion } from "./global.types"
 import { CourseDificulty, ContentType } from "@/consts/filters.types";
 import { SelectOption } from "@/components/input/input.types";
 import { Promotion, Rating } from "./global.types";
@@ -90,7 +90,7 @@ type Course =
   & { promotion: Promotion | null }
 
 export type BTCourse = 
-  & BTEntity<Omit<Course, "modules" | "coverImg" | "promotionalVideo">>
+  & BTEntity<Omit<Course, "modules" | "coverImg" | "promotionalVideo" | "promotion">>
   & { id: string }
 
 export type CourseWithReducedAssets = BTCourse & {
@@ -104,6 +104,7 @@ export type CourseWithFullAssets = BTCourse & {
   coverImg: TImage
   promotionalVideo: TVideo
   author: BTUser
+  promotion: BTPromotion
 }
 
 // type CourseOptionalFields = Partial<{

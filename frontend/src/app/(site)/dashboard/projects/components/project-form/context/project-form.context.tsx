@@ -40,6 +40,7 @@ const ProjectCtxProvider = ({ children }: Props) => {
     const createEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/user/${user.id}`;
     const editEndpoint = `${process.env.NEXT_PUBLIC_PROJECTS_URL}/${projectId}`;
 
+    console.log('formattedData: ', formattedData);
     const res = await fetch(projectId ? editEndpoint : createEndpoint, {
       method: projectId ? 'put' : 'post',
       body: JSON.stringify(formattedData),

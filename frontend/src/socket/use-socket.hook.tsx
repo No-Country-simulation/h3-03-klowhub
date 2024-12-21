@@ -7,7 +7,10 @@ const useSocket = (loadedMessages?: ChatMessage[]): [ ChatMessage[], Dispatch<Se
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
 
+
   useEffect(() => {
+    if (loadedMessages) setMessages(loadedMessages);
+
     if (socket.connected) {
       onConnect();
     }
@@ -22,6 +25,7 @@ const useSocket = (loadedMessages?: ChatMessage[]): [ ChatMessage[], Dispatch<Se
     }
 
     function onServerResponse (value: ChatMessage) {
+      console.log('value: ', value);
       setMessages(prev => ([ ...prev, value ]))
     };
 
@@ -39,7 +43,7 @@ const useSocket = (loadedMessages?: ChatMessage[]): [ ChatMessage[], Dispatch<Se
       socket.off("disconnect", onDisconnect);
       socket.off("serverResponse", onServerResponse)
     };
-  }, []);
+  }, [ loadedMessages ]);
 
   return [ messages, setMessages ]
 };

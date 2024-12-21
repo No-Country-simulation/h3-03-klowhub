@@ -2,6 +2,7 @@
 
 import Input from "@/components/input/input.component";
 import useGenerateForm from "@/hooks/use-generate-form.hook";
+import { Circles } from "react-loader-spinner";
 import { FullProposal, Proposal } from "./proposal-form.types";
 import { PROPOSAL_FORM_INITIAL_STATE } from "./proposal.consts";
 import Image from "next/image";
@@ -17,6 +18,8 @@ import { createBoardWithDetails } from "@/components/kanban/utils/kanban.utils";
 import AuthorCard from "@/components/author-card/author-card.component";
 import useStore from "@/contexts/store/use-store.hook";
 import { BTUser } from "@/types/user.types";
+import { BTChat } from "@/types/backend-responses.types";
+import { useRouter } from "next/navigation";
 
 type Props = {
   projectAuthorId: string
@@ -30,40 +33,63 @@ const submitProposal = async (
   columns: TColumn[],
   tasks: TTask[]
 ) => {
-  console.log("data: ", data);
+  try {
+    setLoading(true);
+    
+    const boardData = await createBoardWithDetails({
+      projectName: "Proyecto Demo",
+      columns,
+      tasks,
+      projectCreatorEmail: "martinkunbrc1990@gmail.com"
+    });
+    setLoading(false)
 
-  setLoading(true);
-  //funcion para crear tablero en trello.
-  // const boardData = await createBoardWithDetails({
-  //   projectName: "Proyecto Demo",
-  //   columns: [{ id: "1", name: "Columna 1" }],
-  //   tasks: [
-  //     { columnId: "1", name: "Tarea 1", priority: "Alta", startDate: "2024-12-19", assignedUser: { fullname: "Juan Pérez" } },
-  //   ],
-  //   projectCreatorEmail: "martinkunbrc1990@gmail.com"
-  // });
-  
-  const boardData = await createBoardWithDetails({
-    projectName: "Proyecto Demo",
-    columns,
-    tasks,
-    projectCreatorEmail: "martinkunbrc1990@gmail.com"
-  });
-  setLoading(false)
+    const chatData = {
+      members: [ projectAuthorId, applicantId ],
+      type: "private"
+    };
 
-  const fullProposal = {
-    ...boardData,
-    projectAuthorId,
-    applicantId,
-    message: data.message
-  };
+    const chatRes = await fetch(`${process.env.NEXT_PUBLIC_CHAT_URL}`, {
+      method: "post",
+      body: JSON.stringify(chatData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    if (!chatRes.ok) {
+      const error = await chatRes.json();
+      throw error.message
+    };
+    const chatPayload: BTChat = await chatRes.json();
+    console.log('chatPayload: ', chatPayload);
 
-  return fullProposal
+    const firstMessageData = {
+      userId: applicantId,
+      content: data.message
+    }
+
+    const firstMessageRes = await fetch(`${process.env.NEXT_PUBLIC_CHAT_URL}/${chatPayload.id}/messages`, {
+      method: "post",
+      body: JSON.stringify(firstMessageData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    if (!firstMessageRes.ok) {
+      const error = await firstMessageRes.json();
+      throw error.message
+    };
+
+    return chatPayload.id
+  } catch (err) {
+    console.error("coundl't send the proposal: ", err)
+    return;
+  }
 };
 
 const ProposalForm = ({ projectAuthorId }: Props) => {
   const [ user ] = useStore<BTUser>("user");
-  const [ proposal, setProposal ] = useStore<FullProposal>("proposal");
+  const router = useRouter();
 
   const { controlledCommonProps, handleSubmit } = useGenerateForm<Proposal>(
     PROPOSAL_FORM_INITIAL_STATE,
@@ -76,15 +102,31 @@ const ProposalForm = ({ projectAuthorId }: Props) => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="flex flex-col gap-14">
+    <div className="flex flex-col gap-14 relative">
       {isKanbanOpen && <KanbanModal />}
       {isEditTaskOpen && <EditTaskModal />}
+      { loading &&
+        <div className="fixed flex-col gap-5 inset-0 flex items-center justify-center bg-[#9d32bc]/30 z-50">
+          <Circles
+            height="80"
+            width="80"
+            color="#b95ed4"
+            ariaLabel="circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+          <span className="text-primary-200">
+            Enviando Propuesta...
+          </span>
+        </div>
+      }
       <form
         className="flex gap-10"
         onSubmit={handleSubmit(async (data) => {
-          const fullProposal = await submitProposal(data, projectAuthorId, user.id, setLoading, columns, tasks)
-          setProposal(fullProposal)
-
+          const chatId = await submitProposal(data, projectAuthorId, user.id, setLoading, columns, tasks)
+          if (!chatId) return;
+          router.push(`/chat?chatId=${chatId}`)
         })}
         id="proposal-form"
       >

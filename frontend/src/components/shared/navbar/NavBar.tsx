@@ -44,7 +44,8 @@ export const NavBar = () => {
             <Link href="/courses">Curso y lecciones</Link>
             <Link href="/applications">Appstore</Link>
             <Link href="/projects">Proyectos</Link>
-              <Link href="/membership?section=selection">Planes</Link>
+            <Link href="/membership?section=selection">Planes</Link>
+            <Link href="/chat">Mensajes</Link>
           </div>
         </div>
 

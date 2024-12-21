@@ -2,4 +2,4 @@
 
 import { io } from "socket.io-client";
 
-export const socket = io("ws://localhost:3004/chat");
+export const socket = io(process.env.NEXT_PUBLIC_CHAT_SOCKET_URL);
