@@ -17,8 +17,12 @@ import { Multimedia } from 'src/courses/entities/multimedia.entity';
       database: envs.dbDatabaseName,
       entities: [Course, CourseModule, Lesson, Multimedia],
       synchronize: true,
+      logging: true,
       // ssl: false,
       // logging: true,
+      // ssl: {
+      //   rejectUnauthorized: false,
+      // },
     }),
   ],
 })

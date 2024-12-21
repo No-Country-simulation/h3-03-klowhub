@@ -86,13 +86,13 @@ export class Course {
   @Column({ type: 'jsonb', name: 'promotion', nullable: true }) // Cambiado a simple-array
   promotion: object;
 
-  @Column({
-    type: 'boolean',
-    default: true,
-    name: 'available',
-    nullable: false,
-  })
-  available: boolean;
+  // @Column({
+  //   type: 'boolean',
+  //   default: true,
+  //   name: 'available',
+  //   nullable: false,
+  // })
+  // available: boolean;
 
   @Column({ type: 'text', name: 'targetAudience', nullable: false })
   targetAudience: string[];
@@ -103,7 +103,10 @@ export class Course {
   @Column({ type: 'jsonb', name: 'courseIncludes', nullable: false })
   courseIncludes: string[];
 
-  @OneToMany(() => CourseModule, (module) => module.course, { cascade: true })
+  @OneToMany(() => CourseModule, (module) => module.course, {
+    cascade: true,
+    eager: false,
+  })
   modules: CourseModule[];
 
   //para recibir id

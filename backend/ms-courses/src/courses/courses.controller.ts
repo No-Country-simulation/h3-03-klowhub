@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Put,
+  HttpCode,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -95,6 +96,8 @@ export class CoursesController {
   }
 
   //Hacer el post de cursos con todas las entidades!!!
+  // POST /courses/user/:id -> crea un nuevo curso con el id del usuario
+
   @Post('user/:userId')
   async createCourse(
     @Param('userId') userId: string,
@@ -111,96 +114,9 @@ export class CoursesController {
     }
   }
 
-  //LAS TRES RUTAS INDIVIDUALES SON DE ABAJO TESTEO PARA CHEQUEAR QUE SE GUARDEN EN SUS TABLAS()
-  //Creamos solamente un curso
-  // @Post('createCourse')
-  // async createCourse(@Body() createCourseDto: CreateCourseDto) {
-  //   try {
-  //     return await this.coursesService.createCourse(createCourseDto);
-  //   } catch (error) {
-  //     if (error instanceof createCourseFailed) {
-  //       throw new BadRequestException('Failed to create the course');
-  //     }
-  //     throw error;
-  //   }
-  // }
-
-  // //Creamos solamente una lección
-  // @Post('createLesson')
-  // async createLesson(@Body() createLessonDto: CreateLessonDto) {
-  //   try {
-  //     return await this.coursesService.createLesson(createLessonDto);
-  //   } catch (error) {
-  //     if (error instanceof createCourseFailed) {
-  //       throw new BadRequestException('Failed to create the lesson');
-  //     }
-  //     throw error;
-  //   }
-  // }
-
-  // //Creamos solamente un modulo
-  // @Post('createModule')
-  // async createModule(@Body() createCourseModuleDto: CreateCourseModuleDto) {
-  //   try {
-  //     return await this.coursesService.createModulos(createCourseModuleDto);
-  //   } catch (error) {
-  //     if (error instanceof createCourseFailed) {
-  //       throw new BadRequestException('Failed to create the course');
-  //     }
-  //     throw error;
-  //   }
-  // }
-  ///////////////////////////////////////////////////////////////////////////////////////////
-  //Post de la imagen
-  // @Post('image')
-  // @UseInterceptors(FileFieldsInterceptor([{ name: 'image', maxCount: 1 }]))
-  // async createImage(@UploadedFiles() files: { image?: Express.Multer.File[] }) {
-  //   console.log('Files received:', files);
-  //   const imageFile = files.image?.[0];
-  //   try {
-  //     return await this.coursesService.createImage(imageFile);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  //enviar el video unicamente
-  // @Post('video')
-  // @UseInterceptors(FileFieldsInterceptor([{ name: 'video', maxCount: 1 }]))
-  // async createVideo(
-  //   //no se esta usando el body por eso el dto queda como opcional
-  //   @Body() VideoDto: VideoDto,
-  //   @UploadedFiles() files: { video?: Express.Multer.File[] },
-  // ) {
-  //   const videoFile = files.video?.[0];
-  //   console.log('Received video file:', videoFile);
-
-  //   if (!videoFile) {
-  //     throw new Error('No video file uploaded.');
-  //   }
-  //   console.log('ERROR', videoFile);
-  //   try {
-  //     return await this.coursesService.createVideo(VideoDto, videoFile);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  ///
-  // @Get('video/:id')
-  // async findOneVideo(@Param('id') id: string) {
-  //   try {
-  //     const getAsingleVideo = await this.coursesService.findOneVideo(id);
-  //     if (!getAsingleVideo) {
-  //       throw new NotFoundException('There is no video available');
-  //     }
-  //     return getAsingleVideo;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   // TRAEMOS TODOS LOS CURSOS
-  @Get('all')
+  // GET /courses -> trae todos los cursos
+  @Get()
   async findAll() {
     try {
       const allCourses = await this.coursesService.findAll();
@@ -215,29 +131,8 @@ export class CoursesController {
     }
   }
 
-  // @Get(':id')
-  // async findOne(
-  //   @Param('id') id: string,
-  //   @Query('withAuthor') withAuthor?: string,
-  // ) {
-  //   const isWithAuthor = withAuthor === 'true';
-  //   return this.coursesService.findOneCourse(id, isWithAuthor);
-  // }
-
-  //OBTENEMOS LOS CURSOS DE UN USUARIO
-  @Get('user/:userId')
-  async findOneByUserId(@Param('userId') userId: string): Promise<any> {
-    try {
-      const userCourse = await this.coursesService.getAllCoursesWithUsers(userId);
-      return userCourse;
-    } catch (error) {
-      throw new BadRequestException(
-        `An unexpected error occured: ${error.message}`,
-      );
-    }
-  }
-  
-  //OBTENEMOS UN CURSO POR ID
+  //OBTENEMOS UN CURSO PERTENECIENTE A UN USUARIO
+  // GET /courses/:id -> trae un curso por id
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<any> {
     try {
@@ -250,10 +145,11 @@ export class CoursesController {
     }
   }
   //OBTENEMOS CURSOS PERTENECIENTES A UN USUARIO
-  @Get()
-  async findAllWithUser() {
+  // GET /courses/user/:id -> trae todos los cursos de un usuario
+  @Get('user/:id')
+  async findAllWithUser(@Param('id') userId: string) {
     try {
-      const findAll = this.coursesService.getAllCoursesWithUsers();
+      const findAll = this.coursesService.getAllCoursesByUserId(userId);
       return findAll;
     } catch (error) {
       throw new BadRequestException(
@@ -262,22 +158,7 @@ export class CoursesController {
     }
   }
 
-  //esta es la siguiente ruta a completar
-  // @Get('user/:userId')
-  // async getAllCoursesByUserId(@Param('userId') userId: string) {
-  //   if (!userId) {
-  //     throw new BadRequestException('El userId es requerido');
-  //   }
-  //   //const courses = await this.coursesService.getAllCoursesByUserId(userId);
-  //   if (!courses || courses.length === 0) {
-  //     throw new BadRequestException(
-  //       `No se encontraron proyectos para el usuario con ID ${userId}`,
-  //     );
-  //   }
-  //   return courses;
-  // }
-
-  //cambiar a put
+  // PUT /courses/:id -> edita un curso con el id del usuario
   @Put(':id')
   async update(
     @Param('id') id: string,
@@ -290,7 +171,9 @@ export class CoursesController {
     return updateCourse;
   }
 
+  //ELIMINAR UN CURSO
   @Delete(':id')
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.coursesService.remove(id);
   }
