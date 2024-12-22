@@ -2,7 +2,7 @@
 
 import { ReactNode, useReducer, useCallback, useEffect, Dispatch, createContext } from "react";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import { Membership, MembershipFormData } from "@/types/membership.types";
 import { MembershipFormActions } from "./membership-form.actions";
 import membershipFormReducer, { MEMBERSHIP_FORM_INITIAL_STATE } from "./membership-form.reducer";
@@ -22,7 +22,7 @@ export const MembershipCtx = createContext<MembershipCtxType | undefined>(undefi
 
 const MembershipCtxProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(membershipFormReducer, MEMBERSHIP_FORM_INITIAL_STATE);
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
 
   const submitMembership = useCallback(async () => {
     const formattedData = breakMembership({ ...state });

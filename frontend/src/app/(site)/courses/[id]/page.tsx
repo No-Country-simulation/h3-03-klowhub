@@ -1,16 +1,13 @@
-import userMock from '@/mocks/user.mocks';
 import { CourseDetail } from '../components/detail/course-detail.component';
 import { SimilarCourses } from "../components/detail/similar-courses.section";
 import { CourseWithFullAssets } from '@/types/courses.types';
-import { BTSeller, BTUser } from '@/types/user.types';
 import { IsClientProvider } from '@/contexts/is-client/is-client.context';
 
 const endpoint = process.env.NEXT_PUBLIC_COURSES_URL;
 
-const getCourse = async (applicationId: string) => {
-  const res = await fetch(`${endpoint}/${applicationId}?withAuthor=true`);
+const getCourse = async (courseId: string) => {
+  const res = await fetch(`${endpoint}/${courseId}`);
   const applicationData: CourseWithFullAssets = await res.json();
-  applicationData.author = userMock as Omit<BTUser, "seller"> & { seller: BTSeller }
 
   return applicationData
 };

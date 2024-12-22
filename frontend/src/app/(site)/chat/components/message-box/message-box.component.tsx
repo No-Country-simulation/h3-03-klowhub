@@ -1,31 +1,56 @@
+"use client"
+
 import useGenerateForm from "@/hooks/use-generate-form.hook";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { CHAT_MESSAGE_INITIAL_STATE } from "./message-box.consts";
 import { ChatMessage } from "./message-box.types";
 import Input from "@/components/input/input.component";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 
 import { socket } from "@/socket/socket";
+import { useSearchParams } from "next/navigation";
 
 
-const submitMessage = (userId: string, message: string) => {
-  socket.emit("clientMessage", { userId: "7c52e3ff-22ba-4521-b6da-b5cd24d1c1f5", content: message, chatId: 1})
-  // socket.emit("clientMessage", { userId, content: message, chatId: '1'})
+const submitMessage = (userId: string, chatId: string, message: string) => {
+  socket.emit("clientMessage", { userId, content: message, chatId })
 };
 
 const MessageBox = () => {
+  const [isSafeToReset, setIsSafeToReset] = useState(false);
   const {
     controlledCommonProps, 
     handleSubmit,
+    reset,
+    watch,
   } = useGenerateForm<ChatMessage>(CHAT_MESSAGE_INITIAL_STATE, CHAT_MESSAGE_INITIAL_STATE);
 
-  const [ userState ] = useStore<User>("user");
+  const messageField = watch("content")
+
+  useEffect(() => {
+   if (!isSafeToReset) return;
+
+   reset(CHAT_MESSAGE_INITIAL_STATE);
+  }, [reset, isSafeToReset])
+
+  useEffect(() => {
+    setIsSafeToReset(false)
+  }, [messageField])
+
+  const searchParams = useSearchParams();
+  const chatId = searchParams.get("chatId");
+
+  const [ userState ] = useStore<BTUser>("user");
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit(data => submitMessage(userState.id, data.content))}>
+      <form onSubmit={handleSubmit(data => {
+        if (!chatId) return;
+        submitMessage(userState.id, chatId, data.content)
+        setIsSafeToReset(true)
+      })}>
         <Input 
           name="content" type="richtext" 
           placeholder="Escribí aquí"

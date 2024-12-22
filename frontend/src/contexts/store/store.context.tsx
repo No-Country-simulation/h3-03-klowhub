@@ -9,14 +9,7 @@ type Props = {
 }
 
 export const STORE_INITIAL_STATE: Store = {
-  user: {
-    id: "",
-    name: "",
-    email: "",
-    profileImg: null,
-    jwtToken: "",
-    sellerData: null
-  },
+  user: null,
   ui: {
     mode: "explorer"
   },

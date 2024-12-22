@@ -3,6 +3,7 @@ import { CourseWithFullAssets } from "@/types/courses.types";
 import { RequiredProperty } from "@/types/utils.types";
 
 export const transformBTCourse = (courseBT: RequiredProperty<CourseWithFullAssets>): TQuickView => {
+  console.log('courseBT: ', courseBT);
   const courseFT = {
     ...courseBT,
     author: {

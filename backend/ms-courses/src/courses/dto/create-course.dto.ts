@@ -106,9 +106,9 @@ export class CreateCourseDto {
     percentage?: number;
   };
 
-  @IsBoolean()
-  @IsNotEmpty()
-  available: boolean = true;
+  // @IsBoolean()
+  // @IsNotEmpty()
+  // available: boolean = true;
 
   @IsString()
   @IsNotEmpty()

@@ -36,15 +36,7 @@ export function breakCourse (data: CourseFormData, reduceAssets = false) {
   const formattedData = {
     ...general,
     ...details,
-    modules: reduceAssets ? modules.map(m => ({
-      ...m,
-      lessons: m.lessons.map(l => ({
-        ...l, 
-        video: l.video!.id,
-        // documents: l.documents.map(d => d.id)
-        documents: l.documents
-      })) 
-    })) : modules,
+    modules,
     promotion
   };
 
@@ -83,7 +75,7 @@ export const groupCourse = (data: CourseWithFullAssets) => {
       id: data.promotion.id,
       product: {
         id: data.promotion.id!,
-        type: data.promotion.product.type
+        type: data.promotion.type
       },
       percentage: data.promotion.percentage
     } : null

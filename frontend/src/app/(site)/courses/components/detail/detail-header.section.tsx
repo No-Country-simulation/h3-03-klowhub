@@ -32,13 +32,19 @@ export const CourseHeader: FC<CourseDetailHeader> = ({
     lessons,
   authorId
 }) => {
+
   const params = useParams();
   const courseId = params.id;
+  // console.log('promotionalVideo: ', promotionalVideo);
+  // console.log('lessons: ', lessons);
 
   const searchParams = useSearchParams();
   const formSection = searchParams.get("section");
 
   const [ user ] = useStore<BTUser>("user");
+
+  console.log('user.id: ', user.id);
+  console.log('authorId: ', authorId);
 
   const [currentVideo, setCurrentVideo] = useState<CurrentVideo | null>( 
     promotionalVideo ? {

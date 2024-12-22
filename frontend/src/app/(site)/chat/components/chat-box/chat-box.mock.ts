@@ -1,5 +1,33 @@
 import { TImage } from "@/types/global.types"
 
+export const defaultContact = {
+  id: "xxxxx",
+  name: "No se pudo cargar el contacto",
+  profileImg: {
+    id: "yyyyy",
+    fileType: "image",
+    fileMetadata: {
+      size: 0,
+      url: "/temp/imgs/profile-mini.png",
+      width: 60,
+      height: 60,
+      format: "webp",
+      mimeType: "image/webp",
+      created_at: new Date ("2024-12-04T05:47:09Z"),
+      alt: ""
+    }
+  } as TImage,
+  lastMessage: {
+    id: "",
+    userId: "",
+    chatId: "",
+    content: "",
+    fileUrl: "",
+    createdAt: ""
+  },
+  chatId: "SSSS"
+}
+
 const contactsMock = [
   {
     id: "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",

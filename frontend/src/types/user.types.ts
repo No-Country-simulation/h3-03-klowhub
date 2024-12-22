@@ -1,9 +1,5 @@
 import { TImage } from "./global.types"
 
-type UserMode = 
-  | { name: "explorer", label: "Explorador" }
-  | { name: "publisher", label: "Vendedor" }
-
 export type BTUser = {
   id: string
   name: string

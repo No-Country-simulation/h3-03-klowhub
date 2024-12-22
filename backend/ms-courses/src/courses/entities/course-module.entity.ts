@@ -20,10 +20,16 @@ export class CourseModule {
   @Column()
   description: string;
 
-  @ManyToOne(() => Course, (course) => course.modules)
+  @ManyToOne(() => Course, (course) => course.modules, {
+    onDelete: 'CASCADE',
+    eager: false,
+  })
   @JoinColumn({ name: 'courseId' })
   course: Course;
 
-  @OneToMany(() => Lesson, (lesson) => lesson.module, { cascade: true })
+  @OneToMany(() => Lesson, (lesson) => lesson.module, {
+    cascade: true,
+    eager: false,
+  })
   lessons: Lesson[];
 }

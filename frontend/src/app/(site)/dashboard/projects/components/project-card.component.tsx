@@ -15,14 +15,13 @@ type Props = {
 };
 
 const ProjectCard = ({ active, project }: Props) => {
-    console.log("project: ", project);
 
     return (
         <Card className={`px-3 ${active ? "py-3" : "py-2"}`}>
             <div className={`flex ${active ? "flex-col gap-5" : "flex-col gap-3"}`}>
                 <div className={`flex ${active ? "gap-5 flex-col" : "gap-3 flex-row items-center"}`}>
                     <div className={`shrink-0 relative ${active ? "w-[70px] h-[70px] w-[100px] h-[100px]" : "w-[50px] h-[50px]"}`}>
-                        <Image src={project.instructor.img.url} fill alt={project.instructor.img.alt} />
+                        <Image src={project.instructor.profileImg.fileMetadata.url} fill alt={project.instructor.name} />
                     </div>
                     <p className="text-sm leading-6">{project.description}</p>
                 </div>

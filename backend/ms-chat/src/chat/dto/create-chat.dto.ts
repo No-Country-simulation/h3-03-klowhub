@@ -9,5 +9,5 @@ export class CreateChatDto {
   type: 'private' | 'group';
 
   @IsOptional()
-  courseId?: number;
+  courseId?: string;
 }

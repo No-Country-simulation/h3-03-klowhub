@@ -17,7 +17,7 @@ import { ProjectWithFullImgs } from "@/types/project.types";
 import useProjectData from "../../use-application-data.hook";
 import { useParams, useSearchParams } from "next/navigation";
 import useStore from "@/contexts/store/use-store.hook";
-import { User } from "@/contexts/store/store.types";
+import { BTUser } from "@/types/user.types";
 import { Pencil } from "lucide-react";
 
 type Props = {
@@ -27,7 +27,7 @@ type Props = {
 const tabs = [ "Información", "Recursos" ];
 
 const ProjectInfo = ({ serverSideData }: Props) => {
-  const [ user ] = useStore<User>("user");
+  const [ user ] = useStore<BTUser>("user");
   const [ newProjectId, setNewProjectId ] = useState<string>()
   const [ error, setError ] = useState<object | null>(null)
   const [ activeTab, setActiveTab ] = useState(0)

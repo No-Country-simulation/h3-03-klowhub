@@ -21,9 +21,12 @@ const filters = [
 const getProjects = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PROJECTS_URL}`);   
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message)
+    };
+
     const projects: RequiredProperty<ProjectWithFullImgs>[] = await res.json();
-    // @ts-ignore: Unreachable code error
-    if (projects.statusCode) return [];
     const transformedProjects = projects.map(p => transformBTProject(p));
 
     return transformedProjects

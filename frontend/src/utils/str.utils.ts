@@ -22,4 +22,10 @@ export const strForDisplay = (str: string) => {
   const replaceHyphens = toUpperCase.replaceAll("-", " ");
 
   return replaceHyphens
+}
+
+export const removeHtmlTags = (html: string) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  return doc.body.textContent?.trim() || "";
 };

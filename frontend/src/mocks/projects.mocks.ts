@@ -6,12 +6,20 @@ export const projectsData: TProjectCard[] = [
     title: "Solución integral para la gestión de tareas y seguimiento de proyectos en tiempo real.",
     instructor: {
       name: "John Doe",
-      img: {
-        url: "/temp/imgs/profile-mini.png",
-        width: 60,
-        height: 60,
-        alt: "Imagen del Proyecto 1"
-      },
+  profileImg: {
+    id: "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    fileType: "image",
+    fileMetadata: {
+      size: 0,
+      url: "/temp/imgs/profile-mini.png",
+      width: 60,
+      alt: "",
+      height: 60,
+      format: "webp",
+      mimeType: "image/webp",
+      created_at: new Date("2024-12-04T05:47:09Z")
+    }
+  },
       userType: "PRO",
       description: "Instructor y Desarrollador",
       rating: 5
@@ -30,12 +38,20 @@ export const projectsData: TProjectCard[] = [
     title: "App móvil para gestión de inventarios con AppSheet",
     instructor: {
       name: "Jane Smith",
-      img: {
-        url: "/temp/imgs/profile-mini.png",
-        width: 60,
-        height: 60,
-        alt: "Imagen del Proyecto 2"
-      },
+  profileImg: {
+    id: "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    fileType: "image",
+    fileMetadata: {
+      size: 0,
+      url: "/temp/imgs/profile-mini.png",
+      width: 60,
+      alt: "",
+      height: 60,
+      format: "webp",
+      mimeType: "image/webp",
+      created_at: new Date("2024-12-04T05:47:09Z")
+    }
+  },
       userType: "PRO",
       description: "Instructor y Desarrollador",
       rating: 5
@@ -54,12 +70,20 @@ export const projectsData: TProjectCard[] = [
     title: "Optimización logística con PowerApps",
     instructor: {
       name: "Alice Johnson",
-      img: {
-        url: "/temp/imgs/profile-mini.png",
-        width: 60,
-        height: 60,
-        alt: "Imagen del Proyecto 3"
-      },
+  profileImg: {
+    id: "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    fileType: "image",
+    fileMetadata: {
+      size: 0,
+      url: "/temp/imgs/profile-mini.png",
+      width: 60,
+      alt: "",
+      height: 60,
+      format: "webp",
+      mimeType: "image/webp",
+      created_at: new Date("2024-12-04T05:47:09Z")
+    }
+  },
       userType: "PRO",
       description: "Instructor y Desarrollador",
       rating: 5
@@ -78,12 +102,20 @@ export const projectsData: TProjectCard[] = [
     title: "App móvil para gestión de inventarios con AppSheet",
     instructor: {
       name: "Robert Brown",
-      img: {
-        url: "/temp/imgs/profile-mini.png",
-        width: 60,
-        height: 60,
-        alt: "Imagen del Proyecto 4"
-      },
+  profileImg: {
+    id: "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    fileType: "image",
+    fileMetadata: {
+      size: 0,
+      url: "/temp/imgs/profile-mini.png",
+      width: 60,
+      alt: "",
+      height: 60,
+      format: "webp",
+      mimeType: "image/webp",
+      created_at: new Date("2024-12-04T05:47:09Z")
+    }
+  },
       userType: "PRO",
       description: "Instructor y Desarrollador",
       rating: 5
@@ -102,12 +134,20 @@ export const projectsData: TProjectCard[] = [
     title: "Optimización logística con PowerApps",
     instructor: {
       name: "Emily Davis",
-      img: {
-        url: "/temp/imgs/profile-mini.png",
-        width: 60,
-        height: 60,
-        alt: "Imagen del Proyecto 5"
-      },
+  profileImg: {
+    id: "a1ea94ba-4e95-4f63-be60-36d265dd6dc9",
+    fileType: "image",
+    fileMetadata: {
+      size: 0,
+      url: "/temp/imgs/profile-mini.png",
+      width: 60,
+      alt: "",
+      height: 60,
+      format: "webp",
+      mimeType: "image/webp",
+      created_at: new Date("2024-12-04T05:47:09Z")
+    }
+  },
       userType: "PRO",
       description: "Instructor y Desarrollador",
       rating: 5

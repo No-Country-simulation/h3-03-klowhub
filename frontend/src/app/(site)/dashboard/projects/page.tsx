@@ -7,6 +7,7 @@ import NoData from "@/components/no-data/no-data.component";
 import { ProjectWithFullImgs } from "@/types/project.types";
 import { transformBTProject } from "../../projects/projects-page.acl";
 import { RequiredProperty } from "@/types/utils.types";
+import PublishButton from "@/components/publish-button/publish-button.component";
 
 const getProjects = async () => {
   try {
@@ -37,8 +38,12 @@ const MyProjectsPage = async () => {
         <div className="mt-14 flex flex-col gap-5 md:flex-row md:justify-between md:items-center">
           <h3 className="text-base font-bold">Mis proyectos</h3>
           <div className="flex gap-5">
-            <Link href={"/projects"} className="h-[40px] rounded-md flex items-center justify-center hover:bg-primary-500 hover:text-white hover:border-1 hover:border-white sm:w-[250px] w-full text-primary-200 border-1 border-primary-200 text-sm tracking-wider">Explorar proyectos</Link>
-            <Link href={"projects/form?section=general"} className="rounded-md flex items-center justify-center bg-primary-500 text-white sm:w-[250px] w-full text-primary-200 hover:bg-blue-600 text-sm tracking-wider">Publicar proyecto</Link>
+
+            <Button variant={"outline"} className="sm:w-[250px] w-full text-primary-200 border-1 border-primary-200">
+              <Link href={"/projects"}>Explorar proyectos</Link>
+
+            </Button>
+            <PublishButton route="projects/form?section=general">Publicar proyecto</PublishButton>
           </div>
         </div>
         <div className="flex flex-col-reverse md:flex-row gap-14 md:gap-6">
