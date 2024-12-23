@@ -12,7 +12,7 @@ export default function RegisterLayout({
                     "url('/imgs/register_background.webp')",
             }}
         >
-            <h1 className="text-[54px] font-semibold w-fit mt-[100px] lg:flex hidden">KlowHub</h1>
+            <h1 className="text-[54px] font-semibold w-fit mt-[50px] lg:flex hidden">KlowHub</h1>
             <div className="lg:w-[49.34%] lg:min-w-[746px] lg-w-full min-w-full h-full bg-[#20222F]/30 backdrop-blur-sm absolute right-0 flex justify-center">
                 {children}
             </div>

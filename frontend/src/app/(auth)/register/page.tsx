@@ -4,7 +4,7 @@ import RegisterForm from "./sections/register-form.section"
 
 const RegisterPage = () => {
     return (
-        <div className="pb-[100px] mt-14 lg:mt-[100px] flex flex-col gap-14 w-full md:w-[500px] lg:w-[400px] px-5 md:px-0">
+        <div className="pb-[100px] mt-8 lg:mt-[32px] flex flex-col gap-14 w-full md:w-[500px] lg:w-[400px] px-5 md:px-0">
             <h3 className="font-bold text-3xl mx-auto flex lg:hidden">KlowHub</h3>
             <div className="flex flex-col gap-6 text-sm">
                 <p className="text-xs lg:text-base lg:font-bold leading-5">Explora, aprende, enseña y conecta. <br />Crea tu cuenta en KlowHub y accede a un mundo de posibilidades.</p>
