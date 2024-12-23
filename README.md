@@ -90,6 +90,23 @@ h3-03-klowhub
 ##### En cada carpeta correspondiente a microservicios debemos crear un archivo .env
 
 <details>
+  <summary>frontend .env</summary>
+  <pre>
+    <code>
+      NEXT_PUBLIC_COURSES_URL=http://localhost:3003/courses
+      NEXT_PUBLIC_PROJECTS_URL=http://localhost:3002/projects
+      NEXT_PUBLIC_APPLICATIONS_URL=http://localhost:3005/apps
+      NEXT_PUBLIC_USERS_URL=http://localhost:3001/users
+      NEXT_PUBLIC_AUTH_URL=http://localhost:3001/auth
+      NEXT_PUBLIC_CHAT_URL=http://localhost:3004/chat
+      NEXT_PUBLIC_CHAT_SOCKET_URL=ws://localhost:3004/chat      
+      NEXT_PUBLIC_TRELLO_API_KEY=c7d008bc56f0475e477e63fbc8db3a43
+      NEXT_PUBLIC_TRELLO_API_TOKEN=ATTAb8c70355376f2aa327bd40a1629501afbacbf0cef3403cd44e7ba3884f0e4730054DA7B8
+    </code>
+  </pre>
+</details>
+
+<details>
   <summary>api-getway .env</summary>
   <pre>
     <code>

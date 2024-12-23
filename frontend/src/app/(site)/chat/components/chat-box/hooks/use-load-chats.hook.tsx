@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { ChatCard } from "../../../chat.types";
 import { BTUser } from "@/types/user.types";
 import { BTChat } from "@/types/backend-responses.types";
-import { defaultContact } from "../chat-box.mock";
+import { defaultContact, lastMessageMock } from "../chat-box.mock";
 import { removeHtmlTags } from "@/utils/str.utils";
 
 
@@ -25,14 +25,18 @@ const useLoadChats = () => {
 
         const userChats: BTChat[] = await res.json();
         const userContacts = userChats.map(chat => {
+          // console.log('chat: ', chat);
           const contact = chat.membersDetails.find(m => m.id !== user.id);
+          console.log('contact: ', contact);
           if (!contact) return defaultContact;
 
+        console.log('chat.messages: ', chat.messages);
           const lastMessage = chat.messages[chat.messages.length - 1];
+          // console.log('lastMessage: ', lastMessage);
           return {
             name: contact.name,
             profileImg: contact.profileImg,
-            lastMessage: { ...lastMessage, content: removeHtmlTags(lastMessage.content) },
+            lastMessage: lastMessage ? { ...lastMessage, content: removeHtmlTags(lastMessage.content) } : lastMessageMock,
             id: chat.id
           }
         });
