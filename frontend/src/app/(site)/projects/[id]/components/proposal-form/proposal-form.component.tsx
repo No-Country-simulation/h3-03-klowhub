@@ -15,19 +15,33 @@ import { useState } from "react";
 import KanbanBoard from "@/components/kanban/kanban-board.component";
 import { TColumn, TTask } from "@/types/kanban.types";
 import { createBoardWithDetails } from "@/components/kanban/utils/kanban.utils";
-import AuthorCard from "@/components/author-card/author-card.component";
 import useStore from "@/contexts/store/use-store.hook";
 import { BTUser } from "@/types/user.types";
 import { BTChat } from "@/types/backend-responses.types";
 import { useRouter } from "next/navigation";
+import { TImage } from "@/types/global.types";
 
 type Props = {
-  projectAuthorId: string
+  author: {
+    id: string
+    name: string,
+    email: string,
+    role: string,
+    profileImg: TImage,
+  },
+  title: string
 }
 
 const submitProposal = async (
   data: Proposal,
-  projectAuthorId: string,
+  title: string,
+  author: {
+    id: string
+    name: string,
+    email: string,
+    role: string,
+    profileImg: TImage,
+  },
   applicantId: string,
   setLoading: (loading: boolean) => void,
   columns: TColumn[],
@@ -35,17 +49,17 @@ const submitProposal = async (
 ) => {
   try {
     setLoading(true);
-    
+
     const boardData = await createBoardWithDetails({
-      projectName: "Proyecto Demo",
+      projectName: title,
       columns,
       tasks,
-      projectCreatorEmail: "martinkunbrc1990@gmail.com"
+      projectCreatorEmail: author.email
     });
     setLoading(false)
 
     const chatData = {
-      members: [ projectAuthorId, applicantId ],
+      members: [author.id, applicantId],
       type: "private"
     };
 
@@ -87,8 +101,8 @@ const submitProposal = async (
   }
 };
 
-const ProposalForm = ({ projectAuthorId }: Props) => {
-  const [ user ] = useStore<BTUser>("user");
+const ProposalForm = ({ author, title }: Props) => {
+  const [user] = useStore<BTUser>("user");
   const router = useRouter();
 
   const { controlledCommonProps, handleSubmit } = useGenerateForm<Proposal>(
@@ -105,7 +119,7 @@ const ProposalForm = ({ projectAuthorId }: Props) => {
     <div className="flex flex-col gap-14 relative">
       {isKanbanOpen && <KanbanModal />}
       {isEditTaskOpen && <EditTaskModal />}
-      { loading &&
+      {loading &&
         <div className="fixed flex-col gap-5 inset-0 flex items-center justify-center bg-[#9d32bc]/30 z-50">
           <Circles
             height="80"
@@ -124,7 +138,7 @@ const ProposalForm = ({ projectAuthorId }: Props) => {
       <form
         className="flex gap-10"
         onSubmit={handleSubmit(async (data) => {
-          const chatId = await submitProposal(data, projectAuthorId, user.id, setLoading, columns, tasks)
+          const chatId = await submitProposal(data, title, author, user.id, setLoading, columns, tasks)
           if (!chatId) return;
           router.push(`/chat?chatId=${chatId}`)
         })}

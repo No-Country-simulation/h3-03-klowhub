@@ -59,7 +59,7 @@ const ProjectDetailPage = async ({ params }: Props) => {
           lg:w-full 
         `}>
           {/* <ProposalForm /> */}
-          <ProposalFormWithKanbanContext projectAuthorId={projectData.author.id} />
+          <ProposalFormWithKanbanContext author={projectData.author} title={projectData.title} />
         </div>
       </div>
       <div className="w-full flex justify-end pt-5">
