@@ -1,5 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
+import { TriangleAlert } from 'lucide-react'
 import services from '@/services'
 import { TRegisterData } from '@/types/service-types'
 import Link from 'next/link'
@@ -99,6 +100,13 @@ const RegisterForm = () => {
                         </div>
                     )}
                 </div>
+            </div>
+            <div className='flex gap-5 items-center border-1 rounded-lg p-3 border-yellow-500'>
+        <div>
+          <TriangleAlert color='#EAB308' />
+        </div>
+              <span>A fines de este demo, para poder publicar proyectos es necesario un correo real como gmail, hotmail o outlook <span className='text-yellow-500'>debido a la integración con Trello</span></span>
+        
             </div>
             <div className="w-full p-4 flex flex-wrap gap-2 text-xs justify-center">
                 <span>Al registrarte, aceptas nuestras</span>
